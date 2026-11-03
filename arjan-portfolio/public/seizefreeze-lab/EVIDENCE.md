@@ -84,3 +84,9 @@ This is a bounded review of the active portfolio's SeizeFreeze content, concept 
 ### Computed resistance sensitivity
 
 The interactive comparison is a project-specific calculation using the existing documented educational solver, not bench data. It varies one resistance input over three assumed values, preserves the synthetic signal and controller settings, and recomputes feedback and temperatures separately. The central run reproduces the active model. The graphs, sampled temperature endpoints, integrated TEC energy and CSV all derive from those computed trajectories. Source: [sensitivity.js](sensitivity.js), [model.js](model.js) and the [numerical/model record](MODEL.md). No external biological result is inferred from the comparison.
+
+## Research Lab 2.0 extension — 2 November 2026
+
+The [research workbench](research.html) adds a separate nonperfused spherical thermal surrogate, finite medium/TEC/storage/rejection, seeded synthetic multichannel recordings, condition comparisons and reproducible exports. These are project-specific calculations, not organoid measurements or biological-effect evidence. See [ORGANOID_MODEL.md](ORGANOID_MODEL.md) for equations, units, numerical checks and provenance.
+
+The builder now reports an early Arduino-based controller/Peltier/salvaged-NeuroSky assembly. Exact parts, firmware, wiring, thermometry and performance remain unverified in the available records. [PROTOTYPE_EVIDENCE.md](PROTOTYPE_EVIDENCE.md) separates that report from proposed instrumentation and hypothetical implant parts. [RESEARCH_SOURCES.md](RESEARCH_SOURCES.md) maps external studies with their actual model systems and endpoints; [VALIDATION_PLAN.md](VALIDATION_PLAN.md) records the proposed evidence milestones. No source is represented as validating SeizeFreeze.

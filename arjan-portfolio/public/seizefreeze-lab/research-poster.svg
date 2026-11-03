@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" role="img" aria-labelledby="title desc">
+<title id="title">Organoid research apparatus: static explanatory diagram</title>
+<desc id="desc">A spherical organoid in well-mixed medium, above a recording substrate and thermoelectric cooler with an external heat rejection boundary. Diagrammatic dimensions. The neutral radial rings explain the model, not a measured temperature field.</desc>
+<defs><linearGradient id="metal" x2="0" y2="1"><stop stop-color="#b4c1ca"/><stop offset=".45" stop-color="#5b7182"/><stop offset="1" stop-color="#273c4b"/></linearGradient><radialGradient id="sphere" cx=".3" cy=".25"><stop stop-color="#e1dbcf"/><stop offset="1" stop-color="#9b998f"/></radialGradient></defs>
+<rect width="1000" height="720" fill="#0a111a"/>
+<g fill="none" stroke="#91acbd" stroke-width="1.5"><path d="M280 140v260c0 42 440 42 440 0V140"/><ellipse cx="500" cy="140" rx="220" ry="36"/><path d="M295 182v214c0 34 410 34 410 0V182" fill="#6c9ead" fill-opacity=".07"/><ellipse cx="500" cy="182" rx="205" ry="30" stroke-opacity=".35"/></g>
+<circle cx="500" cy="292" r="90" fill="url(#sphere)"/>
+<path d="M500 202a90 90 0 0 1 0 180Z" fill="#cec8b9" stroke="#0e1e29"/>
+<g fill="none" stroke="#6c797e" stroke-width="1"><path d="M500 216a76 76 0 0 1 0 152M500 231a61 61 0 0 1 0 122M500 246a46 46 0 0 1 0 92M500 261a31 31 0 0 1 0 62M500 276a16 16 0 0 1 0 32"/></g>
+<path d="M260 422h480v16H260z" fill="#cecfc7"/><g fill="#b6a472"><circle cx="444" cy="418" r="3"/><circle cx="466" cy="418" r="3"/><circle cx="488" cy="418" r="3"/><circle cx="510" cy="418" r="3"/><circle cx="532" cy="418" r="3"/><circle cx="554" cy="418" r="3"/></g>
+<rect x="290" y="443" width="420" height="17" rx="2" fill="#719ba7"/><rect x="320" y="467" width="360" height="14" fill="#d0d0c5"/>
+<g fill="url(#metal)"><path d="M334 481h20v26h-20zM375 481h20v26h-20zM416 481h20v26h-20zM457 481h20v26h-20zM498 481h20v26h-20zM539 481h20v26h-20zM580 481h20v26h-20zM621 481h20v26h-20z"/></g>
+<rect x="320" y="507" width="360" height="14" fill="#d0d0c5"/><rect x="290" y="527" width="420" height="15" fill="#a98c63"/>
+<g fill="url(#metal)"><rect x="270" y="547" width="460" height="13"/><path d="M280 560h14v56h-14zM320 560h14v56h-14zM360 560h14v56h-14zM400 560h14v56h-14zM440 560h14v56h-14zM480 560h14v56h-14zM520 560h14v56h-14zM560 560h14v56h-14zM600 560h14v56h-14zM640 560h14v56h-14zM680 560h14v56h-14zM720 560h14v56h-14z"/></g>
+<g stroke="#8296a5" stroke-width="1" fill="none"><path d="M554 270h198M705 184h55M300 427H150M325 493H150M730 578h50"/></g>
+<g fill="#d1dce4" font-family="system-ui,sans-serif" font-size="14"><text x="766" y="274">Spherical radial domain</text><text x="766" y="188">Well-mixed medium</text><text x="38" y="420">Recording substrate</text><text x="38" y="487">Generic TEC</text><text x="785" y="582">Heat rejection</text></g>
+<text x="45" y="55" fill="#cbd8e1" font-family="system-ui,sans-serif" font-size="16" letter-spacing="3">RESEARCH APPARATUS</text>
+<text x="45" y="673" fill="#a1b2bf" font-family="system-ui,sans-serif" font-size="14">STATIC ILLUSTRATION · NOT MICROSCOPY · NOT A COMPUTED TEMPERATURE STATE</text>
+</svg>

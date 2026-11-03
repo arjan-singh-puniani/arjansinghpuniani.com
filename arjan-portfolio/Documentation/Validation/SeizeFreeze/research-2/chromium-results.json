@@ -1,0 +1,436 @@
+{
+  "base": "http://127.0.0.1:3219",
+  "engine": "chromium",
+  "version": "153.0.8010.12",
+  "passed": true,
+  "results": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "scans": 3,
+      "axeViolations": 0,
+      "reducedMotionIdleFrames": 0,
+      "physicalPhoneTest": false,
+      "scene": {
+        "componentPixels": {
+          "tissue": {
+            "x": 492.4132646853918,
+            "y": 198.35556958707707,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "medium": {
+            "x": 492.3967805801369,
+            "y": 195.34008047379956,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "recording": {
+            "x": 493.8726963925759,
+            "y": 233.86409094101558,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "cooler": {
+            "x": 492.72611516786924,
+            "y": 255.58629029694052,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "sensor": {
+            "x": 558.3571004367418,
+            "y": 241.1247742052873,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "rejection": {
+            "x": 492.9366456567732,
+            "y": 294.0992934285273,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          }
+        },
+        "disposed": false,
+        "glContextLost": false,
+        "memory": {
+          "geometries": 200,
+          "textures": 2
+        },
+        "cameraPosition": [
+          21.80405557360937,
+          12.935012857097494,
+          28.154144766684237
+        ],
+        "cameraTarget": [
+          0.6884469985961913,
+          -0.35999994939228247,
+          0
+        ],
+        "view": "apparatus",
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "mode": "organoid",
+        "section": true,
+        "selected": null,
+        "radiusMm": 1,
+        "shellTemperatures": [
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20
+        ],
+        "mediumTemperature": 20,
+        "radialCells": 12,
+        "geometry": "concentric finite-volume radial shell display; no azimuthal variation",
+        "units": "mm; all apparatus dimensions illustrative",
+        "mediumWellGeometry": "illustrative containment; not used to derive lumped medium heat capacity",
+        "heatFlowDisplay": "signed fixed-size arrows; no flux magnitude or spatial flux field inferred",
+        "boundary": "sphere uniformly coupled to one well-mixed medium node; medium to cold node through effective resistance",
+        "referenceTemperature": 20,
+        "triangles": 50620,
+        "drawCalls": 174,
+        "renderCount": 15,
+        "renderCPU": 0.4000000059604645,
+        "contextLost": false,
+        "componentIds": [
+          "tissue",
+          "medium",
+          "recording",
+          "cooler",
+          "sensor",
+          "rejection",
+          "controller",
+          "acquisition",
+          "driver"
+        ]
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scans": 3,
+      "axeViolations": 0,
+      "reducedMotionIdleFrames": 0,
+      "physicalPhoneTest": false,
+      "scene": {
+        "componentPixels": {
+          "tissue": {
+            "x": 195.2726888751306,
+            "y": 208.63276056946495,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "medium": {
+            "x": 195.26334016545164,
+            "y": 206.37325288610964,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "recording": {
+            "x": 196.33609758732848,
+            "y": 235.35661119050377,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "cooler": {
+            "x": 195.45137018143075,
+            "y": 251.818590306472,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "sensor": {
+            "x": 244.4792416340257,
+            "y": 240.83760918948443,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "rejection": {
+            "x": 195.5729679870248,
+            "y": 281.20779859868156,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          }
+        },
+        "disposed": false,
+        "glContextLost": false,
+        "memory": {
+          "geometries": 312,
+          "textures": 2
+        },
+        "cameraPosition": [
+          28.66607343510595,
+          17.255542621743487,
+          37.303501915346345
+        ],
+        "cameraTarget": [
+          0.6884469985961913,
+          -0.35999994939228247,
+          0
+        ],
+        "view": "apparatus",
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "mode": "organoid",
+        "section": true,
+        "selected": "tissue",
+        "radiusMm": 1,
+        "shellTemperatures": [
+          19.075580942872293,
+          19.07511687919227,
+          19.073904834716334,
+          19.072013042940306,
+          19.069467479323237,
+          19.066284858588745,
+          19.06248084341516,
+          19.05807207527855,
+          19.05307681083606,
+          19.047515123720036,
+          19.041408935187235,
+          19.03478196386591
+        ],
+        "mediumTemperature": 18.7457810701852,
+        "radialCells": 12,
+        "geometry": "concentric finite-volume radial shell display; no azimuthal variation",
+        "units": "mm; all apparatus dimensions illustrative",
+        "mediumWellGeometry": "illustrative containment; not used to derive lumped medium heat capacity",
+        "heatFlowDisplay": "signed fixed-size arrows; no flux magnitude or spatial flux field inferred",
+        "boundary": "sphere uniformly coupled to one well-mixed medium node; medium to cold node through effective resistance",
+        "referenceTemperature": 20,
+        "triangles": 51028,
+        "drawCalls": 179,
+        "renderCount": 69,
+        "renderCPU": 0.9000000059604645,
+        "contextLost": false,
+        "componentIds": [
+          "tissue",
+          "medium",
+          "recording",
+          "cooler",
+          "sensor",
+          "rejection",
+          "controller",
+          "acquisition",
+          "driver"
+        ]
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scans": 3,
+      "axeViolations": 0,
+      "reducedMotionIdleFrames": 0,
+      "physicalPhoneTest": false,
+      "scene": {
+        "componentPixels": {
+          "tissue": {
+            "x": 168.50882457367658,
+            "y": 158.07561402915584,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "medium": {
+            "x": 168.49988775324607,
+            "y": 156.1326316208325,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "recording": {
+            "x": 169.4323118097807,
+            "y": 181.02078312005884,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "cooler": {
+            "x": 168.6792165691703,
+            "y": 195.12107693603053,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "sensor": {
+            "x": 210.8825859498495,
+            "y": 185.72180143118138,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "rejection": {
+            "x": 168.79472199809408,
+            "y": 220.23347772891884,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          }
+        },
+        "disposed": false,
+        "glContextLost": false,
+        "memory": {
+          "geometries": 312,
+          "textures": 2
+        },
+        "cameraPosition": [
+          25.83073050841521,
+          15.47032670493821,
+          33.52304467975869
+        ],
+        "cameraTarget": [
+          0.6884469985961913,
+          -0.35999994939228247,
+          0
+        ],
+        "view": "apparatus",
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "mode": "organoid",
+        "section": true,
+        "selected": "tissue",
+        "radiusMm": 1,
+        "shellTemperatures": [
+          19.075580942872293,
+          19.07511687919227,
+          19.073904834716334,
+          19.072013042940306,
+          19.069467479323237,
+          19.066284858588745,
+          19.06248084341516,
+          19.05807207527855,
+          19.05307681083606,
+          19.047515123720036,
+          19.041408935187235,
+          19.03478196386591
+        ],
+        "mediumTemperature": 18.7457810701852,
+        "radialCells": 12,
+        "geometry": "concentric finite-volume radial shell display; no azimuthal variation",
+        "units": "mm; all apparatus dimensions illustrative",
+        "mediumWellGeometry": "illustrative containment; not used to derive lumped medium heat capacity",
+        "heatFlowDisplay": "signed fixed-size arrows; no flux magnitude or spatial flux field inferred",
+        "boundary": "sphere uniformly coupled to one well-mixed medium node; medium to cold node through effective resistance",
+        "referenceTemperature": 20,
+        "triangles": 51028,
+        "drawCalls": 179,
+        "renderCount": 69,
+        "renderCPU": 0.5,
+        "contextLost": false,
+        "componentIds": [
+          "tissue",
+          "medium",
+          "recording",
+          "cooler",
+          "sensor",
+          "rejection",
+          "controller",
+          "acquisition",
+          "driver"
+        ]
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "width": 320,
+      "height": 900,
+      "scans": 3,
+      "axeViolations": 0,
+      "reducedMotionIdleFrames": 0,
+      "physicalPhoneTest": false,
+      "scene": {
+        "componentPixels": {
+          "tissue": {
+            "x": 134.94106220173387,
+            "y": 163.2232866579769,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "medium": {
+            "x": 134.9352173023455,
+            "y": 161.6571071854871,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "recording": {
+            "x": 135.67173882504719,
+            "y": 181.77172451035634,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "cooler": {
+            "x": 135.05301501166292,
+            "y": 193.22178297897776,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "sensor": {
+            "x": 169.00660671287451,
+            "y": 185.579521507865,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          },
+          "rejection": {
+            "x": 135.12946347019428,
+            "y": 213.70665337617785,
+            "coordinates": "host-local CSS pixels; projected bounds center, may be occluded"
+          }
+        },
+        "disposed": false,
+        "glContextLost": false,
+        "memory": {
+          "geometries": 312,
+          "textures": 2
+        },
+        "cameraPosition": [
+          31.733338029086262,
+          19.1867832920274,
+          41.39318804065343
+        ],
+        "cameraTarget": [
+          0.6884469985961913,
+          -0.35999994939228247,
+          0
+        ],
+        "view": "apparatus",
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "mode": "organoid",
+        "section": true,
+        "selected": "tissue",
+        "radiusMm": 1,
+        "shellTemperatures": [
+          19.075580942872293,
+          19.07511687919227,
+          19.073904834716334,
+          19.072013042940306,
+          19.069467479323237,
+          19.066284858588745,
+          19.06248084341516,
+          19.05807207527855,
+          19.05307681083606,
+          19.047515123720036,
+          19.041408935187235,
+          19.03478196386591
+        ],
+        "mediumTemperature": 18.7457810701852,
+        "radialCells": 12,
+        "geometry": "concentric finite-volume radial shell display; no azimuthal variation",
+        "units": "mm; all apparatus dimensions illustrative",
+        "mediumWellGeometry": "illustrative containment; not used to derive lumped medium heat capacity",
+        "heatFlowDisplay": "signed fixed-size arrows; no flux magnitude or spatial flux field inferred",
+        "boundary": "sphere uniformly coupled to one well-mixed medium node; medium to cold node through effective resistance",
+        "referenceTemperature": 20,
+        "triangles": 51028,
+        "drawCalls": 179,
+        "renderCount": 69,
+        "renderCPU": 0.5,
+        "contextLost": false,
+        "componentIds": [
+          "tissue",
+          "medium",
+          "recording",
+          "cooler",
+          "sensor",
+          "rejection",
+          "controller",
+          "acquisition",
+          "driver"
+        ]
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "fault": "webgl",
+      "passed": true
+    },
+    {
+      "fault": "worker",
+      "passed": true
+    }
+  ]
+}

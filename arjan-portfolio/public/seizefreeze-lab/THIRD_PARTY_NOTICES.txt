@@ -35,3 +35,5 @@ or music rights for the original concept film.
 
 Scientific attribution and claim contexts: EVIDENCE.md.
 Numerical coefficients and modeling limitations: MODEL.md.
+
+Research Lab 2.0: research-scene.js and research-poster.svg are original procedural/schematic artwork. Generic controller, acquisition and thermoelectric drawings do not reproduce an identified Arduino or NeuroSky board layout. No microscopy, firmware, organoid data or external paper figures are redistributed. The independent synthetic signals and radial thermal solver use authored assumptions; primary research is linked with context in RESEARCH_SOURCES.md. Existing local Three.js/KaTeX licenses above also apply to this route.

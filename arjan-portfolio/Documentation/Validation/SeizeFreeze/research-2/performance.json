@@ -1,0 +1,415 @@
+{
+  "base": "http://127.0.0.1:3219",
+  "results": [
+    {
+      "mode": "native",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "workload": "timeline",
+      "readyMs": 281,
+      "staticByDefault": false,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 60.40615189010855,
+      "intervalP95Ms": 16.799999999999727,
+      "renderCpuMs": 0.800000011920929,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "triangles": 23504,
+      "drawCalls": 143,
+      "memory": {
+        "geometries": 161,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "native",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "workload": "section-orbit",
+      "readyMs": 281,
+      "staticByDefault": false,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 60.44218228132686,
+      "intervalP95Ms": 16.700000000000728,
+      "renderCpuMs": 0.7000000178813934,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "triangles": 49740,
+      "drawCalls": 153,
+      "memory": {
+        "geometries": 200,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "native",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "workload": "prototype-orbit",
+      "readyMs": 281,
+      "staticByDefault": false,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 60.3941513036713,
+      "intervalP95Ms": 16.799999999999272,
+      "renderCpuMs": 0.7999999821186066,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "triangles": 2112,
+      "drawCalls": 134,
+      "memory": {
+        "geometries": 312,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "native",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 3,
+      "workload": "timeline",
+      "readyMs": 255,
+      "staticByDefault": false,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 60.42776496765517,
+      "intervalP95Ms": 16.700000000000273,
+      "renderCpuMs": 0.9000000059604645,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "triangles": 23504,
+      "drawCalls": 143,
+      "memory": {
+        "geometries": 153,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "native",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 3,
+      "workload": "section-orbit",
+      "readyMs": 255,
+      "staticByDefault": false,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 60.46863189749009,
+      "intervalP95Ms": 16.700000000000728,
+      "renderCpuMs": 0.800000011920929,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "triangles": 49984,
+      "drawCalls": 153,
+      "memory": {
+        "geometries": 192,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "native",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 3,
+      "workload": "prototype-orbit",
+      "readyMs": 255,
+      "staticByDefault": false,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 60.41095345986252,
+      "intervalP95Ms": 16.700000000000728,
+      "renderCpuMs": 0.800000011920929,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "triangles": 2112,
+      "drawCalls": 134,
+      "memory": {
+        "geometries": 312,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "native",
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 2,
+      "workload": "timeline",
+      "readyMs": 251,
+      "staticByDefault": false,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 60.384554266931445,
+      "intervalP95Ms": 16.799999999999727,
+      "renderCpuMs": 0.699999988079071,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "triangles": 23504,
+      "drawCalls": 143,
+      "memory": {
+        "geometries": 161,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "native",
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 2,
+      "workload": "section-orbit",
+      "readyMs": 251,
+      "staticByDefault": false,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 60.08276301158533,
+      "intervalP95Ms": 16.700000000000728,
+      "renderCpuMs": 0.30000001192092896,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "triangles": 49728,
+      "drawCalls": 152,
+      "memory": {
+        "geometries": 200,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "native",
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 2,
+      "workload": "prototype-orbit",
+      "readyMs": 251,
+      "staticByDefault": false,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 60.47103755512343,
+      "intervalP95Ms": 16.799999999999272,
+      "renderCpuMs": 0.5999999940395355,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "triangles": 2112,
+      "drawCalls": 134,
+      "memory": {
+        "geometries": 312,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "software",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "workload": "timeline",
+      "readyMs": 3962,
+      "staticByDefault": true,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 24.240979176544077,
+      "intervalP95Ms": 50.100000000000364,
+      "renderCpuMs": 0.4000000059604645,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "triangles": 23504,
+      "drawCalls": 143,
+      "memory": {
+        "geometries": 161,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "software",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "workload": "section-orbit",
+      "readyMs": 3962,
+      "staticByDefault": true,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 4.973791942479738,
+      "intervalP95Ms": 283.39999999999964,
+      "renderCpuMs": 0.4000000059604645,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "triangles": 49560,
+      "drawCalls": 152,
+      "memory": {
+        "geometries": 200,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "software",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "workload": "prototype-orbit",
+      "readyMs": 3962,
+      "staticByDefault": true,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 38.16642150068877,
+      "intervalP95Ms": 33.399999999999636,
+      "renderCpuMs": 0.19999998807907104,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "triangles": 2112,
+      "drawCalls": 134,
+      "memory": {
+        "geometries": 312,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "software",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "workload": "timeline",
+      "readyMs": 1649,
+      "staticByDefault": true,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 45.79848665870171,
+      "intervalP95Ms": 33.40000000000009,
+      "renderCpuMs": 0.29999998211860657,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "triangles": 23504,
+      "drawCalls": 143,
+      "memory": {
+        "geometries": 153,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "software",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "workload": "section-orbit",
+      "readyMs": 1649,
+      "staticByDefault": true,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 8.346250149059953,
+      "intervalP95Ms": 150,
+      "renderCpuMs": 0.30000001192092896,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "triangles": 49816,
+      "drawCalls": 153,
+      "memory": {
+        "geometries": 192,
+        "textures": 2
+      }
+    },
+    {
+      "mode": "software",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "workload": "prototype-orbit",
+      "readyMs": 1649,
+      "staticByDefault": true,
+      "physicalPhoneTest": false,
+      "measurement": "Short unthrottled desktop-host interaction RAF cadence; not GPU execution time or physical-device performance. Multiple synchronous renderer submissions may occur per presented frame.",
+      "interactionRafFps": 60.437375745526836,
+      "intervalP95Ms": 16.700000000000728,
+      "renderCpuMs": 0.4000000059604645,
+      "idleRenders": 0,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "triangles": 2112,
+      "drawCalls": 134,
+      "memory": {
+        "geometries": 312,
+        "textures": 2
+      }
+    }
+  ],
+  "assets": [
+    {
+      "name": "research.html",
+      "bytes": 22861,
+      "gzipBytes": 8146
+    },
+    {
+      "name": "research.css",
+      "bytes": 14084,
+      "gzipBytes": 3786
+    },
+    {
+      "name": "research.js",
+      "bytes": 31064,
+      "gzipBytes": 10401
+    },
+    {
+      "name": "research-scene.js",
+      "bytes": 32495,
+      "gzipBytes": 9988
+    },
+    {
+      "name": "research-worker.js",
+      "bytes": 585,
+      "gzipBytes": 344
+    },
+    {
+      "name": "research-poster.svg",
+      "bytes": 3179,
+      "gzipBytes": 1304
+    },
+    {
+      "name": "organoid-model.js",
+      "bytes": 16478,
+      "gzipBytes": 5546
+    },
+    {
+      "name": "organoid-signal.js",
+      "bytes": 5877,
+      "gzipBytes": 2206
+    },
+    {
+      "name": "ORGANOID_MODEL.md",
+      "bytes": 20407,
+      "gzipBytes": 8453
+    },
+    {
+      "name": "PROTOTYPE_EVIDENCE.md",
+      "bytes": 8730,
+      "gzipBytes": 3697
+    },
+    {
+      "name": "VALIDATION_PLAN.md",
+      "bytes": 7838,
+      "gzipBytes": 3397
+    },
+    {
+      "name": "RESEARCH_SOURCES.md",
+      "bytes": 10928,
+      "gzipBytes": 4644
+    }
+  ],
+  "totalAddedBytes": 174526,
+  "summedAddedGzipBytes": 61912,
+  "sharedRuntime": "Existing local Three.js and KaTeX reused; no new dependency. Generated full experiment JSON is about17MB per run, not a downloaded site asset."
+}
