@@ -1,0 +1,43 @@
+# Prototype evidence and instrumentation
+
+Reviewed 2 November 2026. The founder reports assembling an early bench prototype using an Arduino-based controller, a Peltier module and electronics salvaged from a NeuroSky EEG headset. **This inventory is user-reported.** The inspected project records do not identify the board versions, module markings, wiring, firmware, driver, supply, sensor calibration or recorded performance. A generic workbench representation must not be mistaken for an inspected assembly or miniature implant.
+
+## Evidence inventory
+
+| Item | Evidence class | What can be stated now | Record needed before a stronger claim |
+| --- | --- | --- | --- |
+| Arduino-based controller | User-reported hardware | The founder reports using an Arduino-based controller. | Legible board photographs, model/revision, firmware source/version and documented interfaces. |
+| Peltier thermoelectric module | User-reported hardware | The founder reports using a Peltier element. | Markings, manufacturer/part number, ratings and test conditions; measured electrical/thermal behavior. |
+| Salvaged NeuroSky electronics | User-reported hardware | The founder reports salvaging headset electronics. | Original headset and board identification, acquisition configuration, electrode/reference arrangement and authorized raw records. |
+| Driver and external power supply | Configuration unknown | A current command and electrical power delivery are distinct functions; the actual power stage is not established here. | Circuit/wiring record, identified driver/supply, operating limits, current/voltage measurements and loss budget. |
+| Temperature sensors and independent reference instrument | Proposed supplemental instrumentation; actual inventory unverified | Temperature feedback is simulated. No inspected record establishes an installed, calibrated probe. | Probe identity/location, calibration record, uncertainty and timing characterization. |
+| Heat rejection and physical contact | Proposed/unknown implementation | The thermal model needs a finite heat path and stores energy. The actual bench sink/interface is unidentified. | Photographs, dimensions, materials, contact conditions and simultaneous hot/cold measurements. |
+| Exact physically verified prototype components | No items established in this review | No part-identifying hardware record was found. | Inspectable evidence connecting photographs/markings to the documented assembly. |
+| Laboratory simulations, exports and synthetic traces | Project software | Deterministic computational demonstrations of stated assumptions. | They cannot substitute for a hardware recording, calibration or biological experiment. |
+| Candidate implant and anatomical placement | Hypothetical educational construction | Proposed component families and explicit display assumptions. | Separate materials, packaging, fixation, sensing, power and chronic-operation evidence; see [DEVICE.md](DEVICE.md). |
+
+Search scope: the active portfolio and existing project records, source/content files and filename inventories in the authorized Desktop portfolio and hardening trees were checked for Arduino, Peltier, NeuroSky, MindWave, ThinkGear, firmware, wiring and measurement records. Existing concept figures and the pitch film are design/presentation artifacts; they do not identify the reported bench configuration. No matching firmware, part-marked hardware photograph, wiring record, calibration dataset or raw acquisition log was found in that bounded search. One previously referenced EEG-cap project path was unavailable. This is not proof that the reported prototype or private records do not exist. Private files and correspondence are not published here.
+
+## What the NeuroSky documentation establishes
+
+Official [ThinkGear documentation](https://developer.neurosky.com/docs/doku.php?id=what_is_thinkgear) describes a forehead sensing contact, ear contacts/reference and onboard processing. It lists raw values, signal-quality information, frequency-band outputs and proprietary eSense scores. These describe product-family capabilities, not the unidentified salvaged board.
+
+The current [TGAT1/TGAM1 manufacturer page](https://neurosky.com/neurosky-products/eeg-biosensor/) lists a 3–100 Hz frequency range and 512 samples/s. These are distinct specifications: sample rate is not analog bandwidth, spatial resolution or seizure-detection accuracy. The [communications protocol](https://developer.neurosky.com/docs/doku.php?id=thinkgear_communications_protocol) distinguishes ThinkGear variants with different raw-output rates, ranges and serial modes. Therefore neither a 512 Hz stream nor a raw-count-to-voltage conversion is assigned to the reported board until its exact variant/configuration is established. Attention/Meditation scores are not validated seizure detections, and raw ADC counts must not be silently labeled µV.
+
+No source inspected here establishes direct organoid recording with the salvaged electronics. Consumer scalp acquisition, intracranial recording and an organoid MEA assay are different measurement systems. A signal-processing demonstration is not a biologically validated detector.
+
+## Instrumentation comparison
+
+| Method | Measurement, spatial sampling and reference | Bandwidth/amplitude interpretation | Application limit |
+| --- | --- | --- | --- |
+| Consumer scalp EEG | Extracellular potential difference across scalp contacts; broad volume-conducted contributions. Conventional MindWave architecture is a single EEG channel with reference/contact configuration. | Manufacturer-specific passband, gain, filters and sample rate. Raw counts require documented scaling; electrical/contact/motion artifacts can resemble activity. | Does not resolve individual cells or directly establish organoid network activity. Identify the actual board first. |
+| ECoG | Extracellular potentials from cortical-surface electrodes relative to an electrical reference. Sampling depends on grid/contact geometry. | Acquisition-dependent voltage scale and passband; reference, volume conduction and artifacts affect interpretation. | Intracranial surface recording is not consumer scalp EEG and is not an in-vitro MEA. [Field-signal biophysics](https://doi.org/10.1038/nrn3241). |
+| Intracellular / whole-cell recording | Membrane voltage or current from an individual accessed cell, using a dedicated amplifier and reference arrangement. | Measures different quantities from extracellular fields: membrane voltage may be expressed in mV, current in pA; usable bandwidth/noise depend on instrument and access. | Cell-level measurements do not alone describe the whole network. [Hamill et al.](https://doi.org/10.1007/BF00656997). |
+| Extracellular MEA | Multiple extracellular contacts sample nearby fields/spikes against defined reference electrodes. Electrode–tissue coupling and coverage matter. | Field and spike bands require appropriate acquisition/filtering; electrode geometry, impedance and noise affect voltage detectability. | Surface coverage cannot guarantee observation of all cells in a 3D preparation. Pan et al. demonstrate a particular assembloid assay, not SeizeFreeze hardware. [Primary study](https://doi.org/10.3791/67396). |
+| Optical functional readouts | Calcium- or voltage-sensitive fluorescence samples optically visible regions/cells; no EEG reference electrode defines its signal. | Optical intensity or ΔF/F is not an electrical µV trace. Indicator response, imaging rate, access, background and illumination affect interpretation. | Calcium and voltage readouts are not interchangeable; a review of methods does not validate a thermal-response assay. [Lo et al.](https://doi.org/10.1038/s44222-026-00507-6); [Puppo et al., voltage imaging in hiPSC-derived neurons](https://doi.org/10.3389/fncel.2021.671549). |
+
+There is no universal bandwidth, amplitude range or detection threshold shared by these methods. Specify the complete acquisition chain and experimental system before comparing signals. In the workbench, voltage traces, channel events, rasters and burst summaries are **synthetic**, not measurements from the reported prototype or a living preparation.
+
+## Evidence required for a physical validation claim
+
+Keep photographs and part identity separate from functional evidence. Keep a serial connection separate from verified acquisition, a current command separate from delivered current, and heat transfer separate from biological benefit. Future records should link hardware identity, firmware version, calibrated measurements, conditions, timestamps, uncertainty and failure observations. Only authorized, documented measurements should be added as measured data; missing records remain missing.
