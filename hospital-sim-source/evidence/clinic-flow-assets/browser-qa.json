@@ -127,5 +127,14 @@
     "seconds": 91.3895,
     "ended": true,
     "error": null
+  },
+  "verification": {
+    "gameSuites": 27,
+    "portfolioTestFiles": 30,
+    "portfolioTests": 250,
+    "typecheck": "passed",
+    "nextBuild": "passed",
+    "rebasedOn": "080e9ac",
+    "runtime": 127
   }
 }
