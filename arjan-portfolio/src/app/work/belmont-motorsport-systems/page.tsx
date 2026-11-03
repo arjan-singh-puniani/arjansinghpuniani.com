@@ -31,10 +31,10 @@ export default function BelmontSystems() {
   return <div className="motorsport-case belmont-case">
     <header className="page-hero motorsport-hero">
       <div className="shell">
-        <div className="status-row" aria-label="Project status"><span className="status">ACADEMIC SYSTEMS STUDY</span><span className="status">RISK-MANAGEMENT ANALYSIS</span><span className="status">COURSE-USE PROPOSAL</span></div>
         <p className="eyebrow">Belmont Abbey College coursework · 2026</p>
         <h1>Belmont motorsport systems</h1>
         <p>For Belmont Abbey College coursework, I wrote a 16-item risk analysis, mitigation plan, and proposed emergency and medical operations annex for a road-racing weekend at Sonoma Raceway.</p>
+        <div className="status-row" aria-label="Project status"><span className="status">ACADEMIC SYSTEMS STUDY</span><span className="status">RISK-MANAGEMENT ANALYSIS</span><span className="status">COURSE-USE PROPOSAL</span></div>
       </div>
     </header>
 

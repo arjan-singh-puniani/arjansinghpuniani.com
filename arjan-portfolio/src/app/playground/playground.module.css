@@ -35,10 +35,6 @@
   padding: clamp(34px, 5vw, 66px);
 }
 
-.copy .status {
-  margin-bottom: 22px;
-}
-
 .copy h2 {
   max-width: 620px;
   margin: 12px 0 18px;
@@ -73,11 +69,6 @@
   background: #0d1830;
   color: #f7f4eb;
   border-color: rgba(231,235,245,.2);
-}
-
-.dark .copy .status {
-  border-color: rgba(247,244,235,.44);
-  color: #f7f4eb;
 }
 
 .dark .copy .eyebrow {

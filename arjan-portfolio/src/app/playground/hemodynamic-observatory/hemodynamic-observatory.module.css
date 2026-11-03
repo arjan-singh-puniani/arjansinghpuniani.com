@@ -1,10 +1,7 @@
 .hero {
   padding: 86px 0 70px;
   border-bottom: 1px solid var(--line);
-  background:
-    linear-gradient(to right, transparent 0, transparent calc(100% - 1px), rgba(0,111,114,.06) calc(100% - 1px)),
-    linear-gradient(to bottom, transparent 0, transparent calc(100% - 1px), rgba(0,111,114,.05) calc(100% - 1px));
-  background-size: 90px 90px;
+  background: var(--bg);
 }
 
 .heroGrid {

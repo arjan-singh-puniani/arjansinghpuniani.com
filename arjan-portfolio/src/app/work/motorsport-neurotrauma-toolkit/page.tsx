@@ -28,14 +28,14 @@ export default function MotorsportNeurotraumaToolkit() {
   return <div className="motorsport-case neurotrauma-case">
     <header className="page-hero motorsport-hero">
       <div className="shell">
+        <p className="eyebrow">Motorsport neurotrauma · Documentation systems · 2026</p>
+        <h1>Mechanism-to-Medical Center</h1>
+        <p>A Version 0.2 pilot intake card and disposition algorithm I drafted for motorsport medicine. It records crash mechanics, occupant protection, and acute neurologic observations for medical handoff.</p>
         <div className="status-row" aria-label="Project status">
           <span className="status">EXPLORATORY</span>
           <span className="status">VERSION 0.2 PILOT</span>
           <span className="status status-caution">{statusNotes.notClinicallyValidated}</span>
         </div>
-        <p className="eyebrow">Motorsport neurotrauma · Documentation systems · 2026</p>
-        <h1>Mechanism-to-Medical Center</h1>
-        <p>A Version 0.2 pilot intake card and disposition algorithm I drafted for motorsport medicine. It records crash mechanics, occupant protection, and acute neurologic observations for medical handoff.</p>
       </div>
     </header>
 

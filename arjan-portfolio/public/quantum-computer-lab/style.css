@@ -15,7 +15,7 @@
   --control: #62b1ff;
   --readout: #e7c775;
   --noise: #d08b85;
-  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-synthesis: none;
 }
 * {
@@ -2305,8 +2305,8 @@ body.compute-mode .readout-grid .caption {
     position: sticky;
     top: 0;
     z-index: 8;
-    background: #0e131bf5;
-    backdrop-filter: blur(12px);
+    background: #0e131b;
+
   }
   body.compute-mode .experiment-story {
     scroll-margin-top: 65px;
@@ -2485,8 +2485,8 @@ body.html-mode .component-labels {
     top: 0;
     z-index: 9;
     padding: 8px 14px;
-    background: #0e131bf5;
-    backdrop-filter: blur(12px);
+    background: #0e131b;
+
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     margin-bottom: 12px;
@@ -2563,10 +2563,10 @@ h1 {
   width: fit-content;
   max-width: calc(100% - 38px);
   border: 1px solid #56667844;
-  background: #111a25dd;
+  background: #111a25;
   border-radius: 7px;
   padding: 4px;
-  backdrop-filter: blur(12px);
+
 }
 .viewport-controls button {
   background: transparent;
@@ -4340,9 +4340,9 @@ body.compute-mode #coherent-rule {
     align-items: center;
     margin: 14px -15px 0;
     padding: 0 15px;
-    background: #122232f5;
+    background: #122232;
     border-block: 1px solid #4a6378;
-    backdrop-filter: blur(12px);
+
   }
   body.compute-mode #coherent-mobile-ket {
     font-size: 14px;
@@ -5599,8 +5599,8 @@ body.compute-mode .chapter-nav {
   position: sticky;
   top: 0;
   z-index: 8;
-  background: #0b1420f5;
-  backdrop-filter: blur(12px);
+  background: #0b1420;
+
 }
 .math-explanation .coherent-row > .stage-label {
   flex-basis: 112px;

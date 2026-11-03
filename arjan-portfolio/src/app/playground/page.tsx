@@ -24,9 +24,8 @@ export const metadata: Metadata = {
 };
 
 const cards = [
-  {status:"HOSPITAL MANAGEMENT GAME",eyebrow:"People · Queues · Care",title:"hospitalSIM",description:"Build a miniature hospital and discover where the bottleneck moves. Includes a REPLISOME science workstation.",href:"/playground/hospitalsim",button:"Play hospitalSIM",image:"/hospitalsim/preview.webp",alt:"Actual hospitalSIM game with medical equipment, miniature clinicians and blue platforms",tone:"light"},
+  {eyebrow:"People · Queues · Care",title:"hospitalSIM",description:"Build a miniature hospital and discover where the bottleneck moves. Includes a REPLISOME science workstation.",href:"/playground/hospitalsim",button:"Play hospitalSIM",image:"/hospitalsim/preview.webp",alt:"Actual hospitalSIM game with medical equipment, miniature clinicians and blue platforms",tone:"light"},
   {
-    status: "INTERACTIVE ANATOMY",
     eyebrow: "HoloAnatomy",
     title: "Anatomy Learner",
     description: "An anatomy prototype with rotatable head and neck, shoulder, and heart models.",
@@ -37,7 +36,6 @@ const cards = [
     tone: "dark",
   },
   {
-    status: "TENNIS GAME",
     eyebrow: "Vector Tennis",
     title: "Endless Rally",
     description: "A simple one-input tennis rally game.",
@@ -48,7 +46,6 @@ const cards = [
     tone: "dark",
   },
   {
-    status: "LIVING CLUB / ARCADE TENNIS",
     eyebrow: "Rally House",
     title: "Rally House",
     description: "A miniature living club that becomes an arcade tennis game on the same court.",
@@ -59,7 +56,6 @@ const cards = [
     tone: "light",
   },
   {
-    status: "RACE SYSTEMS",
     eyebrow: "Pit Stop Lab",
     title: "Pit Stop Lab",
     description: "A cinematic telemetry-driven lap, slow-motion pit crew and traceable race-strategy experiments.",
@@ -70,7 +66,6 @@ const cards = [
     tone: "dark",
   },
   {
-    status: "CARDIO FLOW",
     eyebrow: "Hemodynamic Observatory",
     title: "Carotid Flow Visualizer",
     description: "A synthetic carotid-flow model using a reduced-order velocity field, not a full Navier–Stokes solver.",
@@ -97,7 +92,6 @@ export default function Playground() {
         {cards.map((card) => (
           <article className={`${styles.card} ${card.tone === "light" ? styles.light : styles.dark}`} key={card.href}>
             <div className={styles.copy}>
-              <span className="status">{card.status}</span>
               <p className="eyebrow">{card.eyebrow}</p>
               <h2>{card.title}</h2>
               <p>{card.description}</p>

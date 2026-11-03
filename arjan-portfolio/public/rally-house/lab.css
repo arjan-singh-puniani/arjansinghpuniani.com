@@ -10,7 +10,7 @@
 .performance-lab button[aria-pressed=true]{color:#263c35;background:#e6cc99;border-color:#eddbb5}
 .performance-lab :focus-visible{outline:3px solid #b5eedc;outline-offset:3px}
 .performance-lab select{appearance:none;-webkit-appearance:none;height:44px;min-width:44px;padding-right:28px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23d8dfc7' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center}
-.lab-panel{pointer-events:auto;position:absolute;right:24px;top:104px;bottom:112px;width:320px;max-height:710px;overflow:auto;overscroll-behavior:contain;padding:24px;border:1px solid #c6d2b833;border-radius:18px;background:linear-gradient(145deg,#203a35ef,#192f34f2);box-shadow:0 12px 50px #0f292538;backdrop-filter:blur(14px)}
+.lab-panel{pointer-events:auto;position:absolute;right:24px;top:104px;bottom:112px;width:320px;max-height:710px;overflow:auto;overscroll-behavior:contain;padding:24px;border:1px solid #c6d2b833;border-radius:18px;background:#203a35;box-shadow:0 12px 50px #0f292538;}
 .lab-panel h2{font-weight:500;font-size:27px;letter-spacing:-.04em;margin:0 0 10px}
 .lab-provenance{font-size:10px;letter-spacing:.12em;color:#c7d5be;line-height:1.6;margin:0 0 18px}
 .lab-modes{display:flex;gap:4px;margin:0 0 20px}

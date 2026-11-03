@@ -39,15 +39,10 @@ export default function Home() {
   return (
     <>
       <section className={`v2-hero ${styles.heroScope}`}>
-        <div className="v2-orbit" aria-hidden="true">
-          <span>01</span>
-          <i />
-          <span>26</span>
-        </div>
         <div className="shell v2-hero-grid">
           <div className="v2-hero-copy">
             <p className="v2-label">
-              <span /> Neural engineering · California
+              Neural engineering · California
             </p>
             <h1 className={styles.heroTitle}>Arjan Singh Puniani</h1>
             <p className={styles.heroFocus}>
