@@ -87,6 +87,29 @@ export function vectorAt(time: number, model: EcgModel): Vec2 {
   return [P[0] + QRS[0] + T[0], P[1] + QRS[1] + T[1]];
 }
 
+export function alignQrsToLead(
+  model: EcgModel,
+  lead: Lead,
+  direction: "toward" | "across" | "away",
+) {
+  const time = 200 + 0.44 * model.qrs;
+  const base = componentsAt(time, { ...model, rotation: 0 }).QRS;
+  const field = LEAD_FIELDS[lead];
+  const offset =
+    direction === "toward" ? 0 : direction === "across" ? Math.PI / 2 : Math.PI;
+  const degrees =
+    ((Math.atan2(field[1], field[0]) - Math.atan2(base[1], base[0]) + offset) *
+      180) /
+    Math.PI;
+  return {
+    time,
+    model: {
+      ...model,
+      rotation: ((((degrees + 180) % 360) + 360) % 360) - 180,
+    },
+  };
+}
+
 export function electrodePotentials([x, y]: Vec2) {
   return { RA: -x / 2 - y / (2 * r3), LA: x / 2 - y / (2 * r3), LL: y / r3 };
 }

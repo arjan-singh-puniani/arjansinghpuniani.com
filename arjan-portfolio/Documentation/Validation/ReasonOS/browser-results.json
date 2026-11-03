@@ -2,6 +2,7 @@
   {
     "browser": "chromium",
     "synchronizedChecks": 30,
+    "guidedProjectionCases": "passed",
     "calibration": "passed",
     "staleEvidence": "rejected",
     "boundedClaim": "passed",
@@ -18,6 +19,7 @@
   {
     "browser": "webkit",
     "synchronizedChecks": 30,
+    "guidedProjectionCases": "passed",
     "calibration": "passed",
     "staleEvidence": "rejected",
     "boundedClaim": "passed",
@@ -34,6 +36,7 @@
   {
     "browser": "firefox",
     "synchronizedChecks": 30,
+    "guidedProjectionCases": "passed",
     "calibration": "passed",
     "staleEvidence": "rejected",
     "boundedClaim": "passed",

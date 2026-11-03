@@ -95,7 +95,7 @@
 }
 .header {
   border-bottom: 1px solid var(--line);
-  padding-bottom: 20px;
+  padding-bottom: 17px;
 }
 .header p {
   margin-top: 7px;
@@ -129,7 +129,7 @@
 }
 .stage {
   display: grid;
-  grid-template-columns: minmax(270px, 0.8fr) minmax(0, 1.8fr);
+  grid-template-columns: minmax(270px, 0.9fr) minmax(0, 1.8fr);
   gap: 30px;
 }
 .stage figure {
@@ -153,7 +153,7 @@
 .geometry {
   width: 100%;
   display: block;
-  max-height: 365px;
+  max-height: 300px;
   overflow: visible;
 }
 .geometry text {
@@ -166,6 +166,17 @@
   font-size: 12px;
 }
 .geometry .leadLabel {
+  fill: var(--cyan);
+  font-size: 14px;
+}
+.geometry .diagramLabels text {
+  font-size: 17px;
+  fill: revert-layer;
+}
+.geometry .diagramLabels text:first-child {
+  fill: var(--amber);
+}
+.geometry .diagramLabels text:last-child {
   fill: var(--cyan);
 }
 .geometry .axisLabel {
@@ -203,7 +214,7 @@
   width: 100%;
   touch-action: none;
   user-select: none;
-  overflow: visible;
+  overflow: hidden;
 }
 .chart text {
   font:
@@ -241,6 +252,103 @@
   gap: 16px;
   padding: 10px 0 15px;
   border-bottom: 1px solid var(--line);
+}
+.directionControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.directionControls button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+}
+.directionControls button span {
+  color: var(--cyan);
+  font-size: 20px;
+  line-height: 1;
+}
+.takeaway {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 14px;
+  padding: 20px 0 24px;
+  font-size: 15px;
+}
+.takeaway strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+.takeaway > span {
+  color: var(--cyan);
+}
+.stepNumber {
+  display: inline-grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  border: 1px solid #526e81;
+  border-radius: 50%;
+  font-size: 12px !important;
+  margin-right: 7px;
+}
+.amberKey {
+  color: var(--amber);
+}
+.cyanKey {
+  color: var(--cyan);
+}
+.geometryToggle {
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 10px;
+}
+.geometryToggle input {
+  accent-color: var(--cyan);
+}
+.geometry .negativeEnd {
+  fill: var(--cyan);
+  font-size: 18px;
+}
+.chart .pointLabel {
+  fill: var(--cyan);
+  font-family: inherit;
+  font-size: 15px;
+}
+.projectionCalculation {
+  padding: 15px 0 8px;
+}
+.projectionCalculation .math {
+  font-size: clamp(16px, 1.7vw, 23px);
+}
+.lessonDetail {
+  border-top: 1px solid var(--line);
+  padding: 17px 0;
+}
+.lessonDetail > summary {
+  font-size: 15px;
+  color: var(--ink);
+}
+.lessonDetail > summary span {
+  display: block;
+  margin: 5px 0 0 17px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.practiceIntro {
+  padding-top: 19px;
+  max-width: 750px;
+}
+.phaseRow > span:first-child {
+  margin-left: 0;
+  margin-right: 10px;
+  font-size: 12px;
 }
 .transport label {
   font-size: 11px;
@@ -598,7 +706,7 @@
     grid-template-columns: 1fr;
   }
   .geometry {
-    height: 310px;
+    height: 190px;
   }
   .phaseRow span {
     margin-left: 0;
@@ -646,13 +754,60 @@
     font-size: 16px;
   }
   .chart {
-    min-height: 200px;
+    min-height: 160px;
   }
   .caption {
     min-height: 0;
   }
   .lab h2 {
     font-size: 22px;
+  }
+  .directionControls {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .directionControls button {
+    display: flex;
+    text-align: left;
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+  .directionControls button span {
+    font-size: 20px;
+  }
+  .takeaway {
+    justify-content: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    padding: 16px 0;
+  }
+  .takeaway > span:not([aria-hidden]) {
+    display: none;
+  }
+  .takeaway > span[aria-hidden]:nth-child(4) {
+    display: none;
+  }
+  .stage {
+    gap: 18px;
+  }
+  .figureHead h3 {
+    font-size: 15px;
+  }
+  .caption {
+    font-size: 11px !important;
+    margin-top: 8px !important;
+  }
+  .phaseRow span:first-child {
+    width: 100%;
+  }
+  .transport button {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+  .projectionCalculation .math {
+    font-size: 16px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

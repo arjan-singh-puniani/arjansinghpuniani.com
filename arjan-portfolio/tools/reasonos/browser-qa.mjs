@@ -37,6 +37,7 @@ for (const [name, engine] of [
     const lab = page.locator("#reasonos-lab");
     await page.waitForSelector("#reasonos-lab .katex");
     await page.evaluate(() => document.fonts.ready);
+    await page.screenshot({ path: `${out}/${name}-opening-desktop.png` });
     const scrollStage = async () => {
       await lab.evaluate((e) =>
         e.scrollIntoView({ block: "start", behavior: "instant" }),
@@ -57,6 +58,36 @@ for (const [name, engine] of [
     };
     const trace = () =>
       lab.locator("pre").evaluate((e) => JSON.parse(e.textContent));
+    assert.equal(
+      await lab.locator("#reasonos-measurement").getAttribute("open"),
+      null,
+      "The opening focuses on the signal, with measurement as the next step",
+    );
+    for (const [name, sign, direction] of [
+      ["Toward the lead", 1, "toward"],
+      ["Across the lead", 0, "across"],
+      ["Away from the lead", -1, "away"],
+    ]) {
+      await lab.getByRole("button", { name, exact: true }).click();
+      const voltage = Number(await lab.getAttribute("data-voltage"));
+      const sampleY = Number(
+        await lab.locator("[data-ecg-sample]").getAttribute("cy"),
+      );
+      assert.ok(
+        sampleY >= 10 && sampleY <= 330,
+        "Every direction example stays within the visible plot",
+      );
+      assert.ok(sign === 0 ? Math.abs(voltage) < 1e-10 : voltage * sign > 0.9);
+      assert.equal(
+        await lab.locator("[data-projection]").getAttribute("data-projection"),
+        direction,
+      );
+    }
+    const leadDetail = lab
+      .locator("summary")
+      .filter({ hasText: "Change lead or inspect the vector calculation" })
+      .locator("..");
+    await leadDetail.locator(":scope > summary").click();
     let synchronizedChecks = 0;
     for (const time of [0, 80, 235, 270, 530]) {
       await range("Shared ECG time", time);
@@ -95,14 +126,16 @@ for (const [name, engine] of [
         assert.ok(
           Math.abs(state.x - (65 + (time * state.speed * 12) / 1000)) < 1e-6,
         );
-        assert.ok(Math.abs(state.y - (240 - expected * 10 * 12)) < 1e-6);
+        assert.ok(Math.abs(state.y - (180 - expected * 10 * 12)) < 1e-6);
         synchronizedChecks++;
       }
     }
     await lab.getByRole("button", { name: "II", exact: true }).click();
     await range("Shared ECG time", 235);
+    await leadDetail.locator(":scope > summary").click();
     await scrollStage();
     await page.screenshot({ path: `${out}/${name}-synchronized-stage.png` });
+    await lab.locator("#reasonos-measurement > summary").click();
     await lab
       .getByRole("button", { name: "Record QRS measurement", exact: true })
       .click();
@@ -129,11 +162,10 @@ for (const [name, engine] of [
       await lab.locator('p[role="status"]').textContent(),
       /Replay verified/,
     );
-    const settings = lab.locator("details").filter({
-      has: page.locator("summary", {
-        hasText: "Source parameters, paper calibration",
-      }),
-    });
+    const settings = lab
+      .locator("summary")
+      .filter({ hasText: "Source parameters, paper calibration" })
+      .locator("..");
     await settings.locator(":scope > summary").click();
     await page
       .getByRole("combobox", { name: "Paper speed", exact: true })
@@ -173,11 +205,10 @@ for (const [name, engine] of [
       .getByRole("button", { name: "Evaluate claim", exact: true })
       .click();
     assert.equal((await trace()).at(-1).accepted, true);
-    const integrity = lab.locator("details").filter({
-      has: page.locator("summary", {
-        hasText: "Structured trace and replay integrity",
-      }),
-    });
+    const integrity = lab
+      .locator("summary")
+      .filter({ hasText: "Structured trace and replay integrity" })
+      .locator("..");
     await integrity.locator(":scope > summary").click();
     const before = (await trace()).length;
     await lab
@@ -204,9 +235,10 @@ for (const [name, engine] of [
         (entry) => entry.eventHash.length === 64,
       ),
     );
-    const derivation = lab.locator("details").filter({
-      has: page.locator("summary", { hasText: "Lead derivation, mean QRS" }),
-    });
+    const derivation = lab
+      .locator("summary")
+      .filter({ hasText: "Full derivations: six leads" })
+      .locator("..");
     await derivation.locator(":scope > summary").click();
     await page
       .getByRole("checkbox", { name: "Integrated axis angle", exact: true })
@@ -320,6 +352,20 @@ for (const [name, engine] of [
     assert.ok(paused > 235, "Playback advances the shared time");
     await page.waitForTimeout(100);
     assert.equal(Number(await lab.getAttribute("data-time")), paused);
+    const phone = await context.newPage();
+    await phone.setViewportSize({ width: 390, height: 844 });
+    await phone.goto(`${base}/work/vector-ekg-reasonos`);
+    await phone.waitForSelector("#reasonos-lab .katex");
+    await phone.evaluate(() => document.fonts.ready);
+    const firstPoint = await phone.locator("[data-ecg-sample]").boundingBox();
+    assert.ok(
+      firstPoint &&
+        firstPoint.y >= 0 &&
+        firstPoint.y + firstPoint.height <= 844,
+      "The opening phone viewport includes the live ECG point",
+    );
+    await phone.screenshot({ path: `${out}/${name}-opening-mobile.png` });
+    await phone.close();
     assert.deepEqual(errors, []);
     assert.deepEqual(
       warnings.filter((message) => /hydrat|didn.t match/i.test(message)),
@@ -328,6 +374,7 @@ for (const [name, engine] of [
     results.push({
       browser: name,
       synchronizedChecks,
+      guidedProjectionCases: "passed",
       calibration: "passed",
       staleEvidence: "rejected",
       boundedClaim: "passed",

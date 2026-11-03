@@ -283,41 +283,13 @@ export default function VectorEkgReasonOSPage() {
       />
       <header className="rosx-hero">
         <div className="shell">
-          <p className="eyebrow">
-            Electrocardiography · computational reasoning
-          </p>
-          <h1>Vector EKG and ReasonOS</h1>
+          <p className="eyebrow">Vector EKG / ReasonOS</p>
+          <h1>Why an ECG goes up or down</h1>
           <p className="vector-deck">
-            Project a frontal signal into six limb leads, measure its intervals,
-            evaluate a claim under uncertainty, and inspect the evidence and
-            state changes that support it.
+            A lead measures along one direction. Turn the vector to see how.
           </p>
-          <dl className="vector-facts">
-            <div>
-              <dt>Signal</dt>
-              <dd>Shared analytic model</dd>
-            </div>
-            <div>
-              <dt>Measurements</dt>
-              <dd>Calibrated SVG coordinates</dd>
-            </div>
-            <div>
-              <dt>Reasoning</dt>
-              <dd>Computed admission rules</dd>
-            </div>
-            <div>
-              <dt>Record</dt>
-              <dd>Append-only, replayable trace</dd>
-            </div>
-          </dl>
         </div>
       </header>
-      <nav className="rosx-science-nav shell" aria-label="ECG study sections">
-        <a href="#laboratory">Laboratory</a>
-        <a href="#source-case">Source recordings</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#model-references">Model & references</a>
-      </nav>
       <section
         className="lab-embed rosx-lab"
         id="laboratory"
@@ -327,6 +299,12 @@ export default function VectorEkgReasonOSPage() {
           <ReasonOSLab />
         </div>
       </section>
+      <nav className="rosx-science-nav shell" aria-label="ECG study sections">
+        <a href="#laboratory">Laboratory</a>
+        <a href="#source-case">Source recordings</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#model-references">Model & references</a>
+      </nav>
       <section className="section rosx-source-case" id="source-case">
         <div className="shell">
           <div className="rosx-section-head">

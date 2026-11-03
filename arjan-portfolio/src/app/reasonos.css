@@ -15,9 +15,9 @@
 .reasonos-home-feature{background:#111315;color:#f3efe6}.reasonos-home-feature .v2-feature-copy>p{color:#a8afb2}.reasonos-home-feature .v2-feature-copy>a{color:#f3efe6;border-color:#34393d}.reasonos-home-visual{position:relative;display:grid;place-content:center;gap:28px;padding:clamp(38px,6vw,90px);overflow:hidden;background:radial-gradient(circle at 50% 45%,#223247 0,#171b20 45%,#0d0f11 100%)}.reasonos-home-source{position:absolute;top:24px;left:28px;color:#65a8ff;font:10px var(--font-mono);letter-spacing:.12em;text-transform:uppercase}.reasonos-home-source i{display:block;width:78px;margin-top:7px;border-top:1px solid #65a8ff}.reasonos-home-chain{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap}.reasonos-home-chain div{padding:15px 16px;border:1px solid #4c555c;background:rgba(10,12,14,.72)}.reasonos-home-chain span{display:block;color:#65a8ff;font:9px var(--font-mono)}.reasonos-home-chain strong{display:block;margin-top:9px;font-size:13px}.reasonos-home-chain b{color:#d7b468;font-weight:400}.reasonos-home-trace{display:flex;align-items:center;gap:12px;margin:0 auto;width:min(100%,470px);padding:18px;border-left:3px solid #d7b468;background:rgba(10,12,14,.72);font:10px var(--font-mono);color:#d7b468}.reasonos-home-trace i{display:block;width:10px;height:10px;border:1px solid #d7b468;transform:rotate(45deg)}.reasonos-home-trace i.rejected{border-color:#d96868;background:#d96868}
 
 /* The executable ECG study uses the same restrained type scale as the scientific labs. */
-.rosx-scientific .rosx-hero{padding:46px 0 28px;background:#101b28}
-.rosx-scientific .rosx-hero h1{font:500 clamp(30px,3.8vw,52px)/1.15 var(--font-sans),sans-serif;letter-spacing:-.035em;margin:19px 0}
-.rosx-scientific .vector-deck{font-size:18px;line-height:1.65;max-width:900px}
+.rosx-scientific .rosx-hero{padding:30px 0 24px;background:#101b28}
+.rosx-scientific .rosx-hero h1{font:500 clamp(28px,3vw,40px)/1.15 var(--font-sans),sans-serif;letter-spacing:-.035em;margin:12px 0}
+.rosx-scientific .vector-deck{font-size:16px;line-height:1.6;max-width:850px;margin-bottom:0}
 .rosx-scientific .vector-facts{margin-top:26px}
 .rosx-scientific .vector-facts dd{font-size:13px}
 .rosx-science-nav{display:flex;gap:26px;overflow:auto;padding-block:15px;border-bottom:1px solid #b6c2cb;font-size:12px}

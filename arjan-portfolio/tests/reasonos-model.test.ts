@@ -3,6 +3,7 @@ import {
   DEFAULT_MODEL,
   LEADS,
   LEAD_FIELDS,
+  alignQrsToLead,
   bump,
   componentsAt,
   electrodePotentials,
@@ -16,6 +17,28 @@ import {
 import { frontalAxis, intervalMs } from "@/lib/reasonos/vector";
 
 describe("shared frontal ECG source", () => {
+  it("derives toward, perpendicular and away demonstrations from the same QRS model for every lead", () => {
+    for (const qrs of [60, 90, 160])
+      for (const lead of LEADS) {
+        const source = { ...DEFAULT_MODEL, qrs };
+        const values = (["toward", "across", "away"] as const).map(
+          (direction) => {
+            const sample = alignQrsToLead(source, lead, direction);
+            validateModel(sample.model);
+            const vector = vectorAt(sample.time, sample.model);
+            return {
+              voltage: leadVoltages(vector)[lead],
+              magnitude: Math.hypot(...vector),
+            };
+          },
+        );
+        const expected = values[0].magnitude * Math.hypot(...LEAD_FIELDS[lead]);
+        expect(values[0].voltage).toBeCloseTo(expected, 12);
+        expect(values[1].voltage).toBeCloseTo(0, 12);
+        expect(values[2].voltage).toBeCloseTo(-expected, 12);
+        expect(values[0].magnitude).toBeCloseTo(values[2].magnitude, 12);
+      }
+  });
   it("satisfies electrode algebra, augmented-lead identities and projections", () => {
     for (let x = -4; x <= 4; x++)
       for (let y = -4; y <= 4; y++) {

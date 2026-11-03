@@ -1,6 +1,14 @@
 # Vector ECG / ReasonOS laboratory
 
-This release connects one analytic frontal signal model to the electrode diagram,
+The opening teaches one correspondence: turn the electrical vector toward, across,
+or away from the selected lead, and inspect the resulting ECG point. These examples
+rotate the model’s actual QRS components at the same sample time; they do not replace
+the source with canned traces. Both voltage signs fit the plot. On phones, the
+chart follows the shared cursor through a magnified time window while retaining
+the same underlying calibration. The scalar calculation stays visible; matrix
+coordinates, lead selection, measurements, and inference are explicit next steps.
+
+The laboratory connects one analytic frontal signal model to the electrode diagram,
 six limb leads, calibrated strip, calipers, numerical derivations, and recorded
 reasoning. The laboratory is independent of the paired source-recording images.
 
@@ -72,15 +80,15 @@ The hospital simulator's existing third-party vendor ESLint failures are outside
 this release; that directory is excluded from the lint command above. Existing
 warnings elsewhere are unchanged.
 
-The unit suite has 222 passing tests across 26 files. The four ReasonOS test files
-contain 27 tests covering independent electrode/lead identities, axis scaling,
+The unit suite has 223 passing tests across 26 files. The four ReasonOS test files
+contain 28 tests covering independent electrode/lead identities, axis scaling,
 calibration, uncertainty, source changes, real-plugin admission, source SHA-256
 compatibility with Node crypto, immutability, replay, tamper rejection, and
 alternative evidence paths. The repository-wide coverage percentage includes
 vendored engines and is not a measure of clinical validation.
 
 `browser-results.json` and browser screenshots record Chromium, WebKit, and Firefox
-checks. Each browser independently recomputes 30 lead/time projections, exercises
+checks. Each browser exercises all three direction examples and independently recomputes 30 lead/time projections, exercises
 calibration, source changes, uncertainty, replay, altered records, revision,
 export, alternative paths, pointer calipers, viewport resizing, playback, and
 reduced motion. Axe checks cover the laboratory at desktop and 390px phone sizes.
