@@ -8,8 +8,21 @@ correct. A learner can select an incorrect baseline, paper span, or QRS endpoint
 
 ## Executable demonstration
 
-The connected scene retains the contributed, previously published de-identified
-waveform pixels. P, QRS and T directions come from the printed device report.
+The primary digital scene uses author-guided centreline extraction from the
+previously published de-identified recording B waveform pixels. Every point
+retains its source coordinates. Estimated local paper-grid transforms give
+approximate milliseconds and millivolts; display interpolation does not recover
+native acquisition samples. Each lead is a separately phase-aligned representative
+beat, not an asserted simultaneous recording. The compatible frontal vector is
+one of infinitely many vectors giving the selected lead's voltage in an idealized
+lead-field model. Its unobserved perpendicular component can change while the
+voltage remains fixed. This is an explanation of projection and its inverse
+ambiguity, not a measured vectorcardiogram or a validated digitization pipeline.
+Digital interval fiducials are author annotations and are not admitted as clinical
+evidence into ReasonOS.
+
+Under source and provenance, the original image-caliper scene retains the
+contributed waveform pixels. P, QRS and T directions there come from the printed device report.
 The unit-vector projection is a geometric explanation, not a reconstructed
 instantaneous vectorcardiogram or calibrated ECG voltage. Chest voltages are not
 inferred from the frontal axis. Colored phase windows are authored visual

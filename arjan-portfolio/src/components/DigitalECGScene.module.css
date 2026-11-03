@@ -1,0 +1,347 @@
+.digital {
+  background: #0b1722;
+  padding: 30px;
+}
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding-bottom: 22px;
+}
+.kicker {
+  display: block;
+  color: #819cb1;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+.heading h2 {
+  font-size: 30px;
+}
+.heading p {
+  font-size: 13px;
+  margin-top: 9px;
+  max-width: 850px;
+}
+.heading button {
+  white-space: nowrap;
+  font-size: 12px;
+}
+.leads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  border-top: 1px solid #233b4b;
+  padding-top: 19px;
+}
+.leads button {
+  font-size: 12px;
+  padding: 7px 11px;
+  border-color: #304c60;
+}
+.leads span {
+  margin-left: auto;
+  color: #8fa9bc;
+  font-size: 12px;
+}
+.leads strong {
+  color: #edf7fb;
+  font-weight: 500;
+}
+.mobileViewport {
+  max-width: 100%;
+  overflow: auto;
+  margin-top: 15px;
+}
+.scene {
+  display: block;
+  width: 100%;
+  min-width: 1050px;
+  touch-action: pan-y;
+  user-select: none;
+}
+.scene[data-compact="true"] {
+  min-width: 0;
+}
+.scene[data-compact="true"] .axisText {
+  font-size: 18px;
+}
+.scene[data-compact="true"] .activeAxis {
+  font-size: 20px;
+}
+.scene[data-compact="true"] .plotTitle {
+  font-size: 22px;
+}
+.scene[data-compact="true"] .caption {
+  font-size: 17px;
+}
+.scene[data-compact="true"] .tracePlot .axisText {
+  font-size: 24px;
+}
+.scene[data-compact="true"] .tracePlot .plotTitle {
+  font-size: 28px;
+}
+.scene polyline {
+  vector-effect: non-scaling-stroke;
+}
+.scene [data-digital-handle] {
+  cursor: ew-resize;
+}
+.scene [data-digital-handle="vector"] {
+  cursor: grab;
+  touch-action: none;
+}
+.plotTitle {
+  fill: #d6e6ef;
+  font-size: 15px;
+  font-weight: 500;
+}
+.axisText {
+  fill: #8fa9bc;
+  font-size: 11px;
+}
+.activeAxis {
+  fill: #d4c4ff;
+  font-size: 13px;
+  font-weight: 500;
+}
+.caption {
+  fill: #9db5c7;
+  font-size: 12px;
+}
+.transport {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin: 8px 0 25px;
+}
+.transport label {
+  flex: 1;
+  font-size: 11px;
+  color: #9cb6c9;
+}
+.jump {
+  display: flex;
+  gap: 6px;
+}
+.jump button {
+  font-size: 12px;
+  padding: 7px 12px;
+}
+.explanation {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 25px;
+  border-top: 1px solid #233b4b;
+  padding-top: 22px;
+}
+.explanation h3 {
+  font-size: 18px;
+  color: #d1e8f1;
+}
+.explanation p {
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 850px;
+}
+.equations {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+  gap: 45px;
+  margin: 25px 0;
+}
+.equations > div {
+  min-width: 0;
+}
+.mathLabel {
+  font-size: 11px;
+  color: #b5cddd;
+}
+.equations p,
+.interval p {
+  font-size: 11px;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+.digital :global(.katex-display) {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.digital :global(.katex) {
+  font-size: 1em;
+}
+.equations > div:last-child :global(.katex) {
+  color: #94e0e5;
+}
+.nullspace {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px 25px;
+  border-top: 1px solid #233b4b;
+  padding-top: 22px;
+}
+.nullspace label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  font-size: 12px;
+  color: #b08cbf;
+}
+.nullspace input {
+  grid-column: 1/-1;
+  accent-color: #bd82d0 !important;
+}
+.nullspace button {
+  align-self: center;
+  font-size: 11px;
+}
+.nullspace p {
+  grid-column: 1/-1;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.interval {
+  border-top: 1px solid #233b4b;
+  margin-top: 23px;
+  padding-top: 23px;
+}
+.intervalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.intervalHeader h3 {
+  font-size: 18px;
+}
+.intervalHeader > div {
+  display: flex;
+  gap: 6px;
+}
+.intervalHeader button {
+  font-size: 11px;
+  padding: 7px 11px;
+}
+.intervalInputs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.intervalInputs label {
+  width: 135px;
+  font-size: 11px;
+  color: #9cb6c9;
+}
+.intervalInputs input {
+  min-width: 0;
+  width: 100%;
+  background: #142633;
+  border: 1px solid #345164;
+  color: #dcebf2;
+  padding: 8px;
+  font: inherit;
+}
+.intervalInputs > span {
+  flex: 1;
+  min-width: 250px;
+}
+.provenance {
+  border-top: 1px solid #2d4557;
+  margin-top: 30px;
+  padding-top: 20px;
+}
+.provenance > summary {
+  cursor: pointer;
+  color: #8fa9bc;
+  font-size: 12px;
+}
+.provenance > p {
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 15px 0;
+  max-width: 1100px;
+}
+.provenance code {
+  overflow-wrap: anywhere;
+}
+.provenanceLinks {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  margin: 17px 0;
+}
+.provenance a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.audit {
+  display: block;
+  width: 100%;
+  height: 260px;
+  background: white;
+}
+.photoEvidence {
+  margin-top: 20px;
+}
+.photoEvidence > summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: #b2c9d8;
+}
+.photoEvidence[open] > summary {
+  margin-bottom: 20px;
+}
+@media (max-width: 850px) {
+  .digital {
+    padding: 22px 16px;
+  }
+  .heading {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .heading h2 {
+    font-size: 25px;
+  }
+  .leads span {
+    width: 100%;
+    margin: 8px 0;
+  }
+  .equations {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .explanation {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .nullspace {
+    gap: 15px;
+  }
+  .nullspace label {
+    font-size: 11px;
+  }
+  .transport {
+    gap: 12px;
+  }
+  .jump {
+    gap: 4px;
+  }
+  .jump button {
+    padding: 6px 9px;
+  }
+  .intervalInputs {
+    gap: 12px;
+  }
+  .intervalInputs label {
+    width: calc(50% - 6px);
+  }
+  .intervalInputs > span {
+    min-width: 100%;
+  }
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ECGConnections } from "@/components/ECGConnections";
+import { DigitalECGScene } from "@/components/DigitalECGScene";
 import { ReferenceECGs } from "@/components/ReferenceECGs";
 import { RecordedECG } from "@/components/RecordedECG";
 import { RECORDINGS } from "@/lib/reasonos/recordings";
@@ -308,7 +308,7 @@ export default function VectorEkgReasonOSPage() {
         <a href="#architecture">Clinical usefulness</a>
         <a href="#model-references">Model & references</a>
       </nav>
-      <ECGConnections />
+      <DigitalECGScene />
       <details className="rosx-model-explanation" id="measurement-workbench">
         <summary>
           Independent calipers, interpretation worksheet, and reference cases

@@ -1,0 +1,44 @@
+[
+  {
+    "browser": "chromium",
+    "leads": 12,
+    "independentlyInterpolatedValues": 36,
+    "independentElectrodeProjections": 36,
+    "pointerLayouts": [
+      1440,
+      390
+    ],
+    "sourceOverlay": "exact source coordinates",
+    "accessibleScene": "no axe violations",
+    "runtimeErrors": [],
+    "datasetSHA256": "8d7f660f00fe8a05bbe7e8c1396059e1ca9c6c43fcb9fe6963085964aef1e4b2"
+  },
+  {
+    "browser": "webkit",
+    "leads": 12,
+    "independentlyInterpolatedValues": 36,
+    "independentElectrodeProjections": 36,
+    "pointerLayouts": [
+      1440,
+      390
+    ],
+    "sourceOverlay": "exact source coordinates",
+    "accessibleScene": "no axe violations",
+    "runtimeErrors": [],
+    "datasetSHA256": "8d7f660f00fe8a05bbe7e8c1396059e1ca9c6c43fcb9fe6963085964aef1e4b2"
+  },
+  {
+    "browser": "firefox",
+    "leads": 12,
+    "independentlyInterpolatedValues": 36,
+    "independentElectrodeProjections": 36,
+    "pointerLayouts": [
+      1440,
+      390
+    ],
+    "sourceOverlay": "exact source coordinates",
+    "accessibleScene": "no axe violations",
+    "runtimeErrors": [],
+    "datasetSHA256": "8d7f660f00fe8a05bbe7e8c1396059e1ca9c6c43fcb9fe6963085964aef1e4b2"
+  }
+]

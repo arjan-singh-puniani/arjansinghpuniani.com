@@ -1,8 +1,11 @@
 # Vector ECG / ReasonOS laboratory
 
-The primary workspace uses the contributor’s paired ECG photographs. It displays
-the original waveform pixels, the device-report transcriptions, and live
-calculations from explicitly selected inputs. The public A/B labels reverse the
+The primary workspace digitally traces the contributor’s already-public recording
+B photograph. Twelve representative beats retain source-pixel coordinates and
+estimated local paper-grid calibration. A shared cursor drives the digital trace,
+lead voltage, compatible frontal vector and live arithmetic. Original pixels,
+source overlays, image calipers and device-report transcriptions are under the
+bottom provenance disclosure. The public A/B labels reverse the
 original archive filenames; `src/lib/reasonos/recordings.ts` records that crosswalk
 and both the original-image and public-image SHA-256 digests. Original header
 images remain outside the public assets.
@@ -30,9 +33,32 @@ source, geometric projection, and circuit-free calculation do not reprocess the
 recorded image or supply the recording’s measurement values. The paired source
 images remain independently viewable below.
 
-## Connected source scene
+## Digital explanation and connected source scene
 
-The default experience is now `ECGConnections`: a shared recording, electrical event, lead, photo cursor, local ruler, and interval selection. The previous worksheet and reference cases remain in a collapsed practice workbench. No extra quiz is required to inspect the visual explanation.
+The default `DigitalECGScene` uses no analytical PQRST waveform template. The
+author-guided centreline extractor in `tools/reasonos/digitize-recording.py` reads
+the released source pixels, verifies their digest and writes raw source coordinates
+with every point in `public/ecg-digitized/recording-b.json`. Its fixed reciprocal
+grid vectors are Fourier pitch/orientation estimates for each print column; this
+is a local affine approximation, not perspective correction. The paired audit
+image overlays every extracted point on the source. Faint ink is guide-assisted.
+Run the script with Python, NumPy and Pillow to reproduce the released JSON.
+The browser verifies that file's SHA-256 before parsing and validates all leads,
+source bounds, times, landmarks and grid transforms. Five independent tests check
+source-coordinate calibration, interpolation, invalid data and electrode algebra.
+
+This is illustrative image-derived data, not native acquisition samples. Leads
+are separately phase aligned, not asserted simultaneous. For a limb lead with
+field l and voltage V, the displayed compatible vector is
+`d = V*l/|l|² + q*n`, where n is perpendicular to l. Changing q leaves `l·d = V`.
+This demonstrates the non-unique inverse of a single-lead projection; it does not
+reconstruct the patient's instantaneous heart vector. Chest leads display their
+own traced voltage and electrode definition without a fabricated frontal vector.
+Digital interval fiducials are author annotations, not clinical evidence admitted
+by ReasonOS. Interpolation adds no acquisition precision.
+
+The original `ECGConnections` remains nested under provenance: a shared recording,
+electrical event, lead, photo cursor, local ruler and interval selection. The previous worksheet and reference cases remain in a collapsed practice workbench. No extra quiz is required to inspect the visual explanation.
 
 The anatomical drawing is schematic. P/QRS/T mean frontal axes come directly from the device report. Unit directions and the six limb-lead projections reuse the existing equilateral lead fields, including the augmented-lead scale. They are dimensionless geometric predictions, not reconstructed instantaneous heart vectors, measured millivolts, or an inferred waveform. Exact electrode definitions are separate from the idealized spatial model. Chest leads show their original trace, reference equation, and placement, without deriving a voltage from a frontal angle. Displayed decimals use approximation signs.
 
@@ -113,6 +139,7 @@ npm run typecheck
 npm run lint -- --ignore-pattern 'public/hospitalsim/vendor/**'
 npm run test:coverage
 npm run build
+REASONOS_BASE_URL=http://127.0.0.1:8870 node tools/reasonos/digital-qa.mjs
 REASONOS_BASE_URL=http://127.0.0.1:8870 node tools/reasonos/connections-qa.mjs
 REASONOS_BASE_URL=http://127.0.0.1:8870 node tools/reasonos/study-qa.mjs
 REASONOS_BASE_URL=http://127.0.0.1:8870 node tools/reasonos/recorded-qa.mjs
@@ -123,8 +150,8 @@ The hospital simulator's existing third-party vendor ESLint failures are outside
 this release; that directory is excluded from the lint command above. Existing
 warnings elsewhere are unchanged.
 
-The unit suite has 255 passing tests across 31 files. The seven ReasonOS test files
-contain 49 tests covering independent electrode/lead identities, axis scaling,
+The unit suite has 260 passing tests across 32 files. The eight ReasonOS test files
+contain 54 tests covering independent electrode/lead identities, axis scaling,
 calibration, uncertainty, source changes, real-plugin admission, source SHA-256
 compatibility with Node crypto, immutability, replay, tamper rejection, and
 alternative evidence paths. The repository-wide coverage percentage includes

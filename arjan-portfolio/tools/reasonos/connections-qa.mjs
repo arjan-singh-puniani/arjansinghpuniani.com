@@ -35,7 +35,10 @@ for (const [name, engine] of [
       if (m.type() === "error") consoleErrors.push(m.text());
     });
     await page.goto(`${base}/work/vector-ekg-reasonos`);
-    const root = page.locator("#ecg-connections");
+    await page.locator("[data-digital-handle=vector]").waitFor();
+    await page.locator("#source-provenance > summary").click();
+    await page.locator("#photo-evidence > summary").click();
+    const root = page.locator("#photo-ecg-connections");
     await root.locator(".katex").first().waitFor();
     await page.evaluate(() => document.fonts.ready);
     assert.equal(
@@ -311,7 +314,7 @@ for (const [name, engine] of [
     await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
     await page.screenshot({ path: `${out}/${name}-connected-mobile.png` });
     const axe = (
-      await new AxeBuilder({ page }).include("#ecg-connections").analyze()
+      await new AxeBuilder({ page }).include("#photo-ecg-connections").analyze()
     ).violations;
     assert.deepEqual(
       axe.map((v) => ({ id: v.id, nodes: v.nodes.map((n) => n.target) })),

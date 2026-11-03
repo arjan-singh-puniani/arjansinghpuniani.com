@@ -46,7 +46,7 @@ const CHEST_POSITIONS = [
   [379, 258],
 ];
 
-export function ECGConnections() {
+export function ECGConnections({ embedded = false }: { embedded?: boolean }) {
   const [recordingId, setRecordingId] = useState<"A" | "B">("B");
   const recording = RECORDINGS.find((item) => item.id === recordingId)!;
   const beat = SOURCE_BEATS[recordingId];
@@ -387,7 +387,7 @@ export function ECGConnections() {
   );
   return (
     <section
-      id="ecg-connections"
+      id={embedded ? "photo-ecg-connections" : "ecg-connections"}
       className={`${b.lab} ${s.connections}`}
       aria-labelledby="connections-title"
       style={{ "--phase": color } as CSSProperties}
