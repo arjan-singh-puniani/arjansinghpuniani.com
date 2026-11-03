@@ -1,16 +1,16 @@
-import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=127';
-import {installPointerInput} from './input.mjs?v=127';
-import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=127';
-import {roomAngle} from './navigation.mjs?v=127';
-import {landingCheck} from './landing.mjs?v=127';
+import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=128';
+import {installPointerInput} from './input.mjs?v=128';
+import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=128';
+import {roomAngle} from './navigation.mjs?v=128';
+import {landingCheck} from './landing.mjs?v=128';
 import * as THREE from 'three';
-import {landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=127';
-import {changingPath,WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=127';
+import {landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=128';
+import {changingPath,WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=128';
 import {GLTFLoader} from './vendor/examples/jsm/loaders/GLTFLoader.js';
 import {clone} from './vendor/examples/jsm/utils/SkeletonUtils.js';
 import {OrbitControls} from './vendor/examples/jsm/controls/OrbitControls.js';
 import {RoomEnvironment} from './vendor/examples/jsm/environments/RoomEnvironment.js';
-import {GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=127';
+import {GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=128';
 
 export const roomHeight=type=>({scan:.63,care:.25,consult:.85,rest:.25,plan:.85,waiting:.25}[type]??.25);
 export function world(x,y,height=.25){return new THREE.Vector3((x-4)*GRID.step,height,(y-3.5)*GRID.step)}
@@ -140,7 +140,7 @@ export class Diorama {
 
  advancePerson(p,clip,simDt){advanceLocomotion(p,clip,simDt)}
  async load(){
-  const response=await assetDeadline(fetch('assets/patient-appearances.json?v=127'));if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
+  const response=await assetDeadline(fetch('assets/patient-appearances.json?v=128'));if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
   if(manifest.appearances?.length!==11||new Set(manifest.appearances.map(a=>a.id)).size!==11||manifest.appearances.some(a=>!/^patient-\d{2}-lod\.glb$/.test(a.lod)||!/^patient-\d{2}\.glb$/.test(a.high)))throw Error('Invalid patient appearance manifest');
   this.walkClips=new Map();this.patientAppearances=manifest.appearances;this.lowPatients=new Map();this.highPatients=new Map();this.casualPatients=new Map();
   const loader=new GLTFLoader(),names=['scan','care','consult','rest','clinician','coat','drape','doors','lobby','service-props',...Object.values(CLINIC_DEPARTMENTS).map(d=>d.asset),...Object.entries(STAFF_ROLES).filter(([,d])=>!d.assetAlias).map(([r])=>'staff-'+r)],jobs=[...names.map(name=>({name,file:(['scan','care','consult','clinician','coat'].includes(name)||name.startsWith('staff-'))?name+'-lod.glb':name+'.glb'})),...this.patientAppearances.map(appearance=>({appearance,file:appearance.lod})),...this.patientAppearances.map(a=>({casual:a.id,file:a.casual})),...['clinician','coat',...this.patientAppearances.map(a=>a.id)].map(key=>({walk:key,file:'walk-'+key+'.glb'}))];let done=0;

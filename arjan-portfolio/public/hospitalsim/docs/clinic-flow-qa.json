@@ -136,5 +136,11 @@
     "nextBuild": "passed",
     "rebasedOn": "080e9ac",
     "runtime": 127
+  },
+  "departureClothingPatch": {
+    "runtime": 128,
+    "regression": "walk-out and seated departures change into everyday clothes; imported in-flight departures normalize on the next tick",
+    "serviceTimingsAndOutcomesChanged": false,
+    "recordingReplay": "exact first90seconds retained"
   }
 }

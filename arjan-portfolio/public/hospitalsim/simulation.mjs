@@ -1,12 +1,12 @@
-import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds} from './clinic.mjs?v=127';
-import {openingBuilds,openingCount} from './opening.mjs?v=127';
-import {initOperations,upgradeOperations,roomReady,teamFor,startTurnover,say,intakeAssistant,validTeam,validateOperations,tickOperations,claimDesk,checkIn,caseFor,react,deskAvailable,deskPost,deskStation,deskBay,assignDesk,reliefBay} from './operations.mjs?v=127';
-import {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=127';
-export {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=127';
+import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds} from './clinic.mjs?v=128';
+import {openingBuilds,openingCount} from './opening.mjs?v=128';
+import {initOperations,upgradeOperations,roomReady,teamFor,startTurnover,say,intakeAssistant,validTeam,validateOperations,tickOperations,claimDesk,checkIn,caseFor,react,deskAvailable,deskPost,deskStation,deskBay,assignDesk,reliefBay} from './operations.mjs?v=128';
+import {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=128';
+export {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=128';
 // The original LCG, BFS, pathway and queue policy are retained from Hospital Works v0.1.
 // No DOM, clock or renderer dependencies. One tick is one fictional game second.
-import {VERSION,STEP,GRID,WALK_SUBSTEPS,TYPES,TRAITS,SCENARIOS,DECOR,GOALS,STAFF_ROLES,initialRole,CASES,ROLE_SKILLS,ROOM_ROLES} from './content.mjs?v=127';
-export {VERSION,STEP,GRID,TYPES,TRAITS,SCENARIOS,DECOR,STAFF_ROLES,initialRole} from './content.mjs?v=127';
+import {VERSION,STEP,GRID,WALK_SUBSTEPS,TYPES,TRAITS,SCENARIOS,DECOR,GOALS,STAFF_ROLES,initialRole,CASES,ROLE_SKILLS,ROOM_ROLES} from './content.mjs?v=128';
+export {VERSION,STEP,GRID,TYPES,TRAITS,SCENARIOS,DECOR,STAFF_ROLES,initialRole} from './content.mjs?v=128';
 const names=['Alex','Sam','Noor','Jordan','Maya','Eli','Robin','Avery','Kai','Imani','Rae','Morgan'];
 export function initial(scenario='clinic',seed=431,mode='sandbox',continuity={}){
  const s={version:VERSION,scenario,mode,entrance:{...GRID.entry},exit:{...GRID.exit},autoHandoff:true,communication:false,prevention:!!continuity.prevention,arrivalIndex:0,arrivalTape:arrivalTape(scenario,seed,continuity.prevention),initialSeed:seed,seed,seconds:0,cash:8000,served:0,left:0,arrivals:0,trust:85,energy:100,breaks:false,access:false,urgency:true,rooms:[{id:1,x:5,y:2,type:'consult',level:1,staff:[1]},{id:2,x:1,y:0,type:'scan',level:1,staff:[2]},{id:3,x:1,y:3,type:'care',level:1,staff:[3,4]}],staff:['Mira','Jules','Remy','Ash','Sage','Kit'].map((name,i)=>({id:i+1,name,role:initialRole(i+1),skills:[...ROLE_SKILLS[initialRole(i+1)]],trait:['listener','steady','steady','brisk','brisk','listener'][i],shiftEnd:scenario==='staffing'&&i===3?300:480,fatigue:0,breakUntil:0,...(i>=4?{position:{x:4.5+(i%2)*.5,y:5.75}}:{})})),patients:[],nextId:10,nextArrival:1,surge:0,eventDone:false,ended:false,records:[],actions:[],log:['Doors open. A little space. A lot of care.'],utilization:{},lastAction:null};
@@ -81,11 +81,11 @@ export function tick(s){
  const reservedAtStart=new Set(s.patients.map(p=>p.target).filter(id=>id!==null));
  const ordered=[...s.patients].sort((a,b)=>(s.urgency?Number(b.urgent)-Number(a.urgent):0)||a.arrival-b.arrival||a.id-b.id);
  for(const p of ordered){
-  if(p.arrival===s.seconds)continue;const counter=p.outside||['arrival','waiting','seated'].includes(p.state)?'wait':['walking','intake-walking','queue-walking','seat-walking','seat-entering','seat-leaving','exiting','entering-room','leaving-room','entering-hospital','leaving-hospital'].includes(p.state)?'walking':p.state==='changing'?(p.progress<2||p.progress>=4?'walking':'changing'):p.state==='dressing-out'?'changing':p.state==='service'&&p.stage==='intake'?'checkin':p.state==='checking-in'?'checkin':p.state==='signoff'?'handoff':p.state==='recovering'?'recovery':p.state==='handoff'?'handoff':(p.state.startsWith('transfer')||p.state==='uncovering')?'transfer':'service';p[counter]++;p.moved=false;p.motion=null;if(p.outside){if(s.staff.some(st=>st.entering!==undefined&&!st.entryWaiting))continue;if(s.patients.some(q=>q!==p&&!q.outside&&floorPerson(q)&&q.x===entrance(s).x&&q.y===entrance(s).y))continue;p.outside=false;p.state='entering-hospital';p.progress=0;continue}if(p.state==='arrival')p.state='waiting';
+  if(s.clinic&&p.outcome==='departed')p.wardrobe='casual';if(p.arrival===s.seconds)continue;const counter=p.outside||['arrival','waiting','seated'].includes(p.state)?'wait':['walking','intake-walking','queue-walking','seat-walking','seat-entering','seat-leaving','exiting','entering-room','leaving-room','entering-hospital','leaving-hospital'].includes(p.state)?'walking':p.state==='changing'?(p.progress<2||p.progress>=4?'walking':'changing'):p.state==='dressing-out'?'changing':p.state==='service'&&p.stage==='intake'?'checkin':p.state==='checking-in'?'checkin':p.state==='signoff'?'handoff':p.state==='recovering'?'recovery':p.state==='handoff'?'handoff':(p.state.startsWith('transfer')||p.state==='uncovering')?'transfer':'service';p[counter]++;p.moved=false;p.motion=null;if(p.outside){if(s.staff.some(st=>st.entering!==undefined&&!st.entryWaiting))continue;if(s.patients.some(q=>q!==p&&!q.outside&&floorPerson(q)&&q.x===entrance(s).x&&q.y===entrance(s).y))continue;p.outside=false;p.state='entering-hospital';p.progress=0;continue}if(p.state==='arrival')p.state='waiting';
   p.teamWaiting=false;p.equipmentWaiting=false;if(p.room&&['changing','service','uncovering','transfer-in','transfer-out','entering-room','leaving-room'].includes(p.state)&&s.rooms.find(r=>r.id===p.room).staff.some(id=>{const st=s.staff.find(st=>st.id===id);return st.breakTrip||st.job})||p.room&&s.rooms.find(r=>r.id===p.room).spill&&['service','transfer-in','transfer-out','uncovering','entering-room','leaving-room','recovering'].includes(p.state)){p[counter]--;p.wait++;p.teamWaiting=true;p.equipmentWaiting=!!s.rooms.find(r=>r.id===p.room).spill;continue}
   if(p.state==='seated'){
    const waitingRoom=s.rooms.find(r=>r.id===p.seat.roomId);let best;
-   if(p.wait>170){p.outcome='departed';s.trust=Math.max(0,s.trust-4);p.destination={...exit(s)};p.route=path(door(waitingRoom),p.destination,s.rooms)||[];p.seat.exiting=true;p.state='seat-leaving';p.progress=0;continue}
+   if(p.wait>170){p.outcome='departed';if(s.clinic)p.wardrobe='casual';s.trust=Math.max(0,s.trust-4);p.destination={...exit(s)};p.route=path(door(waitingRoom),p.destination,s.rooms)||[];p.seat.exiting=true;p.state='seat-leaving';p.progress=0;continue}
    for(const r of s.rooms.filter(r=>r.type===p.stage&&roomReady(s,r)&&!reservedAtStart.has(r.id)&&!s.patients.some(q=>q!==p&&q.target===r.id))){const route=path(door(waitingRoom),door(r),s.rooms,traffic(s,p));if(route&&(!best||route.length<best.route.length))best={r,route}}
    if(best){p.target=p.room=best.r.id;p.route=best.route;p.destination=door(best.r);p.state='seat-leaving';p.progress=0}continue;
   }
@@ -124,7 +124,7 @@ export function tick(s){
   }else if(p.state==='service'){
    p.progress++;if(p.progress>=p.duration){if(s.clinic)creditService(s,p);if(p.stage==='intake'){p.intakeDone=true;s.clinic.checkedIn++;p.state='changing';p.progress=0}else if((['scan','care'].includes(p.stage)||CLINIC_DEPARTMENTS[p.stage]?.bed)){p.state=p.stage==='care'?'uncovering':'transfer-out';p.progress=0}else{p.state='leaving-room';p.progress=0}}
   }
-  if(p.wait>170&&p.state==='waiting'){p.state='exiting';p.outcome='departed';p.target=null;p.room=null;p.route=path(p,exit(s),s.rooms)||[];p.destination={...exit(s)};s.trust=Math.max(0,s.trust-4);note(s,`${p.name} is leaving after a long wait. The constraint needs attention.`)}
+  if(p.wait>170&&p.state==='waiting'){p.state='exiting';p.outcome='departed';if(s.clinic)p.wardrobe='casual';p.target=null;p.room=null;p.route=path(p,exit(s),s.rooms)||[];p.destination={...exit(s)};s.trust=Math.max(0,s.trust-4);note(s,`${p.name} is leaving after a long wait. The constraint needs attention.`)}
  }
  s.patients=s.patients.filter(p=>p.state!=='done');if(s.seconds>=(s.shiftStart||0)+480||s.cash<-1000)s.ended=true;
 }
