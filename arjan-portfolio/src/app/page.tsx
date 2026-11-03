@@ -19,9 +19,9 @@ export const metadata: Metadata = {
       "Neural engineer pursuing medicine. Brain-computer interface research, clinical research, research software, and early medical-device development.",
     images: [
       {
-        url: "/images/hero/arjan-portrait-2026.jpg",
-        width: 3024,
-        height: 4032,
+        url: "/images/hero/arjan-headshot.webp",
+        width: 1059,
+        height: 1485,
         alt: "Portrait of Arjan Singh Puniani",
       },
     ],
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
     description:
       "Neural engineer pursuing medicine. Brain-computer interface research, clinical research, research software, and early medical-device development.",
-    images: ["/images/hero/arjan-portrait-2026.jpg"],
+    images: ["/images/hero/arjan-headshot.webp"],
   },
 };
 
@@ -62,25 +62,20 @@ export default function Home() {
               <Link href="/cv">CV</Link>
             </div>
           </div>
-          <div className="v2-visual">
-            <div className="v2-photo-index">ASP / 001</div>
+          <figure className={styles.heroPortrait}>
             <Image
-              src="/images/hero/arjan-portrait-2026.jpg"
-              alt="Portrait of Arjan Singh Puniani"
-              fill
+              src="/images/hero/arjan-headshot.webp"
+              alt="Arjan Singh Puniani smiling in a black quarter-zip"
+              width={1059}
+              height={1485}
               priority
-              sizes="(max-width: 800px) 100vw, 44vw"
+              sizes="(max-width: 480px) calc(100vw - 48px), 400px"
             />
-            <div className="v2-photo-caption">
+            <figcaption>
               <span>Arjan Singh Puniani</span>
-              <span>2026</span>
-            </div>
-            <div className="v2-signal" aria-hidden="true">
-              <svg viewBox="0 0 440 80" preserveAspectRatio="none">
-                <path d="M0 44h66l12-2 8 2h36l8-20 12 46 13-64 15 38h36l8-4 10 4h70l13-12 14 27 13-36 14 21h83" />
-              </svg>
-            </div>
-          </div>
+              <Link href="/about">About me ↗</Link>
+            </figcaption>
+          </figure>
         </div>
       </section>
 

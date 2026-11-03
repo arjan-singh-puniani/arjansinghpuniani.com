@@ -30,6 +30,31 @@
   margin-top: 34px;
 }
 
+.heroPortrait {
+  width: min(100%, 400px);
+  align-self: center;
+  margin: 48px 0 48px auto;
+}
+
+.heroPortrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
+.heroPortrait figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+  font-size: 11px;
+}
+
+.heroPortrait a {
+  color: var(--ink);
+}
+
 .projectPreviewFrame {
   position: relative;
   overflow: hidden;
@@ -116,10 +141,29 @@
 
   .heroScope :global(.v2-actions) {
     margin-top: 24px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
   }
 
-  .heroScope :global(.v2-visual) {
-    min-height: 390px;
+  .heroScope :global(.v2-actions a) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .heroScope :global(.v2-actions a:first-child) {
+    padding: 14px;
+  }
+
+  .heroScope :global(.v2-actions b) {
+    margin-left: 16px;
+  }
+
+  .heroPortrait {
+    width: min(calc(100% - 24px), 400px);
+    margin: 8px auto 48px;
   }
 
   .projectPreviewFrame {

@@ -2694,3 +2694,15 @@
 .review-coverage caption{text-align:left;margin-bottom:10px;color:var(--quiet)}
 .review-coverage th,.review-coverage td{border-bottom:1px solid var(--rule);padding:10px 6px;text-align:left}
 .review-coverage small{display:block;color:var(--quiet);margin:12px 0;font-size:12px}
+.atlas-photo-portrait { min-height: 100svh; background: #0b1822; color: #e4edf0; }
+.atlas-photo-portrait .atlas-header { flex-wrap: wrap; gap: 16px; }
+.atlas-photo-portrait .atlas-header nav { display: flex; align-items: center; gap: 20px; }
+.atlas-photo-portrait main { display: grid; justify-items: center; gap: 16px; padding: 48px 24px; }
+.atlas-photo-portrait figure { width: min(100%, 400px); margin: 0; }
+.atlas-photo-portrait img { display: block; width: 100%; height: auto; border: 1px solid #354851; }
+.atlas-photo-portrait figcaption { margin-top: 24px; text-align: center; }
+.atlas-photo-portrait h1 { margin: 0; font-size: clamp(25px, 4vw, 34px); font-weight: 500; letter-spacing: -.03em; }
+.atlas-photo-portrait figcaption p { margin: 10px 0 0; color: #b3c5cd; }
+.atlas-photo-portrait label { display: grid; gap: 8px; width: min(100%, 400px); }
+.atlas-photo-portrait input { width: 100%; padding: 12px; background: #152733; border: 1px solid #61747d; color: #e4edf0; }
+

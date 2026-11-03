@@ -1,21 +1,62 @@
+.intro {
+  padding: 64px 0;
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+  align-items: center;
+  gap: clamp(40px, 7vw, 100px);
+}
+
+.intro h1 {
+  font-size: clamp(56px, 6.8vw, 92px);
+}
+
+.introPortrait {
+  width: min(100%, 360px);
+  margin: 0 0 0 auto;
+}
+
+.introPortrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
+.introPortrait figcaption {
+  margin-top: 16px;
+}
+
 .personalSection {
   border-top: 1px solid var(--line);
 }
 
 .personalGrid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: clamp(44px, 6vw, 88px);
-  align-items: start;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
 }
 
 .photoStack {
   display: grid;
-  gap: 14px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: start;
+  gap: 20px;
 }
 
 .photoWide {
   margin: 0;
+}
+
+.photoWide + .photoWide {
+  margin-top: 88px;
+}
+
+.photoWide figcaption {
+  margin-top: 14px;
 }
 
 .photoWide img {
@@ -34,6 +75,7 @@
 .personalCopy h2 {
   max-width: 720px;
   margin-top: 14px;
+  font-size: clamp(34px, 3.6vw, 48px);
 }
 
 .personalProse {
@@ -101,23 +143,47 @@
 }
 
 @media (max-width: 900px) {
+  .intro {
+    padding: 48px 0;
+  }
+
+  .introGrid {
+    gap: 32px;
+  }
+
+  .intro h1 {
+    font-size: clamp(48px, 7vw, 64px);
+  }
+
   .personalGrid {
     grid-template-columns: 1fr;
     gap: 38px;
   }
 
-  .photoStack {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .personalCopy {
+    order: -1;
     padding-top: 0;
   }
 }
 
 @media (max-width: 560px) {
+  .introGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .introPortrait {
+    width: min(calc(100% - 24px), 360px);
+    margin: 0 auto;
+  }
+
   .photoStack {
     grid-template-columns: 1fr;
+    gap: 32px;
+    margin: 0 12px;
+  }
+
+  .photoWide + .photoWide {
+    margin-top: 0;
   }
 
   .personalProse {
