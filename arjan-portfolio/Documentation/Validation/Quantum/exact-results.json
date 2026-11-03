@@ -1,0 +1,53 @@
+[
+  {
+    "browser": "chromium",
+    "version": "153.0.8010.12",
+    "flyingKets": 2,
+    "flyingFactors": 8,
+    "exact": [
+      "H",
+      "CNOT",
+      "Y",
+      "H Z H cancellation",
+      "symbolic Ry",
+      "three-qubit matrix"
+    ],
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.6",
+    "flyingKets": 2,
+    "flyingFactors": 8,
+    "exact": [
+      "H",
+      "CNOT",
+      "Y",
+      "H Z H cancellation",
+      "symbolic Ry",
+      "three-qubit matrix"
+    ],
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  },
+  {
+    "browser": "firefox",
+    "version": "153.0",
+    "flyingKets": 2,
+    "flyingFactors": 8,
+    "exact": [
+      "H",
+      "CNOT",
+      "Y",
+      "H Z H cancellation",
+      "symbolic Ry",
+      "three-qubit matrix"
+    ],
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  }
+]

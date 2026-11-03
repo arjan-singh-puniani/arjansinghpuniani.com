@@ -1,0 +1,221 @@
+{
+  "equations": 54,
+  "localAssets": "passed",
+  "inventory": [
+    {
+      "path": "public/quantum-computer-lab/THIRD_PARTY_NOTICES.txt",
+      "bytes": 1578,
+      "gzipBytes": 945
+    },
+    {
+      "path": "public/quantum-computer-lab/app.js",
+      "bytes": 138595,
+      "gzipBytes": 41166
+    },
+    {
+      "path": "public/quantum-computer-lab/calculation.js",
+      "bytes": 16879,
+      "gzipBytes": 4692
+    },
+    {
+      "path": "public/quantum-computer-lab/content.js",
+      "bytes": 29959,
+      "gzipBytes": 9594
+    },
+    {
+      "path": "public/quantum-computer-lab/cutaway.svg",
+      "bytes": 2304,
+      "gzipBytes": 940
+    },
+    {
+      "path": "public/quantum-computer-lab/diagnostics.js",
+      "bytes": 8796,
+      "gzipBytes": 3481
+    },
+    {
+      "path": "public/quantum-computer-lab/exact.js",
+      "bytes": 8181,
+      "gzipBytes": 2767
+    },
+    {
+      "path": "public/quantum-computer-lab/index.html",
+      "bytes": 35939,
+      "gzipBytes": 8839
+    },
+    {
+      "path": "public/quantum-computer-lab/processor.glb",
+      "bytes": 113664,
+      "gzipBytes": 15089
+    },
+    {
+      "path": "public/quantum-computer-lab/scene.js",
+      "bytes": 53056,
+      "gzipBytes": 14067
+    },
+    {
+      "path": "public/quantum-computer-lab/simulator.js",
+      "bytes": 12949,
+      "gzipBytes": 3920
+    },
+    {
+      "path": "public/quantum-computer-lab/style.css",
+      "bytes": 108437,
+      "gzipBytes": 19632
+    },
+    {
+      "path": "public/quantum-computer-lab/teaching.js",
+      "bytes": 2105,
+      "gzipBytes": 904
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/BufferGeometryUtils.js",
+      "bytes": 35570,
+      "gzipBytes": 8036
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/GLTFLoader.js",
+      "bytes": 114763,
+      "gzipBytes": 24774
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/KaTeX-LICENSE.txt",
+      "bytes": 1107,
+      "gzipBytes": 672
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/katex.min.css",
+      "bytes": 21218,
+      "gzipBytes": 3387
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/katex.min.js",
+      "bytes": 276701,
+      "gzipBytes": 76377
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_AMS-Regular.woff2",
+      "bytes": 28076,
+      "gzipBytes": 28104
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "bytes": 6912,
+      "gzipBytes": 6935
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "bytes": 6908,
+      "gzipBytes": 6931
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Fraktur-Bold.woff2",
+      "bytes": 11348,
+      "gzipBytes": 11371
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Fraktur-Regular.woff2",
+      "bytes": 11316,
+      "gzipBytes": 11339
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Main-Bold.woff2",
+      "bytes": 25324,
+      "gzipBytes": 25352
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Main-BoldItalic.woff2",
+      "bytes": 16780,
+      "gzipBytes": 16808
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Main-Italic.woff2",
+      "bytes": 16988,
+      "gzipBytes": 17016
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Main-Regular.woff2",
+      "bytes": 26272,
+      "gzipBytes": 26300
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Math-BoldItalic.woff2",
+      "bytes": 16400,
+      "gzipBytes": 16423
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Math-Italic.woff2",
+      "bytes": 16440,
+      "gzipBytes": 16466
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_SansSerif-Bold.woff2",
+      "bytes": 12216,
+      "gzipBytes": 12239
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_SansSerif-Italic.woff2",
+      "bytes": 12028,
+      "gzipBytes": 12051
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_SansSerif-Regular.woff2",
+      "bytes": 10344,
+      "gzipBytes": 10367
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Script-Regular.woff2",
+      "bytes": 9644,
+      "gzipBytes": 9667
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Size1-Regular.woff2",
+      "bytes": 5468,
+      "gzipBytes": 5491
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Size2-Regular.woff2",
+      "bytes": 5208,
+      "gzipBytes": 5231
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Size3-Regular.woff2",
+      "bytes": 3624,
+      "gzipBytes": 3647
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Size4-Regular.woff2",
+      "bytes": 4928,
+      "gzipBytes": 4951
+    },
+    {
+      "path": "public/quantum-computer-lab/vendor/fonts/KaTeX_Typewriter-Regular.woff2",
+      "bytes": 13568,
+      "gzipBytes": 13591
+    }
+  ],
+  "shared": [
+    {
+      "path": "public/pit-stop-lab/vendor/three.module.js",
+      "bytes": 648961,
+      "gzipBytes": 129184,
+      "reused": true
+    },
+    {
+      "path": "public/pit-stop-lab/vendor/three.core.js",
+      "bytes": 1427497,
+      "gzipBytes": 282739,
+      "reused": true
+    },
+    {
+      "path": "public/pit-stop-lab/vendor/OrbitControls.js",
+      "bytes": 40516,
+      "gzipBytes": 8497,
+      "reused": true
+    }
+  ],
+  "totals": {
+    "labBytes": 1241593,
+    "labGzipBytes": 499562,
+    "javascriptGzipBytes": 610198
+  }
+}

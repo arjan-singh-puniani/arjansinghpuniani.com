@@ -1,113 +1,883 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#071018" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#101312" />
     <meta name="robots" content="noindex,follow" />
-    <link rel="canonical" href="https://arjansinghpuniani.com/work/rigetti-quantum-operations" />
-    <title>Quantum Computer Operations Lab | Arjan Singh Puniani</title>
-    <meta name="description" content="Independent educational visualization of a superconducting quantum-computing control chain." />
-    <script type="module" crossorigin src="./assets/index-C81YNuSX.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CbBBWMc4.css">
+    <link
+      rel="canonical"
+      href="https://arjansinghpuniani.com/work/rigetti-quantum-operations"
+    />
+    <title>
+      Build a Superconducting Quantum Computer · Arjan Singh Puniani
+    </title>
+    <meta
+      name="description"
+      content="Assemble a representative cryogenic machine, then follow amplitudes, gates, microwave pulses, and readout through one synchronized quantum laboratory."
+    />
+    <link rel="stylesheet" href="./vendor/katex.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./vendor/katex.min.js"></script>
+    <script type="module" src="./app.js"></script>
   </head>
   <body>
-    <div id="app">
-      <canvas id="scene" aria-label="Interactive 3D quantum computer visualization"></canvas>
-
-      <header class="topbar glass">
+    <a class="skip" href="#lesson">Skip to the written explanation</a>
+    <header class="masthead">
+      <a href="/work/rigetti-quantum-operations" target="_top" class="wordmark"
+        >ASP <span>/ SYSTEMS STUDIES</span></a
+      ><span class="edition">NO. 01 / INDEPENDENT RECONSTRUCTION, 2026</span
+      ><button id="sources-open" class="text-button">Sources & model ↗</button>
+    </header>
+    <main>
+      <div class="experience-heading">
         <div>
-          <div class="eyebrow">INDEPENDENT EDUCATIONAL MODEL</div>
-          <h1>Quantum Computer Operations Lab</h1>
+          <p class="eyebrow" id="chapter-label">HARDWARE ASSEMBLY</p>
+          <h1 id="experience-title">Superconducting quantum computer</h1>
         </div>
-        <div class="status-cluster">
-          <div class="status-chip"><span class="dot live"></span><span id="system-status">SYSTEM READY</span></div>
-          <div class="status-chip"><span class="dot cold"></span>12 mK</div>
-          <div class="status-chip"><span class="dot link"></span>SIMULATED · 8 QUBITS</div>
-        </div>
-      </header>
-
-      <aside class="left-panel glass">
-        <section>
-          <div class="section-label">Operation</div>
-          <div class="button-grid">
-            <button id="run-sequence" class="primary">Run gate cycle</button>
-            <button id="pause-sequence">Pause</button>
-            <button id="reset-sequence">Reset</button>
-            <button id="auto-tour">Auto tour</button>
-          </div>
-        </section>
-
-        <section>
-          <div class="section-label">Camera presets</div>
-          <div id="camera-presets" class="button-grid compact">
-            <button data-view="overview">1 Overview</button>
-            <button data-view="front">2 Front</button>
-            <button data-view="top">3 Top</button>
-            <button data-view="chip">4 Qubit chip</button>
-            <button data-view="rack">5 Controllers</button>
-            <button data-view="inside">6 Cryostat interior</button>
-          </div>
-        </section>
-
-        <section>
-          <div class="section-label">Inspection</div>
-          <label class="toggle-row"><span>Cutaway shell</span><input id="cutaway" type="checkbox" checked /><i></i></label>
-          <label class="toggle-row"><span>Labels</span><input id="labels" type="checkbox" checked /><i></i></label>
-          <label class="toggle-row"><span>Signal paths</span><input id="signals" type="checkbox" checked /><i></i></label>
-          <label class="toggle-row"><span>Auto rotate</span><input id="autorotate" type="checkbox" /><i></i></label>
-        </section>
-
-        <section class="help-copy">
-          <div class="section-label">Navigation</div>
-          <p>Drag to orbit. Wheel to zoom. Right drag to pan. Double click a part to focus. Press F to frame your selection.</p>
-        </section>
-      </aside>
-
-      <aside class="right-panel glass">
-        <section>
-          <div class="section-label">Simulated telemetry</div>
-          <div class="metric"><span>Sequence</span><strong id="sequence-name">Idle</strong></div>
-          <div class="metric"><span>Step</span><strong id="sequence-step">0 / 6</strong></div>
-          <div class="metric"><span>Modeled fidelity</span><strong id="fidelity">99.72%</strong></div>
-          <div class="metric"><span>Modeled readout SNR</span><strong id="snr">18.4 dB</strong></div>
-          <div class="metric"><span>Example T₁</span><strong id="t1">112 μs</strong></div>
-          <div class="metric"><span>Example T₂</span><strong id="t2">89 μs</strong></div>
-        </section>
-
-        <section>
-          <div class="section-label">Selected component</div>
-          <h2 id="part-name">Dilution refrigerator</h2>
-          <p id="part-description">A multi-stage cryogenic system that cools the superconducting processor to millikelvin temperatures.</p>
-          <div class="tag-row" id="part-tags"><span>cryogenics</span><span>shielding</span></div>
-        </section>
-
-        <section>
-          <div class="section-label">Thermal stack</div>
-          <div class="thermal-stack">
-            <div><span>50 K shield</span><b>49.8 K</b></div>
-            <div><span>4 K plate</span><b>3.92 K</b></div>
-            <div><span>Still</span><b>840 mK</b></div>
-            <div><span>Cold plate</span><b>92 mK</b></div>
-            <div><span>Mixing chamber</span><b>12 mK</b></div>
-          </div>
-        </section>
-      </aside>
-
-      <div class="timeline glass">
-        <div class="timeline-head">
-          <span id="timeline-title">Ready for operation</span>
-          <span id="timeline-time">0.00 μs</span>
-        </div>
-        <div class="timeline-track"><div id="timeline-progress"></div></div>
-        <div class="timeline-steps">
-          <span>Initialize</span><span>Drive</span><span>Entangle</span><span>Wait</span><span>Readout</span><span>Decode</span>
-        </div>
+        <p class="opening" id="opening">
+          Assemble the cryogenic stages, control lines, processor, and readout
+          chain.
+        </p>
       </div>
+      <nav class="chapter-nav" aria-label="Experience">
+        <button id="machine-tab" aria-pressed="true">
+          <span>01</span> Assemble the machine</button
+        ><button id="compute-tab" aria-pressed="false">
+          <span>02</span> From pulse to computation ↗
+        </button>
+      </nav>
+      <section
+        class="machine-layout"
+        aria-label="Synchronized hardware and explanation"
+      >
+        <div class="viewport" id="viewport">
+          <img
+            id="poster"
+            src="./cutaway.svg"
+            alt="Cutaway with nested thermal plates, input cabling to the processor, and readout cabling returning to a warm electronics rack."
+          />
+          <div id="webgl-host"></div>
+          <div class="viewport-caption">
+            <span class="status-dot"></span
+            ><span id="scene-status"
+              >SUPERCONDUCTING QUANTUM COMPUTER · CUTAWAY</span
+            >
+          </div>
+          <div class="temperature-ruler" id="temperature-ruler">
+            <span>300 <small>K</small></span
+            ><span>50 <small>K</small></span
+            ><span>4 <small>K</small></span
+            ><span>0.8 <small>K</small></span
+            ><span>0.1 <small>K</small></span
+            ><span>15 <small>mK</small></span>
+          </div>
+          <svg
+            id="component-labels"
+            class="component-labels"
+            aria-hidden="true"
+          ></svg>
+          <div class="scene-labels" id="scene-labels">
+            <span class="label-warm">CLASSICAL CONTROL <b>300 K</b></span
+            ><span class="label-cold">PROCESSOR <b>≈15 mK</b></span>
+          </div>
+          <div class="scene-bottom">
+            <span id="scene-note"
+              >Five thermal stages. One protected quantum state.</span
+            ><span id="render-mode">3D / EDUCATIONAL SCALE</span>
+          </div>
+          <div id="assembly-guidance" class="assembly-guidance" hidden>
+            <span class="guidance-icon" aria-hidden="true">↓</span>
+            <span id="assembly-guidance-text"
+              >Drag the lifted part into its outline, or use Install.</span
+            >
+          </div>
+          <div class="viewport-controls" aria-label="Hardware inspection">
+            <button id="rotate" aria-pressed="false">Rotate</button
+            ><button id="explode" aria-pressed="false">Explode</button
+            ><button id="cutaway" aria-pressed="true">Cutaway</button
+            ><button id="labels" aria-pressed="true">Labels</button
+            ><button id="heat" aria-pressed="false">Heat</button
+            ><button id="noise" aria-pressed="false">Noise</button
+            ><button id="signal">Trigger signal</button
+            ><button id="processor-view">Processor</button
+            ><button id="reset-view">Reset view</button>
+          </div>
+        </div>
+        <aside class="lesson-panel" id="lesson" tabindex="-1">
+          <div id="assembly-panel"></div>
+          <div id="operation-panel" hidden></div>
+        </aside>
+      </section>
+      <section
+        id="hardware-signal-path"
+        class="hardware-path"
+        aria-label="05 Hardware signal path"
+      ></section>
+      <section id="assembly-bottom" aria-label="Assembly progress">
+        <div class="progress-heading">
+          <span>ASSEMBLY SEQUENCE</span
+          ><span id="progress-text">0 / 12 INSTALLED</span>
+        </div>
+        <nav
+          id="stage-rail"
+          class="stage-rail"
+          aria-label="Assembly stages"
+        ></nav>
+        <div class="assembly-actions">
+          <button id="begin" class="primary">Begin assembly ↗</button
+          ><button id="explore">Explore completed system</button
+          ><button id="restart" class="text-button">Restart build</button
+          ><span class="quiet"
+            >Click or use the keyboard. Dragging is optional.</span
+          >
+        </div>
+      </section>
+      <section
+        id="computation"
+        hidden
+        aria-label="Quantum computation laboratory"
+      >
+        <div class="lab-heading">
+          <div>
+            <h2>Circuit calculation</h2>
+          </div>
+          <p>
+            Select a gate. Follow its matrix, calculation, and state change.
+          </p>
+        </div>
+        <details id="circuit-tools" class="circuit-tools">
+          <summary>
+            Circuit editor & experiment setup
+            <span>Gates · initialization · native compilation</span>
+          </summary>
+          <section
+            class="experiment-story"
+            aria-label="Follow the active operation"
+          >
+            <div class="story-heading">
+              <div>
+                <h2 id="story-title">Register initialization</h2>
+              </div>
+              <nav id="story-steps" aria-label="Bell experiment moments"></nav>
+            </div>
+            <div class="story-body">
+              <p id="story-reading"></p>
+              <div class="story-phases" aria-label="Active teaching moment">
+                <span data-beat="operator">01 · Identify</span
+                ><span data-beat="evolve">02 · Evolve</span
+                ><span data-beat="inspect">03 · Inspect</span>
+              </div>
+            </div>
+            <details id="calculation-detail">
+              <summary>Inspect the native pulse evolution</summary>
+              <p id="native-moment" class="native-moment" hidden></p>
+              <div id="story-equation" class="equation"></div>
+              <div id="calculation-matrix" class="equation"></div>
+            </details>
+          </section>
+          <section
+            class="panel circuit-panel"
+            aria-labelledby="circuit-heading"
+          >
+            <div class="panel-heading">
+              <h2 id="circuit-heading"><span>01</span> Circuit</h2>
+              <span id="execution-label"></span>
+            </div>
+            <div class="lab-toolbar">
+              <label
+                >Qubits
+                <select id="qubits">
+                  <option>1</option>
+                  <option selected>2</option>
+                  <option>3</option>
+                </select></label
+              ><label
+                >Initialize
+                <select id="initial-basis"></select></label
+              ><button id="bell-preset">Bell experiment</button
+              ><button id="clear-circuit">Clear</button>
+            </div>
+            <div
+              id="circuit"
+              class="circuit"
+              aria-label="Circuit execution steps"
+            ></div>
+            <div class="execution-controls">
+              <button id="previous-step">← Back</button
+              ><button id="play" class="primary">Play experiment</button
+              ><button id="next-step">Next →</button
+              ><button id="undo-gate">Remove last</button>
+            </div>
+            <details class="builder-disclosure">
+              <summary>Build your own circuit · 1–3 qubits</summary>
+              <div class="gate-builder">
+                <label
+                  >Gate
+                  <select id="gate-select"></select></label
+                ><label
+                  >Target
+                  <select id="gate-target"></select></label
+                ><label
+                  >Control
+                  <select id="gate-control"></select></label
+                ><label
+                  >Angle η
+                  <input
+                    id="gate-angle"
+                    type="range"
+                    min="-6.283185"
+                    max="6.283185"
+                    step="any"
+                    value="1.5707963267948966"
+                  /><output id="gate-angle-value">1.571 rad</output></label
+                ><button id="add-gate">Add gate +</button>
+              </div>
+            </details>
+            <p id="circuit-message" role="status">
+              q0 is the leftmost bit. Select a gate or advance the cursor.
+            </p>
+            <details>
+              <summary>Hardware compilation & pulse timeline</summary>
+              <div id="compilation"></div>
+            </details>
+          </section>
+        </details>
+        <section
+          id="coherent-stage"
+          class="coherent-stage"
+          aria-labelledby="coherent-title"
+        >
+          <div class="coherent-heading">
+            <div>
+              <h2 id="coherent-title">Gate operation</h2>
+            </div>
+            <div class="coherent-actions">
+              <button id="replay-gate" class="primary">
+                Replay this gate ↻</button
+              ><button id="coherent-play">Run Bell experiment →</button>
+            </div>
+          </div>
+          <nav
+            id="coherent-circuit"
+            aria-label="Active circuit and execution position"
+          ></nav>
+          <div id="coherent-mobile-live">
+            <div id="coherent-mobile-ket" class="equation"></div>
+            <output id="coherent-mobile-time"></output>
+          </div>
+          <div id="stage-phase-controls" hidden>
+            <label for="stage-bell-phase"
+              >Bell relative phase φ
+              <output id="stage-bell-phase-value"></output></label
+            ><input
+              id="stage-bell-phase"
+              type="range"
+              min="-3.141592653589793"
+              max="3.141592653589793"
+              step="any"
+              value="0"
+              aria-label="Change relative phase across all linked quantum views"
+            /><span>Turn phase. Watch correlations.</span>
+          </div>
+          <div class="ket-trajectory">
+            <div class="ket-origin">
+              <span class="stage-label">BEFORE THE GATE</span>
+              <div id="coherent-input" class="equation"></div>
+              <div id="coherence-peek" hidden>
+                <span class="stage-label">JOINT CORRELATIONS · ENSEMBLE</span>
+                <div id="coherence-metrics"></div>
+                <button id="inspect-coherence">
+                  Inspect joint coherence ↗
+                </button>
+              </div>
+            </div>
+            <div class="ket-operator">
+              <div
+                id="ket-ribbons"
+                role="group"
+                aria-label="Complex amplitude paths through the active operation"
+              ></div>
+              <span id="coherent-gate" class="gate-orb">H</span
+              ><svg viewBox="0 0 150 30" aria-hidden="true">
+                <path d="M0 15H145m-8-7 8 7-8 7" />
+                <circle id="ket-clock" cx="0" cy="15" r="3" /></svg
+              ><span id="coherent-percent">100%</span>
+            </div>
+            <div class="ket-destination">
+              <span class="stage-label" id="coherent-state-label"
+                >THE TRANSFORMED KET</span
+              >
+              <div id="coherent-current" class="equation"></div>
+              <div
+                id="coherent-populations"
+                class="coherent-populations"
+                aria-label="Current joint basis probabilities"
+              ></div>
+            </div>
+          </div>
+          <div class="math-explanation">
+            <div class="coherent-caption">
+              <p id="coherent-reading"></p>
+              <span id="coherent-correlation"></span>
+            </div>
+            <div class="coherent-row">
+              <span id="coherent-rule-caption" class="stage-label"
+                >EXACT ENDPOINT · ONE MATRIX ROW</span
+              >
+              <div id="coherent-rule" class="equation"></div>
+              <div
+                id="coherent-addition"
+                role="group"
+                aria-label="Complex-vector addition for the selected output amplitude"
+              ></div>
+              <a href="#exact-working" id="show-exact">See every row ↓</a>
+            </div>
+          </div>
+          <div class="coherent-views">
+            <section
+              class="panel geometry-panel"
+              aria-labelledby="geometry-heading"
+            >
+              <div class="panel-heading">
+                <h3 id="geometry-heading"><span>03</span> State geometry</h3>
+                <span>REDUCED STATE</span>
+              </div>
+              <div id="bloch-spheres"></div>
+              <p id="geometry-explanation" class="caption"></p>
+              <details class="stage-inspection">
+                <summary>Inspect geometry & prepare a state</summary>
+                <div>
+                  <details>
+                    <summary>Reduced density matrices</summary>
+                    <div id="reduced-matrices"></div>
+                  </details>
+                  <div class="legend">
+                    <span class="zero">Zero basis</span
+                    ><span class="one">One basis</span
+                    ><span class="phase">Phase φ</span>
+                  </div>
+                  <details>
+                    <summary>Preparation & phase laboratory</summary>
+                    <div class="sliders">
+                      <label
+                        >Polar θ
+                        <input
+                          id="theta"
+                          type="range"
+                          min="0"
+                          max="3.141593"
+                          step="any"
+                          value="1.5707963267948966" /><output
+                          id="theta-value"
+                        ></output></label
+                      ><label
+                        >Relative φ
+                        <input
+                          id="phi"
+                          type="range"
+                          min="-3.141593"
+                          max="3.141593"
+                          step="any"
+                          value="0" /><output id="phi-value"></output></label
+                      ><label
+                        >Global γ
+                        <input
+                          id="gamma"
+                          type="range"
+                          min="-3.141593"
+                          max="3.141593"
+                          step="any"
+                          value="0" /><output id="gamma-value"></output
+                      ></label>
+                    </div>
+                    <button id="prepare-state">Use this one-qubit state</button
+                    ><button id="interfere">
+                      Apply H: reveal relative phase
+                    </button>
+                    <p class="caption">
+                      Prepare resets the circuit to one qubit. Once prepared,
+                      sliders update all views. γ changes global phase; φ
+                      changes interference after H.
+                    </p>
+                  </details>
+                  <details>
+                    <summary>Arbitrary unitary · Z–Y–Z</summary>
+                    <div id="euler-controls" class="sliders"></div>
+                    <button id="apply-euler">Append Euler rotations</button>
+                    <p class="caption">
+                      Chronological order: δ about z, β about y, α about z. γ is
+                      the preparation’s global phase.
+                    </p>
+                  </details>
+                </div>
+              </details>
+            </section>
+            <section
+              class="panel control-panel"
+              aria-labelledby="control-heading"
+            >
+              <div class="panel-heading">
+                <h3 id="control-heading"><span>04</span> Native control</h3>
+                <span>I / Q / FLUX</span>
+              </div>
+              <div id="waveform"></div>
 
-      <div id="label-layer" aria-hidden="true"></div>
-      <div id="tooltip" class="tooltip"></div>
-      <div id="loading" class="loading"><div class="spinner"></div><span>Building cryogenic system</span></div>
-    </div>
+              <div id="control-values" class="control-values"></div>
+              <p class="caption frame-note">
+                I/Q uses the hardware phase. The Bloch axis uses the logical
+                frame: φ hardware = φ logical − λ, where λ is the accumulated
+                virtual-Z reference. A frame update changes later pulse phases.
+              </p>
+
+              <details class="stage-inspection">
+                <summary>Inspect carrier, calibration & Hamiltonian</summary>
+                <details>
+                  <summary>Physical microwave carrier · magnified</summary>
+                  <div id="carrier"></div>
+                </details>
+                <details class="calibration-disclosure">
+                  <summary>Calibration bench · perturb the drive</summary>
+                  <div class="sliders calibration">
+                    <label
+                      >Drive frequency (GHz)<input
+                        id="drive-frequency"
+                        type="range"
+                        min="4.98"
+                        max="5.02"
+                        step="0.001"
+                        value="5"
+                      /><output id="drive-frequency-value">5.000</output></label
+                    ><label
+                      >Pulse area scale<input
+                        id="pulse-scale"
+                        type="range"
+                        min="0"
+                        max="1.5"
+                        step="0.01"
+                        value="1"
+                      /><output id="pulse-scale-value">1.00</output></label
+                    >
+                  </div>
+                  <p class="caption">
+                    Assumed teaching values: qubit 5 GHz; XY 40 ns; CZ 80 ns;
+                    readout 400 ns. Calibration controls drive a separate
+                    effective-Hamiltonian prediction; the logical circuit
+                    remains ideal.
+                  </p>
+                  <div id="calibration-prediction"></div>
+                </details>
+                <details>
+                  <summary>Derive the effective Hamiltonian</summary>
+                  <div id="hamiltonian"></div>
+                </details>
+              </details>
+            </section>
+            <section class="panel hardware-panel" aria-label="05 Hardware">
+              <div class="panel-heading">
+                <h3><span>05</span> Superconducting processor</h3>
+                <span>SIGNAL PATH</span>
+              </div>
+              <div id="hardware-dock"></div>
+              <svg
+                id="processor-signal"
+                viewBox="0 0 360 54"
+                role="img"
+                aria-label="Active hardware signal along the shared execution timeline"
+              >
+                <path d="M24 16H336" />
+                <circle cx="336" cy="16" r="4" />
+                <text x="180" y="44" text-anchor="middle">
+                  XY line → transmon
+                </text>
+              </svg>
+              <details class="stage-inspection">
+                <summary>Trace the cryogenic signal chain</summary>
+                <div id="signal-chain-dock"></div>
+              </details>
+              <p class="caption">
+                Follow the active control line to the qubit, then the readout
+                signal back to the controller.
+              </p>
+            </section>
+          </div>
+          <div class="coherent-transport">
+            <span id="coherent-moment">GATE COMPLETE</span
+            ><label class="scrub-label"
+              >Execution
+              <input
+                id="execution-scrub"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+                aria-label="Scrub the active gate through its compiled pulse timeline" /></label
+            ><output id="coherent-time" for="execution-scrub"></output>
+          </div>
+        </section>
+        <details id="coherence-inspector" class="coherence-inspector" hidden>
+          <summary>
+            Joint-state analysis
+            <span>Joint coherence · phase · measurement settings</span>
+          </summary>
+          <div class="coherence-intro">
+            <div>
+              <h2>Coherence and measurement correlations</h2>
+              <p id="coherence-reading"></p>
+            </div>
+            <button id="bell-phase-experiment" class="primary">
+              Run Bell phase experiment →
+            </button>
+          </div>
+          <div id="bell-phase-controls" hidden>
+            <label for="bell-phase"
+              >Bell relative phase φ
+              <output id="bell-phase-value"></output></label
+            ><input
+              id="bell-phase"
+              type="range"
+              min="-3.141592653589793"
+              max="3.141592653589793"
+              step="any"
+              value="0"
+              aria-label="Change the Bell state's relative phase"
+            />
+            <div>
+              <button data-bell-phase="0">φ = 0</button
+              ><button data-bell-phase="1.5707963267948966">φ = π/2</button
+              ><button data-bell-phase="3.141592653589793">φ = π</button>
+            </div>
+            <div id="bell-phase-equation" class="equation"></div>
+          </div>
+          <div class="coherence-matrices">
+            <section aria-labelledby="joint-current-title">
+              <h3 id="joint-current-title">Current circuit</h3>
+              <p class="caption">Joint ensemble before terminal readout</p>
+              <div id="joint-density" class="joint-density"></div>
+            </section>
+            <section aria-labelledby="joint-mixture-title">
+              <h3 id="joint-mixture-title">Classical 00/11 mixture</h3>
+              <p class="caption">Equal populations, zero coherence</p>
+              <div id="mixture-density" class="joint-density"></div>
+            </section>
+            <div class="coherence-working">
+              <p class="stage-label">SELECT ANY MATRIX CELL</p>
+              <div id="coherence-element" class="equation"></div>
+              <p class="caption">
+                Rows and columns are joint basis states. A tile’s brightness is
+                magnitude; its arrow is complex phase. Off-diagonal entries
+                carry coherence.
+              </p>
+              <div id="bell-witness-equation" class="equation"></div>
+              <div class="witness-scale">
+                <i></i><b id="bell-fidelity-marker"></b><span>0</span
+                ><span>½ · separable bound</span><span>1</span>
+              </div>
+              <p id="bell-witness-reading"></p>
+            </div>
+          </div>
+          <div class="coherence-measurements">
+            <div id="coherence-correlations"></div>
+            <div class="coherence-basis">
+              <span>Measure gate endpoint</span
+              ><button data-coherence-basis="X">XX basis</button
+              ><button data-coherence-basis="XY">XY basis</button
+              ><button data-coherence-basis="Y">YY basis</button
+              ><button data-coherence-basis="Z">ZZ basis</button>
+            </div>
+          </div>
+          <p class="coherence-source">
+            Calculated from the complete circuit ensemble. Experimental witness
+            estimates require calibrated measurement settings and uncertainty
+            bounds.
+            <a
+              href="https://arxiv.org/abs/quant-ph/0501020"
+              target="_blank"
+              rel="noreferrer"
+              >Tóth & Gühne ↗</a
+            >
+          </p>
+        </details>
+        <details id="exact-working" class="exact-working" open>
+          <summary>
+            Follow the exact calculation
+            <span>Basis kets → matrix rows → transformed ket</span>
+          </summary>
+          <section
+            id="gate-calculation"
+            class="calculation-theatre"
+            aria-label="Animated gate calculation"
+            hidden
+          ></section>
+        </details>
+        <details class="amplitude-disclosure">
+          <summary>Explore complex amplitudes & interference</summary>
+          <section class="amplitude-theatre" aria-labelledby="flow-title">
+            <div class="flow-introduction">
+              <h2 id="flow-title">Complex-amplitude contributions</h2>
+              <p id="flow-reading"></p>
+              <div id="flow-rule" class="equation"></div>
+              <button id="try-interference">
+                Try constructive & destructive interference ↗
+              </button>
+              <div id="flow-phase-controls" hidden>
+                <label for="flow-relative"
+                  >Relative phase φ <output id="flow-relative-value"></output
+                ></label>
+                <input
+                  id="flow-relative"
+                  type="range"
+                  min="-3.141593"
+                  max="3.141593"
+                  step="any"
+                  value="0"
+                />
+                <label for="flow-global"
+                  >Global phase γ <output id="flow-global-value"></output
+                ></label>
+                <input
+                  id="flow-global"
+                  type="range"
+                  min="-3.141593"
+                  max="3.141593"
+                  step="any"
+                  value="0"
+                />
+              </div>
+              <p class="caption">
+                Curves carry complex contributions, not classical probabilities.
+                The small arrows show their phases. Contributions arriving at
+                one basis state add before their magnitude is squared.
+              </p>
+            </div>
+            <div class="flow-stage">
+              <div class="flow-column-labels">
+                <span>INPUT</span><span id="flow-operation">INITIALIZATION</span
+                ><span>OUTPUT</span>
+              </div>
+              <div id="amplitude-flow"></div>
+              <div
+                id="flow-select"
+                aria-label="Inspect an output amplitude"
+              ></div>
+              <div id="flow-calculation" class="equation"></div>
+            </div>
+          </section>
+        </details>
+        <nav
+          class="workspace-nav"
+          aria-label="Live computation and linked views"
+        >
+          <div>
+            <span id="mobile-operation">Initialized register</span
+            ><button id="mobile-play" aria-label="Play or pause the experiment">
+              Play
+            </button>
+          </div>
+          <div class="workspace-jumps">
+            <button data-view="circuit">Circuit</button
+            ><button data-view="state">State</button
+            ><button data-view="geometry">Bloch</button
+            ><button data-view="control">Pulse</button
+            ><button data-view="hardware">Hardware</button
+            ><button data-view="readout">Counts</button>
+          </div>
+        </nav>
+        <div class="workspace">
+          <section class="panel state-panel" aria-labelledby="state-heading">
+            <div class="panel-heading">
+              <h3 id="state-heading"><span>02</span> State</h3>
+              <span id="norm"></span>
+            </div>
+            <div id="state-ket" class="equation compact-math"></div>
+
+            <div id="amplitudes"></div>
+            <p class="caption amplitude-key">
+              Disks: complex amplitudes in the real–imaginary plane. Bars:
+              squared magnitudes. Global phase rotates every disk arrow
+              together.
+            </p>
+            <div class="legend">
+              <span class="real">Real amplitude</span
+              ><span class="imaginary">Imaginary amplitude</span
+              ><span class="phase">Relative phase</span>
+            </div>
+            <details>
+              <summary>Complex vector & density operator</summary>
+              <div id="state-vector" class="equation"></div>
+              <div id="density" class="equation"></div>
+              <p class="caption">
+                ρ = ψψ† for this pure trajectory. The dagger means conjugate
+                transpose. Reduced states trace over the other qubits.
+              </p>
+            </details>
+            <div id="measurement-record"></div>
+          </section>
+
+          <section
+            class="panel readout-panel"
+            aria-labelledby="readout-heading"
+          >
+            <div class="panel-heading">
+              <h3 id="readout-heading">Readout & statistics</h3>
+              <span>VOLTAGE → CLASSIFIED OUTCOME</span>
+            </div>
+            <div class="lab-toolbar">
+              <label
+                >Shots
+                <select id="shots">
+                  <option>128</option>
+                  <option selected>1024</option>
+                  <option>4096</option>
+                </select></label
+              ><label
+                >Seed
+                <input
+                  id="seed"
+                  type="number"
+                  min="0"
+                  max="4294967295"
+                  value="42" /></label
+              ><label
+                >Basis
+                <select id="measurement-basis">
+                  <option value="Z">Z · computational</option>
+                  <option value="X">X · H on each qubit</option>
+                  <option value="Y">Y · S† then H</option>
+                  <option value="XY">XY · X on q0, Y on q1</option>
+                </select></label
+              ><button id="sample">Acquire shots</button>
+            </div>
+            <label class="noise-slider"
+              >Discrimination noise σ
+              <input
+                id="readout-noise"
+                type="range"
+                min="0"
+                max="1.5"
+                step="0.05"
+                value="0.45"
+              /><output id="readout-noise-value">0.45</output></label
+            ><label class="noise-slider"
+              >Threshold (normalized voltage)
+              <input
+                id="threshold"
+                type="range"
+                min="-1.5"
+                max="1.5"
+                step="0.05"
+                value="0"
+              /><output id="threshold-value">0.00</output></label
+            >
+            <div class="readout-grid">
+              <div>
+                <div id="iq-plot"></div>
+                <p class="caption">
+                  q0 I/Q samples. I is horizontal, Q vertical. Color labels the
+                  state label; classification uses the threshold. Axes show
+                  normalized I/Q voltage.
+                </p>
+              </div>
+              <div id="histogram"></div>
+            </div>
+            <p id="correlations"></p>
+            <div id="entanglement-note" class="callout"></div>
+            <button id="compare-mixture">
+              Compare classical 00/11 mixture
+            </button>
+            <div id="mixture-comparison"></div>
+          </section>
+        </div>
+        <details class="operation-detail panel">
+          <summary>Explore the active operation across all nine layers</summary>
+          <div id="operation-dock"></div>
+        </details>
+        <section class="concepts panel">
+          <div class="panel-heading">
+            <h3>Read the mathematics</h3>
+            <span>EXACT · IDEALIZED · APPROXIMATE</span>
+          </div>
+          <nav
+            id="concept-tabs"
+            class="concept-tabs"
+            aria-label="Mathematical lessons"
+          ></nav>
+          <div id="concept-content"></div>
+          <div id="symbol-explorer"></div>
+        </section>
+      </section>
+      <aside
+        id="symbol-inspector"
+        class="symbol-inspector"
+        hidden
+        aria-label="Selected mathematical symbol"
+      >
+        <span id="inspected-symbol"></span>
+        <p id="inspected-meaning"></p>
+        <button
+          id="symbol-inspector-close"
+          aria-label="Close symbol explanation"
+        >
+          ×
+        </button>
+      </aside>
+    </main>
+    <footer>
+      <span>ARJAN SINGH PUNIANI / SYSTEMS STUDIES</span>
+      <div>
+        <button id="motion" aria-pressed="false">Reduce motion</button
+        ><button id="sound" aria-pressed="false">Sound off</button
+        ><button id="accessibility" aria-pressed="false">
+          HTML / accessible mode
+        </button>
+      </div>
+    </footer>
+    <dialog id="source-drawer">
+      <div class="drawer-head">
+        <h2>Sources & model</h2>
+        <button id="sources-close" autofocus>Close ×</button>
+      </div>
+      <p>
+        Circuit engine: 1–3 qubits with complex state-vector arithmetic. The
+        calculation view carries exact radicals and phases through supported
+        gates, and retains trigonometric expressions for arbitrary rotations.
+        Pulse scrubbing follows the compiled control sequence. Readout uses
+        seeded Gaussian I/Q samples.
+      </p>
+      <div id="source-list"></div>
+      <h3>Physical model</h3>
+      <p>
+        The hardware layer follows a tunable-transmon architecture: XY drive,
+        virtual Z frame updates, and a flux-controlled CZ through a coupling
+        bus. Timing and geometry are illustrative. The two-level model resolves
+        computational-state evolution; multilevel leakage, decoherence, cable
+        distortion, resonator transients, and thermal transport sit outside that
+        model. Signal propagation is stretched for visibility.
+      </p>
+      <h3>Terms used here</h3>
+      <dl id="glossary"></dl>
+      <p>
+        Independent educational reconstruction, 2026. Original geometry and
+        circuit diagrams. At Rigetti Computing, Arjan worked on early
+        company-building, organizational execution, and investor communication.
+        This reconstruction is a separate educational project.
+      </p>
+    </dialog>
+    <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+    <noscript
+      ><section class="panel">
+        <h2>A machine around a quantum circuit</h2>
+        <p>
+          The cutaway shows warm electronics, staged cooling, attenuation, a
+          transmon processor, and amplified readout. Microwave control changes
+          complex amplitudes; repeated readout estimates probabilities.
+          JavaScript enables the assembly and simulator.
+        </p>
+        <a href="https://arxiv.org/abs/1904.06560"
+          >Scientific review: Krantz et al.</a
+        >
+      </section></noscript
+    >
   </body>
 </html>

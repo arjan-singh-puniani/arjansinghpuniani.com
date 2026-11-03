@@ -1,0 +1,49 @@
+{
+  "checks": [
+    "Production case-study route, metadata, and iframe present",
+    "All 12 modules install; back/next, failure/restore, and completion work",
+    "Three-qubit GHZ circuit calculated from builder inputs; invalid control rejected",
+    "Custom projective M records a seeded conditional outcome",
+    "Rotation-angle and compiled-pulse scrubbing update state and exact histogram together",
+    "Terminal acquisition selects readout across views and repeats the seed",
+    "Energy-to-basis mapping and tensor basis construction update all calculated views",
+    "Raycast picking, pointer-following placement, and aligned release seat a part",
+    "Animated Bell experiment completes and acquires readout",
+    "Failed processor GLB retains a rendered procedural circuit close-up",
+    "Blocked 3D module retains poster, all lessons, circuit, and Bell calculations"
+  ],
+  "errors": [],
+  "renderFps": 4.597701149425288,
+  "renderer": {
+    "frames": 140,
+    "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+    "processorModelLoaded": true,
+    "cameraDistance": 12.839003076563227,
+    "moduleOffsets": [
+      -2.784947294998119e-8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "dragging": null,
+    "pixelRatio": 0.6,
+    "contactShadows": "soft baked",
+    "environment": {
+      "width": 768,
+      "height": 1024,
+      "estimatedBytes": 6291456
+    },
+    "calls": 60,
+    "triangles": 47804,
+    "geometries": 74,
+    "textures": 5
+  }
+}
