@@ -1,7 +1,8 @@
 import {describe,it,expect} from 'vitest';import fs from 'node:fs';
 import {prepareTelemetry} from '../public/pit-stop-lab/pit-wall.js';
-import {cinematicTrack,cinematicFrame,raceCamera,pitFilmShot,pitFilmStart,pitFilmDuration,advanceReel} from '../public/pit-stop-lab/cinema.js';
+import {cinematicTrack,cinematicFrame,raceCamera,pitFilmShot,pitFilmStart,pitFilmDuration,pitFilmRate,advanceReel} from '../public/pit-stop-lab/cinema.js';
 import {simulate,snapshot} from '../public/pit-stop-lab/simulation.js';
+import {pitLaneFrame} from '../public/pit-stop-lab/pit-lane-layout.js';
 const drivers=prepareTelemetry(JSON.parse(fs.readFileSync('public/pit-stop-lab/data/telemetry-bahrain-2024.json'))),track=cinematicTrack(drivers[0]);
 describe('Recorded cinematic motion',()=>{
  it('preserves original measured coordinates with one declared scale and center',()=>{
@@ -10,21 +11,22 @@ describe('Recorded cinematic motion',()=>{
  it('stays continuous at 60 Hz and rotates tires from traveled scene distance',()=>{
   let last=cinematicFrame(track,0),maxStep=0,maxTurn=0;
   for(let t=1/60;t<track.driver.duration;t+=1/60){const p=cinematicFrame(track,t);maxStep=Math.max(maxStep,Math.hypot(p.x-last.x,p.z-last.z));maxTurn=Math.max(maxTurn,Math.abs(Math.atan2(Math.sin(p.heading-last.heading),Math.cos(p.heading-last.heading))));expect(p.distance).toBeGreaterThanOrEqual(last.distance);expect(p.roll).toBeCloseTo(-p.distance/(.355*.38),9);expect(Math.abs(p.steer)).toBeLessThanOrEqual(.32);last=p;}
-  expect(maxStep).toBeLessThan(.2);expect(maxTurn).toBeLessThan(.15);
+  expect(maxStep).toBeLessThan(.2);expect(maxTurn).toBeLessThan(.035);
  });
  it('replays exactly after backward seeks and clamps source time',()=>{
   const a=cinematicFrame(track,38.5);cinematicFrame(track,12);expect(cinematicFrame(track,38.5)).toEqual(a);expect(cinematicFrame(track,-3)).toEqual(cinematicFrame(track,0));expect(cinematicFrame(track,500)).toEqual(cinematicFrame(track,track.driver.duration));
  });
+ it('holds director shots for at least five source seconds and keeps the cockpit segment uninterrupted',()=>{for(let i=1;i<track.shots.length;i++)expect(track.shots[i].time-track.shots[i-1].time).toBeGreaterThanOrEqual(5);for(let t=65;t<78;t+=.1)expect(raceCamera(track,t).shot).toBe('oncar');});
  it('produces finite camera poses through all source frames and every selectable view',()=>{
   for(const camera of ['director','chase','drone','oncar','overview'])for(let t=0;t<97;t+=.37){const shot=raceCamera(track,t,camera);expect([...shot.position,...shot.target,shot.fov].every(Number.isFinite)).toBe(true);expect(shot.position[1]).toBeGreaterThan(.25);expect(shot.fov).toBeGreaterThan(30);}
  });
 });
 describe('Directed pit operation',()=>{
- it('frames the actual approach/departure coordinates and keeps service shots below the ceiling',()=>{
-  const sim=simulate(),arrival=pitFilmShot(sim,.2),car=snapshot(sim,.2).cars[0];expect(arrival.target[2]).toBe(car.position);expect(pitFilmShot(sim,sim.stops[0].stopAt+.2).position[1]).toBeLessThan(3.2);
+ it('frames the actual pit-lane entry and departure coordinates',()=>{
+  const sim=simulate(),arrival=pitFilmShot(sim,.2),car=snapshot(sim,.2).cars[0];expect(Math.hypot(arrival.target[0]-pitLaneFrame(car).x,arrival.target[2]-car.position)).toBeLessThan(1.5);
   const late=pitFilmShot(sim,sim.duration-.2),state=snapshot(sim,sim.duration-.2).cars[0];expect(late.target[2]).toBeCloseTo(state.position-1,8);
  });
- it('directs a visible arrival and ends after a safe departure while retaining held stops',()=>{const sim=simulate();expect(pitFilmStart(sim)).toBeCloseTo(sim.stops[0].stopAt-.55);expect(pitFilmDuration(sim)).toBeLessThan(sim.duration);expect(pitFilmDuration(sim)).toBeGreaterThan(sim.stops[0].releaseAt+1);const held=simulate({scenario:'unsecured'});expect(pitFilmDuration(held)).toBe(held.duration);});
+ it('shows complete fast-lane entry and rejoin, with slow motion during service',()=>{const sim=simulate(),start=snapshot(sim,pitFilmStart(sim)).cars[0],end=snapshot(sim,pitFilmDuration(sim)).cars[0];expect(pitLaneFrame(start).x).toBe(4.8);expect(pitLaneFrame(end).x).toBe(4.8);expect(end.released).toBe(true);expect(pitFilmRate(sim,0)).toBe(1);expect(pitFilmRate(sim,sim.stops[0].stopAt+.5)).toBe(.35);expect(pitFilmRate(sim,sim.duration)).toBe(1);const held=simulate({scenario:'unsecured'});expect(pitFilmRate(held,held.duration)).toBe(.35);expect(snapshot(held,pitFilmDuration(held)).cars[0].released).toBe(false);});
  it('never presents a held wheel as a release',()=>{
   const sim=simulate({scenario:'unsecured'});expect(pitFilmShot(sim,sim.duration-.01).shot).toBe('hold');expect(sim.result.stationary).toBeNull();
  });

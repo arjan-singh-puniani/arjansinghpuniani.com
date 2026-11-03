@@ -1,0 +1,8 @@
+import {describe,it,expect} from 'vitest';
+import {PIT_LANE,pitLaneFrame} from '../public/pit-stop-lab/pit-lane-layout.js';
+import {simulate,snapshot} from '../public/pit-stop-lab/simulation.js';
+describe('Exterior pit-lane layout',()=>{
+ it('keeps the service box outside the garage and separate from the fast lane',()=>{expect(-PIT_LANE.boxHalfWidth).toBeGreaterThan(PIT_LANE.garageFront);expect(PIT_LANE.boxHalfWidth).toBeLessThan(PIT_LANE.fastLaneCenter-PIT_LANE.fastLaneHalfWidth);expect(PIT_LANE.fastLaneCenter+PIT_LANE.fastLaneHalfWidth).toBeLessThan(PIT_LANE.wall);});
+ it('enters from and returns to the fast lane with tangents matching the driving path',()=>{for(const phase of ['APPROACH','DEPARTURE'])for(let p=7.1;p<14.9;p+=.15){const position=phase==='APPROACH'?p:-p,car={phase,position},frame=pitLaneFrame(car),epsilon=1e-5,derivative=(pitLaneFrame({...car,position:position+epsilon}).x-pitLaneFrame({...car,position:position-epsilon}).x)/(2*epsilon);expect(frame.yaw).toBeCloseTo(Math.atan(derivative),6);expect(frame.x).toBeGreaterThanOrEqual(0);expect(frame.x).toBeLessThanOrEqual(PIT_LANE.fastLaneCenter);}expect(pitLaneFrame({phase:'APPROACH',position:20}).x).toBe(PIT_LANE.fastLaneCenter);expect(pitLaneFrame({phase:'DEPARTURE',position:-20}).x).toBe(PIT_LANE.fastLaneCenter);});
+ it('keeps service, queued cars and safety holds in the service apron',()=>{for(const phase of ['SERVICE','QUEUED','SAFETY HOLD','RELEASE CHECK'])expect(pitLaneFrame({phase,position:18})).toEqual({x:0,yaw:0});const sim=simulate({scenario:'unsecured'});for(let t=sim.stops[0].stopAt;t<=sim.duration;t+=.05){const car=snapshot(sim,t).cars[0];expect(pitLaneFrame(car)).toEqual({x:0,yaw:0});expect(car.released).toBe(false);}});
+});

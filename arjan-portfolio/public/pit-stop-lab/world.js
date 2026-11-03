@@ -2,14 +2,17 @@ import * as THREE from './vendor/three.module.js';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { createMechanics } from './mechanics.js';
 import { createGarage } from './garage.js';
-import { crewPosture, jointBetween, stationCrewPose, outgoingWheelPose, jackCrewPose, planFootContacts, feetAt } from './crew.js';
+import { createPitLane } from './pit-lane.js';
+import { pitLaneFrame, PIT_LANE } from './pit-lane-layout.js';
+import { renderScale } from './render-scale.js';
+import { crewPosture, jointBetween, easeMotion, stationHeading, stationCrewPose, outgoingWheelPose, jackCrewPose, planFootContacts, feetAt } from './crew.js';
 import { loadHero, wheelTrack, setWheelRotation, alignmentTilt, CAR_IDENTITY } from './hero-car.js';
 import { createFacility } from './facility.js';
 import { operations } from './operations.js';
 import { CORNERS, progress, snapshot } from './simulation.js';
 export function createWorld(canvas, onSelect, onStatus) {
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'default' });
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.6));
+    renderer.setPixelRatio(1);
     const gl=renderer.getContext(),debugRenderer=gl.getExtension('WEBGL_debug_renderer_info');
     const rendererName=debugRenderer?gl.getParameter(debugRenderer.UNMASKED_RENDERER_WEBGL):'';
     const software=/SwiftShader|llvmpipe|software/i.test(rendererName);
@@ -38,11 +41,11 @@ export function createWorld(canvas, onSelect, onStatus) {
     const sun = new THREE.DirectionalLight(0xfff0d9, 3.4);
     sun.position.set(9, 18, 8);
     sun.castShadow = true;
-    sun.shadow.mapSize.set(1536, 1536);
+    sun.shadow.mapSize.set(1024, 1024);
     Object.assign(sun.shadow.camera, { left: -15, right: 15, top: 17, bottom: -17, near: .5, far: 55 });
     sun.shadow.bias = -.0005;
     sun.shadow.normalBias = .008;
-    scene.add(sun);
+    scene.add(sun,sun.target);
     const fill = new THREE.DirectionalLight(0xb9d6f0, 1.2);
     fill.position.set(-10, 8, -10);
     scene.add(fill);
@@ -112,6 +115,7 @@ export function createWorld(canvas, onSelect, onStatus) {
     const legacyFacility=new THREE.Group();world.add(legacyFacility);
     const facility = createFacility(legacyFacility, { box, sphere, cylinder, rod, label, mat, make, M, batchStatic, vehicle, wheel });
     const garage=createGarage(renderer,world,{box,cylinder,mat,wheel,batchStatic});
+    const pitLane=createPitLane(renderer,world,{box,cylinder,mat,wheel,batchStatic});
     scene.environment=garage.environment;
     const lightMat = facility.lightMat;
     let experience='explore', legacy=false, heroLoaded=false, heroError=null, hiddenBody=false, isolation=false;
@@ -269,6 +273,7 @@ export function createWorld(canvas, onSelect, onStatus) {
     const crewLimbGeometry=new THREE.CapsuleGeometry(.055,.89,4,12);
     const crewVisorGeometry=new THREE.SphereGeometry(1,32,12,Math.PI+.07,Math.PI-.14,Math.PI*.36,Math.PI*.27);
     const jointPose=new THREE.Object3D(),crewBadges=new Map(),crewBadgeGeometry=new THREE.PlaneGeometry(1,1);
+    const driver=new THREE.Group();driver.name='Driver';car.add(driver);sphere(driver,0,.565,.12,.17,.09,.15,M.red);sphere(driver,0,.727,.07,.108,.125,.13,M.white);const driverShield=make(crewVisorGeometry,crewBlack);driverShield.position.set(0,.727,.07);driverShield.scale.set(.111,.128,.133);driver.add(driverShield);batchStatic(driver);
     function crewBadge(role){
         if(!crewBadges.has(role)){const c=document.createElement('canvas');c.width=256;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='#e5e6df';ctx.fillRect(0,0,256,128);ctx.fillStyle='#b41c31';ctx.fillRect(0,0,12,128);ctx.fillStyle='#17202a';ctx.font='700 45px monospace';ctx.textAlign='center';ctx.fillText(({gun:'GUN','wheel off':'OFF','wheel on':'ON',jack:'JACK',supply:'SUPPLY',inspection:'GUN'})[role],134,58);ctx.font='500 23px monospace';ctx.fillText('PIT STOP LAB',134,100);const map=new THREE.CanvasTexture(c);map.colorSpace=THREE.SRGBColorSpace;crewBadges.set(role,new THREE.MeshStandardMaterial({map,roughness:.8}));}return crewBadges.get(role);
     }
@@ -312,15 +317,16 @@ export function createWorld(canvas, onSelect, onStatus) {
     function pose(person, hand1, hand2, movement = {}) {
         const { upper, bones, skeleton, joints, feet, hands } = person.userData;
         person.updateMatrixWorld(true);
-        const feetLocal=movement.contacts?.map(point=>person.worldToLocal(new THREE.Vector3().fromArray(point)).toArray());
+        const feetLocal=movement.contacts?.map(f=>person.worldToLocal(new THREE.Vector3().fromArray(f.position)).toArray());
         const posture=crewPosture({...movement,feet:feetLocal}),joint=jointPose;
         upper.position.fromArray(posture.pelvis);upper.rotation.x=-posture.lean;person.updateMatrixWorld(true);
-        const gaze=upper.worldToLocal(hand1.clone().add(hand2).multiplyScalar(.5)).sub(person.userData.head.position);
+        const gaze=upper.worldToLocal(movement.lookAt?new THREE.Vector3().fromArray(movement.lookAt):hand1.clone().add(hand2).multiplyScalar(.5)).sub(person.userData.head.position);
         person.userData.head.rotation.set(THREE.MathUtils.clamp(Math.atan2(gaze.y,Math.hypot(gaze.x,gaze.z)),-.35,.12),THREE.MathUtils.clamp(Math.atan2(-gaze.x,-gaze.z),-.55,.55),0);
 
         [hand1, hand2].forEach((hand, i) => {
             const side=i===0?-1:1,target=person.worldToLocal(hand.clone());
             const shoulder=person.worldToLocal(upper.localToWorld(new THREE.Vector3(side*.16,.30,0)));
+            target.sub(shoulder).clampLength(.02,.609).add(shoulder);
             const elbow=new THREE.Vector3().fromArray(jointBetween(shoulder.toArray(),target.toArray(),.31,.30,[side,.1,.2]));
             align(bones[i * 2], shoulder, elbow,1.15);
             align(bones[i * 2 + 1], elbow, target);
@@ -331,7 +337,7 @@ export function createWorld(canvas, onSelect, onStatus) {
             align(bones[5 + i * 2], knee, ankle, 1.2);
             joint.position.copy(knee);joint.scale.set(.078,.078,.073);joint.updateMatrix();joints.setMatrixAt(i+2,joint.matrix);
             joint.position.z-=.048;joint.scale.set(.066,.074,.04);joint.updateMatrix();person.userData.kneePads.setMatrixAt(i,joint.matrix);
-            feet[i].position.fromArray(leg.foot);feet[i].rotation.x=leg.pitch;
+            feet[i].position.fromArray(leg.foot);feet[i].rotation.x=leg.pitch+(movement.contacts?.[i].pitch??0);
         });
         bones.forEach((bone, i) => { bone.updateMatrix(); skeleton.setMatrixAt(i, bone.matrix); });
         skeleton.instanceMatrix.needsUpdate = true;
@@ -417,7 +423,7 @@ export function createWorld(canvas, onSelect, onStatus) {
     const presets = { carHero:[[4.4,1.85,-5.6],[0,.44,-.15]], front:[[.05,.85,-7],[0,.40,-.25]], side:[[6.5,1.15,0],[0,.45,0]], rear:[[3.8,1.6,5.4],[0,.5,.25]], ground:[[3,.37,-5],[0,.32,-.5]], cockpit:[[1.05,1.55,-1.1],[0,.52,-.05]], wing:[[1.8,.62,-3.8],[0,.23,-2.3]], wheel:[[2.15,.78,-2.75],[.8,.36,-1.65]], bay:[[4.8,3.1,-7],[0,.65,1.6]], serviceWheel:[[3.6,1.4,-4],[1,.4,-1.35]], challenge:[[3.8,1.8,-4.3],[.5,.4,-.7]], overview: [[23, 23, 29], [-1.4, 0, 2]], box: [[10, 10, 13], [-.6, .2, 0]], facility: [[28, 29, 35], [-1, 0, 0]], garage: [[3, 9, 8], [-6, 1, 0]], tires: [[1, 6, 13], [-6.4, .7, 8.2]], command: [[16, 8, 8], [9, .8, 0]], follow: [[5, 3, 6], [0, .4, 0]], top: [[0, 27, .01], [0, 0, 0]], release: [[11, 7, -13], [1, 0, 0]], hero: [[3.7, 2.25, 3.7], [.6, .48, 0]], wide: [[4.2, 2.5, 4.2], [0, .4, 0]], detailTop: [[.4, 3.8, .02], [.4, .4, 0]], gun: [[1.85, .8, .8], [.85, .43, 0]], hub: [[1.22, .72, .6], [.43, .43, 0]], brake: [[1.1, .88, .9], [.29, .43, .08]] };
     function setCamera(name = 'overview', immediate = false) {
         cameraMode = name;onSelect({camera:name});
-        legacy=['overview','facility','garage','tires','command'].includes(name);legacyFacility.visible=legacy;garage.room.visible=!legacy;applyLighting();
+        legacy=['overview','facility','garage','tires','command'].includes(name);applyLighting();
         dirty = true;
         let preset = presets[name];
         if (CORNERS.includes(name)) {
@@ -443,15 +449,17 @@ export function createWorld(canvas, onSelect, onStatus) {
         else
             tween = { start: performance.now(), from: camera.position.clone(), to: position, old: controls.target.clone(), target };
     }
+    function isPitLane(){return !legacy&&view==='world'&&experience!=='explore';}
     function applyLighting() {
-        const studio=view==='mechanics', automotive=!legacy&&!studio;
-        ambient.intensity=automotive?.65:lighting==='night'?.65:2.2;
+        const studio=view==='mechanics', automotive=!legacy&&!studio,outdoor=isPitLane();sun.target.position.set(0,0,0);
+        legacyFacility.visible=legacy;garage.room.visible=!legacy&&!outdoor;pitLane.group.visible=outdoor;scene.environment=outdoor?pitLane.environment:garage.environment;
+        ambient.intensity=outdoor?1.3:automotive?.65:lighting==='night'?.65:2.2;
         sun.intensity=automotive?3.1:lighting==='night'?.5:3.4;sun.color.set(automotive?'#fff5e8':'#fff0d9');
-        sun.position.set(automotive?-3:9,automotive?8:18,automotive?-3:8);fill.intensity=automotive?1.6:1.2;
+        sun.position.set(outdoor?8:automotive?-3:9,outdoor?14:automotive?8:18,outdoor?-7:automotive?-3:8);fill.intensity=outdoor?1:automotive?1.6:1.2;
         Object.assign(sun.shadow.camera,automotive?{left:-6,right:6,top:7,bottom:-7}:{left:-15,right:15,top:17,bottom:-17});sun.shadow.camera.updateProjectionMatrix();sun.shadow.radius=automotive?3:1;
         renderer.toneMappingExposure=automotive?1.02:1.15;
         for(const light of facility.workLights)light.visible=legacy&&lighting==='night';
-        scene.background.set(studio?'#23363a':automotive?'#25272b':lighting==='night'?'#263e4e':lighting==='golden'?'#d9cbb8':'#ced8d6');scene.fog.color.copy(scene.background);
+        scene.background.set(studio?'#23363a':outdoor?'#b8ccd5':automotive?'#25272b':lighting==='night'?'#263e4e':lighting==='golden'?'#d9cbb8':'#ced8d6');scene.fog.color.copy(scene.background);
     }
     function setView(next, corner = selectedCorner) {
         selectedCorner = corner;
@@ -468,7 +476,7 @@ export function createWorld(canvas, onSelect, onStatus) {
     const pathLine = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineDashedMaterial({ color: '#cf8937', dashSize: .3, gapSize: .15 }));
     world.add(pathLine);
     let pathConfig = null,previousWidth=0,lastDraw=-Infinity,renderCount=0,pendingFrame=null;
-    const laneOffset = car => car.phase === 'DEPARTURE' ? 4.8 * THREE.MathUtils.smoothstep(-car.position, 7, 15) : 0;
+    const laneOffset = car => isPitLane()?pitLaneFrame(car).x:car.phase === 'DEPARTURE' ? 4.8 * THREE.MathUtils.smoothstep(-car.position, 7, 15) : 0;
     function update(state, sim, corner = selectedCorner) {
         if (lastSnapshot?.time === state.time && lastSim === sim && selectedCorner === corner && lastOptions === optionsRevision)
             return;
@@ -486,7 +494,7 @@ export function createWorld(canvas, onSelect, onStatus) {
         }
         const active = state.cars[state.activeCar - 1];
         const ops = operations(sim, state);
-        if(!legacy)garage.update(state,ops);
+        if(!legacy)garage.update(state,ops);if(isPitLane())pitLane.update(state,ops);
         const preparation = sim.events.find(event => event.id === 'preparation');
         const delivery = progress(state.time, preparation.start, preparation.end);
         facility.deliveryCart.position.set(-7.3 + 3.3 * delivery, 0, 5.4);
@@ -495,7 +503,7 @@ export function createWorld(canvas, onSelect, onStatus) {
         supplyOperator.rotation.y = -Math.PI/2;
         supplyOperator.updateMatrixWorld(true);
         const supplyFeet=contactPlan(preparation,'supply',supplyPose,preparation.start,preparation.end+.5,-Math.PI/2);
-        pose(supplyOperator, facility.deliveryCart.localToWorld(new THREE.Vector3(-.40,.95,-.2)), facility.deliveryCart.localToWorld(new THREE.Vector3(-.40,.95,.2)),{contacts:feetAt(supplyFeet,state.time).map(f=>f.position)});
+        pose(supplyOperator, facility.deliveryCart.localToWorld(new THREE.Vector3(-.40,.95,-.2)), facility.deliveryCart.localToWorld(new THREE.Vector3(-.40,.95,.2)),{contacts:feetAt(supplyFeet,state.time)});
         referenceCar.visible = Boolean(reference) && ghostEnabled;
         if (reference) {
             const ref = snapshot(reference, state.time).cars[0];
@@ -515,6 +523,7 @@ export function createWorld(canvas, onSelect, onStatus) {
         }
         garage.contact.position.set(laneOffset(active),.006,active.position);garage.contact.visible=!legacy;garage.contact.material.opacity=.6-active.lift;
         facility.contact.position.set(laneOffset(active), .018, active.position);
+        if(isPitLane()){sun.position.set(laneOffset(active)+8,14,active.position-7);sun.target.position.set(laneOffset(active),0,active.position);}
         facility.contact.visible = active.position < 20 && active.position > -20;
         [car, second].forEach((object, i) => {
             const s = state.cars[i];
@@ -522,13 +531,13 @@ export function createWorld(canvas, onSelect, onStatus) {
             if (!s)
                 return;
             object.position.set(laneOffset(s), s.lift, s.position);
-            object.rotation.y = s.phase === 'DEPARTURE' ? -Math.sin(progress(-s.position, 7, 15) * Math.PI) * .6 : 0;
-            object.userData.body.rotation.x = (s.frontLift - s.rearLift) / 3.3;
+            object.rotation.y = isPitLane()?pitLaneFrame(s).yaw:s.phase === 'DEPARTURE' ? -Math.sin(progress(-s.position, 7, 15) * Math.PI) * .6 : 0;
+            object.userData.body.rotation.x = (s.frontLift - s.rearLift) / 3.3;if(i===0)driver.rotation.x=object.userData.body.rotation.x;
             carWheels[i].forEach(w => { w.visible = false; });
         });
         garage.contact.rotation.set(-Math.PI/2,(active.number===1?car:second).rotation.y,0,'YXZ');
         trafficCar.visible = state.traffic.visible;
-        trafficCar.position.set(4.8, 0, state.traffic.position);
+        trafficCar.position.set(PIT_LANE.fastLaneCenter, 0, state.traffic.position);
         const stop = sim.stops[active.number - 1];
         for (const corner of CORNERS) {
             const s = stations[corner], c = active.corners[corner];
@@ -540,9 +549,9 @@ export function createWorld(canvas, onSelect, onStatus) {
             s.disc.position.set(-s.side * .12, height, moving);
             s.old.position.copy(s.group.worldToLocal(new THREE.Vector3().fromArray(outgoingWheelPose(stop,corner,state.time,wheelTrack(corner),height))));
             s.old.visible = true;
-            const correction=alignmentTilt(c),replacementHeight=.355+(height-.355)*progress(c.alignment,.35,.9);
-            s.incoming.position.set(s.side * (1.1 * (1 - c.alignment) + .25 * (1 - c.installation)), replacementHeight, .80 * (1 - c.alignment) + correction + (c.incomingInstalled ? moving : 0));
-            s.incoming.visible = state.time >= stop.stopAt;
+            const correction=alignmentTilt(c),inward=easeMotion(progress(c.alignment,0,.65)),across=easeMotion(progress(c.alignment,.15,1)),installation=easeMotion(c.installation),replacementHeight=.355+(height-.355)*easeMotion(progress(c.alignment,.35,.9));
+            s.incoming.position.set(s.side * (.65 * (1 - inward) + .25 * (1 - installation)), replacementHeight, .80 * (1 - across) + correction + (c.incomingInstalled ? moving : 0));
+            s.incoming.visible = true;
             const activeObject = active.number === 1 ? car : second;
             const wheelPoint = activeObject.userData.body.localToWorld(new THREE.Vector3(s.side * wheelTrack(corner), .355, s.z));
             if (c.removal === 0)
@@ -554,9 +563,9 @@ export function createWorld(canvas, onSelect, onStatus) {
             const discPoint = activeObject.userData.body.localToWorld(new THREE.Vector3(s.side * (wheelTrack(corner)-.12), .355, s.z));
             s.disc.position.copy(s.group.worldToLocal(discPoint));
             s.disc.rotation.y = activeObject.rotation.y;
-            const ready = progress(state.time, Math.max(0, stop.stopAt - .65), stop.ready.end), clear = c.toolClear;
+            const {ready,clear}=stationCrewPose(stop,corner,0,state.time,wheelTrack(corner));
             const work = ready * (1 - clear);
-            s.gun.position.set(THREE.MathUtils.lerp(s.side*(1.85-wheelTrack(corner)),s.side*(.342+.60*(1-c.gun)),work),THREE.MathUtils.lerp(1.1,height,work),0);
+            s.gun.position.set(THREE.MathUtils.lerp(s.side*(1.74-wheelTrack(corner)),s.side*(.342+.60*(1-easeMotion(c.gun))),work),THREE.MathUtils.lerp(.58+.47*clear,height,work),0);
             s.gun.rotation.x = c.gunActive ? Math.sin(state.time * 110) * .03 : 0;
             s.gun.userData.rotor.rotation.x=(c.loosen-c.tighten)*45;
             s.gun.userData.led.material.color.set(c.secured?'#30e59a':'#ffa227');
@@ -567,19 +576,19 @@ export function createWorld(canvas, onSelect, onStatus) {
                 const target = wheelPositions[i];
                 const poseAt=t=>stationCrewPose(stop,corner,i,t,wheelTrack(corner)),motion=poseAt(state.time);
                 p.position.fromArray(motion.root);
-                p.rotation.y = s.side * Math.PI / 2;
+                p.rotation.y = stationHeading(corner,i);
                 p.updateMatrixWorld(true);
-                const hand1 = target.clone().add(new THREE.Vector3(s.side*(i===0?.12:.17), i === 0 ? -.1 : .19+.12*(1-motion.kneel), i === 0 ? .04 : s.side*.16));
-                const hand2 = target.clone().add(new THREE.Vector3(s.side*(i===0?0:.17), i === 0 ? -.03 : .12+.16*(1-motion.kneel), i === 0 ? -.06 : -s.side*.16));
-                const grip=i===1?Math.max(work,progress(c.removal,.05,.2)):work;
+                const hand1 = target.clone().add(new THREE.Vector3(i===0?s.side*.12:s.side*.18, i === 0 ? -.1 : i===1?.18:.24, i === 0 ? .04 : i===1?-.25:.25));
+                const hand2 = target.clone().add(new THREE.Vector3(i===0?0:s.side*.18, i === 0 ? -.03 : i===1?.18:.24, i === 0 ? -.06 : i===1?-.12:.12));
+                const grip=i===1?Math.max(work*easeMotion(progress(state.time,stop.stopAt,stop.stopAt+.12)),easeMotion(progress(c.removal,.05,.2))):i===2&&!c.incomingInstalled?1:work;
                 hand1.lerp(p.localToWorld(new THREE.Vector3(-.18,.70,-.07)),1-grip);
                 hand2.lerp(p.localToWorld(new THREE.Vector3(.18,.70,-.07)),1-grip);
                 if(i===0){hand1.copy(s.gun.localToWorld(new THREE.Vector3(.15,-.16,.025)));hand2.copy(s.gun.localToWorld(new THREE.Vector3(.04,-.02,-.04)));}
                 const plan=contactPlan(stop,`${corner}/${i}`,poseAt,Math.max(0,stop.stopAt-.7),stop.corners[corner].events.at(-1).end+.9,p.rotation.y);
-                pose(p,hand1,hand2,{...motion,contacts:feetAt(plan,state.time).map(f=>f.position)});
+                pose(p,hand1,hand2,{...motion,lookAt:state.time<stop.stopAt||active.released?[laneOffset(active),.7+active.lift,active.position]:null,contacts:feetAt(plan,state.time)});
             });
             const start = s.gun.getWorldPosition(new THREE.Vector3());
-            const end = new THREE.Vector3(legacy?-4:s.side*4.9,2.7,s.z);
+            const end = new THREE.Vector3(legacy?-4:s.side*(isPitLane()?2.65:4.9),isPitLane()?3.14:2.7,s.z);
             const positions = s.hose.geometry.attributes.position;
             for (let i = 0; i < 24; i++) {
                 const u = i / 23;
@@ -597,14 +606,13 @@ export function createWorld(canvas, onSelect, onStatus) {
             const lift = i === 0 ? active.frontLift : active.rearLift;
             const up = i === 0 ? stop.front : stop.rear, down = i === 0 ? stop.frontDown : stop.rearDown;
             const engagement = progress(state.time, up.start, up.end) * (1 - (down ? progress(state.time, down.start, down.end) : 0));
-            group.position.set(0, 0, sign * (2.65 + (1 - engagement) * .7) - stop.error);
-            arm.rotation.x = sign * lift * 2;
-            const poseAt=t=>jackCrewPose(stop,i,t),motion=poseAt(state.time);operator.position.fromArray(motion.root);
+            const poseAt=t=>jackCrewPose(stop,i,t),motion=poseAt(state.time);
+            group.position.set(motion.root[0],0,sign*(2.65+(1-engagement)*.7)-stop.error);arm.rotation.x=sign*lift*2;operator.position.fromArray(motion.root);
             operator.rotation.y = sign < 0 ? Math.PI : 0;
             operator.updateMatrixWorld(true);
             const handle = group.localToWorld(new THREE.Vector3(0, .9, sign * .7));
             const plan=contactPlan(stop,`jack/${i}`,poseAt,0,sim.duration,operator.rotation.y);
-            pose(operator, handle.clone().add(new THREE.Vector3(-.1, 0, 0)), handle.clone().add(new THREE.Vector3(.1, 0, 0)),{...motion,contacts:feetAt(plan,state.time).map(f=>f.position)});
+            pose(operator, handle.clone().add(new THREE.Vector3(-.1, 0, 0)), handle.clone().add(new THREE.Vector3(.1, 0, 0)),{...motion,lookAt:[laneOffset(active),.7+active.lift,active.position],contacts:feetAt(plan,state.time)});
         });
         lightMat.color.set(active.released ? '#41bc87' : active.phase === 'SAFETY HOLD' ? '#e03d35' : '#ffb83e');
         lightMat.emissive.copy(lightMat.color);
@@ -637,10 +645,10 @@ export function createWorld(canvas, onSelect, onStatus) {
         hp.needsUpdate = true;
         mechHose.geometry.computeBoundingSphere();
         const explore=experience==='explore';
-        supplyOperator.visible=legacy&&!explore;
+        supplyOperator.visible=legacy&&!explore;driver.visible=!explore;
         for(const [key,s] of Object.entries(stations)){
             s.people.forEach(p=>p.visible=!explore&&!(experience==='challenge'&&key==='FL'));
-            s.hose.visible=!explore;s.gun.visible=!explore;s.incoming.visible=!explore&&state.time>=stop.stopAt;
+            s.hose.visible=!explore;s.gun.visible=!explore;s.incoming.visible=!explore;
             s.indicator.visible=!explore&&legacy&&labels;
             if(heroLoaded)s.disc.visible=false;
         }
@@ -667,7 +675,7 @@ export function createWorld(canvas, onSelect, onStatus) {
         }
         const changed = controls.update();
         if (dirty || changed || tween || cameraMode === 'follow') {
-            for(const wall of garage.cameraWalls)wall.object.visible=camera.position[wall.axis]*wall.sign<wall.threshold;
+            for(const wall of [...garage.cameraWalls,...pitLane.cameraWalls])wall.object.visible=camera.position[wall.axis]*wall.sign<wall.threshold;
             renderer.render(scene, camera);lastDraw=now;renderCount++;pendingFrame=gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE,0);gl.flush();
             dirty = false;
             labelLayer.hidden = view !== 'mechanics' || !labels;
@@ -696,7 +704,7 @@ export function createWorld(canvas, onSelect, onStatus) {
         dirty = true;
         const w = canvas.clientWidth, h = canvas.clientHeight;
         if (w && h) {
-            renderer.setSize(w, h, false);
+            renderer.setPixelRatio(renderScale(w,h,devicePixelRatio,software));renderer.setSize(w, h, false);
             camera.aspect = w / h;
             camera.updateProjectionMatrix();
             if(previousWidth&&(previousWidth<700)!==(w<700)&&presets[cameraMode])setCamera(cameraMode,true);
@@ -753,8 +761,8 @@ export function createWorld(canvas, onSelect, onStatus) {
     };
     controls.addEventListener('start', cancelTween);
     return { update, render, setView, setCamera, resize,
-        setFilmCamera(shot){cameraMode='film';tween=null;controls.enabled=false;camera.position.fromArray(shot.position);controls.target.fromArray(shot.target);if(canvas.clientWidth<700){camera.position.sub(controls.target).multiplyScalar(1.7).add(controls.target);camera.position.y=Math.min(camera.position.y,3.15);controls.target.y-=.3;}camera.fov=shot.fov;camera.updateProjectionMatrix();dirty=true;},
-        setExperience(next){experience=next;optionsRevision++;dirty=true;controls.enabled=true;},
+        setFilmCamera(shot){cameraMode='film';tween=null;controls.enabled=false;camera.position.fromArray(shot.position);controls.target.fromArray(shot.target);if(canvas.clientWidth<700){camera.position.sub(controls.target).multiplyScalar(1.7).add(controls.target);if(!isPitLane())camera.position.y=Math.min(camera.position.y,3.15);controls.target.y-=.3;}camera.fov=shot.fov;camera.updateProjectionMatrix();dirty=true;},
+        setExperience(next){experience=next;optionsRevision++;dirty=true;controls.enabled=true;applyLighting();},
         inspectBody(hide,isolate){hiddenBody=hide;isolation=isolate;optionsRevision++;dirty=true;},
         projectContact(){const p=stations.FL.group.localToWorld(new THREE.Vector3(.22,.355+(lastSnapshot?.cars[0].frontLift||0),0)).project(camera);return {x:(p.x*.5+.5)*canvas.clientWidth,y:(-p.y*.5+.5)*canvas.clientHeight};},
         interactionLock(locked){controls.enabled=!locked;},
@@ -798,11 +806,11 @@ export function createWorld(canvas, onSelect, onStatus) {
             }
         },
         setReference(sim) { reference = sim; optionsRevision++; dirty = true; },
-        stats() { return { calls: renderer.info.render.calls, renderCount, software, rendererName, triangles: renderer.info.render.triangles, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, camera: cameraMode, heroLoaded, heroError, shadows:renderer.shadowMap.enabled, pixelRatio:renderer.getPixelRatio(), asset:CAR_IDENTITY.name, experience, lighting, roof: facility.section.visible, spatial: showSpatial, reference: reference ? { visible: referenceCar.visible && world.visible, position: referenceCar.position.z } : null }; },
+        stats() { return { calls: renderer.info.render.calls, renderCount, software, rendererName, triangles: renderer.info.render.triangles, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, camera: cameraMode, heroLoaded, heroError, shadows:renderer.shadowMap.enabled, pixelRatio:renderer.getPixelRatio(), asset:CAR_IDENTITY.name, experience, venue:isPitLane()?'pit-lane':legacy?'campus':view==='mechanics'?'studio':'garage', lighting, roof: facility.section.visible, spatial: showSpatial, reference: reference ? { visible: referenceCar.visible && world.visible, position: referenceCar.position.z } : null }; },
         dispose() {
             disposed = true;
             if(pendingFrame)gl.deleteSync(pendingFrame);
-            observer.disconnect();garage.dispose();
+            observer.disconnect();garage.dispose();pitLane.dispose();
             canvas.removeEventListener('pointermove',pointerMove);
             canvas.removeEventListener('pointerdown', pointerDown);
             canvas.removeEventListener('pointerup', pointerUp);
