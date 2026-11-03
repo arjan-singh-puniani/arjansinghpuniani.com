@@ -1,16 +1,32 @@
 # Vector ECG / ReasonOS laboratory
 
-The opening teaches one correspondence: turn the electrical vector toward, across,
-or away from the selected lead, and inspect the resulting ECG point. These examples
-rotate the model’s actual QRS components at the same sample time; they do not replace
-the source with canned traces. Both voltage signs fit the plot. On phones, the
-chart follows the shared cursor through a magnified time window while retaining
-the same underlying calibration. The scalar calculation stays visible; matrix
-coordinates, lead selection, measurements, and inference are explicit next steps.
+The primary workspace uses the contributor’s paired ECG photographs. It displays
+the original waveform pixels, the device-report transcriptions, and live
+calculations from explicitly selected inputs. The public A/B labels reverse the
+original archive filenames; `src/lib/reasonos/recordings.ts` records that crosswalk
+and both the original-image and public-image SHA-256 digests. Original header
+images remain outside the public assets.
 
-The laboratory connects one analytic frontal signal model to the electrode diagram,
-six limb leads, calibrated strip, calipers, numerical derivations, and recorded
-reasoning. The laboratory is independent of the paired source-recording images.
+Image rulers and markers are SVG overlays. Calipers retain original image
+coordinates through zoom and layout changes. A manually confirmed local grid span
+sets the paper direction and scale. Paper speed and gain are pinned to the recorded
+metadata, rather than freely changing the acquisition settings. The engine
+recomputes elapsed time from raw pixels and the grid reference. An explicit pixel
+bound includes uncertainty in interval placement, grid scale, and grid direction.
+Changing the source or calibration makes older measurements stale for new work.
+
+The QT panel starts with the recorded device rate and QT. RR is explicitly derived
+from the reported rate, not presented as an image-measured RR. After both RR and QT
+are saved from the image under the current calibration, the visitor can select
+those admitted measurements instead. Printed report values remain separately typed
+as machine-derived evidence. The photograph is a reference source; independent
+manual calipers are learner-derived. All actual-recording events have no synthetic
+model version, and source dependencies remain in the SHA-256 journal.
+
+The vector lesson is a separate, collapsed explanation. Its generated P/QRS/T
+source, geometric projection, and circuit-free calculation do not reprocess the
+recorded image or supply the recording’s measurement values. The paired source
+images remain independently viewable below.
 
 ## Source carried forward
 
@@ -18,7 +34,7 @@ The supplied `EKG Vector.zip` contains the original ReasonOS kernel 0.3.0 and EC
 plugin 0.5.0. Their browser modules and alternative-path scorer are bundled in
 `src/lib/reasonos/`. `source-provenance.json` records every original archive path,
 original SHA-256 digest, bundled digest, and mechanical import adaptation. The
-browser does not include the archive's corporate records, patient source files,
+browser does not include the archive's corporate records, unredacted recording headers,
 Node persistence, HMAC checkpoints, or third-party dependencies.
 
 The adapter uses the original immutable store, typed actors, structural and
@@ -73,6 +89,7 @@ npm run typecheck
 npm run lint -- --ignore-pattern 'public/hospitalsim/vendor/**'
 npm run test:coverage
 npm run build
+REASONOS_BASE_URL=http://127.0.0.1:8870 node tools/reasonos/recorded-qa.mjs
 REASONOS_BASE_URL=http://127.0.0.1:8870 node tools/reasonos/browser-qa.mjs
 ```
 
@@ -80,8 +97,8 @@ The hospital simulator's existing third-party vendor ESLint failures are outside
 this release; that directory is excluded from the lint command above. Existing
 warnings elsewhere are unchanged.
 
-The unit suite has 223 passing tests across 26 files. The four ReasonOS test files
-contain 28 tests covering independent electrode/lead identities, axis scaling,
+The unit suite has 230 passing tests across 27 files. The five ReasonOS test files
+contain 35 tests covering independent electrode/lead identities, axis scaling,
 calibration, uncertainty, source changes, real-plugin admission, source SHA-256
 compatibility with Node crypto, immutability, replay, tamper rejection, and
 alternative evidence paths. The repository-wide coverage percentage includes
@@ -94,3 +111,8 @@ export, alternative paths, pointer calipers, viewport resizing, playback, and
 reduced motion. Axe checks cover the laboratory at desktop and 390px phone sizes.
 Phone layouts are emulated, not physical-device tests. This release has no clinical
 validation, patient ingestion, or diagnostic deployment.
+
+`recorded-browser-results.json` verifies actual-image digests, source-coordinate
+calipers, grid confirmation, source-bound admission, manual RR/QT dependencies,
+report provenance, replay, responsive image transforms, and scoped accessibility.
+The generated vector-model checks run only after opening the separate explanation.

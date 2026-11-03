@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { RecordedECG } from "@/components/RecordedECG";
+import { RECORDINGS } from "@/lib/reasonos/recordings";
 import { ReasonOSLab } from "@/components/ReasonOSLab";
 import { siteUrl } from "@/lib/site";
 
@@ -149,10 +151,14 @@ function BoundaryDiagram() {
   );
 }
 
-const pairedMachineOutput = [
-  ["A", "82 bpm", "149 ms", "83 ms", "357 / 396 ms", "−3° / 39° / 53°"],
-  ["B", "81 bpm", "155 ms", "80 ms", "357 / 394 ms", "12° / 40° / 55°"],
-] as const;
+const pairedMachineOutput = RECORDINGS.map(({ id, report }) => [
+  id,
+  `${report.rate} bpm`,
+  `${report.pr} ms`,
+  `${report.qrs} ms`,
+  `${report.qt} / ${report.qtc} ms`,
+  report.axes.map((value) => `${value}°`).join(" / "),
+]);
 
 function PairedSourceCase() {
   return (
@@ -272,7 +278,7 @@ export default function VectorEkgReasonOSPage() {
     author: { "@type": "Person", name: "Arjan Singh Puniani", url: siteUrl },
     url: `${siteUrl}/work/vector-ekg-reasonos`,
     description:
-      "Interactive frontal ECG projections, calibrated interval measurements, and replayable evidence-conditioned reasoning.",
+      "Interactive recorded ECG images, source-pixel interval measurements, QT correction, and replayable evidence-conditioned reasoning.",
     isAccessibleForFree: true,
   };
   return (
@@ -284,9 +290,10 @@ export default function VectorEkgReasonOSPage() {
       <header className="rosx-hero">
         <div className="shell">
           <p className="eyebrow">Vector EKG / ReasonOS</p>
-          <h1>Why an ECG goes up or down</h1>
+          <h1>ECG recordings and measurements</h1>
           <p className="vector-deck">
-            A lead measures along one direction. Turn the vector to see how.
+            Inspect the recorded traces, compare the device reports, and measure
+            intervals directly on the ECG image.
           </p>
         </div>
       </header>
@@ -296,9 +303,15 @@ export default function VectorEkgReasonOSPage() {
         aria-label="Interactive ECG and reasoning laboratory"
       >
         <div className="reasonos-theme">
-          <ReasonOSLab />
+          <RecordedECG />
         </div>
       </section>
+      <details className="rosx-model-explanation" id="model-explanation">
+        <summary>How a lead works · separate idealized vector model</summary>
+        <div className="reasonos-theme">
+          <ReasonOSLab />
+        </div>
+      </details>
       <nav className="rosx-science-nav shell" aria-label="ECG study sections">
         <a href="#laboratory">Laboratory</a>
         <a href="#source-case">Source recordings</a>
@@ -313,10 +326,9 @@ export default function VectorEkgReasonOSPage() {
               <h2>Paired 12-lead recordings</h2>
             </div>
             <p>
-              These de-identified recordings and device-reported values are
-              retained independently from the synthetic laboratory. Changing the
-              model does not reprocess either image or adjudicate its machine
-              output.
+              The original waveform images and transcribed device values are
+              paired below. Measurements made above retain their own image
+              coordinates, calibration, and source identity.
             </p>
           </div>
           <PairedSourceCase />
@@ -388,18 +400,19 @@ export default function VectorEkgReasonOSPage() {
               <h2>Definitions and approximations</h2>
             </div>
             <p>
-              The lead algebra is exact for the defined electrode potentials.
-              The spatial geometry and signal generator are deliberately
-              simplified and inspectable.
+              Recorded-image measurements and report-derived calculations retain
+              their source inputs. The expandable vector lesson uses a separate
+              mathematical model of lead geometry.
             </p>
           </div>
           <div className="spec-grid">
             <article>
               <h3>Source</h3>
               <p>
-                P, Q, R, S, and T components use finite-support squared-sine
-                pulses with declared timing, amplitude, and orientation. These
-                source parameters define the reference fiducials.
+                The primary workspace uses the contributed ECG photographs and
+                values transcribed from their printed device reports. Calipers
+                operate on the unchanged waveform pixels. The separate vector
+                lesson generates its own P, QRS, and T components.
               </p>
             </article>
             <article>
@@ -414,9 +427,11 @@ export default function VectorEkgReasonOSPage() {
             <article>
               <h3>Measurement</h3>
               <p>
-                Paper speed and voltage gain transform source values into
-                coordinates. Calipers operate in the SVG coordinate system. Two
-                endpoint bounds of ±ε give a worst-case interval bound of ±2ε.
+                Image calipers retain source-pixel coordinates. A local grid
+                ruler supplies paper direction and pixels per millimetre. The
+                recorded endpoint bound propagates through both interval
+                placement and grid calibration. The model lesson uses its own
+                declared SVG scale.
               </p>
             </article>
             <article>

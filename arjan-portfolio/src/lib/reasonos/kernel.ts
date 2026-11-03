@@ -24,12 +24,20 @@ import type {
 } from "./core/types";
 import { ECG_PLUGIN } from "./reference-ecg-plugin";
 import { narrowQrsRule } from "./model";
+import {
+  RECORDINGS,
+  imageInterval,
+  validateImagePoint,
+  type ImageCalibration,
+} from "./recordings";
 
 export type ActorType = "learner" | "system";
 export type WitnessType =
   | "source"
   | "learner-derived"
   | "application-calculated"
+  | "machine-derived"
+  | "reference-derived"
   | "expert-authored";
 export type Operator =
   | "Inspect"
@@ -45,6 +53,7 @@ export interface Provenance {
   method: string;
   verification: "unverified" | "user-confirmed" | "synthetic-reference";
   witnessType: WitnessType;
+  modelVersion?: string | null;
 }
 export interface ReasonState {
   id: string;
@@ -132,11 +141,12 @@ function coreProvenance(
     recordedAt: time,
     domainId: domain,
     domainVersion: "0.5.0",
-    modelVersion: "ECG-FRONTAL-1",
+    modelVersion:
+      p.modelVersion === undefined ? "ECG-FRONTAL-1" : p.modelVersion,
     revisionOf: revision,
     confidence: null,
     confidenceBasis: null,
-    sourceRefs: [],
+    sourceRefs: [p.source],
   };
 }
 export function initialSnapshot(): KernelSnapshot {
@@ -153,10 +163,11 @@ export function initialSnapshot(): KernelSnapshot {
   const p = coreProvenance(
     "source-provenance",
     {
-      source: "Synthetic source",
-      method: "Declared model",
-      verification: "synthetic-reference",
-      witnessType: "source",
+      source: "ECG workspace",
+      method: "Workspace registration; source inspection follows",
+      verification: "unverified",
+      witnessType: "reference-derived",
+      modelVersion: null,
     },
     "system",
     "ecg",
@@ -170,14 +181,12 @@ export function initialSnapshot(): KernelSnapshot {
     causalStage: "source",
     domainId: "ecg",
     schemaVersion: "1.0.0",
-    payload: { summary: "Synthetic ECG source loaded" },
+    payload: { summary: "ECG workspace opened" },
     provenance: p,
     createdAt: timestamp(0),
   });
   return deepFreeze({
-    states: [
-      { id: rootId, sequence: 0, summary: "Synthetic ECG source loaded" },
-    ],
+    states: [{ id: rootId, sequence: 0, summary: "ECG workspace opened" }],
     trace: [],
     journal,
   });
@@ -196,13 +205,13 @@ function result(
     reason,
     details,
     evaluator: "reasonos-portfolio-adapter",
-    evaluatorVersion: "1.0.0",
+    evaluatorVersion: "2.0.0",
   };
 }
 const labConstraints: DomainPlugin["constraints"] = [
   {
     code: "Lab.Admission",
-    version: "1.0.0",
+    version: "2.0.0",
     evaluate({ trace, draft }) {
       const inputs = draft.inputStateIds
         .map((id) => trace.states.get(id))
@@ -212,6 +221,25 @@ const labConstraints: DomainPlugin["constraints"] = [
       if (!draft.inputStateIds.length) {
         passed = false;
         reasons.push("A recorded input is required.");
+      }
+      if (
+        draft.payload.imageSource === true &&
+        draft.payload.sourceIdentityValid !== true
+      ) {
+        passed = false;
+        reasons.push(
+          "The recording identity must match its registered image dimensions and SHA-256 digest.",
+        );
+      }
+      if (
+        draft.payload.imageSource === true &&
+        draft.operator === "Calibrate" &&
+        draft.payload.gridConfirmed !== true
+      ) {
+        passed = false;
+        reasons.push(
+          "Confirm the selected grid span before recording its calibration.",
+        );
       }
       if (draft.outputState.provenance.witnessType === "expert-derived") {
         passed = false;
@@ -299,15 +327,74 @@ export function attemptTransformation(
   const references = attempt.evidenceRefs ?? [];
   const source =
     references.find((ref) => ref.startsWith("source="))?.slice(7) ?? "";
-  let config: { speed?: number; gain?: number; pixelsPerMm?: number } = {};
+  let config: {
+    speed?: number;
+    gain?: number;
+    pixelsPerMm?: number;
+    kind?: string;
+    calibration?: ImageCalibration;
+    recording?: { id: string; sha256: string; width: number; height: number };
+  } = {};
   if (source) config = JSON.parse(source);
   const value = (name: string) =>
     references
       .find((ref) => ref.startsWith(`${name}=`))
       ?.slice(name.length + 1);
-  const start = Number(value("startMs") ?? 0),
+  let start = Number(value("startMs") ?? 0),
     end = Number(value("endMs") ?? 0);
   const rawScale = ((config.speed ?? 25) * (config.pixelsPerMm ?? 12)) / 1000;
+  const imageSource = config.kind === "recording-image";
+  const knownRecording = RECORDINGS.find(
+    (recording) =>
+      recording.id === config.recording?.id &&
+      recording.sha256 === config.recording?.sha256 &&
+      recording.width === config.recording?.width &&
+      recording.height === config.recording?.height,
+  );
+  let calibrationValid =
+    Boolean(source) &&
+    [config.speed, config.gain, config.pixelsPerMm].every(
+      (n) => typeof n === "number" && Number.isFinite(n) && n > 0,
+    );
+  let measured: ReturnType<typeof imageInterval> | undefined;
+  let rawOperation = {
+    a: { x: start * rawScale, y: 0 },
+    b: { x: end * rawScale, y: 0 },
+  };
+  if (imageSource) {
+    try {
+      if (!knownRecording || !config.calibration)
+        throw new Error("Unknown image calibration");
+      validateImagePoint(config.calibration.a, knownRecording);
+      validateImagePoint(config.calibration.b, knownRecording);
+      const reference = imageInterval(
+        config.calibration.a,
+        config.calibration.b,
+        config.calibration,
+      );
+      calibrationValid =
+        calibrationValid &&
+        config.speed === config.calibration.speed &&
+        config.speed === knownRecording.paperSpeed &&
+        config.gain === knownRecording.gain &&
+        Math.abs(reference.pixelsPerMm - config.pixelsPerMm!) < 1e-9;
+      if (attempt.operator === "Measure") {
+        const a = { x: Number(value("imageAX")), y: Number(value("imageAY")) },
+          b = { x: Number(value("imageBX")), y: Number(value("imageBY")) };
+        validateImagePoint(a, knownRecording);
+        validateImagePoint(b, knownRecording);
+        measured = imageInterval(a, b, config.calibration);
+        start = 0;
+        end = measured.ordered ? measured.duration : -measured.duration;
+        rawOperation = { a, b };
+      }
+    } catch {
+      calibrationValid = false;
+      start = 0;
+      end = 0;
+      rawOperation = { a: { x: 0, y: 0 }, b: { x: 0, y: 0 } };
+    }
+  }
   const payload: JsonObject = {
     summary: attempt.summary,
     domainMode: domain,
@@ -320,21 +407,16 @@ export function attemptTransformation(
     revisionStateId: attempt.revisionOf ?? null,
     recordingId: source,
     calibrationId: source,
-    calibrationValid:
-      Boolean(source) &&
-      [config.speed, config.gain, config.pixelsPerMm].every(
-        (value) =>
-          typeof value === "number" && Number.isFinite(value) && value > 0,
-      ),
+    calibrationValid,
+    imageSource,
+    sourceIdentityValid: Boolean(knownRecording),
+    gridConfirmed: value("gridConfirmed") === "true",
     kind: value("kind") ?? "",
     startMs: start,
     endMs: end,
-    duration: Math.round(Math.abs(end - start)),
-    uncertainty: Number(value("uncertaintyMs") ?? 0),
-    rawOperation: {
-      a: { x: start * rawScale, y: 0 },
-      b: { x: end * rawScale, y: 0 },
-    },
+    duration: measured?.duration ?? Math.round(Math.abs(end - start)),
+    uncertainty: measured?.uncertainty ?? Number(value("uncertaintyMs") ?? 0),
+    rawOperation,
     reason: attempt.summary,
   };
   const identity = sha256({
@@ -352,7 +434,9 @@ export function attemptTransformation(
     : null;
   const isSource =
     attempt.operator === "Inspect" &&
-    attempt.provenance.witnessType === "source";
+    ["source", "machine-derived", "reference-derived"].includes(
+      attempt.provenance.witnessType,
+    );
   const role = isSource
     ? "source"
     : attempt.operator === "Calibrate"
@@ -373,7 +457,9 @@ export function attemptTransformation(
         : "observation";
   const p = coreProvenance(
     `tx-provenance-${sequence}`,
-    attempt.provenance,
+    imageSource
+      ? { ...attempt.provenance, modelVersion: null }
+      : attempt.provenance,
     attempt.actor,
     domain,
     time,
@@ -445,7 +531,7 @@ export function attemptTransformation(
     applicationVeto: attempt.domainAccepted === false,
     kernelVersion: "0.3.0",
     domain,
-    domainVersion: "0.5.0 + lab-1.0.0",
+    domainVersion: "0.5.0 + lab-2.0.0",
   };
   return deepFreeze({
     journal: receipt.trace,

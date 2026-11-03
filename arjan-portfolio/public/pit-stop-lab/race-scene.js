@@ -3,18 +3,19 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {GLTFLoader} from './vendor/GLTFLoader.js';
 import {cinematicFrame,raceCamera} from './cinema.js';
 import {seededRandom} from './simulation.js';
+import {renderScale} from './render-scale.js';
 
 // An original condensed circuit stage. Only the centerline and car inputs are observed.
 export function createRaceScene(canvas,tracks,{onReady,onError,onOrbit}){
     const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'default'});
     const gl=renderer.getContext(),debug=gl.getExtension('WEBGL_debug_renderer_info'),gpu=debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):'',software=/SwiftShader|llvmpipe|software/i.test(gpu);
-    renderer.setPixelRatio(Math.min(devicePixelRatio,software?1:1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.06;
+    renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.06;
     renderer.shadowMap.enabled=!software;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
     const scene=new THREE.Scene();scene.background=new THREE.Color('#b4ccd4');scene.fog=new THREE.Fog('#b4ccd4',160,600);
     const camera=new THREE.PerspectiveCamera(40,1,.025,700),controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.minDistance=2;controls.maxDistance=230;controls.maxPolarAngle=Math.PI*.47;controls.enabled=false;
     controls.addEventListener('start',onOrbit);
     const hemi=new THREE.HemisphereLight('#dceeff','#716555',1.65);scene.add(hemi);
-    const sun=new THREE.DirectionalLight('#ffead0',3.8);sun.position.set(30,55,20);sun.castShadow=!software;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-16,right:16,top:16,bottom:-16,near:1,far:150});sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;sun.shadow.radius=3;scene.add(sun,sun.target);
+    const sun=new THREE.DirectionalLight('#ffead0',3.8);sun.position.set(30,55,20);sun.castShadow=!software;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-9,right:9,top:9,bottom:-9,near:1,far:150});sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;sun.shadow.radius=3;scene.add(sun,sun.target);
     const fill=new THREE.DirectionalLight('#a8ceef',1.2);fill.position.set(-40,25,-30);scene.add(fill);
     const geometries=new Set(),materials=new Set(),textures=new Set(),instances=new Map(),unitBox=new THREE.BoxGeometry(1,1,1),unitCylinder=new THREE.CylinderGeometry(1,1,1,8);
     geometries.add(unitBox);geometries.add(unitCylinder);
@@ -94,7 +95,7 @@ export function createRaceScene(canvas,tracks,{onReady,onError,onOrbit}){
     const envScene=new THREE.Scene();envScene.background=new THREE.Color('#6d7c87');const panelGeometry=new THREE.PlaneGeometry(1,1),panelMat=new THREE.MeshBasicMaterial({color:'#fff1dc'});materials.add(panelMat);geometries.add(panelGeometry);
     for(const [position,scale] of [[[0,7,0],[8,4]],[[5,3,0],[4,7]],[[-5,2,0],[4,7]],[[0,3,-7],[9,2]]]){const panel=new THREE.Mesh(panelGeometry,panelMat);panel.position.set(...position);panel.scale.set(...scale,1);panel.lookAt(0,.5,0);envScene.add(panel);}
     const pmrem=new THREE.PMREMGenerator(renderer),environment=pmrem.fromScene(envScene,.04,.1,35);pmrem.dispose();scene.environment=environment.texture;
-    let ghost=false,alive=true,ready=false,mode='director',lastShot='',lastDraw=-Infinity,draws=0,lost=false,dirty=true,lastTime=null,pendingFrame=null;
+    let ghost=false,alive=true,ready=false,mode='director',lastShot='',lastDraw=-Infinity,draws=0,lost=false,dirty=true,lastTime=null,pendingFrame=null,lastCameraTime=null;
     const cars=[],wheelSets=[],trails=[];
     function trail(color){const count=100,g=new THREE.BufferGeometry(),positions=new Float32Array(count*6),indices=[];g.setAttribute('position',new THREE.BufferAttribute(positions,3).setUsage(THREE.DynamicDrawUsage));for(let i=0;i<count-1;i++){const a=i*2;indices.push(a,a+1,a+2,a+1,a+3,a+2);}g.setIndex(indices);const m=new THREE.MeshBasicMaterial({color,transparent:true,opacity:.4,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending});materials.add(m);const o=mesh(g,m);o.frustumCulled=false;return {o,g,positions,count};}
     const assetTimeout=setTimeout(()=>{if(alive&&!ready)onError('The car asset is taking too long to load.');},25000);
@@ -110,15 +111,15 @@ export function createRaceScene(canvas,tracks,{onReady,onError,onOrbit}){
             for(const key of ['FL','FR','RL','RR'])wheels[key]=car.getObjectByName('Wheel_'+key);
             if(Object.values(wheels).some(w=>!w))throw new Error('The car is missing a wheel assembly.');wheelSets.push(wheels);
             car.traverse(o=>{if(o.isMesh){o.castShadow=i===0;o.receiveShadow=true;geometries.add(o.geometry);for(const m of [].concat(o.material)){materials.add(m);for(const t of Object.values(m))if(t?.isTexture)textures.add(t);}}});
-            const markerMaterial=new THREE.MeshBasicMaterial({color:i?'#51d9c7':'#ff6549',transparent:true,opacity:.38,depthWrite:false});materials.add(markerMaterial);const halo=mesh(new THREE.RingGeometry(.42,.47,48),markerMaterial);halo.visible=i===0||ghost;halo.rotation.x=-Math.PI/2;car.userData.marker=halo;
-            trails.push(trail(i?'#4fc7bd':'#f98557'));trails[i].o.visible=i===0||ghost;
+            if(i===1){const markerMaterial=new THREE.MeshBasicMaterial({color:'#51d9c7',transparent:true,opacity:.3,depthWrite:false});materials.add(markerMaterial);const marker=mesh(new THREE.RingGeometry(.42,.47,48),markerMaterial);marker.visible=ghost;marker.rotation.x=-Math.PI/2;car.userData.marker=marker;trails[i]=trail('#4fc7bd');trails[i].o.visible=ghost;}
+
         }
-        ready=true;dirty=true;onReady();
+        ready=true;dirty=true;lastShot='';onReady();
     }).catch(error=>{clearTimeout(assetTimeout);if(alive)onError(error.message);});
-    const resize=()=>{const width=canvas.clientWidth,height=canvas.clientHeight;if(!width||!height)return;renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();dirty=true;};
+    const resize=()=>{const width=canvas.clientWidth,height=canvas.clientHeight;if(!width||!height)return;renderer.setPixelRatio(renderScale(width,height,devicePixelRatio,software));renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();dirty=true;};
     const observer=new ResizeObserver(resize);observer.observe(canvas);resize();
     const lostContext=e=>{e.preventDefault();lost=true;pendingFrame=null;onError('3D context interrupted. Telemetry remains available.');},restore=()=>{lost=false;dirty=true;};canvas.addEventListener('webglcontextlost',lostContext);canvas.addEventListener('webglcontextrestored',restore);
-    const target=new THREE.Vector3(),desired=new THREE.Vector3(),localRay=new THREE.Ray(),hit=new THREE.Vector3(),zeroMatrix=new THREE.Matrix4().makeScale(0,0,0);
+    const target=new THREE.Vector3(),desired=new THREE.Vector3(),followOffset=new THREE.Vector3(),lookOffset=new THREE.Vector3(),carPosition=new THREE.Vector3(),desiredOffset=new THREE.Vector3(),desiredLook=new THREE.Vector3(),localRay=new THREE.Ray(),hit=new THREE.Vector3(),zeroMatrix=new THREE.Matrix4().makeScale(0,0,0);
     const focusPoints=[[0,.45,0],[0,.45,-2.1],[0,.45,2.1],[-.9,.45,0],[.9,.45,0]].map(p=>new THREE.Vector3(...p)),focusRays=focusPoints.map(()=>new THREE.Ray()),focusDistances=new Float64Array(focusPoints.length);
     function cameraCutaway(){
         const changed=new Set();for(const row of masked){row.object.setMatrixAt(row.index,row.matrix);changed.add(row.object);}masked.length=0;
@@ -139,8 +140,8 @@ export function createRaceScene(canvas,tracks,{onReady,onError,onOrbit}){
                 if(i===1&&!ghost)return;
                 const f=cinematicFrame(track,Math.min(time,track.driver.duration)),car=cars[i];const offset=i?.8:0,cx=f.x+Math.cos(f.heading)*offset,cz=f.z-Math.sin(f.heading)*offset;car.position.set(cx,.027,cz);car.rotation.y=f.heading;
                 for(const [key,wheel] of Object.entries(wheelSets[i]))wheel.rotation.set(f.roll,key.startsWith('F')?f.steer:0,0,'YXZ');
-                car.userData.marker.position.set(cx,.075,cz);car.userData.marker.scale.setScalar(i?.8:1);
-                const t=trails[i];for(let j=0;j<t.count;j++){const back=cinematicFrame(track,Math.max(0,time-(t.count-1-j)*.025)),w=.045*(j/t.count);const side=[Math.cos(back.heading),-Math.sin(back.heading)],x=back.x+side[0]*offset,z=back.z+side[1]*offset;t.positions.set([x-side[0]*w,.085,z-side[1]*w,x+side[0]*w,.085,z+side[1]*w],j*6);}t.g.attributes.position.needsUpdate=true;
+                if(i===1){car.userData.marker.position.set(cx,.075,cz);car.userData.marker.scale.setScalar(.8);const t=trails[i];for(let j=0;j<t.count;j++){const back=cinematicFrame(track,Math.max(0,time-(t.count-1-j)*.025)),w=.045*(j/t.count),side=[Math.cos(back.heading),-Math.sin(back.heading)],x=back.x+side[0]*offset,z=back.z+side[1]*offset;t.positions.set([x-side[0]*w,.085,z-side[1]*w,x+side[0]*w,.085,z+side[1]*w],j*6);}t.g.attributes.position.needsUpdate=true;}
+
             });
             const f=cinematicFrame(tracks[0],time);sun.position.set(f.x+28,54,f.z+22);sun.target.position.set(f.x,0,f.z);
         }
@@ -149,10 +150,14 @@ export function createRaceScene(canvas,tracks,{onReady,onError,onOrbit}){
             const shot=raceCamera(tracks[0],time,mode),cut=shot.shot!==lastShot;controls.maxPolarAngle=shot.shot==='oncar'?Math.PI*.5:Math.PI*.47;desired.fromArray(shot.position);target.fromArray(shot.target);
             const mobile=canvas.clientWidth<700;if(mobile&&shot.shot!=='overview'&&shot.shot!=='oncar'){desired.sub(target).multiplyScalar(1.28).add(target);target.y-=.55;}
             if(mobile&&shot.shot==='overview')desired.sub(target).multiplyScalar(1.8).add(target);scene.fog.near=shot.shot==='overview'?400:160;scene.fog.far=shot.shot==='overview'?900:600;
-            if(cut||shot.shot==='oncar'){camera.position.copy(desired);controls.target.copy(target);}else{camera.position.lerp(desired,.22);controls.target.lerp(target,.28);}
+            const dt=lastCameraTime===null?1/60:Math.min(.05,Math.max(0,(now-lastCameraTime)/1000));lastCameraTime=now;const follow=1-Math.exp(-15*dt),look=1-Math.exp(-20*dt);if(cars[0])carPosition.copy(cars[0].position);else carPosition.set(0,0,0);
+            if(cut||shot.shot==='oncar'){camera.position.copy(desired);controls.target.copy(target);followOffset.subVectors(desired,carPosition);lookOffset.subVectors(target,carPosition);}
+            else if(shot.shot==='overview'){camera.position.lerp(desired,follow);controls.target.lerp(target,look);}
+            else{followOffset.lerp(desiredOffset.subVectors(desired,carPosition),follow);lookOffset.lerp(desiredLook.subVectors(target,carPosition),look);camera.position.copy(carPosition).add(followOffset);controls.target.copy(carPosition).add(lookOffset);}
+
             cameraMoving=camera.position.distanceToSquared(desired)>.000001||controls.target.distanceToSquared(target)>.000001;camera.fov=mobile&&shot.shot==='oncar'?100:shot.fov;camera.near=shot.shot==='overview'?.5:shot.shot==='oncar'?.02:.08;camera.updateProjectionMatrix();controls.enabled=false;lastShot=shot.shot;
         }
         const changed=controls.update();if(!dirty&&!moved&&!changed&&!cameraMoving)return;camera.lookAt(controls.target);cameraCutaway();renderer.render(scene,camera);draws++;lastDraw=now;lastTime=time;dirty=false;pendingFrame=gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE,0);gl.flush();
     }
-    return {render,setGhost(value){ghost=!!value;dirty=true;cars.forEach((c,i)=>{c.visible=i===0||ghost;c.userData.marker.visible=i===0||ghost;trails[i].o.visible=i===0||ghost;});},setCamera(value){mode=value;lastShot='';dirty=true;controls.enabled=value==='orbit';},get ready(){return ready;},get stats(){return {ready,camera:mode,shot:lastShot,cutaways:masked.length,draws,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,software,gpu};},dispose(){alive=false;clearTimeout(assetTimeout);if(pendingFrame)gl.deleteSync(pendingFrame);observer.disconnect();controls.removeEventListener('start',onOrbit);controls.dispose();canvas.removeEventListener('webglcontextlost',lostContext);canvas.removeEventListener('webglcontextrestored',restore);geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());environment.dispose();renderer.dispose();}};
+    return {render,setGhost(value){ghost=!!value;dirty=true;cars.forEach((c,i)=>{c.visible=i===0||ghost;if(i===1){c.userData.marker.visible=ghost;trails[i].o.visible=ghost;}});},setCamera(value){mode=value;lastShot='';dirty=true;controls.enabled=value==='orbit';},get ready(){return ready;},get stats(){return {ready,camera:mode,shot:lastShot,cutaways:masked.length,draws,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,software,gpu};},dispose(){alive=false;clearTimeout(assetTimeout);if(pendingFrame)gl.deleteSync(pendingFrame);observer.disconnect();controls.removeEventListener('start',onOrbit);controls.dispose();canvas.removeEventListener('webglcontextlost',lostContext);canvas.removeEventListener('webglcontextrestored',restore);geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());environment.dispose();renderer.dispose();}};
 }

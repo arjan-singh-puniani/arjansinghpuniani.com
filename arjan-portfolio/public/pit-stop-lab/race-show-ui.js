@@ -1,5 +1,5 @@
 import {prepareTelemetry,telemetryAt} from './pit-wall.js';
-import {cinematicTrack,cinematicFrame,advanceReel,pitFilmShot,pitFilmStart,pitFilmDuration} from './cinema.js';
+import {cinematicTrack,cinematicFrame,advanceReel,pitFilmShot,pitFilmStart,pitFilmDuration,pitFilmRate} from './cinema.js';
 import {snapshot} from './simulation.js';
 import {operations} from './operations.js';
 
@@ -38,8 +38,8 @@ export function createRaceShow({listen,getSimulation,getWorld,ensureWorld,choose
         $('raceShow').dataset.chapter=state.chapter;
         document.querySelectorAll('[data-show-chapter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.showChapter===state.chapter)));
         $('showRate').disabled=state.chapter==='pit';$('showRate').value=state.chapter==='pit'?'.35':String(state.speed);$('showGhost').disabled=state.chapter==='pit';$('showPitExperiments').hidden=state.chapter!=='pit';$('showPedals').hidden=state.chapter!=='lap';$('showCornerStates').hidden=state.chapter!=='pit';
-        text('showSource',state.chapter==='lap'?'RECORDED LAP / 2024':'MODELED PIT OPERATION');text('showName',state.chapter==='lap'?'Charles Leclerc':'Pit box 01');text('showNumber',state.chapter==='lap'?'16':'P/');text('showVenue',state.chapter==='lap'?'SAKHIR / LAP 32':'FOUR CORNERS / SHARED RELEASE GUARD');text('showMapTitle',state.chapter==='lap'?'LAP-ALIGNED COMPARISON':'MODEL / EXACT EVENT CLOCK');
-        text('showDisclosure',state.chapter==='lap'?'Archived inputs · condensed track · enlarged illustrative car / architecture · SAI ghost offset for visibility':'Seeded stop + early departure excerpt · event-driven crew and release · not a recorded race stop');
+        text('showSource',state.chapter==='lap'?'RECORDED LAP / 2024':'MODELED PIT OPERATION');text('showName',state.chapter==='lap'?'Charles Leclerc':'Pit box 01');text('showNumber',state.chapter==='lap'?'16':'P/');text('showVenue',state.chapter==='lap'?'SAKHIR / LAP 32':'PIT LANE / EXTERIOR SERVICE BOX');text('showMapTitle',state.chapter==='lap'?'LAP-ALIGNED COMPARISON':'MODEL / EXACT EVENT CLOCK');
+        text('showDisclosure',state.chapter==='lap'?'Archived inputs · condensed track · enlarged illustrative car / architecture · SAI ghost offset for visibility':'Seeded pit-lane operation · 1× entry/exit, 0.35× service · not a recorded race stop');
         if(state.chapter==='lap'){
             restoreStage();$('showCanvas').hidden=false;await startRace();race?.setCamera($('showCamera').value);if(race?.ready){loading=false;$('showLoading').hidden=true;}
         }else{
@@ -49,7 +49,7 @@ export function createRaceShow({listen,getSimulation,getWorld,ensureWorld,choose
     }
     function chooseChapter(value){state.chapter=value;state.time=value==='pit'?pitFilmStart(getSimulation()):0;setPlaying(!reduced);sceneChapter='';debug();}
     function paint(){
-        const pit=state.chapter==='pit',sim=getSimulation();
+        const pit=state.chapter==='pit',sim=getSimulation();if(pit)$('showRate').value=String(pitFilmRate(sim,state.time));
         text('showClock',clock(state.time));text('showTimelineLabel',pit?'PIT OPERATION':'LAP 32');text('showTimelineOut',`${clock(state.time).slice(0,-4)} / ${clock(duration()).slice(0,-4)}`);$('showSeek').value=Math.round(state.time/duration()*1000);
         if(!pit&&tracks.length){
             const sample=telemetryAt(tracks[0].driver,state.time);text('showVelocity',sample?Math.round(sample.speed):'—');text('showMetricLabel','SPEED / km/h');text('showGearLabel','GEAR');text('showGear',sample?.gear??'—');
@@ -82,14 +82,14 @@ export function createRaceShow({listen,getSimulation,getWorld,ensureWorld,choose
         if(state.chapter==='pit'&&getWorld()?.stats().heroError&&!failed)fail(getWorld().stats().heroError);
         if(state.chapter==='pit'&&getWorld()?.stats().heroLoaded){loading=false;$('showLoading').hidden=true;}
         const before={...state},dt=Math.max(0,(now-lastWall)/1000);lastWall=now;state.blocked=state.chapter==='pit'&&getSimulation().result.stationary===null;
-        if(!loading&&!failed)state=advanceReel(state,dt,tracks[0]?.driver.duration??96.941,pitFilmDuration(getSimulation()));
+        if(!loading&&!failed)state=advanceReel(state,dt,tracks[0]?.driver.duration??96.941,pitFilmDuration(getSimulation()),pitFilmRate(getSimulation(),state.time));
         if(before.playing!==state.playing)setPlaying(state.playing);
         if(state.chapter!==before.chapter){if(state.chapter==='pit')state.time=pitFilmStart(getSimulation());enterChapter();return;}
         if(state.chapter==='lap'&&state.playing&&state.time>duration()-8&&!getWorld())void ensureWorld();
         if(state.chapter==='lap'&&race){race.render(state.time,now);if(state.playing&&audio.enabled)audio.engineFrame?.(telemetryAt(tracks[0].driver,state.time));else audio.engineFrame?.(null);}
         if(state.chapter==='pit'&&getWorld()&&!loading){
             const sim=getSimulation(),snap=snapshot(sim,state.time),car=snap.cars[snap.activeCar-1],world=getWorld(),shot=pitFilmShot(sim,state.time,car),choice=$('showCamera').value;
-            if(needsPaint||state.time!==before.time){world.update(snap,sim);world.setFilmCamera(choice==='wide'?{position:[4.8,3,-5.6],target:[0,.4,0],fov:43}:choice==='wheel'?{position:[1.4,1.65,-3.15],target:[.85,.46,-1.65],fov:44}:shot);}
+            if(needsPaint||state.time!==before.time){world.update(snap,sim);world.setFilmCamera(choice==='wide'?{position:[4.8,3,-5.6],target:[0,.4,0],fov:43}:choice==='wheel'?{position:[3.3,2.1,-3.2],target:[.85,.46,-1.65],fov:36}:shot);}
             world.render(now);audio.engineFrame?.(null);
             if(state.playing&&audio.enabled)for(const event of sim.events)if(event.start>before.time&&event.start<=state.time)audio.triggerEvent(event,.35);
             lastShot=choice==='director'?shot.shot:choice;

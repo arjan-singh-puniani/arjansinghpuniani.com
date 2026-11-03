@@ -54,7 +54,7 @@ type MathWindow = Window & {
     render: (tex: string, element: HTMLElement, options: object) => void;
   };
 };
-function MathText({ tex, reading }: { tex: string; reading: string }) {
+export function MathText({ tex, reading }: { tex: string; reading: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     const render = () => {

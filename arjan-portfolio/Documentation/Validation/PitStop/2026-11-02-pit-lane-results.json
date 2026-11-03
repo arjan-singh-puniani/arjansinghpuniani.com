@@ -1,0 +1,204 @@
+{
+  "local": true,
+  "unitTests": 188,
+  "browser": {
+    "cinema": {
+      "checks": 33,
+      "errors": []
+    },
+    "crew": {
+      "checks": 7,
+      "errors": []
+    },
+    "venue": {
+      "checks": 13,
+      "errors": []
+    },
+    "world": {
+      "checks": 54,
+      "errors": []
+    },
+    "wheels": {
+      "checks": 5,
+      "errors": []
+    }
+  },
+  "crew": {
+    "maxRenderError": 8.881784197001252e-16,
+    "maxPlantedDrift": 8.881784197001252e-16,
+    "samples": 14741,
+    "armLengths": {
+      "gun": 0.3100000000000002,
+      "wheel off": 0.3100000000000008,
+      "wheel on": 0.31000000000000016,
+      "supply": 0.31000000000000016,
+      "jack": 0.3100000000000002
+    },
+    "armFrames": {
+      "gun": {
+        "t": 4.108333333333327,
+        "person": 9,
+        "arms": [
+          0.30999999999999994,
+          0.3,
+          0.3100000000000002,
+          0.30000000000000004
+        ]
+      },
+      "wheel off": {
+        "t": 2.866666666666659,
+        "person": 4,
+        "arms": [
+          0.30999999999999994,
+          0.2999999999999999,
+          0.3100000000000008,
+          0.2999999999999994
+        ]
+      },
+      "wheel on": {
+        "t": 2.783333333333326,
+        "person": 5,
+        "arms": [
+          0.31000000000000016,
+          0.2999999999999999,
+          0.31,
+          0.3000000000000001
+        ]
+      },
+      "supply": {
+        "t": 1.1166666666666651,
+        "person": 12,
+        "arms": [
+          0.31,
+          0.3,
+          0.31000000000000016,
+          0.30000000000000004
+        ]
+      },
+      "jack": {
+        "t": 1.7249999999999963,
+        "person": 14,
+        "arms": [
+          0.3100000000000002,
+          0.2999999999999999,
+          0.3099999999999999,
+          0.30000000000000016
+        ]
+      }
+    },
+    "legCollisions": {},
+    "helmetCollision": null,
+    "maxHelmetPenetration": 0,
+    "maxLegPenetration": 0,
+    "collision": null,
+    "seekExact": true
+  },
+  "wheelMeasurements": {
+    "maxHubError": 8.881784197001252e-16,
+    "maxPivotError": 0,
+    "maxAxleError": 3.3306690738754696e-16,
+    "maxRemovedSpin": 0,
+    "maxStagedHeightError": 0,
+    "mountedSamples": 980
+  },
+  "reel": {
+    "durationSeconds": 65.8,
+    "chapters": [
+      "lap",
+      "pit",
+      "lap"
+    ],
+    "observations": 61,
+    "mobileWebKitPositions": [
+      0,
+      370,
+      550,
+      830,
+      990
+    ],
+    "errors": []
+  },
+  "limits": [
+    "Procedural authored motion, not motion capture or a general collision solver.",
+    "Desktop Apple M2 Chrome Metal and WebKit plus browser mobile emulation; physical phone performance and manual screen-reader review not established.",
+    "Illustrative pit-lane geometry, not surveyed Bahrain."
+  ],
+  "retinaPacing": [
+    {
+      "engine": "chrome",
+      "chapter": "lap",
+      "fps": 60.162763992032254,
+      "drawGap": {
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182,
+        "over33": 0
+      },
+      "drawingBuffer": [
+        {
+          "width": 1563,
+          "height": 1023,
+          "cssWidth": 1440,
+          "cssHeight": 943
+        }
+      ]
+    },
+    {
+      "engine": "chrome",
+      "chapter": "pit",
+      "fps": 59.347181008549235,
+      "drawGap": {
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 33.399999999999636,
+        "over33": 0
+      },
+      "drawingBuffer": [
+        {
+          "width": 1563,
+          "height": 1023,
+          "cssWidth": 1440,
+          "cssHeight": 943
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "chapter": "lap",
+      "fps": 60.12974051896207,
+      "drawGap": {
+        "p50": 17,
+        "p95": 18,
+        "max": 25,
+        "over33": 0
+      },
+      "drawingBuffer": [
+        {
+          "width": 1563,
+          "height": 1023,
+          "cssWidth": 1440,
+          "cssHeight": 943
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "chapter": "pit",
+      "fps": 59.82053838484546,
+      "drawGap": {
+        "p50": 17,
+        "p95": 18,
+        "max": 25,
+        "over33": 0
+      },
+      "drawingBuffer": [
+        {
+          "width": 1563,
+          "height": 1023,
+          "cssWidth": 1440,
+          "cssHeight": 943
+        }
+      ]
+    }
+  ]
+}
