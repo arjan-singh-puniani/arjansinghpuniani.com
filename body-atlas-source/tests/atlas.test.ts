@@ -520,6 +520,8 @@ test("body contour is a bounded 3D derivative without photograph payloads", asyn
  const chinHalfWidth=Math.max(...contour.filter(p=>p[1]>.697&&p[1]<.710&&p[2]>.09).map(p=>Math.abs(p[0])));
  const jawHalfWidth=Math.max(...contour.filter(p=>p[1]>.735&&p[1]<.755&&p[2]>.04).map(p=>Math.abs(p[0])));
  assert.ok(chinHalfWidth>0&&chinHalfWidth<jawHalfWidth,'Chin remains narrower than the mandibular contour');
+ assert.ok(front(contour,0,.680)>front(contour,0,.650)+.025,'Under-chin surface recedes into the neck rather than extending the chin downward');
+ assert.equal(manifest.jawTransitionAdapted,true);
  assert.equal(manifest.surfaceFitApplied,true);assert.equal(manifest.fittingInputIncluded,false);
  assert.equal(manifest.facialTopologyLicense,'Apache-2.0');
  scene.traverse(o=>{if(o instanceof Mesh){

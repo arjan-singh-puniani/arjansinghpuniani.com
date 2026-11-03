@@ -75,17 +75,35 @@ def apply_surface(body,d):
      bm.faces.new(f)
     seam=set(skin+border)
     for _ in range(3):seam|={e.other_vert(v) for v in list(seam) for e in v.link_edges}
-    for _ in range(12):bmesh.ops.smooth_vert(bm,verts=list(seam),factor=.45,use_axis_x=True,use_axis_y=True,use_axis_z=True)
+    # Preserve the fitted mandibular outline instead of rounding it into the neck.
+    jaw_rim={v for v in border if v.co.z<points[234].z}
+    jaw_targets={v:v.co.copy() for v in jaw_rim}
+    for _ in range(12):
+     bmesh.ops.smooth_vert(bm,verts=list(seam),factor=.45,use_axis_x=True,use_axis_y=True,use_axis_z=True)
+     for v,target in jaw_targets.items():v.co=v.co.lerp(target,.65)
     for v,value in detail.items():v[layer]=value
     # Refine the low-resolution estimated face while leaving the approved exterior untouched.
     facial=set(face);edges=[e for e in bm.edges if all(v in facial for v in e.verts)]
     refined=bmesh.ops.subdivide_edges(bm,edges=edges,cuts=1,use_grid_fill=True)
     interior=[v for v in refined['geom_inner'] if isinstance(v,bmesh.types.BMVert)]
     for _ in range(2):bmesh.ops.smooth_vert(bm,verts=interior,factor=.25,use_axis_x=True,use_axis_y=True,use_axis_z=True)
+    fitted_positions={tuple(v.co) for v in face+interior if v.is_valid}
     bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces));bm.to_mesh(body.data);bm.free()
     attribute=body.data.attributes['_SURFACE_DETAIL']
+    chin=points[152].z
+    angle=(points[172].z+points[397].z)/2
+    jaw_width=(abs(points[172].x)+abs(points[397].x))/2
     for v in body.data.vertices:
      x,height,depth=v.co.x,v.co.z,-v.co.y
+     # Recess the submandibular transition below the fitted jaw; keep the face rim fixed.
+     if tuple(v.co) not in fitted_positions and chin-.060<height<angle and abs(x)<jaw_width*1.3:
+      line=chin+(angle-chin)*min(1,abs(x)/jaw_width)**2-.006
+      under=max(0,min(1,(line-height)/.015));under=under*under*(3-2*under)
+      fade=max(0,min(1,(height-(chin-.060))/.025))
+      front=max(0,min(1,(depth+.015)/.070))
+      weight=under*fade
+      v.co.x*=1-.15*weight*(.4+.6*front)
+      v.co.y+=.018*weight*front
      if height<.80:continue
      front=max(0,min(1,(depth-.015)/.045));line=.818+front*.035;hair=max(0,min(1,(height-line)/.030));hair=hair*hair*(3-2*hair)
      quiff=math.exp(-((x+.035)/.065)**2-((height-.89)/.065)**2)
