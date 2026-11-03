@@ -15,7 +15,7 @@ recomputes elapsed time from raw pixels and the grid reference. An explicit pixe
 bound includes uncertainty in interval placement, grid scale, and grid direction.
 Changing the source or calibration makes older measurements stale for new work.
 
-The default side panel is guided interpretation. Eight method steps cover scale/rate, rhythm, axis, intervals, morphology, ST–T, paired comparison, and synthesis. Learners pin source viewports, answer a method question, write an observation, and commit confidence before feedback. Step changes preserve drafts. The exported worksheet retains committed attempts, exact source digests, viewport bounds, visible marker coordinates, measurement dependencies, and kernel evidence events. Method-question matches are not diagnostic adjudication or a competency grade. The calculations panel remains independently accessible.
+The optional measurement workbench opens with guided interpretation. Eight method steps cover scale/rate, rhythm, axis, intervals, morphology, ST–T, paired comparison, and synthesis. Learners pin source viewports, answer a method question, write an observation, and commit confidence before feedback. Step changes preserve drafts. The exported worksheet retains committed attempts, exact source digests, viewport bounds, visible marker coordinates, measurement dependencies, and kernel evidence events. Method-question matches are not diagnostic adjudication or a competency grade. The calculations panel remains independently accessible.
 
 The QT panel starts with the recorded device rate and QT. RR is explicitly derived
 from the reported rate, not presented as an image-measured RR. After both RR and QT
@@ -29,6 +29,16 @@ The vector lesson is a separate, collapsed explanation. Its generated P/QRS/T
 source, geometric projection, and circuit-free calculation do not reprocess the
 recorded image or supply the recording’s measurement values. The paired source
 images remain independently viewable below.
+
+## Connected source scene
+
+The default experience is now `ECGConnections`: a shared recording, electrical event, lead, photo cursor, local ruler, and interval selection. The previous worksheet and reference cases remain in a collapsed practice workbench. No extra quiz is required to inspect the visual explanation.
+
+The anatomical drawing is schematic. P/QRS/T mean frontal axes come directly from the device report. Unit directions and the six limb-lead projections reuse the existing equilateral lead fields, including the augmented-lead scale. They are dimensionless geometric predictions, not reconstructed instantaneous heart vectors, measured millivolts, or an inferred waveform. Exact electrode definitions are separate from the idealized spatial model. Chest leads show their original trace, reference equation, and placement, without deriving a voltage from a frontal angle. Displayed decimals use approximation signs.
+
+The photo scan traverses authored feature locators in one actual lead-II beat. The locations are proposals, not automatic or adjudicated fiducials. PR, QRS, QT and RR calipers retain source pixels. Time is calculated by projecting the raw endpoint difference along the local ruler and applying the paper scale/speed. RR additionally produces a rate calculation. The tilted caliper lines and source-point dots visualize that projection; grabbing a handle preserves the endpoint offset rather than relocating it to the handle. Numeric inputs provide equivalent keyboard access. Source changes and point/ruler/kind changes prevent reuse of a mismatched saved measurement.
+
+The new connected path uses the existing kernel and ECG extension unchanged. Confirmed source measurements are typed by interval kind. Only saved QRS evidence can support the selected-lead-II below-120-ms statement, and the full stated placement bound must pass. The explicit broader normal-ECG action is vetoed because this workflow has no supporting clinical rule. Both accepted and rejected events replay and export. This demonstrates a bounded workflow, not general semantic clinical validation. `public/reasonos/CLINICAL_EVALUATION.md` states the demonstrated capabilities and a concrete comparative-reader evaluation protocol; no clinical study or educator endorsement is claimed.
 
 ## Native reference practice
 
@@ -103,6 +113,7 @@ npm run typecheck
 npm run lint -- --ignore-pattern 'public/hospitalsim/vendor/**'
 npm run test:coverage
 npm run build
+REASONOS_BASE_URL=http://127.0.0.1:8870 node tools/reasonos/connections-qa.mjs
 REASONOS_BASE_URL=http://127.0.0.1:8870 node tools/reasonos/study-qa.mjs
 REASONOS_BASE_URL=http://127.0.0.1:8870 node tools/reasonos/recorded-qa.mjs
 REASONOS_BASE_URL=http://127.0.0.1:8870 node tools/reasonos/browser-qa.mjs
@@ -112,8 +123,8 @@ The hospital simulator's existing third-party vendor ESLint failures are outside
 this release; that directory is excluded from the lint command above. Existing
 warnings elsewhere are unchanged.
 
-The unit suite has 250 passing tests across 30 files. The six ReasonOS test files
-contain 44 tests covering independent electrode/lead identities, axis scaling,
+The unit suite has 255 passing tests across 31 files. The seven ReasonOS test files
+contain 49 tests covering independent electrode/lead identities, axis scaling,
 calibration, uncertainty, source changes, real-plugin admission, source SHA-256
 compatibility with Node crypto, immutability, replay, tamper rejection, and
 alternative evidence paths. The repository-wide coverage percentage includes

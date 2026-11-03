@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ECGConnections } from "@/components/ECGConnections";
 import { ReferenceECGs } from "@/components/ReferenceECGs";
 import { RecordedECG } from "@/components/RecordedECG";
 import { RECORDINGS } from "@/lib/reasonos/recordings";
@@ -291,31 +292,38 @@ export default function VectorEkgReasonOSPage() {
       <header className="rosx-hero">
         <div className="shell">
           <p className="eyebrow">Vector EKG / ReasonOS</p>
-          <h1>Read an ECG and defend the interpretation</h1>
+          <h1>Understand the electrical event behind the trace</h1>
           <p className="vector-deck">
-            Work through rate, rhythm, axis, intervals, morphology, and serial
-            comparison. Pin the evidence, commit your reasoning, then compare
-            with the reference method.
+            Use the recorded ECG to connect heart activity, lead direction,
+            waveform shape, and source-pixel calculations. Follow the evidence
+            all the way to the claim it can support.
           </p>
         </div>
       </header>
       <nav className="rosx-science-nav shell" aria-label="ECG study sections">
-        <a href="#laboratory">Paired case study</a>
+        <a href="#ecg-connections">Heart, leads & trace</a>
+        <a href="#measurement-workbench">Measurements & practice</a>
         <a href="#ecg-reference-practice">Reference ECG practice</a>
         <a href="#source-case">Source recordings</a>
-        <a href="#architecture">Architecture</a>
+        <a href="#architecture">Clinical usefulness</a>
         <a href="#model-references">Model & references</a>
       </nav>
-      <section
-        className="lab-embed rosx-lab"
-        id="laboratory"
-        aria-label="Interactive ECG and reasoning laboratory"
-      >
-        <div className="reasonos-theme">
-          <RecordedECG />
-        </div>
-      </section>
-      <ReferenceECGs />
+      <ECGConnections />
+      <details className="rosx-model-explanation" id="measurement-workbench">
+        <summary>
+          Independent calipers, interpretation worksheet, and reference cases
+        </summary>
+        <section
+          className="lab-embed rosx-lab"
+          id="laboratory"
+          aria-label="Interactive ECG and reasoning laboratory"
+        >
+          <div className="reasonos-theme">
+            <RecordedECG />
+          </div>
+        </section>
+        <ReferenceECGs />
+      </details>
       <details className="rosx-model-explanation" id="model-explanation">
         <summary>How a lead works · separate idealized vector model</summary>
         <div className="reasonos-theme">
@@ -348,15 +356,68 @@ export default function VectorEkgReasonOSPage() {
               <p className="eyebrow">
                 ReasonOS 0.3.0 · Vector EKG 0.5.0 + laboratory extension
               </p>
-              <h2>Evidence, admission, and replay</h2>
+              <h2>What ReasonOS can establish</h2>
             </div>
             <p>
-              A transformation names its input states, actor, method, and
-              evidence. An admitted event creates a new state. A rejected event
-              remains in the trace without creating one.
+              The source-connected example tests a bounded QRS-duration
+              statement. It preserves the pixels and assumptions behind a
+              finding and rejects the unsupported jump from a short QRS to a
+              normal ECG.
             </p>
           </div>
-          <TransitionDiagram />
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Question</th>
+                  <th>Evidence in this implementation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Can a reviewer reproduce the calculation?</td>
+                  <td>
+                    Source identity, ruler, raw endpoints, placement bound, and
+                    accepted or rejected events are retained and replayed.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Are the boundaries clinically correct?</td>
+                  <td>
+                    They are learner-selected. Reproducible arithmetic does not
+                    adjudicate an onset, a baseline, or an interpretation.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Does the rule establish a normal ECG?</td>
+                  <td>
+                    No. The connected workflow implements a duration-only rule.
+                    Rhythm, morphology, ST–T findings and clinical context
+                    require their own evidence.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Does this improve clinical care?</td>
+                  <td>
+                    Not yet measured. The next test is a comparative
+                    clinician-reader study of accuracy, omissions, time,
+                    confidence and review burden.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <a href="/reasonos/CLINICAL_EVALUATION.md">
+              Read the concrete capability assessment and evaluation protocol
+            </a>
+            . It distinguishes software tests from clinical benefit and
+            specifies the evidence needed to evaluate usefulness.
+          </p>
+          <details className="rosx-technical-detail">
+            <summary>How the evidence engine records its decisions</summary>
+            <TransitionDiagram />
+          </details>
           <details className="rosx-technical-detail">
             <summary>Kernel objects and the ECG plugin boundary</summary>
             <KernelMap />

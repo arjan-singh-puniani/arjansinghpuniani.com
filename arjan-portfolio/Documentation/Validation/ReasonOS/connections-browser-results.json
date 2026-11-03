@@ -1,0 +1,50 @@
+[
+  {
+    "browser": "chromium",
+    "actualSourceDigests": "matched A+B",
+    "independentLeadCalculations": 36,
+    "chestVoltagesNotFabricated": true,
+    "unconfirmedCalibration": "rejected",
+    "durationClaim": "supported only with current measured evidence",
+    "normalEcgClaim": "rejected",
+    "changedAndWideMeasurements": "rejected",
+    "pointerAndResize": "verified",
+    "replayAndExport": "verified",
+    "mobileOverflow": false,
+    "axe": [],
+    "errors": [],
+    "consoleErrors": []
+  },
+  {
+    "browser": "webkit",
+    "actualSourceDigests": "matched A+B",
+    "independentLeadCalculations": 36,
+    "chestVoltagesNotFabricated": true,
+    "unconfirmedCalibration": "rejected",
+    "durationClaim": "supported only with current measured evidence",
+    "normalEcgClaim": "rejected",
+    "changedAndWideMeasurements": "rejected",
+    "pointerAndResize": "verified",
+    "replayAndExport": "verified",
+    "mobileOverflow": false,
+    "axe": [],
+    "errors": [],
+    "consoleErrors": []
+  },
+  {
+    "browser": "firefox",
+    "actualSourceDigests": "matched A+B",
+    "independentLeadCalculations": 36,
+    "chestVoltagesNotFabricated": true,
+    "unconfirmedCalibration": "rejected",
+    "durationClaim": "supported only with current measured evidence",
+    "normalEcgClaim": "rejected",
+    "changedAndWideMeasurements": "rejected",
+    "pointerAndResize": "verified",
+    "replayAndExport": "verified",
+    "mobileOverflow": false,
+    "axe": [],
+    "errors": [],
+    "consoleErrors": []
+  }
+]

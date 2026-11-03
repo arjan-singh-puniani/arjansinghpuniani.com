@@ -34,6 +34,7 @@ for (const [name, engine] of [
       if (m.type() === "error") warnings.push(m.text());
     });
     await page.goto(`${base}/work/vector-ekg-reasonos`);
+    await page.locator("#ecg-connections .katex").first().waitFor();
     await page.locator("#model-explanation > summary").click();
     const lab = page.locator("#reasonos-lab");
     await page.waitForSelector("#reasonos-lab .katex");

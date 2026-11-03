@@ -35,6 +35,8 @@ for (const [name, engine] of [
         hydration.push(m.text());
     });
     await page.goto(`${base}/work/vector-ekg-reasonos`);
+    await page.locator("#ecg-connections .katex").first().waitFor();
+    await page.locator("#measurement-workbench > summary").click();
     const root = page.locator("#recorded-ecg"),
       study = root.locator("#ecg-study");
     await study

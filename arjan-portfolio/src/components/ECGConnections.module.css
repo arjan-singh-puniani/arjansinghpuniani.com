@@ -1,0 +1,381 @@
+.connections {
+  --phase: #75d3dc;
+  padding-top: 22px;
+}
+.heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.heading h2 {
+  font-size: 25px;
+}
+.heading p {
+  font-size: 13px;
+  max-width: 780px;
+  margin-top: 8px;
+}
+.recordings {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.recordings button {
+  font-size: 12px;
+}
+.phaseControls {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+.phaseControls button {
+  font-size: 12px;
+  border-bottom-width: 2px;
+}
+.phaseControls button:last-child {
+  margin-left: auto;
+}
+.scene {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 40px;
+  align-items: start;
+}
+.geometry,
+.source {
+  min-width: 0;
+}
+.sceneLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  min-height: 42px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.sceneLabel span:last-child {
+  color: var(--phase);
+}
+.geometry > svg {
+  width: 100%;
+  max-height: 430px;
+  display: block;
+  overflow: visible;
+}
+.heart path {
+  transition: fill 0.4s;
+  stroke-linejoin: round;
+}
+.heart text {
+  fill: #b9cdd4;
+  font-size: 11px;
+  font-weight: 500;
+}
+.meanVector {
+  transform-origin: 240px 215px;
+  transition: transform 0.5s ease;
+}
+.leadAxis,
+.chestPoint {
+  cursor: pointer;
+}
+.leadAxis:focus-visible circle,
+.chestPoint:focus-visible circle {
+  stroke: white;
+  stroke-width: 3;
+}
+.leadControls {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 12px 0 0;
+}
+.leadControls button {
+  padding: 6px 9px;
+  font-size: 11px;
+}
+.sourceImage {
+  display: block;
+  width: 100%;
+  background: white;
+  border: 1px solid #435e70;
+}
+.source h3 {
+  margin-top: 22px;
+  font-size: 19px;
+  color: var(--phase);
+}
+.connections .explanation {
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 10px 0;
+}
+.source :global(.katex-display) {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.connections .definition {
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 10px 0;
+  color: var(--muted);
+}
+.calculation {
+  border-top: 1px solid var(--line);
+  padding-top: 17px;
+  margin-top: 18px;
+}
+.calculationLabel {
+  display: block;
+  color: var(--phase);
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+.calculation :global(.katex) {
+  font-size: 1em;
+}
+.beatHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid var(--line);
+}
+.beatHead span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.beatRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 40px;
+  margin-top: 18px;
+}
+.beatRow > div {
+  min-width: 0;
+}
+.beatImage {
+  display: block;
+  width: 100%;
+  height: 300px;
+  background: white;
+  touch-action: none;
+  user-select: none;
+}
+.beatImage [data-source-handle],
+.gridImage [data-source-handle] {
+  cursor: ew-resize;
+}
+.scrub {
+  margin: 14px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+.scrub span {
+  color: var(--phase);
+}
+.measurement > div {
+  min-width: 0;
+}
+.intervalControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0;
+}
+.intervalControls button {
+  font-size: 11px;
+  padding: 6px 9px;
+}
+.measurement > div + div {
+  margin-top: 22px;
+}
+.measurement p {
+  font-size: 12px;
+  margin-top: 10px;
+}
+.measurement :global(.katex) {
+  font-size: 1.05em;
+}
+.measurement :global(.katex-display) {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.connections .bound {
+  color: var(--phase);
+  font-size: 12px;
+}
+.gridLabel {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 9px;
+}
+.gridImage {
+  display: block;
+  max-height: 120px;
+  width: 100%;
+  background: white;
+  touch-action: none;
+  user-select: none;
+}
+.precision {
+  margin-top: 18px;
+  font-size: 11px;
+}
+.precision summary {
+  cursor: pointer;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.precision p {
+  font-size: 11px;
+  margin: 12px 0;
+}
+.coordinateGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+.coordinateGrid > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.coordinateGrid strong {
+  grid-column: 1/-1;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.coordinateGrid label {
+  font-size: 11px;
+  color: var(--muted);
+}
+.coordinateGrid input {
+  min-width: 0;
+  width: 100%;
+  font: inherit;
+  padding: 8px;
+  background: #152331;
+  border: 1px solid #42596d;
+  color: var(--ink);
+}
+.reasoning {
+  border-top: 1px solid var(--line);
+  margin-top: 25px;
+  padding-top: 23px;
+}
+.reasoning > label {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.reasoningControls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.reasoningControls button {
+  font-size: 12px;
+}
+.connections .status {
+  color: var(--ink);
+  font-size: 13px;
+  max-width: 1000px;
+  line-height: 1.8;
+}
+.precision ol {
+  padding-left: 20px;
+  line-height: 1.8;
+}
+.precision li {
+  margin: 8px 0;
+  font-size: 12px;
+}
+.precision strong {
+  font-weight: 500;
+}
+.precision pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 300px;
+  overflow: auto;
+  font-size: 10px;
+  background: #081018;
+  padding: 14px;
+}
+.connections .sourceNote {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin-top: 24px;
+}
+.connections a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 850px) {
+  .scene,
+  .beatRow {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .heading {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .geometry > svg {
+    max-height: 350px;
+  }
+  .sceneLabel {
+    min-height: 0;
+    margin-bottom: 12px;
+  }
+  .sourceImage {
+    max-height: 230px;
+  }
+  .beatImage {
+    height: 270px;
+  }
+  .phaseControls {
+    gap: 5px;
+  }
+  .phaseControls button {
+    padding: 8px 10px;
+  }
+  .phaseControls button:last-child {
+    margin-left: 0;
+  }
+  .beatHead {
+    margin-top: 20px;
+    padding-top: 23px;
+  }
+  .heading h2 {
+    font-size: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heart path,
+  .meanVector {
+    transition: none;
+  }
+}

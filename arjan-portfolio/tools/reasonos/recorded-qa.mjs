@@ -35,6 +35,8 @@ for (const [name, engine] of [
       if (m.type() === "error") warnings.push(m.text());
     });
     await page.goto(`${base}/work/vector-ekg-reasonos`);
+    await page.locator("#ecg-connections .katex").first().waitFor();
+    await page.locator("#measurement-workbench > summary").click();
     const root = page.locator("#recorded-ecg");
     await root.getByRole("tab", { name: "Calculations", exact: true }).click();
     await root.locator("[data-calculation-basis] .katex").first().waitFor();
@@ -185,10 +187,13 @@ for (const [name, engine] of [
       .getByRole("slider", { name: "ECG image zoom", exact: true })
       .fill("3");
     const svg = root.getByRole("img", { name: /Actual recording B/ });
-    await svg.evaluate((el) =>
-      el.scrollIntoView({ block: "center", behavior: "instant" }),
-    );
-    await svg.locator("[data-image-marker=m0]").hover();
+    await svg.evaluate((el) => {
+      const rect = el.getBoundingClientRect();
+      scrollTo({
+        top: scrollY + rect.top - (innerHeight - rect.height) / 2,
+        behavior: "instant",
+      });
+    });
     const start = Number(
       await root
         .getByRole("spinbutton", { name: "Marker 1 x", exact: true })
@@ -197,14 +202,22 @@ for (const [name, engine] of [
     const drag = await svg.evaluate((svg) => {
       const p = svg.createSVGPoint();
       const c = svg.querySelector("[data-image-marker=m0] circle");
-      p.x = Number(c.getAttribute("cx")) + 12;
+      p.x = Number(c.getAttribute("cx"));
       p.y = Number(c.getAttribute("cy"));
       const matrix = svg.getScreenCTM();
       const target = p.matrixTransform(matrix);
-      return { x: target.x, y: target.y, tolerance: 1 / matrix.a + 0.2 };
+      return {
+        x: target.x,
+        y: target.y,
+        endX: target.x + 12 * matrix.a,
+        endY: target.y + 12 * matrix.b,
+        tolerance: 1 / matrix.a + 0.2,
+      };
     });
+    assert.ok(drag.y > 72 && drag.y < 1000);
+    await page.mouse.move(drag.x, drag.y);
     await page.mouse.down();
-    await page.mouse.move(drag.x, drag.y, { steps: 5 });
+    await page.mouse.move(drag.endX, drag.endY, { steps: 5 });
     await page.mouse.up();
     const moved = Number(
       await root
