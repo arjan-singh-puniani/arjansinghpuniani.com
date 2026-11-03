@@ -1,3 +1,60 @@
+# RC3 direct pickup fix · 2026-11-02
+
+- A primary press directly on a person now lifts immediately for mouse, touch and pen. The first stationary release keeps them held; a second floor tap puts down. Press-drag-release still works, with authoritative landing checks.
+- Removed the prior select-first/hold-delay behavior from body pickup. Room and patient inspection remains available through People; floor panning and build input retain their controls.
+- Held character materials now use 50% opacity, front faces and a single pass. This avoids the stacked double-sided transparency that made them look too solid. Release restores original materials, drawing order and pose, and clears the held-opacity marker.
+- Added pointer regression checks for sticky pickup, next-tap and drag drops, blocked/cancelled drops, secondary pointers, inspection, panning and construction. Browser checks cover direct body pickup at desktop and 390×844; physical iPhone verification remains pending.
+
+# RC3 character reactions · 2026-11-02
+
+- Added original rotating pickup, safe landing and cancellation lines for nine named staff and four fictional patient personalities. New recruits inherit their role’s voice.
+- Reused the existing status strip and polite live region; held figures stay unobscured. Session-only rotation and a short per-cue cooldown avoid immediate repetition without changing simulation randomness or saves.
+- Added a brief head nod and right cuff check after idle landings. Feet stay planted; walking and service clips take priority. Reduced motion disables the gesture and retains the text.
+- Verified staff and patient pickups, clear and rejected drops, explicit cancellation, keyboard placement and 390×844 layout in the desktop browser. No new Blender work or recorded voices. New reactions have not been tested on a physical iPhone.
+
+# RC3 pickup animation ·2026-11-02
+
+- Added intermittent shoulder twists, wrist curls and alternating bent-knee kicks to the held pose. Reuses the original rig; no new assets or simulation parameters.
+- Preserved the cursor collar pin, translucent materials, safe landing checks and exact pose restoration. Reduced motion disables the squirm and sway.
+- Hid the speech bubble while carrying and rendered the translucent held figure above equipment so the squirm stays visible. Original materials and drawing order return on release.
+- The owner replied “wow much better” to the RC3 iPhone walking/grabbing retest prompt. Device model, iOS version and measured timings were not supplied; this is qualitative owner feedback, not a device benchmark or usability study.
+
+# 1.0.0-rc3 ·2026-11-02
+
+- Executed Blender for13shorter indoor gait clips and retained editable sources. Phase follows actual distance; turns round only within clear routes.
+- Fixed task/rest clips retaining zero animation weight after manually posed transfers. Pauses and reduced motion preserve movement contracts.
+- Reduced route advance to3quarter-cells per second. Preserved save visits and reservations; explicitly separated historical recording outcomes from the changed model.
+- Added a three-arrival opening, a first-neighbor goal and direct Follow action with actual service progress. Seed431first-three wait58s→27s with a consultation; completions stay1in both first-minute runs.
+- Added a bounded next-minute recording option and MP4 preference when supported. Real-device responsiveness and enjoyment remain unvalidated.
+
+# 1.0.0-rc2 · 2026-11-01
+
+- Removed mandatory pickup onboarding. The first action builds a consultation room from a world-space site; Sage physically walks over. Placement restores the previous running/paused state.
+- Removed default floating names and queue annotations after owner feedback. Tap selects one context card; body drag lifts. Full lists remain available, with optional all-name pickup targets in settings.
+- Kept the hospital and essential controls within a 390×844 phone viewport. Advanced room options, placement coordinates and report details are collapsed.
+- Rooms can be built before recruitment, with zero service capacity until a compatible team arrives. The selected room offers the actual recruitment cost. Added atomic staffing/undo/replay regression checks.
+- Next shift retains the hospital and unfinished visits. Debrief leads with actual people home and the recorded closing constraint.
+- Enjoyment, iPhone responsiveness and external educational review remain unvalidated. This is a release candidate.
+
+# 1.0.0-rc1 ·2026-11-01
+
+- Replaced per-move route work with cached green landing regions; preserved authoritative drop validation and fine spacing.
+- Fixed narrow-screen role-target overlap and recruit-role selections resetting during panel refresh. Added explicit startup-disabled controls.
+- Added staffed intake, nine distinct role responsibilities, physician review setting, medical-assistant support, physical facilities work and two modeled incidents with actual consequences.
+- Added physical reassignment, rotated doors/equipment previews, two-seat waiting gardens and safe bench rearrangement. Kept occupied routes/modules protected.
+- Added continuing sandbox periods with carried visits and explicit lifetime accounting; protected legacy saves and displaced-tab recovery.
+- Executed Blender lobby, two additional wardrobes/props and40.6%equipment LOD work. Retained original sources, all11adult appearances and high-detail assets. Instanced static contact shadows.
+- Recorded a complete0–480shift through actual controls and verified the action replay against source. Added current browser, asset and model evidence. Real iPhone retest, external review and comparative enjoyment/learning remain pending.
+
+## 0.7.0 · 2026-11-01 · Touch pickup and readable staff roles
+
+- Replaced tiny-target long-press pickup with immediate tap-to-lift/tap-to-place and drag release. A short first tap keeps the person held. Invalid floor drops keep holding; visible fixed controls offer put-down and cancel.
+- Added a 44px minimum projected body hit area, seven named role labels, clothing/badges, label leader lines and a labels toggle. Front desk is actual modeled staff with no clinical capacity; removed the unpickable ambient discussion partner.
+- Executed Blender for seven original role wardrobes, two detail levels each. Reuse the existing nine clips on the unchanged 39-joint rigs; no duplicated animation download in these GLBs.
+- Assigned staff can be moved during work. Their reserved visit waits until the colleague returns, preserves queue priority and classifies each elapsed second once. No free service capacity while away.
+- Migrates prior saves without dropping visits; adds front desk once when below the staff cap. Their future wages enter the existing staff cost. Same-seed comparisons must identify this model-version change.
+- Added an explicit next-shift action for ended saves. Tested browser taps/body targets, safe drops, roles and narrow layout; actual iPhone Safari responsiveness and pickup require the owner's retest.
+
 ## 0.6.1 · 2026-10-31 · iPhone feedback
 
 - Anchored pickup at the collar under the pointer/fingertip; held characters are65%opaque and pivot around the grip. Restore original materials on drop/cancel.

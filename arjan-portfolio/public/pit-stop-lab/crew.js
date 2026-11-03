@@ -37,6 +37,19 @@ export function stationCrewPose(stop,corner,role,time,track){
  return {root,kneel:progress(ready,.6,1)*servicePose*(1-stand),lean:role>0?ready*(1-clear)*.18:0};
 }
 
+export function outgoingWheelPose(stop,corner,time,track,height){
+ const c=cornerSnapshot(stop.corners[corner],time),side=corner.endsWith('L')?1:-1,z=(corner.startsWith('F')?-1.65:1.65)-stop.error;
+ const axial=Math.min(1,c.removal/.65),carry=progress(c.removal,.65,1),handler=stationCrewPose(stop,corner,1,time,track);
+ const from=[side*(track+axial*.85),height,z],held=[handler.root[0]-side*.28,.61,handler.root[2]-.16];
+ return from.map((v,i)=>mix(v,held[i],carry));
+}
+
+export function jackCrewPose(stop,index,time){
+ const sign=index===0?-1:1,up=index===0?stop.front:stop.rear,down=index===0?stop.frontDown:stop.rearDown;
+ const engagement=progress(time,up.start,up.end)*(1-(down?progress(time,down.start,down.end):0));
+ return {root:[0,0,sign*(3.85+(1-engagement)*.45)-stop.error],kneel:0,lean:engagement*.04};
+}
+
 function desiredFeet(pose,heading){
  const cos=Math.cos(heading),sin=Math.sin(heading);
  return crewPosture({kneel:pose.kneel}).legs.map(({foot:[x,y,z]})=>[pose.root[0]+x*cos+z*sin,y,pose.root[2]-x*sin+z*cos]);

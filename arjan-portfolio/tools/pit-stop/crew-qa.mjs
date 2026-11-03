@@ -12,11 +12,12 @@ try{
  const returnAnchor='    return { update, render, setView, setCamera, resize,';
  assert.ok(source.includes(poseAnchor)&&source.includes(returnAnchor));
  source=source.replace(poseAnchor,"        person.userData.qaContacts=movement.contacts;\n"+poseAnchor);
- source=source.replace(returnAnchor,"    window.__PIT_CREW_QA__=()=>[...Object.values(stations).flatMap(s=>s.people),supplyOperator].map(p=>({contacts:p.userData.qaContacts,feet:p.userData.feet.map(f=>f.getWorldPosition(new THREE.Vector3()).toArray())}));\n"+returnAnchor);
+ source=source.replace(returnAnchor,"    window.__PIT_CREW_QA__=()=>[...Object.values(stations).flatMap(s=>s.people),supplyOperator,...jacks.map(j=>j.operator)].map(p=>({contacts:p.userData.qaContacts,head:p.userData.head.rotation.toArray(),feet:p.userData.feet.map(f=>f.getWorldPosition(new THREE.Vector3()).toArray())}));\n"+returnAnchor);
+ source=source.replace(returnAnchor,"    window.__PIT_CARRY_QA__=()=>Object.values(stations).map(s=>({removed:lastSnapshot.cars[lastSnapshot.activeCar-1].corners[Object.keys(stations).find(k=>stations[k]===s)].removal,wheel:s.old.getWorldPosition(new THREE.Vector3()).toArray(),hands:s.people[1].userData.hands.map(h=>h.getWorldPosition(new THREE.Vector3()).toArray())}));\n"+returnAnchor);
  const context=await browser.newContext({viewport:{width:1440,height:1000},recordVideo:{dir:out+'/raw-video',size:{width:1440,height:1000}}});
  const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
  await page.route('**/world.js',r=>r.fulfill({body:source,contentType:'text/javascript'}));
- await page.goto(`${base}/pit-stop-lab/index.html`);await page.waitForFunction(()=>window.__PIT_LAB_STATE__?.render?.heroLoaded);
+ await page.goto(`${base}/pit-stop-lab/index.html?experience=explore`);await page.waitForFunction(()=>window.__PIT_LAB_STATE__?.render?.heroLoaded);
  await page.locator('button[data-experience=engineer]').click();await page.locator('[data-car-camera=carHero]').evaluate(el=>el.click());
  report.contacts=await page.evaluate(()=>{
   const timeline=document.querySelector('#timeline');
@@ -32,6 +33,7 @@ try{
   const expected=seek(2.8);seek(1.2);const repeated=seek(2.8);
   return {maxRenderError,maxPlantedDrift,samples,seekExact:JSON.stringify(expected)===JSON.stringify(repeated)};
  });
+ report.carry=await page.evaluate(()=>{const el=document.querySelector('#timeline');let maxGripDistance=0,samples=0;for(let t=2.8;t<5.5;t+=1/120){el.value=t;el.dispatchEvent(new Event('input',{bubbles:true}));for(const row of window.__PIT_CARRY_QA__())if(row.removed===1){for(const hand of row.hands){maxGripDistance=Math.max(maxGripDistance,Math.hypot(...hand.map((v,i)=>v-row.wheel[i])));samples++;}}}return {maxGripDistance,samples};});assert.ok(report.carry.samples>1000);assert.ok(report.carry.maxGripDistance<.44,'Outgoing tire loses contact with its handler');report.checks.push('Outgoing tires remain in the handler grips through retreat');
  assert.ok(report.contacts.samples>10000);assert.ok(report.contacts.maxRenderError<1e-8,'Rendered foot differs from floor anchor');assert.ok(report.contacts.maxPlantedDrift<1e-8,'Support foot slides in world space');assert.ok(report.contacts.seekExact,'Seeking changes contact positions');
  report.checks.push('Rendered soles match requested world contacts','Planted support feet stay fixed across the full stop and supply-cart movement','Backward seeking restores identical body and foot poses');
  await page.locator('#hideBtn').click();await page.locator('#speed').evaluate(el=>{el.value='.25';el.dispatchEvent(new Event('change',{bubbles:true}));});await page.waitForTimeout(850);

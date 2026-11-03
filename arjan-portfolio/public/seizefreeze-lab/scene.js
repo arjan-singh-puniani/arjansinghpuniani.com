@@ -1,6 +1,9 @@
 import * as T from "/pit-stop-lab/vendor/three.module.js";
 import { OrbitControls } from "/pit-stop-lab/vendor/OrbitControls.js";
 import { createAnatomy } from "./anatomy.js";
+import { createDevice } from "./device.js";
+import { fitDevice } from "./device-fit.js";
+import { deviceSpec, componentIds, anchors, explodedOffsets } from "./device-spec.js";
 
 // Original concept device on attributed reference anatomy; device dimensions and layer gaps are schematic.
 export async function createScene(host, onSelect = () => {}, onLayer = () => {}) {
@@ -25,21 +28,9 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   renderer.shadowMap.type = T.PCFSoftShadowMap;
   renderer.shadowMap.autoUpdate = false;
   renderer.shadowMap.needsUpdate = true;
-  const controls = new OrbitControls(camera, canvas);
-  controls.enableZoom = true;
-  controls.minDistance = 16;
-  controls.maxDistance = 650;
-  controls.zoomSpeed = 0.55;
-  controls.enablePan = false;
-  controls.enableDamping = false;
-  controls.minPolarAngle = 0.15;
-  controls.maxPolarAngle = 2.8;
-  controls.touches.ONE = T.TOUCH.ROTATE;
-  controls.touches.TWO = T.TOUCH.DOLLY_ROTATE;
-  // OrbitControls normally disables document touch scrolling. Restore vertical pan.
-  canvas.style.touchAction = "pan-y";
+  let controls;
   scene.add(new T.HemisphereLight(0xb9cfde, 0x111820, 0.64));
-  const key = new T.DirectionalLight(0xffeddb, 2.55);
+  const key = new T.DirectionalLight(0xffeddb, 2.05);
   key.position.set(-190, 240, 150);
   key.castShadow = !softwareRenderer;
   key.shadow.mapSize.set(2048, 2048);
@@ -64,10 +55,10 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     const light = new T.Mesh(new T.BoxGeometry(...size), new T.MeshBasicMaterial({ color }));
     light.position.set(...position); studio.add(light);
   }
-  const pmrem = new T.PMREMGenerator(renderer), environment = pmrem.fromScene(studio, 0.04);
-  scene.environment = environment.texture;
+  const pmrem = softwareRenderer ? null : new T.PMREMGenerator(renderer), environment = pmrem?.fromScene(studio, 0.04);
+  scene.environment = environment?.texture ?? null;
   scene.environmentIntensity = 0.78;
-  studio.traverse(o => { o.geometry?.dispose(); o.material?.dispose(); }); pmrem.dispose();
+  studio.traverse(o => { o.geometry?.dispose(); o.material?.dispose(); }); pmrem?.dispose();
   const grainCanvas = document.createElement("canvas");
   grainCanvas.width = grainCanvas.height = 128;
   const context = grainCanvas.getContext("2d"), pixels = context.createImageData(128, 128);
@@ -88,111 +79,33 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     tissue: material(0x9b7f85, 0, 0.86, { vertexColors: true, side: T.DoubleSide }),
     contact: material(0xc3d4d3, 0.1, 0.52, { transparent: true, opacity: 0.85 }),
   };
-  const root = new T.Group(); scene.add(root);
-  const ids = ["interface", "coldplate", "tec", "heatpath", "sensing", "electronics", "package"];
-  const groups = Object.fromEntries(ids.map(id => { const group = new T.Group(); group.userData.component = id; root.add(group); return [id, group]; }));
-  const allPickable = [], highlights = [];
-  const add = (group, geometry, mat, position = [0, 0, 0]) => {
-    const mesh = new T.Mesh(geometry, mat); mesh.position.set(...position); group.add(mesh);
-    mesh.castShadow = true; mesh.receiveShadow = true;
-    if (group.userData.component) { mesh.userData.component = group.userData.component; allPickable.push(mesh); }
-    return mesh;
-  };
-  function roundedShape(w, d, r) {
-    const s = new T.Shape(), x = -w / 2, z = -d / 2;
-    s.moveTo(x + r, z); s.lineTo(x + w - r, z); s.quadraticCurveTo(x + w, z, x + w, z + r);
-    s.lineTo(x + w, z + d - r); s.quadraticCurveTo(x + w, z + d, x + w - r, z + d);
-    s.lineTo(x + r, z + d); s.quadraticCurveTo(x, z + d, x, z + d - r);
-    s.lineTo(x, z + r); s.quadraticCurveTo(x, z, x + r, z); return s;
-  }
-  function plate(group, w, d, h, y, mat, r = 0.22) {
-    const bevel = Math.min(0.025, h * 0.2);
-    const geometry = new T.ExtrudeGeometry(roundedShape(w, d, r), { depth: h - bevel * 2, bevelEnabled: true, bevelSize: bevel, bevelThickness: bevel, bevelSegments: 2, steps: 1, curveSegments: 6 });
-    geometry.rotateX(-Math.PI / 2); geometry.translate(0, bevel, 0);
-    return add(group, geometry, mat, [0, y, 0]);
-  }
-  const box = (g, size, pos, mat) => add(g, new T.BoxGeometry(...size), mat, pos);
-  const cylinder = (g, radius, height, pos, mat, segments = 20) => add(g, new T.CylinderGeometry(radius, radius, height, segments), mat, pos);
-  function tube(g, points, mat, radius = 0.018) {
-    return add(g, new T.TubeGeometry(new T.CatmullRomCurve3(points.map(p => new T.Vector3(...p))), 24, radius, 5, false), mat);
-  }
-  function instanced(g, geometry, mat, positions) {
-    const mesh = new T.InstancedMesh(geometry, mat, positions.length), transform = new T.Object3D();
-    positions.forEach((p, i) => { transform.position.set(...p); transform.updateMatrix(); mesh.setMatrixAt(i, transform.matrix); });
-    mesh.userData.component = g.userData.component; mesh.castShadow = true; mesh.receiveShadow = true; g.add(mesh); allPickable.push(mesh); return mesh;
-  }
-  const seated = { interface: 0, coldplate: 0, tec: 0, heatpath: 0, sensing: 0, electronics: 0, package: 0 };
-  const offsets = { interface: 0.12, coldplate: 0.65, tec: 1.28, heatpath: 1.96, sensing: 0.18, electronics: 2.65, package: 3.25 };
-  plate(groups.interface, 3.18, 2.48, 0.10, 0.0, mats.contact);
-  plate(groups.coldplate, 3.1, 2.4, 0.16, 0.13, mats.cold);
-  plate(groups.tec, 2.62, 1.94, 0.075, 0.32, mats.ceramic, 0.12);
-  plate(groups.tec, 2.62, 1.94, 0.075, 0.75, mats.ceramic, 0.12);
-  const pillars = [];
-  for (let x = -1; x <= 1.01; x += 0.28) for (let z = -0.65; z <= 0.66; z += 0.28) pillars.push([x, 0.57, z]);
-  instanced(groups.tec, new T.BoxGeometry(0.15, 0.34, 0.15), mats.darkmetal, pillars.filter((_, i) => i % 2 === 0));
-  instanced(groups.tec, new T.BoxGeometry(0.15, 0.34, 0.15), mats.blue, pillars.filter((_, i) => i % 2 === 1));
-  const bridges = [];
-  for (let x = -0.86; x < 1; x += 0.56) for (let z = -0.65; z <= 0.66; z += 0.28) bridges.push([x, 0.4, z]);
-  instanced(groups.tec, new T.BoxGeometry(0.43, 0.025, 0.17), mats.gold, bridges);
-  const ring = roundedShape(3.38, 2.68, 0.3), ringHole = new T.Path(roundedShape(2.8, 2.12, 0.18).getPoints());
-  ring.holes.push(ringHole);
-  const ringGeo = new T.ExtrudeGeometry(ring, { depth: 0.3, bevelEnabled: false, curveSegments: 8 }); ringGeo.rotateX(-Math.PI / 2);
-  add(groups.coldplate, ringGeo, mats.insulation, [0, 0.31, 0]);
-  plate(groups.heatpath, 3.13, 2.43, 0.17, 0.87, mats.hot);
-  for (const x of [-1.42, 1.42]) box(groups.heatpath, [0.16, 0.48, 2.15], [x, 1.15, 0], mats.hot);
-  // A route candidate, not a solved chronic heat sink.
-  tube(groups.heatpath, [[1.45, 1.04, -0.45], [1.87, 1.03, -0.48], [2.13, 0.93, -0.53], [2.65, 0.92, -0.55]], mats.hot, 0.055);
-  for (const z of [-0.77, 0.77]) {
-    tube(groups.sensing, [[-2.08, -0.1, z], [-1.84, 0.02, z], [-1.65, 0.16, z], [-1.51, 0.28, z], [-1.42, 1.48, z]], mats.violet, 0.023);
-    cylinder(groups.sensing, 0.12, 0.04, [-2.08, -0.1, z], mats.gold);
-  }
-  for (const x of [-1.18, 1.18]) {
-    add(groups.sensing, new T.SphereGeometry(0.065, 12, 8), mats.violet, [x, 0.14, 0.8]);
-    tube(groups.sensing, [[x, 0.14, 0.8], [x, 0.18, 1.14], [x, 1.48, 1.14]], mats.violet, 0.012);
-  }
-  plate(groups.electronics, 2.9, 2.15, 0.085, 1.43, mats.board);
-  box(groups.electronics, [0.85, 0.13, 0.75], [-0.4, 1.57, 0.06], mats.chip);
-  box(groups.electronics, [0.46, 0.1, 0.52], [0.62, 1.55, -0.42], mats.chip);
-  const pins = [];
-  for (let i = 0; i < 7; i++) for (const x of [-0.91, 0.1]) pins.push([x, 1.53, -0.27 + i * 0.1]);
-  instanced(groups.electronics, new T.BoxGeometry(0.13, 0.035, 0.04), mats.gold, pins);
-  const passives = [];
-  for (let i = 0; i < 8; i++) passives.push([0.36 + (i % 4) * 0.23, 1.54, 0.22 + Math.floor(i / 4) * 0.26]);
-  instanced(groups.electronics, new T.BoxGeometry(0.13, 0.08, 0.075), mats.ceramic, passives);
-  for (let i = 0; i < 6; i++) {
-    const z = -0.68 + i * 0.23;
-    tube(groups.electronics, [[-1.25, 1.483, z], [-1.05, 1.483, z], [-1.02, 1.483, z + 0.07], [-0.94, 1.483, z + 0.07]], mats.gold, 0.008);
-  }
-  tube(groups.electronics, [[1.38, 1.5, 0.58], [1.69, 1.5, 0.65], [1.78, 0.69, 0.65], [1.25, 0.6, 0.67]], mats.blue, 0.021);
-  tube(groups.electronics, [[-1.18, 1.51, -0.9], [-1.8, 1.6, -1.1], [-2.35, 1.65, -1.2]], mats.gold, 0.026);
-  plate(groups.package, 3.6, 2.92, 0.17, 1.84, mats.titanium, 0.38);
-  const lidInset = plate(groups.package, 3.23, 2.55, 0.015, 2.014, mats.darkmetal, 0.25);
-  for (const x of [-1.68, 1.68]) box(groups.package, [0.11, 0.78, 2.3], [x, 1.45, 0], mats.titanium);
-  const screws = [];
-  for (const x of [-1.48, 1.48]) for (const z of [-1.14, 1.14]) {
-    screws.push([x, 2.05, z]);
-    box(groups.package, [0.09, 0.008, 0.015], [x, 2.091, z], mats.darkmetal);
-    box(groups.package, [0.015, 0.008, 0.09], [x, 2.091, z], mats.darkmetal);
-  }
-  instanced(groups.package, new T.CylinderGeometry(0.07, 0.07, 0.055, 20), mats.titanium, screws);
-  // A restrained engraved identification plate, rather than a luminous screen.
-  const markCanvas = document.createElement("canvas"); markCanvas.width = 512; markCanvas.height = 128;
-  const mark = markCanvas.getContext("2d"); mark.fillStyle = "#607584"; mark.fillRect(0, 0, 512, 128);
-  mark.font = "500 44px sans-serif"; mark.fillStyle = "#e0e7e9"; mark.fillText("SEIZE / FREEZE", 20, 56);
-  mark.font = "19px monospace"; mark.fillStyle = "#becbd2"; mark.fillText("CYBERPUNK REALITY · CONCEPT", 22, 96);
-  const markTexture = new T.CanvasTexture(markCanvas); markTexture.colorSpace = T.SRGBColorSpace;
-  const emblem = add(groups.package, new T.PlaneGeometry(2.5, 0.64), new T.MeshStandardMaterial({ map: markTexture, metalness: 0.45, roughness: 0.5 }), [0, 2.031, 0]); emblem.rotation.x = -Math.PI / 2;
-  lidInset.userData.component = "package";
-
   const anatomy = await createAnatomy(T, { simplifySurroundings: softwareRenderer, onProgress: fraction => {
     const loading = host.querySelector('#scene-loading');
     if (loading) loading.textContent = `Loading reference anatomy… ${Math.round(fraction * 100)}%`;
   }});
   scene.add(anatomy.group);
-  const mount = anatomy.target.clone().addScaledVector(anatomy.normal, 0.65);
+  const fit = fitDevice(anatomy.cortexMeshes.map(mesh => ({ positions: mesh.geometry.attributes.position.array, indices: mesh.geometry.index?.array })), {
+    target: anatomy.target.toArray(), normal: anatomy.normal.toArray(), u: anatomy.u.toArray(), v: anatomy.v.toArray(),
+    span: deviceSpec.fit.span, minRigidY: deviceSpec.body.bottom, clearance: deviceSpec.fit.minimumRigidClearance,
+  });
+  const device = createDevice(T, mats, fit), { root, groups } = device;
+  scene.add(root);
+  const ids = componentIds, allPickable = device.pickable, highlights = [];
+  const inspectionStage = new T.Group(); scene.add(inspectionStage);
+  const stageFloor = new T.Mesh(new T.PlaneGeometry(180, 180), material(0x040d13, .22, .78));
+  stageFloor.rotation.x = -Math.PI / 2; stageFloor.position.y = -9.5; stageFloor.receiveShadow = true; inspectionStage.add(stageFloor);
+  inspectionStage.visible = false;
+  const inspectionKey = new T.DirectionalLight(0xe4edf3, 1.8), inspectionFill = new T.DirectionalLight(0x8cbdcf, .8);
+  inspectionKey.castShadow=!softwareRenderer;inspectionKey.shadow.mapSize.set(1024,1024);inspectionKey.shadow.normalBias=.025;inspectionKey.shadow.radius=3;
+  Object.assign(inspectionKey.shadow.camera,{left:-30,right:30,top:30,bottom:-30,near:.1,far:140});
+  scene.add(inspectionKey, inspectionKey.target, inspectionFill, inspectionFill.target);
+  const seated = Object.fromEntries(ids.map(id => [id, 0])), offsets = explodedOffsets;
+  const mount = anatomy.target.clone().addScaledVector(anatomy.normal, fit.datum);
   root.position.copy(mount);
-  root.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), anatomy.normal);
-  root.scale.set(10 / 3.18, 1.1, 10 / 2.48);
+  root.quaternion.setFromRotationMatrix(new T.Matrix4().makeBasis(anatomy.u, anatomy.normal, anatomy.v.clone().negate()));
+  inspectionStage.position.copy(root.position); inspectionStage.quaternion.copy(root.quaternion);
+  inspectionKey.position.copy(mount).addScaledVector(anatomy.normal, 40).addScaledVector(anatomy.u, -30).addScaledVector(anatomy.v, 25); inspectionKey.target.position.copy(mount);
+  inspectionFill.position.copy(mount).addScaledVector(anatomy.normal, 15).addScaledVector(anatomy.u, 35).addScaledVector(anatomy.v, -20); inspectionFill.target.position.copy(mount);
   let peelValue = 0.86;
   anatomy.peel(peelValue);
   anatomy.setContext?.("region");
@@ -207,22 +120,34 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   title.dataset.sfOverlay = "true";
   Object.assign(title.style, { position: "absolute", left: "24px", bottom: "16px", maxWidth: "calc(100% - 48px)", color: "#a5b9c6", font: "11px/1.6 monospace", letterSpacing: ".04em", pointerEvents: "none" });
   title.textContent = "PROPOSED STACK · LAYER GAPS EXAGGERATED · ILLUSTRATIVE ANATOMY"; host.append(title);
-  const labelInfo = {
-    interface: { label: "CONTACT INTERFACE", point: [-1.45, 0.06, 0.95], color: "#a7c1c6", side: -1 },
-    coldplate: { label: "COLD-SIDE SPREADER", point: [1.42, 0.24, 0.8], color: "#8bd4e3", side: 1 },
-    tec: { label: "THERMOELECTRIC COUPLES", point: [-1.05, 0.58, 0.5], color: "#b8c7d4", side: -1 },
-    heatpath: { label: "HOT-SIDE HEAT PATH", point: [2.62, 0.92, -0.55], color: "#dbb37d", side: 1 },
-    sensing: { label: "ELECTRODES + SENSORS", point: [-2.08, -0.08, 0.77], color: "#c4ace4", side: -1 },
-    electronics: { label: "CONTROL + POWER", point: [0.7, 1.56, 0.4], color: "#92b9e6", side: 1 },
-    package: { label: "ENCAPSULATION CONCEPT", point: [-1.45, 2.06, -0.4], color: "#c9d4dd", side: -1 },
-  };
+  const labelInfo = { ...anchors, ...device.anchors };
   const connections = new T.Group(); root.add(connections);
   let selected = null, exploded = false, currentView = "region", disposed = false, visible = true, active = true, frames = 0, raf = 0, renderMilliseconds = [];
-  let transition = null, lensRect = null, lensOuterRect = null;
+  let transition = null, lensRect = null, lensOuterRect = null, showDimensions = false, focusId = null, lastRenderTime = 0, slowFrames = 0;
+  function configureControls(){
+    const previousTarget=controls?.target.clone();controls?.dispose();
+    controls = new OrbitControls(camera, canvas);
+    controls.enableZoom = true;
+    controls.minDistance = 16;
+    controls.maxDistance = 650;
+    controls.zoomSpeed = 0.55;
+    controls.enablePan = false;
+    controls.enableDamping = false;
+    controls.minPolarAngle = 0.15;
+    controls.maxPolarAngle = 2.8;
+    controls.touches.ONE = T.TOUCH.ROTATE;
+    controls.touches.TWO = T.TOUCH.DOLLY_ROTATE;
+    // OrbitControls normally disables document touch scrolling. Restore vertical pan.
+    canvas.style.touchAction = "pan-y";
+    if(previousTarget)controls.target.copy(previousTarget);
+    controls.addEventListener("change",render);controls.addEventListener("start",()=>{transition=null;});
+  }
+  configureControls();
   const projectionOffset = new T.Vector2(), reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const clearColor = new T.Color(), lensCoverings = ["scalp", "skull", "dura", "arachnoid", "csf"];
   function lensElement() { return host.querySelector("#device-lens"); }
   function openingOverview() { return currentView === "region" && document.body.dataset.anatomyGuide === "false"; }
+  function targetFacingCamera() { return camera.position.clone().sub(anatomy.target).dot(anatomy.normal) > 0; }
   function updateLens() {
     const element = lensElement();
     const placementTab = document.querySelector("#placement-tab");
@@ -257,7 +182,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   }
   function lensPackagePixel() {
     if (!lensRect) return null;
-    const point = groups.package.localToWorld(new T.Vector3(0, 2.055, 0)).project(lensCamera);
+    const point = groups.package.localToWorld(new T.Vector3(...labelInfo.package.point)).project(lensCamera);
     return { x: lensRect.x + (point.x * .5 + .5) * lensRect.width, y: lensRect.y + (-point.y * .5 + .5) * lensRect.height, coordinates: "host-local CSS pixels" };
   }
   function rebuildConnections() {
@@ -274,12 +199,14 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   }
   function labels() {
     const w = host.clientWidth, h = host.clientHeight;
+    const inspector = document.querySelector('.inspector')?.getBoundingClientRect(), hostBounds = host.getBoundingClientRect();
+    const fieldRight = w > 760 && inspector ? inspector.left - hostBounds.left - 24 : w;
     labelSvg.setAttribute("viewBox", `0 0 ${w} ${h}`);
     const placement = currentView === "head" || currentView === "region";
     const shown = selected ? [selected] : exploded ? ["package", "tec"] : ["package"];
-    const entries = (placement ? [
+    const entries = (placement ? (targetFacingCamera() ? [
       { label: "LEFT SUPERIOR TEMPORAL GYRUS", point: anatomy.target.clone(), color: "#c7b1e8", side: -1 },
-    ] : shown.map(id => {
+    ] : []) : shown.map(id => {
       const info = labelInfo[id], point = new T.Vector3(...info.point);
       groups[id].localToWorld(point);
       return { ...info, point };
@@ -288,7 +215,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
       return { ...info, x: (v.x * 0.5 + 0.5) * w, y: (-v.y * 0.5 + 0.5) * h, z: v.z };
     }).filter(p => p.z > -1 && p.z < 1 && p.x > -20 && p.x < w + 20 && p.y > -20 && p.y < h + 20);
     labelSvg.replaceChildren();
-    if (lensRect) {
+    if (lensRect && targetFacingCamera()) {
       const p = mount.clone().addScaledVector(anatomy.normal, 2).project(camera);
       const x = (p.x * .5 + .5) * w, y = (-p.y * .5 + .5) * h;
       const connector = document.createElementNS(ns, "path");
@@ -299,18 +226,47 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     entries.forEach((p, i) => {
       const mobile = w < 560;
       const label = mobile && p.label === "LEFT SUPERIOR TEMPORAL GYRUS" ? "LEFT STG · EXAMPLE TARGET" : mobile && p.label.startsWith("SEIZEFREEZE") ? "10 MM CONTACT" : p.label;
-      const textWidth = Math.max(110, label.length * 6.8);
-      const tx = p.side < 0 ? (mobile ? 18 : 32) : w - textWidth - (mobile ? 18 : 32);
-      let ty = Math.max(mobile ? 250 : 180, Math.min(h - (mobile ? 190 : 145), p.y - 32));
+      const textWidth = Math.max(110, label.length * 6.2);
+      const tx = p.side < 0 ? (mobile ? 18 : 28) : Math.max(18, fieldRight - textWidth - 20);
+      let ty = Math.max(mobile ? 285 : 235, Math.min(h - (mobile ? 190 : 145), p.y - 32));
       if (entries.length > 1 && mobile) ty = [Math.max(270, p.y - 30), h * .57][i];
       const edgeX = p.side < 0 ? tx + textWidth : tx;
       const path = document.createElementNS(ns, "path"); path.setAttribute("d", `M ${p.x.toFixed(1)} ${p.y.toFixed(1)} L ${edgeX} ${ty + 8} L ${tx} ${ty + 8}`);
       path.setAttribute("fill", "none"); path.setAttribute("stroke", p.color); path.setAttribute("stroke-width", ".7"); path.setAttribute("opacity", ".6");
       const dot = document.createElementNS(ns, "circle"); dot.setAttribute("cx", p.x); dot.setAttribute("cy", p.y); dot.setAttribute("r", "2.2"); dot.setAttribute("fill", p.color);
       const text = document.createElementNS(ns, "text"); text.setAttribute("x", tx); text.setAttribute("y", ty); text.setAttribute("fill", p.color); text.setAttribute("font-family", "monospace"); text.setAttribute("font-size", "11"); text.setAttribute("letter-spacing", ".6");
-      text.setAttribute("stroke", "#0b1117"); text.setAttribute("stroke-width", "3"); text.setAttribute("paint-order", "stroke"); text.textContent = label;
-      labelSvg.append(path, dot, text);
+      text.setAttribute("font-size", "10.5"); text.setAttribute("letter-spacing", ".3"); text.textContent = label;
+      const backing = document.createElementNS(ns, "rect"); backing.setAttribute("x", tx-8); backing.setAttribute("y", ty-15); backing.setAttribute("width", textWidth+16); backing.setAttribute("height", 23); backing.setAttribute("rx", "3"); backing.setAttribute("fill", "#09151f"); backing.setAttribute("fill-opacity", ".92"); backing.setAttribute("stroke", "#304955"); backing.setAttribute("stroke-width", ".6");
+      labelSvg.append(path, dot, backing, text);
     });
+  }
+  function dimensions() {
+    if (!showDimensions || !["system", "interface"].includes(currentView)) return;
+    const w = host.clientWidth, h = host.clientHeight;
+    const componentWidths={interface:10,coldplate:10.4,tec:8.8,heatpath:10.4,electronics:10.6,package:12};
+    let guides;
+    if(focusId==='sensing'){
+      const [a,b]=device.info.sampledPads,span=new T.Vector3(...a).distanceTo(new T.Vector3(...b));
+      guides=[{id:'sensing',a,b,text:`${span.toFixed(1)} mm pad-centre span · assumed`}];
+    }else if(focusId){
+      const width=componentWidths[focusId],heights={interface:0,coldplate:.25,tec:1.29,heatpath:1.57,electronics:2.34,package:2.95};
+      guides=[{id:focusId,a:[-width/2,heights[focusId]+.2,-width/2-.5],b:[width/2,heights[focusId]+.2,-width/2-.5],text:`${width} mm ${ {interface:'projection',coldplate:'spreader',tec:'ceramic face',heatpath:'spreader',electronics:'PCB',package:'housing'}[focusId] } · assumed`}];
+    }else guides=[
+      { id: "interface", a: [-5, 0, 5.4], b: [5, 0, 5.4], text: "10 mm contact · assumed" },
+      { id: "package", a: [-6, 3.25, -6.4], b: [6, 3.25, -6.4], text: "12 mm housing · assumed" },
+    ];
+    for (const guide of guides) {
+      const project = p => { const v = groups[guide.id].localToWorld(new T.Vector3(...p)).project(camera); return { x: (v.x * .5 + .5) * w, y: (-v.y * .5 + .5) * h, z: v.z }; };
+      const a = project(guide.a), b = project(guide.b);
+      if ([a,b].some(p => p.z < -1 || p.z > 1)) continue;
+      const line = document.createElementNS(ns, "path");
+      line.setAttribute("d", `M ${a.x} ${a.y} L ${b.x} ${b.y} M ${a.x} ${a.y-4} v 8 M ${b.x} ${b.y-4} v 8`);
+      line.setAttribute("fill", "none"); line.setAttribute("stroke", "#c4d1d8"); line.setAttribute("stroke-width", ".8");
+      const text = document.createElementNS(ns, "text"); text.setAttribute("x", Math.max(100, Math.min(w-100,(a.x+b.x)/2))); text.setAttribute("y", Math.max(20,Math.min(h-20,(a.y+b.y)/2-10)));
+      text.setAttribute("text-anchor", "middle"); text.setAttribute("font-family", "monospace"); text.setAttribute("font-size", "10"); text.setAttribute("fill", "#d0dbe1"); text.textContent=guide.text;
+      const backing=document.createElementNS(ns,"rect"), width=guide.text.length*6+14;backing.setAttribute("x",Number(text.getAttribute("x"))-width/2);backing.setAttribute("y",Number(text.getAttribute("y"))-12);backing.setAttribute("width",width);backing.setAttribute("height",18);backing.setAttribute("rx",3);backing.setAttribute("fill","#09151f");backing.setAttribute("fill-opacity",".92");
+      labelSvg.append(line,backing,text);
+    }
   }
   function applyProjection() {
     camera.setViewOffset(host.clientWidth, Math.max(1, host.clientHeight), projectionOffset.x * host.clientWidth, projectionOffset.y * host.clientHeight, host.clientWidth, Math.max(1, host.clientHeight));
@@ -318,16 +274,30 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   }
   function renderNow(time) {
     raf = 0; if (disposed || !visible || !active || document.hidden || !host.clientWidth || !host.clientHeight) return;
-    const start = performance.now();
+    const start = performance.now(), interval = time - lastRenderTime;
+    lastRenderTime = time;
+    // Adapt only during repeated interaction; isolated on-demand frames do not lower detail.
+    slowFrames = interval > 28 && interval < 200 ? slowFrames + 1 : Math.max(0, slowFrames - 1);
+    if (!softwareRenderer && slowFrames >= 5 && renderer.getPixelRatio() > 1) {
+      renderer.setPixelRatio(Math.max(1, renderer.getPixelRatio() * .8)); slowFrames = 0;
+    }
     if (transition) {
       const progress = T.MathUtils.clamp((time - transition.start) / 650, 0, 1), t = progress * progress * (3 - 2 * progress);
       camera.position.lerpVectors(transition.fromPosition, transition.toPosition, t); controls.target.lerpVectors(transition.fromTarget, transition.toTarget, t); projectionOffset.lerpVectors(transition.fromOffset, transition.toOffset, t);
       applyProjection(); camera.lookAt(controls.target); controls.update();
       if (progress >= 1) transition = null;
     }
+    highlights.forEach(edge => { edge.visible = edge.userData.source.visible && !focusId; });
     updateLens();
     renderer.info.reset(); renderer.setScissorTest(false); renderer.setViewport(0, 0, host.clientWidth, host.clientHeight);
     renderer.autoClear = true; camera.updateMatrixWorld();
+    const inspection = currentView === "system", showContact = inspection && ["interface", "sensing"].includes(focusId);
+    anatomy.group.visible = !inspection || showContact;
+    anatomy.layers.cortex.visible = !inspection;
+    anatomy.detail.visible = showContact;
+    inspectionStage.visible = inspection && !showContact && !focusId;
+    if(inspection)scene.environmentRotation.setFromQuaternion(root.quaternion);else scene.environmentRotation.set(0,0,0);
+    inspectionKey.visible = inspectionFill.visible = inspection; key.visible=!inspection;
     const coverVisibility = lensCoverings.map(id => anatomy.layers[id].visible);
     if (openingOverview()) lensCoverings.forEach(id => anatomy.layers[id].visible = false);
     try { renderer.render(scene, camera); } finally { lensCoverings.forEach((id, i) => anatomy.layers[id].visible = coverVisibility[i]); }
@@ -346,7 +316,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
         renderer.setScissorTest(false); renderer.setViewport(0, 0, host.clientWidth, host.clientHeight); renderer.setClearColor(clearColor, alpha); renderer.autoClear = true;
       }
     }
-    labels(); frames++;
+    labels(); dimensions(); frames++;
     renderMilliseconds.push(performance.now() - start); if (renderMilliseconds.length > 180) renderMilliseconds.shift();
     if (transition) render();
   }
@@ -354,21 +324,47 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   function frameCamera(animate = frames > 0) {
     const aspect = Math.max(0.45, host.clientWidth / Math.max(1, host.clientHeight));
     const narrow = aspect < 1.1;
-    const target = anatomy.target, goalTarget = new T.Vector3(), goalPosition = new T.Vector3(), goalOffset = new T.Vector2();
+    const goalTarget = new T.Vector3(), goalPosition = new T.Vector3(), goalOffset = new T.Vector2();
     if (currentView === "head") {
       goalTarget.set(-3, -10, 3);
       goalPosition.copy(goalTarget).add(new T.Vector3(-.84, .19, .5).normalize().multiplyScalar(narrow ? 760 : 415));
       goalOffset.set(narrow ? .12 : .15, narrow ? -.03 : .04);
     } else if (currentView === "region") {
       goalTarget.set(-8, 0, 0);
-      goalPosition.copy(goalTarget).add(new T.Vector3(-.87, .19, .46).normalize().multiplyScalar(narrow ? 585 : 325));
-      goalOffset.set(narrow ? .12 : .15, narrow ? -.03 : .05);
+      goalPosition.copy(goalTarget).add(new T.Vector3(-.87, .19, .46).normalize().multiplyScalar(narrow ? 650 : 325));
+      goalOffset.set(narrow ? .02 : .15, narrow ? -.03 : .05);
+    } else if (currentView === "system") {
+      scene.updateMatrixWorld(true);
+      const points=[];
+      (focusId?groups[focusId]:root).traverse(object=>{
+        if(!object.isMesh)return;
+        for(let parent=object;parent&&parent!==root.parent;parent=parent.parent)if(!parent.visible)return;
+        if(!object.geometry.boundingBox)object.geometry.computeBoundingBox();const b=object.geometry.boundingBox;
+        for(const x of [b.min.x,b.max.x])for(const y of [b.min.y,b.max.y])for(const z of [b.min.z,b.max.z])points.push(new T.Vector3(x,y,z).applyMatrix4(object.matrixWorld));
+      });
+      const bounds = new T.Box3().setFromPoints(points);
+      goalTarget.copy(bounds.getCenter(new T.Vector3()));
+      const direction = new T.Vector3(.65, .82, -1).normalize().applyQuaternion(root.quaternion);
+      const up = new T.Vector3(0, 1, 0).applyQuaternion(root.quaternion), right = new T.Vector3().crossVectors(up,direction).normalize(), vertical = new T.Vector3().crossVectors(direction,right).normalize();
+      const inspector = document.querySelector('.inspector')?.getBoundingClientRect(), stage = host.getBoundingClientRect();
+      const fieldWidth = host.clientWidth > 760 && inspector ? inspector.left-stage.left-28 : host.clientWidth;
+      const top = host.clientWidth > 760 ? 235 : 285, bottom = Math.max(top+180,host.clientHeight-(host.clientWidth>760?260:225));
+      const usableWidth = fieldWidth-(host.clientWidth>760?140:40), usableHeight=bottom-top, tangent=Math.tan(T.MathUtils.degToRad(camera.fov/2));
+      let distance=12;
+      for(const point of points){
+        const p=point.clone().sub(goalTarget),depth=p.dot(direction);
+        distance=Math.max(distance,depth+Math.abs(p.dot(vertical))/(tangent*usableHeight/host.clientHeight),depth+Math.abs(p.dot(right))/(tangent*aspect*usableWidth/host.clientWidth));
+      }
+      goalPosition.copy(goalTarget).addScaledVector(direction,distance*1.06);
+      goalOffset.set((host.clientWidth/2-fieldWidth*.52)/host.clientWidth,(host.clientHeight/2-(top+bottom)/2)/host.clientHeight);
     } else {
-      goalTarget.copy(target).addScaledVector(anatomy.normal, exploded ? 9 : 1);
-      const direction = anatomy.normal.clone().multiplyScalar(currentView === "system" ? .52 : .85).addScaledVector(anatomy.v, currentView === "system" ? .82 : .45).addScaledVector(anatomy.u, .36).normalize();
-      goalPosition.copy(goalTarget).addScaledVector(direction, (exploded ? 76 : 43) * (narrow ? 1.45 : 1));
-      goalOffset.set(narrow ? .02 : .12, narrow ? .05 : .09);
+      goalTarget.copy(mount).addScaledVector(anatomy.normal, exploded ? 8 : 1);
+      const direction = anatomy.normal.clone().multiplyScalar(.85).addScaledVector(anatomy.v,.45).addScaledVector(anatomy.u,.36).normalize();
+      goalPosition.copy(goalTarget).addScaledVector(direction,(exploded?76:43)*(narrow?1.45:1));
+      goalOffset.set(narrow?.02:.12,narrow?.05:.09);
     }
+    const desiredUp=currentView === "system" ? anatomy.normal : new T.Vector3(0,1,0);
+    if(!camera.up.equals(desiredUp)){camera.up.copy(desiredUp);configureControls();}
     if (animate && !reducedMotion.matches && active) transition = { start: performance.now(), fromPosition: camera.position.clone(), fromTarget: controls.target.clone(), fromOffset: projectionOffset.clone(), toPosition: goalPosition, toTarget: goalTarget, toOffset: goalOffset };
     else { transition = null; camera.position.copy(goalPosition); controls.target.copy(goalTarget); projectionOffset.copy(goalOffset); applyProjection(); camera.lookAt(controls.target); controls.update(); }
     render();
@@ -378,7 +374,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     renderer.setSize(host.clientWidth, Math.max(1, host.clientHeight), false); frameCamera(false);
   }
   function explode(value) {
-    exploded = Boolean(value); ids.forEach(id => { groups[id].position.y = exploded ? offsets[id] * 5 : seated[id]; });
+    exploded = Boolean(value); ids.forEach(id => { groups[id].position.y = exploded ? offsets[id] : seated[id]; });
     renderer.shadowMap.needsUpdate = true; rebuildConnections(); frameCamera();
   }
   function select(id) {
@@ -386,14 +382,15 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     highlights.splice(0).forEach(h => { h.geometry.dispose(); h.material.dispose(); h.parent.remove(h); });
     if (selected) {
       groups[selected].traverse(o => {
-        if (!o.isMesh || o.isInstancedMesh) return;
-        const edge = new T.LineSegments(new T.EdgesGeometry(o.geometry, 35), new T.LineBasicMaterial({ color: labelInfo[selected].color, transparent: true, opacity: 0.6 }));
-        edge.position.copy(o.position); edge.rotation.copy(o.rotation); edge.scale.copy(o.scale); highlights.push(edge);
+        if (!o.isMesh || o.isInstancedMesh || !o.visible || o.parent !== groups[selected]) return;
+        const edge = new T.LineSegments(new T.EdgesGeometry(o.geometry, 35), new T.LineBasicMaterial({ color: labelInfo[selected].color, transparent: true, opacity: 0.18 }));
+        edge.position.copy(o.position); edge.rotation.copy(o.rotation); edge.scale.copy(o.scale); edge.userData.source=o; highlights.push(edge);
       });
       highlights.forEach(h => groups[selected].add(h));
     }
-    rebuildConnections(); render();
+    rebuildConnections(); if(focusId)frameCamera(); else render();
   }
+  function focus(id) { focusId=ids.includes(id)?id:null;ids.forEach(key=>groups[key].visible=!focusId||key===focusId);connections.visible=!focusId;renderer.shadowMap.needsUpdate=true;frameCamera(); }
   const hotColor = new T.Color(0xc1a075), amber = new T.Color(0xd39c63);
   function update(frame = {}) {
     const temperature = Array.isArray(frame.tissue) ? frame.tissue[0] : 37;
@@ -422,7 +419,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     raycaster.setFromCamera(pointer, isLens ? lensCamera : camera);
     const hits = raycaster.intersectObjects(isLens ? allPickable : [...allPickable, ...anatomy.group.children], true);
     const hit = hits.find(h => {
-      if (!(h.object.material?.opacity > 0.15)) return false;
+      if (!(h.object.material?.opacity > 0.15) && h.object.userData.component !== "interface") return false;
       if (!isLens && openingOverview() && lensCoverings.includes(h.object.userData.anatomyLayer)) return false;
       for (let object = h.object; object; object = object.parent) if (!object.visible) return false;
       return true;
@@ -444,7 +441,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
       event.preventDefault();
       transition = null;
       const offset = camera.position.clone().sub(controls.target);
-      if (event.key.startsWith("Arrow")) offset.applyAxisAngle(new T.Vector3(0, 1, 0), event.key === "ArrowLeft" ? -0.16 : 0.16);
+      if (event.key.startsWith("Arrow")) offset.applyAxisAngle(currentView === "system" ? anatomy.normal : new T.Vector3(0, 1, 0), event.key === "ArrowLeft" ? -0.16 : 0.16);
       else offset.multiplyScalar(event.key === "+" || event.key === "=" ? 0.9 : 1.1);
       offset.clampLength(16, 650); camera.position.copy(controls.target).add(offset); controls.update(); render();
     }
@@ -453,37 +450,38 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   canvas.addEventListener("pointerdown", pointerDown, true); canvas.addEventListener("pointerup", pointerUp); canvas.addEventListener("pointercancel", pointerCancel);
   const contextLost = event => { event.preventDefault(); host.dispatchEvent(new CustomEvent("seizefreeze-context-lost", { bubbles: true })); };
   canvas.addEventListener("webglcontextlost", contextLost);
-  controls.addEventListener("change", render);
-  const cancelTransition = () => { transition = null; };
-  controls.addEventListener("start", cancelTransition);
   const resizeObserver = new ResizeObserver(resize); resizeObserver.observe(host);
   const intersectionObserver = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (visible) render(); }, { threshold: 0.01 }); intersectionObserver.observe(host);
   update(); explode(false); resize();
   return {
-    select, explode, render,
+    select, explode, render, focus,
+    cutaway(value) { device.cutaway(value); renderer.shadowMap.needsUpdate = true; render(); },
+    circuit(value) { device.circuit(value); render(); },
+    dimensions(value) { showDimensions = Boolean(value); render(); },
     setActive(value) { active = Boolean(value); if (active) render(); else { transition = null; cancelAnimationFrame(raf); raf = 0; if (lensElement()) lensElement().hidden = true; } },
     seat(id) { if (!ids.includes(id)) return; groups[id].position.y = 0; renderer.shadowMap.needsUpdate = true; rebuildConnections(); render(); },
-    rotate(delta) { transition = null; const offset = camera.position.clone().sub(controls.target); offset.applyAxisAngle(new T.Vector3(0, 1, 0), delta); camera.position.copy(controls.target).add(offset); camera.lookAt(controls.target); controls.update(); render(); },
+    rotate(delta) { transition = null; const offset = camera.position.clone().sub(controls.target); offset.applyAxisAngle(currentView === "system" ? anatomy.normal : new T.Vector3(0, 1, 0), delta); camera.position.copy(controls.target).add(offset); camera.lookAt(controls.target); controls.update(); render(); },
     peel(value) { peelValue = T.MathUtils.clamp(value, 0, 1); anatomy.peel(peelValue); renderer.shadowMap.needsUpdate = true; render(); },
     reset() { currentView = "region"; anatomy.setContext?.("region"); select(null); explode(false); peelValue = 0.86; anatomy.peel(peelValue); frameCamera(); },
     overview() { currentView = "region"; anatomy.setContext?.("region"); select(null); explode(false); frameCamera(); },
     view(name) {
+      focusId=null;ids.forEach(id=>groups[id].visible=true);connections.visible=true;
       currentView = ["head", "region", "interface", "system"].includes(name) ? name : "region";
       select(null);
       anatomy.setContext?.(currentView);
       title.textContent = currentView === "head" || currentView === "region"
         ? "REFERENCE ANATOMY · ILLUSTRATIVE TARGET · NOT PATIENT LOCALIZATION"
-        : "PROPOSED DEVICE · ASSUMED 10 × 10 MM CONTACT · LAYERS EXAGGERATED";
+        : "EXPLANATORY CONSTRUCTION · DIMENSIONS ASSUMED · EXPLODED SPACING EXAGGERATED";
       frameCamera();
     },
     update,
-    stats() { return { adapter, softwareRenderer, frames, calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, pixelRatio: renderer.getPixelRatio(), renderCpuMsMean: renderMilliseconds.length ? renderMilliseconds.reduce((a, b) => a + b, 0) / renderMilliseconds.length : 0, rendering: "on demand; no idle animation", active, openingOverview: openingOverview(), cameraTransition: Boolean(transition), shadowMap: renderer.shadowMap.enabled ? "2048px cached directional PCF" : "disabled on software renderer", selected, exploded, componentOffsets: Object.fromEntries(ids.map(id => [id, groups[id].position.y])), cameraPosition: camera.position.toArray(), view: currentView, peel: peelValue, target: anatomy.target.toArray(), mountPoint: root.position.toArray(), contactSpanMm: [10, 10], normal: anatomy.normal.toArray(), anatomy: anatomy.info, lens: { visible: Boolean(lensRect && active), rect: lensRect, outerRect: lensOuterRect, cameraPosition: lensCamera.position.toArray(), packagePixel: lensPackagePixel(), coordinates: "host-local CSS pixels; viewport = host bounding rect + these coordinates", geometry: "same device state; exact local atlas triangles; no screen capture or enlarged physical implant" } }; },
+    stats() { return { adapter, softwareRenderer, frames, calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, pixelRatio: renderer.getPixelRatio(), quality: "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75", renderCpuMsMean: renderMilliseconds.length ? renderMilliseconds.reduce((a, b) => a + b, 0) / renderMilliseconds.length : 0, rendering: "on demand; no idle animation", active, openingOverview: openingOverview(), cameraTransition: Boolean(transition), shadowMap: renderer.shadowMap.enabled ? (currentView==="system"?"1024px cached device-frame PCF":"2048px cached anatomy-frame PCF") : "disabled on software renderer", selected, exploded, focus: focusId, inspectionStage: currentView === "system", componentOffsets: Object.fromEntries(ids.map(id => [id, groups[id].position.y])), cameraPosition: camera.position.toArray(), cameraTarget: controls.target.toArray(), cameraUp: camera.up.toArray(), view: currentView, targetFacingCamera: targetFacingCamera(), peel: peelValue, target: anatomy.target.toArray(), mountPoint: root.position.toArray(), contactSpanMm: [10, 10], device: { units: "mm", scale: root.scale.toArray(), datum: fit.datum, rigidClearanceMm: fit.minimumRigidClearance, contactThicknessRangeMm: fit.contactThicknessRange, geometry: device.info, status: deviceSpec.status, reservoir: "Finite resistance to assumed 37 °C reservoir; chronic route unresolved" }, normal: anatomy.normal.toArray(), anatomy: anatomy.info, lens: { visible: Boolean(lensRect && active), rect: lensRect, outerRect: lensOuterRect, cameraPosition: lensCamera.position.toArray(), packagePixel: lensPackagePixel(), coordinates: "host-local CSS pixels; viewport = host bounding rect + these coordinates", geometry: "same device state; exact local atlas triangles; no screen capture or enlarged physical implant" } }; },
     dispose() {
       disposed = true; cancelAnimationFrame(raf); resizeObserver.disconnect(); intersectionObserver.disconnect(); controls.dispose();
       canvas.removeEventListener("keydown", keyboardView); canvas.removeEventListener("pointerdown", pointerDown, true); canvas.removeEventListener("pointerup", pointerUp); canvas.removeEventListener("pointercancel", pointerCancel); canvas.removeEventListener("webglcontextlost", contextLost);
       anatomy.dispose();
       const geometries = new Set(), materials = new Set(); scene.traverse(o => { if (o.geometry) geometries.add(o.geometry); if (o.material) materials.add(o.material); });
-      geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); grain.dispose(); markTexture.dispose(); environment.dispose(); key.shadow.map?.dispose(); renderer.dispose(); canvas.remove(); labelLayer.remove(); title.remove();
+      geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); grain.dispose(); device.dispose?.(); environment?.dispose(); key.shadow.map?.dispose(); inspectionKey.shadow.map?.dispose(); renderer.dispose(); canvas.remove(); labelLayer.remove(); title.remove();
     },
   };
 }

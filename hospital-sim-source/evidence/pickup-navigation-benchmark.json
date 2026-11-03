@@ -1,0 +1,13 @@
+{
+  "hardware": "AppleM2 / Node22; pure navigation checks, not an iPhone result",
+  "checkedCells": 9570,
+  "samples": 20,
+  "previous": {
+    "medianMs": 2.1861659999999574,
+    "p95Ms": 2.40949999999998
+  },
+  "cached": {
+    "medianMs": 0.848165999999992,
+    "p95Ms": 0.9809999999999945
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "model": "1.0.0-rc3",
+  "counts": {
+    "arrivals": 27,
+    "completed": 12,
+    "departed": 5,
+    "unfinished": 10
+  },
+  "tracked": 1001,
+  "visit": {
+    "id": 1001,
+    "name": "Eli",
+    "x": 7,
+    "y": 7,
+    "stage": "care",
+    "target": null,
+    "room": null,
+    "urgent": false,
+    "barrier": false,
+    "imaging": true,
+    "returning": false,
+    "goal": "Find the answer without opening the appendix to the appendix",
+    "caseId": "binder",
+    "intakeDone": true,
+    "checkin": 7,
+    "recovery": 3,
+    "wait": 8,
+    "walking": 61,
+    "service": 44,
+    "handoff": 8,
+    "transfer": 13,
+    "yielding": 0,
+    "elapsedOffset": 0,
+    "arrival": 5,
+    "progress": 2,
+    "navDelay": 0,
+    "history": [
+      {
+        "stage": "consult",
+        "at": 32,
+        "room": 10,
+        "duration": 10.714285714285714
+      },
+      {
+        "stage": "scan",
+        "at": 70,
+        "room": 2,
+        "duration": 17.043714285714287
+      },
+      {
+        "stage": "care",
+        "at": 109,
+        "room": 11,
+        "duration": 14.467891483516482
+      }
+    ],
+    "outside": false,
+    "stalled": 0,
+    "moved": false,
+    "motion": null,
+    "teamWaiting": false,
+    "equipmentWaiting": false,
+    "destination": {
+      "x": 7,
+      "y": 7
+    },
+    "previous": {
+      "x": 7,
+      "y": 6.25
+    },
+    "intakeWaiting": false,
+    "intakeHelper": 8,
+    "duration": 14.467891483516482,
+    "handoffReady": false,
+    "recovered": true,
+    "outcome": "completed",
+    "total": 144
+  },
+  "actionsReplayed": 12,
+  "originalModel": "1.0.0-rc1",
+  "originalCounts": {
+    "arrivals": 27,
+    "completed": 13,
+    "departed": 5,
+    "unfinished": 9
+  },
+  "sourceReplayMatches": false,
+  "note": "RC3 changes walking speed and first arrivals. The historical RC1 recording remains exact for source5265c8b; current action replay is not the same experiment."
+}

@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "runsPerSweep": 3,
+  "multipliers": [
+    0.25,
+    1,
+    4
+  ],
+  "rejectionResistance": {
+    "effectiveValues": [
+      2,
+      8,
+      32
+    ],
+    "peakHotC": [
+      37.470999714672864,
+      37.664052086134454,
+      37.97683741054535
+    ]
+  },
+  "contactResistance": {
+    "effectiveValues": [
+      1,
+      4,
+      16
+    ]
+  },
+  "maximumEnergyResidualJ": 1.3278267374516872e-12,
+  "evidenceBoundary": "Deterministic assumption sweep; no measured uncertainty distribution or clinical prediction"
+}

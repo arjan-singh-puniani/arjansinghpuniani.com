@@ -1,9 +1,9 @@
-import * as THREE from './vendor/three.module.js';
 export function createAudio() {
     let ctx = null;
     let master = null;
     let compressor = null;
     let enabled = true;
+    let engine = null;
     function ensure() {
         if (!enabled)
             return null;
@@ -31,7 +31,7 @@ export function createAudio() {
             return null;
         if (typeof ctx.createStereoPanner === 'function') {
             const node = ctx.createStereoPanner();
-            node.pan.value = THREE.MathUtils.clamp(pan, -1, 1);
+            node.pan.value = Math.max(-1, Math.min(1, pan));
             node.connect(master);
             return node;
         }
@@ -163,8 +163,25 @@ export function createAudio() {
         if (state === 'TOOL_CLEAR') hiss({ duration: .18, gain: .05 });
         if (state === 'LOWER & CLEAR' && event.track === 'Front jack') jackRelease();
     }
+    function engineFrame(sample) {
+        if (!enabled || !sample) {
+            if(engine){const old=engine,now=ctx.currentTime;engine=null;old.gain.gain.setTargetAtTime(.0001,now,.008);old.tone.stop(now+.04);old.overtone.stop(now+.04);old.tone.onended=()=>{old.tone.disconnect();old.overtone.disconnect();old.filter.disconnect();old.gain.disconnect();};}
+            return;
+        }
+        const c=ensure();if(!c)return;
+        if(!engine){
+            const tone=c.createOscillator(),overtone=c.createOscillator(),filter=c.createBiquadFilter(),gain=c.createGain();
+            tone.type='sawtooth';overtone.type='triangle';filter.type='lowpass';filter.Q.value=.45;gain.gain.value=0;
+            tone.connect(filter);overtone.connect(filter);filter.connect(gain).connect(master);tone.start();overtone.start();engine={tone,overtone,filter,gain};
+        }
+        const rpm=Math.max(1000,Math.min(16000,sample.rpm)),throttle=Math.max(0,Math.min(1,sample.throttle/100)),now=c.currentTime;
+        // A quiet synthesized V6 firing-order fundamental, not recorded engine audio.
+        engine.tone.frequency.setTargetAtTime(rpm/20,now,.045);engine.overtone.frequency.setTargetAtTime(rpm/40,now,.045);
+        engine.filter.frequency.setTargetAtTime(800+throttle*2200,now,.07);engine.gain.gain.setTargetAtTime(.014+throttle*.038,now,.045);
+    }
     function setEnabled(next) {
         enabled = Boolean(next);
+        if(!enabled)engineFrame(null);
         if (enabled) {
             ensure();
             metallicClick({ gain: 0.055, pitch: 1.2 });
@@ -176,5 +193,5 @@ export function createAudio() {
         if (enabled && master && ctx)
             master.gain.setTargetAtTime(0.72, ctx.currentTime, 0.02);
     }
-    return { ensure, triggerEvent, setEnabled, dispose: () => ctx?.close(), get enabled() { return enabled; } };
+    return { ensure, triggerEvent, engineFrame, setEnabled, dispose: () => {engineFrame(null);ctx?.close();}, get enabled() { return enabled; } };
 }

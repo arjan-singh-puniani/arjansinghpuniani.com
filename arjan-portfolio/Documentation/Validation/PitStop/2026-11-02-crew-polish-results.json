@@ -1,0 +1,41 @@
+{
+  "world": {
+    "checks": 54,
+    "errors": []
+  },
+  "intelligence": {
+    "checks": 23,
+    "errors": []
+  },
+  "experience": {
+    "checks": 21,
+    "errors": []
+  },
+  "garage": {
+    "checks": 26,
+    "errors": []
+  },
+  "wheel": {
+    "checks": 5,
+    "errors": []
+  },
+  "crew": {
+    "checks": 5,
+    "errors": []
+  },
+  "pit-wall": {
+    "checks": 26,
+    "errors": []
+  },
+  "cinema": {
+    "checks": 32,
+    "errors": []
+  },
+  "mobile": {
+    "checks": [
+      "webkit embedded cockpit/service/retreat fits portrait and renders",
+      "chrome embedded cockpit/service/retreat fits portrait and renders"
+    ],
+    "errors": []
+  }
+}

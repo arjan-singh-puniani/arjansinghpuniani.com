@@ -1,0 +1,64 @@
+{
+  "model": "1.0.0-rc3",
+  "date": "2026-11-02",
+  "browser": "Desktop Chromium, Apple M2 / ANGLE Metal",
+  "narrowViewport": [
+    390,
+    844
+  ],
+  "actualIPhone": false,
+  "checked": [
+    "44px build sites within390px, successful construction and auto-resume",
+    "Follow selected active visit with real consultation progress at a validated38s checkpoint",
+    "Reset camera and explicit pause/resume/speed controls",
+    "direct narrow-screen body drag lifted staff9 with521green landings, .65opacity and cursor grip160,462; invalid drop retained person; cancel restored",
+    "reduced motion on/off through UI; smooth positions maintained while limb motion stops",
+    "first-minute actual MP4 reached92.2949seconds playback end; includes0\u201360simulation seconds and planning pauses; action/visit replay exact"
+  ],
+  "performanceObservation": {
+    "canvas": {
+      "activeAppearances": "patient-01,patient-02,patient-03,patient-04,patient-05",
+      "appearances": "11",
+      "arrivals": "6",
+      "completed": "1",
+      "drawCalls": "98",
+      "dropValid": "false",
+      "engine": "three.js r186",
+      "floorTopologyBuilds": "1",
+      "floorUpdates": "1",
+      "frameMs": "33.40",
+      "geometries": "85",
+      "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "gripX": "160.0",
+      "gripY": "462.0",
+      "held": "",
+      "heldOpacity": ".65",
+      "loadMs": "349",
+      "mainTriangles": "153783",
+      "model": "1.0.0-rc3",
+      "p95Ms": "34.20",
+      "peakDrawCalls": "153",
+      "peakMainTriangles": "153783",
+      "peakTriangles": "236446",
+      "pickupPrepareMs": "2.90",
+      "pointerX": "160",
+      "pointerY": "462",
+      "reducedMotion": "false",
+      "renderProfile": "mobile30",
+      "renderScale": "1",
+      "restoreError": "",
+      "samples": "1800",
+      "shadowSize": "1024",
+      "simulationSecond": "108",
+      "textures": "43",
+      "triangles": "152677",
+      "validLandingCells": "521"
+    },
+    "note": "Desktop Chromium Apple M2 narrow viewport, mobile30 render cap. Not an iPhone benchmark.",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  "startupLimit": "Local cold dynamic import failed twice, then subsequent reloads initialized. HTTPmodule status/MIME checks passed. Cause remains unresolved; do not claim universal loading reliability."
+}

@@ -1,0 +1,78 @@
+{
+  "archive": "EKG Vector.zip",
+  "selectedSource": "ReasonOS_Master/02_PLATFORM/monorepo",
+  "kernelVersion": "0.3.0",
+  "ecgPluginVersion": "0.5.0",
+  "files": [
+    {
+      "source": "EKG Vector/ReasonOS_Master/02_PLATFORM/monorepo/packages/reasonos-kernel/src/types.ts",
+      "sourceSha256": "e432de87fc130ef14317b75a6dfe055a840c43b1eb3356e45b84ce761dbb518c",
+      "destination": "src/lib/reasonos/core/types.ts",
+      "adaptation": "Relative TypeScript imports omit the .js suffix for Next.js bundling.",
+      "bundledSha256": "e432de87fc130ef14317b75a6dfe055a840c43b1eb3356e45b84ce761dbb518c"
+    },
+    {
+      "source": "EKG Vector/ReasonOS_Master/02_PLATFORM/monorepo/packages/reasonos-kernel/src/canonical.ts",
+      "sourceSha256": "698e6c3c152f910bb4233b65cd904b9435d519694ee37b7d9fdc2a726c0e7f27",
+      "destination": "src/lib/reasonos/core/canonical.ts",
+      "adaptation": "Relative TypeScript imports omit the .js suffix for Next.js bundling.",
+      "bundledSha256": "80ad4fca29a61349534f8076d65b4cfd6dd41d85fc929bd0eefb648d3e5bb72d"
+    },
+    {
+      "source": "EKG Vector/ReasonOS_Master/02_PLATFORM/monorepo/packages/reasonos-kernel/src/constraints.ts",
+      "sourceSha256": "147a7e67777b9513dcd5868e6eb8a585b737b3df55529c5606a4143c3a9fc026",
+      "destination": "src/lib/reasonos/core/constraints.ts",
+      "adaptation": "Relative TypeScript imports omit the .js suffix for Next.js bundling.",
+      "bundledSha256": "fc99d9df525b6514423892708fc158ca90e710a1ef052f2adf0c417cfb7bf6e7"
+    },
+    {
+      "source": "EKG Vector/ReasonOS_Master/02_PLATFORM/monorepo/packages/reasonos-kernel/src/projector.ts",
+      "sourceSha256": "ad0f9f1e8ffeafb53506a0e365be0e4c9423d723926593f6b231a9079b0c1aca",
+      "destination": "src/lib/reasonos/core/projector.ts",
+      "adaptation": "Relative TypeScript imports omit the .js suffix for Next.js bundling.",
+      "bundledSha256": "f3673d18ecce1c3e1ef2176be4eac517478dfa5f5c2646f9963a60d2e88b1324"
+    },
+    {
+      "source": "EKG Vector/ReasonOS_Master/02_PLATFORM/monorepo/packages/reasonos-kernel/src/replay.ts",
+      "sourceSha256": "974af24df818f63c8e3760fbd58f40c6d817c2656c3730dde911762cf8c3eb55",
+      "destination": "src/lib/reasonos/core/replay.ts",
+      "adaptation": "Relative TypeScript imports omit the .js suffix for Next.js bundling.",
+      "bundledSha256": "1d08d721a50e0e0693b05b93a6875a8d55889fe4f7b126019129d7a003735ffd"
+    },
+    {
+      "source": "EKG Vector/ReasonOS_Master/02_PLATFORM/monorepo/packages/reasonos-kernel/src/runtime.ts",
+      "sourceSha256": "e815432b2f060403c9462837be39b83071b183c7e4c08657566c4779d1695ffe",
+      "destination": "src/lib/reasonos/core/runtime.ts",
+      "adaptation": "Relative TypeScript imports omit the .js suffix for Next.js bundling.",
+      "bundledSha256": "11a2614a823f3c224ada6ca884592f6c28d9115e77b8e097f45c841888d51310"
+    },
+    {
+      "source": "EKG Vector/ReasonOS_Master/02_PLATFORM/monorepo/packages/reasonos-kernel/src/store.ts",
+      "sourceSha256": "34a3b0ff0a3c98a0e81eebfb99466a44055104ca11cd62e6066b3474af1da020",
+      "destination": "src/lib/reasonos/core/store.ts",
+      "adaptation": "Relative TypeScript imports omit the .js suffix for Next.js bundling.",
+      "bundledSha256": "35ad2381de12b81d18558d91666fbfce932e77e914fada0b10d76bf44d085175"
+    },
+    {
+      "source": "EKG Vector/ReasonOS_Master/02_PLATFORM/monorepo/packages/reasonos-kernel/src/validation.ts",
+      "sourceSha256": "84a07fb51c1e58bce814c92437ed32a10a2bc71bd93b1b4563ce17cdd8f3081c",
+      "destination": "src/lib/reasonos/core/validation.ts",
+      "adaptation": "Relative TypeScript imports omit the .js suffix for Next.js bundling.",
+      "bundledSha256": "6742604a59ad2a26d3f36e4dafb5e2e8b3dafdff5ec0d222b8a8f57c9921db14"
+    },
+    {
+      "source": "EKG Vector/ReasonOS_Master/02_PLATFORM/monorepo/packages/reasonos-kernel/src/browser.ts",
+      "sourceSha256": "89eafebcea95987aea961a518e319a8b31173ebde7a9fd8a7cd9e9936c37db1c",
+      "destination": "src/lib/reasonos/core/browser.ts",
+      "adaptation": "Relative TypeScript imports omit the .js suffix for Next.js bundling.",
+      "bundledSha256": "ad3b28b9b276d0dbfb3ab2628754810b4bc43c74f46423cee3dbbb72b61880cd"
+    },
+    {
+      "source": "EKG Vector/ReasonOS_Master/02_PLATFORM/monorepo/packages/ecg-plugin/src/index.ts",
+      "sourceSha256": "1b2a4fe1e58bae0d74996969eae7c25d4cb042dfd583ff575c79091d0932e845",
+      "destination": "src/lib/reasonos/reference-ecg-plugin.ts",
+      "adaptation": "Kernel import points to the bundled browser entry.",
+      "bundledSha256": "87b59a3809fd26d873cb275358c980ee4c38acb3d90e165ea99e584be0818b0d"
+    }
+  ]
+}

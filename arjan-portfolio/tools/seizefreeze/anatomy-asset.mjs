@@ -60,7 +60,65 @@ function simplify(source, primitive, spacing, keepTriangle = () => true) {
   }
   return { positions: usedPositions, indices: usedIndices };
 }
-const cortex = { positions: [], indices: [], names: [] }, hindbrain = { positions: [], indices: [], names: [] };
+// Atlas mesh order is not anatomy: the frontal poles and insula occur outside the main cortical block.
+const corticalRegions = new Set([
+  'piriform_region',
+  'frontal_agranular_insular_cortex_area_Fl',
+  'temporal_agranular_insular_cortex_area_Tl',
+  'precentral_gyrus',
+  'superior_frontal_gyrus',
+  'middle_frontal_gyrus',
+  'inferior_frontal_gyrus_triangular_part',
+  'inferior_frontal_gyrus_opercular_part',
+  'gyrus_rectus_straight_gyrus',
+  'medial_orbital_gyrus',
+  'anterior_intermediate_orbital_gyrus',
+  'posterior_intermediate_orbital_gyrus',
+  'lateral_orbital_gyrus',
+  'paracentral_lobule_rostral_part',
+  'frontal_operculum',
+  'postcentral_gyrus',
+  'supraparietal_lobule',
+  'supramarginal_gyrus',
+  'angular_gyrus',
+  'precuneus',
+  'paracentral_lobule_caudal_part',
+  'superior_temporal_gyrus',
+  'middle_temporal_gyrus',
+  'inferior_temporal_gyrus',
+  'occipitotemporal_fusiform_gyrus_temporal_part',
+  'transverse_temporal_gyrus_Heschls_gyrus',
+  'planum_temporale',
+  'temporal_pole',
+  'planum_polare',
+  'occipital_pole',
+  'cuneus',
+  'lingual_gyrus_medial_occipitotemporal_gyrus',
+  'lateral_occipitotemporal_fusiform_gyrus_occipital_part',
+  'inferior_occipital_gyrus',
+  'superior_occipital_gyrus',
+  'cingulate_gyrus_rostral_anterior_part',
+  'cingulate_gyrus_caudal_posterior_part',
+  'ingulo_parahippocampal_isthmus',
+  'subcallosal_gyrus_parolfactory_gyrus',
+  'anterior_parahippocampal_gyrus',
+  'posterior_parahippocampal_gyrus',
+  'gyrus_ambiens',
+  'long_insular_gyri',
+  'short_insular_gyri',
+  'limen_insula',
+  'lateral_olfactory_gyrus',
+  'parietal_operculum',
+  'paracingulate_gyrus',
+  'rostral_gyrus',
+  'frontomarginal_gyrus',
+  'frontal_pole',
+  'perirhinal_gyrus_rostral_part_of_FuGt',
+].flatMap(name => ['L', 'R'].map(side => `Allen_${name}_${side}`)));
+const hindbrainRegions = new Set(['cerebellar_vermis', 'paravermis_of_cerebellum', 'lateral_hemisphere_of_cerebellum',
+  'basilar_part_of_pons', 'pyramidal_part_of_medulla_oblongata', 'tegmentum_of_medulla_oblongata']
+  .flatMap(name => ['L', 'R'].map(side => `Allen_${name}_${side}`)));
+const cortex = { positions: [], indices: [], names: [] }, hindbrain = { positions: [], indices: [], names: [] }, interior = { positions: [], indices: [], names: [] };
 let target;
 function append(to, geometry, name) {
   const offset = to.positions.length / 3;
@@ -69,21 +127,24 @@ function append(to, geometry, name) {
 for (const node of brain.json.nodes) {
   if (node.mesh === undefined) continue;
   const i = node.mesh;
-  const cortical = (i >= 62 && i <= 100) || (i >= 195 && i <= 233);
-  const posterior = [58, 113, 114, 115, 117, 118, 191, 248, 249, 250, 252, 253].includes(i);
-  if (!cortical && !posterior) continue;
+  const cortical = corticalRegions.has(node.name), posterior = hindbrainRegions.has(node.name);
+  const whiteMatter = /^Allen_white_matter_of_forebrain_[LR]$/.test(node.name);
+  if (!cortical && !posterior && !whiteMatter) continue;
   for (const primitive of brain.json.meshes[i].primitives) {
     if (node.name === 'Allen_superior_temporal_gyrus_L') {
       target = { ...simplify(brain, primitive, 0), names: [node.name] };
-    } else append(cortical ? cortex : hindbrain, simplify(brain, primitive, 1), node.name);
+    } else append(cortical ? cortex : whiteMatter ? interior : hindbrain, simplify(brain, primitive, 1), node.name);
   }
 }
 assert(target && target.positions.length > 3000);
+assert.equal(new Set([...cortex.names, ...target.names]).size, corticalRegions.size, 'All named cortical regions must survive extraction.');
+assert.equal(interior.names.length, 2, 'Retain registered left and right forebrain white matter as interior context.');
 const scalp = simplify(body, body.json.meshes[0].primitives[0], 0.8, triangle => triangle.every(p => p[1] > 0.70));
 scalp.names = ['VH_M_skin'];
 const items = [
   ['HRA_cerebral_cortex_display', cortex], ['Allen_superior_temporal_gyrus_L', target],
-  ['HRA_cerebellum_and_brainstem_display', hindbrain], ['HRA_registered_head_skin_display', scalp],
+  ['HRA_cerebellum_and_brainstem_display', hindbrain], ['HRA_forebrain_white_matter_display', interior],
+  ['HRA_registered_head_skin_display', scalp],
 ];
 const chunks = [], views = [], accessors = [], meshes = [], nodes = [];
 let byteOffset = 0;
@@ -108,7 +169,7 @@ const metadata = {
   sourceBrainSha256: brain.hash, sourceBodySha256: body.hash,
   license: 'CC BY 4.0', creators: 'Kristen Browne; Heidi Schlehlein',
   sourceBrain: 'https://doi.org/10.48539/HBM929.XKCL.339', sourceBody: 'https://doi.org/10.48539/HBM646.RKKC.257',
-  modifications: 'External cortical/cerebellar/brainstem parcels retained; internal structures omitted. Target parcel unmodified except centering and meters-to-mm conversion. Other brain parcels clustered at 1 mm; head skin cropped inferiorly at source Y=0.70 m and clustered at 0.8 mm. Material and illustrative coverings supplied at runtime. Not suitable for measurement or procedural planning.',
+  modifications: 'All 104 explicitly named cortical parcels, cerebellar/brainstem context and bilateral forebrain white matter retained. Frontal poles, frontomarginal/rostral/paracingulate gyri, insula, parietal opercula and basal cortical parcels included by name; mesh order is not used. Other internal structures omitted. Target parcel unmodified except centering and meters-to-mm conversion. Other brain parcels clustered at 1 mm; head skin cropped inferiorly at source Y=0.70 m and clustered at 0.8 mm. Material and illustrative coverings supplied at runtime. Not suitable for measurement or procedural planning.',
   counts: items.map(([name, g]) => ({ name, vertices: g.positions.length / 3, triangles: g.indices.length / 3 })),
 };
 const json = { asset: { version: '2.0', generator: 'SeizeFreeze HRA display extraction', copyright: 'Kristen Browne; Heidi Schlehlein / HuBMAP. CC BY 4.0. Modified display asset.' }, scene: 0, scenes: [{ nodes: nodes.map((_, i) => i) }], nodes, meshes, materials: [{ pbrMetallicRoughness: { baseColorFactor: [0.7, 0.55, 0.52, 1], roughnessFactor: 0.7 } }], accessors, bufferViews: views, buffers: [{ byteLength: byteOffset }], extras: metadata };

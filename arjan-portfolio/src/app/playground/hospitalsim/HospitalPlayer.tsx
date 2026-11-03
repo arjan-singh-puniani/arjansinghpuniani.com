@@ -31,6 +31,11 @@ export default function HospitalPlayer() {
   }, [playing, loaded]);
 
   function launch() {
+    // Keep touch pickup and placement controls inside the phone viewport.
+    if (window.matchMedia("(max-width: 700px)").matches) {
+      window.location.assign("/hospitalsim/index.html");
+      return;
+    }
     setLoaded(false);
     setSlow(false);
     setMessage("");
@@ -78,7 +83,7 @@ export default function HospitalPlayer() {
       <div>{playing && <><button onClick={close}>Close experience</button><button onClick={fullscreen}>Enter fullscreen ↗</button></>}<a href="/hospitalsim/index.html" target="_blank" rel="noreferrer">Open in a new tab ↗</a></div>
     </div>
     {message && <p role="status">{message}</p>}
-    <p className={styles.controls} id="hospital-controls">Add a consultation, then watch the next queue. People & rooms provides patient inspection and upgrades. Build mode pauses time; use the location list or arrows and Enter to place. Resume with Play. Shift settings contains all scenarios, policy experiments, checkpoints and device checks. Closing saves on this device; no gameplay analytics.</p>
+    <p className={styles.controls} id="hospital-controls">Start by adding a consultation room at a marked site. Sage walks over; the room opens when its team arrives. Tap a person for their role and actions, or drag to lift; green tiles show safe landings. People provides room and patient lists. Build mode supports the map, location list or arrows and Enter. Placement restores play if it was running. Shift settings contains reports, scenarios, checkpoints and optional name labels. Progress saves on this device; no gameplay analytics.</p>
     <noscript><p>Open <a href="/hospitalsim/index.html">hospitalSIM in its own page</a>. JavaScript and WebGL2 are required for the interactive view; the descriptions and structural references below remain available.</p></noscript>
   </>;
 }

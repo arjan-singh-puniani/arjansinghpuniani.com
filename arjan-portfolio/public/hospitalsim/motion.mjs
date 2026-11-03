@@ -1,8 +1,20 @@
-export function sampleRoute(points,alpha){
- const lengths=points.slice(1).map((p,i)=>Math.hypot(p.x-points[i].x,p.y-points[i].y)),total=lengths.reduce((a,b)=>a+b,0);let distance=Math.max(0,Math.min(1,alpha))*total,i=0;
+import {blocked} from './navigation.mjs?v=121';
+export const WALK_SPEED=1.2375;
+// Quarter-cell paths keep their endpoints; tiny corner arcs stay within the clear corridor.
+const curvedRoutes=new WeakMap();
+export function sampleRoute(points,alpha,rooms){
+ let route=rooms?curvedRoutes.get(points):points;
+ if(!route){route=[points[0]];for(let i=1;i<points.length-1;i++){
+  const a=points[i-1],b=points[i],c=points[i+1],u={x:b.x-a.x,y:b.y-a.y},v={x:c.x-b.x,y:c.y-b.y},l=Math.hypot(u.x,u.y),m=Math.hypot(v.x,v.y),r=Math.min(.08,l/3,m/3);
+  if(!l||!m||Math.abs(u.x*v.y-u.y*v.x)<1e-8){route.push(b);continue}
+  const entry={x:b.x-u.x/l*r,y:b.y-u.y/l*r},out={x:b.x+v.x/m*r,y:b.y+v.y/m*r},arc=[entry];
+  for(let j=1;j<=4;j++){const t=j/4;arc.push({x:(1-t)**2*entry.x+2*t*(1-t)*b.x+t*t*out.x,y:(1-t)**2*entry.y+2*t*(1-t)*b.y+t*t*out.y})}
+  if(arc.some(p=>blocked(p.x,p.y,rooms)))route.push(b);else route.push(...arc);
+ }if(points.length>1)route.push(points.at(-1));curvedRoutes.set(points,route)}
+ const lengths=route.slice(1).map((p,i)=>Math.hypot(p.x-route[i].x,p.y-route[i].y)),total=lengths.reduce((a,b)=>a+b,0);let distance=Math.max(0,Math.min(1,alpha))*total,i=0;
  while(i<lengths.length-1&&distance>lengths[i])distance-=lengths[i++];
- const a=points[i],b=points[i+1]||a,t=lengths[i]?distance/lengths[i]:0;
- return{x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t,dx:b.x-a.x,dy:b.y-a.y,rate:total};
+ const a=route[i],b=route[i+1]||a,t=lengths[i]?distance/lengths[i]:0;
+ return{x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t,dx:b.x-a.x,dy:b.y-a.y,rate:total,distance:Math.max(0,Math.min(1,alpha))*total};
 }
 export function interiorPath(type,height){
  const ramp=[-.825,0,1.62],door=[-.825,.25-height,2.475];
@@ -15,7 +27,7 @@ export function sampleInterior(points,progress){
  let distance=Math.max(0,Math.min(1,progress))*total,i=0;
  while(i<lengths.length-1&&distance>lengths[i])distance-=lengths[i++];
  const a=points[i],b=points[i+1],t=lengths[i]?distance/lengths[i]:0;
- return {position:a.map((v,j)=>v+(b[j]-v)*t),dx:b[0]-a[0],dz:b[2]-a[2],rate:total/3/1.65};
+ return {position:a.map((v,j)=>v+(b[j]-v)*t),dx:b[0]-a[0],dz:b[2]-a[2],rate:total/3/WALK_SPEED};
 }
 
 // Staff use the same doorway and ramp as patients, with routes around the equipment.
@@ -38,3 +50,9 @@ export function drapePose(state,progress){
  const spread=state==='service'?Math.min(1,Math.max(0,progress)):state==='uncovering'?1-Math.min(1,Math.max(0,progress)):0;
  return {visible:spread>0,scaleY:.2+.8*spread,scaleZ:.12+.88*spread,opacity:Math.min(1,spread*10)};
 }
+
+// A clear front/right lane keeps support work away from gantry, bed and clinician posts.
+export function supportInteriorPath(type,height){return [[-.825,.25-height,2.475],[.35,0,1.72],[1.2,0,1.15]]}
+
+export function waitingSeat(index,layout=0){const x=index? .5:-.5;return layout?[.55,0,x]:[x,0,-.55]}
+export function waitingInteriorPath(height,index,layout=0){const seat=waitingSeat(index,layout);return [[-.825,.25-height,2.475],[-.825,0,1.62],[seat[0],0,1.15],seat]}

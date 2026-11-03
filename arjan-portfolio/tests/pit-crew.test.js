@@ -1,6 +1,6 @@
 import {describe,it,expect} from 'vitest';
-import {crewPosture,jointBetween,stationCrewPose,planFootContacts,feetAt} from '../public/pit-stop-lab/crew.js';
-import {simulate} from '../public/pit-stop-lab/simulation.js';
+import {crewPosture,jointBetween,stationCrewPose,outgoingWheelPose,jackCrewPose,planFootContacts,feetAt} from '../public/pit-stop-lab/crew.js';
+import {simulate,cornerSnapshot,progress} from '../public/pit-stop-lab/simulation.js';
 const distance=(a,b)=>Math.hypot(...a.map((v,i)=>v-b[i]));
 describe('pit crew posture',()=>{
  it('rests upright with feet under the hips instead of a permanent wide squat',()=>{
@@ -37,5 +37,30 @@ describe('pit crew posture',()=>{
  it('solves a reachable arm with fixed upper and lower lengths',()=>{
   const a=[.2,1.2,0],b=[.1,.7,-.25],j=jointBetween(a,b,.31,.30,[1,0,.2]);
   expect(distance(a,j)).toBeCloseTo(.31,8);expect(distance(j,b)).toBeCloseTo(.30,8);
+ });
+});
+
+
+describe('Equipment stays with its handler',()=>{
+ it('clears the hub axially before lifting the outgoing wheel, then holds it through retreat',()=>{
+  for(const scenario of ['coordinated','gun','unsecured']){const sim=simulate({scenario}),stop=sim.stops[0];
+   for(const corner of ['FL','FR','RL','RR']){const track=corner.startsWith('F')?.8:.7625,side=corner.endsWith('L')?1:-1;let previous=null;
+    for(let t=stop.stopAt;t<sim.duration;t+=1/120){const c=cornerSnapshot(stop.corners[corner],t),p=outgoingWheelPose(stop,corner,t,track,.43);
+     if(previous)expect(distance(p,previous)).toBeLessThan(.12);previous=p;
+     if(c.removal<=.65)expect(p[1]).toBe(.43);
+     if(c.removal===1){const handler=stationCrewPose(stop,corner,1,t,track);expect(distance(p,[handler.root[0]-side*.28,.61,handler.root[2]-.16])).toBeLessThan(1e-10);}
+    }
+   }
+  }
+ });
+ it('keeps jack handles ahead of their operators and preserves planted contacts through lift/lower',()=>{
+  for(const scenario of ['coordinated','unsecured']){const sim=simulate({scenario}),stop=sim.stops[0];
+   for(let index=0;index<2;index++){const sign=index===0?-1:1,up=index===0?stop.front:stop.rear,down=index===0?stop.frontDown:stop.rearDown,at=t=>jackCrewPose(stop,index,t),heading=sign<0?Math.PI:0,plan=planFootContacts(at,0,sim.duration,heading);let previous=null;
+    for(let t=0;t<sim.duration;t+=1/120){const p=at(t),engage=progress(t,up.start,up.end)*(1-(down?progress(t,down.start,down.end):0)),handle=sign*(3.35+(1-engage)*.7)-stop.error;
+     expect((p.root[2]-handle)*sign).toBeGreaterThan(.2);expect((p.root[2]-handle)*sign).toBeLessThan(.55);
+     const feet=feetAt(plan,t);if(previous)feet.forEach((f,i)=>{if(f.planted&&previous[i].planted)expect(f.position).toEqual(previous[i].position);});expect(feet.some(f=>f.planted)).toBe(true);previous=feet;
+    }
+   }
+  }
  });
 });

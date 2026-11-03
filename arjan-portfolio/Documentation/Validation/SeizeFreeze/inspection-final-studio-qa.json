@@ -1,0 +1,2767 @@
+{
+  "base": "http://127.0.0.1:3219",
+  "browserVersion": "153.0.8010.12",
+  "requestedRenderer": "Native Chromium --use-angle=metal; actual adapter recorded per viewport",
+  "results": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "interactiveMs": 2512,
+      "viewportEmulation": true,
+      "physicalPhoneTest": false,
+      "layout": {
+        ".scene": {
+          "x": 0,
+          "y": 76,
+          "width": 1440,
+          "height": 924,
+          "right": 1440,
+          "bottom": 1000
+        },
+        "#device-lens": {
+          "x": 1044,
+          "y": 206,
+          "width": 360,
+          "height": 280,
+          "right": 1404,
+          "bottom": 486
+        },
+        ".scene-tools": {
+          "x": 36,
+          "y": 762,
+          "width": 369.5,
+          "height": 40,
+          "right": 405.5,
+          "bottom": 802
+        },
+        ".peel-control": {
+          "x": 36,
+          "y": 822.75,
+          "width": 600,
+          "height": 125.25,
+          "right": 636,
+          "bottom": 948
+        },
+        ".introduction": {
+          "x": 36,
+          "y": 107,
+          "width": 360,
+          "height": 138.53125,
+          "right": 396,
+          "bottom": 245.53125
+        },
+        ".chapter-nav": {
+          "x": 1052.59375,
+          "y": 106,
+          "width": 351.40625,
+          "height": 52,
+          "right": 1404,
+          "bottom": 158
+        }
+      },
+      "guided": [
+        {
+          "peel": 0,
+          "output": "Scalp",
+          "nextAction": "Lift scalp \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.22,
+          "output": "Bone flap",
+          "nextAction": "Lift bone flap \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.44,
+          "output": "Dura mater",
+          "nextAction": "Peel dura \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.64,
+          "output": "Arachnoid + CSF",
+          "nextAction": "Peel arachnoid \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.84,
+          "output": "Cortical window",
+          "nextAction": "Inspect interface \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 1,
+          "output": "Pial interface",
+          "nextAction": "Restore anatomy \u21ba",
+          "view": "interface"
+        }
+      ],
+      "actualLensPick": {
+        "selected": "package",
+        "chapter": "assembly"
+      },
+      "staticFrames": 19,
+      "reducedMotion": {
+        "idleBefore": 23,
+        "idleAfter": 23
+      },
+      "accessibility": [
+        {
+          "mode": "placement",
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "#title"
+                ],
+                [
+                  ".intro-copy"
+                ],
+                [
+                  ".patent-status"
+                ],
+                [
+                  "#assembly-tab"
+                ],
+                [
+                  "#assembly-tab > span"
+                ],
+                [
+                  "#lab-tab"
+                ],
+                [
+                  "#lab-tab > span"
+                ],
+                [
+                  "#view-label"
+                ],
+                [
+                  ".neutral-badge"
+                ],
+                [
+                  "#static-view"
+                ],
+                [
+                  "#interface-view"
+                ],
+                [
+                  "#overview"
+                ],
+                [
+                  "#head-view"
+                ],
+                [
+                  "#rotate-left"
+                ],
+                [
+                  "#rotate-right"
+                ],
+                [
+                  ".lens-heading > span:nth-child(1)"
+                ],
+                [
+                  ".lens-heading > span:nth-child(2)"
+                ],
+                [
+                  ".lens-foot"
+                ],
+                [
+                  ".lens-foot > span"
+                ],
+                [
+                  ".scene-gesture"
+                ],
+                [
+                  ".scene-gesture > span"
+                ],
+                [
+                  "text[x=\"28\"]"
+                ],
+                [
+                  "label[for=\"peel\"]"
+                ],
+                [
+                  "#peel-value"
+                ],
+                [
+                  "button[data-peel=\"0\"]"
+                ],
+                [
+                  ".peel-stops > button[data-peel=\"0.44\"]"
+                ],
+                [
+                  "button[data-peel=\"0.86\"]"
+                ],
+                [
+                  ".peel-stops > button[data-peel=\"1\"]"
+                ],
+                [
+                  "#scene-caption"
+                ],
+                [
+                  "#anatomy-panel > .eyebrow"
+                ],
+                [
+                  "#anatomy-title"
+                ],
+                [
+                  ".target-key"
+                ],
+                [
+                  ".target-key > span[aria-hidden=\"true\"]"
+                ],
+                [
+                  ".anatomy-note"
+                ],
+                [
+                  "button[data-layer=\"scalp\"] > span:nth-child(1)"
+                ],
+                [
+                  "button[data-layer=\"scalp\"] > strong"
+                ],
+                [
+                  "button[data-layer=\"scalp\"] > .layer-state"
+                ],
+                [
+                  "button[data-layer=\"skull\"] > span:nth-child(1)"
+                ],
+                [
+                  "button[data-layer=\"skull\"] > strong"
+                ],
+                [
+                  "button[data-layer=\"skull\"] > .layer-state"
+                ],
+                [
+                  "button[data-layer=\"dura\"] > span:nth-child(1)"
+                ],
+                [
+                  "button[data-layer=\"dura\"] > strong"
+                ],
+                [
+                  "button[data-layer=\"dura\"] > .layer-state"
+                ],
+                [
+                  "button[data-layer=\"arachnoid\"] > span:nth-child(1)"
+                ],
+                [
+                  "button[data-layer=\"arachnoid\"] > strong"
+                ],
+                [
+                  "button[data-layer=\"arachnoid\"] > .layer-state"
+                ],
+                [
+                  "button[data-layer=\"pia\"] > span:nth-child(1)"
+                ],
+                [
+                  "button[data-layer=\"pia\"] > strong"
+                ],
+                [
+                  "button[data-layer=\"pia\"] > .layer-state"
+                ],
+                [
+                  "#peel-description"
+                ],
+                [
+                  "#anatomy-panel > details > summary"
+                ],
+                [
+                  ".anatomy-credit > a[href$=\"ANATOMY.md\"][target=\"_blank\"]"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "mode": "assembly",
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "#title"
+                ],
+                [
+                  ".intro-copy"
+                ],
+                [
+                  ".patent-status"
+                ],
+                [
+                  "#placement-tab"
+                ],
+                [
+                  "#placement-tab > span"
+                ],
+                [
+                  "#lab-tab"
+                ],
+                [
+                  "#lab-tab > span"
+                ],
+                [
+                  "#view-label"
+                ],
+                [
+                  ".neutral-badge"
+                ],
+                [
+                  "#static-view"
+                ],
+                [
+                  "#region-view"
+                ],
+                [
+                  "#interface-view"
+                ],
+                [
+                  "#overview"
+                ],
+                [
+                  "#head-view"
+                ],
+                [
+                  "#rotate-left"
+                ],
+                [
+                  "#rotate-right"
+                ],
+                [
+                  ".scene-gesture"
+                ],
+                [
+                  ".scene-gesture > span"
+                ],
+                [
+                  "text[x=\"882.2\"]"
+                ],
+                [
+                  "#scene-caption"
+                ],
+                [
+                  "#assembly-panel > .eyebrow"
+                ],
+                [
+                  "#assembly-title"
+                ],
+                [
+                  "#assembly-panel > .panel-intro"
+                ],
+                [
+                  "#device-circuit"
+                ],
+                [
+                  "#device-dimensions"
+                ],
+                [
+                  ".construction-status"
+                ],
+                [
+                  "#inspection-description"
+                ],
+                [
+                  "#parts > button:nth-child(1)"
+                ],
+                [
+                  "#parts > button:nth-child(1) > span"
+                ],
+                [
+                  "#parts > button:nth-child(2)"
+                ],
+                [
+                  "#parts > button:nth-child(2) > span"
+                ],
+                [
+                  "#parts > button:nth-child(3)"
+                ],
+                [
+                  "#parts > button:nth-child(3) > span"
+                ],
+                [
+                  "#parts > button:nth-child(4)"
+                ],
+                [
+                  "#parts > button:nth-child(4) > span"
+                ],
+                [
+                  "#parts > button:nth-child(5)"
+                ],
+                [
+                  "#parts > button:nth-child(5) > span"
+                ],
+                [
+                  "#parts > button:nth-child(6)"
+                ],
+                [
+                  "button:nth-child(6) > span"
+                ],
+                [
+                  ".part-index"
+                ],
+                [
+                  "#component-detail > h3"
+                ],
+                [
+                  "#component-detail > p:nth-child(3)"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(1) > dt"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(1) > dd"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(2) > dt"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(2) > dd"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(3) > dt"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(3) > dd"
+                ],
+                [
+                  "#component-detail > .small"
+                ],
+                [
+                  "a[href$=\"DEVICE.md\"][rel=\"noreferrer\"][target=\"_blank\"]"
+                ],
+                [
+                  "#next-component"
+                ],
+                [
+                  "#assembly-progress"
+                ],
+                [
+                  ".construction-notes > summary"
+                ],
+                [
+                  "#enter-lab"
+                ],
+                [
+                  ".anatomy-credit > a[href$=\"ANATOMY.md\"][target=\"_blank\"]"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "mode": "signal",
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "#title"
+                ],
+                [
+                  ".intro-copy"
+                ],
+                [
+                  ".patent-status"
+                ],
+                [
+                  "#placement-tab"
+                ],
+                [
+                  "#placement-tab > span"
+                ],
+                [
+                  "#assembly-tab"
+                ],
+                [
+                  "#assembly-tab > span"
+                ],
+                [
+                  "#view-label"
+                ],
+                [
+                  ".neutral-badge"
+                ],
+                [
+                  "#region-view"
+                ],
+                [
+                  "#overview"
+                ],
+                [
+                  "#head-view"
+                ],
+                [
+                  "#rotate-left"
+                ],
+                [
+                  "#rotate-right"
+                ],
+                [
+                  ".scene-gesture"
+                ],
+                [
+                  ".scene-gesture > span"
+                ],
+                [
+                  "text[x=\"882.2\"]"
+                ],
+                [
+                  "#scene-caption"
+                ],
+                [
+                  ".temperature-key > span:nth-child(1)"
+                ],
+                [
+                  "#field-range"
+                ],
+                [
+                  "#thermal-strip > p"
+                ],
+                [
+                  "li:nth-child(1)"
+                ],
+                [
+                  "li:nth-child(2)"
+                ],
+                [
+                  "li:nth-child(3)"
+                ],
+                [
+                  "li:nth-child(4)"
+                ],
+                [
+                  "li:nth-child(5)"
+                ],
+                [
+                  "#lab-panel > .eyebrow"
+                ],
+                [
+                  "#lab-title"
+                ],
+                [
+                  "#lab-panel > .panel-intro"
+                ],
+                [
+                  "label[for=\"scenario\"]"
+                ],
+                [
+                  "#scenario-explanation"
+                ],
+                [
+                  "#replay"
+                ],
+                [
+                  "#clock"
+                ],
+                [
+                  ".timeline-labels > span:nth-child(1)"
+                ],
+                [
+                  ".timeline-labels > span:nth-child(2)"
+                ],
+                [
+                  ".timeline-labels > span:nth-child(3)"
+                ],
+                [
+                  "#teaching"
+                ],
+                [
+                  ".readings > div:nth-child(1) > dt"
+                ],
+                [
+                  "#surface-value"
+                ],
+                [
+                  ".readings > div:nth-child(2) > dt"
+                ],
+                [
+                  "#hot-value"
+                ],
+                [
+                  ".readings > div:nth-child(3) > dt"
+                ],
+                [
+                  "#current-value"
+                ],
+                [
+                  ".readings > div:nth-child(4) > dt"
+                ],
+                [
+                  "#energy-value"
+                ],
+                [
+                  "#controller-state"
+                ],
+                [
+                  "#parameter-details > summary"
+                ],
+                [
+                  "#model-status"
+                ],
+                [
+                  ".anatomy-credit > a[href$=\"ANATOMY.md\"][target=\"_blank\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"109.66666666666666\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"66.33333333333333\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ],
+                [
+                  "#temperature-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "text[y=\"109.66666666666663\"]"
+                ],
+                [
+                  "text[y=\"66.33333333333337\"]"
+                ],
+                [
+                  "#temperature-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"109.66666666666666\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"66.33333333333333\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ],
+                [
+                  "#control-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "text[y=\"109.66666666666667\"]"
+                ],
+                [
+                  "text[y=\"66.33333333333334\"]"
+                ],
+                [
+                  "text[y=\"22.99999999999997\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "requests": [],
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 23,
+        "calls": 183,
+        "triangles": 608634,
+        "geometries": 77,
+        "textures": 8,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 9.191304351972496,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -290.1019100551764,
+          61.60846311549832,
+          149.1573317533117
+        ],
+        "view": "region",
+        "peel": 0.86,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 0.86,
+          "context": "region"
+        },
+        "lens": {
+          "visible": true,
+          "rect": {
+            "x": 1045,
+            "y": 162,
+            "width": 358,
+            "height": 219
+          },
+          "outerRect": {
+            "x": 1044,
+            "y": 130,
+            "width": 360,
+            "height": 280
+          },
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": {
+            "x": 1199.0756242021803,
+            "y": 228.1782963068419,
+            "coordinates": "host-local CSS pixels"
+          },
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "interactiveMs": 2391,
+      "viewportEmulation": true,
+      "physicalPhoneTest": false,
+      "layout": {
+        ".scene": {
+          "x": 0,
+          "y": 76,
+          "width": 768,
+          "height": 948,
+          "right": 768,
+          "bottom": 1024
+        },
+        "#device-lens": {
+          "x": 474,
+          "y": 206,
+          "width": 270,
+          "height": 280,
+          "right": 744,
+          "bottom": 486
+        },
+        ".scene-tools": {
+          "x": 24,
+          "y": 786,
+          "width": 317.46875,
+          "height": 40,
+          "right": 341.46875,
+          "bottom": 826
+        },
+        ".peel-control": {
+          "x": 24,
+          "y": 845.609375,
+          "width": 426,
+          "height": 126.390625,
+          "right": 450,
+          "bottom": 972
+        },
+        ".introduction": {
+          "x": 24,
+          "y": 107,
+          "width": 290,
+          "height": 114.046875,
+          "right": 314,
+          "bottom": 221.046875
+        },
+        ".chapter-nav": {
+          "x": 437.453125,
+          "y": 106,
+          "width": 306.546875,
+          "height": 52,
+          "right": 744,
+          "bottom": 158
+        }
+      },
+      "guided": [
+        {
+          "peel": 0,
+          "output": "Scalp",
+          "nextAction": "Lift scalp \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.22,
+          "output": "Bone flap",
+          "nextAction": "Lift bone flap \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.44,
+          "output": "Dura mater",
+          "nextAction": "Peel dura \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.64,
+          "output": "Arachnoid + CSF",
+          "nextAction": "Peel arachnoid \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.84,
+          "output": "Cortical window",
+          "nextAction": "Inspect interface \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 1,
+          "output": "Pial interface",
+          "nextAction": "Restore anatomy \u21ba",
+          "view": "interface"
+        }
+      ],
+      "actualLensPick": {
+        "selected": "package",
+        "chapter": "assembly"
+      },
+      "staticFrames": 22,
+      "reducedMotion": {
+        "idleBefore": 26,
+        "idleAfter": 26
+      },
+      "accessibility": [
+        {
+          "mode": "placement",
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "#title"
+                ],
+                [
+                  ".intro-copy"
+                ],
+                [
+                  ".patent-status"
+                ],
+                [
+                  "#assembly-tab"
+                ],
+                [
+                  "#assembly-tab > span"
+                ],
+                [
+                  "#lab-tab"
+                ],
+                [
+                  "#lab-tab > span"
+                ],
+                [
+                  "#view-label"
+                ],
+                [
+                  "#static-view"
+                ],
+                [
+                  "#interface-view"
+                ],
+                [
+                  "#overview"
+                ],
+                [
+                  "#head-view"
+                ],
+                [
+                  "#rotate-left"
+                ],
+                [
+                  "#rotate-right"
+                ],
+                [
+                  ".lens-heading > span:nth-child(1)"
+                ],
+                [
+                  ".lens-heading > span:nth-child(2)"
+                ],
+                [
+                  ".lens-foot"
+                ],
+                [
+                  ".lens-foot > span"
+                ],
+                [
+                  ".scene-gesture"
+                ],
+                [
+                  ".scene-gesture > span"
+                ],
+                [
+                  "text[x=\"28\"]"
+                ],
+                [
+                  "label[for=\"peel\"]"
+                ],
+                [
+                  "#peel-value"
+                ],
+                [
+                  "button[data-peel=\"0\"]"
+                ],
+                [
+                  ".peel-stops > button[data-peel=\"0.44\"]"
+                ],
+                [
+                  "button[data-peel=\"0.86\"]"
+                ],
+                [
+                  ".peel-stops > button[data-peel=\"1\"]"
+                ],
+                [
+                  "#scene-caption"
+                ],
+                [
+                  "#anatomy-panel > .eyebrow"
+                ],
+                [
+                  "#anatomy-title"
+                ],
+                [
+                  ".target-key"
+                ],
+                [
+                  ".target-key > span[aria-hidden=\"true\"]"
+                ],
+                [
+                  ".anatomy-note"
+                ],
+                [
+                  "button[data-layer=\"scalp\"] > span:nth-child(1)"
+                ],
+                [
+                  "button[data-layer=\"scalp\"] > strong"
+                ],
+                [
+                  "button[data-layer=\"scalp\"] > .layer-state"
+                ],
+                [
+                  "button[data-layer=\"skull\"] > span:nth-child(1)"
+                ],
+                [
+                  "button[data-layer=\"skull\"] > strong"
+                ],
+                [
+                  "button[data-layer=\"skull\"] > .layer-state"
+                ],
+                [
+                  "button[data-layer=\"dura\"] > span:nth-child(1)"
+                ],
+                [
+                  "button[data-layer=\"dura\"] > strong"
+                ],
+                [
+                  "button[data-layer=\"dura\"] > .layer-state"
+                ],
+                [
+                  "button[data-layer=\"arachnoid\"] > span:nth-child(1)"
+                ],
+                [
+                  "button[data-layer=\"arachnoid\"] > strong"
+                ],
+                [
+                  "button[data-layer=\"arachnoid\"] > .layer-state"
+                ],
+                [
+                  "button[data-layer=\"pia\"] > span:nth-child(1)"
+                ],
+                [
+                  "button[data-layer=\"pia\"] > strong"
+                ],
+                [
+                  "button[data-layer=\"pia\"] > .layer-state"
+                ],
+                [
+                  "#peel-description"
+                ],
+                [
+                  "#anatomy-panel > details > summary"
+                ],
+                [
+                  ".anatomy-credit > a[href$=\"ANATOMY.md\"][target=\"_blank\"]"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "mode": "assembly",
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "#title"
+                ],
+                [
+                  ".intro-copy"
+                ],
+                [
+                  ".patent-status"
+                ],
+                [
+                  "#placement-tab"
+                ],
+                [
+                  "#placement-tab > span"
+                ],
+                [
+                  "#lab-tab"
+                ],
+                [
+                  "#lab-tab > span"
+                ],
+                [
+                  "#view-label"
+                ],
+                [
+                  "#static-view"
+                ],
+                [
+                  "#region-view"
+                ],
+                [
+                  "#interface-view"
+                ],
+                [
+                  "#overview"
+                ],
+                [
+                  "#head-view"
+                ],
+                [
+                  "#rotate-left"
+                ],
+                [
+                  "#rotate-right"
+                ],
+                [
+                  ".scene-gesture"
+                ],
+                [
+                  ".scene-gesture > span"
+                ],
+                [
+                  "text[x=\"312.2\"]"
+                ],
+                [
+                  "#scene-caption"
+                ],
+                [
+                  "#assembly-panel > .eyebrow"
+                ],
+                [
+                  "#assembly-title"
+                ],
+                [
+                  "#assembly-panel > .panel-intro"
+                ],
+                [
+                  "#device-circuit"
+                ],
+                [
+                  "#device-dimensions"
+                ],
+                [
+                  ".construction-status"
+                ],
+                [
+                  "#inspection-description"
+                ],
+                [
+                  "#parts > button:nth-child(1)"
+                ],
+                [
+                  "#parts > button:nth-child(1) > span"
+                ],
+                [
+                  "#parts > button:nth-child(2)"
+                ],
+                [
+                  "#parts > button:nth-child(2) > span"
+                ],
+                [
+                  "#parts > button:nth-child(3)"
+                ],
+                [
+                  "#parts > button:nth-child(3) > span"
+                ],
+                [
+                  "#parts > button:nth-child(4)"
+                ],
+                [
+                  "#parts > button:nth-child(4) > span"
+                ],
+                [
+                  "#parts > button:nth-child(5)"
+                ],
+                [
+                  "#parts > button:nth-child(5) > span"
+                ],
+                [
+                  "#parts > button:nth-child(6)"
+                ],
+                [
+                  "button:nth-child(6) > span"
+                ],
+                [
+                  ".part-index"
+                ],
+                [
+                  "#component-detail > h3"
+                ],
+                [
+                  "#component-detail > p:nth-child(3)"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(1) > dt"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(1) > dd"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(2) > dt"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(2) > dd"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(3) > dt"
+                ],
+                [
+                  "#component-detail > dl > div:nth-child(3) > dd"
+                ],
+                [
+                  "#component-detail > .small"
+                ],
+                [
+                  "a[href$=\"DEVICE.md\"][rel=\"noreferrer\"][target=\"_blank\"]"
+                ],
+                [
+                  "#next-component"
+                ],
+                [
+                  "#assembly-progress"
+                ],
+                [
+                  ".construction-notes > summary"
+                ],
+                [
+                  "#enter-lab"
+                ],
+                [
+                  ".anatomy-credit > a[href$=\"ANATOMY.md\"][target=\"_blank\"]"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "mode": "signal",
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "#title"
+                ],
+                [
+                  ".intro-copy"
+                ],
+                [
+                  ".patent-status"
+                ],
+                [
+                  "#placement-tab"
+                ],
+                [
+                  "#placement-tab > span"
+                ],
+                [
+                  "#assembly-tab"
+                ],
+                [
+                  "#assembly-tab > span"
+                ],
+                [
+                  "#view-label"
+                ],
+                [
+                  "#region-view"
+                ],
+                [
+                  "#overview"
+                ],
+                [
+                  "#head-view"
+                ],
+                [
+                  "#rotate-left"
+                ],
+                [
+                  "#rotate-right"
+                ],
+                [
+                  ".scene-gesture"
+                ],
+                [
+                  ".scene-gesture > span"
+                ],
+                [
+                  "text[x=\"312.2\"]"
+                ],
+                [
+                  "#scene-caption"
+                ],
+                [
+                  ".temperature-key > span:nth-child(1)"
+                ],
+                [
+                  "#field-range"
+                ],
+                [
+                  "#thermal-strip > p"
+                ],
+                [
+                  "li:nth-child(1)"
+                ],
+                [
+                  "li:nth-child(2)"
+                ],
+                [
+                  "li:nth-child(3)"
+                ],
+                [
+                  "li:nth-child(4)"
+                ],
+                [
+                  "li:nth-child(5)"
+                ],
+                [
+                  "#lab-panel > .eyebrow"
+                ],
+                [
+                  "#lab-title"
+                ],
+                [
+                  "#lab-panel > .panel-intro"
+                ],
+                [
+                  "label[for=\"scenario\"]"
+                ],
+                [
+                  "#scenario-explanation"
+                ],
+                [
+                  "#replay"
+                ],
+                [
+                  "#clock"
+                ],
+                [
+                  ".timeline-labels > span:nth-child(1)"
+                ],
+                [
+                  ".timeline-labels > span:nth-child(2)"
+                ],
+                [
+                  ".timeline-labels > span:nth-child(3)"
+                ],
+                [
+                  "#teaching"
+                ],
+                [
+                  ".readings > div:nth-child(1) > dt"
+                ],
+                [
+                  "#surface-value"
+                ],
+                [
+                  ".readings > div:nth-child(2) > dt"
+                ],
+                [
+                  "#hot-value"
+                ],
+                [
+                  ".readings > div:nth-child(3) > dt"
+                ],
+                [
+                  "#current-value"
+                ],
+                [
+                  ".readings > div:nth-child(4) > dt"
+                ],
+                [
+                  "#energy-value"
+                ],
+                [
+                  "#controller-state"
+                ],
+                [
+                  "#parameter-details > summary"
+                ],
+                [
+                  "#model-status"
+                ],
+                [
+                  ".anatomy-credit > a[href$=\"ANATOMY.md\"][target=\"_blank\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"109.66666666666666\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"66.33333333333333\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ],
+                [
+                  "#temperature-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "text[y=\"109.66666666666663\"]"
+                ],
+                [
+                  "text[y=\"66.33333333333337\"]"
+                ],
+                [
+                  "#temperature-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"109.66666666666666\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"66.33333333333333\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ],
+                [
+                  "#control-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "text[y=\"109.66666666666667\"]"
+                ],
+                [
+                  "text[y=\"66.33333333333334\"]"
+                ],
+                [
+                  "text[y=\"22.99999999999997\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "requests": [],
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 26,
+        "calls": 183,
+        "triangles": 608634,
+        "geometries": 77,
+        "textures": 8,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 8.080769230539982,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -515.7834380993176,
+          110.89523360789697,
+          268.4831971559609
+        ],
+        "view": "region",
+        "peel": 0.86,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 0.86,
+          "context": "region"
+        },
+        "lens": {
+          "visible": true,
+          "rect": {
+            "x": 475,
+            "y": 162,
+            "width": 268,
+            "height": 219
+          },
+          "outerRect": {
+            "x": 474,
+            "y": 130,
+            "width": 270,
+            "height": 280
+          },
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": {
+            "x": 584.0756242021803,
+            "y": 228.1782963068419,
+            "coordinates": "host-local CSS pixels"
+          },
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "interactiveMs": 2546,
+      "viewportEmulation": true,
+      "physicalPhoneTest": false,
+      "layout": {
+        ".scene": {
+          "x": 0,
+          "y": 60,
+          "width": 390,
+          "height": 740,
+          "right": 390,
+          "bottom": 800
+        },
+        "#device-lens": {
+          "x": 230,
+          "y": 308,
+          "width": 142,
+          "height": 164,
+          "right": 372,
+          "bottom": 472
+        },
+        ".scene-tools": {
+          "x": 20,
+          "y": 580,
+          "width": 312.46875,
+          "height": 36,
+          "right": 332.46875,
+          "bottom": 616
+        },
+        ".peel-control": {
+          "x": 20,
+          "y": 627.75,
+          "width": 350,
+          "height": 120.25,
+          "right": 370,
+          "bottom": 748
+        },
+        ".introduction": {
+          "x": 20,
+          "y": 82,
+          "width": 340,
+          "height": 105.5,
+          "right": 360,
+          "bottom": 187.5
+        },
+        ".chapter-nav": {
+          "x": 20,
+          "y": 204,
+          "width": 350,
+          "height": 48,
+          "right": 370,
+          "bottom": 252
+        }
+      },
+      "guided": [
+        {
+          "peel": 0,
+          "output": "Scalp",
+          "nextAction": "Lift scalp \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.22,
+          "output": "Bone flap",
+          "nextAction": "Lift bone flap \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.44,
+          "output": "Dura mater",
+          "nextAction": "Peel dura \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.64,
+          "output": "Arachnoid + CSF",
+          "nextAction": "Peel arachnoid \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 0.84,
+          "output": "Cortical window",
+          "nextAction": "Inspect interface \u2192",
+          "view": "region"
+        },
+        {
+          "peel": 1,
+          "output": "Pial interface",
+          "nextAction": "Restore anatomy \u21ba",
+          "view": "interface"
+        }
+      ],
+      "actualLensPick": {
+        "selected": "package",
+        "chapter": "assembly"
+      },
+      "staticFrames": 23,
+      "reducedMotion": {
+        "idleBefore": 27,
+        "idleAfter": 27
+      },
+      "accessibility": [
+        {
+          "mode": "placement",
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "#title"
+                ],
+                [
+                  ".intro-copy"
+                ],
+                [
+                  ".patent-status"
+                ],
+                [
+                  "#assembly-tab"
+                ],
+                [
+                  "#assembly-tab > span"
+                ],
+                [
+                  "#lab-tab"
+                ],
+                [
+                  "#lab-tab > span"
+                ],
+                [
+                  "#view-label"
+                ],
+                [
+                  "#static-view"
+                ],
+                [
+                  "#interface-view"
+                ],
+                [
+                  "#overview"
+                ],
+                [
+                  "#head-view"
+                ],
+                [
+                  "#rotate-left"
+                ],
+                [
+                  "#rotate-right"
+                ],
+                [
+                  ".lens-heading > span:nth-child(1)"
+                ],
+                [
+                  ".lens-heading > span:nth-child(2)"
+                ],
+                [
+                  ".lens-foot"
+                ],
+                [
+                  "text[x=\"18\"]"
+                ],
+                [
+                  "label[for=\"peel\"]"
+                ],
+                [
+                  "#peel-value"
+                ],
+                [
+                  "button[data-peel=\"0\"]"
+                ],
+                [
+                  ".peel-stops > button[data-peel=\"0.44\"]"
+                ],
+                [
+                  "button[data-peel=\"0.86\"]"
+                ],
+                [
+                  ".peel-stops > button[data-peel=\"1\"]"
+                ],
+                [
+                  "#scene-caption"
+                ],
+                [
+                  ".target-key > span[aria-hidden=\"true\"]"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "mode": "assembly",
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "#title"
+                ],
+                [
+                  ".intro-copy"
+                ],
+                [
+                  ".patent-status"
+                ],
+                [
+                  "#placement-tab"
+                ],
+                [
+                  "#placement-tab > span"
+                ],
+                [
+                  "#lab-tab"
+                ],
+                [
+                  "#lab-tab > span"
+                ],
+                [
+                  "#view-label"
+                ],
+                [
+                  "#static-view"
+                ],
+                [
+                  "#region-view"
+                ],
+                [
+                  "#interface-view"
+                ],
+                [
+                  "#overview"
+                ],
+                [
+                  "#head-view"
+                ],
+                [
+                  "#rotate-left"
+                ],
+                [
+                  "#rotate-right"
+                ],
+                [
+                  "text[x=\"252.2\"]"
+                ],
+                [
+                  "#scene-caption"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "mode": "signal",
+          "violations": [],
+          "incomplete": [
+            {
+              "id": "color-contrast",
+              "impact": "serious",
+              "targets": [
+                [
+                  "#title"
+                ],
+                [
+                  ".intro-copy"
+                ],
+                [
+                  ".patent-status"
+                ],
+                [
+                  "#placement-tab"
+                ],
+                [
+                  "#placement-tab > span"
+                ],
+                [
+                  "#assembly-tab"
+                ],
+                [
+                  "#assembly-tab > span"
+                ],
+                [
+                  "#view-label"
+                ],
+                [
+                  "#region-view"
+                ],
+                [
+                  "#overview"
+                ],
+                [
+                  "#head-view"
+                ],
+                [
+                  "#rotate-left"
+                ],
+                [
+                  "#rotate-right"
+                ],
+                [
+                  "text[x=\"252.2\"]"
+                ],
+                [
+                  "#scene-caption"
+                ],
+                [
+                  ".temperature-key > span:nth-child(1)"
+                ],
+                [
+                  "#field-range"
+                ],
+                [
+                  "#thermal-strip > p"
+                ],
+                [
+                  "li:nth-child(1)"
+                ],
+                [
+                  "li:nth-child(2)"
+                ],
+                [
+                  "li:nth-child(3)"
+                ],
+                [
+                  "li:nth-child(4)"
+                ],
+                [
+                  "li:nth-child(5)"
+                ],
+                [
+                  "#signal-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"109.66666666666666\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"66.33333333333333\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#signal-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ],
+                [
+                  "#temperature-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "text[y=\"109.66666666666663\"]"
+                ],
+                [
+                  "text[y=\"66.33333333333337\"]"
+                ],
+                [
+                  "#temperature-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#temperature-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"109.66666666666666\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"66.33333333333333\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#power-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ],
+                [
+                  "#control-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                [
+                  "text[y=\"109.66666666666667\"]"
+                ],
+                [
+                  "text[y=\"66.33333333333334\"]"
+                ],
+                [
+                  "text[y=\"22.99999999999997\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"30\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"167.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"305\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"442.5\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[x=\"580\"][y=\"172\"][text-anchor=\"middle\"]"
+                ],
+                [
+                  "#control-chart > text[y=\"8\"][fill=\"#d2e0df\"][font-size=\"8\"]"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "requests": [],
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 27,
+        "calls": 183,
+        "triangles": 608634,
+        "geometries": 77,
+        "textures": 8,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 7.096296294971749,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -515.7834380993176,
+          110.89523360789697,
+          268.4831971559609
+        ],
+        "view": "region",
+        "peel": 0.86,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 0.86,
+          "context": "region"
+        },
+        "lens": {
+          "visible": true,
+          "rect": {
+            "x": 231,
+            "y": 280,
+            "width": 140,
+            "height": 103
+          },
+          "outerRect": {
+            "x": 230,
+            "y": 248,
+            "width": 142,
+            "height": 164
+          },
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": {
+            "x": 289.2775766795643,
+            "y": 311.12495214431374,
+            "coordinates": "host-local CSS pixels"
+          },
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      }
+    },
+    {
+      "width": 320,
+      "height": 844,
+      "reflowOnly": true,
+      "modes": [
+        "placement",
+        "assembly",
+        "lab"
+      ],
+      "horizontalOverflow": false,
+      "cameraControlGap": 11.75,
+      "viewportEmulation": true,
+      "physicalPhoneTest": false
+    }
+  ],
+  "defects": []
+}

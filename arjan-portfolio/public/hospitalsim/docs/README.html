@@ -1,1 +1,38 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>hospitalSIM · Source and evidence</title><style>body{max-width:900px;margin:36px auto;padding:0 22px;font:16px/1.7 system-ui;background:#fafaf6;color:#183b43}h1,h2,h3{font-family:Georgia;font-weight:400}pre{white-space:pre-wrap;background:#edf3ef;padding:16px}img,video{max-width:100%}a{color:#146575}</style><a href="../index.html">← Play hospitalSIM</a><h1>A hospital you can reach into.</h1><p>Version0.6 adds player-positioned entrance/exit doors and character pickup with a dangling pose, safe drop and cancellation. Patients walk through those doors; visits and queue priority survive relocation. Eleven original adult gown appearances and staged bed transfers are retained.</p><p><a href="interaction-review.html">Recording, pickup and reference comparison</a> · <a href="VERIFICATION-v06.html">Measured verification and limits</a> · <a href="MODEL.html">Model definitions</a> · <a href="ART_DIRECTION.html">Art and pipeline</a> · <a href="ASSET_MANIFEST.json">Asset provenance</a> · <a href="EVALUATION_DRAFT.html">Unvalidated evaluation draft</a></p><p>Substantial AI assistance covered design, implementation, modeling, animation and tests. Editable Blender sources and reproducible exports are retained in the source repository. Original REPLISOME routes and24assets are preserved. This remains a vertical slice below the supplied reference in anatomy, cloth, task poses, lighting and composition. External player feedback, iPhone testing and educational validation are pending.</p><p><a href="../index.html?panel=device">Device check and local results export</a></p></html>
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>hospitalSIM · README</title><style>body{max-width:880px;margin:40px auto;padding:0 22px;font:16px/1.7 system-ui;color:#183b43;background:#fafaf6}pre{overflow:auto;background:#e8f0ed;padding:16px}a{color:#176a76}img{max-width:100%}</style><nav><a href="../index.html">Play</a> · <a href="interaction-review.html">Actual gameplay</a></nav><h1>hospitalSIM — playable1.0.0-rc3</h1>
+<p>An original, substantially AI-assisted browser hospital management release candidate for Arjan Singh Puniani. Real-time Three.js dioramas use reproducible Blender equipment and rigged characters. It is not certified production-ready, clinically validated or demonstrated superior to a commercial game.</p>
+<p>Play: <a href="https://arjansinghpuniani.com/playground/hospitalsim">https://arjansinghpuniani.com/playground/hospitalsim</a> (check the in-game model label for the deployed version). Direct game: <code>/hospitalsim/index.html</code>. The preserved2D game is <code>dist/legacy/</code>; existing portfolio REPLISOME remains independent and accessible as an optional science workstation.</p>
+<p>Current walking and first-minute changes, model observations and limits: <a href="docs/LOCOMOTION_RC3.md">RC3 notes</a>. HistoricalRC1recording outcomes are not presented asRC3results.</p>
+<h2>Run</h2>
+<p>Node22 for checks. The game itself is buildless:</p>
+<pre><code class="language-sh">python3 -m http.server 8766 --directory dist
+# Open http://127.0.0.1:8766/
+node tests/simulation.cjs
+node tests/diorama.mjs
+node tests/release.mjs
+node tests/animation.mjs
+node tests/motion-release.mjs
+node tests/patient-release.mjs
+node tests/interaction.mjs
+node tests/touch-roles.mjs
+node tests/first-shift.mjs
+node tests/roles-operations.mjs
+node tests/navigation.mjs
+node tests/landing.mjs
+node tests/construction.mjs
+node tests/waiting.mjs
+node tests/continuing.mjs
+node tests/browser-replay.mjs
+node tests/expansion.mjs
+node tests/locomotion.mjs
+node tests/browser-opening.mjs
+node tests/staffing-flow.mjs
+python3 tools/audit-assets.py
+</code></pre>
+<p> There is no package installation for the static game. Serve over HTTP; module imports do not run from a file URL.</p>
+<h2>Play</h2>
+<p>Tap/click a person or role label to lift; drag or tap a green path to put down. Cancel returns them. Role labels toggle with Roles; full people/room lists remain available. Build opens a compact palette. Rotate its doorway, use the location list or arrow keys and Enter, and keep the route clear. Escape cancels planning or clears inspection. Pause/1×/3×, recruitment, policies, event decisions, saves, exports and scenario settings remain available on narrow screens. A second care room needs a recruited surgeon and RN, not free staff from construction.</p>
+<p>The opening visit can complete within a minute at1×. Resolve the paperwork jam; decide where the next bottleneck is. A scanner spill requires an actual facilities visit. Earn a lounge voucher, arrange a waiting bench, compare a checkpoint or continue the same sandbox hospital into another shift.</p>
+<h2>Sources and limits</h2>
+<p><code>blender/</code> retains editable sources and scripts; <code>dist/assets/</code> contains self-contained browser GLBs. Rebuild equipment with <code>hospital.py</code>, people with <code>characters.py</code>, drape/doors/role wardrobes with their named scripts; <code>lobby.py</code>, <code>service_staff.py</code> and <code>equipment_lod.py</code> add the executed1.0asset pass. Blender4.0.2 was executed. Provenance and CC0/MIT terms are in <code>ASSET_MANIFEST.json</code>, <code>ASSET_LICENSE.md</code> and the vendor license. Original patient and equipment sources remain retained.</p>
+<p>See <code>docs/VERIFICATION-v10.md</code> for measured checks, actual recording and remaining gaps; <code>docs/MODEL.md</code> for timing/capacity assumptions; <code>docs/ART_DIRECTION.md</code> for camera/material/lighting; <code>docs/EVALUATION_DRAFT.md</code> for proposed evaluation. No clinician/educator review or learner study has occurred. Device-local only, fictional patients, no gameplay analytics. Real iPhone Safari, assistive technology, fun, learning and harder-scenario balance remain unvalidated.</p>
+</html>

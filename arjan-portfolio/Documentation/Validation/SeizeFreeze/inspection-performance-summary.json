@@ -1,0 +1,77 @@
+{
+  "software": {
+    "placement-peel": {
+      "fpsRange": [
+        2.564614025580437,
+        3.1651579413753037
+      ],
+      "idleFrames": [
+        0,
+        1
+      ]
+    },
+    "lab-scrub": {
+      "fpsRange": [
+        1.6980811682769792,
+        3.191365904623728
+      ],
+      "idleFrames": [
+        0,
+        1
+      ]
+    },
+    "device-rotate": {
+      "fpsRange": [
+        17.585772115042293,
+        23.416114244299187
+      ],
+      "idleFrames": [
+        1,
+        1
+      ]
+    }
+  },
+  "native-requested": {
+    "placement-peel": {
+      "fpsRange": [
+        30.983486121432698,
+        60.18087511589479
+      ],
+      "idleFrames": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "lab-scrub": {
+      "fpsRange": [
+        51.979870216275756,
+        60.061056543787494
+      ],
+      "idleFrames": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "device-rotate": {
+      "fpsRange": [
+        59.77881837214184,
+        60.16487169247487
+      ],
+      "idleFrames": [
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  },
+  "assetInventory": {
+    "bytes": 9712477,
+    "summedGzipBytes": 4915075,
+    "notMeasuredTransfer": true
+  }
+}

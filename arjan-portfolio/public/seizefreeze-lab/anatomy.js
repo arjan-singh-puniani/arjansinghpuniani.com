@@ -2,7 +2,7 @@ import { GLTFLoader } from "/pit-stop-lab/vendor/GLTFLoader.js";
 
 /** Registered HRA brain and head skin; all returned coordinates are millimeters. */
 export async function createAnatomy(T, options = {}) {
-  const loaded = await new GLTFLoader().loadAsync(new URL("./assets/brain-cortex.glb", import.meta.url).href, event => options.onProgress?.(event.total ? event.loaded / event.total : 0));
+  const loaded = await new GLTFLoader().loadAsync(new URL("./assets/brain-cortex.glb?revision=complete-cortex-20261102", import.meta.url).href, event => options.onProgress?.(event.total ? event.loaded / event.total : 0));
   const group = new T.Group(); group.name = "HRA reference anatomy with illustrative coverings";
   const sourceMeshes = [];
   loaded.scene.traverse(mesh => { if (mesh.isMesh) { mesh.geometry.computeVertexNormals(); sourceMeshes.push(mesh); } });
@@ -10,16 +10,17 @@ export async function createAnatomy(T, options = {}) {
   const sourceTarget = sourceMeshes.find(m => m.name === "Allen_superior_temporal_gyrus_L");
   if (!sourceHead || !sourceTarget) throw new Error("The attributed head or left superior temporal parcel is missing.");
   const material = (color, extra = {}) => new T.MeshStandardMaterial({ color, roughness: .68, metalness: 0, side: T.DoubleSide, ...extra });
-  const brainMaterial = material(0xb8beb5, { roughness: .62, envMapIntensity: .28 });
+  const brainMaterial = material(0xaeb1a7, { roughness: .74, envMapIntensity: .2 });
   const hindbrainMaterial = material(0x979f9b, { envMapIntensity: .24 });
-  const brain = new T.Group(); brain.name = "Atlas cerebral cortex, cerebellum and brainstem";
+  const whiteMatterMaterial = material(0xb6b8ac, { roughness: .8, envMapIntensity: .15 });
+  const brain = new T.Group(); brain.name = "Atlas cerebral cortex, cerebellum, brainstem and white matter";
   const cortical = [];
   for (const source of sourceMeshes.filter(m => m !== sourceHead)) {
-    const mesh = new T.Mesh(source.geometry, source.name.includes("cerebellum") ? hindbrainMaterial : brainMaterial);
+    const mesh = new T.Mesh(source.geometry, source.name.includes("white_matter") ? whiteMatterMaterial : source.name.includes("cerebellum") ? hindbrainMaterial : brainMaterial);
     mesh.name = source.name; mesh.userData.anatomyLayer = "cortex"; mesh.userData.sourceNodes = source.userData.sourceNodes;
     // Closed atlas parcels overlap at boundaries; device-only shadows avoid self-shadow speckle.
     mesh.receiveShadow = true;
-    brain.add(mesh); if (!source.name.includes("cerebellum")) cortical.push(mesh);
+    brain.add(mesh); if (!/cerebellum|white_matter/.test(source.name)) cortical.push(mesh);
   }
   group.add(brain); group.updateMatrixWorld(true);
   const targetMesh = cortical.find(m => m.name === sourceTarget.name), raycaster = new T.Raycaster();
@@ -35,6 +36,20 @@ export async function createAnatomy(T, options = {}) {
   if (!Number.isFinite(best)) throw new Error("The illustrative lateral target is absent from the named cortical parcel.");
   const u = new T.Vector3(0, 0, 1).addScaledVector(normal, -normal.z).normalize();
   const v = new T.Vector3().crossVectors(normal, u).normalize();
+  // Smooth coincident display normals without changing atlas vertices, topology or the chosen target.
+  const normalGroups=new Map();
+  for(const mesh of cortical){
+    const positions=mesh.geometry.attributes.position,normals=mesh.geometry.attributes.normal;
+    for(let i=0;i<positions.count;i++){
+      const key=`${Math.round(positions.getX(i)*1e4)},${Math.round(positions.getY(i)*1e4)},${Math.round(positions.getZ(i)*1e4)}`;
+      const n=new T.Vector3().fromBufferAttribute(normals,i),clusters=normalGroups.get(key)||[];
+      let cluster=clusters.find(c=>c.direction.dot(n)>.5);
+      if(!cluster){cluster={direction:n.clone(),sum:new T.Vector3(),vertices:[]};clusters.push(cluster);normalGroups.set(key,clusters);}
+      cluster.sum.add(n);cluster.vertices.push([normals,i]);
+    }
+  }
+  for(const clusters of normalGroups.values())for(const c of clusters){c.sum.normalize();for(const [attribute,i]of c.vertices)attribute.setXYZ(i,c.sum.x,c.sum.y,c.sum.z);}
+  normalGroups.clear();
   // Sample only nearby atlas triangles; raycasting the whole brain per point is wasteful.
   const localPositions = [], localNormals = [], triangleCenter = new T.Vector3(), vertex = new T.Vector3();
   for (const mesh of cortical) {
@@ -187,7 +202,9 @@ export async function createAnatomy(T, options = {}) {
   csf.userData.anatomyLayer = "csf"; csf.name = "Subarachnoid CSF space marker; exaggerated"; layers.csf.add(csf);
   const info = {
     targetName: "Left superior temporal gyrus", targetMesh: sourceTarget.name, targetDescription: "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
-    simplifiedSurroundings: Boolean(options.simplifySurroundings), units: "mm", axes: "+X right; +Y superior; +Z anterior", attribution: "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+    surfaceShading: "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged", simplifiedSurroundings: Boolean(options.simplifySurroundings), units: "mm", axes: "+X right; +Y superior; +Z anterior", attribution: "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+    sourceCorticalParcels: cortical.reduce((count, mesh) => count + (mesh.userData.sourceNodes?.length || 0), 0),
+    corticalIntegrity: "Named bilateral frontal poles, frontomarginal/rostral/paracingulate gyri, insula and opercula retained; registered forebrain white matter is separate interior context",
     sourceBrain: "https://doi.org/10.48539/HBM929.XKCL.339", sourceHead: "https://doi.org/10.48539/HBM646.RKKC.257",
     sourceRecord: "/atlas/anatomy/HRA-BRAIN-SOURCE.md", headSourceRecord: "/atlas/anatomy/HRA-BODY-SOURCE.md",
     limitations: "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
@@ -219,7 +236,7 @@ export async function createAnatomy(T, options = {}) {
     geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); headForSampling.material.dispose(); localGeometry.dispose(); sourceHead.geometry.dispose();
     sourceMeshes.forEach(m => m.material?.dispose()); headSamples.clear(); brainSamples.clear(); group.removeFromParent();
   }
-  return { group, target, normal, u, v, focusPoint, fullBounds, layers, peel, setContext, info, contact, detail,
+  return { group, target, normal, u, v, focusPoint, fullBounds, layers, peel, setContext, info, contact, detail, cortexMeshes: cortical,
     setTemperature(value) { const t = Number(value); contactMaterial.color.set(0x9698b7); if (Number.isFinite(t)) contactMaterial.color.lerp(new T.Color(t <= 37 ? 0x76d5de : 0xd7ac7d), Math.min(Math.abs(t - 37) / 9, .85)); },
     dispose,
   };

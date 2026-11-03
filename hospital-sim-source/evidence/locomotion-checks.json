@@ -1,0 +1,72 @@
+{
+  "speedMetresPerSecond": 1.2375,
+  "durationSeconds": 0.9,
+  "strideMetres": 1.11375,
+  "checks": [
+    {
+      "rig": "clinician",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    },
+    {
+      "rig": "coat",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    },
+    {
+      "rig": "patient-01",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    },
+    {
+      "rig": "patient-02",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    },
+    {
+      "rig": "patient-03",
+      "maxSupportDriftMetres": 0.00246420490696315,
+      "minimumSoleMetres": -0.0013401579344645143
+    },
+    {
+      "rig": "patient-04",
+      "maxSupportDriftMetres": 0.00246420490696315,
+      "minimumSoleMetres": -0.0013401579344645143
+    },
+    {
+      "rig": "patient-05",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    },
+    {
+      "rig": "patient-06",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    },
+    {
+      "rig": "patient-07",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    },
+    {
+      "rig": "patient-08",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    },
+    {
+      "rig": "patient-09",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    },
+    {
+      "rig": "patient-10",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    },
+    {
+      "rig": "patient-11",
+      "maxSupportDriftMetres": 0.0024641758811205852,
+      "minimumSoleMetres": -0.0013401613105088472
+    }
+  ]
+}

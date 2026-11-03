@@ -1,0 +1,41 @@
+# hospitalSIM 1.0.0-rc2 — executed verification
+
+This is a playable release candidate, not a production-readiness certification or evidence of commercial-game superiority. The owner reported lag and poor role identification on an iPhone in0.7. Those reports motivated this iteration; final real-device retesting remains necessary.
+
+## Built and exercised
+
+Nine role-specific wardrobes and responsibilities: physician, surgeon, RN, NP, PA, imaging technologist, receptionist, medical assistant and facilities. Reception is actual reserved capacity: removing Quinn stops check-in; returning physically restores it. MA intake support shortens a specific check-in task. A procedure room needs a surgeon plus RN; imaging needs a technologist. A configurable fictional PA workflow reserves actual physician review time. These are simplified game roles, not real scope-of-practice rules.
+
+Patients enter and leave through visible boundary doors, check in, navigate connected paths, wait, use services and recover. A two-seat waiting garden supports walking in, sitting, standing and continuing the visit. Its two bench arrangements keep poses and paths aligned; occupied furniture cannot move. Rooms rotate through four doorway directions, with equipment ghosts and explicit valid/invalid reasons. New and reassigned teams walk before providing capacity. Eligible vacant doorway pads accept compatible staff drops.
+
+Pickup pauses planning. A cached navigation map highlights valid quarter-cell landings in green; invalid drops retain the person. The figure is translucent and uses bounded, damped authored joint movement responding to cursor movement. It is not a ragdoll or cloth solver. An actual390px browser check exposed overlapping role targets that could lift the wrong colleague. The optional all-name layout has nine separate122×44px targets; each was clicked and checked against its exact named staff ID, then safely cancelled. RC2 hides these targets by default after the owner reported overwhelming labels. A direct body tap selects one context card; an actual browser drag lifted and safely landed the visible clinician without a label. Source/browser evidence is retained.
+
+Two modeled incidents: a paperwork jam changes intake time and offers two cost/time choices; resolving it earns a real free-lounge voucher and a pocket garden. A coffee spill pauses a scanner until facilities travels, works and exits. A full recorded shift used these decisions, recruitment, construction and a scanner upgrade through actual controls. No automation fabricated a successful patient journey.
+
+## RC2 interaction revision
+
+Owner feedback identified a clunky opening and excessive labels. The default view now omits floating staff names, queue callouts and routine speech bubbles. Selecting a person reveals a single name/role/task card. Names remain an optional pickup aid and full room/patient lists remain accessible. The 390×844 view fits essential controls without horizontal scrolling. Actual browser checks exercised direct body selection/drag, named consultation placement with auto-resume, empty imaging placement and explicit recruitment, state-based first-use feedback, report access and next-shift retention. Native iPhone gestures and subjective fun still require real testing.
+
+RC2 separates building from recruitment: an empty module can exist but has zero capacity until its team physically arrives. Staffing cost/budget preflight, role compatibility, undo and fixed-seed/save replay have dedicated checks. The opening now prioritizes one useful construction action, with advanced coordinates and operational details collapsed. These changes are responses to feedback, not evidence that the experience matches a commercial game.
+
+## Actual recording
+
+The captured385.89-second session spans simulation0–480, mainly at3× with planning pauses and a short1× cleanup inspection. It captures the actual canvas and state captions; HTML menus are summarized, not filmed. The MP4 contains no audio. Seed431:27arrivals =13completed +5departed +9unfinished. Tracked visit1001 received consultation at42s, imaging at77s and care at115s, then exited. Its serialized visit and final counts replay exactly from the recorded actions in the final simulation (`tests/browser-replay.mjs`). Renderer batching/LODs, label cleanup and opening/debrief changes occurred after capture. The replay still matches the recorded visits and counts; the footage does not demonstrate the final RC2 interface. This is an executed session, not proof that players find the game fun or learn from it.
+
+## Automated checks
+
+Original Canvas checks retained. Current suites cover seeded replay, arrival conservation, exclusive service reservations, occupancy, no negative durations, bounded fatigue and finite money; construction/door connectivity; all four doorway orientations; occupied removal; physical assignment and breaks; exact wait/walk/check-in/handoff/transfer/recovery/service timing; active save migration and replay; nine roles, paired review, intake assistance and actual cleanup; seating; four continuing sandbox periods with unfinished visits and lifetime conservation; self-contained GLBs and rigs. Numeric BFS matched the original path output in2700cases. Green cached drop checks matched9570authoritative positions. The100whole-shift paired runs recorded40wins/10ties/0losses for the specific managed plan; this is model regression evidence, not a universal dominant-strategy or real-hospital claim. Consultation-only expansion tied baseline at8completed for seed431: extra unrelated capacity is not assumed to help.
+
+Browser checks use desktop Chromium/Apple M2/ANGLE Metal at1280×900 and an actual390×844 viewport. This is not iPhone Safari, native touch injection, VoiceOver or an accessibility audit. Earlier QA deliberately failed a GLB with503 and verified the visible retry path. Development navigation/import cancellations are distinguished from application failures. Controls are disabled until initialization finishes; startup exposes progress, a preserved-save error, retry and a2D fallback.
+
+## Measured assets and render limits
+
+Initial30GLBs:12,924,268raw bytes /4,138,526locally gzip-compressed bytes. Runtime JS/CSS/vendor measured separately by `tools/audit-assets.py`; CDN transfer encoding/cache behavior differs. All11adult patient appearances remain unchanged. Blender equipment LODs reduce scan34292→20360, care27620→16408, consultation38996→23162triangles while retaining original nodes, transforms, materials and embedded texture bytes. Original high assets lazy-load for close desktop inspection. Static contact shadows and repeated floor/foot contacts are instanced.
+
+Final measurements and screenshots are linked from the evidence page. Report main-scene triangles separately from shadow-pass triangles and cached calls separately from occasional shadow refresh. These are workstation measurements, not a midrange-phone benchmark. Do not infer that the owner’s iPhone lag is fixed until its retest.
+
+## Remaining gaps
+
+People and garment folds remain stylized. Repeated faces, rigid drape, approximate hand/tool contact, simple cleaning motion and grid-like circulation remain below the supplied reference. Nonclinical protected breaks are not modeled as fully as clinical room-based break trips; lounges still alter the documented passive idle recovery rate. Furniture uses a small set of fixed safe layouts. Harder campaign balance and enjoyment need player feedback. No actual external reviewer, clinician involvement, usability sample, learner result, service hours, publication, educational effectiveness or admissions impact is claimed. An expanded commercial hospital game and external evaluation remain beyond this release candidate.
+
+The continuing sandbox retains layout, money, fatigue and unfinished visits at each eight-minute boundary. It keeps the latest12period summaries and exact lifetime counts; earlier individual records should be exported before continuing if needed. Campaign shifts remain finite. Device-local save v3 leaves legacy v2 intact. The tab-owner guard pauses displaced tabs and offers an explicit choice of current versus shared state, with a recoverable displaced-tab backup.

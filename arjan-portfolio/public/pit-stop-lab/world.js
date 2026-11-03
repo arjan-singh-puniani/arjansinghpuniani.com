@@ -2,7 +2,7 @@ import * as THREE from './vendor/three.module.js';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { createMechanics } from './mechanics.js';
 import { createGarage } from './garage.js';
-import { crewPosture, jointBetween, stationCrewPose, planFootContacts, feetAt } from './crew.js';
+import { crewPosture, jointBetween, stationCrewPose, outgoingWheelPose, jackCrewPose, planFootContacts, feetAt } from './crew.js';
 import { loadHero, wheelTrack, setWheelRotation, alignmentTilt, CAR_IDENTITY } from './hero-car.js';
 import { createFacility } from './facility.js';
 import { operations } from './operations.js';
@@ -267,7 +267,11 @@ export function createWorld(canvas, onSelect, onStatus) {
     const trimSole=mat('#72777c',.05,.8);
     const crewTorsoGeometry=new THREE.LatheGeometry([new THREE.Vector2(.11,0),new THREE.Vector2(.14,.04),new THREE.Vector2(.145,.15),new THREE.Vector2(.19,.30),new THREE.Vector2(.17,.36),new THREE.Vector2(.065,.40)],24);
     const crewLimbGeometry=new THREE.CapsuleGeometry(.055,.89,4,12);
-    const jointPose=new THREE.Object3D();
+    const crewVisorGeometry=new THREE.SphereGeometry(1,32,12,Math.PI+.07,Math.PI-.14,Math.PI*.36,Math.PI*.27);
+    const jointPose=new THREE.Object3D(),crewBadges=new Map(),crewBadgeGeometry=new THREE.PlaneGeometry(1,1);
+    function crewBadge(role){
+        if(!crewBadges.has(role)){const c=document.createElement('canvas');c.width=256;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='#e5e6df';ctx.fillRect(0,0,256,128);ctx.fillStyle='#b41c31';ctx.fillRect(0,0,12,128);ctx.fillStyle='#17202a';ctx.font='700 45px monospace';ctx.textAlign='center';ctx.fillText(({gun:'GUN','wheel off':'OFF','wheel on':'ON',jack:'JACK',supply:'SUPPLY',inspection:'GUN'})[role],134,58);ctx.font='500 23px monospace';ctx.fillText('PIT STOP LAB',134,100);const map=new THREE.CanvasTexture(c);map.colorSpace=THREE.SRGBColorSpace;crewBadges.set(role,new THREE.MeshStandardMaterial({map,roughness:.8}));}return crewBadges.get(role);
+    }
     const footPlans=new WeakMap();
     function contactPlan(key,id,poseAt,start,end,heading){
         if(!footPlans.has(key))footPlans.set(key,new Map());
@@ -281,19 +285,18 @@ export function createWorld(canvas, onSelect, onStatus) {
         const group = new THREE.Group(),upper=new THREE.Group();group.add(upper);
         const fabric=color===M.red?suit:color===M.carbon?crewBlack:color;
         const torso=make(crewTorsoGeometry,fabric);torso.position.set(0,.45,.02);torso.scale.z=.66;upper.add(torso);
-        sphere(upper,0,.48,.01,.145,.11,.10,fabric);
+        sphere(upper,0,.48,.01,.13,.075,.085,fabric);
         sphere(upper,0,.87,-.015,.063,.065,.060,crewBlack);
-        sphere(upper,0,.99,-.04,.108,.132,.125,color);
-        sphere(upper,0,1.005,-.143,.096,.041,.036,visor);
-        sphere(upper,0,.947,-.141,.090,.025,.033,color);
-        box(upper,0,1.112,-.048,.022,.006,.13,M.white);
-        for(const side of [-1,1]){
-            sphere(upper,side*.107,.988,-.018,.015,.042,.042,crewBlack);
-            box(upper,side*.12,.79,-.085,.085,.025,.012,M.white);
-        }
+        const head=new THREE.Group();head.position.set(0,.49,-.04);
+        sphere(head,0,0,0,.108,.132,.125,color);
+        const shield=make(crewVisorGeometry,visor);shield.scale.set(.111,.135,.129);head.add(shield);
+        sphere(head,0,-.086,-.013,.085,.045,.088,color);
+        box(head,0,.122,-.008,.022,.006,.13,M.white);
+        for(const side of [-1,1]){sphere(head,side*.107,-.002,.022,.008,.031,.030,crewBlack);box(upper,side*.12,.79,-.085,.075,.014,.012,M.white);}
+        for(const side of [-1,1]){const badge=make(crewBadgeGeometry,crewBadge(role));badge.position.set(0,.72,side*.108);badge.rotation.y=side<0?Math.PI:0;badge.scale.set(.155,.077,1);upper.add(badge);}
         box(upper,0,.67,-.087,.007,.30,.008,crewBlack);
         box(upper,0,.49,-.086,.24,.025,.022,crewBlack);
-        upper.children.forEach(o=>o.position.y-=.5);upper.scale.setScalar(1.2);batchStatic(upper);
+        upper.children.forEach(o=>o.position.y-=.5);upper.scale.setScalar(1.2);batchStatic(upper);batchStatic(head);upper.add(head);
         const bones = Array.from({ length: 8 }, () => new THREE.Object3D());
         const skeleton = new THREE.InstancedMesh(crewLimbGeometry, fabric, 8);
         skeleton.castShadow = true;
@@ -302,7 +305,8 @@ export function createWorld(canvas, onSelect, onStatus) {
         const joints=new THREE.InstancedMesh(sphereGeometry,fabric,4);joints.castShadow=true;joints.instanceMatrix.setUsage(THREE.DynamicDrawUsage);group.add(joints);
         const feet = [-1, 1].map(side => { const foot = sphere(group,side*.18,.06,.08,.065,.06,.14,crewBlack);const sole=make(boxGeometry,trimSole);sole.position.set(0,-.62,.05);sole.scale.set(1.55,.18,1.6);foot.add(sole);return foot; });
         const hands = [sphere(group, 0, 0, 0, .043, .038, .068, crewBlack), sphere(group, 0, 0, 0, .043, .038, .068, crewBlack)];
-        group.userData = { role, upper, bones, skeleton, joints, feet, hands };
+        const kneePads=new THREE.InstancedMesh(sphereGeometry,crewBlack,2);kneePads.castShadow=true;kneePads.instanceMatrix.setUsage(THREE.DynamicDrawUsage);group.add(kneePads);
+        group.userData = { role, upper, head, kneePads, bones, skeleton, joints, feet, hands };
         return group;
     }
     function pose(person, hand1, hand2, movement = {}) {
@@ -311,6 +315,9 @@ export function createWorld(canvas, onSelect, onStatus) {
         const feetLocal=movement.contacts?.map(point=>person.worldToLocal(new THREE.Vector3().fromArray(point)).toArray());
         const posture=crewPosture({...movement,feet:feetLocal}),joint=jointPose;
         upper.position.fromArray(posture.pelvis);upper.rotation.x=-posture.lean;person.updateMatrixWorld(true);
+        const gaze=upper.worldToLocal(hand1.clone().add(hand2).multiplyScalar(.5)).sub(person.userData.head.position);
+        person.userData.head.rotation.set(THREE.MathUtils.clamp(Math.atan2(gaze.y,Math.hypot(gaze.x,gaze.z)),-.35,.12),THREE.MathUtils.clamp(Math.atan2(-gaze.x,-gaze.z),-.55,.55),0);
+
         [hand1, hand2].forEach((hand, i) => {
             const side=i===0?-1:1,target=person.worldToLocal(hand.clone());
             const shoulder=person.worldToLocal(upper.localToWorld(new THREE.Vector3(side*.16,.30,0)));
@@ -318,17 +325,18 @@ export function createWorld(canvas, onSelect, onStatus) {
             align(bones[i * 2], shoulder, elbow,1.15);
             align(bones[i * 2 + 1], elbow, target);
             joint.position.copy(elbow);joint.scale.setScalar(.061);joint.updateMatrix();joints.setMatrixAt(i,joint.matrix);
-            hands[i].position.copy(target);
+            hands[i].position.copy(target);hands[i].quaternion.copy(bones[i*2+1].quaternion);hands[i].rotateX(-Math.PI/2);
             const leg=posture.legs[i],hip=new THREE.Vector3().fromArray(leg.hip),knee=new THREE.Vector3().fromArray(leg.knee),ankle=new THREE.Vector3().fromArray(leg.ankle);
             align(bones[4 + i * 2], hip, knee, 1.45);
             align(bones[5 + i * 2], knee, ankle, 1.2);
             joint.position.copy(knee);joint.scale.set(.078,.078,.073);joint.updateMatrix();joints.setMatrixAt(i+2,joint.matrix);
+            joint.position.z-=.048;joint.scale.set(.066,.074,.04);joint.updateMatrix();person.userData.kneePads.setMatrixAt(i,joint.matrix);
             feet[i].position.fromArray(leg.foot);feet[i].rotation.x=leg.pitch;
         });
         bones.forEach((bone, i) => { bone.updateMatrix(); skeleton.setMatrixAt(i, bone.matrix); });
         skeleton.instanceMatrix.needsUpdate = true;
         skeleton.computeBoundingSphere();
-        joints.instanceMatrix.needsUpdate=true;joints.computeBoundingSphere();
+        joints.instanceMatrix.needsUpdate=true;joints.computeBoundingSphere();person.userData.kneePads.instanceMatrix.needsUpdate=true;person.userData.kneePads.computeBoundingSphere();
     }
     CORNERS.forEach(corner => {
         const side = corner.endsWith('L') ? 1 : -1, z = corner.startsWith('F') ? -1.65 : 1.65;
@@ -530,8 +538,7 @@ export function createWorld(canvas, onSelect, onStatus) {
             const moving = state.time < stop.stopAt ? active.position + stop.error : active.released ? active.position + stop.error : 0;
             const height = (corner.startsWith('F') ? active.frontLift : active.rearLift) + .355;
             s.disc.position.set(-s.side * .12, height, moving);
-            const axial=Math.min(1,c.removal/.65),carried=progress(c.removal,.65,1);
-            s.old.position.set(s.side*axial*.85,height-(height-.355)*carried,-carried*.72+(c.removal===0?moving:0));
+            s.old.position.copy(s.group.worldToLocal(new THREE.Vector3().fromArray(outgoingWheelPose(stop,corner,state.time,wheelTrack(corner),height))));
             s.old.visible = true;
             const correction=alignmentTilt(c),replacementHeight=.355+(height-.355)*progress(c.alignment,.35,.9);
             s.incoming.position.set(s.side * (1.1 * (1 - c.alignment) + .25 * (1 - c.installation)), replacementHeight, .80 * (1 - c.alignment) + correction + (c.incomingInstalled ? moving : 0));
@@ -564,8 +571,9 @@ export function createWorld(canvas, onSelect, onStatus) {
                 p.updateMatrixWorld(true);
                 const hand1 = target.clone().add(new THREE.Vector3(s.side*(i===0?.12:.17), i === 0 ? -.1 : .19+.12*(1-motion.kneel), i === 0 ? .04 : s.side*.16));
                 const hand2 = target.clone().add(new THREE.Vector3(s.side*(i===0?0:.17), i === 0 ? -.03 : .12+.16*(1-motion.kneel), i === 0 ? -.06 : -s.side*.16));
-                hand1.lerp(p.localToWorld(new THREE.Vector3(-.18,.70,-.07)),1-work);
-                hand2.lerp(p.localToWorld(new THREE.Vector3(.18,.70,-.07)),1-work);
+                const grip=i===1?Math.max(work,progress(c.removal,.05,.2)):work;
+                hand1.lerp(p.localToWorld(new THREE.Vector3(-.18,.70,-.07)),1-grip);
+                hand2.lerp(p.localToWorld(new THREE.Vector3(.18,.70,-.07)),1-grip);
                 if(i===0){hand1.copy(s.gun.localToWorld(new THREE.Vector3(.15,-.16,.025)));hand2.copy(s.gun.localToWorld(new THREE.Vector3(.04,-.02,-.04)));}
                 const plan=contactPlan(stop,`${corner}/${i}`,poseAt,Math.max(0,stop.stopAt-.7),stop.corners[corner].events.at(-1).end+.9,p.rotation.y);
                 pose(p,hand1,hand2,{...motion,contacts:feetAt(plan,state.time).map(f=>f.position)});
@@ -591,11 +599,12 @@ export function createWorld(canvas, onSelect, onStatus) {
             const engagement = progress(state.time, up.start, up.end) * (1 - (down ? progress(state.time, down.start, down.end) : 0));
             group.position.set(0, 0, sign * (2.65 + (1 - engagement) * .7) - stop.error);
             arm.rotation.x = sign * lift * 2;
-            operator.position.set(0, 0, sign * 3.6 - stop.error);
+            const poseAt=t=>jackCrewPose(stop,i,t),motion=poseAt(state.time);operator.position.fromArray(motion.root);
             operator.rotation.y = sign < 0 ? Math.PI : 0;
             operator.updateMatrixWorld(true);
             const handle = group.localToWorld(new THREE.Vector3(0, .9, sign * .7));
-            pose(operator, handle.clone().add(new THREE.Vector3(-.1, 0, 0)), handle.clone().add(new THREE.Vector3(.1, 0, 0)));
+            const plan=contactPlan(stop,`jack/${i}`,poseAt,0,sim.duration,operator.rotation.y);
+            pose(operator, handle.clone().add(new THREE.Vector3(-.1, 0, 0)), handle.clone().add(new THREE.Vector3(.1, 0, 0)),{...motion,contacts:feetAt(plan,state.time).map(f=>f.position)});
         });
         lightMat.color.set(active.released ? '#41bc87' : active.phase === 'SAFETY HOLD' ? '#e03d35' : '#ffb83e');
         lightMat.emissive.copy(lightMat.color);
@@ -744,6 +753,7 @@ export function createWorld(canvas, onSelect, onStatus) {
     };
     controls.addEventListener('start', cancelTween);
     return { update, render, setView, setCamera, resize,
+        setFilmCamera(shot){cameraMode='film';tween=null;controls.enabled=false;camera.position.fromArray(shot.position);controls.target.fromArray(shot.target);if(canvas.clientWidth<700){camera.position.sub(controls.target).multiplyScalar(1.7).add(controls.target);camera.position.y=Math.min(camera.position.y,3.15);controls.target.y-=.3;}camera.fov=shot.fov;camera.updateProjectionMatrix();dirty=true;},
         setExperience(next){experience=next;optionsRevision++;dirty=true;controls.enabled=true;},
         inspectBody(hide,isolate){hiddenBody=hide;isolation=isolate;optionsRevision++;dirty=true;},
         projectContact(){const p=stations.FL.group.localToWorld(new THREE.Vector3(.22,.355+(lastSnapshot?.cars[0].frontLift||0),0)).project(camera);return {x:(p.x*.5+.5)*canvas.clientWidth,y:(-p.y*.5+.5)*canvas.clientHeight};},

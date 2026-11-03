@@ -1,0 +1,30 @@
+{
+  "experience": {
+    "checks": 21,
+    "errors": []
+  },
+  "intelligence": {
+    "checks": 23,
+    "errors": []
+  },
+  "wheel": {
+    "checks": 5,
+    "errors": []
+  },
+  "world": {
+    "checks": 54,
+    "errors": []
+  },
+  "crew": {
+    "checks": 4,
+    "errors": []
+  },
+  "pit-wall": {
+    "checks": 26,
+    "errors": []
+  },
+  "garage": {
+    "checks": 26,
+    "errors": []
+  }
+}

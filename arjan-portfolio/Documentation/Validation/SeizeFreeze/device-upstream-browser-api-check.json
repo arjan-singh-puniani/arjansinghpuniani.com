@@ -1,0 +1,18 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "matchMediaAvailable": true,
+      "mobileStandalone": false,
+      "url": "http://127.0.0.1:3220/playground/hospitalsim",
+      "desktopIframe": true
+    },
+    {
+      "width": 390,
+      "matchMediaAvailable": true,
+      "mobileStandalone": true,
+      "url": "http://127.0.0.1:3220/hospitalsim/index.html",
+      "desktopIframe": false
+    }
+  ]
+}

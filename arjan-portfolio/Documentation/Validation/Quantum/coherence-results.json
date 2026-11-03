@@ -1,0 +1,47 @@
+[
+  {
+    "browser": "chromium",
+    "version": "153.0.8010.12",
+    "phaseSettings": [
+      0,
+      1.5707963267948966,
+      3.141592653589793
+    ],
+    "sameZPopulations": true,
+    "zeroLocalBlochVectors": true,
+    "midMeasurementEnsemble": true,
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.6",
+    "phaseSettings": [
+      0,
+      1.5707963267948966,
+      3.141592653589793
+    ],
+    "sameZPopulations": true,
+    "zeroLocalBlochVectors": true,
+    "midMeasurementEnsemble": true,
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  },
+  {
+    "browser": "firefox",
+    "version": "153.0",
+    "phaseSettings": [
+      0,
+      1.5707963267948966,
+      3.141592653589793
+    ],
+    "sameZPopulations": true,
+    "zeroLocalBlochVectors": true,
+    "midMeasurementEnsemble": true,
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  }
+]

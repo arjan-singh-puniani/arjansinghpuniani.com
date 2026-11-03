@@ -6,20 +6,89 @@
   <meta name="theme-color" content="#17191d" />
   <link rel="icon" href="data:," />
   <title>Pit Stop Lab | Arjan Singh Puniani</title>
-  <meta name="description" content="A Formula racing engineering laboratory. Run a deterministic four-corner stop, inspect the mechanics, and investigate timing, safety and strategy." />
+  <meta name="description" content="A cinematic 3D lap driven by recorded telemetry, slow-motion pit service, traceable pace learning and strategy experiments." />
   <meta name="robots" content="noindex,follow" />
   <link rel="canonical" href="https://arjansinghpuniani.com/playground/pit-stop" />
   <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./pit-wall.css" />
+  <link rel="stylesheet" href="./race-show.css" />
 </head>
-<body data-experience="explore" data-asset-state="loading">
+<body data-experience="show" data-asset-state="loading">
   <div id="app">
     <header class="topbar">
-      <a class="brand" href="/playground/pit-stop" target="_top"><span class="brand-mark">P/</span><span>PIT STOP <b>LAB</b><small>REFERENCE STUDY / 2026</small></span></a>
+      <a class="brand" href="/playground/pit-stop" target="_top"><span class="brand-mark">P/</span><span>PIT STOP <b>LAB</b><small>RACE SYSTEMS / ENGINEERING STUDY</small></span></a>
       <label class="scenario-label"><span class="sr-only">Scenario</span><select id="scenario"></select></label>
       <div class="session"><span id="phase" role="status">READY TO RUN</span><strong id="clock">00.000 <small>s</small></strong></div>
       <button id="playBtn" class="primary">▶ RUN STOP</button>
     </header>
-    <nav class="experience-nav" aria-label="Experience"><button data-experience="explore" aria-pressed="true">Explore</button><button data-experience="challenge" aria-pressed="false">Pit Stop Challenge</button><button data-experience="engineer" aria-pressed="false">Race Engineer</button></nav>
+    <nav class="experience-nav" aria-label="Experience"><button data-experience="show" aria-pressed="false">Watch</button><button data-experience="pitwall" aria-pressed="false">Pit wall</button><button data-experience="explore" aria-pressed="true">Car & garage</button><button data-experience="challenge" aria-pressed="false">Pit challenge</button><button data-experience="engineer" aria-pressed="false">Engineer</button></nav>
+
+
+    <section id="raceShow" aria-label="Directed racing and pit-stop film">
+      <div id="showVisual"><canvas id="showCanvas" aria-label="Illustrative three-dimensional circuit driven by archived Leclerc and Sainz lap telemetry. Select a camera or pause and orbit to explore."></canvas><div class="show-vignette" aria-hidden="true"></div><div id="showLoading" role="status"><div></div><span>Preparing the lap…</span></div><div id="showFailure" hidden><h2>The 3D replay is unavailable</h2><p id="showFailureText"></p><button id="showFallbackWall">Open engineering tools ↗</button></div></div>
+      <div class="show-heading"><div class="show-kicker"><i></i><span id="showSource">RECORDED LAP / 2024</span></div><div class="show-identity"><b id="showNumber">16</b><div><h2 id="showName">Charles Leclerc</h2><p id="showVenue">SAKHIR / LAP 32</p></div></div><p id="showAction">Archived telemetry · illustrative scene</p></div>
+      <div class="show-chapters" aria-label="Film chapter"><button data-show-chapter="lap" aria-pressed="true"><span>01</span> Recorded lap <i>↗</i></button><button data-show-chapter="pit" aria-pressed="false"><span>02</span> Pit operation <i>↗</i></button></div>
+      <div class="show-speed"><div class="show-unit" id="showMetricLabel">SPEED / km/h</div><div class="show-speed-line"><strong id="showVelocity">—</strong><div><span id="showGearLabel">GEAR</span><b id="showGear">—</b></div></div><div id="showPedals"><div><span>THROTTLE</span><i><b id="showThrottle"></b></i><small id="showThrottleValue">—</small></div><div><span>BRAKE</span><i><b id="showBrake"></b></i><small id="showBrakeValue">—</small></div></div><div id="showCornerStates" hidden aria-label="Wheel retention states"></div></div>
+      <div class="show-map"><div><span id="showMapTitle">LAP-ALIGNED COMPARISON</span><b id="showClock">0:00.000</b></div><svg id="showMiniMap" viewBox="0 0 230 140" role="img" aria-label="Archived circuit position"><path id="showMiniRoad" fill="none" stroke="#ffffff38" stroke-width="2"/><path id="showMiniProgress" fill="none" stroke="#ff8f6d" stroke-width="2.5"/><circle id="showMiniCar0" r="3.5" fill="#ff9d7d"/><circle id="showMiniCar1" r="3" fill="#75d6ce"/></svg><div class="show-map-legend"><span>● LEC / 16</span><span>● SAI / 55</span></div><button id="showOpenWall">Inspect the evidence <span>→</span></button></div>
+      <div class="show-pit-experiments" hidden id="showPitExperiments"><span>CHANGE THE OPERATION</span><div><button data-show-scenario="coordinated" aria-pressed="true">Clean stop</button><button data-show-scenario="gun" aria-pressed="false">Gun delay</button><button data-show-scenario="unsecured" aria-pressed="false">Safety hold</button></div><p id="showPitBlocking"></p></div>
+      <div class="show-footer"><div class="show-timeline"><span id="showTimelineLabel">LAP 32</span><input id="showSeek" type="range" min="0" max="1000" value="0" step="1" aria-label="Film timeline"/><output id="showTimelineOut">0:00 / 1:37</output></div><div class="show-transport"><button id="showPlay" aria-pressed="true">Ⅱ Pause</button><button id="showRestart" aria-label="Restart this chapter">↺</button><label class="show-camera"><span class="sr-only">Film camera</span><select id="showCamera"></select></label><label><span class="sr-only">Lap playback speed</span><select id="showRate"><option value=".35">0.35×</option><option value="1">1×</option><option value="2" selected>2×</option><option value="4">4×</option></select></label><label class="show-option"><input type="checkbox" id="showGhost"/> SAI ghost</label><label class="show-option"><input type="checkbox" id="showLoop" checked/> Auto sequence</label><label class="show-option"><input type="checkbox" id="showSound"/> Synth sound</label><button id="showFull" aria-label="Toggle full screen">⛶</button></div><p id="showDisclosure">Archived inputs · condensed track · enlarged illustrative car and architecture · synthesized audio off</p></div>
+    </section>
+    <section id="pitWall" aria-label="Historical pit-wall workspace">
+      <div class="pw-header"><div><span class="pw-eyebrow">BAHRAIN / 02 MAR 2024</span><h1>Race systems <span>/</span> Sakhir</h1></div><div class="pw-archive"><i></i> HISTORICAL REPLAY <span>SESSION 9472</span></div><button id="pwBrief" disabled>Export engineering brief ↗</button></div>
+      <div class="pw-provenance-rail" aria-label="Trace the decision pipeline"><button data-pw-source="laps"><span>LAPS + STINTS</span><output id="pwRailRaw">Loading archive</output></button><span>→</span><button data-pw-source="quality"><span>QUALITY GATES</span><output id="pwRailQuality">—</output></button><span>→</span><button data-pw-source="model"><span>LEARNED PACE</span><output id="pwRailModel">—</output></button><span>→</span><button data-pw-source="crew"><span>CREW + FUTURES</span><output>64 stops × 1,200 runs</output></button><span>→</span><button data-pw-source="call"><span>CONDITIONAL CALL</span><output id="pwRailCall">—</output></button></div>
+      <div id="pwStatus" class="pw-status" role="status">Loading the archived timing and telemetry…</div><button id="pwRetry" hidden>Retry archive</button>
+      <div class="pw-layout">
+        <aside class="pw-left" aria-label="Telemetry comparison">
+          <div class="pw-section-label">01 <span>LAP TELEMETRY</span><b>32 / 57</b></div>
+          <div id="pwDrivers"></div>
+          <div class="pw-comparison"><span>LAP-ALIGNED DELTA</span><strong id="pwDelta">—</strong><small>SAI − LEC · sampled-distance estimate</small></div>
+          <div class="pw-sampling"><i></i><div><b>739 recorded samples</b><span>~3.7 Hz · measured speed & inputs<br>Pedal brake is binary, not pressure.</span></div></div>
+          <div class="pw-brake-title">BRAKING EVENTS <span>select to seek</span></div><div id="pwBrakeZones" class="pw-brake-zones"></div>
+          <button id="pwGarage" class="pw-garage-link"><img src="./preview-hero.webp" alt="Original Formula car in the 3D garage" loading="lazy"/><span>Inspect the car & garage <b>↗</b></span></button>
+        </aside>
+        <div class="pw-center">
+          <div class="pw-map-heading"><span>SAKHIR / LOCATION TRACE</span><span><i class="pw-red-dot"></i> LEC <i class="pw-mint-dot"></i> SAI</span></div>
+          <div class="pw-map"><div class="pw-mobile-hud"><div><span>LEC / 16</span><strong id="pwMobileSpeed0">—</strong><small>km/h</small></div><div><span>SAI / 55</span><strong id="pwMobileSpeed1">—</strong><small>km/h</small></div></div>
+            <svg id="pwTrack" viewBox="0 0 960 570" role="img" aria-label="Bahrain circuit reconstructed from archived car locations. Colored markers compare each driver's own lap.">
+              <defs><pattern id="pwGrid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a2b6b9" stroke-opacity=".07"/></pattern><filter id="pwGlow"><feGaussianBlur stdDeviation="4"/></filter><linearGradient id="pwTrackGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff6549"/><stop offset="1" stop-color="#eab992"/></linearGradient></defs>
+              <rect width="960" height="570" fill="url(#pwGrid)"/>
+              <g id="pwMapRoad"></g><g id="pwMapEvents"></g>
+              <g id="pwMarker0"><circle r="17" fill="#ff553e" opacity=".18"/><circle r="6" fill="#ff7058" stroke="#10171c" stroke-width="2"/><text x="15" y="-15">LEC / 16</text></g>
+              <g id="pwMarker1"><circle r="14" fill="#63ded0" opacity=".14"/><circle r="5" fill="#63ded0" stroke="#10171c" stroke-width="2"/><text x="15" y="22">SAI / 55</text></g>
+              <text x="34" y="540" class="pw-map-note">LOCATION-DERIVED OUTLINE / APPROXIMATE POSITIONS</text>
+            </svg>
+            <div class="pw-map-clock"><span>LEC / LAP CLOCK</span><strong id="pwLapClock">00:00.000</strong><small id="pwLapAction">Archived lap 32</small></div>
+          </div>
+          <div class="pw-replay"><button id="pwPlay" aria-pressed="false">▶ Replay</button><input id="pwSeek" type="range" min="0" max="1000" value="0" step="1" aria-label="Lap replay position"/><output id="pwProgress">0%</output><label><span class="sr-only">Telemetry playback speed</span><select id="pwSpeed"><option value="1">1×</option><option value="2">2×</option><option value="4" selected>4×</option></select></label></div>
+          <div class="pw-trace-heading"><span>MEASURED SPEED <small>km/h</small></span><span>HOVER OR DRAG TO SEEK</span></div>
+          <svg id="pwTelemetry" viewBox="0 0 960 166" role="img" aria-label="Speed traces for Leclerc and Sainz aligned by normalized integrated lap distance"><g id="pwTraceGrid"></g><g id="pwSpeedPaths"></g><line id="pwTraceCursor" x1="0" x2="0" y1="0" y2="146" stroke="#fff" stroke-width="1"/><text x="8" y="161">START</text><text x="850" y="161">LAP DISTANCE</text></svg>
+          <p class="pw-trace-note">Two drivers, each starting their own lap at zero. Markers show lap-aligned comparison, not simultaneous race positions. Speed-integrated distance is normalized per lap.</p>
+        </div>
+        <aside class="pw-right" aria-label="Time-causal strategy comparison">
+          <div class="pw-section-label">02 <span>DECISION SANDBOX</span><b>LEC / 16</b></div>
+          <label class="pw-decision-lap">Information available at <select id="pwDecisionLap" aria-label="Historical decision lap"><option value="24">start of lap 24</option><option value="32" selected>start of lap 32</option><option value="40">start of lap 40</option><option value="48">start of lap 48</option></select></label>
+          <div class="pw-call"><div><i></i><span id="pwCallKind">COMPARING ACTIONS</span><b>MC / 1,200</b></div><h2 id="pwCall">Learning the available pace…</h2><p id="pwReason">Historical observations end at the selected timestamp. Future laps stay out of training.</p><div class="pw-call-metrics"><div><span>BEAT ENTERED RIVAL</span><strong id="pwProbability">—</strong></div><div><span>VS STAY OUT</span><strong id="pwSaving">—</strong></div></div><small id="pwMCInterval"></small></div>
+          <div class="pw-controls-heading"><span>COUNTERFACTUAL INPUTS</span><button id="pwReset">Reset</button></div>
+          <label class="pw-control">Pit transit loss <output id="pwTransitValue">20.0 s</output><input id="pwTransit" type="range" min="5" max="35" step=".5" value="20"/></label>
+          <label class="pw-control">Traffic after release <output id="pwTrafficValue">0.0 s</output><input id="pwTraffic" type="range" min="0" max="8" step=".25" value="0"/></label>
+          <label class="pw-control">Neutralisation chance <output id="pwSCValue">0%</output><input id="pwSC" type="range" min="0" max="80" step="5" value="0"/></label>
+          <div class="pw-control-pair"><label>SAI gap · s<input id="pwGap" type="number" min="-30" max="30" step=".5" value="2"/><small>+ behind / − ahead</small></label><label>SAI planned stop<select id="pwRivalStop"><option value="-1">Stay out</option><option value="0">Box now</option><option value="2" selected>In 2 laps</option><option value="5">In 5 laps</option></select><small>Assumed rival plan</small></label></div>
+          <label class="pw-service">CREW MODEL <select id="pwService"><option value="coordinated">Clean stop</option><option value="gun">Wheel-gun delay</option><option value="traffic">Unsafe traffic gap</option><option value="stack">Double stack</option><option value="unsecured">Unsecured wheel / hold</option></select><span id="pwServiceValue">—</span></label>
+          <p class="pw-assumption-note">Transit, traffic, rival gap/plan and neutralisation are your assumptions. Eight-lap dry scenario; passing, retirements and tire eligibility are unmodeled.</p>
+          <div id="pwPlans" aria-label="Ranked candidate actions"></div><p id="pwWarning" class="pw-warning" role="status"></p>
+          <button id="pwMethods">Inspect data, errors & methods ↓</button>
+        </aside>
+        <section class="pw-evidence" aria-label="Evidence and model validation">
+          <div class="pw-evidence-heading"><div><span class="pw-eyebrow">03 / OBSERVATIONS → DECISION</span><h2>Follow the evidence.</h2></div><span id="pwCutoff">Waiting for archive</span></div>
+          <div class="pw-flow"><button data-pw-source="laps"><i>01</i><strong>Lap timing</strong><output id="pwFlowLaps">—</output><small>Observed</small></button><span>→</span><button data-pw-source="quality"><i>02</i><strong>Quality gate</strong><output id="pwFlowQuality">—</output><small>Filtered</small></button><span>→</span><button data-pw-source="model"><i>03</i><strong>Pace model</strong><output id="pwFlowModel">—</output><small>Ridge + stint bootstrap</small></button><span>→</span><button data-pw-source="crew"><i>04</i><strong>Crew + futures</strong><output id="pwFlowCrew">—</output><small>Seeded comparison</small></button><span>→</span><button data-pw-source="call"><i>05</i><strong>Race call</strong><output id="pwFlowCall">—</output><small>Conditional</small></button></div>
+          <div id="pwSourceDetail" class="pw-source-detail" role="status"></div>
+          <section class="pw-sensitivity" aria-label="Strategy robustness sweep"><div><span class="pw-eyebrow">04 / BREAK THE ASSUMPTIONS</span><h3>Where does the call change?</h3><p>Stress-test the same decision across 36 combinations of pit transit loss and neutralisation chance. Each cell compares all 9 actions over 200 shared seeded futures. Select a cell to inspect its assumptions at full resolution.</p><button id="pwSweep" disabled>Run 36-scenario sweep ↗</button><p id="pwSweepStatus" role="status">Current evidence, rival plan, traffic and crew configuration stay fixed.</p><div class="pw-sweep-legend"><span>OUT / stay out</span><span>H / box to hard</span><span>S / box to soft</span></div></div><div><div class="pw-sweep-axis">NEUTRALISATION CHANCE ↑ / PIT TRANSIT LOSS →</div><div id="pwSweepGrid" class="pw-sweep-grid"></div><small>Action preference under assumptions; not a map of validated win probability. H0 = hard now; H2 = hard in 2 laps. Extrapolation can affect any cell.</small></div></section>
+          <div class="pw-validation"><div><span class="pw-eyebrow">OUT-OF-TIME PREDICTIONS</span><h3>Make the model earn its place.</h3><p>Earlier laps fit the model; the latest 20% of available laps measure its error. Tire stints are resampled together. The replayed telemetry lap is never a pace-model feature.</p><div class="pw-validation-metrics"><div><span>RIDGE MAE</span><strong id="pwMAE">—</strong></div><div><span>CONSTANT-PACE MAE</span><strong id="pwBaseline">—</strong></div><div><span>HELD-OUT LAPS</span><strong id="pwValidationCount">—</strong></div></div></div><div><div class="pw-residual-heading"><span>HELD-OUT RESIDUALS / seconds</span><span id="pwBias">—</span></div><svg id="pwResiduals" viewBox="0 0 560 160" role="img" aria-label="Observed minus predicted lap times on available held-out laps"></svg><small>One point per held-out lap · zero line means an exact pace prediction.</small></div></div>
+          <div class="pw-method-links"><a href="https://openf1.org/docs/" target="_blank" rel="noreferrer">OpenF1 data reference ↗</a><a href="./MODEL.md" target="_blank">Equations & limitations ↗</a><a href="./data/telemetry-bahrain-2024.json" target="_blank">Telemetry archive & request hashes ↗</a><button id="pwAdvanced">Open full strategy laboratory ↗</button></div>
+          <p class="pw-boundary">Independent educational engineering study by Arjan Singh Puniani. No team affiliation, proprietary telemetry, live feed, official car CAD, calibrated full-grid win forecast or demonstrated race-winning improvement.</p>
+        </section>
+      </div>
+    </section>
     <main id="stage">
       <canvas id="viewport" tabindex="0" aria-label="Formula racing garage. Drag to orbit, scroll to zoom. Use camera buttons and the event timeline for keyboard navigation."></canvas>
       <div id="labelsLayer" aria-hidden="true"></div><div id="spatialLayer" aria-label="Select a station or facility asset"></div>

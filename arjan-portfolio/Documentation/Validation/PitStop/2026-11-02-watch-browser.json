@@ -1,0 +1,55 @@
+{
+  "checks": [
+    "Directed 3D Watch is the default experience",
+    "Sound stays off until explicitly enabled",
+    "Recorded lap loads the original car and circuit",
+    "Speed, gear and pedals follow the recorded replay clock",
+    "Actual rendered wheels remain centered and correctly aligned through turns",
+    "Aerial, on-car and circuit cameras render without errors",
+    "Sound opt-in creates a single shared audio context",
+    "Reference ghost is an explicit opt-in",
+    "Orbit inspection pauses the lap",
+    "Paused replay does not advance its source clock",
+    "Inspect evidence opens the pit wall at the same lap instant",
+    "Pit chapter clearly identifies the modeled source",
+    "Pit HUD shares actual event states and retention guard",
+    "Gun-delay intervention reaches the same shared simulation",
+    "Safety hold keeps jacks up and never auto-cuts to a release",
+    "Safe completion loops back into the recorded lap",
+    "Recorded-lap completion transitions into the modeled pit operation",
+    "Garage stage is restored after leaving the film",
+    "Returning to the film remounts the shared pit stage",
+    "Repeated workspace changes retain bounded GPU allocations",
+    "Watch fits 390px without horizontal overflow",
+    "Watch fits 320px without horizontal overflow",
+    "Watch passes the inspected automated WCAG A/AA checks",
+    "Offscreen film stops submitting GPU frames",
+    "Reduced motion starts paused and stops drawing while idle",
+    "WebGL failure has a working path to historical engineering tools",
+    "Unavailable telemetry archive exposes an engineering recovery action",
+    "Unavailable car asset exposes an engineering recovery action",
+    "No application exceptions in the complete film journey"
+  ],
+  "errors": [],
+  "accessibility": [],
+  "performance": {
+    "fps": 29.998000133205238,
+    "seconds": 3.0002000000119224,
+    "stats": {
+      "ready": true,
+      "camera": "chase",
+      "shot": "chase",
+      "draws": 343,
+      "calls": 93,
+      "triangles": 268612,
+      "geometries": 85,
+      "textures": 7,
+      "software": false,
+      "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)"
+    }
+  },
+  "wheels": {
+    "maxPivotError": 0,
+    "maxAxleError": 5.721958498152797e-16
+  }
+}

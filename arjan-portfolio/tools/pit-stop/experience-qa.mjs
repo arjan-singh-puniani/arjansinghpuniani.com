@@ -9,7 +9,7 @@ const shot=async(page,name)=>{await page.screenshot({path:`${output}/${name}.png
 const state=page=>page.evaluate(()=>window.__PIT_LAB_STATE__);
 try{
  const page=await browser.newPage({viewport:{width:1440,height:1000}});page.setDefaultTimeout(60000);page.on('pageerror',e=>report.errors.push(e.message));
- await page.goto(`${base}/pit-stop-lab/index.html`);await page.waitForFunction(()=>window.__SIM_READY__);await page.locator('button[data-experience=engineer]').click();await page.locator('[data-scene-camera=overview]').click();
+ await page.goto(`${base}/pit-stop-lab/index.html?experience=explore`);await page.waitForFunction(()=>window.__SIM_READY__);await page.locator('button[data-experience=engineer]').click();await page.locator('[data-scene-camera=overview]').click();
  const cleanStop=(await state(page)).result.stationary;
  check('Scene uses a compact functional title',await page.locator('.world-caption h1').innerText()==='Pit box 01');await shot(page,'01-direct-controls');
  await page.locator('#watchBtn').click();const service=await (await page.waitForFunction(()=>{const s=window.__PIT_LAB_STATE__;return s.watching&&s.time>2&&['FL','FR','RL','RR','top'].includes(s.watchCamera)?s:false;},null,{timeout:20000})).jsonValue();
