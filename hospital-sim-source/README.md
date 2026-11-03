@@ -1,4 +1,12 @@
-# Juniper Clinic — current default (RC5)
+# hospitalSIM — room to grow (RC6)
+
+Juniper Clinic now has a **24 × 20 cell estate**: about 6.7× the old 9 × 8 area. Build near reception first, then expand north and east. **Land** shows the whole estate; **Home** returns to your starter clinic. Existing clinic saves expand without resetting visits or billing. Room and staff safety limits rise to 64 each; dense overviews still exceed the provisional mobile graphics budget.
+
+Play: https://arjansinghpuniani.com/playground/hospitalsim . [Campus implementation, reproducible checks and limitations](docs/CAMPUS_RC6.md). Public evidence: `/hospitalsim/docs/campus.html`. Run `python3 tools/qa-server.py --port 8769` and `node tests/campus.mjs` from this directory. No new Blender execution for this land change; existing editable sources and GLBs remain unchanged.
+
+---
+
+# Historical RC5 clinic flow
 
 Reception and an administrator first, then a GP. Patients arrive in everyday clothes, check in, spin into gowns, queue for their booked service, and change back before leaving. Completed services earn individual fees. Pharmacy, neurology, gait assessment, video EEG and sleep labs open as booked visits need them. Existing hospitals remain device-local and can be archived/restored.
 

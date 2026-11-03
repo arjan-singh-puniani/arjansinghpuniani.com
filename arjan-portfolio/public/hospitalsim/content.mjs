@@ -1,7 +1,9 @@
-import {CLINIC_DEPARTMENTS,CLINIC_ROLES} from './clinic.mjs?v=128';
-export const VERSION='1.0.0-rc5', STEP=1;
+import {CLINIC_DEPARTMENTS,CLINIC_ROLES} from './clinic.mjs?v=130';
+export const VERSION='1.0.0-rc6', STEP=1;
 export const WALK_SUBSTEPS=3;
 export const GRID={w:9,h:8,entry:{x:4,y:7},exit:{x:7,y:7},step:1.65};
+export const CAMPUS={w:24,h:20,shiftY:12,version:1};
+export const siteOf=s=>s.site||GRID;
 export const TYPES={consult:{name:'Consultation',cost:900,duration:12,staff:1,skill:'consult',asset:'consult'},scan:{name:'Imaging',cost:1500,duration:17,staff:1,skill:'scan',asset:'scan'},care:{name:'Procedure & care',cost:1100,duration:15,staff:2,skill:'care',asset:'care'},rest:{name:'Team lounge',cost:600,duration:0,staff:0,asset:'rest'},plan:{name:'Specialist planning',cost:1400,duration:13,staff:1,skill:'plan',asset:'consult'}};
 TYPES.waiting={name:'Waiting garden',cost:350,duration:0,staff:0,asset:'lobby'};
 export const TRAITS={steady:{name:'Steady hands',speed:1,fatigue:.12,line:'The trolley has a parking space. I drew it myself.'},brisk:{name:'Quick thinker',speed:1.12,fatigue:.19,line:'Efficient is good. Unhurried is better.'},listener:{name:'Careful listener',speed:.96,fatigue:.10,line:'One clear handoff saves two confused journeys.'}};

@@ -1,0 +1,15 @@
+{
+  "model": "1.0.0-rc6",
+  "runtime": 130,
+  "gameSuites": 27,
+  "gameSuitesPassed": 27,
+  "portfolioTests": 255,
+  "portfolioTestsPassed": 255,
+  "portfolioTestFiles": 31,
+  "typecheckExit": 0,
+  "nextBuildExit": 0,
+  "node": "22.23.2",
+  "browserQA": "browser-qa.json",
+  "preservation": "preservation.json",
+  "knownBuildWarning": "Vite warns about __dirname in existing native-loader config; tests pass."
+}

@@ -1,0 +1,65 @@
+{
+  "cameraControls": [
+    {
+      "height": 44,
+      "label": "Zoom out",
+      "width": 44
+    },
+    {
+      "height": 44,
+      "label": "Zoom in",
+      "width": 44
+    },
+    {
+      "height": 44,
+      "label": "View entire hospital site",
+      "width": 65.53125
+    },
+    {
+      "height": 44,
+      "label": "Reset camera",
+      "width": 44
+    }
+  ],
+  "data": {
+    "activeAppearances": "patient-09,patient-03,patient-04,patient-11,patient-05,patient-01,patient-06,patient-02",
+    "activeWardrobes": "1009:gown:waiting:pharmacy,1011:gown:waiting:neuro,1012:gown:waiting:pharmacy,1013:gown:handoff:gp,1014:casual:waiting:intake,1015:casual:waiting:intake,1016:casual:waiting:intake,1017:casual:waiting:intake",
+    "appearances": "11",
+    "arrivals": "18",
+    "cameraGridX": "4.00",
+    "cameraGridY": "17.00",
+    "cameraView": "clinic",
+    "cameraZoom": "1.00",
+    "completed": "6",
+    "drawCalls": "61",
+    "engine": "three.js r186",
+    "frameMs": "33.36",
+    "geometries": "70",
+    "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "loadMs": "287",
+    "mainTriangles": "80436",
+    "model": "1.0.0-rc6",
+    "opening": "open",
+    "p95Ms": "34.90",
+    "peakDrawCalls": "105",
+    "peakMainTriangles": "88717",
+    "peakTriangles": "112238",
+    "reducedMotion": "true",
+    "renderProfile": "mobile30",
+    "renderScale": "1",
+    "restoreError": "",
+    "roomCount": "3",
+    "samples": "1800",
+    "shadowSize": "1024",
+    "simulationSecond": "387",
+    "siteSize": "24×20",
+    "staffCount": "2",
+    "textures": "36",
+    "triangles": "69612"
+  },
+  "scrollWidth": 390,
+  "viewport": [
+    390,
+    844
+  ]
+}

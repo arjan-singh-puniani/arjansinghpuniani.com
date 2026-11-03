@@ -1,3 +1,13 @@
+# RC6 — a larger buildable campus
+
+- Expanded the current clinic from 9×8 to 24×20, preserving active saves with a recorded coordinate translation.
+- Raised current-clinic room/staff safety limits to 64; kept legacy scenario maps and historical replay paths.
+- Added Land overview, bounded pan, local framing, room focus and distant non-spatial previews.
+- Extended navigation, doors, placement, routes, pickup cells, keyboard bounds, saves and reports to actual site dimensions.
+- Kept connectivity checks efficient and replaced recursive pickup articulation traversal with an iterative stack.
+- Verified 40 explicitly paid rooms/staff, save equivalence, active migration and mobile viewport controls. Documented over-budget stress overview; no phone or production-readiness claim.
+- Reused original assets unchanged; no Blender execution for this update. Preserved unrelated portfolio and REPLISOME.
+
 # RC5 — reception before general practice
 
 - Empty clinic now requires reception, an administrator and a GP, followed by explicit opening.

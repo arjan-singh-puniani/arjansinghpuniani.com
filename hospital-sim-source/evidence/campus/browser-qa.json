@@ -1,0 +1,38 @@
+{
+  "model": "1.0.0-rc6",
+  "runtime": 130,
+  "browser": "Codex in-app Chromium; Apple M2",
+  "viewports": [
+    [
+      1280,
+      720
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "physicalIPhone": false,
+  "checks": [
+    "Empty expanded opening; paid reception/admin/GP; explicit open",
+    "Actual patients reach GP, earn fees and exit; observed multiple completions",
+    "Land whole-site view and Home starter focus",
+    "Long pan clamps at X23/Y0 after damping; Home restores X4/Y17",
+    "Non-spatial GP placement at X20/Y2 outside old map; camera follows preview and placed module",
+    "Room list selects/focuses remote GP; card buttons have no text overflow after final style reload",
+    "Reload retains expanded state; legacy RC5 checkpoint imports as24x20 without reset",
+    "40-room explicitly funded stress fixture imports; all rooms render",
+    "Pickup on40-room fixture:3487 valid cells, opacity0.5, preparation19.60ms",
+    "Reduced-motion option sets renderer state true",
+    "390px document width matches viewport; camera buttons at least44x44px",
+    "No application warning/error entries in final QA console"
+  ],
+  "modelTests": "model-tests.json",
+  "stressSample": "browser/stress-reload-sample.json",
+  "sampleCaveat": "Fresh40-room reload sample includes early local view before overview; filtered first1800 accepted rendered intervals at most. Desktop observations do not establish phone performance.",
+  "limits": [
+    "Full40-room overview exceeds provisional triangle/draw-call budgets",
+    "No physical iPhone, VoiceOver audit, external usability or learning evaluation",
+    "No new Blender execution"
+  ]
+}

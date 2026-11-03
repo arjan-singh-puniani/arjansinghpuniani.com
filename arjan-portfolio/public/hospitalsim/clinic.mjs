@@ -46,3 +46,5 @@ export function clinicStep(s){
  if(!s.clinic.gpVisits)return{kind:p?'patient':'watch',id:p?.id,label:p?'Follow '+p.name:'Waiting for an arrival…',title:p?.state==='changing'?'Checked in. A quick gown-change spin.':p?.stage==='gp'?'Next stop: the GP.':p?'Quinn is welcoming '+p.name+'.':'The doors are open.',text:'People arrive in everyday clothes, check in, change, then queue for their GP.'};
  return{kind:'grow',label:'Improve your clinic',title:clinicTotal(s)+' neighbors home · $'+s.clinic.revenue+' service revenue.',text:'Each completed service earns its listed fee. Watch the actual queue before choosing your next room.'};
 }
+
+export const clinicSite=(s,type)=>({...CLINIC_DEPARTMENTS[type].site,y:CLINIC_DEPARTMENTS[type].site.y+(s.site?.shiftY||0)});
