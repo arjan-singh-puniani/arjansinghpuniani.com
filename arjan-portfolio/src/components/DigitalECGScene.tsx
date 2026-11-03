@@ -39,7 +39,7 @@ const EXPLANATIONS = {
   PR: "The PR segment follows atrial activation. The PR interval includes the P wave and runs to QRS onset.",
   QRS: "The QRS complex records ventricular depolarization. Its height in a lead is a signed projection, not the size of a contraction.",
   ST: "A near-baseline ST segment does not mean the heart is inactive: the ventricles are largely depolarized.",
-  T: "The T wave records ventricular repolarization. Recovery-front direction and electrical-vector direction are different concepts.",
+  T: "The T wave records ventricular repolarization. Recovery reverses the electrical polarity of the tissue boundary. An oppositely directed recovery sequence can therefore produce the same deflection sign as depolarization; the recovery sequence and its electrical vector are different directions.",
   next: "Corresponding QRS features mark the next ventricular cycle.",
   baseline:
     "A small reading means a small projection along this lead; other electrical components can still exist.",
@@ -50,7 +50,7 @@ export function DigitalECGScene() {
     [retry, setRetry] = useState(0);
   const [lead, setLead] = useState<ConnectionLead>("II"),
     [time, setTime] = useState(38),
-    [sideways, setSideways] = useState(0),
+    [sideways, setSideways] = useState(-0.45),
     [playing, setPlaying] = useState(false);
   const [kind, setKind] = useState<ConnectedInterval>("QRS"),
     [calipers, setCalipers] = useState<readonly [number, number]>([0, 85]);
@@ -148,7 +148,7 @@ export function DigitalECGScene() {
   function selectLead(next: ConnectionLead) {
     setLead(next);
     setPlaying(false);
-    setSideways(0);
+    setSideways(-0.45);
     if (data) {
       const r = data.records.find((r) => r.lead === next)!;
       setTime(Math.max(r.points[0][0], Math.min(time, r.points.at(-1)![0])));
@@ -446,8 +446,27 @@ export function DigitalECGScene() {
                             textAnchor="middle"
                             className={lead === l ? s.activeAxis : s.axisText}
                           >
+                            {lead === l ? "+" : ""}
                             {l}
                           </text>
+                          {lead === l && (
+                            <path
+                              d="M-7-4L0 0L-7 4"
+                              transform={
+                                "translate(" +
+                                n(CX + ux * 160) +
+                                " " +
+                                n(CY + uy * 160) +
+                                ") rotate(" +
+                                (Math.atan2(uy, ux) * 180) / Math.PI +
+                                ")"
+                              }
+                              fill="none"
+                              stroke="#bca7ee"
+                              strokeWidth="1.8"
+                              pointerEvents="none"
+                            />
+                          )}
                         </g>
                       );
                     })}
@@ -478,6 +497,35 @@ export function DigitalECGScene() {
                       strokeWidth="1.5"
                       strokeDasharray="4 5"
                     />
+                    {Math.abs(sideways) > 0.12 && (
+                      <polyline
+                        data-projection-right-angle
+                        points={[
+                          [-vector.unit[0] * 8, -vector.unit[1] * 8],
+                          [
+                            -vector.unit[0] * 8 +
+                              Math.sign(sideways) * vector.normal[0] * 8,
+                            -vector.unit[1] * 8 +
+                              Math.sign(sideways) * vector.normal[1] * 8,
+                          ],
+                          [
+                            Math.sign(sideways) * vector.normal[0] * 8,
+                            Math.sign(sideways) * vector.normal[1] * 8,
+                          ],
+                        ]
+                          .map(
+                            ([dx, dy]) =>
+                              n(CX + vector.foot[0] * VS + dx) +
+                              "," +
+                              n(CY + vector.foot[1] * VS + dy),
+                          )
+                          .join(" ")}
+                        fill="none"
+                        stroke="#bca7ee"
+                        strokeWidth="1"
+                        pointerEvents="none"
+                      />
+                    )}
                     <line
                       x1={CX}
                       y1={CY}
@@ -510,6 +558,15 @@ export function DigitalECGScene() {
                       fill="#bca7ee"
                       pointerEvents="none"
                     />
+                    <text
+                      x="45"
+                      y="451"
+                      fill="#75d3dc"
+                      fontSize={compact ? 17 : 13}
+                    >
+                      Vector: x {n(vector.vector[0])}, y {n(vector.vector[1])}{" "}
+                      mV
+                    </text>
                     <text x="45" y="477" className={s.caption}>
                       Drag the arrow along the dotted line.
                     </text>
@@ -823,7 +880,7 @@ export function DigitalECGScene() {
               </span>
               {vector ? (
                 <MathText
-                  tex={`V_{${lead}}(t)=\\mathbf l_{${lead}}\\cdot\\mathbf d(t)\\approx(${n(vector.field[0])})(${n(vector.vector[0])})+(${n(vector.field[1])})(${n(vector.vector[1])})\\approx${n(value.voltageMv)}\\,\\mathrm{mV}`}
+                  tex={`\\begin{aligned}V_{${lead}}(t)&=\\mathbf l_{${lead}}\\cdot\\mathbf d(t)\\\\&\\approx\\underbrace{(${n(vector.field[0])})(${n(vector.vector[0])})}_{${n(vector.field[0] * vector.vector[0])}\\,\\mathrm{mV}}+\\underbrace{(${n(vector.field[1])})(${n(vector.vector[1])})}_{${n(vector.field[1] * vector.vector[1])}\\,\\mathrm{mV}}\\\\&\\approx${n(value.voltageMv)}\\,\\mathrm{mV}\\end{aligned}`}
                   reading={`Lead coefficients ${n(vector.field[0])} and ${n(vector.field[1])} multiply compatible vector coordinates ${n(vector.vector[0])} and ${n(vector.vector[1])}; their sum is ${n(value.voltageMv)} millivolts.`}
                 />
               ) : (
@@ -834,7 +891,7 @@ export function DigitalECGScene() {
               )}
               <p>
                 {vector
-                  ? "The vector coordinates are in mV: x points toward the patient’s left and y inferiorly. Lead coefficients are dimensionless. This idealized frontal model retains augmented-lead scaling."
+                  ? "d is the compatible vector: x points toward the patient’s left and y inferiorly, in mV. l contains the lead’s dimensionless coefficients. The two weighted components add to the plotted voltage. This idealized frontal model retains augmented-lead scaling."
                   : "Chest voltages cannot be recovered from a frontal-axis angle alone."}
               </p>
             </div>
@@ -857,7 +914,7 @@ export function DigitalECGScene() {
                   }}
                 />
               </label>
-              <button onClick={() => setSideways(0)}>Reset vector</button>
+              <button onClick={() => setSideways(0)}>Align with lead</button>
               <p>
                 One lead fixes one projection. Multiple vectors satisfy it; this
                 arrow is a compatible explanation, not a uniquely measured heart
@@ -953,6 +1010,13 @@ export function DigitalECGScene() {
                 rel="noreferrer"
               >
                 Lead definitions and model assumptions
+              </a>
+              <a
+                href="https://bem.fi/book/06/06.htm"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Electrical activation and recovery
               </a>
             </div>
             {sourceBounds && (

@@ -54,6 +54,12 @@ field l and voltage V, the displayed compatible vector is
 This demonstrates the non-unique inverse of a single-lead projection; it does not
 reconstruct the patient's instantaneous heart vector. Chest leads display their
 own traced voltage and electrode definition without a fabricated frontal vector.
+The opening vector has a deliberately chosen perpendicular component so that its
+projection is visible immediately. The selected lead's positive pole, projection
+right angle and live vector coordinates connect the drawing to the weighted
+components in the calculation. The align action removes the perpendicular component.
+The T-wave explanation distinguishes recovery sequence from electrical polarity,
+with the electrophysiology source linked under provenance.
 Digital interval fiducials are author annotations, not clinical evidence admitted
 by ReasonOS. Interpolation adds no acquisition precision.
 

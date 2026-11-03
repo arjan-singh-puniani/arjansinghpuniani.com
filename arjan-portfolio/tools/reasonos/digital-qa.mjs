@@ -42,6 +42,17 @@ for (const [name, engine] of [
     await root.locator("[data-digital-handle=vector]").waitFor();
     await root.locator(".katex").first().waitFor();
     await page.evaluate(() => document.fonts.ready);
+    close(Number(await root.getAttribute("data-sideways")), -0.45);
+    assert.equal(
+      await root.locator("[data-projection-right-angle]").count(),
+      1,
+    );
+    assert.match(
+      await root
+        .getByRole("math", { name: /Lead coefficients/ })
+        .getAttribute("data-tex"),
+      /underbrace/,
+    );
     assert.equal(await root.locator("image").first().isVisible(), false);
     const response = await page.request.get(
         base + "/ecg-digitized/recording-b.json",
@@ -157,7 +168,7 @@ for (const [name, engine] of [
         width,
       );
       await root
-        .getByRole("button", { name: "Reset vector", exact: true })
+        .getByRole("button", { name: "Align with lead", exact: true })
         .click();
       const voltage = await get("digital-voltage");
       await drag("[data-digital-handle=vector]", 25, -15);
