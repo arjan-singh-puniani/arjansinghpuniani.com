@@ -21,7 +21,7 @@ export const projects: Project[] = [
     slug: "body-atlas", title: "BODY//ATLAS",
     shortDescription: "A research prototype for exploring medical interventions through human anatomy, original FDA records, and linked studies.",
     category: ["Software and Simulation", "Neurotechnology"], status: "Prototype", yearStart: 2026, yearEnd: "Present",
-    role: "Project direction, scientific requirements, and AI-assisted development",
+    role: "Architecture, most of the coding, and refinement, with AI-assisted development and best-practice guidance",
     problem: "Understanding an intervention requires connecting anatomy, regulatory documents, clinical investigations, and literature across separate systems.",
     approach: [
       "Built a rotatable anatomical interface with intervention selection, source inspection, historical events, comparisons, and cited Markdown briefs.",
