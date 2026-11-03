@@ -1,0 +1,53 @@
+[
+  {
+    "browser": "chromium",
+    "synchronizedChecks": 30,
+    "guidedProjectionCases": "passed",
+    "calibration": "passed",
+    "staleEvidence": "rejected",
+    "boundedClaim": "passed",
+    "replay": "passed",
+    "alteredCopy": "rejected",
+    "alternativePaths": "passed",
+    "export": "passed",
+    "mobileCaliperDragAndResize": "passed",
+    "playbackAndReducedMotion": "passed",
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "synchronizedChecks": 30,
+    "guidedProjectionCases": "passed",
+    "calibration": "passed",
+    "staleEvidence": "rejected",
+    "boundedClaim": "passed",
+    "replay": "passed",
+    "alteredCopy": "rejected",
+    "alternativePaths": "passed",
+    "export": "passed",
+    "mobileCaliperDragAndResize": "passed",
+    "playbackAndReducedMotion": "passed",
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  },
+  {
+    "browser": "firefox",
+    "synchronizedChecks": 30,
+    "guidedProjectionCases": "passed",
+    "calibration": "passed",
+    "staleEvidence": "rejected",
+    "boundedClaim": "passed",
+    "replay": "passed",
+    "alteredCopy": "rejected",
+    "alternativePaths": "passed",
+    "export": "passed",
+    "mobileCaliperDragAndResize": "passed",
+    "playbackAndReducedMotion": "passed",
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  }
+]

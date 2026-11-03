@@ -25,7 +25,7 @@ Open <http://127.0.0.1:3100>. For editing, use `npm run dev`. Local servers bind
 
 ## Explore the map
 
-1. Start with the dense **Map**. Each dot represents an indexed entry, arranged around a broad regional anchor. Dots are diagram glyphs, not implant coordinates. Hover/click a dot with a mouse, or choose a named region and an intervention from its list on touch/keyboard.
+1. Start with the **Map**. Explained-entry labels connect to representative reference surfaces where mesh geometry is available; shared marks group entries at the same structure. **≈** means an approximate region. The broader FDA-record layer retains diagram clusters for record counts; selecting a record moves its mark to the available regional anchor. These are reference links, not implant coordinates. Choose a named intervention, or a region and its intervention list on touch/keyboard.
 2. Select **Heart**, **Eyes**, **Knee**, or another region. The native **Region** selector reaches every indexed region, including labels hidden to avoid overlap. Selecting a region focuses the reference; drag to rotate and scroll/pinch to zoom. **Human** in the breadcrumb restores the whole body.
 3. Choose an entry. Its source excerpt/device name, historical decision type/date and original FDA hyperlink open immediately. **Sources** exposes the cached original response and hash. An application is not necessarily a distinct product family or a currently marketed model.
 4. Switch **Evidence layer** to **Reviewed relationships**, then **Labels** for named on-model neurotechnology callouts. Choose **Brain → Thalamus → Activa** to inspect separate thalamic interface/target and chest generator assertions. **Evidence** opens the original document and locator.
@@ -79,7 +79,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md), [DATA_SOURCES.md](DATA_SOURCES.md), [ANA
 
 Open **https://arjansinghpuniani.com/atlas** directly, or use **Launch interactive atlas** on the project page. The website serves a self-contained, read-only snapshot. Search/retrieval remains local; Markdown briefs download without a server API; original responses are available through content-addressed `/atlas/sources/` links. The website source tree retains this app under `body-atlas-source`, sharing its geometry and original evidence through relative symlinks to the hosted files.
 
-Rebuild from that source directory with `npm ci` then `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`. The export excludes ingestion databases, private data and server API routes. It verifies original response hashes and only replaces a recognized generated destination after a successful build. The normal standalone app keeps its existing APIs.
+Rebuild from that source directory with `npm ci` then `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`. The export excludes ingestion databases, private data and server API routes. It verifies original response hashes and only replaces a recognized generated destination after a successful build. The normal standalone app keeps its existing APIs. `npm run build` explicitly uses webpack for the maintained symlinked workspace. Run `node scripts/check-export.mjs --self-test` and `node scripts/check-export.mjs` after export; CI rejects a source/export mismatch and runs atlas domain/ingestion/build and portfolio integration checks. Browser and clinical review remain separate gates.
 
 
 ### Relevance correction — 2026-10-21
@@ -119,7 +119,7 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 
 The **Contour** exterior uses an adapted shoulder, chest, upper-arm and waist silhouette in the neutral atlas style. **Contour / Reference** restores the unmodified HRA surface. Sculpted facial contours and muscle relief share the holographic material; no photographic textures or identifying subject labels are included. Organs and intervention anchors retain their original HRA frame. Proportions are artistic approximations. Original photos remain private. History playback begins at 1999 while earlier cited dates remain available in source records. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
 
-For a focused, shareable upper-body presentation, open `/atlas?view=portrait` on the portfolio (or `/?view=portrait` in the standalone app). Use **Copy link**; **Explore atlas** restores the research workflow. This remains an artistic approximation, not validated personal anthropometry.
+For a focused, shareable upper-body presentation, open `/atlas?view=portrait` on the portfolio (or `/?view=portrait` in the standalone app). **Face / Upper body** changes framing; add `&frame=face` for a direct close-up. Use **Copy link**; **Explore atlas** restores the research workflow. The face surface is prepared locally from a private reference; no reference images or fitting inputs ship. This remains an artistic approximation, not validated personal anthropometry. See the local regeneration and additional topology license in [BODY_CONTOUR.md](BODY_CONTOUR.md).
 
 ## On-body intervention discovery
 
@@ -140,3 +140,8 @@ npm run documents:collect -- P100026 P140031
 The durable collector discovers PDF links from official FDA application pages and stores immutable bytes plus job checkpoints in ignored `data/filing-documents*` staging. Failed refreshes retain prior artifacts and report stale/incomplete status. The run report names links omitted by the collection bound. Acquisition is not a completed content review. There is no unattended hosted PDF worker or exhaustive historical crawler.
 
 Hosted API: `/api/atlas/fda?application=P100026`; standalone: `/api/fda?application=P100026`. The portfolio route reuses `lib/fda-updates.ts`. Pure static hosting needs that server route for live checks; offline snapshots still work when it is unavailable. The full website's normal Vercel build deploys the endpoint.
+
+
+## Research and review workflow — 2026-11-02
+
+Open **Start with a research question** to compare stimulation/ablation, compare investigational BCIs, or inspect placement versus target. Original decision/study links sit directly below each intervention explanation. Comparison search accesses the explained collection while separate placement, recording, target/action and provisional-context rows explicitly state when a relationship is not established. **Sources → Review coverage** shows recorded review-state counts and downloads all 108 assertions across 92 explained entries with blank independent-adjudication fields. This does not automatically accept mappings. See [RESEARCHER_REVIEW.md](RESEARCHER_REVIEW.md) for the actual external-review protocol. No feedback or user impact is fabricated.

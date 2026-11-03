@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
-import type {
-  InterventionAnnotation,
-  LabelProjection,
+import {
+  anchorDescription,
+  referenceSurfaceAnchors,
+  type InterventionAnnotation,
+  type LabelProjection,
 } from "@/lib/annotations";
 
 export default function InterventionLabels({
@@ -93,17 +95,19 @@ export default function InterventionLabels({
             width,
           }}
           data-family={entry.familyId}
+          data-structure={entry.mapping.structureId}
+          data-anchor={anchorDescription(entry.mapping.structureId!)}
         >
           <button
             aria-label={`Select ${entry.name} on anatomy`}
             aria-pressed={selected === entry.familyId}
-            title={`${entry.name} — ${entry.role}: ${entry.regionName}`}
+            title={`${entry.name} — ${entry.role}: ${entry.regionName} · ${anchorDescription(entry.mapping.structureId!)}`}
             onPointerDown={(e) => e.stopPropagation()}
             onClick={() => onSelect(entry.familyId)}
           >
             <strong>{entry.title}</strong>
             <span>
-              {entry.role} · {entry.regionName}
+              {entry.role} · {!referenceSurfaceAnchors[entry.mapping.structureId!]?'≈ ':''}{entry.regionName}
             </span>
           </button>
           <a

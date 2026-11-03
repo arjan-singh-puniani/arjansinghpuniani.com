@@ -1,5 +1,7 @@
 # Validation
 
+Release reproducibility (November 2): 41 Python ingestion tests pass, including schema drift, idempotency and provider-outage preservation. The default webpack production build and static export pass. The export digest self-check detects a changed UI while excluding server-only routes; the checked-in bundle matches the source digest. Path-scoped CI runs these source/data/build and portfolio checks; browser/device and independent scientific review remain separate.
+
 ## Current release — 2026-10-31
 
 The current export has **2,497 authentic records, 92 explained entries and dossiers, and 12 schematic mechanisms**. Neuralink now has six exact sponsor-verified trial records, the earlier 2019 platform publication, separate skull/cortical relationships, a recording → decoding → control schematic, and an evidence comparison with BrainGate. It remains **investigational**; no FDA marketing authorization is inferred. The six retrieved registry records have no posted results; this is not a claim about all research worldwide. Conflicting source-specific thread counts and the manufacturer-reported thread-retention limitation are visible, source linked, and retained in exported briefs.
@@ -163,3 +165,40 @@ These are engineering and source-traceability checks, not independent anatomical
 - Live website verification compared animated canvas frames, checked organ focus, original mechanism links and SHA-256 against original API response text on desktop and mobile; P100026, P140031 and K130233 returned 200 with the FDA dataset update date 2026-10-19. Invalid application/query injection returned 400. Zero Axe violations or browser errors.
 
 Physical iOS/Safari, low-memory GPU testing, slow-network measurements, distributed ingestion/recovery and expert review of schematic mechanisms remain unverified. FDA decisions are publicly available decisions, not exhaustive private/pending filings. The static collection, labeling gaps and source review states are unchanged.
+
+
+## Reference-derived exterior — 2026-11-01
+
+The final baked contour is 5,667,796 bytes and 188,882 triangles (SHA-256 `924ef8aecf6c222832ad1d93fe71c2acc04862a55d7b734e2fa3e8d15c5d2354`). The face outline/feature layout uses a private local estimate, joined to the reference head and refined to reduce faceting. Upper-body sculpting is illustrative. No clinical or biometric accuracy metric is claimed. The entire approved lower-body coordinate fingerprint and original internal anatomy remain unchanged.
+
+- `npm test`: 63 passed on the final refined asset, including hash/size, original reference/lower-body preservation, bounded procedural detail weights, absence of appearance/identity payloads and front-facing iris visibility.
+- `npm run typecheck` and `npm run build -- --webpack`: passed.
+- `npm run test:browser`: 28 desktop/mobile Chrome tests passed before the last face-only refinement. After refinement, `npm run test:browser -- --grep 'body contour|shareable contour|API boundaries'`: all 8 affected desktop/mobile tests passed. These cover rotation, exterior switching, failed-asset fallback, face/upper framing, clipboard/share reload, narrow-screen layout, accessibility and production CSP without plain unsafe-eval.
+- `scripts/prepare-contour-surface.py --self-test`: passed translation/scale normalization, finite-output and malformed-input rejection. This is not a likeness evaluation. Python authoring scripts compile.
+
+Actual web-rendered front, rotated and upper-body screenshots were inspected; an occluding canonical eye cap and excessive scalp shading were corrected. Raw reference images and intermediate fitting files stay private. Source ingestion was not rerun because records/pipelines are unchanged. Personal recognizability, unseen profiles, physical iOS/Safari, low-end GPU performance and measured anthropometry remain unverified.
+
+Portfolio integration preparation: static atlas export passed; portfolio `npm run typecheck`, `npm run build` and all 150 `npm test` tests passed. Final face-only material adjustments were rechecked in the 8 affected source browser tests. No new likeness has been published or certified as an exact match.
+
+The exported portfolio was also run at a local production-mode URL: desktop 1440×1000 and mobile 390×844 both passed face loading, upper-body switching, atlas return navigation, horizontal-overflow checks, exact final GLB-manifest hash and zero page errors.
+
+## Reference-surface entry links — 2026-11-02
+
+`npm run typecheck`, `npm test` (**65 passed**) and `npm run build -- --webpack` pass. `npm run test:browser` passes **30 desktop/mobile Chrome workflows**, including the new selected thalamus/STN/valve endpoints, actual nervous-renderer focus, explicit chest component context, source links, original medical evidence/retrieval, outage recovery, narrow-screen layout, keyboard/accessibility, sharing and portrait regressions.
+
+The new generator derives **23 representative reference-surface anchors**. For every anchor, a test verifies the source asset SHA-256, source-node ancestry, finite coordinates, original-body display transform and membership on its recorded mesh triangle (source-space tolerance 1e-7). Specific target endpoints remain distinct from parent-organ endpoints. Missing vagus geometry remains approximate; unlocalized and female-only anatomy still abstain. These are geometry/engineering checks, not a clinical localization accuracy study or a review-state upgrade.
+
+Visual review of actual loaded-model screenshots caught a parent-region/rendering mismatch; passing the selected focus through to the nervous renderer fixed it. Selected deep targets now show through faded context, and ghost geometry does not intercept their clicks. An older navigation regression assumed the first overview entry could not have a mechanism; the test now returns from the selected entry to the region selector when needed and still verifies access to all twelve heart interventions.
+
+No source records, scientific mappings, review states, regulatory statuses, body/face mesh or internal reference mesh files changed. Clinical placement, laterality, VIM-specific targeting, expert anatomical precision and physical iOS/Safari remain unverified. Record-count clusters in the wider FDA layer remain diagrammatic, while selected entries use their available regional endpoint.
+
+Integration verification: `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`, portfolio `npm run typecheck`, `npm run build` and all 150 `npm test` tests pass. The exported atlas was run inside the portfolio at a local production-mode URL: desktop 1440×1000 and mobile 390×844 each passed all three selected reference targets, actual nervous-renderer focus, original-source links, anchor metadata delivery, horizontal-overflow checks and zero page errors. This revision is a local preview; no production deployment was performed.
+
+
+## Evidence-first research workflow — 2026-11-02
+
+`npm run typecheck`, `npm test` (68 passed), `npm run build -- --webpack`, and the full `npm run test:browser` suite (32 desktop/mobile Chrome workflows) pass. New regressions cover source links before mechanism details, investigational BCI/recording comparisons, searchable access to an entry outside the default chooser, explicit missing-evidence cells, preserved Provisional context, exact review-state totals, downloaded CSV, and modal accessibility. CSV tests cover all 108 assertions/92 entries, blank adjudication fields, original identity/state/locator retention, quoting and formula-injection protection.
+
+Portfolio typecheck/build and 222 tests pass on the current main-line integration. Runtime-only npm audit reports zero vulnerabilities for both applications. Mobile-viewport smoke tests additionally pass in Firefox 153 and Playwright WebKit 26.6, with WebGL/internal geometry loaded, original sources, comparison search, no horizontal overflow and zero page errors. Firefox used the existing explicit executable after the default automation revision was absent. These are limited smoke checks, not physical phone/Safari tests.
+
+The private one-page US-letter creativity draft was rendered and visually inspected. It has no active hyperlink annotations, embedded files or video, and explicitly identifies AI-assisted work and remaining independent review/impact gaps. Personal contribution and class/team context still need the applicant's review. No external user study, independent anatomical precision estimate or clinical certification was created.

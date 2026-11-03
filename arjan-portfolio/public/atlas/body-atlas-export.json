@@ -1,6 +1,7 @@
 {
   "application": "BODY//ATLAS",
   "basePath": "/atlas",
+  "sourceDigest": "63f34c5d25182e38133055a68261c3e1b79b13f6c889cd5eca98428026f683a7",
   "snapshotExportedAt": "2026-11-01T04:51:06.187445+00:00",
   "sourceRecords": 2497,
   "cachedSources": 53,

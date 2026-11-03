@@ -1,0 +1,194 @@
+[
+  {
+    "browser": "153.0.8010.12",
+    "width": 1440,
+    "height": 900,
+    "gate": "H",
+    "emulation": "desktop host, no CPU or network throttle; not a physical phone",
+    "binary": "regular Chromium, unified headless",
+    "fps": 60.015517319822656,
+    "intervalMetrics": {
+      "updates": 264,
+      "meanMs": 16.66235741451666,
+      "p95Ms": 18.30000001192093,
+      "maxMs": 27
+    },
+    "measured": "Shared state UI updates during native pulse evolution",
+    "stats": {
+      "frames": 359,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "processorModelLoaded": true,
+      "cameraDistance": 0.5021130078463258,
+      "moduleOffsets": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "dragging": null,
+      "pixelRatio": 1,
+      "contactShadows": "real-time + soft baked",
+      "environment": {
+        "width": 768,
+        "height": 1024,
+        "estimatedBytes": 6291456
+      },
+      "calls": 9,
+      "triangles": 1566,
+      "geometries": 71,
+      "textures": 7
+    }
+  },
+  {
+    "browser": "153.0.8010.12",
+    "width": 1440,
+    "height": 900,
+    "gate": "CNOT",
+    "emulation": "desktop host, no CPU or network throttle; not a physical phone",
+    "binary": "regular Chromium, unified headless",
+    "fps": 59.540104024170745,
+    "intervalMetrics": {
+      "updates": 262,
+      "meanMs": 16.79540229882774,
+      "p95Ms": 19,
+      "maxMs": 34.19999998807907
+    },
+    "measured": "Shared state UI updates during native pulse evolution",
+    "stats": {
+      "frames": 358,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "processorModelLoaded": true,
+      "cameraDistance": 0.5021137383979923,
+      "moduleOffsets": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "dragging": null,
+      "pixelRatio": 1,
+      "contactShadows": "real-time + soft baked",
+      "environment": {
+        "width": 768,
+        "height": 1024,
+        "estimatedBytes": 6291456
+      },
+      "calls": 11,
+      "triangles": 1566,
+      "geometries": 72,
+      "textures": 7
+    }
+  },
+  {
+    "browser": "153.0.8010.12",
+    "width": 390,
+    "height": 844,
+    "gate": "H",
+    "emulation": "desktop host, no CPU or network throttle; not a physical phone",
+    "binary": "regular Chromium, unified headless",
+    "fps": 60.01140901312037,
+    "intervalMetrics": {
+      "updates": 264,
+      "meanMs": 16.663498098859314,
+      "p95Ms": 18.100000023841858,
+      "maxMs": 20.69999998807907
+    },
+    "measured": "Shared state UI updates during native pulse evolution",
+    "stats": {
+      "frames": 7,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "processorModelLoaded": true,
+      "cameraDistance": 13.646872376761369,
+      "moduleOffsets": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "dragging": null,
+      "pixelRatio": 1,
+      "contactShadows": "real-time + soft baked",
+      "environment": {
+        "width": 768,
+        "height": 1024,
+        "estimatedBytes": 6291456
+      },
+      "calls": 9,
+      "triangles": 1566,
+      "geometries": 68,
+      "textures": 6
+    }
+  },
+  {
+    "browser": "153.0.8010.12",
+    "width": 390,
+    "height": 844,
+    "gate": "CNOT",
+    "emulation": "desktop host, no CPU or network throttle; not a physical phone",
+    "binary": "regular Chromium, unified headless",
+    "fps": 60.01140901312037,
+    "intervalMetrics": {
+      "updates": 264,
+      "meanMs": 16.663498098859314,
+      "p95Ms": 18.80000001192093,
+      "maxMs": 20.5
+    },
+    "measured": "Shared state UI updates during native pulse evolution",
+    "stats": {
+      "frames": 7,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "processorModelLoaded": true,
+      "cameraDistance": 13.646463053641368,
+      "moduleOffsets": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "dragging": null,
+      "pixelRatio": 1,
+      "contactShadows": "real-time + soft baked",
+      "environment": {
+        "width": 768,
+        "height": 1024,
+        "estimatedBytes": 6291456
+      },
+      "calls": 9,
+      "triangles": 1566,
+      "geometries": 68,
+      "textures": 6
+    }
+  }
+]

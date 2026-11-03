@@ -21,16 +21,17 @@ export const projects: Project[] = [
     slug: "body-atlas", title: "BODY//ATLAS",
     shortDescription: "A research prototype for exploring medical interventions through human anatomy, original FDA records, and linked studies.",
     category: ["Software and Simulation", "Neurotechnology"], status: "Prototype", yearStart: 2026, yearEnd: "Present",
-    role: "Independent designer and developer",
+    role: "Project direction, scientific requirements, and AI-assisted development",
     problem: "Understanding an intervention requires connecting anatomy, regulatory documents, clinical investigations, and literature across separate systems.",
     approach: [
       "Built a rotatable anatomical interface with intervention selection, source inspection, historical events, comparisons, and cited Markdown briefs.",
       "Acquired bounded public FDA, ClinicalTrials.gov, PubMed, and NIH RePORTER records while preserving identifiers, retrieval dates, and source hashes.",
       "Separated physical placement, tissue interface, measurement, and intended target in the curated neurotechnology examples.",
-      "Kept automatically indexed anatomical mentions Provisional, with exact source excerpts and an explicit review queue. Record dots indicate regional membership rather than implant coordinates."
+      "Kept automatically indexed anatomical mentions Provisional, with exact source excerpts and an explicit review queue. Representative reference-surface anchors and explicit approximate regions keep display geometry separate from clinical placement claims."
     ],
     results: [
-      "The October 31 export contains 2,497 authentic records, 92 explained entries and 12 source-linked mechanism schematics. Neuralink is represented as an investigational recording/decoding system, with six registered studies and separately attributed manufacturer reports.",
+      "The cached collection contains 2,497 authentic records, 92 explained entries and 12 source-linked mechanism schematics. Neuralink is represented as an investigational recording/decoding system, with six registered studies and separately attributed manufacturer reports.",
+      "The research workflow provides source-first summaries, comparisons that separate placement, recording, action and provisional context, and an exportable 108-assertion packet for independent review.",
       "Every explained entry has a sourced dossier. The historical FDA inventory includes 6,505 PMA decisions, 105 original label links across 76 entries, and application-based recall checks for 89 marketing applications. Live checks retrieve recent public decisions for the exact selected FDA application."
     ],
     limitations: [
@@ -41,14 +42,14 @@ export const projects: Project[] = [
     ],
     featured: true,
     media: [{
-      src: "/images/home/body-atlas-neuralink-preview.webp",
-      alt: "BODY//ATLAS showing the investigational Neuralink entry, reference brain and recording-to-control schematic",
-      caption: "Actual research preview, October 31, 2026. Neuralink remains investigational. The enlarged mechanism is illustrative, not device CAD or surgical placement. Anatomy adapted from Kristen Browne and Heidi Schlehlein, Human Reference Atlas united male v1.5 (2023), CC BY 4.0; display color, transparency, and overlays modified."
+      src: "/images/home/body-atlas-research-preview.jpg",
+      alt: "BODY//ATLAS with reference thalamus highlighted, a deep brain stimulation explanation, and original FDA evidence",
+      caption: "Actual research preview, November 2, 2026. Source-linked reference anatomy and a qualitative mechanism inset; no surgical placement is reconstructed. Anatomy adapted from Kristen Browne and Heidi Schlehlein, Human Reference Atlas united male v1.5, CC BY 4.0; facial topology adapted from Google MediaPipe under Apache-2.0. Contours, display and overlays modified."
     }],
     links: [{ label: "Launch interactive atlas", href: "/atlas" }, { label: "Read the recorded scope and validation", href: "/documents/body-atlas-validation.json" }],
     evidence: [
       { label: "Application source, mapping rules, tests and reproducible export", url: "https://github.com/arjan-singh-puniani/arjansinghpuniani.com/tree/main/body-atlas-source", verified: true },
-      { label: "Dataset scope, source checks and recorded review — October 31, 2026", url: "/documents/body-atlas-validation.json", verified: true },
+      { label: "Dataset scope, source checks and recorded review — November 2, 2026", url: "/documents/body-atlas-validation.json", verified: true },
       { label: "FDA openFDA device data and limitations", url: "https://open.fda.gov/apis/device/", verified: true },
       { label: "Original Activa FDA evidence used in the neurotechnology workflow", url: "https://www.accessdata.fda.gov/cdrh_docs/pdf/P960009B.pdf", verified: true },
       { label: "ClinicalTrials.gov data API", url: "https://clinicaltrials.gov/data-api/api", verified: true },
@@ -81,12 +82,12 @@ export const projects: Project[] = [
     slug: "rigetti-quantum-operations", title: "Quantum systems operations", shortDescription: "A retrospective Rigetti operating case study paired with an independent interactive model of a superconducting quantum-computing control chain.",
     category: ["Software and Simulation"], status: "Tested educational prototype", yearStart: 2026, yearEnd: 2026, role: "Independent model designer; former Rigetti Chief of Staff",
     problem: "Superconducting quantum computers depend on a tightly coordinated stack of room-temperature control, cryogenics, processor interfaces, signal delivery, and readout. The surrounding system is difficult to understand from isolated component diagrams.",
-    approach: ["Built a procedural Three.js model of a superconducting quantum-computing control chain.", "Connected room-temperature control hardware, five cryogenic stages, a simplified transmon-like processor, microwave drive, and readout paths.", "Added inspection controls, camera presets, cutaway views, component labels, simulated telemetry, and a timed gate-cycle sequence.", "Separated the documented 2013–2015 Rigetti operating role from the independently built 2026 educational artifact."],
-    results: ["Produced a tested interactive educational model with six camera presets and a wall-clock-driven operation sequence.", "Created a system-level explanation that makes the control chain inspectable without presenting commercial or confidential hardware."],
+    approach: ["Built a procedural Three.js model of a superconducting quantum-computing control chain.", "Connected room-temperature control hardware, five cryogenic stages, a simplified transmon-like processor, microwave drive, and readout paths.", "Connected a twelve-stage assembly to a one-to-three-qubit complex state-vector simulator, mathematical lessons, compiled pulse diagrams, and seeded readout statistics.", "Separated the documented 2013–2015 Rigetti operating role from the independently built 2026 educational artifact."],
+    results: ["Produced an interactive assembly and computation laboratory with exact ideal gates, reduced-state Bloch geometry, native-operation mappings, and a Bell-state experiment.", "Created a system-level explanation that makes the control chain inspectable without presenting commercial or confidential hardware."],
     limitations: ["The model is not a Rigetti product, proprietary design, dimensional replica, or representation of confidential hardware.", "Displayed telemetry is illustrative and simulated; it is not measured device performance.", "The model provides educational context and does not imply processor, cryostat, or control-system engineering performed during the documented Rigetti role."],
     featured: true,
     links: [{ label: "Open the full-screen interactive laboratory", href: "/quantum-computer-lab/index.html" }],
-    evidence: [{ label: "Documented Rigetti role", sourceFile: "Portfolio résumé", verified: true }, { label: "Three.js model source, production build, and QA record", sourceFile: "Quantum-Computer-ThreeJS.zip", verified: true }]
+    evidence: [{ label: "Documented Rigetti role", sourceFile: "Portfolio résumé", verified: true }, { label: "Three.js model source, production build, and QA record", sourceFile: "Documentation/Validation/Quantum/README.md", verified: true }]
   },
   {
     slug: "quantum-active-inference", title: "Conscious active inference", shortDescription: "Two peer-reviewed theoretical reviews co-authored with Michael C. Wiest on quantum dynamics as a possible implementation of active inference.",

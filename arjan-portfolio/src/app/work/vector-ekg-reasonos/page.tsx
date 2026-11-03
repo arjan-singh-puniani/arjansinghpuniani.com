@@ -6,67 +6,147 @@ import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Vector EKG and ReasonOS",
-  description: "Arjan Singh Puniani's educational prototype for recording ECG observations, measurements, competing explanations, contradictions, provenance, and revisions.",
+  description:
+    "Arjan Singh Puniani's educational prototype for recording ECG observations, measurements, competing explanations, contradictions, provenance, and revisions.",
   alternates: { canonical: "/work/vector-ekg-reasonos" },
-  openGraph: { title: "Vector EKG and ReasonOS", description: "An educational ECG prototype that records measurements, calculations, rejected claims, and revisions.", url: `${siteUrl}/work/vector-ekg-reasonos`, type: "article" },
+  openGraph: {
+    title: "Vector EKG and ReasonOS",
+    description:
+      "An educational ECG prototype that records measurements, calculations, rejected claims, and revisions.",
+    url: `${siteUrl}/work/vector-ekg-reasonos`,
+    type: "article",
+  },
 };
 
 const kernelObjects = [
-  ["01", "State", "What currently exists"], ["02", "Transformation", "An attempted change"],
-  ["03", "Constraint", "A rule that admits or rejects"], ["04", "Trace", "The append-only record"],
-  ["05", "Provenance", "Source, method, and lineage"], ["06", "Actor", "Who or what made the change"],
+  ["01", "State", "What currently exists"],
+  ["02", "Transformation", "An attempted change"],
+  ["03", "Constraint", "A rule that admits or rejects"],
+  ["04", "Trace", "The append-only record"],
+  ["05", "Provenance", "Source, method, and lineage"],
+  ["06", "Actor", "Who or what made the change"],
 ] as const;
 
 const evidenceStates = [
-  ["Observed", "Directly marked or measured from the source."], ["Inferred", "Derived from admitted observations under an explicit rule."],
-  ["Contradicted", "Conflicts with another admitted finding."], ["Unresolved", "Available evidence remains insufficient or discordant."],
-  ["Excluded", "A candidate explanation fails a required criterion."], ["Confirmed", "A defined review process supports the claim. Not used diagnostically here."],
+  ["Observed", "Directly marked or measured from the source."],
+  ["Inferred", "Derived from admitted observations under an explicit rule."],
+  ["Contradicted", "Conflicts with another admitted finding."],
+  ["Unresolved", "Available evidence remains insufficient or discordant."],
+  ["Excluded", "A candidate explanation fails a required criterion."],
+  [
+    "Confirmed",
+    "A defined review process supports the claim. Not used diagnostically here.",
+  ],
 ] as const;
 
-function HeroInstrument() {
-  return <figure className="rosx-hero-instrument" aria-label="A synthetic ECG produces observed and measured states, an accepted hypothesis, a rejected contradiction test, and an append-only trace.">
-    <div className="rosx-instrument-bar"><span>REASONOS / LIVE MODEL</span><span className="rosx-live"><i /> TRACE OPEN</span></div>
-    <div className="rosx-signal-panel">
-      <div className="rosx-signal-meta"><span>SOURCE / SYNTHETIC LEAD II</span><span>25 mm/s</span></div>
-      <svg viewBox="0 0 760 150" role="img" aria-label="Synthetic electrocardiogram waveform">
-        <defs><pattern id="hero-small-grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke="currentColor" strokeOpacity=".08" /></pattern><pattern id="hero-grid" width="50" height="50" patternUnits="userSpaceOnUse"><rect width="50" height="50" fill="url(#hero-small-grid)"/><path d="M50 0H0V50" fill="none" stroke="currentColor" strokeOpacity=".16" /></pattern></defs>
-        <rect width="760" height="150" fill="url(#hero-grid)" />
-        <path d="M0 84 L36 84 L44 80 L51 84 L70 84 L77 67 L84 84 L101 84 L110 27 L116 126 L125 70 L136 84 L175 84 L187 78 L198 84 L232 84 L240 80 L247 84 L266 84 L273 65 L280 84 L298 84 L307 30 L313 125 L322 69 L334 84 L373 84 L384 78 L396 84 L430 84 L438 80 L445 84 L464 84 L471 66 L478 84 L496 84 L505 28 L511 126 L520 70 L532 84 L571 84 L582 78 L594 84 L628 84 L636 80 L643 84 L662 84 L669 66 L676 84 L694 84 L703 29 L709 125 L718 69 L730 84 L760 84" />
-        <line x1="273" x2="273" y1="18" y2="134" className="rosx-caliper"/><line x1="307" x2="307" y1="18" y2="134" className="rosx-caliper"/>
-      </svg>
-      <span className="rosx-measurement">68 ms <small>learner-selected endpoints</small></span>
-    </div>
-    <div className="rosx-mini-trace">
-      <article><span>01 / OBSERVE</span><strong>R–R intervals appear regular</strong><small>learner-derived</small></article><b aria-hidden="true">→</b>
-      <article><span>02 / MEASURE</span><strong>QRS interval · 68 ms</strong><small>application-calculated</small></article><b aria-hidden="true">→</b>
-      <article className="rosx-rejected"><span>03 / CHALLENGE</span><strong>Sinus origin established</strong><small>rejected · evidence absent</small></article>
-    </div>
-    <figcaption><span>Accepted states 02</span><span>Rejected attempts 01</span><span>Replay deterministic</span></figcaption>
-  </figure>;
-}
-
 function TransitionDiagram() {
-  return <figure className="rosx-transition" aria-labelledby="transition-title">
-    <div className="rosx-transition-source"><span>INPUT</span><strong>State N</strong><small>Observed evidence</small></div><i aria-hidden="true">→</i>
-    <div className="rosx-transition-attempt"><span>ATTEMPT</span><strong>Transformation</strong><small>Actor + provenance</small></div><i aria-hidden="true">→</i>
-    <div className="rosx-transition-gate"><span>EVALUATE</span><strong>Constraints</strong><small>Pure predicates</small></div>
-    <div className="rosx-transition-branches"><article><span>ADMIT</span><strong>State N+1</strong><small>New immutable state</small></article><article><span>REJECT</span><strong>No new state</strong><small>Attempt remains visible</small></article></div>
-    <div className="rosx-trace-rail"><span>TRACE</span><i/><i/><i className="rejected"/><i/><strong>Accepted and rejected events retained.</strong></div>
-    <figcaption id="transition-title">Both outcomes enter the trace. Only an admitted transformation adds a state.</figcaption>
-  </figure>;
+  return (
+    <figure className="rosx-transition" aria-labelledby="transition-title">
+      <div className="rosx-transition-source">
+        <span>INPUT</span>
+        <strong>State N</strong>
+        <small>Observed evidence</small>
+      </div>
+      <i aria-hidden="true">→</i>
+      <div className="rosx-transition-attempt">
+        <span>ATTEMPT</span>
+        <strong>Transformation</strong>
+        <small>Actor + provenance</small>
+      </div>
+      <i aria-hidden="true">→</i>
+      <div className="rosx-transition-gate">
+        <span>EVALUATE</span>
+        <strong>Constraints</strong>
+        <small>Pure predicates</small>
+      </div>
+      <div className="rosx-transition-branches">
+        <article>
+          <span>ADMIT</span>
+          <strong>State N+1</strong>
+          <small>New immutable state</small>
+        </article>
+        <article>
+          <span>REJECT</span>
+          <strong>No new state</strong>
+          <small>Attempt remains visible</small>
+        </article>
+      </div>
+      <div className="rosx-trace-rail">
+        <span>TRACE</span>
+        <i />
+        <i />
+        <i className="rejected" />
+        <i />
+        <strong>Accepted and rejected events retained.</strong>
+      </div>
+      <figcaption id="transition-title">
+        Both outcomes enter the trace. Only an admitted transformation adds a
+        state.
+      </figcaption>
+    </figure>
+  );
 }
 
 function KernelMap() {
-  return <div className="rosx-kernel-map"><div className="rosx-kernel-center"><span>KERNEL</span><strong>Domain-independent</strong><small>Independent of ECG vocabulary</small></div><div className="rosx-kernel-objects">{kernelObjects.map(([index, name, meaning]) => <article key={name}><span>{index}</span><h3>{name}</h3><p>{meaning}</p></article>)}</div></div>;
+  return (
+    <div className="rosx-kernel-map">
+      <div className="rosx-kernel-center">
+        <span>KERNEL</span>
+        <strong>Domain-independent</strong>
+        <small>Independent of ECG vocabulary</small>
+      </div>
+      <div className="rosx-kernel-objects">
+        {kernelObjects.map(([index, name, meaning]) => (
+          <article key={name}>
+            <span>{index}</span>
+            <h3>{name}</h3>
+            <p>{meaning}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function BoundaryDiagram() {
-  return <figure className="rosx-boundary" aria-label="ReasonOS kernel and Vector EKG plugin have separate responsibilities.">
-    <div className="rosx-boundary-kernel"><p>REASONOS KERNEL / 3.0.0</p><h3>Structure</h3><ul><li>Immutable states</li><li>Attempted transformations</li><li>Constraint results</li><li>Replayable traces</li><li>Actor and provenance</li></ul></div>
-    <div className="rosx-boundary-interface"><span>typed plugin contract</span><i aria-hidden="true">⇄</i><small>versioned · deterministic</small></div>
-    <div className="rosx-boundary-plugin"><p>VECTOR EKG / 0.5.0</p><h3>Medical meaning</h3><ul><li>Leads and coordinates</li><li>Calibration</li><li>Intervals and axis</li><li>Candidate pathways</li><li>ECG constraints</li></ul></div>
-    <figcaption>The kernel evaluates structural validity. The plugin owns ECG vocabulary and domain rules.</figcaption>
-  </figure>;
+  return (
+    <figure
+      className="rosx-boundary"
+      aria-label="ReasonOS kernel and Vector EKG plugin have separate responsibilities."
+    >
+      <div className="rosx-boundary-kernel">
+        <p>REASONOS KERNEL / 0.3.0</p>
+        <h3>Structure</h3>
+        <ul>
+          <li>Immutable states</li>
+          <li>Attempted transformations</li>
+          <li>Constraint results</li>
+          <li>Replayable traces</li>
+          <li>Actor and provenance</li>
+        </ul>
+      </div>
+      <div className="rosx-boundary-interface">
+        <span>typed plugin contract</span>
+        <i aria-hidden="true">⇄</i>
+        <small>versioned · deterministic</small>
+      </div>
+      <div className="rosx-boundary-plugin">
+        <p>VECTOR EKG / 0.5.0 + laboratory extension</p>
+        <h3>ECG calculations</h3>
+        <ul>
+          <li>Leads and coordinates</li>
+          <li>Calibration</li>
+          <li>Intervals and axis</li>
+          <li>Candidate pathways</li>
+          <li>ECG constraints</li>
+        </ul>
+      </div>
+      <figcaption>
+        The kernel evaluates structural validity. The plugin owns ECG vocabulary
+        and domain rules.
+      </figcaption>
+    </figure>
+  );
 }
 
 const pairedMachineOutput = [
@@ -75,46 +155,318 @@ const pairedMachineOutput = [
 ] as const;
 
 function PairedSourceCase() {
-  return <div className="rosx-paired-case">
-    <div className="rosx-source-header"><div><span>CASE ASP-001</span><strong>Paired 12-lead source recording</strong></div><p>Self-contributed · de-identified derivative · waveform pixels preserved</p></div>
-    <div className="rosx-recording-grid">
-      <figure><div className="rosx-recording-label"><span>RECORDING A</span><small>12 leads + long lead II</small></div><Image src="/images/reasonos/asp-001-recording-a.webp" alt="De-identified first 12-lead ECG source recording with a long lead II rhythm strip" width={2200} height={1180} sizes="(max-width: 800px) 100vw, 50vw"/></figure>
-      <figure><div className="rosx-recording-label"><span>RECORDING B</span><small>12 leads + long lead II</small></div><Image src="/images/reasonos/asp-001-recording-b.webp" alt="De-identified second 12-lead ECG source recording with a long lead II rhythm strip" width={2110} height={1220} sizes="(max-width: 800px) 100vw, 50vw"/></figure>
+  return (
+    <div className="rosx-paired-case">
+      <div className="rosx-source-header">
+        <div>
+          <span>CASE ASP-001</span>
+          <strong>Paired 12-lead source recording</strong>
+        </div>
+        <p>
+          Self-contributed · de-identified derivative · waveform pixels
+          preserved
+        </p>
+      </div>
+      <div className="rosx-recording-grid">
+        <figure>
+          <div className="rosx-recording-label">
+            <span>RECORDING A</span>
+            <small>12 leads + long lead II</small>
+          </div>
+          <Image
+            src="/images/reasonos/asp-001-recording-a.webp"
+            alt="De-identified first 12-lead ECG source recording with a long lead II rhythm strip"
+            width={2200}
+            height={1180}
+            sizes="(max-width: 800px) 100vw, 50vw"
+          />
+        </figure>
+        <figure>
+          <div className="rosx-recording-label">
+            <span>RECORDING B</span>
+            <small>12 leads + long lead II</small>
+          </div>
+          <Image
+            src="/images/reasonos/asp-001-recording-b.webp"
+            alt="De-identified second 12-lead ECG source recording with a long lead II rhythm strip"
+            width={2110}
+            height={1220}
+            sizes="(max-width: 800px) 100vw, 50vw"
+          />
+        </figure>
+      </div>
+      <div
+        className="rosx-machine-ledger"
+        role="table"
+        aria-label="Unconfirmed machine-generated measurements transcribed from the two source recordings"
+      >
+        <div className="rosx-machine-head" role="row">
+          <span role="columnheader">Recording</span>
+          <span role="columnheader">Rate</span>
+          <span role="columnheader">PR</span>
+          <span role="columnheader">QRS</span>
+          <span role="columnheader">QT / QTc</span>
+          <span role="columnheader">P / QRS / T axes</span>
+        </div>
+        {pairedMachineOutput.map((row) => (
+          <div role="row" key={row[0]}>
+            {row.map((value, index) =>
+              index === 0 ? (
+                <strong role="cell" key={value}>
+                  {value}
+                </strong>
+              ) : (
+                <span role="cell" key={value}>
+                  {value}
+                </span>
+              ),
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="rosx-source-provenance">
+        <span>MACHINE-DERIVED · UNCONFIRMED</span>
+        <p>
+          The values above are transcribed from the device report. They are
+          comparison inputs, not adjudicated measurements or diagnostic truth.
+        </p>
+      </div>
     </div>
-    <div className="rosx-machine-ledger" role="table" aria-label="Unconfirmed machine-generated measurements transcribed from the two source recordings">
-      <div className="rosx-machine-head" role="row"><span role="columnheader">Recording</span><span role="columnheader">Rate</span><span role="columnheader">PR</span><span role="columnheader">QRS</span><span role="columnheader">QT / QTc</span><span role="columnheader">P / QRS / T axes</span></div>
-      {pairedMachineOutput.map((row) => <div role="row" key={row[0]}>{row.map((value, index) => index === 0 ? <strong role="cell" key={value}>{value}</strong> : <span role="cell" key={value}>{value}</span>)}</div>)}
-    </div>
-    <div className="rosx-source-provenance"><span>MACHINE-DERIVED · UNCONFIRMED</span><p>The values above are transcribed from the device report. They are comparison inputs, not adjudicated measurements or diagnostic truth.</p></div>
-  </div>;
+  );
 }
 
+const references = [
+  {
+    title: "Malmivuo & Plonsey · Bioelectromagnetism, chapter 15",
+    url: "https://www.bem.fi/book/15/15.htm",
+    scope:
+      "Limb-lead definitions, ideal lead fields, Einthoven identity, and the distinction between algebraic lead relations and a spatial dipole approximation.",
+  },
+  {
+    title: "AHA/ACCF/HRS · ECG technology (2007)",
+    url: "https://doi.org/10.1161/CIRCULATIONAHA.106.180200",
+    scope:
+      "Acquisition, calibration, signal fidelity, and measurement definitions. Model fiducials here are prescribed rather than detected from a clinical recording.",
+  },
+  {
+    title: "AHA/ACCF/HRS · ST, T, U waves and QT interval (2009)",
+    url: "https://doi.org/10.1161/CIRCULATIONAHA.108.191096",
+    scope:
+      "QT measurement and the rate-dependent limitations of correction formulas. The laboratory shows Bazett and Fridericia as mathematical comparisons.",
+  },
+  {
+    title: "AHA/ACCF/HRS · Intraventricular conduction disturbances (2009)",
+    url: "https://doi.org/10.1161/CIRCULATIONAHA.108.191095",
+    scope:
+      "QRS duration terminology. The executable rule tests a bounded duration statement; it does not classify a rhythm or establish a patient diagnosis.",
+  },
+];
+
 export default function VectorEkgReasonOSPage() {
-  const schema = { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "Vector EKG and ReasonOS", applicationCategory: "EducationalApplication", operatingSystem: "Web", author: { "@type": "Person", name: "Arjan Singh Puniani", url: siteUrl }, url: `${siteUrl}/work/vector-ekg-reasonos`, description: "Educational research prototype for inspectable ECG reasoning.", isAccessibleForFree: true };
-  return <div className="vector-case rosx-case">
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}/>
-    <header className="rosx-hero"><div className="shell rosx-hero-grid"><div className="rosx-hero-copy"><p className="eyebrow">Reasoning systems · Electrocardiography · 2026</p><h1>Vector EKG and ReasonOS</h1><p className="vector-deck">I built an educational ECG prototype that records observations, measurements, calculations, alternative explanations, and revisions. ReasonOS stores the history; Vector EKG supplies ECG rules.</p><div className="actions"><a className="button" href="#laboratory">Run the synthetic laboratory</a><a className="button-secondary" href="#architecture">Inspect the architecture</a></div></div><HeroInstrument /></div><div className="shell"><dl className="vector-facts"><div><dt>Status</dt><dd>Tested educational prototype</dd></div><div><dt>Role</dt><dd>Independent designer and developer</dd></div><div><dt>Clinical use</dt><dd>None</dd></div><div><dt>Core record</dt><dd>Append-only reasoning trace</dd></div></dl></div></header>
-
-    <section className="section rosx-thesis"><div className="shell rosx-thesis-grid"><p className="eyebrow">01 / The problem</p><div><p className="rosx-pullquote">An ECG exercise that stores only the final answer leaves the measurements and intermediate claims unavailable for review.</p><div className="rosx-problem-grid"><article><span>CONVENTIONAL EXERCISE</span><strong>Final interpretation</strong><div className="rosx-score">✓</div><p>A final answer alone omits intermediate steps.</p></article><article><span>REASONOS</span><strong>Inspectable state change</strong><div className="rosx-path"><i/><i/><i className="rejected"/><i/></div><p>Preserves evidence, operations, failed attempts, and revision.</p></article></div><p>This prototype records selected regions, measurements, and attempted inferences so a reviewer can inspect where a claim came from. Whether that record improves teaching or assessment remains untested.</p></div></div></section>
-
-    <section className="section technical-surface rosx-runtime" id="architecture" aria-labelledby="architecture-heading"><div className="shell"><p className="eyebrow">02 / Runtime model</p><h2 id="architecture-heading">Implementation: accepted and rejected state changes</h2><p className="section-lede">Every attempted change names its inputs, actor, evidence, provenance, and governing rules. History remains intact whether the attempt succeeds or fails.</p><TransitionDiagram /></div></section>
-
-    <section className="section rosx-kernel"><div className="shell"><div className="rosx-section-head"><div><p className="eyebrow">03 / Kernel</p><h2>The six kernel objects</h2></div><p>The kernel knows how reasoning is recorded. It does not know what a P wave, lead, interval, or diagnosis means.</p></div><KernelMap /></div></section>
-
-    <section className="section technical-surface rosx-boundary-section"><div className="shell"><div className="rosx-section-head"><div><p className="eyebrow">04 / Separation of concerns</p><h2>ECG rules in a separate plugin</h2></div><p>The kernel and ECG plugin have separate responsibilities. Histology and radiology plugins remain possible extensions.</p></div><BoundaryDiagram /></div></section>
-
-    <section className="section rosx-provenance"><div className="shell"><div className="rosx-section-head"><div><p className="eyebrow">05 / Measurement provenance</p><h2>Recording the source and calculation method</h2></div><p>The interface keeps the source, the witness, and the calculation separate. A cursor selection is never relabeled as gaze. A machine output never becomes a learner observation.</p></div><div className="rosx-ledger" role="table" aria-label="Provenance ledger example"><div className="rosx-ledger-head" role="row"><span role="columnheader">Value</span><span role="columnheader">Witness</span><span role="columnheader">Method</span><span role="columnheader">Status</span></div><div role="row"><strong role="cell">Two selected points</strong><span role="cell">Learner-derived</span><span role="cell">Explicit cursor selection</span><b role="cell">Observed input</b></div><div role="row"><strong role="cell">68 ms</strong><span role="cell">Application-calculated</span><span role="cell">Δx × calibrated scale</span><b role="cell">Derived value</b></div><div role="row"><strong role="cell">Sinus origin</strong><span role="cell">Learner claim</span><span role="cell">Required evidence absent</span><b role="cell" className="rejected">Rejected</b></div></div></div></section>
-
-    <section className="section technical-surface rosx-trace-story"><div className="shell"><p className="eyebrow">06 / Synthetic reasoning trace</p><h2>Example: rejecting an unsupported sinus-origin claim</h2><div className="rosx-trace-graph"><article><span>STATE 01 · OBSERVED</span><strong>R–R intervals appear regular</strong><p>Direct visual observation from one synthetic lead.</p></article><i aria-hidden="true">→</i><article><span>STATE 02 · INFERRED</span><strong>Regular narrow-complex rhythm</strong><p>Provisional synthesis of admitted evidence.</p></article><i aria-hidden="true">→</i><article className="contradiction"><span>ATTEMPT 03 · REJECTED</span><strong>Sinus origin established</strong><p>P-wave relation has not been demonstrated.</p></article><i aria-hidden="true">↘</i><article className="revision"><span>STATE 03 · REVISED</span><strong>Origin remains unresolved</strong><p>The new state retains lineage to the earlier claim.</p></article></div><p className="diagram-caption">Synthetic educational example. It is not a patient interpretation or validated diagnostic workflow.</p></div></section>
-
-    <section className="section rosx-state-model"><div className="shell"><div className="rosx-section-head"><div><p className="eyebrow">07 / Evidence states</p><h2>Evidence-state labels</h2></div><p>These labels describe the status of evidence in a trace. They are not diagnostic confidence scores.</p></div><div className="evidence-state-grid">{evidenceStates.map(([state, meaning], index) => <article key={state}><span>{String(index + 1).padStart(2, "0")}</span><h3>{state}</h3><p>{meaning}</p></article>)}</div></div></section>
-
-    <section className="section rosx-source-case"><div className="shell"><div className="rosx-section-head"><div><p className="eyebrow">08 / Grounded source case</p><h2>Paired ECG recordings and device-reported values</h2></div><p>The paired record creates a concrete comparison problem: determine whether small differences arise from acquisition, measurement boundaries, scan geometry, or defensible signal variation.</p></div><PairedSourceCase /></div></section>
-
-    <section className="section lab-embed rosx-lab" id="laboratory" data-analytics-event="open_reasoning_trace"><div className="shell rosx-lab-intro"><div><p className="eyebrow">09 / Executable vertical slice</p><h2>Interactive synthetic ECG example</h2></div><p className="section-lede">The paired case above supplies real source complexity. The calibrated synthetic waveform below isolates the reasoning mechanics so its measurements remain reproducible.</p></div><div className="reasonos-theme"><ReasonOSLab/></div></section>
-
-    <section className="section rosx-spec" id="specification"><div className="shell"><div className="rosx-section-head"><div><p className="eyebrow">10 / Engineering record</p><h2>Inputs, outputs, constraints, and failure modes</h2></div><p>The portfolio example has kernel and ECG calculation tests. Archived v0.5.0 release records report 15 kernel, 8 plugin, and 27 application tests passing on August 2, 2026; that record is separate from this smaller example.</p></div><div className="spec-grid"><article><span>ACCEPTS</span><h3>Inputs</h3><ul><li>De-identified and synthetic ECG sources</li><li>Manual calibration metadata</li><li>Learner observations and measurements</li><li>Versioned candidate paths</li></ul></article><article><span>EMITS</span><h3>Outputs</h3><ul><li>Immutable accepted states</li><li>Accepted and rejected events</li><li>Interval, axis, and QTc calculations</li><li>Candidate-path structural comparison</li></ul></article><article><span>ENFORCES</span><h3>Invariants</h3><ul><li>Referenced inputs exist</li><li>Writes remain append-only</li><li>Actor and provenance are present</li><li>Causal ancestry remains acyclic</li><li>Witness identity is preserved</li></ul></article><article><span>CAN FAIL</span><h3>Known failure modes</h3><ul><li>Incorrect manual calibration</li><li>Poor source quality</li><li>Incompatible paths combined</li><li>Candidate models mistaken for consensus</li><li>Single-lead evidence overinterpreted</li></ul></article></div></div></section>
-
-    <section className="section clinical-boundary rosx-limitations"><div className="shell rosx-thesis-grid"><p className="eyebrow">11 / What remains unproven</p><div><h2>Limitations and clinical-use boundary</h2><p>Vector EKG is educational research software. It has no clinical validation, regulatory clearance, expert-trace reliability study, demonstrated learning benefit, or authorization for patient care.</p><p>Clinical use would require a defined intended use, expert-reviewed ontology, representative datasets, human-factors testing, prospective validation, security and privacy controls, regulatory analysis, and independent clinical governance.</p><Link className="text-link" href="/research">See the documented research record →</Link></div></div></section>
-  </div>;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Vector EKG and ReasonOS",
+    applicationCategory: "EducationalApplication",
+    operatingSystem: "Web",
+    author: { "@type": "Person", name: "Arjan Singh Puniani", url: siteUrl },
+    url: `${siteUrl}/work/vector-ekg-reasonos`,
+    description:
+      "Interactive frontal ECG projections, calibrated interval measurements, and replayable evidence-conditioned reasoning.",
+    isAccessibleForFree: true,
+  };
+  return (
+    <div className="vector-case rosx-case rosx-scientific">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <header className="rosx-hero">
+        <div className="shell">
+          <p className="eyebrow">Vector EKG / ReasonOS</p>
+          <h1>Why an ECG goes up or down</h1>
+          <p className="vector-deck">
+            A lead measures along one direction. Turn the vector to see how.
+          </p>
+        </div>
+      </header>
+      <section
+        className="lab-embed rosx-lab"
+        id="laboratory"
+        aria-label="Interactive ECG and reasoning laboratory"
+      >
+        <div className="reasonos-theme">
+          <ReasonOSLab />
+        </div>
+      </section>
+      <nav className="rosx-science-nav shell" aria-label="ECG study sections">
+        <a href="#laboratory">Laboratory</a>
+        <a href="#source-case">Source recordings</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#model-references">Model & references</a>
+      </nav>
+      <section className="section rosx-source-case" id="source-case">
+        <div className="shell">
+          <div className="rosx-section-head">
+            <div>
+              <p className="eyebrow">Source comparison</p>
+              <h2>Paired 12-lead recordings</h2>
+            </div>
+            <p>
+              These de-identified recordings and device-reported values are
+              retained independently from the synthetic laboratory. Changing the
+              model does not reprocess either image or adjudicate its machine
+              output.
+            </p>
+          </div>
+          <PairedSourceCase />
+        </div>
+      </section>
+      <section
+        className="section technical-surface rosx-runtime"
+        id="architecture"
+      >
+        <div className="shell">
+          <div className="rosx-section-head">
+            <div>
+              <p className="eyebrow">
+                ReasonOS 0.3.0 · Vector EKG 0.5.0 + laboratory extension
+              </p>
+              <h2>Evidence, admission, and replay</h2>
+            </div>
+            <p>
+              A transformation names its input states, actor, method, and
+              evidence. An admitted event creates a new state. A rejected event
+              remains in the trace without creating one.
+            </p>
+          </div>
+          <TransitionDiagram />
+          <details className="rosx-technical-detail">
+            <summary>Kernel objects and the ECG plugin boundary</summary>
+            <KernelMap />
+            <BoundaryDiagram />
+            <p>
+              Snapshots and their nested records are frozen. Input states must
+              exist and precede their output; revision targets must be named
+              inputs. Actor and witness types are checked. The example has no
+              expert-authored observations or attention-tracking channel.
+            </p>
+          </details>
+          <details className="rosx-technical-detail">
+            <summary>Replay guarantees and evidence vocabulary</summary>
+            <p>
+              The supplied kernel verifies a SHA-256 event chain. Replay reruns
+              the transformation rules and ECG plugin and compares the resulting
+              event, identifiers, constraints, and state with the recorded
+              event. The ECG plugin recomputes its verdict from recorded inputs.
+              Medical observations still require independent review; the hash
+              chain is not an authenticated signature or clinical validation.
+            </p>
+            <div className="evidence-state-grid">
+              {evidenceStates.map(([name, meaning]) => (
+                <article key={name}>
+                  <h3>{name}</h3>
+                  <p>{meaning}</p>
+                </article>
+              ))}
+            </div>
+            <p>
+              The executable duration rule requires calibration for the current
+              source, an admitted QRS measurement, ordered endpoints, and an
+              uncertainty interval entirely below the stated cutoff. A source
+              change invalidates reuse for the new source; it never rewrites the
+              old record.
+            </p>
+          </details>
+        </div>
+      </section>
+      <section className="section rosx-spec" id="model-references">
+        <div className="shell">
+          <div className="rosx-section-head">
+            <div>
+              <p className="eyebrow">Scientific model</p>
+              <h2>Definitions and approximations</h2>
+            </div>
+            <p>
+              The lead algebra is exact for the defined electrode potentials.
+              The spatial geometry and signal generator are deliberately
+              simplified and inspectable.
+            </p>
+          </div>
+          <div className="spec-grid">
+            <article>
+              <h3>Source</h3>
+              <p>
+                P, Q, R, S, and T components use finite-support squared-sine
+                pulses with declared timing, amplitude, and orientation. These
+                source parameters define the reference fiducials.
+              </p>
+            </article>
+            <article>
+              <h3>Geometry</h3>
+              <p>
+                The six limb leads use two scaled frontal signal coordinates and
+                fixed lead fields. A real torso is neither an equilateral
+                triangle nor a uniform conductor. Chest leads require additional
+                measurements.
+              </p>
+            </article>
+            <article>
+              <h3>Measurement</h3>
+              <p>
+                Paper speed and voltage gain transform source values into
+                coordinates. Calipers operate in the SVG coordinate system. Two
+                endpoint bounds of ±ε give a worst-case interval bound of ±2ε.
+              </p>
+            </article>
+            <article>
+              <h3>Inference</h3>
+              <p>
+                The domain rule evaluates a duration statement against recorded
+                evidence. Path overlap is a weighted set comparison, not a
+                diagnostic probability or an expert consensus score.
+              </p>
+            </article>
+          </div>
+          <p className="rosx-implementation-source">
+            The browser kernel (0.3.0) and ECG plugin (0.5.0) are carried
+            forward from the supplied ReasonOS master source. The laboratory
+            adds the synchronized signal model, calibrated measurement display,
+            and a bounded-duration rule.{" "}
+            <a
+              href="https://github.com/arjan-singh-puniani/arjansinghpuniani.com/blob/main/arjan-portfolio/Documentation/Validation/ReasonOS/source-provenance.json"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Source checksums and adaptations
+            </a>
+          </p>
+          <div className="rosx-reference-list">
+            {references.map((reference) => (
+              <article key={reference.url}>
+                <a href={reference.url} target="_blank" rel="noreferrer">
+                  {reference.title}
+                </a>
+                <p>{reference.scope}</p>
+              </article>
+            ))}
+          </div>
+          <details className="rosx-technical-detail">
+            <summary>Scope and clinical-use status</summary>
+            <p>
+              This is educational research software with synthetic calculations
+              and an independently contributed source case. Clinical validity,
+              learning benefit, regulatory clearance, and authorization for
+              patient care have not been established. The source images,
+              simulated signals, learner observations, and application
+              calculations retain distinct provenance.
+            </p>
+            <Link className="text-link" href="/research">
+              Documented research record
+            </Link>
+          </details>
+        </div>
+      </section>
+    </div>
+  );
 }

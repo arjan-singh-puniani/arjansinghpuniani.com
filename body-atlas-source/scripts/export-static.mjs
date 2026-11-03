@@ -5,8 +5,10 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
+import { exportDigest } from './export-digest.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const sourceDigest=await exportDigest(root);
 assert.ok(process.argv[2],'Pass a generated output directory, e.g. /path/to/portfolio/public/atlas');
 const destination=path.resolve(process.argv[2]);
 assert.equal(path.basename(destination),'atlas');
@@ -37,7 +39,8 @@ try {
  await writeFile(path.join(temp,'next.config.mjs'),"export default {output:'export',basePath:'/atlas',trailingSlash:true,poweredByHeader:false};\n");
  const build=spawnSync(process.execPath,[path.join(root,'node_modules/next/dist/bin/next'),'build','--webpack'],{cwd:temp,env:{...process.env,NEXT_PUBLIC_ATLAS_BASE_PATH:'/atlas'},stdio:'inherit'});
  assert.equal(build.status,0,'Static atlas build failed');
- const manifest={application:'BODY//ATLAS',basePath:'/atlas',snapshotExportedAt:snapshot.exportedAt,sourceRecords:snapshot.records.length,cachedSources:snapshot.sources.length,disposition:'Research preview; anatomical text contexts remain Provisional.'};
+ assert.equal(await exportDigest(root),sourceDigest,'Source changed during export; retry with a stable source tree');
+ const manifest={application:'BODY//ATLAS',basePath:'/atlas',sourceDigest,snapshotExportedAt:snapshot.exportedAt,sourceRecords:snapshot.records.length,cachedSources:snapshot.sources.length,disposition:'Research preview; anatomical text contexts remain Provisional.'};
  await writeFile(path.join(temp,'out',marker),JSON.stringify(manifest,null,2)+'\n');
  // Only replace a recognized generated atlas directory, after a successful build.
  await rm(destination,{recursive:true,force:true});

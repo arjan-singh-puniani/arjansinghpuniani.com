@@ -45,3 +45,18 @@ A clean `npm ci --ignore-scripts` under default npm completed from the final loc
 ## Neuralink addition — 2026-10-31
 
 New outbound source links are restricted to exact HTTPS hosts neuralink.com, www.uclh.nhs.uk and www.jmir.org; deceptive suffixes remain rejected. New ingestion jobs use existing fixed-host, verified-TLS, response-size and retry limits, with exact study/sponsor validation before writes. New source metadata renders through escaped React text; no remote HTML execution, scraping proxy, user-controlled fetch destination or private information was introduced. Browser navigation and exported citations are tested. No new dependency was added.
+
+## Contour surface update — 2026-11-01
+
+The fitting tool runs locally with private image/model/topology inputs. Those inputs, pixel landmarks, photo textures, embeddings, EXIF, private paths and subject labels are excluded from the public app. The baked geometry can still resemble a person and is not anonymous. Three semantic detail channels replace photo appearance; GLB tests reject image/texture/color payloads and identifying metadata. The builder bounds input size, point counts, finite coordinates, frame extents and topology indices. No upload endpoint, remote inference, account access or new application dependency was introduced. Private capture files belong under ignored `data/private/`, never `public/`.
+
+Webpack development required `unsafe-eval` to hydrate the app; it is enabled only under `NODE_ENV=development`, following the installed Next documentation. Production retains the previous CSP and browser tests assert that plain `unsafe-eval` is absent. This is not a new penetration test or a claim of measured identity/clinical accuracy.
+
+## Reference-anchor revision — 2026-11-02
+
+The new reference-anchor JSON is generated from fixed, already-shipped licensed anatomy files and includes their hashes and triangle provenance. No upload, remote fetch, external script, new dependency, private input, account access or writable API is added. Source text remains escaped React content. Geometry-derived display points do not upgrade medical evidence states or imply personal internal anatomy. Existing source/privacy/API boundary tests and desktop/mobile accessibility workflows pass.
+
+
+## Review export and research workflow — 2026-11-02
+
+The review packet contains only existing public assertions and original-source metadata. Every independent-adjudication field begins blank; there is no upload or automatic acceptance path. Source fields are quoted as CSV, and formula-like prefixes (including leading whitespace/control characters) are forced to text. Unit and actual-download browser checks pass. No new application dependency, external fetch destination, authentication boundary or private asset is introduced. Production-only npm audits report zero vulnerabilities for both applications; this does not certify the development toolchain or replace penetration testing.

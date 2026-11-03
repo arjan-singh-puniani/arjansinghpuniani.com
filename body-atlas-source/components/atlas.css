@@ -2536,6 +2536,9 @@
 .record-node:hover { fill:#fff; }
 .record-node .record-hit { fill:transparent; stroke:none; }
 .region-connector { fill:none; stroke:#8eb9c26b; stroke-width:.7; }
+.reference-anchor { fill:#a8e0e6; stroke:#101f2b; stroke-width:1; }
+.constellation-svg .leader-selected .region-connector { stroke:#e8b681; stroke-width:1.5; }
+.constellation-svg .leader-selected .reference-anchor { fill:#e8b681; }
 .constellation-region { position:absolute; display:flex; gap:7px; justify-content:space-between; align-items:center; width:148px; min-height:24px; padding:3px 6px; background:#0b1b29eb; border-left:1px solid #87bac5; color:var(--ink); pointer-events:auto; text-align:left; font-size:10px; line-height:1.4; }
 .constellation-region span { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
 .constellation-region strong { font:10px var(--mono); color:var(--gold); }
@@ -2678,3 +2681,16 @@
 .milestone-list time{color:#e9bc8a;font:12px/1.7 ui-monospace,monospace}
 .milestone-list small{display:block;color:#9fb5c0;font-size:11px;margin-top:5px}
 @media(max-width:600px){.milestone-list li{grid-template-columns:1fr;gap:5px}}
+
+.portrait-framing{display:flex;gap:4px}.portrait-framing button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);background:#203543}.portrait-framing button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.research-starts{margin:0 20px 16px;padding:12px 0;border-block:1px solid var(--rule)}
+.research-starts summary{font-size:13px;color:var(--ink);cursor:pointer;margin-bottom:8px}
+.research-starts>button{display:block;width:100%;text-align:left;padding:10px 4px;min-height:44px;font-size:12px;color:var(--blue);border:0;background:transparent}
+.research-starts>button:hover,.research-starts>button:focus-visible{background:#19313f}
+.comparison-search{display:block;font-size:13px;margin-bottom:12px}
+.comparison-search input{display:block;width:100%;margin-top:8px;padding:12px;background:#10232f;color:var(--ink);border:1px solid var(--rule);font:inherit}
+.comparison-empty{color:var(--quiet);font-size:12px}
+.review-coverage table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+.review-coverage caption{text-align:left;margin-bottom:10px;color:var(--quiet)}
+.review-coverage th,.review-coverage td{border-bottom:1px solid var(--rule);padding:10px 6px;text-align:left}
+.review-coverage small{display:block;color:var(--quiet);margin:12px 0;font-size:12px}

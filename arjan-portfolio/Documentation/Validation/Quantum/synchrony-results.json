@@ -1,0 +1,29 @@
+[
+  {
+    "browser": "chromium",
+    "version": "153.0.8010.12",
+    "sharedClockChecks": 10,
+    "movingFraction": 0.25049999999999994,
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.6",
+    "sharedClockChecks": 10,
+    "movingFraction": 0.2506818181818182,
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  },
+  {
+    "browser": "firefox",
+    "version": "153.0",
+    "sharedClockChecks": 10,
+    "movingFraction": 0.2609727272727274,
+    "desktopAxe": [],
+    "mobileAxe": [],
+    "errors": []
+  }
+]

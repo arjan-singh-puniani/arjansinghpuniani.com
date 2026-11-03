@@ -1,3 +1,35 @@
+# 1.0.0-rc4 · 2026-11-02 · Start small
+
+- Rebuilt the default opening as Little Juniper: zero rooms, zero staff and a $4,000 opening fund. The clock, expenses and arrivals wait until the first room is built and its doctor is explicitly hired.
+- Two initial actions build a consultation and hire/assign Mira. She walks through the entrance; the first fictional neighbor follows, receives a consultation and leaves through the exit. The default first full visit completes at 40 game seconds.
+- The first chapter uses a consultation-only pathway with direct arrival. It introduces no reception job, imaging, surgery, access flags or surprise paperwork/equipment events. Full hospital scenarios are still available separately.
+- After the first neighbor is home, choose a faster room, a second room with its own $800 doctor, or two waiting seats. Costs and modeled consequences are stated before purchase. Opening grants and a small plant reward occur once at recorded milestones.
+- Existing hospitals are offered a fresh start without silently replacing their save. Previous hospitals can be restored from a device-local archive. Quota/read errors stop replacement. Existing campaign mastery and REPLISOME are retained.
+- Retained direct pickup, 50% held opacity, squirming reactions, safe construction, fixed-step movement, pauses/speeds, save/replay, the eight-minute shift and continuing sandbox.
+- Added actual first-minute footage and an exact replay of its build/hire decisions, visit timing and arrival accounting. No new Blender work: original Blender assets are reused; the empty foundation is browser geometry.
+- Comparative enjoyment, external educational usefulness and physical iPhone responsiveness remain unvalidated. This remains a release candidate.
+
+# RC3 direct pickup fix · 2026-11-02
+
+- A primary press directly on a person now lifts immediately for mouse, touch and pen. The first stationary release keeps them held; a second floor tap puts down. Press-drag-release still works, with authoritative landing checks.
+- Removed the prior select-first/hold-delay behavior from body pickup. Room and patient inspection remains available through People; floor panning and build input retain their controls.
+- Held character materials now use 50% opacity, front faces and a single pass. This avoids the stacked double-sided transparency that made them look too solid. Release restores original materials, drawing order and pose, and clears the held-opacity marker.
+- Added pointer regression checks for sticky pickup, next-tap and drag drops, blocked/cancelled drops, secondary pointers, inspection, panning and construction. Browser checks cover direct body pickup at desktop and 390×844; physical iPhone verification remains pending.
+
+# RC3 character reactions · 2026-11-02
+
+- Added original rotating pickup, safe landing and cancellation lines for nine named staff and four fictional patient personalities. New recruits inherit their role’s voice.
+- Reused the existing status strip and polite live region; held figures stay unobscured. Session-only rotation and a short per-cue cooldown avoid immediate repetition without changing simulation randomness or saves.
+- Added a brief head nod and right cuff check after idle landings. Feet stay planted; walking and service clips take priority. Reduced motion disables the gesture and retains the text.
+- Verified staff and patient pickups, clear and rejected drops, explicit cancellation, keyboard placement and 390×844 layout in the desktop browser. No new Blender work or recorded voices. New reactions have not been tested on a physical iPhone.
+
+# RC3 pickup animation ·2026-11-02
+
+- Added intermittent shoulder twists, wrist curls and alternating bent-knee kicks to the held pose. Reuses the original rig; no new assets or simulation parameters.
+- Preserved the cursor collar pin, translucent materials, safe landing checks and exact pose restoration. Reduced motion disables the squirm and sway.
+- Hid the speech bubble while carrying and rendered the translucent held figure above equipment so the squirm stays visible. Original materials and drawing order return on release.
+- The owner replied “wow much better” to the RC3 iPhone walking/grabbing retest prompt. Device model, iOS version and measured timings were not supplied; this is qualitative owner feedback, not a device benchmark or usability study.
+
 # 1.0.0-rc3 ·2026-11-02
 
 - Executed Blender for13shorter indoor gait clips and retained editable sources. Phase follows actual distance; turns round only within clear routes.
