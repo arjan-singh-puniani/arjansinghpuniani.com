@@ -271,10 +271,12 @@ for (const [name, engine] of [
       svg.scrollIntoView({ block: "center", behavior: "instant" }),
     );
     await page.waitForTimeout(150);
+    // Wait for the caliper to settle after focus-driven scrolling.
+    await strip.locator('[data-endpoint="1"]').hover();
     const drag = await strip.evaluate((svg) => {
       const matrix = svg.getScreenCTM();
       const point = svg.createSVGPoint();
-      point.y = 25;
+      point.y = 170;
       point.x = 65 + 319 * 0.6;
       const start = point.matrixTransform(matrix);
       point.x = 65 + 349 * 0.6;
@@ -286,7 +288,6 @@ for (const [name, engine] of [
         onePixelMs: 1 / (matrix.a * 0.6),
       };
     });
-    await page.mouse.move(drag.x, drag.y);
     await page.mouse.down();
     await page.mouse.move(drag.end, drag.y, { steps: 4 });
     await page.mouse.up();

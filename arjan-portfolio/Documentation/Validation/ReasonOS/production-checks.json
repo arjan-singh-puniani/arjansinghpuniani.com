@@ -1,0 +1,56 @@
+{
+  "url": "https://arjansinghpuniani.com/work/vector-ekg-reasonos",
+  "applicationCommit": "ff10110bf3871a285d947df874c6f913a43c9557",
+  "deployment": "5hWhCSYzdyRrYVPLFBqWCZN7CRuW",
+  "status": "verified-live",
+  "checks": [
+    {
+      "browser": "chromium",
+      "synchronizedChecks": 30,
+      "calibration": "passed",
+      "staleEvidence": "rejected",
+      "boundedClaim": "passed",
+      "replay": "passed",
+      "alteredCopy": "rejected",
+      "alternativePaths": "passed",
+      "export": "passed",
+      "mobileCaliperDragAndResize": "passed",
+      "playbackAndReducedMotion": "passed",
+      "desktopAxe": [],
+      "mobileAxe": [],
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "synchronizedChecks": 30,
+      "calibration": "passed",
+      "staleEvidence": "rejected",
+      "boundedClaim": "passed",
+      "replay": "passed",
+      "alteredCopy": "rejected",
+      "alternativePaths": "passed",
+      "export": "passed",
+      "mobileCaliperDragAndResize": "passed",
+      "playbackAndReducedMotion": "passed",
+      "desktopAxe": [],
+      "mobileAxe": [],
+      "errors": []
+    },
+    {
+      "browser": "firefox",
+      "synchronizedChecks": 30,
+      "calibration": "passed",
+      "staleEvidence": "rejected",
+      "boundedClaim": "passed",
+      "replay": "passed",
+      "alteredCopy": "rejected",
+      "alternativePaths": "passed",
+      "export": "passed",
+      "mobileCaliperDragAndResize": "passed",
+      "playbackAndReducedMotion": "passed",
+      "desktopAxe": [],
+      "mobileAxe": [],
+      "errors": []
+    }
+  ]
+}
