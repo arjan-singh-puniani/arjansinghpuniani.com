@@ -1,5 +1,7 @@
-import {TYPES,queueFor,staffingPlan} from './simulation.mjs?v=121';
+import {openingStep} from './opening.mjs?v=125';
+import {TYPES,queueFor,staffingPlan} from './simulation.mjs?v=125';
 export function nextStep(s){
+ if(s.first)return openingStep(s);
  const op=s.operations;if(op?.event?.status==='open')return op.event.kind==='coffee'?{kind:'event',label:'Restore imaging',title:'Coffee is not a scanner accessory.',text:'Dispatch an available facilities colleague. The equipment resumes after they clear the spill.'}:{kind:'event',label:'Resolve paperwork',title:'The paperwork is winning.',text:'Check-in takes twice as long. Sort by hand, or invest in a better intake tray.'};
  const unopened=s.rooms.find(r=>TYPES[r.type].duration&&r.staff.length<TYPES[r.type].staff);if(unopened){const team=staffingPlan(s,unopened.id);return{kind:'staff-room',id:unopened.id,label:team.ok?(team.cost?'Recruit team · $'+team.cost.toLocaleString():'Send '+team.reason):'Inspect closed room',title:TYPES[unopened.type].name+' needs its team.',text:team.ok?team.reason+' will walk here before the room opens.':team.reason}}
  if(op?.loungeVoucher&&Math.max(...['consult','scan','care'].map(type=>queueFor(s,type)))<=2)return {kind:'build',type:'rest',label:'Place free team lounge',title:'A little breathing room, earned.',text:'The paperwork is sorted. Choose a clear spot for your team-lounge reward; the voucher covers construction.'};

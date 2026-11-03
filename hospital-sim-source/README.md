@@ -1,3 +1,19 @@
+# Little Juniper: the default opening (RC4)
+
+The game now begins with an empty clinic. Build the first consultation ($900), then hire/assign Mira ($800). This opens the doors and starts the eight-minute clock. Before opening, time and operating expenses stay still. The first default visit completes at game second 40.
+
+The first chapter is deliberately consultation-only, with no reception staff or surprise incidents. After helping one neighbor, choose a faster room, a second room with its own doctor, or waiting seats. Seats change where people wait; they do not increase clinical capacity. Existing full hospital scenarios remain in Shift settings → More challenges & reports. This chapter does not yet grow continuously into those advanced scenarios.
+
+Existing saves are preserved until the player chooses an empty clinic. Starting over first appends the current hospital to a device-local archive; Previous hospitals restores it. A failed archive write prevents replacement. No records leave the device unless the player explicitly exports them.
+
+Model: `1.0.0-rc4`. Default scenario: `first`. Historical regression setups now explicitly request `neighborhood`. Old RC3 saves migrate without resetting their visits, assignments or routes. The old full-hospital arrival schedule and service rules remain unchanged.
+
+New checks: `node tests/opening.mjs` and `node tests/browser-opening-rc4.mjs` from hospital-sim-source. The actual first-minute video and state log are in public/hospitalsim/docs/first-clinic.html. Original Blender sources and licenses below remain applicable. No new Blender execution was needed for this opening.
+
+This is an AI-assisted engineering prototype. The simpler opening has not undergone external usability or learning evaluation, and it is not evidence of superiority over a commercial game.
+
+---
+
 # hospitalSIM — playable1.0.0-rc3
 
 An original, substantially AI-assisted browser hospital management release candidate for Arjan Singh Puniani. Real-time Three.js dioramas use reproducible Blender equipment and rigged characters. It is not certified production-ready, clinically validated or demonstrated superior to a commercial game.
