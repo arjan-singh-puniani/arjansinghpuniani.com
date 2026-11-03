@@ -1,8 +1,8 @@
-import {tick,validate,report,fingerprint,arrivalTape} from './simulation.mjs?v=121';
+import {tick,validate,report,fingerprint,arrivalTape} from './simulation.mjs?v=125';
 const copy=s=>JSON.parse(JSON.stringify({...s,lastAction:null}));
-export function changed(a,b){return ['rooms','entrance','exit','staff','access','breaks','urgency','communication','autoHandoff','prevention','cash','operations'].filter(k=>JSON.stringify(a[k])!==JSON.stringify(b[k]));}
+export function changed(a,b){return ['first','rooms','entrance','exit','staff','access','breaks','urgency','communication','autoHandoff','prevention','cash','operations'].filter(k=>JSON.stringify(a[k])!==JSON.stringify(b[k]));}
 export function compare(base,plan){
- validate(copy(base));validate(copy(plan));
+ validate(copy(base));validate(copy(plan));if(base.first&&!base.first.opened||plan.first&&!plan.first.opened)throw Error('Open the clinic before comparing running shifts.');
  if(base.seconds!==plan.seconds||base.initialSeed!==plan.initialSeed||fingerprint(base.arrivalTape)!==fingerprint(plan.arrivalTape)||JSON.stringify(base.patients)!==JSON.stringify(plan.patients)||JSON.stringify(base.records)!==JSON.stringify(plan.records))throw Error('Restore the checkpoint, pause, then change only layout, staffing or policy. Arrivals and current visits must match.');
  const runs=[];
  for(let i=0;i<5;i++){

@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-02",
+  "model": "1.0.0-rc4",
+  "defaultScenario": "first",
+  "opening": [
+    "0rooms/0staff/$4000",
+    "no time/arrivals/expenses until first explicit hire/assignment",
+    "one room then one hired doctor; first visit complete40seconds",
+    "consultation-only; direct arrival; no reception or surprise incidents",
+    "upgrade, second staffed room, and waiting seats after first completion"
+  ],
+  "automated": {
+    "gameSuites": 24,
+    "portfolioTests": 222,
+    "typecheck": "pass",
+    "productionBuild": "pass",
+    "actualRecordingReplay": "all actions, tracked completed visit and60secondcounts match"
+  },
+  "browser": {
+    "hardware": "Apple M2, Chromium/ANGLE Metal; desktop and390\u00d7844 viewport override",
+    "checks": [
+      "old hospital archived and actually restored:9staff/4rooms/18arrivals/4completed",
+      "empty foundation has0staff/0rooms/0arrivals/clock0",
+      "keyboard Build and Hire",
+      "first actual1\u00d7visit complete40s, captured toMP4",
+      "growth choice fits390px without horizontal overflow",
+      "room upgrade works",
+      "second room built, explicitly hires second doctor",
+      "reduced motion toggle works; closing settings restores prior pause state",
+      "no console errors in tested sessions",
+      "actual portfolio desktop iframe launches fresh0staff/0rooms clinic",
+      "actual portfolio390px Play redirects to standalone0staff/0rooms clinic; no horizontal overflow or console errors"
+    ],
+    "renderSample": {
+      "stage": "game second22; first room/doctor/patient",
+      "mainTriangles": 39629,
+      "drawCalls": 42,
+      "meanFrameMs": 16.72,
+      "p95FrameMs": 18.6,
+      "samples": 1800,
+      "limit": "Workstation browser observation, not an iPhone benchmark"
+    }
+  },
+  "specificPairedRuns": {
+    "seed": 431,
+    "seconds": 480,
+    "arrivalCount": 33,
+    "identicalArrivalSchedules": true,
+    "oneRoom": {
+      "completed": 15,
+      "departed": 6,
+      "unfinished": 12
+    },
+    "secondRoomAndDoctorAtFirstCompletion": {
+      "completed": 29,
+      "departed": 0,
+      "unfinished": 4
+    }
+  },
+  "recording": {
+    "file": "docs/first-minute-rc4.mp4",
+    "bytes": 4016009,
+    "source": "actual game canvas and state captions; HTML controls not filmed; no audio",
+    "seed": 431,
+    "start": 0,
+    "end": 60,
+    "arrivals": 3,
+    "completed": 1,
+    "departed": 0,
+    "unfinished": 2,
+    "playback": {
+      "durationSeconds": 60.532167,
+      "ended": true,
+      "mediaError": null
+    }
+  },
+  "limits": [
+    "Fun, repeat-play interest and educational usefulness have not been externally evaluated",
+    "Physical iPhone/Safari and assistive-technology retests pending",
+    "First chapter does not yet grow continuously into imaging and surgery",
+    "No new Blender execution: existing original Blender assets reused; new foundation is browser geometry",
+    "Stylized people and prop contact remain below the visual reference"
+  ]
+}
