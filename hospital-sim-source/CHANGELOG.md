@@ -1,3 +1,16 @@
+# RC5 — reception before general practice
+
+- Empty clinic now requires reception, an administrator and a GP, followed by explicit opening.
+- Seeded random arrival gaps; everyday clothes on arrival/departure; reception changing-screen spin into a matched gown.
+- Patient and GP sit across the desk.
+- Per-service completion fees with a validated ledger; no extra generic discharge payment.
+- Pharmacy and booked neurology, ordinary gait assessment, video EEG and sleep services with separately recruited staff.
+- Executed original Blender wardrobes/equipment pipeline; retained editable sources, GLBs, station checks and CC0 provenance.
+- Fixed passive room hints intercepting pickup; preserved50% carry opacity, green valid landings, squirm and reactions.
+- Fixed portfolio sticky navigation covering game controls; tested embedded and narrow standalone launch.
+- Added27-game-suite record, actual90-second loop with exact state replay, comparison, model note and measured QA.
+- Existing saves, original advanced scenarios,70 prior GLBs and24 REPLISOME files preserved.
+
 # 1.0.0-rc4 · 2026-11-02 · Start small
 
 - Rebuilt the default opening as Little Juniper: zero rooms, zero staff and a $4,000 opening fund. The clock, expenses and arrivals wait until the first room is built and its doctor is explicitly hired.

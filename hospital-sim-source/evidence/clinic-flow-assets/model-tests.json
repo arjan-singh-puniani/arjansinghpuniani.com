@@ -1,0 +1,161 @@
+{
+  "model": "1.0.0-rc5",
+  "paths": [
+    {
+      "clinicalCase": "routine",
+      "seconds": 66,
+      "revenue": 180,
+      "stages": [
+        "intake",
+        "gp"
+      ]
+    },
+    {
+      "clinicalCase": "collection",
+      "seconds": 83,
+      "revenue": 255,
+      "stages": [
+        "intake",
+        "gp",
+        "pharmacy"
+      ]
+    },
+    {
+      "clinicalCase": "neuroReview",
+      "seconds": 101,
+      "revenue": 400,
+      "stages": [
+        "intake",
+        "gp",
+        "neuro"
+      ]
+    },
+    {
+      "clinicalCase": "mobility",
+      "seconds": 148,
+      "revenue": 655,
+      "stages": [
+        "intake",
+        "gp",
+        "neuro",
+        "gait",
+        "pharmacy"
+      ]
+    },
+    {
+      "clinicalCase": "epilepsy",
+      "seconds": 160,
+      "revenue": 735,
+      "stages": [
+        "intake",
+        "gp",
+        "neuro",
+        "eeg",
+        "pharmacy"
+      ]
+    },
+    {
+      "clinicalCase": "sleepReview",
+      "seconds": 149,
+      "revenue": 660,
+      "stages": [
+        "intake",
+        "gp",
+        "neuro",
+        "sleep"
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "seed": 431,
+      "arrivals": 20,
+      "completed": 15,
+      "departed": 0,
+      "unfinished": 5,
+      "cash": 202,
+      "revenue": 4095
+    },
+    {
+      "seed": 432,
+      "arrivals": 19,
+      "completed": 15,
+      "departed": 0,
+      "unfinished": 4,
+      "cash": 822,
+      "revenue": 4680
+    },
+    {
+      "seed": 433,
+      "arrivals": 19,
+      "completed": 14,
+      "departed": 0,
+      "unfinished": 5,
+      "cash": 950,
+      "revenue": 4790
+    },
+    {
+      "seed": 434,
+      "arrivals": 20,
+      "completed": 14,
+      "departed": 0,
+      "unfinished": 6,
+      "cash": 868,
+      "revenue": 4715
+    },
+    {
+      "seed": 435,
+      "arrivals": 22,
+      "completed": 15,
+      "departed": 0,
+      "unfinished": 7,
+      "cash": -74,
+      "revenue": 3800
+    },
+    {
+      "seed": 436,
+      "arrivals": 21,
+      "completed": 15,
+      "departed": 0,
+      "unfinished": 6,
+      "cash": -45,
+      "revenue": 3800
+    },
+    {
+      "seed": 437,
+      "arrivals": 20,
+      "completed": 14,
+      "departed": 0,
+      "unfinished": 6,
+      "cash": 526,
+      "revenue": 4390
+    },
+    {
+      "seed": 438,
+      "arrivals": 19,
+      "completed": 14,
+      "departed": 0,
+      "unfinished": 5,
+      "cash": 881,
+      "revenue": 4745
+    },
+    {
+      "seed": 439,
+      "arrivals": 21,
+      "completed": 14,
+      "departed": 0,
+      "unfinished": 7,
+      "cash": 906,
+      "revenue": 4785
+    },
+    {
+      "seed": 440,
+      "arrivals": 20,
+      "completed": 15,
+      "departed": 0,
+      "unfinished": 5,
+      "cash": 156,
+      "revenue": 4020
+    }
+  ]
+}

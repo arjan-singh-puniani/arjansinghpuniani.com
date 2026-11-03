@@ -1,0 +1,132 @@
+[
+  {
+    "file": "animation.mjs",
+    "exit": 0,
+    "output": "PASS: actual Three.js mixer regression for frozen transfer fades and deterministic clip endpoints\nPASS: dangling joints stay bounded, reduced motion stays still, original pose restores\nPASS: intermittent squirm poses, bounded joints, fixed collar attachment, reduced-motion stillness and complete bone restoration"
+  },
+  {
+    "file": "browser-clinic-rc5.mjs",
+    "exit": 0,
+    "output": "PASS: actual browser90s recording replays exact build/hire/open/billing actions, first full visit, clothing states, timing and arrival accounting"
+  },
+  {
+    "file": "browser-opening-rc4.mjs",
+    "exit": 0,
+    "output": "PASS: actual RC4 empty-start build/hire actions, all subactions, first completed visit, timings and 60-second arrival accounting replay exactly"
+  },
+  {
+    "file": "browser-opening.mjs",
+    "exit": 0,
+    "output": "PASS: actual RC3 first-minute browser actions, counts and tracked visit replay exactly"
+  },
+  {
+    "file": "browser-replay.mjs",
+    "exit": 0,
+    "output": "PASS: historical actions remain legal and capacity/arrival accounting holds; RC3 outcomes are explicitly separated from the recorded RC1 model"
+  },
+  {
+    "file": "clinic-flow.mjs",
+    "exit": 0,
+    "output": "ntake\",\"gp\",\"neuro\",\"sleep\"]}],\"runs\":[{\"seed\":431,\"arrivals\":20,\"completed\":15,\"departed\":0,\"unfinished\":5,\"cash\":202,\"revenue\":4095},{\"seed\":432,\"arrivals\":19,\"completed\":15,\"departed\":0,\"unfinished\":4,\"cash\":822,\"revenue\":4680},{\"seed\":433,\"arrivals\":19,\"completed\":14,\"departed\":0,\"unfinished\":5,\"cash\":950,\"revenue\":4790},{\"seed\":434,\"arrivals\":20,\"completed\":14,\"departed\":0,\"unfinished\":6,\"cash\":868,\"revenue\":4715},{\"seed\":435,\"arrivals\":22,\"completed\":15,\"departed\":0,\"unfinished\":7,\"cash\":-74,\"revenue\":3800},{\"seed\":436,\"arrivals\":21,\"completed\":15,\"departed\":0,\"unfinished\":6,\"cash\":-45,\"revenue\":3800},{\"seed\":437,\"arrivals\":20,\"completed\":14,\"departed\":0,\"unfinished\":6,\"cash\":526,\"revenue\":4390},{\"seed\":438,\"arrivals\":19,\"completed\":14,\"departed\":0,\"unfinished\":5,\"cash\":881,\"revenue\":4745},{\"seed\":439,\"arrivals\":21,\"completed\":14,\"departed\":0,\"unfinished\":7,\"cash\":906,\"revenue\":4785},{\"seed\":440,\"arrivals\":20,\"completed\":15,\"departed\":0,\"unfinished\":5,\"cash\":156,\"revenue\":4020}]}"
+  },
+  {
+    "file": "construction.mjs",
+    "exit": 0,
+    "output": "PASS: four doorway orientations, connected construction, physical exit/walk/re-entry, reserved origin, no reassignment during travel, capacity waits for arrival and mid-route save validation"
+  },
+  {
+    "file": "continuing.mjs",
+    "exit": 0,
+    "output": "PASS: continuing sandbox carries all unfinished visits, routes, roles, fatigue, money and exact lifetime accounting across four shifts; bounded period history, active save/replay, scored campaigns remain finite"
+  },
+  {
+    "file": "diorama.mjs",
+    "exit": 0,
+    "output": "PASS: accounting, occupancy, reachable doors, obstruction, live-route placement, reservations, removal, explicit staffing, undo, upgrades, finite budget, fatigue, nonnegative timings, deterministic replay, save/load equivalence, termination, scenario runs, GLB dependencies, rig and clips, import boundary.\nCapacity comparison, seed431: {\n  baseline: 7,\n  extraConsult: 8,\n  baselineArrivals: 27,\n  expandedArrivals: 27\n}"
+  },
+  {
+    "file": "expansion.mjs",
+    "exit": 0,
+    "output": "PASS: roles, assignment, protected capacity, decoration undo, handoffs, bed transfers, migration, checkpoint comparison, exact paired arrivals, campaign mastery, limited hiring, community continuity and100 whole-shift runs.\nMeasured plan wins/ties/losses: { wins: 41, ties: 19, losses: 0 }"
+  },
+  {
+    "file": "first-shift.mjs",
+    "exit": 0,
+    "output": "PASS: real reception capacity, pickup/opening availability, return travel, first-minute completed visit, exact check-in/recovery timing, meaningful event costs/resolution/reward, mid-event save replay, prior-visit preservation, corrupt-ops rejection and new-room staff travel\nPASS: earned lounge voucher has real construction benefit and no refund arbitrage"
+  },
+  {
+    "file": "interaction.mjs",
+    "exit": 0,
+    "output": "PASS: placed connected doors, visible entering/exiting states, reserved entry rejection, door checkpoint equivalence, blocked drops, preserved visit/queue/accounting, undo, clinician return-to-work capacity, full-shift mastery, embedded sliding-door GLB\nPASS: half-cell construction and doors, fractional doorway routes and save migration"
+  },
+  {
+    "file": "landing.mjs",
+    "exit": 0,
+    "output": "PASS: cached green cells match authoritative drop checks, including doorway articulation and occupied points {\"hardware\":\"AppleM2 / Node22; pure navigation checks, not an iPhone result\",\"checkedCells\":9570,\"samples\":20,\"previous\":{\"medianMs\":2.3247499999999945,\"p95Ms\":3.2741250000000264},\"cached\":{\"medianMs\":0.8752499999999941,\"p95Ms\":1.7235410000000115}}"
+  },
+  {
+    "file": "locomotion.mjs",
+    "exit": 0,
+    "output": "PASS: clip-weight restoration, distance-locked gait, stationary feet, safe corner, all13originalrigclips, meaningful first-minute expansion and exact active save replay"
+  },
+  {
+    "file": "motion-release.mjs",
+    "exit": 0,
+    "output": "PASS: staff doorway paths, complete break phases with/without lounge, reserved capacity, phase-by-phase save/load, v0.4 migration and negative-duration import rejection"
+  },
+  {
+    "file": "navigation.mjs",
+    "exit": 0,
+    "output": "{\"checked\":2700,\"queries\":300,\"originalMs\":38.78,\"currentMs\":2.08,\"device\":\"Apple M2 host; Node22; not iPhone\"}"
+  },
+  {
+    "file": "opening.mjs",
+    "exit": 0,
+    "output": "PASS: truly empty default; closed clock/funds; explicit build/hire/open; safe IDs; undo; first visit40s; progressive choices; rewards once; no surprise incidents; exact save replay; 480s termination; continuing clinic; real capacity gain with identical arrivals; previous hospital archive retained\n[{\"completed\":15,\"departed\":6,\"unfinished\":12},{\"completed\":29,\"departed\":0,\"unfinished\":4}]"
+  },
+  {
+    "file": "patient-release.mjs",
+    "exit": 0,
+    "output": "PASS: cloth clears before movement, uncovering reserves capacity and survives checkpoints, state-derived guidance,11 unique proportional rigged patient variants"
+  },
+  {
+    "file": "pointer-input.mjs",
+    "exit": 0,
+    "output": "PASS: mouse/touch/pen immediate body pickup; sticky first release; next-tap and drag drop; patient pickup; rejected/cancelled drops; floor selection/pan/build preserved; secondary pointers ignored; blocked pickups attempted once"
+  },
+  {
+    "file": "reactions.mjs",
+    "exit": 0,
+    "output": "PASS: distinct rotating voices, rapid-input cooldown, separate pickup/landing cues, patient and recruit voices, no person mutation, bounded memory, planted feet, finite additive gestures, exact restoration and reduced motion"
+  },
+  {
+    "file": "release.mjs",
+    "exit": 0,
+    "output": "PASS: every-tick visit timing conservation, interpolated-path platform clearance, interior endpoints, v0.3 save migration"
+  },
+  {
+    "file": "roles-operations.mjs",
+    "exit": 0,
+    "output": "PASS: nine real roles, surgeon+nurse procedure team, imaging-only technologist, new room travel capacity, intake assistant task, coffee readiness/physical cleanup/resumption, separate reception capacity, exact timing, job save/load replay and0.9active-visit migration\nPASS: PA workflow requests an actual physician review; scenario setting is explicit and recorded"
+  },
+  {
+    "file": "simulation.cjs",
+    "exit": 0,
+    "output": "PASS: routing, placement, obstruction, full shift, deterministic replay, access cohort, missing-service constraint\nBaseline shift: 14 helped; 26 left."
+  },
+  {
+    "file": "staffing-flow.mjs",
+    "exit": 0,
+    "output": "PASS: build first, visible unmet roles, explicit price, actual recruitment/assignment, no free staff, delayed capacity, atomic undo, mid-travel save replay, limited recruitment and insufficient budget preserve state"
+  },
+  {
+    "file": "touch-roles.mjs",
+    "exit": 0,
+    "output": "PASS: nine actual roles, six clinical staff, front desk adds no capacity, legacy migration without duplication, unknown current role rejected, busy pickup preserves reservation, service waits for return, exact timing conservation, return completes, save/load replay, role recruiting\nPASS: 18 embedded skin GLBs, matching base rig mapping, no duplicate animation payload, nine LODs below2MB\nPASS: historical0.7recording remains identified by its original model; it is not presented as evidence for the new model"
+  },
+  {
+    "file": "waiting.mjs",
+    "exit": 0,
+    "output": "PASS: waiting garden has two reserved seats, patients walk/sit/rise, furniture and removal respect occupancy, rotated doors stay connected, exact timing and save/load"
+  }
+]

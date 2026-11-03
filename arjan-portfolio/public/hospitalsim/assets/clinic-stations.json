@@ -1,0 +1,188 @@
+{
+  "intake": {
+    "name": "Reception",
+    "cost": 400,
+    "duration": 3,
+    "staff": 1,
+    "skill": "intake",
+    "asset": "reception",
+    "role": "admin",
+    "fee": 0,
+    "site": {
+      "x": 0,
+      "y": 5,
+      "rotation": 1
+    },
+    "patient": [
+      0,
+      0.03,
+      0.8
+    ],
+    "staffPost": [
+      0,
+      0,
+      -0.65
+    ],
+    "heading": 0
+  },
+  "gp": {
+    "name": "GP consultation",
+    "cost": 900,
+    "duration": 10,
+    "staff": 1,
+    "skill": "gp",
+    "asset": "gp",
+    "role": "gp",
+    "fee": 180,
+    "site": {
+      "x": 3,
+      "y": 4,
+      "rotation": 0
+    },
+    "patient": [
+      0,
+      0.03,
+      0.95
+    ],
+    "staffPost": [
+      0,
+      0.03,
+      -0.85
+    ],
+    "heading": 0,
+    "seated": true
+  },
+  "pharmacy": {
+    "name": "Pharmacy",
+    "cost": 800,
+    "duration": 5,
+    "staff": 1,
+    "skill": "pharmacy",
+    "asset": "pharmacy",
+    "role": "pharmacist",
+    "fee": 75,
+    "site": {
+      "x": 6,
+      "y": 4,
+      "rotation": 0
+    },
+    "patient": [
+      0,
+      0.03,
+      0.85
+    ],
+    "staffPost": [
+      0,
+      0,
+      -0.65
+    ],
+    "heading": 0
+  },
+  "neuro": {
+    "name": "Neurology",
+    "cost": 1400,
+    "duration": 13,
+    "staff": 1,
+    "skill": "neuro",
+    "asset": "neuro",
+    "role": "neurologist",
+    "fee": 220,
+    "site": {
+      "x": 0,
+      "y": 2.5,
+      "rotation": 1
+    },
+    "patient": [
+      0,
+      0.03,
+      0.95
+    ],
+    "staffPost": [
+      0,
+      0.03,
+      -0.85
+    ],
+    "heading": 0,
+    "seated": true
+  },
+  "gait": {
+    "name": "Gait assessment",
+    "cost": 1100,
+    "duration": 12,
+    "staff": 1,
+    "skill": "gait",
+    "asset": "gait",
+    "role": "physio",
+    "fee": 180,
+    "site": {
+      "x": 3,
+      "y": 1,
+      "rotation": 0
+    },
+    "patient": [
+      0,
+      0.03,
+      1
+    ],
+    "staffPost": [
+      -1.15,
+      0,
+      -0.3
+    ],
+    "heading": 1.5707963267948966
+  },
+  "eeg": {
+    "name": "Video EEG",
+    "cost": 1300,
+    "duration": 18,
+    "staff": 1,
+    "skill": "eeg",
+    "asset": "eeg",
+    "role": "neurotech",
+    "fee": 260,
+    "site": {
+      "x": 6,
+      "y": 1,
+      "rotation": 0
+    },
+    "patient": [
+      0.55,
+      0,
+      -0.45
+    ],
+    "staffPost": [
+      -1.15,
+      0,
+      -0.3
+    ],
+    "heading": 1.5707963267948966,
+    "bed": true
+  },
+  "sleep": {
+    "name": "Sleep lab",
+    "cost": 1300,
+    "duration": 20,
+    "staff": 1,
+    "skill": "sleep",
+    "asset": "sleep",
+    "role": "neurotech",
+    "fee": 260,
+    "site": {
+      "x": 0,
+      "y": 0,
+      "rotation": 1
+    },
+    "patient": [
+      0.55,
+      0,
+      -0.45
+    ],
+    "staffPost": [
+      -1.15,
+      0,
+      -0.3
+    ],
+    "heading": 1.5707963267948966,
+    "bed": true
+  }
+}

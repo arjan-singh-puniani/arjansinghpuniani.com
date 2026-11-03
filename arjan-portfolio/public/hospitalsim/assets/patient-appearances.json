@@ -23,7 +23,9 @@
         0
       ],
       "hair": "crop",
-      "bodyBreadth": 1.0
+      "bodyBreadth": 1.0,
+      "casual": "casual-patient-01-lod.glb",
+      "casualHigh": "casual-patient-01.glb"
     },
     {
       "id": "patient-02",
@@ -38,7 +40,9 @@
         0
       ],
       "hair": "bob",
-      "bodyBreadth": 0.94
+      "bodyBreadth": 0.94,
+      "casual": "casual-patient-02-lod.glb",
+      "casualHigh": "casual-patient-02.glb"
     },
     {
       "id": "patient-03",
@@ -53,7 +57,9 @@
         0
       ],
       "hair": "recede",
-      "bodyBreadth": 1.1
+      "bodyBreadth": 1.1,
+      "casual": "casual-patient-03-lod.glb",
+      "casualHigh": "casual-patient-03.glb"
     },
     {
       "id": "patient-04",
@@ -68,7 +74,9 @@
         0
       ],
       "hair": "bun",
-      "bodyBreadth": 1.12
+      "bodyBreadth": 1.12,
+      "casual": "casual-patient-04-lod.glb",
+      "casualHigh": "casual-patient-04.glb"
     },
     {
       "id": "patient-05",
@@ -83,7 +91,9 @@
         0
       ],
       "hair": "buzz",
-      "bodyBreadth": 0.94
+      "bodyBreadth": 0.94,
+      "casual": "casual-patient-05-lod.glb",
+      "casualHigh": "casual-patient-05.glb"
     },
     {
       "id": "patient-06",
@@ -98,7 +108,9 @@
         0
       ],
       "hair": "wavy",
-      "bodyBreadth": 1.03
+      "bodyBreadth": 1.03,
+      "casual": "casual-patient-06-lod.glb",
+      "casualHigh": "casual-patient-06.glb"
     },
     {
       "id": "patient-07",
@@ -113,7 +125,9 @@
         0
       ],
       "hair": "sidepart",
-      "bodyBreadth": 1.05
+      "bodyBreadth": 1.05,
+      "casual": "casual-patient-07-lod.glb",
+      "casualHigh": "casual-patient-07.glb"
     },
     {
       "id": "patient-08",
@@ -128,7 +142,9 @@
         0
       ],
       "hair": "curly",
-      "bodyBreadth": 0.91
+      "bodyBreadth": 0.91,
+      "casual": "casual-patient-08-lod.glb",
+      "casualHigh": "casual-patient-08.glb"
     },
     {
       "id": "patient-09",
@@ -143,7 +159,9 @@
         0
       ],
       "hair": "bald",
-      "bodyBreadth": 1.14
+      "bodyBreadth": 1.14,
+      "casual": "casual-patient-09-lod.glb",
+      "casualHigh": "casual-patient-09.glb"
     },
     {
       "id": "patient-10",
@@ -158,7 +176,9 @@
         0
       ],
       "hair": "pixie",
-      "bodyBreadth": 0.98
+      "bodyBreadth": 0.98,
+      "casual": "casual-patient-10-lod.glb",
+      "casualHigh": "casual-patient-10.glb"
     },
     {
       "id": "patient-11",
@@ -173,7 +193,9 @@
         0
       ],
       "hair": "closecurls",
-      "bodyBreadth": 1.01
+      "bodyBreadth": 1.01,
+      "casual": "casual-patient-11-lod.glb",
+      "casualHigh": "casual-patient-11.glb"
     }
   ]
 }

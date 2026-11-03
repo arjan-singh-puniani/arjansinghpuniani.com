@@ -1,5 +1,5 @@
-import {GRID,WALK_SUBSTEPS,CASES,VOICES,STAFF_ROLES,ROLE_SKILLS,ROOM_ROLES,TYPES} from './content.mjs?v=125';
-import {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=125';
+import {GRID,WALK_SUBSTEPS,CASES,VOICES,STAFF_ROLES,ROLE_SKILLS,ROOM_ROLES,TYPES} from './content.mjs?v=127';
+import {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=127';
 export function deskStation(s){const g=entrance(s),o=gateDirection(g),t={x:o.y,y:-o.x};for(const side of [1,-1]){const bay={x:g.x+t.x*.75*side,y:g.y+t.y*.75*side},post={x:bay.x-o.x*.75,y:bay.y-o.y*.75},assistant={x:post.x-t.x*.5*side+o.x*.5,y:post.y-t.y*.5*side+o.y*.5};if([bay,post,assistant].every(p=>p.x>=0&&p.x<=GRID.w-1&&p.y>=0&&p.y<=GRID.h-1&&!blocked(p.x,p.y,s.rooms)))return{bay,post,assistant,side}}return null}
 export const deskPost=s=>deskStation(s)?.post||entrance(s);
 export const deskBay=s=>deskStation(s)?.bay||entrance(s);
@@ -26,7 +26,7 @@ export function staffTask(s,st){
  if(st.entering!==undefined)return{task:'Entering through the staff entrance',status:'Travelling',assignment:room?.type||'Relief'};if(st.breakTrip)return{task:st.breakTrip.phase==='resting'?'Protected break':'Walking to assigned work',status:'Unavailable',assignment:room?.type||'Relief'};
  if(st.job)return{task:st.job.kind==='signoff'?'Reviewing a PA handoff':st.job.kind==='break'?'Taking a protected break':st.job.kind==='coffee'?'Restoring imaging after a coffee spill':'Preparing the next room',status:'Working',assignment:st.job.roomId?'Room '+st.job.roomId:'Team support'};if(st.travel)return{task:'Walking to assigned station',status:'Travelling',assignment:'Front desk'};
  if(st.role==='assistant')return{task:st.support==='preparation'?'Room preparation support':intakeAssistant(s)===st?'Preparing intake with Quinn':'Ready to assist intake',status:s.operations.intakePatient&&intakeAssistant(s)===st?'Working':'Available',assignment:st.support==='preparation'?'Room preparation':'Intake support'};if(st.role==='facilities')return{task:'Ready for equipment and room readiness work',status:'Available',assignment:'Facilities'};if(st.role==='reception'){const active=s.operations.deskStaff===st.id;return{task:active?(s.operations.event?.status==='working'?'Sorting the paperwork':!deskAvailable(s)?'Away from desk':s.operations.intakePatient?'Checking in a neighbor':'Ready to welcome arrivals'):'Reception relief',status:active&&deskAvailable(s)?(s.operations.intakePatient?'Working':'Available'):'Not serving check-in',assignment:active?'Front desk':'Relief'}}
- const buddy=idlePartner(s,st);return{task:buddy?'Planning the next handoff with '+buddy.name:visit?(st.role==='nurse'?'Preparing, attending and supporting recovery':st.role==='surgeon'?'Fictional procedure':st.role==='imaging'?'Operating imaging equipment':'Listening and planning the next step'):room?'Ready for the next visit':'Available for a new assignment',status:visit?'Working':'Available',assignment:room?.type||'Relief'};
+ const buddy=idlePartner(s,st);return{task:buddy?'Planning the next handoff with '+buddy.name:visit?(st.role==='admin'?'Welcoming and checking in '+visit.name:st.role==='pharmacist'?'Preparing the fictional collection order':st.role==='physio'?'Recording the booked mobility walk':st.role==='neurotech'?'Recording the booked '+(room.type==='sleep'?'sleep assessment':'video EEG'):st.role==='nurse'?'Preparing, attending and supporting recovery':st.role==='surgeon'?'Fictional procedure':st.role==='imaging'?'Operating imaging equipment':'Listening and planning the next step'):room?'Ready for the next visit':'Available for a new assignment',status:visit?'Working':'Available',assignment:room?.type||'Relief'};
 }
 
 export function validateOperations(s){
@@ -46,7 +46,7 @@ function bodyCells(people){return people.flatMap(p=>[{x:p.x,y:p.y},{x:p.x-.25,y:
 export const assistantPost=s=>deskStation(s)?.assistant||entrance(s);
 export function upgradeOperations(s){
  const op=s.operations;op.supervision??='paired';op.coffeeDone??=false;op.intakeAssists??=0;op.roomResets??=0;op.incidents??=[];
- for(const [role,name,position]of(s.first?[]:[['assistant','Tess',{x:3.5,y:6.25}],['facilities','Ellis',{x:.5,y:6.5}]]))if(!s.staff.some(st=>st.role===role)&&s.staff.length<16)s.staff.push({id:Math.max(...s.staff.map(st=>st.id))+1,name,role,skills:[],trait:role==='assistant'?'listener':'steady',shiftEnd:480,fatigue:0,breakUntil:0,position,...(role==='assistant'?{support:'intake'}:{})});
+ for(const [role,name,position]of(s.first||s.clinic?[]:[['assistant','Tess',{x:3.5,y:6.25}],['facilities','Ellis',{x:.5,y:6.5}]]))if(!s.staff.some(st=>st.role===role)&&s.staff.length<16)s.staff.push({id:Math.max(...s.staff.map(st=>st.id))+1,name,role,skills:[],trait:role==='assistant'?'listener':'steady',shiftEnd:480,fatigue:0,breakUntil:0,position,...(role==='assistant'?{support:'intake'}:{})});
  for(const st of s.staff)st.skills=[...ROLE_SKILLS[st.role]];
  for(const r of s.rooms){r.readyAt??=0;r.spill??=false;if(!validTeam(s,r))r.legacyTeam=true}
 }

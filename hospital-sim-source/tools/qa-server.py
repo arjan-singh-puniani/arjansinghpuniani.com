@@ -9,6 +9,7 @@ class Handler(SimpleHTTPRequestHandler):
  def do_GET(self):
   if a.fail_asset and (not a.fault_switch or Path(a.fault_switch).exists()) and urlparse(self.path).path==a.fail_asset:self.send_error(503,'Deliberate asset failure for QA');return
   super().do_GET()
+ThreadingHTTPServer.request_queue_size=128
 server=ThreadingHTTPServer(('127.0.0.1',a.port),Handler)
 print(f'QA server ready: http://127.0.0.1:{a.port}',flush=True)
 server.serve_forever()
