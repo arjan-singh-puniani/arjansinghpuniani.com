@@ -1,3 +1,10 @@
+# RC3 direct pickup fix · 2026-11-02
+
+- A primary press directly on a person now lifts immediately for mouse, touch and pen. The first stationary release keeps them held; a second floor tap puts down. Press-drag-release still works, with authoritative landing checks.
+- Removed the prior select-first/hold-delay behavior from body pickup. Room and patient inspection remains available through People; floor panning and build input retain their controls.
+- Held character materials now use 50% opacity, front faces and a single pass. This avoids the stacked double-sided transparency that made them look too solid. Release restores original materials, drawing order and pose, and clears the held-opacity marker.
+- Added pointer regression checks for sticky pickup, next-tap and drag drops, blocked/cancelled drops, secondary pointers, inspection, panning and construction. Browser checks cover direct body pickup at desktop and 390×844; physical iPhone verification remains pending.
+
 # RC3 character reactions · 2026-11-02
 
 - Added original rotating pickup, safe landing and cancellation lines for nine named staff and four fictional patient personalities. New recruits inherit their role’s voice.

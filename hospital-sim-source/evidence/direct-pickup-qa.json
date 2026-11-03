@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-02",
+  "runtime": 124,
+  "model": "1.0.0-rc3, unchanged",
+  "reportedIssue": "Body click/tap did not pick up; held character looked opaque.",
+  "reproduced": "Production123 body click selected only. Drag lifted and immediately dropped on a valid release. GLB role and patient materials are double-sided.",
+  "fix": "Immediate primary body press lifts. First stationary release stays held; second floor tap or drag-release drops. Held cloned material opacity .5, FrontSide, forceSinglePass; originals restored on release.",
+  "automated": [
+    "pointer-input: mouse/touch/pen, sticky release, next tap and drag drop, patient, blocked/cancelled input, secondary pointer, floor pan/pick, build, one failed lift attempt",
+    "animation",
+    "reactions",
+    "interaction",
+    "locomotion",
+    "touch-roles",
+    "legacy simulation"
+  ],
+  "browser": {
+    "engine": "Desktop Chromium in-app browser; no physical phone",
+    "checks": [
+      "1280\u00d7720 direct body click staff9, held after release, collar pin380/284, opacity.5",
+      "390\u00d7844 direct body click staff9, held after release, collar pin59/377, opacity.5",
+      "390\u00d7844 cold/reload mobile30 render profile, body click70/366 holds; next clear-floor click55/402 puts down",
+      "blocked keyboard drop retains staff9 and explains clear walking space",
+      "cancel clears held state and opacity marker",
+      "screenshots show floor grid through held figure",
+      "no browser console errors"
+    ]
+  },
+  "limits": [
+    "Touch and pen event flow tested in Node, not real Safari hardware",
+    "No physical iPhone retest yet",
+    "No Blender execution for this input/material fix"
+  ],
+  "preservedReplisomeFiles": 24,
+  "portfolio": {
+    "tests": 177,
+    "typecheck": "pass",
+    "productionBuild": "pass"
+  }
+}

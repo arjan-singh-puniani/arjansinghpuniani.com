@@ -1,4 +1,11 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>hospitalSIM · CHANGELOG</title><style>body{max-width:880px;margin:40px auto;padding:0 22px;font:16px/1.7 system-ui;color:#183b43;background:#fafaf6}pre{overflow:auto;background:#e8f0ed;padding:16px}a{color:#176a76}img{max-width:100%}</style><nav><a href="../index.html">Play</a> · <a href="interaction-review.html">Actual gameplay</a></nav><h1>RC3 character reactions · 2026-11-02</h1>
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>hospitalSIM · CHANGELOG</title><style>body{max-width:880px;margin:40px auto;padding:0 22px;font:16px/1.7 system-ui;color:#183b43;background:#fafaf6}pre{overflow:auto;background:#e8f0ed;padding:16px}a{color:#176a76}img{max-width:100%}</style><nav><a href="../index.html">Play</a> · <a href="interaction-review.html">Actual gameplay</a></nav><h1>RC3 direct pickup fix · 2026-11-02</h1>
+<ul>
+<li>A primary press directly on a person now lifts immediately for mouse, touch and pen. The first stationary release keeps them held; a second floor tap puts down. Press-drag-release still works, with authoritative landing checks.</li>
+<li>Removed the prior select-first/hold-delay behavior from body pickup. Room and patient inspection remains available through People; floor panning and build input retain their controls.</li>
+<li>Held character materials now use 50% opacity, front faces and a single pass. This avoids the stacked double-sided transparency that made them look too solid. Release restores original materials, drawing order and pose, and clears the held-opacity marker.</li>
+<li>Added pointer regression checks for sticky pickup, next-tap and drag drops, blocked/cancelled drops, secondary pointers, inspection, panning and construction. Browser checks cover direct body pickup at desktop and 390×844; physical iPhone verification remains pending.</li>
+</ul>
+<h1>RC3 character reactions · 2026-11-02</h1>
 <ul>
 <li>Added original rotating pickup, safe landing and cancellation lines for nine named staff and four fictional patient personalities. New recruits inherit their role’s voice.</li>
 <li>Reused the existing status strip and polite live region; held figures stay unobscured. Session-only rotation and a short per-cue cooldown avoid immediate repetition without changing simulation randomness or saves.</li>
