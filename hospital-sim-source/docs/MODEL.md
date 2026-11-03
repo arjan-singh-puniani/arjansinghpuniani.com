@@ -1,6 +1,6 @@
-# Current default: RC5 clinic
+# Current default: RC6 campus
 
-The following older full-hospital model remains available in advanced scenarios. The current empty-start clinic and its different reception/wardrobe/billing/booking rules are documented in [CLINIC_FLOW_RC5.md](CLINIC_FLOW_RC5.md).
+The current clinic uses a24×20 estate, documented in [CAMPUS_RC6.md](CAMPUS_RC6.md), while retaining the RC5 service model. The following older full-hospital model remains available in advanced scenarios. The current empty-start clinic and its different reception/wardrobe/billing/booking rules are documented in [CLINIC_FLOW_RC5.md](CLINIC_FLOW_RC5.md).
 
 # hospitalSIM model1.0.0-rc3
 

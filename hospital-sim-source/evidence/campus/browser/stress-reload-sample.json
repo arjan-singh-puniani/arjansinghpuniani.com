@@ -1,0 +1,39 @@
+{
+  "data": {
+    "activeAppearances": "",
+    "activeWardrobes": "",
+    "appearances": "11",
+    "arrivals": "0",
+    "cameraView": "site",
+    "completed": "0",
+    "drawCalls": "569",
+    "engine": "three.js r186",
+    "frameMs": "33.37",
+    "geometries": "274",
+    "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "loadMs": "289",
+    "mainTriangles": "547598",
+    "model": "1.0.0-rc6",
+    "opening": "open",
+    "p95Ms": "34.30",
+    "peakDrawCalls": "569",
+    "peakMainTriangles": "547598",
+    "peakTriangles": "581522",
+    "reducedMotion": "false",
+    "renderProfile": "mobile30",
+    "renderScale": "1",
+    "restoreError": "",
+    "roomCount": "40",
+    "samples": "1439",
+    "shadowSize": "1024",
+    "simulationSecond": "47",
+    "siteSize": "24×20",
+    "staffCount": "40",
+    "textures": "33",
+    "triangles": "547598"
+  },
+  "viewport": [
+    390,
+    844
+  ]
+}
