@@ -2,11 +2,11 @@
   color-scheme: dark;
   --ink: #e9ede4;
   --muted: #a5b8b4;
-  --panel: #1b2e2eeF;
+  --panel: #1b2e2e;
   --line: #abc2b42c;
   --accent: #f27c56;
   --mint: #9ad3b7;
-  font-family: Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family: Arial,Helvetica,sans-serif;
   font-synthesis: none
 }
 * {
@@ -263,7 +263,7 @@ small {
   border: 1px solid var(--line);
   border-radius: 9px;
   padding: 16px;
-  backdrop-filter: blur(16px);
+
   width: 252px;
   box-shadow: 0 12px 30px #0d282b18;
   overflow-y: auto;
@@ -1654,7 +1654,7 @@ body[data-lighting=night] .world-tag {
 .intel-invite .eyebrow {font-size:7px}
 .intel-invite button {width:100%;font-size:10px}
 .race-dialog {box-sizing:border-box;width:min(1180px,calc(100vw - 40px));max-width:none;max-height:calc(100dvh - 40px);padding:28px;border:1px solid #6d8c7c;border-radius:12px;background:#142b25;color:#e7ede1;box-shadow:0 30px 140px #0009;overflow:auto;color-scheme:dark}
-.race-dialog::backdrop {background:#081a17c9;backdrop-filter:blur(8px)}
+.race-dialog::backdrop {background:#081a17c9;}
 .intel-header,.intel-section-head {display:flex;align-items:center;justify-content:space-between;gap:15px}
 .intel-header h2 {font-size:38px;letter-spacing:-1.8px;font-weight:500;margin:6px 0 0}
 .race-dialog .eyebrow {font:9px ui-monospace,monospace;letter-spacing:1.7px;color:#a8c5b4}
@@ -1721,11 +1721,11 @@ body[data-lighting=night] .world-tag {
 .watch-controls label {display:flex;align-items:center;gap:5px;font-size:10px;cursor:pointer}
 .world-caption p {font:9px/1.6 ui-monospace,monospace;margin-top:10px;max-width:230px}
 .watching-stop #inspector,.watching-stop .scene-controls,.watching-stop #discovery {display:none}
-.quick-experiments {left:24px;bottom:24px;display:flex;flex-wrap:wrap;gap:5px;max-width:420px;z-index:8;background:#e7ede3dc;border:1px solid #b6c7b5;padding:7px;border-radius:6px;backdrop-filter:blur(10px)}
+.quick-experiments {left:24px;bottom:24px;display:flex;flex-wrap:wrap;gap:5px;max-width:420px;z-index:8;background:#e7ede3;border:1px solid #b6c7b5;padding:7px;border-radius:6px;}
 .quick-experiments button {min-height:32px;font-size:9px;background:#edf1e8;color:#294a3a;border:1px solid #acbfa9;border-radius:4px}
 .quick-experiments button[aria-pressed=true] {background:#2c5340;color:#f1e3c1}
 .quick-experiments output {width:100%;font:9px ui-monospace,monospace;color:#345440;padding:5px 2px 1px}
-.watching-stop .world-caption {background:#edf1e4db;padding:13px;border-radius:6px;backdrop-filter:blur(9px)}
+.watching-stop .world-caption {background:#edf1e4;padding:13px;border-radius:6px;}
 .watching-stop .world-caption h1 {display:none}
 .mode-mechanics .quick-experiments,.mode-strategy .quick-experiments {display:none}
 .race-dialog .intel-header h2 {font-size:25px;letter-spacing:-.7px}

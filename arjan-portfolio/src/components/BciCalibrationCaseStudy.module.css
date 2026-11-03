@@ -14,9 +14,7 @@
 
 .hero {
   padding: 54px 0 58px;
-  background:
-    linear-gradient(135deg, rgba(135, 215, 232, .16), transparent 32%),
-    var(--bci-paper);
+  background: var(--bci-paper);
   border-bottom: 1px solid var(--bci-line);
 }
 
@@ -387,11 +385,7 @@
 }
 
 .systemSection {
-  background:
-    linear-gradient(rgba(23,93,149,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23,93,149,.04) 1px, transparent 1px),
-    #f7f8f5;
-  background-size: 44px 44px;
+  background: #f7f8f5;
 }
 
 .systemNote {

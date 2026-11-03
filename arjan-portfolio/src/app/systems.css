@@ -16,11 +16,11 @@ body { overflow-x: clip; }
 
 /* Decision-system case studies */
 .motorsport-case { background: var(--bg); }
-.motorsport-hero { background: linear-gradient(118deg, #f3f0e8 0 72%, #dce2f3 72%); }
+.motorsport-hero { background: #f3f0e8; }
 .motorsport-hero h1 { max-width: 1000px; margin: 28px 0; }
 .status-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-.status-row .status { background: rgba(251, 250, 246, .7); border-color: #8d96aa; letter-spacing: .05em; }
-.status-row .status-caution { border-color: #8b4b55; color: #702f3b; }
+.status-row .status{color:var(--ink);letter-spacing:.05em}
+.status-row .status-caution{color:#702f3b}
 .boundary-section-light { padding: 52px 0; border-top: 8px solid var(--accent); background: #e7eaf3; }
 .boundary-section-light h2 { font-size: clamp(32px, 4.5vw, 58px); }
 .boundary-section-light p { max-width: 850px; font-size: 19px; }
@@ -148,15 +148,15 @@ body { overflow-x: clip; }
 
 /* Vector Tennis: cyberpunk arcade court */
 .vector-tennis-page { background: #080715; color: #f8fbff; --tennis-cyan: #35ecff; --tennis-pink: #ff39cf; --tennis-yellow: #ffeb49; }
-.tennis-hero { position: relative; overflow: hidden; padding: 62px 0 58px; border-bottom: 1px solid #35355d; background: radial-gradient(circle at 82% 28%, rgba(255,57,207,.25), transparent 25%), radial-gradient(circle at 68% 70%, rgba(53,236,255,.12), transparent 30%), linear-gradient(135deg,#080715,#17123d); }
-.tennis-hero::after { content: ""; position: absolute; inset: 0; opacity: .18; pointer-events: none; background-image: linear-gradient(rgba(53,236,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(53,236,255,.18) 1px,transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(to bottom,transparent,#000); }
+.tennis-hero { position: relative; overflow: hidden; padding: 62px 0 58px; border-bottom: 1px solid #35355d; background: #101820; }
+
 .tennis-hero .shell { position: relative; z-index: 1; }
 .tennis-hero h1 { max-width: none; margin: 22px 0; font-size: clamp(64px, 9vw, 132px); line-height: .82; text-transform: uppercase; text-shadow: 5px 5px 0 rgba(255,57,207,.28); }
 .tennis-hero > div > p:last-child { max-width: 820px; color: #b9c4df; font-size: 22px; }
 .tennis-hero .eyebrow,.tennis-lab-section .eyebrow { color: var(--tennis-cyan); }
 .tennis-hero .status { border-color: rgba(53,236,255,.45); color: var(--tennis-cyan); background: rgba(8,7,21,.55); }
 .back-link { display: inline-block; margin-bottom: 34px; color: #b9c4df; font: 11px var(--font-mono); text-transform: uppercase; text-decoration: none; }
-.tennis-lab-section { padding: 70px 0 90px; background: linear-gradient(180deg,#11102d,#080715); }
+.tennis-lab-section { padding: 70px 0 90px; background: #101820; }
 .lab-title-row { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 28px; }
 .lab-title-row h2 { font-size: clamp(46px, 6vw, 78px); text-transform: uppercase; }
 .lab-title-row > p { max-width: 370px; color: #aab6d2; font: 11px/1.6 var(--font-mono); text-transform: uppercase; }
@@ -190,7 +190,7 @@ body { overflow-x: clip; }
 .shot-card > span { position: absolute; right: 10px; top: 10px; display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid #4c527d; color: #8895b8; font: 10px var(--font-mono); }
 .shot-card strong { font-size: 18px; letter-spacing: -.02em; }
 .shot-card small { color: #8895b8; font: 9px var(--font-mono); }
-.shot-card[aria-pressed=true] { background: linear-gradient(135deg,rgba(53,236,255,.2),rgba(255,57,207,.1)); box-shadow: inset 0 -3px var(--tennis-cyan); }
+.shot-card[aria-pressed=true] { background: #19313e; box-shadow: inset 0 -3px var(--tennis-cyan); }
 .shot-flat[aria-pressed=true] { box-shadow: inset 0 -3px var(--tennis-yellow); }
 .shot-slice[aria-pressed=true] { box-shadow: inset 0 -3px var(--tennis-pink); }
 .arcade-readouts { display: grid; grid-template-columns: 1fr 1fr; }
@@ -325,7 +325,7 @@ body { overflow-x: clip; }
 .tennis-compact-hero .back-link { margin-bottom: 12px; }
 .tennis-compact-hero .eyebrow { margin: 0 0 5px; color: var(--tennis-cyan); }
 .tennis-compact-hero .shell > p:last-child { max-width: 760px; margin: 0; color: #9ca8c5; font-size: 14px; }
-.tennis-experience { padding: 18px 0 78px; background: linear-gradient(180deg,#10102a,#080715 68%); }
+.tennis-experience { padding: 18px 0 78px; background: #101820; }
 .tennis-mode-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-bottom: 14px; padding: 1px; background: #3d406d; }
 .tennis-mode-switch button { display: flex; justify-content: space-between; align-items: center; min-height: 54px; border: 0; padding: 0 18px; color: #aab6d2; background: #0d0c20; cursor: pointer; font-weight: 800; text-align: left; }
 .tennis-mode-switch button span { color: #717d9e; font: 9px var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
@@ -364,7 +364,7 @@ body { overflow-x: clip; }
 .feedback-early,.feedback-late,.feedback-frame,.feedback-net,.feedback-long,.feedback-unreachable { color: #ff7d9d; }
 .endless-live-meta { position: absolute; z-index: 2; right: 18px; top: 18px; display: flex; gap: 8px; }
 .endless-live-meta span { padding: 6px 8px; border: 1px solid rgba(53,236,255,.26); background: rgba(7,6,23,.78); color: #aeb9d4; font: 8px var(--font-mono); text-transform: uppercase; }
-.endless-overlay { position: absolute; z-index: 5; inset: 0; display: grid; place-content: center; justify-items: center; padding: 30px; overflow-y: auto; color: #f8fbff; text-align: center; background: radial-gradient(circle at 50% 40%,rgba(24,22,67,.74),rgba(7,6,23,.92) 60%); }
+.endless-overlay { position: absolute; z-index: 5; inset: 0; display: grid; place-content: center; justify-items: center; padding: 30px; overflow-y: auto; color: #f8fbff; text-align: center; background: #101820; }
 .endless-overlay .eyebrow { color: var(--tennis-cyan); }
 .endless-overlay h1,.endless-overlay h2 { margin: 14px 0; text-transform: uppercase; }
 .endless-overlay h1 { font-size: clamp(55px,10vw,116px); line-height: .8; text-shadow: 4px 4px 0 rgba(255,57,207,.25); }
@@ -505,7 +505,7 @@ body { overflow-x: clip; }
 .feedback-clean { color: #cbe9e3; }
 .feedback-defensive { color: #ffd09a; }
 .feedback-scramble { color: #d9c8f1; }
-.endless-overlay { color: #17262b; background: linear-gradient(180deg,rgba(244,240,231,.78),rgba(233,228,216,.94)); }
+.endless-overlay { color: #17262b; background: #e9e4d8; }
 .endless-overlay .eyebrow { color: #c84e3b; }
 .endless-overlay h1 { color: #17262b; text-shadow: none; letter-spacing: -.055em; }
 .endless-overlay h2 { color: #17262b; }

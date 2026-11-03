@@ -66,9 +66,7 @@
 }
 
 .lightPreviewFrame {
-  background:
-    radial-gradient(circle at 18% 18%, rgba(92, 126, 255, 0.13), transparent 34%),
-    linear-gradient(145deg, #eef2f7 0%, #f8f6ef 100%);
+  background: #f8f6ef;
 }
 
 .lightPreviewFrame .projectPreviewImage {
@@ -77,7 +75,7 @@
 }
 
 .darkPreviewFrame {
-  background: linear-gradient(135deg, #06111f 0%, #0a1627 42%, #050a12 100%);
+  background: #0a1627;
 }
 
 .darkPreviewFrame .projectPreviewImage {

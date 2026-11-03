@@ -325,7 +325,6 @@ export function QuantumActiveInferenceCaseStudy() {
       </div>
       <div className="shell qai-hero-content">
         <p className="qai-kicker">02 / Theoretical neuroscience · Peer-reviewed research</p>
-        <div className="qai-hero-status"><span>Published 2025</span><span>Two companion reviews</span><span>Open-access record</span></div>
         <h1>Conscious<br /><em>active inference.</em></h1>
         <p className="qai-deck">I co-authored two theoretical reviews with Michael C. Wiest in 2025. They examine quantum dynamics as a possible implementation of planning and perceptual cycles in active inference.</p>
         <div className="qai-hero-links">
