@@ -202,3 +202,10 @@ Integration verification: `node scripts/export-static.mjs ../arjan-portfolio/pub
 Portfolio typecheck/build and 222 tests pass on the current main-line integration. Runtime-only npm audit reports zero vulnerabilities for both applications. Mobile-viewport smoke tests additionally pass in Firefox 153 and Playwright WebKit 26.6, with WebGL/internal geometry loaded, original sources, comparison search, no horizontal overflow and zero page errors. Firefox used the existing explicit executable after the default automation revision was absent. These are limited smoke checks, not physical phone/Safari tests.
 
 The private one-page US-letter creativity draft was rendered and visually inspected. It has no active hyperlink annotations, embedded files or video, and explicitly identifies AI-assisted work and remaining independent review/impact gaps. Personal contribution and class/team context still need the applicant's review. No external user study, independent anatomical precision estimate or clinical certification was created.
+
+
+## Jaw seam revision - November 2, 2026
+
+The baked exterior uses a refreshed private frontal fit, constrained mandibular seam smoothing and a graduated under-chin transition. Source geometry checks (68 domain tests), TypeScript, the standalone production build, static export and source/export fingerprint pass. The fresh integrated portfolio build passes. All 32 desktop/mobile Chrome workflows pass after running export before browser tests; an earlier overlapping export temporarily removed shared model paths during one test. Separate integrated face/upper-body/rotation/hash checks pass on both viewports with no page errors or horizontal overflow. Sculpt front/three-quarter/profile and actual browser captures were visually reviewed.
+
+The regression checks preserve all 47,447 approved lower-body coordinate values and check that the under-chin surface recedes into the neck. These are display-geometry checks, not a biometric likeness metric or clinical anatomical validation. Raw images and private fitting arrays remain outside the repository; internal anatomy and intervention evidence are unchanged.

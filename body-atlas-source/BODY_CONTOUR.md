@@ -4,6 +4,8 @@ The Contour surface adapts the attributed HRA exterior with authored shoulder br
 
 Organs, brain, spinal cord and intervention anchors retain their original HRA reference geometry and frame. Both exteriors use the reference skin bounds for centering and scale. **Contour / Reference** compares them. Failure to load the adapted contour visibly falls back to the reference. The asset URL includes its content hash to prevent a previous contour remaining in browser cache.
 
+The November 2 jaw revision uses a less perspective-distorted frontal fit, constrains the mandibular outline during seam smoothing, and graduates the submandibular surface into the neck. Front, three-quarter and profile sculpt views are reviewed alongside the browser display. A geometry regression checks under-chin recession; this is a display-shape check, not a biometric likeness score. Raw reference images and private fit arrays remain outside the repository.
+
 The approved lower exterior is preserved: tests fingerprint all 47,447 unique coordinates below reference y=0.02. Its previously approved shape parameters are unchanged and do not represent measured personal dimensions.
 
 No photos, image textures, pixel landmarks, facial embeddings, EXIF, private input paths, subject names or identifying attribution are shipped. The baked shape can itself be recognizable; absence of a name does not anonymize it. `_SURFACE_DETAIL` contains three semantic weights (iris, pupil and brow/scalp), not photographic colors. The website applies monochrome shading. Front-facing ray tests check that old geometry does not hide the eye details.
