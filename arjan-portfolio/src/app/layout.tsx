@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     siteName: "Arjan Singh Puniani",
     images: [
       {
-        url: "/images/hero/arj_kuzneski-hero.png",
-        width: 1200,
-        height: 1500,
-        alt: "Arjan Singh Puniani holding the Kuzneski Innovation Cup",
+        url: "/images/hero/arjan-headshot.webp",
+        width: 1059,
+        height: 1485,
+        alt: "Portrait of Arjan Singh Puniani",
       },
     ],
   },
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
     description:
       "Neural engineer pursuing medicine, with brain-computer interface research, clinical research, research software, and proposed medical devices.",
-    images: ["/images/hero/arj_kuzneski-hero.png"],
+    images: ["/images/hero/arjan-headshot.webp"],
   },
   robots: {
     index: true,
@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       familyName: "Puniani",
       alternateName: ["Arjan Puniani", "Arjan Singh Puniani"],
       url: siteUrl,
-      image: `${siteUrl}/images/hero/arj_kuzneski-hero.png`,
+      image: `${siteUrl}/images/hero/arjan-headshot.webp`,
       jobTitle: "Neural engineer",
       description:
         "Arjan Singh Puniani is a neural engineer pursuing medicine with experience in brain-computer interface research, clinical research, and research software.",

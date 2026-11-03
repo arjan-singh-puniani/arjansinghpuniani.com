@@ -1,5 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { atlasBasePath, atlasPath } from "@/lib/deployment";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -184,7 +185,7 @@ export default function AtlasExperience() {
   const [copyState,setCopyState]=useState<"idle"|"copied"|"manual">("idle");
   const [shareUrl,setShareUrl]=useState("");
   const [showOrgans,setShowOrgans]=useState(true);
-  const [adaptedContour,setAdaptedContour]=useState(true);
+  const adaptedContour = false;
   const [showMechanism,setShowMechanism]=useState(true),[actionPlaying,setActionPlaying]=useState(false),[reducedMotion,setReducedMotion]=useState(false);
   const [actionStep,setActionStep]=useState(0);
   useEffect(()=>{const media=window.matchMedia('(prefers-reduced-motion: reduce)');const change=()=>{setReducedMotion(media.matches);setActionPlaying(false);};change();media.addEventListener('change',change);return()=>media.removeEventListener('change',change);},[]);
@@ -367,6 +368,36 @@ export default function AtlasExperience() {
     try{await navigator.clipboard.writeText(url.href);setCopyState("copied");}
     catch{setCopyState("manual");}
   }
+  if (portrait) return (
+    <div className="atlas-photo-portrait">
+      <header className="atlas-header">
+        <a className="atlas-wordmark" href="https://arjansinghpuniani.com/about">Arjan Singh Puniani</a>
+        <nav aria-label="Portrait navigation">
+          <a href={atlasPath("/")}>Explore anatomy</a>
+          <button aria-label="Copy share link" onClick={copyPortraitLink}>
+            {copyState === "copied" ? <Check size={15}/> : <Copy size={15}/>}
+            {copyState === "copied" ? "Copied" : "Copy link"}
+          </button>
+        </nav>
+      </header>
+      <main>
+        <figure>
+          <Image
+            src={atlasPath("/portraits/arjan-headshot.webp")}
+            alt="Photograph of Arjan Singh Puniani smiling in a black quarter-zip"
+            width={1059}
+            height={1485}
+            sizes="(max-width: 480px) calc(100vw - 48px), 400px"
+            unoptimized
+            priority
+          />
+          <figcaption><h1>Arjan Singh Puniani</h1><p>Neural engineer pursuing medicine.</p></figcaption>
+        </figure>
+        <span role="status">{copyState === "copied" ? "Share link copied" : ""}</span>
+        {copyState === "manual" && <label>Copy this link<input aria-label="Share link" readOnly value={shareUrl} onFocus={e => e.currentTarget.select()}/></label>}
+      </main>
+    </div>
+  );
   return (
     <div
       className={`human-atlas ${portrait ? "portrait-view" : ""} ${anatomyExpanded ? "anatomy-expanded" : ""} ${showInterventions ? "with-intervention-labels" : ""} ${densityMap && showInterventions ? "with-density-map" : ""}`}
@@ -713,7 +744,6 @@ export default function AtlasExperience() {
             </div>
             <div className="figure-actions">
               {mode==='human'&&<button aria-label="Toggle internal organs" aria-pressed={showOrgans} onClick={()=>setShowOrgans(v=>!v)}>Organs</button>}
-              {mode==='human'&&<button aria-label={adaptedContour?'Show HRA reference exterior':'Show adapted body contour'} aria-pressed={adaptedContour} onClick={()=>setAdaptedContour(v=>!v)}>{adaptedContour?'Contour':'Reference'}</button>}
               <button
                 aria-label={
                   anatomyExpanded
@@ -1477,9 +1507,9 @@ export default function AtlasExperience() {
           )}
           {dialog === "about" && (
             <div className="atlas-methods">
-              <h3>Exterior contour, reference anatomy</h3>
-              <p><a href={atlasPath("/?view=portrait")}>Open shareable contour view <ArrowUpRight size={12}/></a></p>
-              <p>The contour is an artistic exterior with sculpted facial features and muscle definition, without photographic textures. It is an approximation, not a measured body scan. Organs, nerves and intervention anchors remain in the original HRA reference frame. Use Contour / Reference to compare surfaces.</p>
+              <h3>Portrait and reference anatomy</h3>
+              <p><a href={atlasPath("/?view=portrait")}>Open photographic portrait <ArrowUpRight size={12}/></a></p>
+              <p>The portrait is a photograph of Arjan Singh Puniani. The anatomy viewer uses the generic Human Reference Atlas body, organs, nerves and intervention anchors. It is not a personal body scan or a representation of his physique.</p>
               <h3>Reference anatomy</h3>
               <p>
                 Human surface, registered brain and spinal cord, and detailed

@@ -20,10 +20,10 @@ export const metadata: Metadata = {
       "Neural engineer pursuing medicine, with BCI research at Pitt RNEL, clinical research at UCSF, and independent research software.",
     images: [
       {
-        url: "/images/about/arjan-candid.jpg",
-        width: 1200,
-        height: 1600,
-        alt: "Candid portrait of Arjan Singh Puniani",
+        url: "/images/hero/arjan-portrait-2026.jpg",
+        width: 1350,
+        height: 1800,
+        alt: "Arjan Singh Puniani smiling in a black polo",
       },
     ],
   },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "About Arjan Singh Puniani",
     description:
       "Neural engineer pursuing medicine, with BCI research at Pitt RNEL, clinical research at UCSF, and independent research software.",
-    images: ["/images/about/arjan-candid.jpg"],
+    images: ["/images/hero/arjan-portrait-2026.jpg"],
   },
 };
 
@@ -60,6 +60,7 @@ export default function About() {
       givenName: "Arjan",
       additionalName: "Singh",
       familyName: "Puniani",
+      image: `${siteUrl}/images/hero/arjan-headshot.webp`,
       alternateName: ["Arjan Puniani", "Arjan Singh Puniani"],
       url: siteUrl,
       description: profile.descriptor,
@@ -74,11 +75,24 @@ export default function About() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <header className="page-hero">
-        <div className="shell">
-          <p className="eyebrow">About</p>
-          <h1>Arjan Singh Puniani</h1>
-          <p>{profile.headline}</p>
+      <header className={`page-hero ${styles.intro}`}>
+        <div className={`shell ${styles.introGrid}`}>
+          <div>
+            <p className="eyebrow">About</p>
+            <h1>Arjan Singh Puniani</h1>
+            <p>{profile.headline}</p>
+          </div>
+          <figure className={styles.introPortrait}>
+            <Image
+              src="/images/hero/arjan-portrait-2026.jpg"
+              alt="Arjan Singh Puniani smiling in a black polo"
+              width={1350}
+              height={1800}
+              priority
+              sizes="(max-width: 480px) calc(100vw - 48px), 360px"
+            />
+            <figcaption>Arjan Singh Puniani</figcaption>
+          </figure>
         </div>
       </header>
 
@@ -142,19 +156,21 @@ export default function About() {
               <Image
                 src="/images/about/arjan-camera-2026.jpg"
                 alt="Arjan Singh Puniani holding a camera outdoors"
-                width={1600}
-                height={1200}
-                sizes="(max-width: 900px) calc(100vw - 24px), 42vw"
+                width={1350}
+                height={1800}
+                sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 900px) 48vw, 30vw"
               />
+              <figcaption>Photography</figcaption>
             </figure>
             <figure className={styles.photoWide}>
               <Image
                 src="/images/about/arjan-dog-2026.jpg"
                 alt="Arjan Singh Puniani relaxing on grass with a dog"
-                width={1600}
-                height={1200}
-                sizes="(max-width: 900px) calc(100vw - 24px), 42vw"
+                width={1350}
+                height={1800}
+                sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 900px) 44vw, 25vw"
               />
+              <figcaption>Outside work</figcaption>
             </figure>
           </div>
           <div className={styles.personalCopy}>
