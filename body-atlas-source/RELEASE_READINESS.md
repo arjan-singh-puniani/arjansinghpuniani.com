@@ -1,5 +1,18 @@
 # Release readiness
 
+Release reproducibility (November 2): 41 Python ingestion tests pass, including schema drift, idempotency and provider-outage preservation. The default webpack production build and static export pass. The export digest self-check detects a changed UI while excluding server-only routes; the checked-in bundle matches the source digest. Path-scoped CI runs these source/data/build and portfolio checks; browser/device and independent scientific review remain separate.
+
+## Current engineering revision — 2026-11-02
+
+Disposition remains a **public read-only research preview**, with clinical/scientific production certification withheld. This revision adds source-first summaries, reference-surface links, explicit comparison abstentions, searchable comparison selection, three research starts, and a downloadable independent-review packet covering 108 assertions across all 92 explained entries. The packet is not a completed review. Existing labeling gaps, provisional anatomy and nonclinical status remain visible.
+
+Local gates: 68 atlas domain tests; 32 desktop/mobile Chrome workflows; 222 portfolio tests; source and portfolio TypeScript/production builds; static atlas export; production-only dependency audits with zero reported vulnerabilities. Additional 390×844 smoke tests passed in installed Firefox 153 and Playwright WebKit 26.6, including actual WebGL/internal-anatomy loading, source links and comparison search. Firefox used its installed executable explicitly; these are bounded compatibility checks, not the full Chrome suite or physical iOS/Safari certification.
+
+The portfolio case study declares AI-assisted development and uses an actual current app capture. Private reference images, fitting inputs and the application PDF are excluded from the public repository. The PDF and reviewer invitation are private drafts; no application or outreach message was submitted. Owner-specific role/class/team details require personal review before application submission.
+
+Independent biomedical adjudication, actual external user feedback, measured research benefit, current-label completeness, unit-specific safety applicability and physical-device/performance validation remain open. No test count is presented as clinical accuracy or an "11/10" certification. Older dated sections below record earlier milestones.
+
+
 ## Current release — 2026-10-31
 
 The current export has **2,497 authentic records, 92 explained entries and dossiers, and 12 schematic mechanisms**. Neuralink now has six exact sponsor-verified trial records, the earlier 2019 platform publication, separate skull/cortical relationships, a recording → decoding → control schematic, and an evidence comparison with BrainGate. It remains **investigational**; no FDA marketing authorization is inferred. The six retrieved registry records have no posted results; this is not a claim about all research worldwide. Conflicting source-specific thread counts and the manufacturer-reported thread-retention limitation are visible, source linked, and retained in exported briefs.

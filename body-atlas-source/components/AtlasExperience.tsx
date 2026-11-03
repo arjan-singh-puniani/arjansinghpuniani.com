@@ -1325,6 +1325,7 @@ export default function AtlasExperience() {
                 {[...comparison.map(id=>familyById(id)!),...families.filter(item=>hasExplanation(item)&&!comparison.includes(item.id)&&[productName(item),interventionNames[item.id],item.name,...item.modalities].join(' ').toLowerCase().includes(comparisonQuery.toLowerCase()))].slice(0,20).map((item) => (
                   <button
                     key={item.id}
+                    aria-label={productName(item)}
                     aria-pressed={comparison.includes(item.id)}
                     onClick={() => compare(item.id)}
                     disabled={

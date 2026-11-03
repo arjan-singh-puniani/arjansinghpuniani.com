@@ -1,5 +1,7 @@
 # Demonstration verification
 
+Release reproducibility (November 2): 41 Python ingestion tests pass, including schema drift, idempotency and provider-outage preservation. The default webpack production build and static export pass. The export digest self-check detects a changed UI while excluding server-only routes; the checked-in bundle matches the source digest. Path-scoped CI runs these source/data/build and portfolio checks; browser/device and independent scientific review remain separate.
+
 ## Neuralink iteration — 2026-10-31
 
 The current export contains 2,497 authentic records, 92 explained entries/dossiers and 12 schematic mechanisms. See [NEURALINK.md](NEURALINK.md) for original sources, interpretation and reproduction. Earlier dated sections retain historical counts.
@@ -139,3 +141,8 @@ Physical iOS/Safari, low-memory GPU testing, slow-network measurements, distribu
 ## Mesh-linked entries — 2026-11-02
 
 Open `/?entry=activa`: the Thalamus label meets the actual reference thalamic surface, with the surrounding brain faded. `/?entry=brio` focuses the reference subthalamic nucleus. `/?entry=source-fda-p140031` focuses the available heart-valve group, explicitly described as representative valve surfaces rather than a prosthesis reconstruction. Original source links and existing provisional/reviewed states remain visible. The Activa chest-generator relationship changes focus to chest context instead of being overridden by its brain target. Vagus remains **≈ approximate** because its mesh is absent. The full desktop/mobile browser suite passes all 30 workflows; these views do not establish surgical coordinates or device laterality.
+
+
+## Research-question demonstration — 2026-11-02
+
+From the unselected atlas, open **Start with a research question**. The BCI question opens Neuralink/BrainGate with a distinct recording row and investigational status. Search for SAPIEN to add an entry beyond the initial chooser; its provisional source context stays separate from an unestablished reviewed action site. The thalamus comparison opens Activa/ExAblate; original regulatory links and sourced Markdown export remain available. Sources/Review coverage downloads the actual 108-assertion review CSV. All 32 desktop/mobile Chrome workflows pass, with additional successful Firefox/WebKit mobile-viewport smoke checks. No external reviewer or clinical outcome is implied.

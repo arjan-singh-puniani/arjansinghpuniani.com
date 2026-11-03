@@ -79,7 +79,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md), [DATA_SOURCES.md](DATA_SOURCES.md), [ANA
 
 Open **https://arjansinghpuniani.com/atlas** directly, or use **Launch interactive atlas** on the project page. The website serves a self-contained, read-only snapshot. Search/retrieval remains local; Markdown briefs download without a server API; original responses are available through content-addressed `/atlas/sources/` links. The website source tree retains this app under `body-atlas-source`, sharing its geometry and original evidence through relative symlinks to the hosted files.
 
-Rebuild from that source directory with `npm ci` then `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`. The export excludes ingestion databases, private data and server API routes. It verifies original response hashes and only replaces a recognized generated destination after a successful build. The normal standalone app keeps its existing APIs.
+Rebuild from that source directory with `npm ci` then `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`. The export excludes ingestion databases, private data and server API routes. It verifies original response hashes and only replaces a recognized generated destination after a successful build. The normal standalone app keeps its existing APIs. `npm run build` explicitly uses webpack for the maintained symlinked workspace. Run `node scripts/check-export.mjs --self-test` and `node scripts/check-export.mjs` after export; CI rejects a source/export mismatch and runs atlas domain/ingestion/build and portfolio integration checks. Browser and clinical review remain separate gates.
 
 
 ### Relevance correction — 2026-10-21
@@ -140,3 +140,8 @@ npm run documents:collect -- P100026 P140031
 The durable collector discovers PDF links from official FDA application pages and stores immutable bytes plus job checkpoints in ignored `data/filing-documents*` staging. Failed refreshes retain prior artifacts and report stale/incomplete status. The run report names links omitted by the collection bound. Acquisition is not a completed content review. There is no unattended hosted PDF worker or exhaustive historical crawler.
 
 Hosted API: `/api/atlas/fda?application=P100026`; standalone: `/api/fda?application=P100026`. The portfolio route reuses `lib/fda-updates.ts`. Pure static hosting needs that server route for live checks; offline snapshots still work when it is unavailable. The full website's normal Vercel build deploys the endpoint.
+
+
+## Research and review workflow — 2026-11-02
+
+Open **Start with a research question** to compare stimulation/ablation, compare investigational BCIs, or inspect placement versus target. Original decision/study links sit directly below each intervention explanation. Comparison search accesses the explained collection while separate placement, recording, target/action and provisional-context rows explicitly state when a relationship is not established. **Sources → Review coverage** shows recorded review-state counts and downloads all 108 assertions across 92 explained entries with blank independent-adjudication fields. This does not automatically accept mappings. See [RESEARCHER_REVIEW.md](RESEARCHER_REVIEW.md) for the actual external-review protocol. No feedback or user impact is fabricated.

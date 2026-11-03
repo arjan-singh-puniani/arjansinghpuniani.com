@@ -1,5 +1,7 @@
 # Validation
 
+Release reproducibility (November 2): 41 Python ingestion tests pass, including schema drift, idempotency and provider-outage preservation. The default webpack production build and static export pass. The export digest self-check detects a changed UI while excluding server-only routes; the checked-in bundle matches the source digest. Path-scoped CI runs these source/data/build and portfolio checks; browser/device and independent scientific review remain separate.
+
 ## Current release — 2026-10-31
 
 The current export has **2,497 authentic records, 92 explained entries and dossiers, and 12 schematic mechanisms**. Neuralink now has six exact sponsor-verified trial records, the earlier 2019 platform publication, separate skull/cortical relationships, a recording → decoding → control schematic, and an evidence comparison with BrainGate. It remains **investigational**; no FDA marketing authorization is inferred. The six retrieved registry records have no posted results; this is not a claim about all research worldwide. Conflicting source-specific thread counts and the manufacturer-reported thread-retention limitation are visible, source linked, and retained in exported briefs.
@@ -191,3 +193,12 @@ Visual review of actual loaded-model screenshots caught a parent-region/renderin
 No source records, scientific mappings, review states, regulatory statuses, body/face mesh or internal reference mesh files changed. Clinical placement, laterality, VIM-specific targeting, expert anatomical precision and physical iOS/Safari remain unverified. Record-count clusters in the wider FDA layer remain diagrammatic, while selected entries use their available regional endpoint.
 
 Integration verification: `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`, portfolio `npm run typecheck`, `npm run build` and all 150 `npm test` tests pass. The exported atlas was run inside the portfolio at a local production-mode URL: desktop 1440×1000 and mobile 390×844 each passed all three selected reference targets, actual nervous-renderer focus, original-source links, anchor metadata delivery, horizontal-overflow checks and zero page errors. This revision is a local preview; no production deployment was performed.
+
+
+## Evidence-first research workflow — 2026-11-02
+
+`npm run typecheck`, `npm test` (68 passed), `npm run build -- --webpack`, and the full `npm run test:browser` suite (32 desktop/mobile Chrome workflows) pass. New regressions cover source links before mechanism details, investigational BCI/recording comparisons, searchable access to an entry outside the default chooser, explicit missing-evidence cells, preserved Provisional context, exact review-state totals, downloaded CSV, and modal accessibility. CSV tests cover all 108 assertions/92 entries, blank adjudication fields, original identity/state/locator retention, quoting and formula-injection protection.
+
+Portfolio typecheck/build and 222 tests pass on the current main-line integration. Runtime-only npm audit reports zero vulnerabilities for both applications. Mobile-viewport smoke tests additionally pass in Firefox 153 and Playwright WebKit 26.6, with WebGL/internal geometry loaded, original sources, comparison search, no horizontal overflow and zero page errors. Firefox used the existing explicit executable after the default automation revision was absent. These are limited smoke checks, not physical phone/Safari tests.
+
+The private one-page US-letter creativity draft was rendered and visually inspected. It has no active hyperlink annotations, embedded files or video, and explicitly identifies AI-assisted work and remaining independent review/impact gaps. Personal contribution and class/team context still need the applicant's review. No external user study, independent anatomical precision estimate or clinical certification was created.

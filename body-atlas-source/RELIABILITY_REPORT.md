@@ -71,3 +71,8 @@ Genuine FDA queries for P100026, P140031 and K130233 returned validated response
 The document collector acquired six PDFs across P100026 and P140031 from their official pages. One additional SAPIEN labeling link was explicitly outside the three-document bound. An initial PDF request failed with HTTP 406; correcting the PDF Accept header and resuming acquired the missing document while reusing prior verified bytes. Recovery tests also inject corrupt content and failed refreshes and verify last-good preservation. These six acquisitions do not close the three unrelated manufacturer-IFU gaps.
 
 Provider errors return 503 with retry guidance; the reviewed snapshot remains usable. A successful UI response retains its retrieval time through caching, and a failed recheck preserves already displayed results with an error. Server-memory cache/checkpoints are not a hosted durable ingestion database. Physical-device/GPU behavior, other browsers, sustained load and distributed failure recovery remain unverified.
+
+
+## Research-workflow revision — 2026-11-02
+
+No ingestion provider, scientific record, queue or refresh policy changed. Original-source access now precedes longer mechanism content, missing comparison relationships abstain explicitly, and comparison choices are bounded to 20 visible options with search across the explained collection. The review CSV is generated locally from the fixed snapshot and does not require another provider request. Production builds, 68 domain tests, 32 Chrome workflows, 222 portfolio tests and bounded Firefox/WebKit smoke checks pass. Cached evidence remains distinct from live FDA checks; no current-label or exhaustive-history claim was added.

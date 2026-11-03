@@ -55,3 +55,8 @@ Webpack development required `unsafe-eval` to hydrate the app; it is enabled onl
 ## Reference-anchor revision — 2026-11-02
 
 The new reference-anchor JSON is generated from fixed, already-shipped licensed anatomy files and includes their hashes and triangle provenance. No upload, remote fetch, external script, new dependency, private input, account access or writable API is added. Source text remains escaped React content. Geometry-derived display points do not upgrade medical evidence states or imply personal internal anatomy. Existing source/privacy/API boundary tests and desktop/mobile accessibility workflows pass.
+
+
+## Review export and research workflow — 2026-11-02
+
+The review packet contains only existing public assertions and original-source metadata. Every independent-adjudication field begins blank; there is no upload or automatic acceptance path. Source fields are quoted as CSV, and formula-like prefixes (including leading whitespace/control characters) are forced to text. Unit and actual-download browser checks pass. No new application dependency, external fetch destination, authentication boundary or private asset is introduced. Production-only npm audits report zero vulnerabilities for both applications; this does not certify the development toolchain or replace penetration testing.
