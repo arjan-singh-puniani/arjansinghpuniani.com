@@ -938,12 +938,12 @@ export function ECGConnections() {
             {interval ? (
               <>
                 <MathText
-                  tex={`\\Delta t=\\frac{|${n(interval.projectedPx, 2)}\\,\\mathrm{px}|}{${n(interval.pixelsPerMm, 3)}\\,\\mathrm{px/mm}\\times25\\,\\mathrm{mm/s}}\\approx${n(interval.duration / 1000, 5)}\\,\\mathrm{s}\\approx${n(interval.duration, 2)}\\,\\mathrm{ms}`}
+                  tex={`\\Delta t\\approx\\frac{|${n(interval.projectedPx, 2)}\\,\\mathrm{px}|}{${n(interval.pixelsPerMm, 3)}\\,\\mathrm{px/mm}\\times25\\,\\mathrm{mm/s}}\\approx${n(interval.duration / 1000, 5)}\\,\\mathrm{s}\\approx${n(interval.duration, 2)}\\,\\mathrm{ms}`}
                   reading={`The interval projected along the paper time axis is ${n(interval.projectedPx, 2)} pixels, divided by ${n(interval.pixelsPerMm, 3)} pixels per millimetre and 25 millimetres per second. This gives ${n(interval.duration, 2)} milliseconds.`}
                 />
                 {intervalKind === "RR" && interval.duration > 0 && (
                   <MathText
-                    tex={`\\mathrm{Rate}=\\frac{60\\,000\\,\\mathrm{ms/min}}{${n(interval.duration, 2)}\\,\\mathrm{ms/beat}}=${n(60000 / interval.duration, 1)}\\,\\mathrm{beats/min}`}
+                    tex={`\\mathrm{Rate}\\approx\\frac{60\\,000\\,\\mathrm{ms/min}}{${n(interval.duration, 2)}\\,\\mathrm{ms/beat}}\\approx${n(60000 / interval.duration, 1)}\\,\\mathrm{beats/min}`}
                     reading={`One measured RR interval gives ${n(60000 / interval.duration, 1)} beats per minute. Repeat over adjacent cycles before assessing variability.`}
                   />
                 )}
