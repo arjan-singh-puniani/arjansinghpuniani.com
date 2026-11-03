@@ -72,9 +72,9 @@ export default function HospitalPlayer() {
           aria-describedby="hospital-controls"
           onLoad={() => { setLoaded(true); frame.current?.focus({ preventScroll: true }); }}
         />
-        {!loaded && <p className={styles.loading} role="status">{slow ? "Taking longer than expected. Try opening the experience in a new tab below." : "Opening your neighborhood hospital…"}</p>}
+        {!loaded && <p className={styles.loading} role="status">{slow ? "Taking longer than expected. Try opening the experience in a new tab below." : "Opening your clinic…"}</p>}
       </> : <div className={styles.poster}>
-        <Image src="/hospitalsim/preview.webp" width={1200} height={900} sizes="(max-width: 800px) 100vw, 1200px" alt="Actual hospitalSIM browser build with three medical platforms and clinicians" />
+        <Image src="/hospitalsim/docs/opening-empty.webp" width={1280} height={720} sizes="(max-width: 800px) 100vw, 1200px" alt="The empty Little Juniper clinic, ready for its first room" />
         <div className={styles.posterCopy}><p>A little room for care.</p><button ref={enter} className="button" onClick={launch}>Play hospitalSIM <span aria-hidden="true">↗</span></button><span>Build · Understand · Try again</span></div>
       </div>}
     </div>
@@ -83,7 +83,7 @@ export default function HospitalPlayer() {
       <div>{playing && <><button onClick={close}>Close experience</button><button onClick={fullscreen}>Enter fullscreen ↗</button></>}<a href="/hospitalsim/index.html" target="_blank" rel="noreferrer">Open in a new tab ↗</a></div>
     </div>
     {message && <p role="status">{message}</p>}
-    <p className={styles.controls} id="hospital-controls">Start by adding a consultation room at a marked site. Sage walks over; the room opens when its team arrives. Tap a person for their role and actions, or drag to lift; green tiles show safe landings. People provides room and patient lists. Build mode supports the map, location list or arrows and Enter. Placement restores play if it was running. Shift settings contains reports, scenarios, checkpoints and optional name labels. Progress saves on this device; no gameplay analytics.</p>
+    <p className={styles.controls} id="hospital-controls">Build one consultation room, then hire Mira to open your clinic. Follow your first neighbor home. After that, choose a faster room, a second doctor or waiting seats. Click or tap a person to lift them; tap a green tile to put down. Settings keeps previous hospitals and advanced challenges. Progress saves on this device; no gameplay analytics.</p>
     <noscript><p>Open <a href="/hospitalsim/index.html">hospitalSIM in its own page</a>. JavaScript and WebGL2 are required for the interactive view; the descriptions and structural references below remain available.</p></noscript>
   </>;
 }

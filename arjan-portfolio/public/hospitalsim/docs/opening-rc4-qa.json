@@ -11,7 +11,7 @@
   ],
   "automated": {
     "gameSuites": 24,
-    "portfolioTests": 209,
+    "portfolioTests": 222,
     "typecheck": "pass",
     "productionBuild": "pass",
     "actualRecordingReplay": "all actions, tracked completed visit and60secondcounts match"
@@ -27,7 +27,9 @@
       "room upgrade works",
       "second room built, explicitly hires second doctor",
       "reduced motion toggle works; closing settings restores prior pause state",
-      "no console errors in tested sessions"
+      "no console errors in tested sessions",
+      "actual portfolio desktop iframe launches fresh0staff/0rooms clinic",
+      "actual portfolio390px Play redirects to standalone0staff/0rooms clinic; no horizontal overflow or console errors"
     ],
     "renderSample": {
       "stage": "game second22; first room/doctor/patient",
