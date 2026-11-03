@@ -1,0 +1,44 @@
+[
+  {
+    "browser": "chromium",
+    "defaultSource": "actual ECG image",
+    "imageDigest": "matched",
+    "rawPixelMeasurement": "verified",
+    "gridCalibration": "verified",
+    "manualQTcInputs": "verified",
+    "staleCalibration": "rejected",
+    "sourceSwitch": "verified",
+    "dragAndResize": "verified",
+    "replay": "verified",
+    "axe": [],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "defaultSource": "actual ECG image",
+    "imageDigest": "matched",
+    "rawPixelMeasurement": "verified",
+    "gridCalibration": "verified",
+    "manualQTcInputs": "verified",
+    "staleCalibration": "rejected",
+    "sourceSwitch": "verified",
+    "dragAndResize": "verified",
+    "replay": "verified",
+    "axe": [],
+    "errors": []
+  },
+  {
+    "browser": "firefox",
+    "defaultSource": "actual ECG image",
+    "imageDigest": "matched",
+    "rawPixelMeasurement": "verified",
+    "gridCalibration": "verified",
+    "manualQTcInputs": "verified",
+    "staleCalibration": "rejected",
+    "sourceSwitch": "verified",
+    "dragAndResize": "verified",
+    "replay": "verified",
+    "axe": [],
+    "errors": []
+  }
+]

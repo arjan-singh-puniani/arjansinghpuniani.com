@@ -1,0 +1,222 @@
+.workspace {
+  max-width: 1500px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(310px, 1fr);
+  gap: 36px;
+  margin-top: 25px;
+}
+.source,
+.calculations {
+  min-width: 0;
+}
+.sourceHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.sourceHead span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.viewTools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 15px 0;
+}
+.viewTools button {
+  font-size: 12px;
+}
+.viewTools label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--muted);
+}
+.viewTools input {
+  max-width: 120px;
+}
+.image {
+  display: block;
+  width: 100%;
+  background: white;
+  border: 1px solid #526c7a;
+  touch-action: none;
+  user-select: none;
+  overflow: hidden;
+}
+.image [data-image-marker] {
+  cursor: grab;
+}
+.measureSummary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 20px;
+}
+.measureSummary small,
+.measureSummary strong {
+  display: block;
+}
+.measureSummary strong {
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 7px;
+  color: var(--cyan);
+}
+.measureSummary > div:last-child strong {
+  font-size: 18px;
+}
+.inputs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.inputs label,
+.coordinates label {
+  font-size: 11px;
+  color: var(--muted);
+}
+.workspace input[type="number"] {
+  width: 100%;
+  min-width: 0;
+  background: #152331;
+  border: 1px solid #42596d;
+  padding: 9px;
+  color: var(--ink);
+  font: inherit;
+}
+.coordinates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.coordinates fieldset {
+  border: 1px solid var(--line);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  min-width: 0;
+}
+.coordinates legend {
+  font-size: 12px;
+  color: var(--muted);
+}
+.report {
+  margin-top: 18px;
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.report > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.report dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 22px;
+  margin: 17px 0 0;
+}
+.report dt {
+  font-size: 11px;
+  color: var(--muted);
+}
+.report dd {
+  margin: 6px 0 0;
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+}
+.basis {
+  margin: 20px 0;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 15px;
+}
+.basis label {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  font-size: 12px;
+}
+.basis input {
+  accent-color: var(--cyan);
+}
+.basis small {
+  display: block;
+  margin-top: 10px;
+  font-size: 11px;
+}
+.calculations p {
+  font-size: 12px;
+}
+.calculations > button {
+  margin-top: 15px;
+}
+.ledger {
+  margin: 15px 0;
+}
+.ledger > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  padding: 12px 0;
+  font-size: 12px;
+}
+.ledger strong {
+  font-weight: 500;
+  color: var(--cyan);
+}
+.ledger p {
+  grid-column: 1/-1;
+  overflow-wrap: anywhere;
+}
+.workspace code {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .calculations {
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+  }
+  .image {
+    min-height: 180px;
+  }
+  .sourceHead {
+    display: block;
+  }
+  .sourceHead span {
+    display: block;
+    margin-top: 6px;
+  }
+}
+@media (max-width: 480px) {
+  .inputs {
+    grid-template-columns: 1fr 1fr;
+  }
+  .coordinates {
+    grid-template-columns: 1fr;
+  }
+  .viewTools label {
+    margin-left: 0;
+  }
+  .measureSummary strong {
+    font-size: 21px;
+  }
+  .measureSummary > div:last-child strong {
+    font-size: 16px;
+  }
+}

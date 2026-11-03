@@ -34,6 +34,7 @@ for (const [name, engine] of [
       if (m.type() === "error") warnings.push(m.text());
     });
     await page.goto(`${base}/work/vector-ekg-reasonos`);
+    await page.locator("#model-explanation > summary").click();
     const lab = page.locator("#reasonos-lab");
     await page.waitForSelector("#reasonos-lab .katex");
     await page.evaluate(() => document.fonts.ready);
@@ -355,7 +356,13 @@ for (const [name, engine] of [
     const phone = await context.newPage();
     await phone.setViewportSize({ width: 390, height: 844 });
     await phone.goto(`${base}/work/vector-ekg-reasonos`);
+    await phone.locator("#model-explanation > summary").click();
     await phone.waitForSelector("#reasonos-lab .katex");
+    await phone
+      .locator("#reasonos-lab")
+      .evaluate((el) =>
+        el.scrollIntoView({ block: "start", behavior: "instant" }),
+      );
     await phone.evaluate(() => document.fonts.ready);
     const firstPoint = await phone.locator("[data-ecg-sample]").boundingBox();
     assert.ok(

@@ -41,3 +41,5 @@
 @media(max-width:720px){.rosx-scientific .rosx-hero{padding-top:30px}.rosx-scientific .vector-deck{font-size:16px}.rosx-scientific .vector-facts{grid-template-columns:1fr 1fr;gap:0}.rosx-science-nav{gap:20px}.rosx-scientific .section{padding-block:38px}.rosx-reference-list{grid-template-columns:1fr}.rosx-scientific .rosx-section-head{grid-template-columns:1fr}}
 
 .rosx-scientific .rosx-hero{color:#edf2f3}.rosx-scientific .rosx-hero .eyebrow{color:#b4c6d8}.rosx-scientific .vector-deck{color:#c7d5df}.rosx-scientific .vector-facts dt{color:#adbed0}.rosx-implementation-source{font-size:14px;line-height:1.8;margin-top:30px}
+
+.rosx-model-explanation{background:#0d1620;color:#edf2f3;border-top:1px solid #2d4052;padding:22px max(16px,calc((100vw - 1440px)/2));}.rosx-model-explanation>summary{cursor:pointer;font-size:15px;padding:0 14px;line-height:1.6}.rosx-model-explanation[open]>summary{margin-bottom:18px}
