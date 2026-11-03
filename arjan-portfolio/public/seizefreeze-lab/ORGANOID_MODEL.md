@@ -162,3 +162,7 @@ Calibration would require identified hardware, independent calibrated temperatur
 The workbench shows requested and limited actual current separately. Derived module voltage is `V=alpha*(Th-Tc)+Re*I` (V), consistent with the constant-property identity `P=V*I`. At zero current, the modeled Seebeck voltage can remain nonzero while electrical input is zero. This calculated voltage is not a module rating, board output, measured supply value or demonstration that the reported Arduino can drive the unknown Peltier.
 
 The comparison control may be zero-current sham/baseline or the reference perturbation, retaining the same raw inputs and random seed while changing the computational condition. Comparing the contact or rejection condition with reference perturbation isolates that authored resistance multiplier; feedback trajectories can differ. This is an assumption comparison, not measured uncertainty.
+
+## Computational plan provenance
+
+Each calculation captures its hypothesis and analysis text before the worker runs. Exports use that captured plan even if fields are edited after completion; a new computation is required to associate edited text. Records explicitly state `externalPreregistration:false`. This preserves local computational provenance, not independent registration, blinded analysis, a timestamped external protocol or proof that the user had never seen an earlier simulation.

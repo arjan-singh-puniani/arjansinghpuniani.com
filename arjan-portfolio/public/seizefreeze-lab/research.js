@@ -25,6 +25,7 @@ const components = {
   driver: ['Current driver and power', 'PROPOSED / CONFIGURATION UNVERIFIED', 'A separate generic block represents the required actuator-power interface. No completed driver, supply or wiring configuration is claimed.', 'Electrical input and conversion losses', 'Module current/voltage requirements and control isolation need a documented circuit.', 'Saturation, uncontrolled current and conversion heat are unresolved hardware risks.'] };
 let mode = 'organoid', scene = null, result = null, comparison = null, worker = null, requestId = 0, pending = false;
 let index = 0, playing = false, timer = 0, startWall = 0, startTime = 0, staticView = false, sectioned = false, disposed = false, selected = 'tissue';
+let requestedPlan = null, capturedPlan = null;
 let selecting = false;
 let sceneError = '', modelError = '', lastInputs = { ...defaults };
 const fmt = (v, n = 3) => Number.isFinite(v) ? v.toFixed(n) : 'Unavailable';
@@ -87,6 +88,7 @@ function readyControls() { $('run-experiment').disabled = !worker; $('compare-sh
 function fail(message) { pause(); pending = false; modelError = message; result = comparison = null; $('experiment-output').hidden = true; staticDisplay(true); readyControls(); $('research-status').textContent = 'Experiment unavailable: ' + message; $('comparison-section').hidden = true; $('experiment-teaching').textContent = 'No current numerical result is available. The model/evidence documents and component inspector remain accessible.'; }
 function run(compare = false, config = inputs(), controlCondition = $('comparison-control').value) {
   pause(); if (!worker) { fail('The research worker could not start.'); return; }
+  requestedPlan = { hypothesis: $('hypothesis').value, analysis: $('analysis-plan').value, capturedBeforeComputation: true, externalPreregistration: false, status: 'Local computational plan captured at run start; not an external preregistration' };
   lastInputs = { ...config }; pending = true; modelError = ''; readyControls();
   $('condition-reading').textContent = descriptions[config.condition] || '';
   $('research-status').textContent = `Computing ${conditions[config.condition]}${result ? '; graphs retain the previous completed run until this calculation finishes' : ''}…`;
@@ -149,7 +151,7 @@ function draw() {
 function receive(data) {
   if (disposed || data.id !== requestId) return; pending = false;
   if (data.error) { fail(data.error); return; }
-  result = data.result; comparison = data.comparison; index = 0; modelError = '';
+  result = data.result; comparison = data.comparison; capturedPlan = requestedPlan; index = 0; modelError = '';
   $('research-timeline').max = result.params.duration; $('stage-timeline').max = result.params.duration; $('experiment-output').hidden = mode !== 'organoid'; $('raster-duration').textContent = `${result.signals.channelCount} channels · ${result.params.duration} s`; const labels = document.querySelectorAll('.time-labels span'); labels[1].textContent = result.params.duration / 2 + ' s'; labels[2].textContent = result.params.duration + ' s';
   $('research-status').textContent = `Completed ${conditions[result.params.inputs.condition]} · seed ${result.params.seed} · ${result.summary.steps.toLocaleString()} integration steps · max. energy residual ${result.summary.maxResidual.toExponential(2)} J`;
   $('research-diagnostics').textContent = `Model ${result.modelId} v${result.version}. ${result.summary.cells} spherical shells; actual Δt ${result.summary.dt.toPrecision(4)} s; output ${result.summary.outputHz} Hz. A stability-limited substep is enforced. Maximum conservation residual ${result.summary.maxResidual.toExponential(3)} J. See the model record for analytical, time and space refinement checks.`;
@@ -160,7 +162,7 @@ function receive(data) {
   staticCharts(); draw(); readyControls();
 }
 function tick() { if (!playing || !result) return; const t = Math.min(result.params.duration, startTime + (performance.now() - startWall) / 1000); index = timeIndex(t); draw(); if (t >= result.params.duration) pause(); else timer = setTimeout(tick, 100); }
-function record() { return { recordType: 'SEIZEFREEZE_SYNTHETIC_COMPUTATIONAL_EXPERIMENT', schemaVersion: 1, dataStatus: 'No biological or device measurements', plan: { hypothesis: $('hypothesis').value, analysis: $('analysis-plan').value, control: comparison ? conditions[comparison.params.inputs.condition] : 'No comparison; no biological efficacy endpoint' }, model: result, comparison }; }
+function record() { return { recordType: 'SEIZEFREEZE_SYNTHETIC_COMPUTATIONAL_EXPERIMENT', schemaVersion: 1, dataStatus: 'No biological or device measurements', plan: { ...capturedPlan, control: comparison ? conditions[comparison.params.inputs.condition] : 'No comparison; no biological efficacy endpoint' }, model: result, comparison }; }
 function download(name, body, type) { const url = URL.createObjectURL(new Blob([body], { type })), a = document.createElement('a'); a.href = url; a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(url), 2000); }
 $('experiment-form').addEventListener('submit', e => { e.preventDefault(); run(); });
 $('compare-sham').addEventListener('click', () => { if ($('experiment-form').reportValidity()) run(true); });
@@ -179,9 +181,10 @@ $('prototype-to-experiment').addEventListener('click', () => setMode('organoid')
 $('section-view').addEventListener('click', () => { sectioned = !sectioned; scene?.section(sectioned); $('section-view').setAttribute('aria-pressed', String(sectioned)); });
 $('reset-view').addEventListener('click', () => scene?.reset());
 $('static-research').addEventListener('click', async () => { if (!scene || scene.stats().contextLost) { scene?.dispose(); scene = null; await startScene(); } else staticDisplay(!staticView); if (!staticView) { scene.reset(); if (result) scene.update(result.frames[index], result.params); } });
+for (const id of ['hypothesis', 'analysis-plan']) $(id).addEventListener('input', () => { if (capturedPlan && ($(id).value !== capturedPlan[id === 'hypothesis' ? 'hypothesis' : 'analysis'])) $('export-status').textContent = 'Plan text changed after this run. Exports retain the captured plan. Run again to attach edited text to a new computation; this is not external preregistration.'; });
 $('export-summary').addEventListener('click', () => {
   if (!result || pending) return;
-  const e = endpoint(result), lines = ['SEIZEFREEZE / SYNTHETIC COMPUTATIONAL EXPERIMENT', 'No biological or device measurements.', `Model ${result.modelId} v${result.version}`, `Condition: ${conditions[result.params.inputs.condition]}`, `Seed: ${result.params.seed}`, `Reference: ${result.params.referenceTemperature} °C, arbitrary inert calculation boundary`, '', 'HYPOTHESIS', $('hypothesis').value, '', 'PREDECLARED ANALYSIS', $('analysis-plan').value, '', 'COMPUTED ENDPOINTS', `Minimum tissue-mean change: ${e.min} K`, `Peak hot-side change: ${e.hot} K`, `TEC electrical energy: ${e.energy} J`, `Maximum numerical energy residual: ${e.residual} J`, `Estimated synthetic burst flags: ${result.summary.burstCount}; no efficacy interpretation`, '', 'INPUTS / ALL MODELING ASSUMPTIONS', ...Object.entries(result.params.inputs).map(([key, value]) => `${key}: ${value} ${result.params.units[key] || ''}`), '', 'INITIAL CONDITIONS', JSON.stringify(result.params.initialConditions), 'BOUNDARY CONDITIONS', JSON.stringify(result.params.boundaryConditions), '', 'LIMITATIONS', ...result.assumptions, '', 'Source and parameter provenance: ORGANOID_MODEL.md and RESEARCH_SOURCES.md. Full numerical arrays are in the synthetic JSON export.'];
+  const e = endpoint(result), lines = ['SEIZEFREEZE / SYNTHETIC COMPUTATIONAL EXPERIMENT', 'No biological or device measurements.', `Model ${result.modelId} v${result.version}`, `Condition: ${conditions[result.params.inputs.condition]}`, `Seed: ${result.params.seed}`, `Reference: ${result.params.referenceTemperature} °C, arbitrary inert calculation boundary`, '', 'HYPOTHESIS / CAPTURED AT RUN START', capturedPlan.hypothesis, '', 'ANALYSIS / CAPTURED AT RUN START, NOT EXTERNALLY PREREGISTERED', capturedPlan.analysis, '', 'COMPUTED ENDPOINTS', `Minimum tissue-mean change: ${e.min} K`, `Peak hot-side change: ${e.hot} K`, `TEC electrical energy: ${e.energy} J`, `Maximum numerical energy residual: ${e.residual} J`, `Estimated synthetic burst flags: ${result.summary.burstCount}; no efficacy interpretation`, '', 'INPUTS / ALL MODELING ASSUMPTIONS', ...Object.entries(result.params.inputs).map(([key, value]) => `${key}: ${value} ${result.params.units[key] || ''}`), '', 'INITIAL CONDITIONS', JSON.stringify(result.params.initialConditions), 'BOUNDARY CONDITIONS', JSON.stringify(result.params.boundaryConditions), '', 'LIMITATIONS', ...result.assumptions, '', 'Source and parameter provenance: ORGANOID_MODEL.md and RESEARCH_SOURCES.md. Full numerical arrays are in the synthetic JSON export.'];
   if (comparison) lines.push('', `COMPARISON: ${conditions[comparison.params.inputs.condition]}`, JSON.stringify(endpoint(comparison)));
   download('seizefreeze-SYNTHETIC-run-summary.txt', lines.join('\n'), 'text/plain;charset=utf-8');
 });

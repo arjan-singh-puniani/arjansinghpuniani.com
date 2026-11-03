@@ -38,6 +38,8 @@ try {
     assert.equal((await snapshot()).comparison.electricalEnergy, 0); assert.equal(await page.locator('#comparison-table tr').count(), 2);
     await page.evaluate(() => window.seizefreezeResearch.goTo(35)); const replayFrame = (await snapshot()).frame;
     if (width === 1440) {
+      await page.locator('.experiment-plan').evaluate(node => { node.open = true; });
+      const planBefore = await page.evaluate(() => window.seizefreezeResearch.record().plan); await page.locator('#hypothesis').fill('An edit made after the completed calculation'); assert.deepEqual(await page.evaluate(() => window.seizefreezeResearch.record().plan), planBefore); assert.equal(planBefore.capturedBeforeComputation, true); assert.equal(planBefore.externalPreregistration, false); await page.locator('#hypothesis').fill(planBefore.hypothesis);
       const summaryEvent = page.waitForEvent('download'); await page.locator('#export-summary').click(); const summaryDownload = await summaryEvent; assert.match(await readFile(await summaryDownload.path(), 'utf8'), /SYNTHETIC COMPUTATIONAL EXPERIMENT/);
       const downloadEvent = page.waitForEvent('download'); await page.locator('#export-json').click(); const download = await downloadEvent;
       const path = await download.path(), record = JSON.parse(await readFile(path, 'utf8'));
