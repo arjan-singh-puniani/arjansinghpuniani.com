@@ -5,7 +5,7 @@ import { createGarage } from './garage.js';
 import { createPitLane } from './pit-lane.js';
 import { pitLaneFrame, PIT_LANE } from './pit-lane-layout.js';
 import { renderScale } from './render-scale.js';
-import { crewPosture, jointBetween, easeMotion, stationHeading, stationCrewPose, outgoingWheelPose, jackCrewPose, planFootContacts, feetAt } from './crew.js';
+import { crewPosture, armElbow, easeMotion, stationHeading, stationCrewPose, incomingWheelPose, outgoingWheelPose, jackCrewPose, planFootContacts, feetAt } from './crew.js';
 import { loadHero, wheelTrack, setWheelRotation, alignmentTilt, CAR_IDENTITY } from './hero-car.js';
 import { createFacility } from './facility.js';
 import { operations } from './operations.js';
@@ -319,15 +319,16 @@ export function createWorld(canvas, onSelect, onStatus) {
         person.updateMatrixWorld(true);
         const feetLocal=movement.contacts?.map(f=>person.worldToLocal(new THREE.Vector3().fromArray(f.position)).toArray());
         const posture=crewPosture({...movement,feet:feetLocal}),joint=jointPose;
-        upper.position.fromArray(posture.pelvis);upper.rotation.x=-posture.lean;person.updateMatrixWorld(true);
+        upper.position.fromArray(posture.pelvis);upper.rotation.set(-posture.lean,0,posture.roll);person.updateMatrixWorld(true);
+        if(movement.handGrip!==undefined)[hand1,hand2].forEach((hand,i)=>{const rest=movement.handRest?new THREE.Vector3().fromArray(movement.handRest[i]):upper.localToWorld(new THREE.Vector3(i===0?-.16:.16,THREE.MathUtils.lerp(-.12,.05,movement.kneel),-.08));hand.lerp(rest,1-movement.handGrip);});
         const gaze=upper.worldToLocal(movement.lookAt?new THREE.Vector3().fromArray(movement.lookAt):hand1.clone().add(hand2).multiplyScalar(.5)).sub(person.userData.head.position);
-        person.userData.head.rotation.set(THREE.MathUtils.clamp(Math.atan2(gaze.y,Math.hypot(gaze.x,gaze.z)),-.35,.12),THREE.MathUtils.clamp(Math.atan2(-gaze.x,-gaze.z),-.55,.55),0);
+        person.userData.head.rotation.set(THREE.MathUtils.clamp(Math.atan2(gaze.y,Math.hypot(gaze.x,gaze.z)),-.35,.12),THREE.MathUtils.clamp(Math.atan2(-gaze.x,Math.max(.2,-gaze.z)),-.55,.55),0);
 
         [hand1, hand2].forEach((hand, i) => {
             const side=i===0?-1:1,target=person.worldToLocal(hand.clone());
             const shoulder=person.worldToLocal(upper.localToWorld(new THREE.Vector3(side*.16,.30,0)));
             target.sub(shoulder).clampLength(.02,.609).add(shoulder);
-            const elbow=new THREE.Vector3().fromArray(jointBetween(shoulder.toArray(),target.toArray(),.31,.30,[side,.1,.2]));
+            const elbow=new THREE.Vector3().fromArray(armElbow(shoulder.toArray(),target.toArray(),side));
             align(bones[i * 2], shoulder, elbow,1.15);
             align(bones[i * 2 + 1], elbow, target);
             joint.position.copy(elbow);joint.scale.setScalar(.061);joint.updateMatrix();joints.setMatrixAt(i,joint.matrix);
@@ -549,8 +550,8 @@ export function createWorld(canvas, onSelect, onStatus) {
             s.disc.position.set(-s.side * .12, height, moving);
             s.old.position.copy(s.group.worldToLocal(new THREE.Vector3().fromArray(outgoingWheelPose(stop,corner,state.time,wheelTrack(corner),height))));
             s.old.visible = true;
-            const correction=alignmentTilt(c),inward=easeMotion(progress(c.alignment,0,.65)),across=easeMotion(progress(c.alignment,.15,1)),installation=easeMotion(c.installation),replacementHeight=.355+(height-.355)*easeMotion(progress(c.alignment,.35,.9));
-            s.incoming.position.set(s.side * (.65 * (1 - inward) + .25 * (1 - installation)), replacementHeight, .80 * (1 - across) + correction + (c.incomingInstalled ? moving : 0));
+            const correction=alignmentTilt(c);
+            s.incoming.position.copy(s.group.worldToLocal(new THREE.Vector3().fromArray(incomingWheelPose(stop,corner,state.time,wheelTrack(corner),height))));s.incoming.position.z+=correction;
             s.incoming.visible = true;
             const activeObject = active.number === 1 ? car : second;
             const wheelPoint = activeObject.userData.body.localToWorld(new THREE.Vector3(s.side * wheelTrack(corner), .355, s.z));
@@ -578,14 +579,16 @@ export function createWorld(canvas, onSelect, onStatus) {
                 p.position.fromArray(motion.root);
                 p.rotation.y = stationHeading(corner,i);
                 p.updateMatrixWorld(true);
-                const hand1 = target.clone().add(new THREE.Vector3(i===0?s.side*.12:s.side*.18, i === 0 ? -.1 : i===1?.18:.24, i === 0 ? .04 : i===1?-.25:.25));
-                const hand2 = target.clone().add(new THREE.Vector3(i===0?0:s.side*.18, i === 0 ? -.03 : i===1?.18:.24, i === 0 ? -.06 : i===1?-.12:.12));
-                const grip=i===1?Math.max(work*easeMotion(progress(state.time,stop.stopAt,stop.stopAt+.12)),easeMotion(progress(c.removal,.05,.2))):i===2&&!c.incomingInstalled?1:work;
-                hand1.lerp(p.localToWorld(new THREE.Vector3(-.18,.70,-.07)),1-grip);
-                hand2.lerp(p.localToWorld(new THREE.Vector3(.18,.70,-.07)),1-grip);
+                const fore=i===1?-1:1,handSide=i===1?1:-1;
+                const hand1=target.clone().add(i===1?new THREE.Vector3(s.side*.215,.16,-.36):new THREE.Vector3(handSide*.12,.20,fore*.33)),hand2=target.clone().add(i===1?new THREE.Vector3(s.side*.215,.27,-.23):new THREE.Vector3(-handSide*.12,.20,fore*.33));
+                const installedAt=stop.corners[corner].events.find(e=>e.state==='WHEEL_INSTALLED').end;
+                const grip=i===1?easeMotion(progress(state.time,stop.stopAt,stop.stopAt+.25)):i===2?1-easeMotion(progress(state.time,installedAt,installedAt+.40)):work;
+                const rest1=i===1?new THREE.Vector3(s.side*(wheelTrack(corner)+.32)-.06,.555,s.z-stop.error-.33):p.localToWorld(new THREE.Vector3(-.18,.70,-.07)),rest2=i===1?new THREE.Vector3(s.side*(wheelTrack(corner)+.32)+.06,.555,s.z-stop.error-.33):p.localToWorld(new THREE.Vector3(.18,.70,-.07));
                 if(i===0){hand1.copy(s.gun.localToWorld(new THREE.Vector3(.15,-.16,.025)));hand2.copy(s.gun.localToWorld(new THREE.Vector3(.04,-.02,-.04)));}
+                const watching=(1-easeMotion(progress(state.time,stop.stopAt-.25,stop.stopAt+.20)))+(stop.releaseAt===null?0:easeMotion(progress(state.time,stop.releaseAt,stop.releaseAt+.35)));
+                const look=hand1.clone().add(hand2).multiplyScalar(.5).lerp(new THREE.Vector3(laneOffset(active),.7+active.lift,active.position),Math.min(1,watching));
                 const plan=contactPlan(stop,`${corner}/${i}`,poseAt,Math.max(0,stop.stopAt-.7),stop.corners[corner].events.at(-1).end+.9,p.rotation.y);
-                pose(p,hand1,hand2,{...motion,lookAt:state.time<stop.stopAt||active.released?[laneOffset(active),.7+active.lift,active.position]:null,contacts:feetAt(plan,state.time)});
+                pose(p,hand1,hand2,{...motion,handGrip:i>0?grip:undefined,handRest:i===1?[rest1.toArray(),rest2.toArray()]:null,lookAt:look.toArray(),contacts:feetAt(plan,state.time)});
             });
             const start = s.gun.getWorldPosition(new THREE.Vector3());
             const end = new THREE.Vector3(legacy?-4:s.side*(isPitLane()?2.65:4.9),isPitLane()?3.14:2.7,s.z);
@@ -604,9 +607,7 @@ export function createWorld(canvas, onSelect, onStatus) {
         });
         jacks.forEach(({ group, operator, sign, arm }, i) => {
             const lift = i === 0 ? active.frontLift : active.rearLift;
-            const up = i === 0 ? stop.front : stop.rear, down = i === 0 ? stop.frontDown : stop.rearDown;
-            const engagement = progress(state.time, up.start, up.end) * (1 - (down ? progress(state.time, down.start, down.end) : 0));
-            const poseAt=t=>jackCrewPose(stop,i,t),motion=poseAt(state.time);
+            const poseAt=t=>jackCrewPose(stop,i,t),motion=poseAt(state.time),{engagement}=motion;
             group.position.set(motion.root[0],0,sign*(2.65+(1-engagement)*.7)-stop.error);arm.rotation.x=sign*lift*2;operator.position.fromArray(motion.root);
             operator.rotation.y = sign < 0 ? Math.PI : 0;
             operator.updateMatrixWorld(true);

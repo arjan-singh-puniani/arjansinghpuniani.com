@@ -1,0 +1,64 @@
+{
+  "unitTests": 237,
+  "motion": [
+    {
+      "scenario": "coordinated",
+      "frames": 846,
+      "bodyCollisions": 0,
+      "tireCollisions": 0,
+      "maxPelvisSpeed": 6.6650813875433865,
+      "maxArmSpeed": 12.091647242053982
+    },
+    {
+      "scenario": "gun",
+      "frames": 951,
+      "bodyCollisions": 0,
+      "tireCollisions": 0,
+      "maxPelvisSpeed": 7.028540514975261,
+      "maxArmSpeed": 12.091647242052812
+    },
+    {
+      "scenario": "position",
+      "frames": 880,
+      "bodyCollisions": 0,
+      "tireCollisions": 0,
+      "maxPelvisSpeed": 6.783815019019532,
+      "maxArmSpeed": 12.089661919765579
+    },
+    {
+      "scenario": "unsecured",
+      "frames": 827,
+      "bodyCollisions": 0,
+      "tireCollisions": 0,
+      "maxPelvisSpeed": 6.6650813875433865,
+      "maxArmSpeed": 12.091647242053982
+    }
+  ],
+  "baseline": {
+    "largestMeasuredCrewOverlapMetres": 0.14211893792828384,
+    "maxSampledPelvisSpeed": 22.961076938514594,
+    "maxSampledElbowSpeed": 31.10543611228107
+  },
+  "browser": {
+    "crew": {
+      "checks": 7,
+      "errors": []
+    },
+    "cinema": {
+      "checks": 33,
+      "errors": []
+    },
+    "wheels": {
+      "checks": 5,
+      "errors": []
+    },
+    "venue": {
+      "checks": 13,
+      "errors": []
+    },
+    "world": {
+      "checks": 54,
+      "errors": []
+    }
+  }
+}
