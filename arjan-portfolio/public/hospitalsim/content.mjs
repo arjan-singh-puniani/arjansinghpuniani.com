@@ -1,4 +1,4 @@
-import {CLINIC_DEPARTMENTS,CLINIC_ROLES} from './clinic.mjs?v=127';
+import {CLINIC_DEPARTMENTS,CLINIC_ROLES} from './clinic.mjs?v=128';
 export const VERSION='1.0.0-rc5', STEP=1;
 export const WALK_SUBSTEPS=3;
 export const GRID={w:9,h:8,entry:{x:4,y:7},exit:{x:7,y:7},step:1.65};

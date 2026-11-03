@@ -1,5 +1,5 @@
-import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=127';
-import {blocked} from './navigation.mjs?v=127';
+import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=128';
+import {blocked} from './navigation.mjs?v=128';
 export const WALK_SPEED=1.2375;
 // Quarter-cell paths keep their endpoints; tiny corner arcs stay within the clear corridor.
 const curvedRoutes=new WeakMap();
