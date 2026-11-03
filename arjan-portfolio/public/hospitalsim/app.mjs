@@ -1,13 +1,13 @@
-import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds,clinicSite} from './clinic.mjs?v=130';
-import {archiveHospital,hospitalArchives} from './archive.mjs?v=130';
-import {openingBuilds,openingCount} from './opening.mjs?v=130';
-import {characterReaction} from './reactions.mjs?v=130';
-import {deskPost,deskAvailable,staffTask,react,eventChoice,assignDesk,dispatchFacilities} from './operations.mjs?v=130';
-import {landingOptions,landingCheck} from './landing.mjs?v=130';
-import {initial,expandSite,siteOf,tick,openClinic,hireCost,build,buildCost,upgrade,remove,undo,policy,placement,door,queueFor,TYPES,VERSION,validate,report,TRAITS,SCENARIOS,DECOR,assignStaff,staffingPlan,staffModule,arrangeWaiting,decorate,acknowledge,causes,mastery,continueHospital,entrance,exit,gatePlacement,moveGate,canLift,dropPlacement,relocate,STAFF_ROLES} from './simulation.mjs?v=130';
-import {installExtras} from './extras.mjs?v=130';
-import {nextStep} from './guidance.mjs?v=130';
-import {Diorama} from './renderer.mjs?v=130';
+import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds,clinicSite} from './clinic.mjs?v=131';
+import {archiveHospital,hospitalArchives} from './archive.mjs?v=131';
+import {openingBuilds,openingCount} from './opening.mjs?v=131';
+import {characterReaction} from './reactions.mjs?v=131';
+import {deskPost,deskAvailable,staffTask,react,eventChoice,assignDesk,dispatchFacilities} from './operations.mjs?v=131';
+import {landingOptions,landingCheck} from './landing.mjs?v=131';
+import {initial,expandSite,siteOf,tick,openClinic,hireCost,build,buildCost,upgrade,remove,undo,policy,placement,door,queueFor,TYPES,VERSION,validate,report,TRAITS,SCENARIOS,DECOR,assignStaff,staffingPlan,staffModule,arrangeWaiting,decorate,acknowledge,causes,mastery,continueHospital,entrance,exit,gatePlacement,moveGate,canLift,dropPlacement,relocate,STAFF_ROLES} from './simulation.mjs?v=131';
+import {installExtras} from './extras.mjs?v=131';
+import {nextStep} from './guidance.mjs?v=131';
+import {Diorama} from './renderer.mjs?v=131';
 const $=id=>document.getElementById(id),money=n=>'$'+Math.floor(n).toLocaleString(),icons={intake:'⇥',gp:'✚',pharmacy:'℞',neuro:'◇',gait:'↔',eeg:'∿',sleep:'☾',consult:'✚',scan:'◎',care:'▱',rest:'⌑',plan:'◇',waiting:'♧'},STORE='common-good-diorama-v3';
 let s,restoreError='';try{const raw=localStorage.getItem(STORE)||localStorage.getItem('common-good-diorama-v2');s=raw?validate(JSON.parse(raw)):initial()}catch(error){restoreError=error.message;try{localStorage.setItem('common-good-recovery-v3',localStorage.getItem(STORE)||localStorage.getItem('common-good-diorama-v2'))}catch{}s=initial()}
 expandSite(s);

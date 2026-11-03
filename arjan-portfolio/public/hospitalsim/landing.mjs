@@ -1,4 +1,4 @@
-import {siteOf,blocked,entrance,exit,door,canLift,dropPlacement} from './simulation.mjs?v=130';
+import {siteOf,blocked,entrance,exit,door,canLift,dropPlacement} from './simulation.mjs?v=131';
 
 // A held scene is paused. Build one navigation snapshot, never run BFS in pointermove.
 export function landingOptions(s,kind,id){

@@ -1,12 +1,12 @@
-import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds} from './clinic.mjs?v=130';
-import {openingBuilds,openingCount} from './opening.mjs?v=130';
-import {initOperations,upgradeOperations,roomReady,teamFor,startTurnover,say,intakeAssistant,validTeam,validateOperations,tickOperations,claimDesk,checkIn,caseFor,react,deskAvailable,deskPost,deskStation,deskBay,assignDesk,reliefBay} from './operations.mjs?v=130';
-import {entrance,exit,gateDirection,door,blocked,path,reachable} from './navigation.mjs?v=130';
-export {entrance,exit,gateDirection,door,blocked,path,reachable} from './navigation.mjs?v=130';
+import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds} from './clinic.mjs?v=131';
+import {openingBuilds,openingCount} from './opening.mjs?v=131';
+import {initOperations,upgradeOperations,roomReady,teamFor,startTurnover,say,intakeAssistant,validTeam,validateOperations,tickOperations,claimDesk,checkIn,caseFor,react,deskAvailable,deskPost,deskStation,deskBay,assignDesk,reliefBay} from './operations.mjs?v=131';
+import {entrance,exit,gateDirection,door,blocked,path,reachable} from './navigation.mjs?v=131';
+export {entrance,exit,gateDirection,door,blocked,path,reachable} from './navigation.mjs?v=131';
 // The original LCG, BFS, pathway and queue policy are retained from Hospital Works v0.1.
 // No DOM, clock or renderer dependencies. One tick is one fictional game second.
-import {CAMPUS,siteOf,VERSION,STEP,GRID,WALK_SUBSTEPS,TYPES,TRAITS,SCENARIOS,DECOR,GOALS,STAFF_ROLES,initialRole,CASES,ROLE_SKILLS,ROOM_ROLES} from './content.mjs?v=130';
-export {siteOf,VERSION,STEP,GRID,TYPES,TRAITS,SCENARIOS,DECOR,STAFF_ROLES,initialRole} from './content.mjs?v=130';
+import {CAMPUS,siteOf,VERSION,STEP,GRID,WALK_SUBSTEPS,TYPES,TRAITS,SCENARIOS,DECOR,GOALS,STAFF_ROLES,initialRole,CASES,ROLE_SKILLS,ROOM_ROLES} from './content.mjs?v=131';
+export {siteOf,VERSION,STEP,GRID,TYPES,TRAITS,SCENARIOS,DECOR,STAFF_ROLES,initialRole} from './content.mjs?v=131';
 const names=['Alex','Sam','Noor','Jordan','Maya','Eli','Robin','Avery','Kai','Imani','Rae','Morgan'];
 export function initial(scenario='clinic',seed=431,mode='sandbox',continuity={}){
  const s={version:VERSION,scenario,mode,entrance:{...GRID.entry},exit:{...GRID.exit},autoHandoff:true,communication:false,prevention:!!continuity.prevention,arrivalIndex:0,arrivalTape:arrivalTape(scenario,seed,continuity.prevention),initialSeed:seed,seed,seconds:0,cash:8000,served:0,left:0,arrivals:0,trust:85,energy:100,breaks:false,access:false,urgency:true,rooms:[{id:1,x:5,y:2,type:'consult',level:1,staff:[1]},{id:2,x:1,y:0,type:'scan',level:1,staff:[2]},{id:3,x:1,y:3,type:'care',level:1,staff:[3,4]}],staff:['Mira','Jules','Remy','Ash','Sage','Kit'].map((name,i)=>({id:i+1,name,role:initialRole(i+1),skills:[...ROLE_SKILLS[initialRole(i+1)]],trait:['listener','steady','steady','brisk','brisk','listener'][i],shiftEnd:scenario==='staffing'&&i===3?300:480,fatigue:0,breakUntil:0,...(i>=4?{position:{x:4.5+(i%2)*.5,y:5.75}}:{})})),patients:[],nextId:10,nextArrival:1,surge:0,eventDone:false,ended:false,records:[],actions:[],log:['Doors open. A little space. A lot of care.'],utilization:{},lastAction:null};
@@ -133,10 +133,10 @@ export function tick(s){
  s.patients=s.patients.filter(p=>p.state!=='done');if(s.seconds>=(s.shiftStart||0)+480||s.cash<-1000)s.ended=true;
 }
 export function validate(raw){
+ if(raw?.site!==undefined&&(!raw.clinic||!raw.site||Object.keys(raw.site).length!==4||Object.keys(CAMPUS).some(k=>raw.site[k]!==CAMPUS[k])))throw Error('Invalid hospital site');
  const oldVersion=raw?.version,s=migrate(raw);
  const finite=n=>typeof n==='number'&&Number.isFinite(n),integer=n=>Number.isInteger(n)&&n>=0,safeName=n=>typeof n==='string'&&/^[A-Za-z][A-Za-z0-9 ]{0,30}$/.test(n);
  if(!s||s.version!==VERSION||!Object.hasOwn(SCENARIOS,s.scenario)||!['sandbox','campaign'].includes(s.mode)||!Array.isArray(s.rooms)||s.rooms.length>(s.site?64:18)||!Array.isArray(s.staff)||s.staff.length<(['first','clinic'].includes(s.scenario)?0:4)||s.staff.length>(s.site?64:16)||!Array.isArray(s.patients)||s.patients.length>200||!Array.isArray(s.records)||!Array.isArray(s.actions)||!Array.isArray(s.log)||!s.utilization||!integer(s.seed)||!finite(s.cash)||!integer(s.seconds)||s.seconds>(s.shiftStart||0)+480||!integer(s.initialSeed)||!integer(s.nextId)||!integer(s.nextArrival)||!finite(s.energy)||!finite(s.trust)||!finite(s.surge))throw Error('Unsupported or damaged shift');
- if(s.site!==undefined&&(!s.clinic||!s.site||Object.keys(s.site).length!==4||Object.keys(CAMPUS).some(k=>s.site[k]!==CAMPUS[k])))throw Error('Invalid hospital site');
  if(s.scenario==='clinic'&&(!s.clinic||typeof s.clinic.opened!=='boolean'||!s.clinic.opened&&(s.seconds||s.arrivals)||![s.clinic.gpVisits,s.clinic.checkedIn,s.clinic.revenue].every(integer)||!Array.isArray(s.clinic.billing)||s.clinic.billing.some(b=>!integer(b.at)||b.at>s.seconds||!integer(b.patient)||!CLINIC_DEPARTMENTS[b.service]||b.amount!==CLINIC_DEPARTMENTS[b.service].fee)||s.clinic.billing.reduce((a,b)=>a+b.amount,0)!==s.clinic.revenue||new Set(s.clinic.billing.map(b=>b.patient+':'+b.service)).size!==s.clinic.billing.length))throw Error('Invalid clinic ledger');
  if(s.scenario!=='first'&&s.first!==undefined)throw Error('Unexpected opening state');
  if(s.scenario==='first'&&(!s.first||typeof s.first.opened!=='boolean'||!s.first.opened&&(s.seconds!==0||s.arrivals)))throw Error('Invalid clinic opening');

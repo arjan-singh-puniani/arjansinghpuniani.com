@@ -1,0 +1,8 @@
+{
+  "runtime": 131,
+  "gameSuitesPassed": 27,
+  "regressions": "import-guard-regressions.json",
+  "browserCheck": "Imported deliberately malformed legacy0.4 checkpoint with an enormous site dimension through the native file chooser. UI returned: Import rejected: Invalid hospital site. Current shift preserved.",
+  "finalApplicationErrors": [],
+  "preservedEvidence": "Earlier RC6 runtime130 recordings/measurements retain their original labels. No geometry, scenario, service or arrival changes in131."
+}

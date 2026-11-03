@@ -10,7 +10,7 @@ The clinic's safety limits are now 64 rooms and 64 colleagues (previously 18 and
 
 Loading an earlier `clinic` save expands it once. Rooms, doors and active people/routes translate together by +12 on the Y axis; the old core occupies rows 12–19. Gate orientation is retained. Counts, money, assignments, billing, random seed/tape and active service progress are preserved. No fresh start is required. Historical decisions and completed visit coordinates retain their old frame, with an explicit `expand-site` action documenting the translation. New reports include site dimensions.
 
-`initial('clinic')` remains the historical compact model template for replaying existing films. The browser calls `expandSite(state)` after initialization or a validated import/restore. Headless code creating the current clinic should do the same. Expanded checkpoints persist `site` and do not translate again. Save import rejects unsupported site dimensions before allocating navigation buffers.
+`initial('clinic')` remains the historical compact model template for replaying existing films. The browser calls `expandSite(state)` after initialization or a validated import/restore. Headless code creating the current clinic should do the same. Expanded checkpoints persist `site` and do not translate again. Save import rejects unsupported site dimensions before legacy migration can allocate navigation buffers. The final 131 guard also covers old-format checkpoints carrying invalid site metadata.
 
 ## Implementation and reproducibility
 
@@ -22,7 +22,7 @@ node tests/campus.mjs
 node tests/clinic-flow.mjs
 ```
 
-The game remains buildless. Model `1.0.0-rc6`, runtime imports `130`. State bounds now reach navigation, placement, staff travel, landing previews, renderer land/grid, camera, keyboard and location controls, validation and reports. Placement uses one connectivity flood for each candidate, rather than a BFS for each doorway. Footprint rasterization preserves the original strict clearance edges. Pickup articulation checking uses an iterative traversal, avoiding a deep recursive stack on the larger navigation grid. The renderer uses one procedural foundation and one instanced landing layer; it does not generate an all-pairs corridor mesh across the estate.
+The game remains buildless. Model `1.0.0-rc6`, runtime imports `131`. State bounds now reach navigation, placement, staff travel, landing previews, renderer land/grid, camera, keyboard and location controls, validation and reports. Placement uses one connectivity flood for each candidate, rather than a BFS for each doorway. Footprint rasterization preserves the original strict clearance edges. Pickup articulation checking uses an iterative traversal, avoiding a deep recursive stack on the larger navigation grid. The renderer uses one procedural foundation and one instanced landing layer; it does not generate an all-pairs corridor mesh across the estate.
 
 No Blender work was executed for RC6. Existing original Blender sources, 107 GLBs, textures and their licenses are reused unchanged. The enlarged foundation/grid are runtime Three.js geometry. All 24 standalone REPLISOME files are byte-identical to the release base. No unrelated portfolio content or access setting is replaced.
 
