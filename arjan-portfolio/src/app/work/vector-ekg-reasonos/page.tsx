@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ReferenceECGs } from "@/components/ReferenceECGs";
 import { RecordedECG } from "@/components/RecordedECG";
 import { RECORDINGS } from "@/lib/reasonos/recordings";
 import { ReasonOSLab } from "@/components/ReasonOSLab";
@@ -9,7 +10,7 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Vector EKG and ReasonOS",
   description:
-    "Arjan Singh Puniani's educational prototype for recording ECG observations, measurements, competing explanations, contradictions, provenance, and revisions.",
+    "Practice systematic ECG interpretation on paired source photographs and four native digital reference recordings, with evidence-linked observations and feedback.",
   alternates: { canonical: "/work/vector-ekg-reasonos" },
   openGraph: {
     title: "Vector EKG and ReasonOS",
@@ -278,7 +279,7 @@ export default function VectorEkgReasonOSPage() {
     author: { "@type": "Person", name: "Arjan Singh Puniani", url: siteUrl },
     url: `${siteUrl}/work/vector-ekg-reasonos`,
     description:
-      "Interactive recorded ECG images, source-pixel interval measurements, QT correction, and replayable evidence-conditioned reasoning.",
+      "Guided ECG interpretation, native 12-lead reference cases, calibrated calipers, source-linked observations, feedback, and replayable evidence.",
     isAccessibleForFree: true,
   };
   return (
@@ -290,13 +291,21 @@ export default function VectorEkgReasonOSPage() {
       <header className="rosx-hero">
         <div className="shell">
           <p className="eyebrow">Vector EKG / ReasonOS</p>
-          <h1>ECG recordings and measurements</h1>
+          <h1>Read an ECG and defend the interpretation</h1>
           <p className="vector-deck">
-            Inspect the recorded traces, compare the device reports, and measure
-            intervals directly on the ECG image.
+            Work through rate, rhythm, axis, intervals, morphology, and serial
+            comparison. Pin the evidence, commit your reasoning, then compare
+            with the reference method.
           </p>
         </div>
       </header>
+      <nav className="rosx-science-nav shell" aria-label="ECG study sections">
+        <a href="#laboratory">Paired case study</a>
+        <a href="#ecg-reference-practice">Reference ECG practice</a>
+        <a href="#source-case">Source recordings</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#model-references">Model & references</a>
+      </nav>
       <section
         className="lab-embed rosx-lab"
         id="laboratory"
@@ -306,18 +315,13 @@ export default function VectorEkgReasonOSPage() {
           <RecordedECG />
         </div>
       </section>
+      <ReferenceECGs />
       <details className="rosx-model-explanation" id="model-explanation">
         <summary>How a lead works · separate idealized vector model</summary>
         <div className="reasonos-theme">
           <ReasonOSLab />
         </div>
       </details>
-      <nav className="rosx-science-nav shell" aria-label="ECG study sections">
-        <a href="#laboratory">Laboratory</a>
-        <a href="#source-case">Source recordings</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#model-references">Model & references</a>
-      </nav>
       <section className="section rosx-source-case" id="source-case">
         <div className="shell">
           <div className="rosx-section-head">

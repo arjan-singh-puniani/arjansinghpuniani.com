@@ -3,10 +3,17 @@
 import Script from "next/script";
 import { useMemo, useRef, useState } from "react";
 import { MathText } from "./ReasonOSLab";
+import { ECGStudy } from "./ECGStudy";
+import {
+  RECORDED_LEADS,
+  type RecordedLead,
+  type StudyAttempt,
+} from "@/lib/reasonos/study";
 import {
   RECORDINGS,
   imageInterval,
   reportCalculations,
+  recordingLeadRegion,
   type ImagePoint,
 } from "@/lib/reasonos/recordings";
 import {
@@ -37,7 +44,11 @@ export function RecordedECG() {
   const [kind, setKind] = useState("RR");
   const [mode, setMode] = useState<"interval" | "grid">("interval");
   const [full, setFull] = useState(false);
-  const [zoom, setZoom] = useState(2);
+  const [selectedLead, setSelectedLead] = useState<RecordedLead>("II-rhythm");
+  const [panel, setPanel] = useState<"study" | "calculations">("study");
+  const [studyAttempts, setStudyAttempts] = useState<StudyAttempt[]>([]);
+  const calibrationPanel = useRef<HTMLDetailsElement>(null);
+  const [zoom, setZoom] = useState(1);
   const initialFocus = {
     x: (recording.initialMarkers[0].x + recording.initialMarkers[1].x) / 2,
     y: recording.rhythm.y + recording.rhythm.height / 2,
@@ -57,6 +68,7 @@ export function RecordedECG() {
   }
   const sourceKey = JSON.stringify({
     kind: "recording-image",
+    lead: selectedLead,
     recording: {
       id: recording.id,
       sha256: recording.sha256,
@@ -98,12 +110,18 @@ export function RecordedECG() {
     fridericia = qtMs / Math.cbrt(rrMs / 1000);
   const region = full
     ? { x: 0, y: 0, width: recording.width, height: recording.height }
-    : recording.rhythm;
+    : recordingLeadRegion(recording, selectedLead);
   const width = region.width / zoom,
     height = region.height / zoom;
   const frame = {
-    x: Math.max(0, Math.min(focus.x - width / 2, recording.width - width)),
-    y: Math.max(0, Math.min(focus.y - height / 2, recording.height - height)),
+    x: Math.max(
+      region.x,
+      Math.min(focus.x - width / 2, region.x + region.width - width),
+    ),
+    y: Math.max(
+      region.y,
+      Math.min(focus.y - height / 2, region.y + region.height - height),
+    ),
     width,
     height,
   };
@@ -209,7 +227,8 @@ export function RecordedECG() {
     setMarkers(copy(next.initialMarkers));
     setGrid(copy(next.initialGrid));
     setFull(false);
-    setZoom(2);
+    setSelectedLead("II-rhythm");
+    setZoom(1);
     setMode("interval");
     setCaliperBasis(false);
     setMessage("");
@@ -259,6 +278,70 @@ export function RecordedECG() {
           : recording.rhythm.y + recording.rhythm.height / 2,
     });
   }
+  function focusLead(lead: RecordedLead) {
+    setSelectedLead(lead);
+    setFull(false);
+    setZoom(1);
+    const area = recordingLeadRegion(recording, lead);
+    setFocus(
+      lead === "II-rhythm"
+        ? {
+            x:
+              (recording.initialMarkers[0].x + recording.initialMarkers[1].x) /
+              2,
+            y: area.y + area.height / 2,
+          }
+        : { x: area.x + area.width / 2, y: area.y + area.height / 2 },
+    );
+    setPlace(0);
+    setMode("interval");
+  }
+  function recordStudy(attempt: StudyAttempt) {
+    let state = snapshot;
+    const inputs = new Set<string>();
+    for (const pin of attempt.pins) {
+      let sourceEvent = state.trace.find(
+        (event) =>
+          event.operator === "Inspect" &&
+          event.accepted &&
+          event.evidenceRefs.includes(`source=${pin.sourceKey}`),
+      );
+      if (!sourceEvent) {
+        state = attemptTransformation(state, {
+          operator: "Inspect",
+          domain: "ecg",
+          actor: "system",
+          inputStateIds: [state.states[0].id],
+          summary: `Source view: recording ${pin.recordingId}, ${pin.lead}`,
+          provenance: {
+            source: pin.image,
+            method: "Learner-pinned source viewport",
+            verification: "unverified",
+            witnessType: "reference-derived",
+            modelVersion: null,
+          },
+          evidenceRefs: [
+            `source=${pin.sourceKey}`,
+            `pin=${JSON.stringify(pin)}`,
+          ],
+        });
+        sourceEvent = state.trace.at(-1);
+      }
+      if (sourceEvent?.outputStateId) inputs.add(sourceEvent.outputStateId);
+      pin.measurementIds.forEach((id) => inputs.add(id));
+    }
+    const next = apply(
+      "AttachEvidence",
+      `Learner method response: ${attempt.stepId}; reference match ${attempt.methodMatch}; case observations for review`,
+      [...inputs],
+      [`study=${JSON.stringify(attempt)}`],
+      state,
+    );
+    setSnapshot(next);
+    if (next.trace.at(-1)?.accepted)
+      setStudyAttempts((old) => [...old, structuredClone(attempt)]);
+    return Boolean(next.trace.at(-1)?.accepted);
+  }
   function exportTrace() {
     const url = URL.createObjectURL(
       new Blob(
@@ -269,6 +352,7 @@ export function RecordedECG() {
               recording,
               markers,
               calibration,
+              studyAttempts,
               snapshot,
             },
             null,
@@ -322,7 +406,11 @@ export function RecordedECG() {
           <div className={s.sourceHead}>
             <h3 id="recorded-image-title">
               Recording {recording.id} ·{" "}
-              {full ? "12-lead sheet" : "lead II rhythm strip"}
+              {full
+                ? "12-lead sheet"
+                : selectedLead === "II-rhythm"
+                  ? "lead II rhythm strip"
+                  : `lead ${selectedLead}`}
             </h3>
             <span>Recorded pixels</span>
           </div>
@@ -330,9 +418,7 @@ export function RecordedECG() {
             <button
               aria-pressed={!full}
               onClick={() => {
-                setFull(false);
-                setZoom(2);
-                selectMode(mode);
+                focusLead("II-rhythm");
               }}
             >
               Rhythm strip
@@ -347,6 +433,20 @@ export function RecordedECG() {
             >
               Full 12-lead ECG
             </button>
+            <label>
+              Lead{" "}
+              <select
+                aria-label="Recorded ECG lead"
+                value={selectedLead}
+                onChange={(e) => focusLead(e.target.value as RecordedLead)}
+              >
+                {RECORDED_LEADS.map((lead) => (
+                  <option key={lead} value={lead}>
+                    {lead === "II-rhythm" ? "II rhythm" : lead}
+                  </option>
+                ))}
+              </select>
+            </label>
             <label>
               Zoom{" "}
               <input
@@ -511,7 +611,7 @@ export function RecordedECG() {
               </strong>
             </div>
           </div>
-          <details className={base.settings}>
+          <details className={base.settings} ref={calibrationPanel}>
             <summary>Calibrate the grid and record a measurement</summary>
             <p className={base.caption}>
               Place G₁ and G₂ on a horizontal grid span near the selected beat.
@@ -622,119 +722,222 @@ export function RecordedECG() {
             )}
           </details>
         </section>
-        <section
-          className={s.calculations}
-          aria-labelledby="recorded-calculation-title"
-        >
-          <h3 id="recorded-calculation-title">
-            Calculations from this recording
-          </h3>
-          <div className={s.report}>
-            <span>Transcribed device report · Recording {recording.id}</span>
-            <dl>
-              {[
-                ["Rate", `${recording.report.rate} bpm`],
-                ["PR", `${recording.report.pr} ms`],
-                ["QRS", `${recording.report.qrs} ms`],
-                ["QT", `${recording.report.qt} ms`],
-                ["QTc", `${recording.report.qtc} ms`],
-              ].map(([label, value]) => (
-                <div key={label}>
-                  <dt>{label}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <div className={s.basis}>
-            <label>
-              <input
-                type="checkbox"
-                checked={useCalipers}
-                disabled={!rr || !qt}
-                onChange={(e) => setCaliperBasis(e.target.checked)}
-              />
-              Use my saved RR and QT measurements
-            </label>
-            <small>
-              {useCalipers
-                ? "Inputs: two admitted measurements from this image and calibration."
-                : "Inputs: the device-reported rate and QT. Save RR and QT to use calipers instead."}
-            </small>
-          </div>
+        <aside className={s.learning}>
           <div
-            data-calculation-basis={
-              useCalipers ? "image-calipers" : "device-report"
-            }
-          >
-            <p>
-              {useCalipers
-                ? "RR measured between your markers"
-                : "RR inferred from the reported rate"}
-            </p>
-            <MathText
-              tex={
-                useCalipers
-                  ? `RR\\approx${n(rrMs)}\\,\\mathrm{ms}`
-                  : `RR=\\frac{60000\\,\\mathrm{ms/min}}{${recording.report.rate}\\,\\mathrm{beats/min}}\\approx${n(rrMs)}\\,\\mathrm{ms}`
-              }
-              reading={`${useCalipers ? "Image-measured RR" : "RR derived from the reported rate"}: ${n(rrMs)} milliseconds.`}
-            />
-            <p>Bazett · QT divided by the square root of RR in seconds</p>
-            <MathText
-              tex={`QTc_B=\\frac{${n(qtMs)}\\,\\mathrm{ms}}{\\sqrt{${n(rrMs / 1000, 4)}\\,\\mathrm{s}/1\\,\\mathrm{s}}}\\approx${n(bazett)}\\,\\mathrm{ms}`}
-              reading={`Bazett QT correction: QT ${n(qtMs)} milliseconds, RR ${n(rrMs)} milliseconds, result ${n(bazett)} milliseconds.`}
-            />
-            <p>Fridericia · QT divided by the cube root of RR in seconds</p>
-            <MathText
-              tex={`QTc_F=\\frac{${n(qtMs)}\\,\\mathrm{ms}}{\\sqrt[3]{${n(rrMs / 1000, 4)}\\,\\mathrm{s}/1\\,\\mathrm{s}}}\\approx${n(fridericia)}\\,\\mathrm{ms}`}
-              reading={`Fridericia QT correction gives ${n(fridericia)} milliseconds from the same recorded inputs.`}
-            />
-          </div>
-          <p className={base.caption}>
-            The report gives QTc {recording.report.qtc} ms without naming its
-            formula. Both calculations use the same recorded inputs and state
-            their method.
-          </p>
-          <button
-            onClick={() => {
-              const src = source(snapshot);
-              let state = src.state;
-              let reportId = src.id;
-              if (!useCalipers) {
-                const report = apply(
-                  "Inspect",
-                  `Device-report transcription for recording ${recording.id}`,
-                  [src.id],
-                  [`report=${JSON.stringify(recording.report)}`],
-                  state,
-                  "machine-derived",
-                );
-                state = report;
-                reportId = report.states.at(-1)!.id;
-              }
-              const inputs = useCalipers ? [rr!.id, qt!.id] : [reportId];
-              const next = apply(
-                "AttachEvidence",
-                `Recording ${recording.id}: QTc comparison from ${useCalipers ? "image calipers" : "device report"}`,
-                inputs,
-                [
-                  `basis=${useCalipers ? "image-calipers" : "device-report"}`,
-                  `RRms=${rrMs}`,
-                  `QTms=${qtMs}`,
-                  `bazettMs=${bazett}`,
-                  `fridericiaMs=${fridericia}`,
-                ],
-                state,
-                "application-calculated",
-              );
-              setSnapshot(next);
-              setMessage("Calculation recorded with its source dependencies.");
+            className={s.panelTabs}
+            role="tablist"
+            aria-label="ECG workspace mode"
+            onKeyDown={(e) => {
+              if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key))
+                return;
+              e.preventDefault();
+              const next =
+                e.key === "Home"
+                  ? "study"
+                  : e.key === "End"
+                    ? "calculations"
+                    : panel === "study"
+                      ? "calculations"
+                      : "study";
+              setPanel(next);
+              document
+                .getElementById(
+                  next === "study" ? "ecg-study-tab" : "ecg-calculations-tab",
+                )
+                ?.focus();
             }}
           >
-            Record this calculation
-          </button>
-        </section>
+            <button
+              role="tab"
+              id="ecg-study-tab"
+              aria-selected={panel === "study"}
+              tabIndex={panel === "study" ? 0 : -1}
+              aria-controls="ecg-study-panel"
+              onClick={() => setPanel("study")}
+            >
+              Guided interpretation
+            </button>
+            <button
+              role="tab"
+              id="ecg-calculations-tab"
+              aria-selected={panel === "calculations"}
+              tabIndex={panel === "calculations" ? 0 : -1}
+              aria-controls="ecg-calculations-panel"
+              onClick={() => setPanel("calculations")}
+            >
+              Calculations
+            </button>
+          </div>
+          <div
+            role="tabpanel"
+            id="ecg-study-panel"
+            aria-labelledby="ecg-study-tab"
+            hidden={panel !== "study"}
+          >
+            <ECGStudy
+              pin={{
+                recordingId: recording.id,
+                image: recording.image,
+                sha256: recording.sha256,
+                sourceKey,
+                lead: full ? "12-lead" : selectedLead,
+                rect: {
+                  x: n(frame.x, 3),
+                  y: n(frame.y, 3),
+                  width: n(frame.width, 3),
+                  height: n(frame.height, 3),
+                },
+                markers: markers.filter(
+                  (point) =>
+                    point.x >= frame.x &&
+                    point.x <= frame.x + frame.width &&
+                    point.y >= frame.y &&
+                    point.y <= frame.y + frame.height,
+                ),
+                measurementIds: measurements.map((state) => state.id),
+              }}
+              attempts={studyAttempts}
+              measurements={measurements.map((state) => ({
+                kind: String(state.payload.kind),
+                duration: Number(state.payload.duration),
+              }))}
+              onFocus={focusLead}
+              onCalipers={(kind) => {
+                setKind(kind);
+                if (calibrationPanel.current) {
+                  calibrationPanel.current.open = true;
+                  calibrationPanel.current.scrollIntoView({
+                    block: "nearest",
+                    behavior: matchMedia("(prefers-reduced-motion: reduce)")
+                      .matches
+                      ? "instant"
+                      : "smooth",
+                  });
+                }
+              }}
+              onCommit={recordStudy}
+              onExport={exportTrace}
+            />
+          </div>
+          <section
+            role="tabpanel"
+            id="ecg-calculations-panel"
+            aria-labelledby="ecg-calculations-tab"
+            hidden={panel !== "calculations"}
+            className={s.calculations}
+          >
+            <h3 id="recorded-calculation-title">
+              Calculations from this recording
+            </h3>
+            <div className={s.report}>
+              <span>Transcribed device report · Recording {recording.id}</span>
+              <dl>
+                {[
+                  ["Rate", `${recording.report.rate} bpm`],
+                  ["PR", `${recording.report.pr} ms`],
+                  ["QRS", `${recording.report.qrs} ms`],
+                  ["QT", `${recording.report.qt} ms`],
+                  ["QTc", `${recording.report.qtc} ms`],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div className={s.basis}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={useCalipers}
+                  disabled={!rr || !qt}
+                  onChange={(e) => setCaliperBasis(e.target.checked)}
+                />
+                Use my saved RR and QT measurements
+              </label>
+              <small>
+                {useCalipers
+                  ? "Inputs: two admitted measurements from this image and calibration."
+                  : "Inputs: the device-reported rate and QT. Save RR and QT to use calipers instead."}
+              </small>
+            </div>
+            <div
+              data-calculation-basis={
+                useCalipers ? "image-calipers" : "device-report"
+              }
+            >
+              <p>
+                {useCalipers
+                  ? "RR measured between your markers"
+                  : "RR inferred from the reported rate"}
+              </p>
+              <MathText
+                tex={
+                  useCalipers
+                    ? `RR\\approx${n(rrMs)}\\,\\mathrm{ms}`
+                    : `RR=\\frac{60000\\,\\mathrm{ms/min}}{${recording.report.rate}\\,\\mathrm{beats/min}}\\approx${n(rrMs)}\\,\\mathrm{ms}`
+                }
+                reading={`${useCalipers ? "Image-measured RR" : "RR derived from the reported rate"}: ${n(rrMs)} milliseconds.`}
+              />
+              <p>Bazett · QT divided by the square root of RR in seconds</p>
+              <MathText
+                tex={`QTc_B=\\frac{${n(qtMs)}\\,\\mathrm{ms}}{\\sqrt{${n(rrMs / 1000, 4)}\\,\\mathrm{s}/1\\,\\mathrm{s}}}\\approx${n(bazett)}\\,\\mathrm{ms}`}
+                reading={`Bazett QT correction: QT ${n(qtMs)} milliseconds, RR ${n(rrMs)} milliseconds, result ${n(bazett)} milliseconds.`}
+              />
+              <p>Fridericia · QT divided by the cube root of RR in seconds</p>
+              <MathText
+                tex={`QTc_F=\\frac{${n(qtMs)}\\,\\mathrm{ms}}{\\sqrt[3]{${n(rrMs / 1000, 4)}\\,\\mathrm{s}/1\\,\\mathrm{s}}}\\approx${n(fridericia)}\\,\\mathrm{ms}`}
+                reading={`Fridericia QT correction gives ${n(fridericia)} milliseconds from the same recorded inputs.`}
+              />
+            </div>
+            <p className={base.caption}>
+              The report gives QTc {recording.report.qtc} ms without naming its
+              formula. Both calculations use the same recorded inputs and state
+              their method.
+            </p>
+            <button
+              onClick={() => {
+                const src = source(snapshot);
+                let state = src.state;
+                let reportId = src.id;
+                if (!useCalipers) {
+                  const report = apply(
+                    "Inspect",
+                    `Device-report transcription for recording ${recording.id}`,
+                    [src.id],
+                    [`report=${JSON.stringify(recording.report)}`],
+                    state,
+                    "machine-derived",
+                  );
+                  state = report;
+                  reportId = report.states.at(-1)!.id;
+                }
+                const inputs = useCalipers ? [rr!.id, qt!.id] : [reportId];
+                const next = apply(
+                  "AttachEvidence",
+                  `Recording ${recording.id}: QTc comparison from ${useCalipers ? "image calipers" : "device report"}`,
+                  inputs,
+                  [
+                    `basis=${useCalipers ? "image-calipers" : "device-report"}`,
+                    `RRms=${rrMs}`,
+                    `QTms=${qtMs}`,
+                    `bazettMs=${bazett}`,
+                    `fridericiaMs=${fridericia}`,
+                  ],
+                  state,
+                  "application-calculated",
+                );
+                setSnapshot(next);
+                setMessage(
+                  "Calculation recorded with its source dependencies.",
+                );
+              }}
+            >
+              Record this calculation
+            </button>
+          </section>
+        </aside>
       </div>
       <p className={base.notice} role="status">
         {message}

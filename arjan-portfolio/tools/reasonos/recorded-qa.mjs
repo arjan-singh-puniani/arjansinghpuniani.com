@@ -36,6 +36,7 @@ for (const [name, engine] of [
     });
     await page.goto(`${base}/work/vector-ekg-reasonos`);
     const root = page.locator("#recorded-ecg");
+    await root.getByRole("tab", { name: "Calculations", exact: true }).click();
     await root.locator("[data-calculation-basis] .katex").first().waitFor();
     await page.evaluate(() => document.fonts.ready);
     assert.equal(

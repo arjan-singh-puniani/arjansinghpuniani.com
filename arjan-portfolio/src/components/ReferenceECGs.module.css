@@ -1,0 +1,181 @@
+.practice {
+  border-top: 1px solid var(--line);
+}
+.caseTabs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.caseTabs span {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 11px;
+}
+.intro {
+  font-size: 13px;
+  margin-bottom: 18px !important;
+  max-width: 850px;
+}
+.paperFrame {
+  overflow: auto;
+  max-width: 100%;
+  background: #f9fbfc;
+  border: 1px solid #526b7b;
+}
+.paper {
+  display: block;
+  width: 100%;
+  min-width: 1000px;
+}
+.paper [role="button"] {
+  cursor: pointer;
+}
+.paper [role="button"]:focus {
+  outline: none;
+}
+.paper [role="button"]:focus-visible > rect {
+  stroke: #623274;
+  stroke-width: 3;
+}
+.focusControls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+.focusControls label {
+  font-size: 12px;
+  color: var(--muted);
+}
+.focusControls label:nth-child(2) {
+  flex: 1;
+  min-width: 210px;
+}
+.focusControls label:nth-child(2) output {
+  float: right;
+}
+.focusControls button {
+  font-size: 12px;
+}
+.focusStrip {
+  display: block;
+  width: min(100%, 800px);
+  max-height: 360px;
+  background: #f9fbfc;
+  touch-action: none;
+  user-select: none;
+  overflow: hidden;
+}
+.focusStrip [data-native-caliper] {
+  cursor: ew-resize;
+}
+.samples {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+.samples label {
+  font-size: 11px;
+  color: var(--muted);
+  max-width: 200px;
+}
+.samples input {
+  background: #152331;
+  color: var(--ink);
+  border: 1px solid #42596d;
+  padding: 9px;
+  min-width: 0;
+  width: 100%;
+  font: inherit;
+}
+.assessment {
+  max-width: 800px;
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  padding-top: 20px;
+}
+.assessment fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.assessment legend {
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.assessment fieldset label {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 13px;
+  line-height: 1.7;
+  padding: 8px 0;
+}
+.assessment input {
+  accent-color: var(--cyan);
+}
+.assessment > label {
+  font-size: 12px;
+  margin: 15px 0;
+}
+.assessment textarea {
+  min-height: 100px;
+  resize: vertical;
+  width: 100%;
+  background: #152331;
+  color: var(--ink);
+  border: 1px solid #42596d;
+  padding: 12px;
+  font: inherit;
+  line-height: 1.7;
+}
+.assessment > p {
+  font-size: 12px;
+  margin: 15px 0;
+}
+.annotation {
+  padding: 20px 0;
+  border-top: 1px solid var(--cyan);
+}
+.annotation strong {
+  color: var(--cyan);
+  font-weight: 500;
+}
+.annotation h3 {
+  margin: 12px 0;
+}
+.annotation p {
+  margin: 12px 0;
+  font-size: 13px;
+}
+.annotation a {
+  display: block;
+  margin: 12px 0;
+  font-size: 12px;
+}
+.annotation button {
+  font-size: 12px;
+}
+@media (max-width: 720px) {
+  .caseTabs span {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .paper {
+    width: 1100px;
+  }
+  .focusControls {
+    gap: 12px;
+  }
+  .focusControls label:nth-child(2) {
+    min-width: 100%;
+  }
+  .focusStrip {
+    max-height: none;
+  }
+}

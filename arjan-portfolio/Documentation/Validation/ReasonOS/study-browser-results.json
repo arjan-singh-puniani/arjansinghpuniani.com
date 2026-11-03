@@ -1,0 +1,44 @@
+[
+  {
+    "browser": "chromium",
+    "guidedMethodAttempts": 3,
+    "pairedSourceEvidence": "A+B preserved",
+    "worksheetExport": "verified",
+    "digitalCases": 4,
+    "sampleInterval": "native 2 ms resolution",
+    "hiddenAnnotations": "verified",
+    "practiceExport": "verified",
+    "mobileOverflow": false,
+    "axe": [],
+    "errors": [],
+    "hydration": []
+  },
+  {
+    "browser": "webkit",
+    "guidedMethodAttempts": 3,
+    "pairedSourceEvidence": "A+B preserved",
+    "worksheetExport": "verified",
+    "digitalCases": 4,
+    "sampleInterval": "native 2 ms resolution",
+    "hiddenAnnotations": "verified",
+    "practiceExport": "verified",
+    "mobileOverflow": false,
+    "axe": [],
+    "errors": [],
+    "hydration": []
+  },
+  {
+    "browser": "firefox",
+    "guidedMethodAttempts": 3,
+    "pairedSourceEvidence": "A+B preserved",
+    "worksheetExport": "verified",
+    "digitalCases": 4,
+    "sampleInterval": "native 2 ms resolution",
+    "hiddenAnnotations": "verified",
+    "practiceExport": "verified",
+    "mobileOverflow": false,
+    "axe": [],
+    "errors": [],
+    "hydration": []
+  }
+]

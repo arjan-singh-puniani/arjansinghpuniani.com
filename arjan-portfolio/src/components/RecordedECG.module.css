@@ -220,3 +220,32 @@
     font-size: 16px;
   }
 }
+
+.learning {
+  min-width: 0;
+}
+.panelTabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 13px;
+}
+.panelTabs button {
+  font-size: 12px;
+}
+.panelTabs button[aria-selected="true"] {
+  border-color: var(--cyan);
+  background: #19313e;
+}
+.learning [hidden] {
+  display: none !important;
+}
+
+@media (min-width: 901px) {
+  .source {
+    position: sticky;
+    top: 88px;
+    align-self: start;
+  }
+}

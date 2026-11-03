@@ -181,3 +181,27 @@ export function reportCalculations(recording: Recording) {
     fridericiaMs: qt / Math.cbrt(rrMs / 1000),
   };
 }
+
+export function recordingLeadRegion(recording: Recording, lead: string) {
+  if (lead === "II-rhythm") return recording.rhythm;
+  const rows = [
+    ["I", "aVR", "V1", "V4"],
+    ["II", "aVL", "V2", "V5"],
+    ["III", "aVF", "V3", "V6"],
+  ];
+  const row = rows.findIndex((values) => values.includes(lead));
+  if (row < 0) throw new RangeError("Unknown recorded lead");
+  const column = rows[row].indexOf(lead);
+  const edges =
+    recording.id === "A"
+      ? [100, 630, 1140, 1630, 2140]
+      : [25, 560, 1050, 1570, 2080];
+  const y =
+    recording.id === "A" ? 20 + row * 320 : 45 + row * 335 + column * 38;
+  return {
+    x: edges[column],
+    y,
+    width: edges[column + 1] - edges[column],
+    height: Math.min(285, recording.height - y),
+  };
+}
