@@ -1,8 +1,10 @@
-import {CLINIC_DEPARTMENTS,CLINIC_ROLES} from './clinic.mjs?v=131';
-export const VERSION='1.0.0-rc6', STEP=1;
+import {CLINIC_DEPARTMENTS,CLINIC_ROLES} from './clinic.mjs?v=138';
+export const VERSION='1.0.0-rc8', STEP=1;
 export const WALK_SUBSTEPS=3;
 export const GRID={w:9,h:8,entry:{x:4,y:7},exit:{x:7,y:7},step:1.65};
-export const CAMPUS={w:24,h:20,shiftY:12,version:1};
+export const CAMPUS_V1={w:24,h:20,shiftY:12,version:1};
+export const CAMPUS={w:32,h:28,shiftY:20,version:2};
+export const placementStep=s=>s.site?.version===2 ? .25 : .5;
 export const siteOf=s=>s.site||GRID;
 export const TYPES={consult:{name:'Consultation',cost:900,duration:12,staff:1,skill:'consult',asset:'consult'},scan:{name:'Imaging',cost:1500,duration:17,staff:1,skill:'scan',asset:'scan'},care:{name:'Procedure & care',cost:1100,duration:15,staff:2,skill:'care',asset:'care'},rest:{name:'Team lounge',cost:600,duration:0,staff:0,asset:'rest'},plan:{name:'Specialist planning',cost:1400,duration:13,staff:1,skill:'plan',asset:'consult'}};
 TYPES.waiting={name:'Waiting garden',cost:350,duration:0,staff:0,asset:'lobby'};
@@ -31,3 +33,6 @@ export const CASES={welcome:{name:'The map collector',goal:'One clear plan, pref
 export const VOICES={Mira:['One question at a time. I have a pen.','The next step should fit on one page.'],Jules:['Stillness is a team sport.','This scanner has a better posture than I do.'],Remy:['A clear table and a clear plan.','My trolley has a parking space.'],Ash:['Ready, comfortable, then we begin.','No one needs to hurry the chair.'],Sage:['Let’s leave room for one more question.','I can work with that. And a little space.'],Kit:['Good handoffs travel further than gossip.','A clear route. My favorite shortcut.'],Quinn:['Welcome. You are in the right place.','I alphabetized the staplers. They objected.'],Tess:['Measurements first. Guesswork never.','A clear intake makes a calmer next step.'],Ellis:['I have a mop, a plan, and sensible shoes.','One spill at a time. Please stop testing my theory.']};
 
 Object.assign(TYPES,CLINIC_DEPARTMENTS);Object.assign(STAFF_ROLES,CLINIC_ROLES);for(const [role,d]of Object.entries(CLINIC_ROLES))ROLE_SKILLS[role]=d.skills;for(const [type,d]of Object.entries(CLINIC_DEPARTMENTS))ROOM_ROLES[type]=[d.role];
+
+export const shiftSeconds=s=>s.periodSeconds||480;
+export const shiftEnd=s=>(s.shiftStart||0)+shiftSeconds(s);

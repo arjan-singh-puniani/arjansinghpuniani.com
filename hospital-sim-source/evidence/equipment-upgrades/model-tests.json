@@ -1,0 +1,22 @@
+{
+  "model": "1.0.0-rc8",
+  "minimumPieces": 3,
+  "secondTierPieces": 6,
+  "originalComponents": 54,
+  "lazyGlbBytes": 4115592,
+  "firstMinuteArrivals": 1,
+  "shiftSeconds": 960,
+  "continuedShiftEnd": 1920,
+  "checks": [
+    "atomic minimum relevant kit",
+    "wrong/duplicate/missing parts rejected",
+    "reserved visit protection",
+    "exact active save/load",
+    "legacy level preserved",
+    "per-room service/reset effects",
+    "16-minute termination",
+    "continuous staffing/arrivals/accounting",
+    "54 original embedded GLB component pivots",
+    "bounded unfolding and reduced-motion endpoints"
+  ]
+}

@@ -1,5 +1,6 @@
-import {siteOf,WALK_SUBSTEPS,CASES,VOICES,STAFF_ROLES,ROLE_SKILLS,ROOM_ROLES,TYPES} from './content.mjs?v=131';
-import {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=131';
+import {roomKits} from './upgrades.mjs?v=138';
+import {siteOf,WALK_SUBSTEPS,CASES,VOICES,STAFF_ROLES,ROLE_SKILLS,ROOM_ROLES,TYPES} from './content.mjs?v=138';
+import {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=138';
 export function deskStation(s){const g=entrance(s),o=gateDirection(g,siteOf(s)),t={x:o.y,y:-o.x};for(const side of [1,-1]){const bay={x:g.x+t.x*.75*side,y:g.y+t.y*.75*side},post={x:bay.x-o.x*.75,y:bay.y-o.y*.75},assistant={x:post.x-t.x*.5*side+o.x*.5,y:post.y-t.y*.5*side+o.y*.5};if([bay,post,assistant].every(p=>p.x>=0&&p.x<=siteOf(s).w-1&&p.y>=0&&p.y<=siteOf(s).h-1&&!blocked(p.x,p.y,s.rooms)))return{bay,post,assistant,side}}return null}
 export const deskPost=s=>deskStation(s)?.post||entrance(s);
 export const deskBay=s=>deskStation(s)?.bay||entrance(s);
@@ -60,7 +61,7 @@ function travel(s,st,destination,roomId){const position=st.position||entrance(s)
 function startJob(s,st,kind,room,work=2){if(!travel(s,st,door(room),room.id))return false;st.job={kind,roomId:room.id,phase:'travel',progress:0,remaining:work,home:{...st.position}};return true}
 export function dispatchFacilities(s){const e=s.operations.event,r=s.rooms.find(r=>r.id===e?.roomId);if(!e||e.kind!=='coffee'||e.status!=='open'||!r)return{ok:false,reason:'No open equipment spill.'};const worker=s.staff.filter(st=>st.role==='facilities'&&available(s,st)).sort((a,b)=>Math.hypot(a.position.x-door(r).x,a.position.y-door(r).y)-Math.hypot(b.position.x-door(r).x,b.position.y-door(r).y))[0];if(!worker)return{ok:false,reason:'No available facilities colleague. Recruit or let the current assignment finish.'};if(!startJob(s,worker,'coffee',r,3))return{ok:false,reason:'Clear the route to the affected room.'};e.status='working';e.choice='dispatch';e.workerId=worker.id;s.actions.push({at:s.seconds,type:'dispatch-facilities',staffId:worker.id,roomId:r.id});return{ok:true}}
 
-export function startTurnover(s,r){r.readyAt=s.seconds+(r.type==='care'?12:r.type==='scan'?10:6)}
+export function startTurnover(s,r){const saving=s.equipmentMode&&r.installations?.length?roomKits(r.type).find(k=>k.level===r.level)?.turnoverSaving||0:0;r.readyAt=s.seconds+Math.max(1,(r.type==='care'?12:r.type==='scan'?10:6)-saving)}
 export function tickOperations(s){
  tickBasicOperations(s);const op=s.operations;
  if(s.seconds===12&&!op.banter&&s.staff.length)say(s,s.staff.find(st=>st.role==='np')?.id||op.deskStaff||s.staff[0].id,'Let’s leave room for one more question.');

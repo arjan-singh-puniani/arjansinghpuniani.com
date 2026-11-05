@@ -1,0 +1,786 @@
+{
+  "license": "CC0-1.0",
+  "provenance": "Original modeled equipment and furniture; substantial AI assistance. Fictional screens, no real patient data or third-party assets.",
+  "aliases": {
+    "consult": "gp",
+    "plan": "neuro"
+  },
+  "rooms": {
+    "gp": [
+      {
+        "level": 2,
+        "name": "Exam suite",
+        "benefit": "Simulated service window 10% shorter; room reset 2 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_gp_2_0",
+            "name": "Adjustable examination plinth",
+            "shape": "plinth",
+            "position": [
+              -0.2,
+              0,
+              -1.45
+            ],
+            "cost": 350,
+            "rotation": 1.5707963267948966
+          },
+          {
+            "id": "kit_gp_2_1",
+            "name": "Assessment trolley",
+            "shape": "diagnostic",
+            "position": [
+              -1.3,
+              0,
+              -0.35
+            ],
+            "cost": 300
+          },
+          {
+            "id": "kit_gp_2_2",
+            "name": "Articulated task light",
+            "shape": "lamp",
+            "position": [
+              1.48,
+              0,
+              -0.35
+            ],
+            "cost": 250
+          }
+        ],
+        "serviceFactor": 0.9,
+        "turnoverSaving": 2
+      },
+      {
+        "level": 3,
+        "name": "Connected consultation",
+        "benefit": "Simulated service window 20% shorter; room reset 4 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_gp_3_0",
+            "name": "Case display",
+            "shape": "display",
+            "position": [
+              -1.3,
+              0,
+              0.6
+            ],
+            "cost": 500
+          },
+          {
+            "id": "kit_gp_3_1",
+            "name": "Organized clinical storage",
+            "shape": "cabinet",
+            "position": [
+              1.2,
+              0,
+              1.28
+            ],
+            "cost": 450
+          },
+          {
+            "id": "kit_gp_3_2",
+            "name": "Supportive visitor chair",
+            "shape": "chair",
+            "position": [
+              1.2,
+              0,
+              0.43
+            ],
+            "cost": 350
+          }
+        ],
+        "serviceFactor": 0.8,
+        "turnoverSaving": 4
+      }
+    ],
+    "intake": [
+      {
+        "level": 2,
+        "name": "Welcome station",
+        "benefit": "Simulated service window 33% shorter; room reset 2 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_intake_2_0",
+            "name": "Self check-in tablet",
+            "shape": "tablet",
+            "position": [
+              -1.25,
+              0,
+              -1.12
+            ],
+            "cost": 350
+          },
+          {
+            "id": "kit_intake_2_1",
+            "name": "Accessible paperwork station",
+            "shape": "document",
+            "position": [
+              1.27,
+              0,
+              -1.15
+            ],
+            "cost": 300
+          },
+          {
+            "id": "kit_intake_2_2",
+            "name": "Acoustic privacy screen",
+            "shape": "screen",
+            "position": [
+              1.48,
+              0,
+              0.55
+            ],
+            "cost": 250
+          }
+        ],
+        "serviceFactor": 0.67,
+        "turnoverSaving": 2
+      },
+      {
+        "level": 3,
+        "name": "Arrival hub",
+        "benefit": "Simulated service window 50% shorter; room reset 4 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_intake_3_0",
+            "name": "Queue information display",
+            "shape": "display",
+            "position": [
+              -1.3,
+              0,
+              0.1
+            ],
+            "cost": 500
+          },
+          {
+            "id": "kit_intake_3_1",
+            "name": "Organized record storage",
+            "shape": "cabinet",
+            "position": [
+              -0.6,
+              0,
+              -1.4
+            ],
+            "cost": 450
+          },
+          {
+            "id": "kit_intake_3_2",
+            "name": "Supportive waiting chair",
+            "shape": "chair",
+            "position": [
+              1.2,
+              0,
+              1.24
+            ],
+            "cost": 350
+          }
+        ],
+        "serviceFactor": 0.5,
+        "turnoverSaving": 4
+      }
+    ],
+    "pharmacy": [
+      {
+        "level": 2,
+        "name": "Collection workspace",
+        "benefit": "Simulated service window 20% shorter; room reset 2 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_pharmacy_2_0",
+            "name": "Collection preparation trolley",
+            "shape": "trolley",
+            "position": [
+              -1.3,
+              0,
+              0.6
+            ],
+            "cost": 350
+          },
+          {
+            "id": "kit_pharmacy_2_1",
+            "name": "Fictional order display",
+            "shape": "display",
+            "position": [
+              1.3,
+              0,
+              0.6
+            ],
+            "cost": 300
+          },
+          {
+            "id": "kit_pharmacy_2_2",
+            "name": "Secure supply cabinet",
+            "shape": "cabinet",
+            "position": [
+              1.22,
+              0,
+              -0.75
+            ],
+            "cost": 250
+          }
+        ],
+        "serviceFactor": 0.8,
+        "turnoverSaving": 2
+      },
+      {
+        "level": 3,
+        "name": "Organized dispensary",
+        "benefit": "Simulated service window 35% shorter; room reset 4 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_pharmacy_3_0",
+            "name": "Supply tracking console",
+            "shape": "tablet",
+            "position": [
+              -1.3,
+              0,
+              -0.7
+            ],
+            "cost": 500
+          },
+          {
+            "id": "kit_pharmacy_3_1",
+            "name": "Adjustable collection bench",
+            "shape": "document",
+            "position": [
+              1.22,
+              0,
+              1.22
+            ],
+            "cost": 450
+          },
+          {
+            "id": "kit_pharmacy_3_2",
+            "name": "Task inspection light",
+            "shape": "lamp",
+            "position": [
+              -1.48,
+              0,
+              1.23
+            ],
+            "cost": 350
+          }
+        ],
+        "serviceFactor": 0.65,
+        "turnoverSaving": 4
+      }
+    ],
+    "neuro": [
+      {
+        "level": 2,
+        "name": "Assessment suite",
+        "benefit": "Simulated service window 5% shorter; room reset 2 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_neuro_2_0",
+            "name": "Assessment trolley",
+            "shape": "diagnostic",
+            "position": [
+              -1.3,
+              0,
+              -0.35
+            ],
+            "cost": 350
+          },
+          {
+            "id": "kit_neuro_2_1",
+            "name": "Adjustable examination plinth",
+            "shape": "plinth",
+            "position": [
+              -0.2,
+              0,
+              -1.45
+            ],
+            "cost": 300,
+            "rotation": 1.5707963267948966
+          },
+          {
+            "id": "kit_neuro_2_2",
+            "name": "Articulated examination light",
+            "shape": "lamp",
+            "position": [
+              1.48,
+              0,
+              -0.35
+            ],
+            "cost": 250
+          }
+        ],
+        "serviceFactor": 0.95,
+        "turnoverSaving": 2
+      },
+      {
+        "level": 3,
+        "name": "Planning studio",
+        "benefit": "Simulated service window 10% shorter; room reset 4 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_neuro_3_0",
+            "name": "Anatomical case display",
+            "shape": "display",
+            "position": [
+              -1.3,
+              0,
+              0.6
+            ],
+            "cost": 500
+          },
+          {
+            "id": "kit_neuro_3_1",
+            "name": "Clinical instrument storage",
+            "shape": "cabinet",
+            "position": [
+              1.2,
+              0,
+              1.28
+            ],
+            "cost": 450
+          },
+          {
+            "id": "kit_neuro_3_2",
+            "name": "Supportive visitor chair",
+            "shape": "chair",
+            "position": [
+              1.2,
+              0,
+              0.43
+            ],
+            "cost": 350
+          }
+        ],
+        "serviceFactor": 0.9,
+        "turnoverSaving": 4
+      }
+    ],
+    "gait": [
+      {
+        "level": 2,
+        "name": "Movement studio",
+        "benefit": "Simulated service window 10% shorter; room reset 2 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_gait_2_0",
+            "name": "Motion review display",
+            "shape": "display",
+            "position": [
+              0,
+              0,
+              -1.57
+            ],
+            "cost": 350
+          },
+          {
+            "id": "kit_gait_2_1",
+            "name": "Assessment preparation trolley",
+            "shape": "diagnostic",
+            "position": [
+              -1.25,
+              0,
+              1.12
+            ],
+            "cost": 300
+          },
+          {
+            "id": "kit_gait_2_2",
+            "name": "Supportive recovery chair",
+            "shape": "chair",
+            "position": [
+              -1.3,
+              0,
+              0.35
+            ],
+            "cost": 250
+          }
+        ],
+        "serviceFactor": 0.9,
+        "turnoverSaving": 2
+      },
+      {
+        "level": 3,
+        "name": "Motion capture workspace",
+        "benefit": "Simulated service window 20% shorter; room reset 4 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_gait_3_0",
+            "name": "Synchronized recording console",
+            "shape": "tablet",
+            "position": [
+              -1.28,
+              0,
+              -0.25
+            ],
+            "cost": 500
+          },
+          {
+            "id": "kit_gait_3_1",
+            "name": "Organized sensor cabinet",
+            "shape": "cabinet",
+            "position": [
+              0.82,
+              0,
+              -1.55
+            ],
+            "cost": 450
+          },
+          {
+            "id": "kit_gait_3_2",
+            "name": "Adjustable task light",
+            "shape": "lamp",
+            "position": [
+              -1.48,
+              0,
+              1.25
+            ],
+            "cost": 350
+          }
+        ],
+        "serviceFactor": 0.8,
+        "turnoverSaving": 4
+      }
+    ],
+    "eeg": [
+      {
+        "level": 2,
+        "name": "Recording suite",
+        "benefit": "Active recording/procedure time unchanged; room reset 2 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_eeg_2_0",
+            "name": "Recording preparation trolley",
+            "shape": "trolley",
+            "position": [
+              1.25,
+              0,
+              0.75
+            ],
+            "cost": 350
+          },
+          {
+            "id": "kit_eeg_2_1",
+            "name": "Signal review display",
+            "shape": "display",
+            "position": [
+              1.27,
+              0,
+              -0.7
+            ],
+            "cost": 300
+          },
+          {
+            "id": "kit_eeg_2_2",
+            "name": "Low-noise supply cabinet",
+            "shape": "cabinet",
+            "position": [
+              0,
+              0,
+              -1.5
+            ],
+            "cost": 250
+          }
+        ],
+        "serviceFactor": 1,
+        "turnoverSaving": 2
+      },
+      {
+        "level": 3,
+        "name": "Monitoring workspace",
+        "benefit": "Active recording/procedure time unchanged; room reset 4 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_eeg_3_0",
+            "name": "Portable recording console",
+            "shape": "tablet",
+            "position": [
+              -1.3,
+              0,
+              0.9
+            ],
+            "cost": 500
+          },
+          {
+            "id": "kit_eeg_3_1",
+            "name": "Fold-out privacy screen",
+            "shape": "screen",
+            "position": [
+              1.5,
+              0,
+              0.05
+            ],
+            "cost": 450
+          },
+          {
+            "id": "kit_eeg_3_2",
+            "name": "Adjustable examination light",
+            "shape": "lamp",
+            "position": [
+              -1.48,
+              0,
+              1.25
+            ],
+            "cost": 350
+          }
+        ],
+        "serviceFactor": 1,
+        "turnoverSaving": 4
+      }
+    ],
+    "sleep": [
+      {
+        "level": 2,
+        "name": "Restful recording room",
+        "benefit": "Active recording/procedure time unchanged; room reset 2 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_sleep_2_0",
+            "name": "Sleep recording console",
+            "shape": "tablet",
+            "position": [
+              1.27,
+              0,
+              0.55
+            ],
+            "cost": 350
+          },
+          {
+            "id": "kit_sleep_2_1",
+            "name": "Blackout privacy screen",
+            "shape": "screen",
+            "position": [
+              1.5,
+              0,
+              -0.05
+            ],
+            "cost": 300
+          },
+          {
+            "id": "kit_sleep_2_2",
+            "name": "Preparation trolley",
+            "shape": "trolley",
+            "position": [
+              -1.28,
+              0,
+              0.85
+            ],
+            "cost": 250
+          }
+        ],
+        "serviceFactor": 1,
+        "turnoverSaving": 2
+      },
+      {
+        "level": 3,
+        "name": "Quiet sleep suite",
+        "benefit": "Active recording/procedure time unchanged; room reset 4 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_sleep_3_0",
+            "name": "Comfort armchair",
+            "shape": "chair",
+            "position": [
+              1.24,
+              0,
+              1.26
+            ],
+            "cost": 500
+          },
+          {
+            "id": "kit_sleep_3_1",
+            "name": "Organized sensor cabinet",
+            "shape": "cabinet",
+            "position": [
+              0,
+              0,
+              -1.55
+            ],
+            "cost": 450
+          },
+          {
+            "id": "kit_sleep_3_2",
+            "name": "Low-glare task light",
+            "shape": "lamp",
+            "position": [
+              -1.48,
+              0,
+              1.25
+            ],
+            "cost": 350
+          }
+        ],
+        "serviceFactor": 1,
+        "turnoverSaving": 4
+      }
+    ],
+    "scan": [
+      {
+        "level": 2,
+        "name": "Imaging workflow",
+        "benefit": "Simulated service window 5% shorter; room reset 2 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_scan_2_0",
+            "name": "Scan preparation console",
+            "shape": "tablet",
+            "position": [
+              1.3,
+              0,
+              -0.9
+            ],
+            "cost": 350
+          },
+          {
+            "id": "kit_scan_2_1",
+            "name": "Positioning supply trolley",
+            "shape": "trolley",
+            "position": [
+              1.3,
+              0,
+              0.65
+            ],
+            "cost": 300
+          },
+          {
+            "id": "kit_scan_2_2",
+            "name": "Privacy screen",
+            "shape": "screen",
+            "position": [
+              0,
+              0,
+              -1.6
+            ],
+            "cost": 250
+          }
+        ],
+        "serviceFactor": 0.95,
+        "turnoverSaving": 2
+      },
+      {
+        "level": 3,
+        "name": "Imaging control suite",
+        "benefit": "Simulated service window 10% shorter; room reset 4 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_scan_3_0",
+            "name": "Articulated review display",
+            "shape": "display",
+            "position": [
+              -1.3,
+              0,
+              -1.2
+            ],
+            "cost": 500
+          },
+          {
+            "id": "kit_scan_3_1",
+            "name": "Organized accessory cabinet",
+            "shape": "cabinet",
+            "position": [
+              1.3,
+              0,
+              1.3
+            ],
+            "cost": 450
+          },
+          {
+            "id": "kit_scan_3_2",
+            "name": "Examination light",
+            "shape": "lamp",
+            "position": [
+              -1.48,
+              0,
+              1.25
+            ],
+            "cost": 350
+          }
+        ],
+        "serviceFactor": 0.9,
+        "turnoverSaving": 4
+      }
+    ],
+    "care": [
+      {
+        "level": 2,
+        "name": "Procedure workspace",
+        "benefit": "Active recording/procedure time unchanged; room reset 2 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_care_2_0",
+            "name": "Sterile preparation trolley",
+            "shape": "trolley",
+            "position": [
+              1.3,
+              0,
+              0.75
+            ],
+            "cost": 350
+          },
+          {
+            "id": "kit_care_2_1",
+            "name": "Articulated task light",
+            "shape": "lamp",
+            "position": [
+              1.45,
+              0,
+              -0.7
+            ],
+            "cost": 300
+          },
+          {
+            "id": "kit_care_2_2",
+            "name": "Instrument storage cabinet",
+            "shape": "cabinet",
+            "position": [
+              -1.3,
+              0,
+              -1.15
+            ],
+            "cost": 250
+          }
+        ],
+        "serviceFactor": 1,
+        "turnoverSaving": 2
+      },
+      {
+        "level": 3,
+        "name": "Coordinated procedure suite",
+        "benefit": "Active recording/procedure time unchanged; room reset 4 seconds shorter. Same team and one visit per room.",
+        "items": [
+          {
+            "id": "kit_care_3_0",
+            "name": "Case review display",
+            "shape": "display",
+            "position": [
+              0,
+              0,
+              -1.55
+            ],
+            "cost": 500
+          },
+          {
+            "id": "kit_care_3_1",
+            "name": "Organized supply trolley",
+            "shape": "diagnostic",
+            "position": [
+              1.3,
+              0,
+              1.3
+            ],
+            "cost": 450
+          },
+          {
+            "id": "kit_care_3_2",
+            "name": "Privacy screen",
+            "shape": "screen",
+            "position": [
+              -1.5,
+              0,
+              0.25
+            ],
+            "cost": 350
+          }
+        ],
+        "serviceFactor": 1,
+        "turnoverSaving": 4
+      }
+    ]
+  }
+}

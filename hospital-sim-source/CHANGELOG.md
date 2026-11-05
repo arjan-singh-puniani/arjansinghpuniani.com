@@ -1,3 +1,10 @@
+# RC8 · November 5, 2026
+
+- Three-piece room-specific equipment packages replace the public generic upgrade. Original Blender source,54components, lazy GLB, unfold/settle feedback, reduced-motion endpoint and saved receipts.
+-32×28estate, quarter-step pinned placement, rotation before confirmation and numeric placement. Exact compact/RC6live-save migration.
+-16-minute gentle clinics, one first-minute visitor, actual-needs menu progression, boxed contextual controls and pinned equipment purchase.
+- Native first-visit/transformation films, exact checkpoint replay, refreshed comparison and explicit remaining visual/device/performance limits.
+
 # RC6 — a larger buildable campus
 
 - Expanded the current clinic from 9×8 to 24×20, preserving active saves with a recorded coordinate translation.

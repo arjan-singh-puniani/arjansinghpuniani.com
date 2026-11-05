@@ -477,6 +477,18 @@
       "license": "CC0-1.0"
     },
     {
+      "file": "dist/assets/equipment-upgrades.glb",
+      "bytes": 4115592,
+      "gzipBytes": 759379,
+      "sha256": "92b868e0b6e19359e660b7d19a08fd09e123c851677dca609547535dc1566a6b",
+      "triangles": 92132,
+      "primitives": 207,
+      "animations": [],
+      "source": "blender/upgrades.py and equipment_upgrades.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0"
+    },
+    {
       "file": "dist/assets/gait.glb",
       "bytes": 320344,
       "gzipBytes": 115922,
@@ -2274,7 +2286,7 @@
   },
   "fonts": "Georgia and platform sans-serif; system fonts, no font files redistributed",
   "authorship": "Substantial AI assistance in geometry, rigging, animation, code, design, tests and documentation. Owner contributions must be individually verified before portfolio claims.",
-  "updated": "2026-11-02",
+  "updated": "2026-11-05",
   "runtimeDecoration": {
     "source": "dist/renderer.mjs decorateRoom",
     "provenance": "Original procedural plant, geometric print and palette stripe; fixed clear sockets",

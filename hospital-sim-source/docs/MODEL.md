@@ -1,3 +1,9 @@
+# Current RC8 model
+
+See [equipment, placement, shifts and replay rules](EQUIPMENT_RC8.md). Current browser enables `kits-v1`, a32×28clinic and16-minute fresh shifts. Historical model notes below retain their original context.
+
+---
+
 # Current default: RC6 campus
 
 The current clinic uses a24×20 estate, documented in [CAMPUS_RC6.md](CAMPUS_RC6.md), while retaining the RC5 service model. The following older full-hospital model remains available in advanced scenarios. The current empty-start clinic and its different reception/wardrobe/billing/booking rules are documented in [CLINIC_FLOW_RC5.md](CLINIC_FLOW_RC5.md).
