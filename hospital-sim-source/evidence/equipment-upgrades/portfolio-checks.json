@@ -1,0 +1,31 @@
+[
+  {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit": 0,
+    "seconds": 13.54,
+    "output": "\n> arjan-singh-puniani-portfolio@1.0.0 test\n> vitest run tests\n\n\n RUN  v4.1.12 /Users/arjan/Documents/Codex/2026-10-28/rebuild-common-good-s-visual-experience/work/portfolio-release/arjan-portfolio\n\n\n Test Files  32 passed (32)\n      Tests  260 passed (260)\n   Start at  13:57:29\n   Duration  12.60s (transform 1.26s, setup 1.71s, import 2.58s, tests 6.78s, environment 10.75s)\n\n(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:\n  - `__dirname` (vitest.config.ts:6:41). Use `import.meta.dirname` instead\nSet `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.\n"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exit": 0,
+    "seconds": 3.29,
+    "output": "\n> arjan-singh-puniani-portfolio@1.0.0 typecheck\n> tsc --noEmit\n\n"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit": 0,
+    "seconds": 19.0,
+    "output": "\n> arjan-singh-puniani-portfolio@1.0.0 build\n> next build\n\n   \u25b2 Next.js 15.5.28\n\n   Creating an optimized production build ...\n \u2713 Compiled successfully in 6.0s\n   Linting and checking validity of types ...\n   Collecting page data ...\n   Generating static pages (0/35) ...\n   Generating static pages (8/35) \n   Generating static pages (17/35) \n   Generating static pages (26/35) \n \u2713 Generating static pages (35/35)\n   Finalizing page optimization ...\n   Collecting build traces ...\n\nRoute (app)                                  Size  First Load JS\n\u250c \u25cb /                                       462 B         112 kB\n\u251c \u25cb /_not-found                             157 B         103 kB\n\u251c \u25cb /about                                  417 B         112 kB\n\u251c \u0192 /api/atlas/fda                          157 B         103 kB\n\u251c \u0192 /api/contact                            157 B         103 kB\n\u251c \u25cb /contact                                987 B         104 kB\n\u251c \u25cb /cv                                     177 B         106 kB\n\u251c \u25cb /icon.svg                                 0 B            0 B\n\u251c \u25cb /manifest.webmanifest                   157 B         103 kB\n\u251c \u25cb /notes                                  177 B         106 kB\n\u251c \u25cb /playground                             347 B         112 kB\n\u251c \u25cb /playground/hemodynamic-observatory     522 B         107 kB\n\u251c \u25cb /playground/holoanatomy                 313 B         107 kB\n\u251c \u25cb /playground/hospitalsim               2.51 kB         114 kB\n\u251c \u25cb /playground/pit-stop                    274 B         106 kB\n\u251c \u25cb /playground/rally-house               5.12 kB         117 kB\n\u251c \u25cb /playground/replisome                 2.12 kB         114 kB\n\u251c \u25cb /playground/vector-tennis             23.6 kB         130 kB\n\u251c \u25cb /privacy                                157 B         103 kB\n\u251c \u25cb /research                               404 B         107 kB\n\u251c \u25cb /robots.txt                             157 B         103 kB\n\u251c \u25cb /sitemap.xml                            157 B         103 kB\n\u251c \u25cb /work                                 9.97 kB         116 kB\n\u251c \u25cf /work/[slug]                          3.61 kB         115 kB\n\u251c   \u251c /work/hospitalsim\n\u251c   \u251c /work/body-atlas\n\u251c   \u251c /work/seizefreeze\n\u251c   \u2514 [+5 more paths]\n\u251c \u25cb /work/belmont-motorsport-systems        177 B         106 kB\n\u251c \u25cb /work/motorsport-neurotrauma-toolkit    177 B         106 kB\n\u2514 \u25cb /work/vector-ekg-reasonos             88.4 kB         200 kB\n+ First Load JS shared by all              103 kB\n  \u251c chunks/1255-dc3ddf72a1dc71a7.js       46.6 kB\n  \u251c chunks/4bd1b696-f785427dddbba9fb.js   54.2 kB\n  \u2514 other shared chunks (total)           2.02 kB\n\n\n\u25cb  (Static)   prerendered as static content\n\u25cf  (SSG)      prerendered as static HTML (uses generateStaticParams)\n\u0192  (Dynamic)  server-rendered on demand\n\n"
+  }
+]

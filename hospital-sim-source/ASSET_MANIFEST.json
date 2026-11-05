@@ -429,18 +429,6 @@
       "license": "CC0-1.0"
     },
     {
-      "file": "dist/assets/doors 2.glb",
-      "bytes": 135840,
-      "gzipBytes": 39061,
-      "sha256": "1218b8d7ea8913e1929aee1c3b91eea8623fe142f8eb7294bf986e29ec32acb2",
-      "triangles": 3196,
-      "primitives": 8,
-      "animations": [],
-      "source": "blender/hospital.py and hospital.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0"
-    },
-    {
       "file": "dist/assets/doors.glb",
       "bytes": 135840,
       "gzipBytes": 39061,
@@ -537,52 +525,6 @@
       "license": "CC0-1.0"
     },
     {
-      "file": "dist/assets/patient-01 2.glb",
-      "bytes": 1002308,
-      "gzipBytes": 271282,
-      "sha256": "95bbefaa4d26dc880d99172da34dd1814c4500ac29776cd509005ac2dec7540c",
-      "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-01-lod 2.glb",
-      "bytes": 637160,
-      "gzipBytes": 192977,
-      "sha256": "fe5cd80d4f331ffebc03f0407b937a7223641d88dc711121d612e71c85ad3a89",
-      "triangles": 4311,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
       "file": "dist/assets/patient-01-lod.glb",
       "bytes": 637160,
       "gzipBytes": 192977,
@@ -611,52 +553,6 @@
       "gzipBytes": 271282,
       "sha256": "95bbefaa4d26dc880d99172da34dd1814c4500ac29776cd509005ac2dec7540c",
       "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-02 2.glb",
-      "bytes": 1002312,
-      "gzipBytes": 274694,
-      "sha256": "23ba4e66d4e31e9d810864f627351537d759ff744751b001d738493755d5bddf",
-      "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-02-lod 2.glb",
-      "bytes": 637504,
-      "gzipBytes": 193617,
-      "sha256": "41f23cb734940c11d503b7e8298a09018d55b85eb4f9234917de3979a45d762d",
-      "triangles": 4312,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -721,52 +617,6 @@
       "joints": 39
     },
     {
-      "file": "dist/assets/patient-03 2.glb",
-      "bytes": 1002324,
-      "gzipBytes": 275377,
-      "sha256": "c75f587e0b5b107f587d95aa822eb0cafc0e0d70c47e9abcabbd0311ea7c9547",
-      "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-03-lod 2.glb",
-      "bytes": 637172,
-      "gzipBytes": 193547,
-      "sha256": "7223e506d96276a3a78dd4488a840ac6d82f8ee899eaa7a0208f914d993865c7",
-      "triangles": 4311,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
       "file": "dist/assets/patient-03-lod.glb",
       "bytes": 637172,
       "gzipBytes": 193547,
@@ -795,52 +645,6 @@
       "gzipBytes": 275377,
       "sha256": "c75f587e0b5b107f587d95aa822eb0cafc0e0d70c47e9abcabbd0311ea7c9547",
       "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-04 2.glb",
-      "bytes": 1016720,
-      "gzipBytes": 279010,
-      "sha256": "4a568bc6c85c0447969edcbd9a111d8d972283518dd927b96705bf7954fd236a",
-      "triangles": 12972,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-04-lod 2.glb",
-      "bytes": 642480,
-      "gzipBytes": 195905,
-      "sha256": "3f8180e32d93270b3a9de76aa78d5a8aff1c25ce96c28ff29f7bfd0a3432906f",
-      "triangles": 4410,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -905,52 +709,6 @@
       "joints": 39
     },
     {
-      "file": "dist/assets/patient-05 2.glb",
-      "bytes": 989328,
-      "gzipBytes": 271134,
-      "sha256": "c2d732cc40dd878f46363abf8049e505b5596e1ae6cdfaad99f28a1998be8dc3",
-      "triangles": 12444,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-05-lod 2.glb",
-      "bytes": 631928,
-      "gzipBytes": 191340,
-      "sha256": "b63bcc086389fccb05604c6efb1d06aef56f601952c3e0089a2c3f6aa4ab8c09",
-      "triangles": 4229,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
       "file": "dist/assets/patient-05-lod.glb",
       "bytes": 631928,
       "gzipBytes": 191340,
@@ -979,52 +737,6 @@
       "gzipBytes": 271134,
       "sha256": "c2d732cc40dd878f46363abf8049e505b5596e1ae6cdfaad99f28a1998be8dc3",
       "triangles": 12444,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-06 2.glb",
-      "bytes": 1002572,
-      "gzipBytes": 274806,
-      "sha256": "bc803380af059bf5fc250a17c040bbf95f47744dbfcab89570812d5c7974adbd",
-      "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-06-lod 2.glb",
-      "bytes": 637968,
-      "gzipBytes": 193995,
-      "sha256": "e2d24cfd271e64b2fa764ab0091552fde3a46e4e23e710aae7fdc525cfe3f09b",
-      "triangles": 4311,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -1089,52 +801,6 @@
       "joints": 39
     },
     {
-      "file": "dist/assets/patient-07 2.glb",
-      "bytes": 1002612,
-      "gzipBytes": 275717,
-      "sha256": "0a1524f451ad7aa7ad22eca9cde68bb5f3d789ea459a1cc3fd9a36e36ee825c0",
-      "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-07-lod 2.glb",
-      "bytes": 637252,
-      "gzipBytes": 193659,
-      "sha256": "159e01aaccef2f42a43c6e97f0568c3007dc75c99bcc4068ec2a73ad034a661a",
-      "triangles": 4309,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
       "file": "dist/assets/patient-07-lod.glb",
       "bytes": 637252,
       "gzipBytes": 193659,
@@ -1163,52 +829,6 @@
       "gzipBytes": 275717,
       "sha256": "0a1524f451ad7aa7ad22eca9cde68bb5f3d789ea459a1cc3fd9a36e36ee825c0",
       "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-08 2.glb",
-      "bytes": 1002572,
-      "gzipBytes": 274795,
-      "sha256": "b9d399ff2d74c86859a56a88a5c5865e891d34fccfdd762eefbb321d19594ac4",
-      "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-08-lod 2.glb",
-      "bytes": 637416,
-      "gzipBytes": 193964,
-      "sha256": "d4f6863e139042a5f4577d078ef93ce14e8d5d06eb3d51b7ef839cc7cf42af81",
-      "triangles": 4310,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -1273,52 +893,6 @@
       "joints": 39
     },
     {
-      "file": "dist/assets/patient-09 2.glb",
-      "bytes": 943544,
-      "gzipBytes": 254586,
-      "sha256": "5e8891eb0af01cc668de38b5e7baab8110d826cf0ee2492be070f33ebe37059a",
-      "triangles": 11342,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-09-lod 2.glb",
-      "bytes": 615744,
-      "gzipBytes": 186210,
-      "sha256": "9359947374932c4673827710fb3aaa4e76c00ed70e8d6b231c8e62903385342d",
-      "triangles": 3856,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
       "file": "dist/assets/patient-09-lod.glb",
       "bytes": 615744,
       "gzipBytes": 186210,
@@ -1365,52 +939,6 @@
       "joints": 39
     },
     {
-      "file": "dist/assets/patient-10 2.glb",
-      "bytes": 1002536,
-      "gzipBytes": 275388,
-      "sha256": "70ad9f88ecc136a90fe4894c8430e6b84ae5c32b8036a3b74d31123c4493015e",
-      "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-10-lod 2.glb",
-      "bytes": 637460,
-      "gzipBytes": 193422,
-      "sha256": "d19064e1895e1567d0864cad8bdcfef8f96df92d652c6780f5226caf491939e2",
-      "triangles": 4312,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
       "file": "dist/assets/patient-10-lod.glb",
       "bytes": 637460,
       "gzipBytes": 193422,
@@ -1439,52 +967,6 @@
       "gzipBytes": 275388,
       "sha256": "70ad9f88ecc136a90fe4894c8430e6b84ae5c32b8036a3b74d31123c4493015e",
       "triangles": 12684,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-11 2.glb",
-      "bytes": 989244,
-      "gzipBytes": 270736,
-      "sha256": "1dd60888cba8a385cc32b15c9467cdb3aa07e576c5e8121df0e12857e9c020e4",
-      "triangles": 12444,
-      "primitives": 1,
-      "animations": [
-        "Attend",
-        "Discuss",
-        "Idle",
-        "Rest",
-        "Sit",
-        "TransferIn",
-        "TransferOut",
-        "Walk",
-        "Work"
-      ],
-      "source": "blender/characters.py and characters.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/patient-11-lod 2.glb",
-      "bytes": 632184,
-      "gzipBytes": 192006,
-      "sha256": "87ea071ec618019bd8b1e29020d736197173a1adb6ca4590d5bd090685c15cbc",
-      "triangles": 4229,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -1835,19 +1317,6 @@
       "joints": 39
     },
     {
-      "file": "dist/assets/staff-np-lod 2.glb",
-      "bytes": 222868,
-      "gzipBytes": 77516,
-      "sha256": "312c24ba8f0b8b711f67f7fbe7276e0eb6e463acf458f6678edc4d2f82f484a8",
-      "triangles": 4394,
-      "primitives": 1,
-      "animations": [],
-      "source": "blender/staff_roles.py and staff_roles.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
       "file": "dist/assets/staff-np-lod.glb",
       "bytes": 222868,
       "gzipBytes": 77516,
@@ -1892,19 +1361,6 @@
       "gzipBytes": 140521,
       "sha256": "16b4a0c8182b16370cb28904bb49e35a29359c5a56271837b56afc6a057604c2",
       "triangles": 12582,
-      "primitives": 1,
-      "animations": [],
-      "source": "blender/staff_roles.py and staff_roles.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/staff-pa-lod 2.glb",
-      "bytes": 223072,
-      "gzipBytes": 77497,
-      "sha256": "af0c0e213ea7d2f3f94ee100af0249147e1ba44b6472556a528516fafc184932",
-      "triangles": 4394,
       "primitives": 1,
       "animations": [],
       "source": "blender/staff_roles.py and staff_roles.blend",
@@ -1986,32 +1442,6 @@
       "primitives": 1,
       "animations": [],
       "source": "blender/clinic_flow.py and clinic_wardrobes.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/staff-reception 2.glb",
-      "bytes": 603844,
-      "gzipBytes": 143331,
-      "sha256": "27a09f3edb2d59a79e09923da2ed2cdd86fbf3da3c025f2610944435fdac865c",
-      "triangles": 12870,
-      "primitives": 1,
-      "animations": [],
-      "source": "blender/staff_roles.py and staff_roles.blend",
-      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
-      "license": "CC0-1.0",
-      "joints": 39
-    },
-    {
-      "file": "dist/assets/staff-reception-lod 2.glb",
-      "bytes": 218172,
-      "gzipBytes": 72500,
-      "sha256": "e010bc0859d880091727227299e99f7b7439a601260e10a02911232d1ffdf766",
-      "triangles": 4114,
-      "primitives": 1,
-      "animations": [],
-      "source": "blender/staff_roles.py and staff_roles.blend",
       "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
       "license": "CC0-1.0",
       "joints": 39

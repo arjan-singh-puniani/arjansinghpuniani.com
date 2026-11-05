@@ -5,6 +5,7 @@ root=Path(__file__).resolve().parents[1]
 manifest=json.loads((root/'ASSET_MANIFEST.json').read_text())
 assets=[]
 for p in sorted((root/'dist/assets').glob('*.glb')):
+ if re.search(r' \d+\.glb$',p.name):continue # Finder recovery copies are not published assets.
  raw=p.read_bytes();assert raw[:4]==b'glTF'
  doc=json.loads(raw[20:20+struct.unpack_from('<I',raw,12)[0]])
  primitives=[q for m in doc['meshes'] for q in m['primitives']]
@@ -25,5 +26,5 @@ initial.update('staff-'+r+'-lod.glb' for r in ['pharmacist','neurologist','physi
 initial.update('walk-'+key+'.glb' for key in ['clinician','coat',*(a['id'] for a in appearances)])
 initial.update('staff-'+role+'-lod.glb' for role in ['doctor','surgeon','nurse','np','pa','imaging','reception','assistant','facilities'])
 loaded=[a for a in assets if Path(a['file']).name in initial]
-result={'model':re.search(r"VERSION='([^']+)'",(root/'dist/content.mjs').read_text())[1],'initialGlbCount':len(loaded),'initialGlbBytes':sum(a['bytes'] for a in loaded),'initialGlbGzipBytes':sum(a['gzipBytes'] for a in loaded),'note':'gzip values measured locally; server transfer encoding and cache behavior may differ. Runtime JS/CSS/vendor are listed separately.','runtimeRawBytes':sum(p.stat().st_size for p in (root/'dist').rglob('*') if p.is_file() and p.suffix in ['.mjs','.js','.css'] and 'replisome' not in p.parts and 'legacy' not in p.parts),'assetCount':len(assets)}
+result={'model':re.search(r"VERSION='([^']+)'",(root/'dist/content.mjs').read_text())[1],'initialGlbCount':len(loaded),'initialGlbBytes':sum(a['bytes'] for a in loaded),'initialGlbGzipBytes':sum(a['gzipBytes'] for a in loaded),'note':'gzip values measured locally; server transfer encoding and cache behavior may differ. Runtime JS/CSS/vendor are listed separately.','runtimeRawBytes':sum(p.stat().st_size for p in (root/'dist').rglob('*') if p.is_file() and p.suffix in ['.mjs','.js','.css'] and 'replisome' not in p.parts and 'legacy' not in p.parts and not re.search(r' \d+(?=\.)',p.name)),'assetCount':len(assets)}
 (root/'evidence/asset-sizes-v10.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
