@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ECGWorkspace } from "@/components/ECGWorkspace";
 import { DigitalECGScene } from "@/components/DigitalECGScene";
 import { ReferenceECGs } from "@/components/ReferenceECGs";
 import { RecordedECG } from "@/components/RecordedECG";
@@ -292,23 +293,29 @@ export default function VectorEkgReasonOSPage() {
       <header className="rosx-hero">
         <div className="shell">
           <p className="eyebrow">Vector EKG / ReasonOS</p>
-          <h1>Understand the electrical event behind the trace</h1>
+          <h1>ECG analysis with traceable evidence</h1>
           <p className="vector-deck">
-            Use the recorded ECG to connect heart activity, lead direction,
-            waveform shape, and source-pixel calculations. Follow the evidence
-            all the way to the claim it can support.
+            Open a real recording, measure the source, and connect each proposed
+            interpretation to its evidence. Local files stay in your browser.
           </p>
         </div>
       </header>
       <nav className="rosx-science-nav shell" aria-label="ECG study sections">
-        <a href="#ecg-connections">Heart, leads & trace</a>
+        <a href="#ecg-workspace">ECG workspace</a>
+        <a href="#heart-leads">Heart, leads & trace</a>
         <a href="#measurement-workbench">Measurements & practice</a>
         <a href="#ecg-reference-practice">Reference ECG practice</a>
         <a href="#source-case">Source recordings</a>
         <a href="#architecture">Clinical usefulness</a>
         <a href="#model-references">Model & references</a>
       </nav>
-      <DigitalECGScene />
+      <section className="lab-embed rosx-lab" id="ecg-workspace" aria-label="ECG evidence workspace">
+        <ECGWorkspace />
+      </section>
+      <details className="rosx-model-explanation" id="heart-leads">
+        <summary>How the recording connects to heart activity and lead geometry</summary>
+        <DigitalECGScene />
+      </details>
       <details className="rosx-model-explanation" id="measurement-workbench">
         <summary>
           Independent calipers, interpretation worksheet, and reference cases
