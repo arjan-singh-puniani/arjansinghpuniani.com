@@ -1,4 +1,4 @@
-import {GRID} from './content.mjs?v=131';
+import {GRID} from './content.mjs?v=138';
 export const entrance=s=>s.entrance||GRID.entry,exit=s=>s.exit||GRID.exit;
 const directions=[{x:0,y:1},{x:1,y:0},{x:0,y:-1},{x:-1,y:0}];
 export const gateDirection=(p,bounds=GRID)=>p.direction!==undefined?directions[p.direction]:p.y===bounds.h-1?{x:0,y:1}:p.y===0?{x:0,y:-1}:p.x===0?{x:-1,y:0}:{x:1,y:0};

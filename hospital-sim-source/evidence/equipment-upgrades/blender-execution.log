@@ -1,0 +1,442 @@
+BUILT_PACKAGE gp 2
+BUILT_PACKAGE gp 3
+BUILT_PACKAGE intake 2
+BUILT_PACKAGE intake 3
+BUILT_PACKAGE pharmacy 2
+BUILT_PACKAGE pharmacy 3
+BUILT_PACKAGE neuro 2
+BUILT_PACKAGE neuro 3
+BUILT_PACKAGE gait 2
+BUILT_PACKAGE gait 3
+BUILT_PACKAGE eeg 2
+BUILT_PACKAGE eeg 3
+BUILT_PACKAGE sleep 2
+BUILT_PACKAGE sleep 3
+BUILT_PACKAGE scan 2
+BUILT_PACKAGE scan 3
+BUILT_PACKAGE care 2
+BUILT_PACKAGE care 3
+Blender 4.0.2 (hash 9be62e85b727 built 2023-12-05 08:05:41)
+Info: Total files 0 | Changed 0 | Failed 0
+Info: Saved "equipment_upgrades.blend"
+21:24:18 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+21:24:18 | INFO: Starting glTF 2.0 export
+21:24:18 | INFO: Extracting primitive: Cube.001
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cylinder
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.003
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cylinder.003
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.007
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.012
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Torus
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.006
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.016
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.015
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.014
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.017
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Fictional signal
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.018
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Protected display lead
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.019
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.021
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.020
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.024
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cylinder.023
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.027
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.025
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cylinder.029
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.031
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.036
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Torus.004
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.030
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cylinder.044
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.039
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Torus.008
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.038
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.044
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.048
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.047
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cylinder.061
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.055
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Fictional signal.003
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.056
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Protected display lead.001
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.057
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.059
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.058
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.062
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cylinder.067
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.065
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.063
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cylinder.073
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.069
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Torus.012
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.068
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.074
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Fictional signal.006
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.075
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Protected display lead.002
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.076
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.078
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.077
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.081
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cylinder.094
+21:24:18 | INFO: Primitives created: 1
+21:24:18 | INFO: Extracting primitive: Cube.084
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.089
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.016
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.083
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.109
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.092
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.020
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.091
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.097
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.100
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.099
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.098
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.128
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.103
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.108
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.024
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.102
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.110
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.142
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.112
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.116
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.115
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.114
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.117
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Fictional signal.009
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.118
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Protected display lead.003
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.119
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.121
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.120
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.124
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.151
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.127
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.125
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.129
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Fictional signal.012
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.130
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Protected display lead.004
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.131
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.159
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.134
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.139
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.028
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.133
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.173
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.143
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.141
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.179
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.147
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.152
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.032
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.146
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.154
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.153
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.157
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.160
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.159
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.158
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.198
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.163
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.036
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.162
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.168
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Fictional signal.015
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.169
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Protected display lead.005
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.170
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.172
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.171
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.175
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.219
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.178
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.183
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.040
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.177
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.187
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.186
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.234
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.196
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.195
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.194
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.238
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.199
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.204
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.044
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.198
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.208
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.207
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.253
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.255
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.217
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.048
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.216
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.272
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.224
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.222
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.227
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.226
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.230
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.233
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.232
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.231
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.282
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.236
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.241
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.052
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.235
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.297
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.244
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.056
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.243
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.252
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.251
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.314
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.259
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Fictional signal.018
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.260
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Protected display lead.006
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.261
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.263
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.262
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.266
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.269
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.268
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.267
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.322
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.272
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.060
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.271
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.279
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.278
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.277
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.281
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.280
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.284
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.285
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Fictional signal.021
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.286
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Protected display lead.007
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.287
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.345
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.290
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.295
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Torus.064
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.289
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.300
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cube.299
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Extracting primitive: Cylinder.359
+21:24:19 | INFO: Primitives created: 1
+21:24:19 | INFO: Finished glTF 2.0 export in 0.280627965927124 s
+
+EXPORTED_ORIGINAL_UPGRADE_ASSETS
+
+Blender quit

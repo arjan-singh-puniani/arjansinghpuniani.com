@@ -1,3 +1,13 @@
+# hospitalSIM — equipment that unfolds (RC8)
+
+Build on a **32 × 28** estate with quarter-cell rotation/confirmation, **16-minute** new-clinic shifts and room-specific three-piece equipment packages. Equipment unfolds into the actual room; saved purchases remain visible.
+
+Play https://arjansinghpuniani.com/playground/hospitalsim . [Current model, executed Blender pipeline, tests and limitations](docs/EQUIPMENT_RC8.md). Films and comparison: `/hospitalsim/docs/equipment.html`. Substantial AI assistance; this remains an engineering prototype.
+
+---
+
+## Historical RC6 campus
+
 # hospitalSIM — room to grow (RC6)
 
 Juniper Clinic now has a **24 × 20 cell estate**: about 6.7× the old 9 × 8 area. Build near reception first, then expand north and east. **Land** shows the whole estate; **Home** returns to your starter clinic. Existing clinic saves expand without resetting visits or billing. Room and staff safety limits rise to 64 each; dense overviews still exceed the provisional mobile graphics budget.

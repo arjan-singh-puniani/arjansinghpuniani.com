@@ -74,7 +74,7 @@ export default function HospitalPlayer() {
         />
         {!loaded && <p className={styles.loading} role="status">{slow ? "Taking longer than expected. Try opening the experience in a new tab below." : "Opening your clinic…"}</p>}
       </> : <div className={styles.poster}>
-        <Image src="/hospitalsim/docs/campus-desktop-overview.webp" width={1280} height={720} sizes="(max-width: 800px) 100vw, 1200px" alt="Juniper Clinic on a24 by20 cell estate with vacant buildable land" />
+        <Image src="/hospitalsim/docs/equipment-three-zone.png" width={820} height={577} sizes="(max-width: 800px) 100vw, 1200px" alt="Actual advanced-scenario hospitalSIM scene; the main clinic begins empty" />
         <div className={styles.posterCopy}><p>A little room for care.</p><button ref={enter} className="button" onClick={launch}>Play hospitalSIM <span aria-hidden="true">↗</span></button><span>Build · Understand · Try again</span></div>
       </div>}
     </div>

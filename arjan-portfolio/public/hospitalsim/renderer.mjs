@@ -1,16 +1,17 @@
-import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=131';
-import {installPointerInput} from './input.mjs?v=131';
-import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=131';
-import {roomAngle} from './navigation.mjs?v=131';
-import {landingCheck} from './landing.mjs?v=131';
+import {unfoldPose} from './upgrade-motion.mjs?v=138';
+import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=138';
+import {installPointerInput} from './input.mjs?v=138';
+import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=138';
+import {roomAngle} from './navigation.mjs?v=138';
+import {landingCheck} from './landing.mjs?v=138';
 import * as THREE from 'three';
-import {landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=131';
-import {changingPath,WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=131';
+import {landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=138';
+import {changingPath,WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=138';
 import {GLTFLoader} from './vendor/examples/jsm/loaders/GLTFLoader.js';
 import {clone} from './vendor/examples/jsm/utils/SkeletonUtils.js';
 import {OrbitControls} from './vendor/examples/jsm/controls/OrbitControls.js';
 import {RoomEnvironment} from './vendor/examples/jsm/environments/RoomEnvironment.js';
-import {siteOf,GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=131';
+import {placementStep,siteOf,GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=138';
 
 export const roomHeight=type=>({scan:.63,care:.25,consult:.85,rest:.25,plan:.85,waiting:.25}[type]??.25);
 export function world(x,y,height=.25){return new THREE.Vector3((x-4)*GRID.step,height,(y-3.5)*GRID.step)}
@@ -116,7 +117,7 @@ export class Diorama {
  }
 
  planningTargets(options,type,rotation=0,preferred={x:7,y:3}){
-  const hadSites=!!this.buildSites?.length;this.planLayer.replaceChildren();this.buildSites=[];if(!options){if(hadSites)this.fit();return;}
+  const hadSites=!!this.buildSites?.length;this.planLayer.replaceChildren();this.buildSites=[];if(this.state().site?.version===2)return;if(!options){if(hadSites)this.fit();return;}
   for(const p of [...options].sort((a,b)=>Math.hypot(a.x-preferred.x,a.y-preferred.y)-Math.hypot(b.x-preferred.x,b.y-preferred.y))){if(this.buildSites.some(q=>Math.hypot(q.x-p.x,q.y-p.y)<2))continue;const site={...p,rotation},button=document.createElement('button'),place=p.x>=6?(p.y<2?'East back':p.y>=5?'East front':'East center'):p.y<2?'Back court':p.y>=5?'Front court':'Courtyard';button.className='build-site';button.textContent='✚ '+place+' · $'+(type==='rest'&&this.state().operations.loungeVoucher?0:TYPES[type].cost);button.setAttribute('aria-label','Build '+TYPES[type].name+' at '+place+' '+(this.buildSites.length+1));button.onpointerenter=()=>this.onHover(site);button.onclick=e=>{e.stopPropagation();this.onPick(site)};site.button=button;this.buildSites.push(site);this.planLayer.append(button);if(this.buildSites.length===3)break}this.fit();
  }
  frameWorldActions(){
@@ -147,7 +148,7 @@ export class Diorama {
 
  advancePerson(p,clip,simDt){advanceLocomotion(p,clip,simDt)}
  async load(){
-  const response=await assetDeadline(fetch('assets/patient-appearances.json?v=131'));if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
+  const response=await assetDeadline(fetch('assets/patient-appearances.json?v=138'));if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
   if(manifest.appearances?.length!==11||new Set(manifest.appearances.map(a=>a.id)).size!==11||manifest.appearances.some(a=>!/^patient-\d{2}-lod\.glb$/.test(a.lod)||!/^patient-\d{2}\.glb$/.test(a.high)))throw Error('Invalid patient appearance manifest');
   this.walkClips=new Map();this.patientAppearances=manifest.appearances;this.lowPatients=new Map();this.highPatients=new Map();this.casualPatients=new Map();
   const loader=new GLTFLoader(),names=['scan','care','consult','rest','clinician','coat','drape','doors','lobby','service-props',...Object.values(CLINIC_DEPARTMENTS).map(d=>d.asset),...Object.entries(STAFF_ROLES).filter(([,d])=>!d.assetAlias).map(([r])=>'staff-'+r)],jobs=[...names.map(name=>({name,file:(['scan','care','consult','clinician','coat'].includes(name)||name.startsWith('staff-'))?name+'-lod.glb':name+'.glb'})),...this.patientAppearances.map(appearance=>({appearance,file:appearance.lod})),...this.patientAppearances.map(a=>({casual:a.id,file:a.casual})),...['clinician','coat',...this.patientAppearances.map(a=>a.id)].map(key=>({walk:key,file:'walk-'+key+'.glb'}))];let done=0;
@@ -163,9 +164,36 @@ export class Diorama {
  replaceEquipment(group,r){
   if(group.userData.equipment){group.remove(group.userData.equipment);this.disposeOwned(group.userData.equipment)}const source=this.assets[TYPES[r.type].asset];group.userData.equipmentSource=source;const equipment=(r.type==='waiting'?source.scene.getObjectByName('WaitingBench'):source.scene).clone(true);group.userData.equipment=equipment;const cap=equipment.getObjectByName('EEGCapRoot');if(cap)cap.visible=false;if(r.type==='waiting')equipment.position.z=-.55;group.add(equipment);this.soften(equipment);group.userData.monitors=[];equipment.traverse(o=>{if(o.isMesh&&o.material.name.includes('Diagnostic glass')){o.material=o.material.clone();o.material.emissive.set(0xffffff);o.material.emissiveMap=o.material.map;group.userData.monitors.push(o.material)}});this.renderer.shadowMap.needsUpdate=true;
  }
+ async ensureUpgradeAssets(){
+  if(this.upgradeAssets)return this.upgradeAssets;if(this.upgradePromise)return this.upgradePromise;
+  this.upgradeLoadAttempted=true;this.canvas.dataset.equipmentLoad='loading';this.upgradeError='';
+  this.upgradePromise=assetDeadline(new GLTFLoader().loadAsync('assets/equipment-upgrades.glb?v=138')).then(asset=>{this.upgradeAssets=asset;asset.scene.traverse(o=>{if(o.isMesh){this.sharedGeometry.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])this.sharedMaterial.add(m)}});this.canvas.dataset.equipmentLoad='ready';return asset}).catch(error=>{this.upgradePromise=null;this.upgradeError=error.message;this.canvas.dataset.equipmentLoad='error';throw error});
+  return this.upgradePromise;
+ }
+ syncUpgrades(group,r){
+  const ids=(r.installations||[]).flatMap(p=>p.items),previous=group.userData.knownItems||new Set(ids);group.userData.knownItems=new Set(ids);
+  if(!group.userData.additions){group.userData.additions=new THREE.Group();group.add(group.userData.additions)}const additions=group.userData.additions;
+  for(const child of [...additions.children])if(!ids.includes(child.name)){additions.remove(child);this.disposeOwned(child)}
+  if(ids.length&&!this.upgradeAssets){if(!this.upgradeLoadAttempted)this.ensureUpgradeAssets().catch(()=>{});return}
+  for(const [index,id]of ids.entries())if(!additions.getObjectByName(id)){
+   const source=this.upgradeAssets.scene.getObjectByName(id);if(!source){this.canvas.dataset.equipmentLoad='error';continue}const part=source.clone(true);additions.add(part);this.soften(part);part.userData.rest={position:part.position.clone(),rotation:part.quaternion.clone(),scale:part.scale.clone()};
+   if(!previous.has(id)&&!this.reduced.matches&&!this.forceReduced){part.userData.unfold={seconds:0,index:index%3,materials:[]};part.traverse(o=>{if(o.isMesh){const original=o.material,material=original.clone();material.transparent=true;material.depthWrite=false;material.forceSinglePass=true;o.material=material;part.userData.unfold.materials.push({object:o,original,material})}});group.userData.installFlash=2;this.canvas.dataset.lastUpgradedRoom=r.id}
+   this.renderer.shadowMap.needsUpdate=true;
+  }
+ }
+ animateUpgrades(dt,reduced){
+  let pieces=0,moving=0;
+  for(const group of this.roomObjects.values()){
+   for(const part of group.userData.additions?.children||[]){pieces++;const a=part.userData.unfold;if(!a)continue;moving++;a.seconds+=dt;const pose=unfoldPose(a.seconds,a.index,reduced),rest=part.userData.rest;part.position.copy(rest.position);part.position.y+=pose.y;part.scale.set(rest.scale.x*pose.scaleXZ,rest.scale.y*pose.scaleY,rest.scale.z*pose.scaleXZ);part.quaternion.copy(rest.rotation).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),pose.turn));for(const m of a.materials)m.material.opacity=pose.opacity;
+    if(pose.done){part.position.copy(rest.position);part.scale.copy(rest.scale);part.quaternion.copy(rest.rotation);for(const m of a.materials){m.object.material=m.original;m.material.dispose()}delete part.userData.unfold}this.renderer.shadowMap.needsUpdate=true;
+   }
+   if(group.userData.installFlash>0){group.userData.installFlash=Math.max(0,group.userData.installFlash-dt);if(!group.userData.installFrame){const frame=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(3.5,.025,3.5)),new THREE.LineBasicMaterial({color:0x22c7a0,transparent:true,opacity:0,depthWrite:false}));frame.position.y=.035;group.add(frame);group.userData.installFrame=frame}const p=group.userData.installFlash/2;group.userData.installFrame.visible=p>0&&!reduced;group.userData.installFrame.material.opacity=reduced?0:p*.85;group.userData.installFrame.scale.setScalar(1+.025*Math.sin((1-p)*Math.PI));}
+  }
+  this.canvas.dataset.equipmentPiecesVisible=pieces;this.canvas.dataset.upgradeAnimating=moving;
+ }
  syncRooms(){
   const s=this.state();this.syncLand();this.starterPlot.visible=!!(s.first||s.clinic);this.reception.visible=!(s.first||s.clinic);this.syncGates();for(const [id,g] of this.roomObjects){if(!s.rooms.some(r=>r.id===id)){this.scene.remove(g);this.disposeOwned(g);this.roomObjects.delete(id)}}
-  for(const r of s.rooms){if(this.roomObjects.has(r.id)){const g=this.roomObjects.get(r.id);g.position.copy(center(r));g.rotation.y=roomAngle(r);if(g.userData.equipmentSource!==this.assets[TYPES[r.type].asset])this.replaceEquipment(g,r);if(r.type==='waiting'){const equipment=g.userData.equipment;equipment.rotation.y=r.furniture?-Math.PI/2:0;equipment.position.set(r.furniture?.55:0,0,r.furniture?0:-.55)}this.decorateRoom(g,r);continue}const group=new THREE.Group();group.position.copy(center(r));group.rotation.y=roomAngle(r);group.userData.roomId=r.id;this.scene.add(group);this.roomObjects.set(r.id,group);
+  for(const r of s.rooms){if(this.roomObjects.has(r.id)){const g=this.roomObjects.get(r.id);g.position.copy(center(r));g.rotation.y=roomAngle(r);if(g.userData.equipmentSource!==this.assets[TYPES[r.type].asset])this.replaceEquipment(g,r);if(r.type==='waiting'){const equipment=g.userData.equipment;equipment.rotation.y=r.furniture?-Math.PI/2:0;equipment.position.set(r.furniture?.55:0,0,r.furniture?0:-.55)}this.decorateRoom(g,r);this.syncUpgrades(g,r);continue}const group=new THREE.Group();group.position.copy(center(r));group.rotation.y=roomAngle(r);group.userData.roomId=r.id;this.scene.add(group);this.roomObjects.set(r.id,group);
    this.replaceEquipment(group,r);if(this.assets['service-props']){const spill=this.assets['service-props'].scene.getObjectByName('FloorSpill').clone(true);spill.position.set(1.2,.008,1.3);spill.visible=!!r.spill;group.add(spill);group.userData.spill=spill}
    if(r.type==='care'){const drape=this.assets.drape.scene.clone(true);drape.traverse(o=>{if(o.isMesh){o.material=o.material.clone();o.material.transparent=true;o.material.opacity=0;o.material.depthWrite=false;o.castShadow=false}});drape.visible=false;group.add(drape);group.userData.occupiedDrape=drape}
    const base=new THREE.Mesh(beveledBox(3.55,roomHeight(r.type)+.15,3.55,.045),blue);base.position.y=-(roomHeight(r.type)+.15)/2;base.castShadow=true;base.receiveShadow=true;group.add(base);
@@ -176,7 +204,7 @@ export class Diorama {
    const threshold=new THREE.Mesh(new THREE.BoxGeometry(.9,.035,.15),new THREE.MeshStandardMaterial({color:0x1d718c,roughness:.6}));threshold.position.set(-.825,.025,1.68);group.add(threshold);
    const ramp=new THREE.Mesh(new THREE.BoxGeometry(.92,.06,1.05),pale);const rise=roomHeight(r.type)-.25;ramp.rotation.x=Math.atan2(rise,1.05);ramp.position.set(-.825,-rise/2,2.12);ramp.receiveShadow=true;group.add(ramp);
    const badge=new THREE.Mesh(new THREE.BoxGeometry(.12,.04,.12),new THREE.MeshStandardMaterial({color:0x178c85,emissive:0x125347,emissiveIntensity:.4}));badge.position.set(1.57,.04,1.56);group.add(badge);group.userData.badge=badge;
-   const upgrade=new THREE.Mesh(new THREE.BoxGeometry(.45,.10,.15),new THREE.MeshStandardMaterial({color:0xdab887,metalness:.5,roughness:.35}));upgrade.position.set(1.15,.04,1.53);group.add(upgrade);group.userData.upgrade=upgrade;
+   const upgrade=new THREE.Mesh(new THREE.BoxGeometry(.45,.10,.15),new THREE.MeshStandardMaterial({color:0xdab887,metalness:.5,roughness:.35}));upgrade.position.set(1.15,.04,1.53);group.add(upgrade);group.userData.upgrade=upgrade;this.syncUpgrades(group,r);
   }
   this.pickables=[...this.roomObjects.values(),...this.people.values()].map(p=>p.group||p);
   const signature=s.rooms.map(r=>`${r.id}:${r.type}:${r.x}:${r.y}:${r.rotation||0}`).join(',')+JSON.stringify([entrance(s),exit(s)]);if(this.layoutSignature!==signature){this.layoutSignature=signature;this.updateStaticContacts();this.updateWalkways();this.fit();this.renderer.shadowMap.needsUpdate=true}
@@ -219,7 +247,7 @@ export class Diorama {
 
   if(high&&!this.highAssets)return;if(this.highMode===high)return;this.highMode=high;for(const kind of ['scan','care','consult','clinician','coat',...Object.entries(STAFF_ROLES).filter(([,d])=>!d.assetAlias).map(([r])=>'staff-'+r)])this.assets[kind]=high?this.highAssets[kind]:this.lowAssets[kind];for(const p of [...this.people.values(),...this.staffPeople.values(),this.ambient].filter(Boolean))this.removePerson(p);this.people.clear();this.staffPeople.clear();this.ambient=null;
  }
- tile(e){const rect=this.canvas.getBoundingClientRect();this.pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);this.ray.setFromCamera(this.pointer,this.camera);const hit=new THREE.Vector3();if(!this.ray.ray.intersectPlane(this.floor,hit))return null;this.pointerWorld=hit.clone();const spacing=this.carry?.25:.5,x=Math.round((hit.x/GRID.step+4)/spacing)*spacing,y=Math.round((hit.z/GRID.step+3.5)/spacing)*spacing;return x>=0&&x<=siteOf(this.state()).w-1&&y>=0&&y<=siteOf(this.state()).h-1?{x,y}:null}
+ tile(e){const rect=this.canvas.getBoundingClientRect();this.pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);this.ray.setFromCamera(this.pointer,this.camera);const hit=new THREE.Vector3();if(!this.ray.ray.intersectPlane(this.floor,hit))return null;this.pointerWorld=hit.clone();const spacing=this.carry?.25:placementStep(this.state()),x=Math.round((hit.x/GRID.step+4)/spacing)*spacing,y=Math.round((hit.z/GRID.step+3.5)/spacing)*spacing;return x>=0&&x<=siteOf(this.state()).w-1&&y>=0&&y<=siteOf(this.state()).h-1?{x,y}:null}
  pick(e){this.tile(e);if(!this.tool){const person=this.personAt(e);if(person){this.onPick(person.kind==='patient'?{patient:person.id}:{staff:person.id});return}const hits=this.ray.intersectObjects([...this.roomObjects.values()],true);if(hits.length){let o=hits[0].object;while(o&&!o.userData.patientId&&!o.userData.roomId&&!o.userData.staffId)o=o.parent;if(o){this.onPick(o.userData.patientId?{patient:o.userData.patientId}:o.userData.staffId?{staff:o.userData.staffId}:{room:o.userData.roomId});return}}}
   const t=this.tile(e);if(t)this.onPick(t);
  }
@@ -230,7 +258,7 @@ export class Diorama {
   if(this.equipmentGhost)this.equipmentGhost.visible=!footprintOnly;
   if(gate){const out=gateDirection(tile,siteOf(this.state()));this.equipmentGhost.rotation.y=Math.atan2(out.x,out.y)}else this.equipmentGhost.rotation.y=0;
   this.equipmentGhost.traverse(o=>{if(o.isMesh)o.material.color.set(check.ok?0x54ba91:0xcf735b)});this.ghostMat.color.set(check.ok?0x258d7c:0xc15e43);
-  if(!this.ghostDoor){this.ghostDoor=new THREE.Mesh(new THREE.BoxGeometry(.92,.05,.28),this.ghostMat);this.ghostDoor.position.set(-.825,.04,1.72);this.ghost.add(this.ghostDoor)}this.ghostDoor.visible=!gate;this.onHoverResult=check;this.canvas.dataset.buildRotation=rotation;
+  if(!this.ghostDoor){this.ghostDoor=new THREE.Mesh(new THREE.BoxGeometry(.92,.05,.28),this.ghostMat);this.ghostDoor.position.set(-.825,.04,1.72);this.ghost.add(this.ghostDoor)}this.ghostDoor.visible=!gate;this.onHoverResult=check;this.canvas.dataset.buildRotation=rotation;this.canvas.dataset.previewX=tile.x;this.canvas.dataset.previewY=tile.y;
  }
  select(id,kind='room'){this.selected={id,kind};this.followId=null}
  follow(id){this.selected={id,kind:'patient'};this.followId=id;this.camera.zoom=Math.max(1.2,this.camera.zoom);this.camera.updateProjectionMatrix()}
@@ -283,7 +311,7 @@ export class Diorama {
   }
   this.canvas.dataset.activeAppearances=[...new Set([...this.people.values()].map(p=>p.group.userData.appearanceId))].join(',');
   this.canvas.dataset.activeWardrobes=s.patients.map(p=>p.id+':'+(p.wardrobe||'gown')+':'+p.state+':'+p.stage).join(',');
-  const desired=new Set();for(const r of s.rooms){const g=this.roomObjects.get(r.id),busy=s.patients.some(p=>p.room===r.id&&p.state==='service'&&!p.teamWaiting);g.userData.badge.material.color.set(r.staff.length<TYPES[r.type].staff?0xbb8644:0x178c85);g.userData.badge.material.emissiveIntensity=busy?1.3:.15;for(const material of g.userData.monitors||[])material.emissiveIntensity=busy ? .25+.025*Math.sin(s.seconds*2+alpha):.05;if(g.userData.spill)g.userData.spill.visible=!!r.spill;g.userData.upgrade.visible=r.level>1;g.userData.upgrade.scale.x=r.level-1;const drape=g.userData.occupiedDrape;if(drape){const visit=s.patients.find(p=>p.room===r.id),pose=drapePose(visit?.state,visit?visit.progress+alpha:0);drape.visible=pose.visible;drape.scale.set(1,pose.scaleY,pose.scaleZ);drape.position.set(0,.88*(1-pose.scaleY),.96*(1-pose.scaleZ));drape.traverse(o=>{if(o.isMesh)o.material.opacity=pose.opacity})}
+  const desired=new Set();for(const r of s.rooms){const g=this.roomObjects.get(r.id),busy=s.patients.some(p=>p.room===r.id&&p.state==='service'&&!p.teamWaiting);g.userData.badge.material.color.set(r.staff.length<TYPES[r.type].staff?0xbb8644:0x178c85);g.userData.badge.material.emissiveIntensity=busy?1.3:.15;for(const material of g.userData.monitors||[])material.emissiveIntensity=busy ? .25+.025*Math.sin(s.seconds*2+alpha):.05;if(g.userData.spill)g.userData.spill.visible=!!r.spill;g.userData.upgrade.visible=!s.equipmentMode&&r.level>1;g.userData.upgrade.scale.x=r.level-1;const drape=g.userData.occupiedDrape;if(drape){const visit=s.patients.find(p=>p.room===r.id),pose=drapePose(visit?.state,visit?visit.progress+alpha:0);drape.visible=pose.visible;drape.scale.set(1,pose.scaleY,pose.scaleZ);drape.position.set(0,.88*(1-pose.scaleY),.96*(1-pose.scaleZ));drape.traverse(o=>{if(o.isMesh)o.material.opacity=pose.opacity})}
 
    r.staff.forEach((id,i)=>{desired.add(id);let p=this.staffPeople.get(id);if(!p){p=this.makePerson('staff-'+s.staff.find(st=>st.id===id).role,id);this.staffPeople.set(id,p);p.group.userData.staffId=id}const st=s.staff.find(a=>a.id===id),visit=s.patients.find(p=>p.room===r.id),post=staffPost(r.type,i);let local=post.position,clip=CLINIC_DEPARTMENTS[r.type]?.seated?'Sit':busy?(r.type==='scan'||['intake','pharmacy','gait','eeg','sleep'].includes(r.type)?'Work':r.type==='care'?'Attend':'Discuss'):'Idle',ry=post.heading+roomAngle(r),walkRate=1;
     p.group.visible=!(st.entering!==undefined&&st.entryWaiting);if(r.type==='care'&&i===1&&visit){const t=visit.progress+alpha,ease=t=>Math.max(0,Math.min(1,t)),clear=visit.state==='entering-room'?ease(t):visit.state==='transfer-in'?1:visit.state==='service'?1-ease(t):visit.state==='uncovering'?ease(t):visit.state==='transfer-out'?1:visit.state==='leaving-room'?1-ease(t-2):0,away=staffPost('care',1,true).position;
@@ -300,7 +328,7 @@ export class Diorama {
   for(const [id,props]of this.workerProps)if(!s.staff.some(st=>st.id===id)){this.scene.remove(props);this.workerProps.delete(id)}
   for(const p of [...this.people.values(),...this.staffPeople.values()])if(p.dropReaction){const reaction=p.dropReaction;reaction.age+=dt;if(reduced||reaction.age>=.9||!['Idle','Discuss'].includes(p.current)){p.dropReaction=null;continue}p.dropPose=landingGesture(p,reaction.age,false,reaction.cancelled)}
   if(this.followId&&!this.tool&&!this.carry){const visit=this.people.get(this.followId);if(visit?.group.visible){const target=visit.group.position.clone();target.y=.8;const offset=target.sub(this.controls.target).multiplyScalar(reduced?1:1-Math.exp(-4*dt));this.camera.position.add(offset);this.controls.target.add(offset);this.controls.update()}else this.followId=null}
-  if(paused||reduced)for(const p of [...this.people.values(),...this.staffPeople.values()])if(!(this.carry&&this.carry.id===p.id))samplePose(p,p.current,p.actions.get(p.current)?.time||0);this.updateCarry(dt,reduced);this.updateRoleTags();this.updateBanter();this.frameWorldActions();
+  if(paused||reduced)for(const p of [...this.people.values(),...this.staffPeople.values()])if(!(this.carry&&this.carry.id===p.id))samplePose(p,p.current,p.actions.get(p.current)?.time||0);this.animateUpgrades(dt,reduced);this.updateCarry(dt,reduced);this.updateRoleTags();this.updateBanter();this.frameWorldActions();
   const stamp=new THREE.Object3D();stamp.rotation.x=-Math.PI/2;let contactCount=0;for(const p of [...this.people.values(),...this.staffPeople.values(),this.ambient].filter(Boolean)){if(!p.shadow.visible||!p.group.visible)continue;stamp.position.copy(p.group.position);stamp.position.y+=.008;stamp.updateMatrix();this.characterContacts.setMatrixAt(contactCount++,stamp.matrix)}this.characterContacts.count=contactCount;this.characterContacts.instanceMatrix.needsUpdate=true;
   if(!this.personRing){this.personRing=new THREE.Mesh(new THREE.RingGeometry(.29,.35,32),new THREE.MeshBasicMaterial({color:0x166d83,side:THREE.DoubleSide,transparent:true,opacity:.8,depthWrite:false}));this.personRing.rotation.x=-Math.PI/2;this.scene.add(this.personRing)}this.personRing.visible=false;this.selection.visible=false;
   if(this.selected){if(this.selected.kind==='room'){const r=s.rooms.find(r=>r.id===this.selected.id);if(r){const c=center(r),y=c.y+.035;this.selection.box.set(new THREE.Vector3(c.x-1.79,y,c.z-1.79),new THREE.Vector3(c.x+1.79,y+.008,c.z+1.79));this.selection.visible=true}}else{const p=(this.selected.kind==='patient'?this.people:this.staffPeople).get(this.selected.id);if(p?.shadow.visible&&p.group.visible&&!this.carry){this.personRing.visible=true;this.personRing.position.copy(p.group.position);this.personRing.position.y+=.012}}}

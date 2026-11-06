@@ -26,9 +26,9 @@ export const CLINIC_CASES={
 };
 export const clinicTotal=s=>(s.prior?.completed||0)+s.served;
 export function clinicBuilds(s){
- const types=new Set(['intake','gp']);if(s.clinic.gpVisits)for(const t of ['waiting','pharmacy','entrance','exit'])types.add(t);
+ const types=new Set(['intake','gp']);if(s.clinic.gpVisits)for(const t of ['waiting',...(!s.clinic.pacing?['pharmacy']:[]),'entrance','exit'])types.add(t);
  for(const r of s.rooms)types.add(r.type);
- for(const p of s.patients)for(const t of CLINIC_CASES[p.clinicalCase]?.path||[])types.add(t);
+ for(const p of s.patients)for(const t of s.clinic.pacing?[p.stage]:CLINIC_CASES[p.clinicalCase]?.path||[])types.add(t);
  return [...types];
 }
 export function clinicStep(s){
@@ -44,7 +44,7 @@ export function clinicStep(s){
  if(needs){const d=CLINIC_DEPARTMENTS[needs.stage];return{kind:'clinic-build',type:needs.stage,label:'Build '+d.name+' · $'+d.cost,title:needs.name+' is waiting for '+d.name.toLowerCase()+'.',text:'This visit has a booked next step. More GP rooms cannot provide this service.'}}
  const p=s.patients[0];
  if(!s.clinic.gpVisits)return{kind:p?'patient':'watch',id:p?.id,label:p?'Follow '+p.name:'Waiting for an arrival…',title:p?.state==='changing'?'Checked in. A quick gown-change spin.':p?.stage==='gp'?'Next stop: the GP.':p?'Quinn is welcoming '+p.name+'.':'The doors are open.',text:'People arrive in everyday clothes, check in, change, then queue for their GP.'};
- return{kind:'grow',label:'Improve your clinic',title:clinicTotal(s)+' neighbors home · $'+s.clinic.revenue+' service revenue.',text:'Each completed service earns its listed fee. Watch the actual queue before choosing your next room.'};
+ return{kind:'grow',label:'Improve your clinic',title:clinicTotal(s)+(clinicTotal(s)===1?' neighbor':' neighbors')+' home · $'+s.clinic.revenue+' service revenue.',text:'Build to add capacity. Select a room to equip it.'};
 }
 
 export const clinicSite=(s,type)=>({...CLINIC_DEPARTMENTS[type].site,y:CLINIC_DEPARTMENTS[type].site.y+(s.site?.shiftY||0)});

@@ -1,0 +1,101 @@
+{
+  "model": "1.0.0-rc8",
+  "firstMinuteArrivals": 1,
+  "first90Seconds": {
+    "arrivals": 2,
+    "completed": 1,
+    "revenue": 180
+  },
+  "runs": [
+    {
+      "seed": 431,
+      "arrivals": 49,
+      "completed": 28,
+      "departed": 11,
+      "unfinished": 10,
+      "cash": -322,
+      "revenue": 8315
+    },
+    {
+      "seed": 432,
+      "arrivals": 48,
+      "completed": 29,
+      "departed": 8,
+      "unfinished": 11,
+      "cash": 2247,
+      "revenue": 10890
+    },
+    {
+      "seed": 433,
+      "arrivals": 47,
+      "completed": 29,
+      "departed": 8,
+      "unfinished": 10,
+      "cash": 1088,
+      "revenue": 9705
+    },
+    {
+      "seed": 434,
+      "arrivals": 47,
+      "completed": 27,
+      "departed": 10,
+      "unfinished": 10,
+      "cash": 2137,
+      "revenue": 10780
+    },
+    {
+      "seed": 435,
+      "arrivals": 49,
+      "completed": 25,
+      "departed": 14,
+      "unfinished": 10,
+      "cash": 625,
+      "revenue": 8310
+    },
+    {
+      "seed": 436,
+      "arrivals": 48,
+      "completed": 28,
+      "departed": 10,
+      "unfinished": 10,
+      "cash": 1553,
+      "revenue": 7865
+    },
+    {
+      "seed": 437,
+      "arrivals": 49,
+      "completed": 27,
+      "departed": 9,
+      "unfinished": 13,
+      "cash": 2033,
+      "revenue": 10665
+    },
+    {
+      "seed": 438,
+      "arrivals": 48,
+      "completed": 29,
+      "departed": 10,
+      "unfinished": 9,
+      "cash": 441,
+      "revenue": 9080
+    },
+    {
+      "seed": 439,
+      "arrivals": 49,
+      "completed": 30,
+      "departed": 8,
+      "unfinished": 11,
+      "cash": 2913,
+      "revenue": 11545
+    },
+    {
+      "seed": 440,
+      "arrivals": 48,
+      "completed": 30,
+      "departed": 9,
+      "unfinished": 9,
+      "cash": 634,
+      "revenue": 9265
+    }
+  ]
+}

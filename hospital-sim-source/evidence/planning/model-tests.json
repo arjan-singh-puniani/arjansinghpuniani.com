@@ -1,0 +1,43 @@
+{
+  "model": "1.0.0-rc8",
+  "site": {
+    "w": 32,
+    "h": 28,
+    "shiftY": 20,
+    "version": 2
+  },
+  "original": {
+    "w": 9,
+    "h": 8
+  },
+  "areaRatio": 12.444444444444445,
+  "rooms": 40,
+  "staff": 40,
+  "qaFundsOnly": true,
+  "navChecks": 7185,
+  "validLandingCells": 9941,
+  "landingMs": 57.44383400000001,
+  "placementScans": [
+    {
+      "ms": 614.5550000000001,
+      "valid": 3041
+    },
+    {
+      "ms": 571.2064170000001,
+      "valid": 3041
+    },
+    {
+      "ms": 610.4702500000003,
+      "valid": 3041
+    },
+    {
+      "ms": 613.505834,
+      "valid": 3041
+    },
+    {
+      "ms": 623.7169999999996,
+      "valid": 3041
+    }
+  ],
+  "hardware": "Apple M2 / Node22; not a physical iPhone test"
+}
