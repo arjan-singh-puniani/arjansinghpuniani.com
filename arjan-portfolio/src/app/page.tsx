@@ -206,6 +206,29 @@ export default function Home() {
             />
           </div>
         </article>
+        <article className="v2-feature" aria-labelledby="rally-house-home-title">
+          <div className={`v2-feature-image ${styles.projectPreviewFrame}`}>
+            <Image
+              src="/rally-house/media/guide-club.webp"
+              alt="Rally House clubhouse beside the tennis court"
+              fill
+              className={styles.projectPreviewImage}
+              sizes="(max-width: 800px) 100vw, 56vw"
+            />
+          </div>
+          <div className="v2-feature-copy">
+            <p>06 / Browser game</p>
+            <h3 id="rally-house-home-title"><Link href="/playground/rally-house">Rally House</Link></h3>
+            <p className="v2-feature-lead">
+              A browser tennis game with a clubhouse and a swing analysis view.
+            </p>
+            <dl>
+              <div><dt>Role</dt><dd>Independent designer + developer</dd></div>
+              <div><dt>State</dt><dd>Playable prototype</dd></div>
+            </dl>
+            <Link href="/playground/rally-house">Play Rally House <span aria-hidden="true">↗</span></Link>
+          </div>
+        </article>
       </section>
 
       <section className={styles.contact} aria-labelledby="contact-heading">

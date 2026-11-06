@@ -24,6 +24,16 @@ export const metadata: Metadata = {
 };
 
 const cards = [
+  {
+    eyebrow: "Rally House",
+    title: "Rally House",
+    description: "A browser tennis game with a clubhouse and a swing analysis view.",
+    href: "/playground/rally-house",
+    button: "Play Rally House",
+    image: "/rally-house/media/guide-club.webp",
+    alt: "Rally House clubhouse beside the tennis court",
+    tone: "light",
+  },
   {eyebrow:"People · Queues · Care",title:"hospitalSIM",description:"Build a miniature hospital and discover where the bottleneck moves. Includes a REPLISOME science workstation.",href:"/playground/hospitalsim",button:"Play hospitalSIM",image:"/hospitalsim/preview.webp",alt:"Actual hospitalSIM game with medical equipment, miniature clinicians and blue platforms",tone:"light"},
   {
     eyebrow: "HoloAnatomy",
@@ -44,16 +54,6 @@ const cards = [
     image: "/images/playground/endless-rally.webp",
     alt: "Tennis racket and ball in motion for the Endless Rally game",
     tone: "dark",
-  },
-  {
-    eyebrow: "Rally House",
-    title: "Rally House",
-    description: "A miniature living club that becomes an arcade tennis game on the same court.",
-    href: "/playground/rally-house",
-    button: "Enter Rally House",
-    image: "/rally-house/media/club.webp",
-    alt: "Cozy Rally House tennis clubhouse with friends chatting and playing",
-    tone: "light",
   },
   {
     eyebrow: "Pit Stop Lab",
