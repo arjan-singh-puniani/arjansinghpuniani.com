@@ -1,0 +1,22 @@
+{
+  "pdfjsVersion": "6.5.438",
+  "workerMatchesInstalledPackage": true,
+  "routeFirstLoadJS": {
+    "workspaceKB": 129,
+    "caseStudyKB": 213
+  },
+  "assets": [
+    {
+      "path": "public/ecg-workspace/pdf.worker.min.mjs",
+      "rawBytes": 1271915,
+      "gzipBytes": 379556,
+      "sha256": "1e64c8240e54735ec5913b37acd5134747799cb8c6bb3777c70adbc01232d2aa"
+    },
+    {
+      "path": "public/ecg-workspace/PDFjs-LICENSE.txt",
+      "rawBytes": 10174,
+      "gzipBytes": 3579,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    }
+  ]
+}

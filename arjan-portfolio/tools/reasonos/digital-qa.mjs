@@ -39,6 +39,7 @@ for (const [name, engine] of [
     });
     await page.goto(base + "/work/vector-ekg-reasonos#ecg-connections");
     const root = page.locator("#ecg-connections");
+    if (!(await root.isVisible())) await page.locator("#heart-leads > summary").click();
     await root.locator("[data-digital-handle=vector]").waitFor();
     await root.locator(".katex").first().waitFor();
     await page.evaluate(() => document.fonts.ready);
