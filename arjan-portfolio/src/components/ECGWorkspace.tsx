@@ -84,6 +84,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   }, [fullScreen]);
 
   function install(next: Source) {
+    if (!next.page) void closePDF();
     setSource(next); setLead(next.signal?.leads.includes("II") ? "II" : next.signal?.leads[0] ?? "II");
     setWindowStart(0); setWindowSeconds(window.innerWidth <= 760 ? 2.5 : 10); setOverviewOpen(window.innerWidth > 760); setZoom(1); setSelected(null); setEditing(null); setDraft(""); setConfirmed(false); setNextPoint(0); setTool("measure"); setGain(10);
     setPoints(next.signal ? pair(250, 350) : pair(next.width * .25, next.width * .5, next.height * .65));
@@ -103,7 +104,6 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   async function reference(id: string) {
     const token = ++serial.current; setLoading(true); setError(""); setMessage(""); setCaseId(id);
     try {
-      await closePDF();
       const root = "/ecg-reference/ptb-xl-1.0.3";
       const responses = await Promise.all([fetch(`${root}/${id}_hr.hea`), fetch(`${root}/${id}_hr.dat`), fetch(`${root}/provenance.json`)]);
       if (responses.some(r => !r.ok)) throw new Error("Reference recording unavailable. Retry or open a local file.");
@@ -146,7 +146,6 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
     const token = ++serial.current; setLoading(true); setError(""); setMessage("");
     try {
       if (files.length > 2 || files.some(f => f.size > MAX_FILE_BYTES || !f.size)) throw new Error("Open one PDF/image/CSV or a matching .hea + .dat pair, up to 25 MB per file.");
-      await closePDF();
       const file = files[0], suffix = file.name.split(".").at(-1)?.toLowerCase();
       if (files.length === 2) {
         const hea = files.find(f => /\.hea$/i.test(f.name)), dat = files.find(f => /\.dat$/i.test(f.name));
@@ -164,8 +163,13 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
         try { document = await task.promise; } catch (e) { await task.destroy(); throw e; }
         if (serial.current !== token) { await document.loadingTask.destroy(); return; }
         if (document.numPages > 100) { await document.loadingTask.destroy(); throw new Error("PDF import is limited to 100 pages."); }
-        pdf.current = document; pdfInfo.current = { name: "Local ECG PDF", sha, local: true };
-        await renderPage(document, 1, pdfInfo.current, token);
+        const info = { name: "Local ECG PDF", sha, local: true };
+        try { await renderPage(document, 1, info, token); }
+        catch (e) { await document.loadingTask.destroy(); throw e; }
+        if (serial.current === token) {
+          const old = pdf.current; pdf.current = document; pdfInfo.current = info;
+          if (old) void old.loadingTask.destroy();
+        } else await document.loadingTask.destroy();
       } else if (suffix === "csv") {
         const text = await file.text(), sha = await hash(new TextEncoder().encode(text));
         const decoded = decodeWorkspaceCSV(text);
