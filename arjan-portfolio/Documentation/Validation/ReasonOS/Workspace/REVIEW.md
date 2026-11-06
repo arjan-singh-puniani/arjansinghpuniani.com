@@ -35,3 +35,7 @@ A timed-out PDF check was rerun against a fresh server started only after the pr
 See `browser-results.json`, `performance.json`, `asset-budget.json` and the adjacent actual browser screenshots. Performance results identify their environment and limitations.
 
 No physical-phone, manual screen-reader, hospital integration, diagnostic validation or admissions-outcome testing was performed. Automated checks and this implementation review are not independent expert review.
+
+## Final recovery correction
+
+The final failure review identified that a rejected import retained the previous PDF image and journal but released its page-navigation handle too early. Document replacement now commits only after a successful import and render. The extended browser harness rejects a CSV while a two-page PDF is open, then navigates to page two and back to page one before continuing. The previous PDF worker is released only when another source successfully replaces it.

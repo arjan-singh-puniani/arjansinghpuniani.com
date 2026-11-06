@@ -97,6 +97,13 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     const pngFixture = await root.locator('svg[aria-label^="Imported original"]').screenshot();
     const pdfAxe = await new AxeBuilder({ page }).include("[data-ecg-workspace]").analyze();
     checks.push({ viewport: "pdf", violations: pdfAxe.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.length })) });
+    await root.locator('input[type="file"]').setInputFiles({ name: "rejected.csv", mimeType: "text/csv", buffer: Buffer.from("invalid") });
+    await root.getByRole("alert").waitFor();
+    assert.ok(await pages.locator("option").count() >= 2, "failed import must retain PDF navigation");
+    await pages.selectOption("2");
+    await page.waitForFunction(() => !document.querySelector('[aria-busy="true"]'));
+    await pages.selectOption("1");
+    await page.waitForFunction(() => !document.querySelector('[aria-busy="true"]'));
     await root.locator('input[type="file"]').setInputFiles({ name: "public-reference.png", mimeType: "image/png", buffer: pngFixture });
     await root.getByText("Local ECG image", { exact: true }).waitFor();
     await root.locator('input[type="file"]').setInputFiles({ name: "broken.pdf", mimeType: "application/pdf", buffer: Buffer.from("invalid PDF bytes") });
