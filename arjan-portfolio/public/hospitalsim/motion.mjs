@@ -1,5 +1,5 @@
-import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=156';
-import {blocked} from './navigation.mjs?v=156';
+import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=157';
+import {blocked} from './navigation.mjs?v=157';
 export const WALK_SPEED=1.2375;
 // Quarter-cell paths keep their endpoints; tiny corner arcs stay within the clear corridor.
 const curvedRoutes=new WeakMap();
@@ -53,7 +53,8 @@ export function staffInteriorPath(type,height,index=0,lounge=false){
 
 export function drapePose(state,progress){
  const spread=state==='service'?Math.min(1,Math.max(0,progress)):state==='uncovering'?1-Math.min(1,Math.max(0,progress)):0;
- return {visible:spread>0,scaleY:.2+.8*spread,scaleZ:.12+.88*spread,opacity:Math.min(1,spread*10)};
+ // Keep the loft over the shoes while the cloth gathers lengthwise.
+ return {visible:spread>0,loft:spread===1?0:.055*Math.sqrt(Math.sin(spread*Math.PI)),scaleZ:.12+.88*spread,opacity:Math.min(1,spread*10)};
 }
 
 // A clear front/right lane keeps support work away from gantry, bed and clinician posts.

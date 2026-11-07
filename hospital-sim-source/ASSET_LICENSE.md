@@ -9,3 +9,5 @@ RC8 adds54original medical/furniture components from `blender/upgrades.py`, cata
 ## Runtime155 original people and motion
 
 `people-*.glb`, `presence-motion-*.glb`, `blender/people_presence.py`, `people_presence.blend`, `people_motion.py`, and `people_motion.blend`: original procedural work with substantial AI assistance, CC0-1.0. Derived only from retained original hospitalSIM actors/rigs; no downloaded character assets. Embedded original palette textures remain covered by the same license. The supplied reference is comparison-only and is not a game asset or covered by this grant.
+
+`people-drape.glb` and `blender/people_drape.blend`: original CC0-1.0 Blender variant made by `blender/drape.py -- --fit-people`, with substantial AI assistance; original `drape.glb` remains available.

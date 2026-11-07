@@ -370,12 +370,70 @@
       ]
     }
   ],
+  "drapeClearance": [
+    {
+      "key": "patient-01",
+      "coveredVertices": 6074,
+      "minimumClearanceMetres": 0.022637805873410022
+    },
+    {
+      "key": "patient-02",
+      "coveredVertices": 6444,
+      "minimumClearanceMetres": 0.022637805873410022
+    },
+    {
+      "key": "patient-03",
+      "coveredVertices": 5859,
+      "minimumClearanceMetres": 0.022637821094487087
+    },
+    {
+      "key": "patient-04",
+      "coveredVertices": 6364,
+      "minimumClearanceMetres": 0.022637821094487087
+    },
+    {
+      "key": "patient-05",
+      "coveredVertices": 5980,
+      "minimumClearanceMetres": 0.022637805873410022
+    },
+    {
+      "key": "patient-06",
+      "coveredVertices": 6406,
+      "minimumClearanceMetres": 0.022637805873410022
+    },
+    {
+      "key": "patient-07",
+      "coveredVertices": 5952,
+      "minimumClearanceMetres": 0.022637805873410022
+    },
+    {
+      "key": "patient-08",
+      "coveredVertices": 6124,
+      "minimumClearanceMetres": 0.022637805873410022
+    },
+    {
+      "key": "patient-09",
+      "coveredVertices": 5933,
+      "minimumClearanceMetres": 0.022637805873410022
+    },
+    {
+      "key": "patient-10",
+      "coveredVertices": 6550,
+      "minimumClearanceMetres": 0.022637805873410022
+    },
+    {
+      "key": "patient-11",
+      "coveredVertices": 5877,
+      "minimumClearanceMetres": 0.022637805873410022
+    }
+  ],
   "checks": [
     "actual skinned fingertip positions; textures stripped in memory only for CPU skinning",
     "35 embedded original skins and cloth detail",
     "39 joints and one primitive",
     "old stride/chair tracks retained",
     "planted standing feet",
+    "fitted drape clearance over 11 actual skins and five Rest samples each",
     "state-derived original dialogue",
     "bounded/reduced room reveal"
   ]

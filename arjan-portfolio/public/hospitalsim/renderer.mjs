@@ -1,18 +1,18 @@
-import {clinicCue} from './reactions.mjs?v=156';
-import {unfoldPose,roomRevealPose} from './upgrade-motion.mjs?v=156';
-import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=156';
-import {installPointerInput} from './input.mjs?v=156';
-import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=156';
-import {roomAngle} from './navigation.mjs?v=156';
-import {landingCheck} from './landing.mjs?v=156';
+import {clinicCue} from './reactions.mjs?v=157';
+import {unfoldPose,roomRevealPose} from './upgrade-motion.mjs?v=157';
+import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=157';
+import {installPointerInput} from './input.mjs?v=157';
+import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=157';
+import {roomAngle} from './navigation.mjs?v=157';
+import {landingCheck} from './landing.mjs?v=157';
 import * as THREE from 'three';
-import {sampleSeatedWork,consultationGesture,landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=156';
-import {chairPhase,changingPath,WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=156';
+import {sampleSeatedWork,consultationGesture,landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=157';
+import {chairPhase,changingPath,WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=157';
 import {GLTFLoader} from './vendor/examples/jsm/loaders/GLTFLoader.js';
 import {clone} from './vendor/examples/jsm/utils/SkeletonUtils.js';
 import {OrbitControls} from './vendor/examples/jsm/controls/OrbitControls.js';
 import {RoomEnvironment} from './vendor/examples/jsm/environments/RoomEnvironment.js';
-import {placementStep,siteOf,GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=156';
+import {placementStep,siteOf,GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=157';
 
 export const roomHeight=type=>({scan:.63,care:.25,consult:.85,rest:.25,plan:.85,waiting:.25}[type]??.25);
 export function world(x,y,height=.25){return new THREE.Vector3((x-4)*GRID.step,height,(y-3.5)*GRID.step)}
@@ -168,10 +168,10 @@ export class Diorama {
 
  advancePerson(p,clip,simDt){advanceLocomotion(p,clip,simDt)}
  async load(){
-  const response=await assetDeadline(fetch('assets/patient-appearances.json?v=156'));if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
+  const response=await assetDeadline(fetch('assets/patient-appearances.json?v=157'));if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
   if(manifest.appearances?.length!==11||new Set(manifest.appearances.map(a=>a.id)).size!==11||manifest.appearances.some(a=>!/^patient-\d{2}-lod\.glb$/.test(a.lod)||!/^patient-\d{2}\.glb$/.test(a.high)))throw Error('Invalid patient appearance manifest');
   this.walkClips=new Map();this.seatClips=new Map();this.patientAppearances=manifest.appearances;this.lowPatients=new Map();this.highPatients=new Map();this.casualPatients=new Map();
-  const loader=new GLTFLoader(),names=['scan','care','consult','rest','clinician','coat','drape','doors','lobby','service-props',...Object.values(CLINIC_DEPARTMENTS).map(d=>d.asset),...Object.entries(STAFF_ROLES).filter(([,d])=>!d.assetAlias).map(([r])=>'staff-'+r)],jobs=[...names.map(name=>({name,file:(['scan','care','consult','clinician','coat'].includes(name)||name.startsWith('staff-'))?(name.startsWith('staff-')?'people-'+name+'.glb':name+'-lod.glb'):name+'.glb'})),...this.patientAppearances.map(appearance=>({appearance,file:'people-'+appearance.id+'.glb'})),...this.patientAppearances.map(a=>({casual:a.id,file:'people-casual-'+a.id+'.glb'})),...['clinician','coat',...this.patientAppearances.map(a=>a.id)].map(key=>({walk:key,file:'presence-motion-'+key+'.glb'}))];let done=0;
+  const loader=new GLTFLoader(),names=['scan','care','consult','rest','clinician','coat','drape','doors','lobby','service-props',...Object.values(CLINIC_DEPARTMENTS).map(d=>d.asset),...Object.entries(STAFF_ROLES).filter(([,d])=>!d.assetAlias).map(([r])=>'staff-'+r)],jobs=[...names.map(name=>({name,file:name==='drape'?'people-drape.glb':(['scan','care','consult','clinician','coat'].includes(name)||name.startsWith('staff-'))?(name.startsWith('staff-')?'people-'+name+'.glb':name+'-lod.glb'):name+'.glb'})),...this.patientAppearances.map(appearance=>({appearance,file:'people-'+appearance.id+'.glb'})),...this.patientAppearances.map(a=>({casual:a.id,file:'people-casual-'+a.id+'.glb'})),...['clinician','coat',...this.patientAppearances.map(a=>a.id)].map(key=>({walk:key,file:'presence-motion-'+key+'.glb'}))];let done=0;
   for(let i=0;i<jobs.length;i+=4)await Promise.all(jobs.slice(i,i+4).map(async job=>{let gltf;for(let attempt=0;attempt<2;attempt++){try{gltf=await assetDeadline(loader.loadAsync(`assets/${job.file}?v=${job.file.startsWith('people-')||job.walk?155:121}`));break}catch(error){if(attempt)throw error;await new Promise(resolve=>setTimeout(resolve,200))}}if(job.walk){const clip=gltf.animations.find(c=>c.name==='Walk')||gltf.animations[0];if(!clip)throw Error('Missing indoor walk clip');clip.name='Walk';this.walkClips.set(job.walk,clip);this.seatClips.set(job.walk,gltf.animations.filter(c=>['Sit','SeatDown','SeatUp','Wait','Greet','Thanks','SeatedWork','CounterWork','Attend'].includes(c.name)))}else if(job.casual)this.casualPatients.set(job.casual,gltf);else if(job.appearance)this.lowPatients.set(job.appearance.id,gltf);else this.assets[job.name]=gltf;this.progress(Math.round(++done/jobs.length*100))}));
   this.sharedGeometry=new Set();this.sharedMaterial=new Set([pale,blue,ivory]);for(const asset of Object.values(this.assets))asset.scene.traverse(o=>{if(o.isMesh){this.sharedGeometry.add(o.geometry);this.sharedMaterial.add(o.material)}});this.installLobby();this.assets.patient=this.lowPatients.get(this.patientAppearances[0].id);this.lowAssets={...this.assets};this.canvas.dataset.appearances=this.patientAppearances.length;this.syncRooms();
  }
@@ -187,7 +187,7 @@ export class Diorama {
  async ensureUpgradeAssets(){
   if(this.upgradeAssets)return this.upgradeAssets;if(this.upgradePromise)return this.upgradePromise;
   this.upgradeLoadAttempted=true;this.canvas.dataset.equipmentLoad='loading';this.upgradeError='';
-  this.upgradePromise=assetDeadline(new GLTFLoader().loadAsync('assets/equipment-upgrades.glb?v=156')).then(asset=>{this.upgradeAssets=asset;asset.scene.traverse(o=>{if(o.isMesh){this.sharedGeometry.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])this.sharedMaterial.add(m)}});this.canvas.dataset.equipmentLoad='ready';return asset}).catch(error=>{this.upgradePromise=null;this.upgradeError=error.message;this.canvas.dataset.equipmentLoad='error';throw error});
+  this.upgradePromise=assetDeadline(new GLTFLoader().loadAsync('assets/equipment-upgrades.glb?v=157')).then(asset=>{this.upgradeAssets=asset;asset.scene.traverse(o=>{if(o.isMesh){this.sharedGeometry.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])this.sharedMaterial.add(m)}});this.canvas.dataset.equipmentLoad='ready';return asset}).catch(error=>{this.upgradePromise=null;this.upgradeError=error.message;this.canvas.dataset.equipmentLoad='error';throw error});
   return this.upgradePromise;
  }
  syncUpgrades(group,r){
@@ -336,7 +336,7 @@ export class Diorama {
   }
   this.canvas.dataset.peoplePoses=[...this.people.values()].map(p=>p.id+':'+p.current).join(',');this.canvas.dataset.staffPoses=[...this.staffPeople.values()].map(p=>p.id+':'+p.current).join(',');this.canvas.dataset.activeAppearances=[...new Set([...this.people.values()].map(p=>p.group.userData.appearanceId))].join(',');
   this.canvas.dataset.activeWardrobes=s.patients.map(p=>p.id+':'+(p.wardrobe||'gown')+':'+p.state+':'+p.stage).join(',');
-  const desired=new Set();for(const r of s.rooms){const g=this.roomObjects.get(r.id),busy=s.patients.some(p=>p.room===r.id&&p.state==='service'&&!p.teamWaiting);g.userData.badge.material.color.set(r.staff.length<TYPES[r.type].staff?0xbb8644:0x178c85);g.userData.badge.material.emissiveIntensity=busy?1.3:.15;const service=s.patients.find(p=>p.room===r.id&&p.state==='service'),arc=g.userData.progressArc;arc.visible=!!service;if(service)arc.geometry.setDrawRange(0,Math.max(6,Math.floor(Math.min(1,(service.progress+(paused?0:alpha))/service.duration)*32)*6));for(const material of g.userData.monitors||[])material.emissiveIntensity=busy ? .25+.025*Math.sin(s.seconds*2+alpha):.05;if(g.userData.spill)g.userData.spill.visible=!!r.spill;g.userData.upgrade.visible=!s.equipmentMode&&r.level>1;g.userData.upgrade.scale.x=r.level-1;const drape=g.userData.occupiedDrape;if(drape){const visit=s.patients.find(p=>p.room===r.id),pose=drapePose(visit?.state,visit?visit.progress+alpha:0);drape.visible=pose.visible;drape.scale.set(1,pose.scaleY,pose.scaleZ);drape.position.set(0,.88*(1-pose.scaleY),.96*(1-pose.scaleZ));drape.traverse(o=>{if(o.isMesh)o.material.opacity=pose.opacity})}
+  const desired=new Set();for(const r of s.rooms){const g=this.roomObjects.get(r.id),busy=s.patients.some(p=>p.room===r.id&&p.state==='service'&&!p.teamWaiting);g.userData.badge.material.color.set(r.staff.length<TYPES[r.type].staff?0xbb8644:0x178c85);g.userData.badge.material.emissiveIntensity=busy?1.3:.15;const service=s.patients.find(p=>p.room===r.id&&p.state==='service'),arc=g.userData.progressArc;arc.visible=!!service;if(service)arc.geometry.setDrawRange(0,Math.max(6,Math.floor(Math.min(1,(service.progress+(paused?0:alpha))/service.duration)*32)*6));for(const material of g.userData.monitors||[])material.emissiveIntensity=busy ? .25+.025*Math.sin(s.seconds*2+alpha):.05;if(g.userData.spill)g.userData.spill.visible=!!r.spill;g.userData.upgrade.visible=!s.equipmentMode&&r.level>1;g.userData.upgrade.scale.x=r.level-1;const drape=g.userData.occupiedDrape;if(drape){const visit=s.patients.find(p=>p.room===r.id),pose=drapePose(visit?.state,visit?visit.progress+alpha:0);drape.visible=pose.visible;drape.scale.z=pose.scaleZ;drape.position.set(0,pose.loft,.96*(1-pose.scaleZ));drape.traverse(o=>{if(o.isMesh)o.material.opacity=pose.opacity})}
 
    r.staff.forEach((id,i)=>{desired.add(id);let p=this.staffPeople.get(id);if(!p){p=this.makePerson('staff-'+s.staff.find(st=>st.id===id).role,id);this.staffPeople.set(id,p);p.group.userData.staffId=id}const st=s.staff.find(a=>a.id===id),visit=s.patients.find(p=>p.room===r.id),post=staffPost(r.type,i);let local=post.position,clip=CLINIC_DEPARTMENTS[r.type]?.seated?'Sit':busy?(r.type==='scan'||['intake','pharmacy','gait','eeg','sleep'].includes(r.type)?'Work':r.type==='care'?'Attend':'Discuss'):'Idle',ry=post.heading+roomAngle(r),walkRate=1;
     p.group.visible=!(st.entering!==undefined&&st.entryWaiting);if(r.type==='care'&&i===1&&visit){const t=visit.progress+alpha,ease=t=>Math.max(0,Math.min(1,t)),clear=visit.state==='entering-room'?ease(t):visit.state==='transfer-in'?1:visit.state==='service'?1-ease(t):visit.state==='uncovering'?ease(t):visit.state==='transfer-out'?1:visit.state==='leaving-room'?1-ease(t-2):0,away=staffPost('care',1,true).position;

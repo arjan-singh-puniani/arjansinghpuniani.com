@@ -1220,6 +1220,18 @@
       "joints": 39
     },
     {
+      "file": "dist/assets/people-drape.glb",
+      "bytes": 33008,
+      "gzipBytes": 25712,
+      "sha256": "d7ea8bbbc1e3cdae03a7e82425f54d8f331ecf0edd05691614cbecfde165287a",
+      "triangles": 1744,
+      "primitives": 1,
+      "animations": [],
+      "source": "blender/drape.py --fit-people and people_drape.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0"
+    },
+    {
       "file": "dist/assets/people-patient-01.glb",
       "bytes": 788440,
       "gzipBytes": 266233,

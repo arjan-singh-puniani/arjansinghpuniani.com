@@ -1,6 +1,6 @@
-## Runtime156 — people and presence
+## Runtime157 — people and presence
 
-Protected face/digit detail, modeled cloth folds, baked local shading; new waiting/greeting/thanks/keyboard actions; planted foot contacts and aligned floor; clearer blue clinic plinth with full estate accessible; brief state-derived original dialogue; existing room equipment settles on placement; active restores paused. RC9 simulation, paid staffing, routes and fees retained. Physical-phone and visual-parity limits documented.
+Fitted procedure drape clears resting shoes; protected face/digit detail, modeled cloth folds, baked local shading; new waiting/greeting/thanks/keyboard actions; planted foot contacts and aligned floor; clearer blue clinic plinth with full estate accessible; brief state-derived original dialogue; existing room equipment settles on placement; active restores paused. RC9 simulation, paid staffing, routes and fees retained. Physical-phone and visual-parity limits documented.
 
 # RC9 · November 6, 2026
 

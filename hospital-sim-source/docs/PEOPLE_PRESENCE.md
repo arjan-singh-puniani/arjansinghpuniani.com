@@ -1,4 +1,4 @@
-# People and presence — runtime156
+# People and presence — runtime157
 
 Model1.0.0-rc9 is unchanged. This release develops the people and the existing opening loop, without adding another management screen. Substantial AI assistance; original procedural geometry, rigs, materials, writing and animation, CC0-1.0. No reviewer, player-study, educational-effectiveness or reference-parity claim.
 
@@ -11,6 +11,8 @@ Blender4.0.2 actually executed `blender/people_presence.py -- --parallel` and `b
 13 motion packages preserve the existing Walk/SeatDown/SeatUp/Sit tracks, with new waiting/breathing/blinking, greeting and thanks actions. Staff packages also contain seated typing, counter work and an authored attending pose. The current opening uses reception greeting/counter work, GP typing blended with conversation, patient waiting and goodbye. The attending clip is retained source work, not evidence of a bespoke bedside performance. Walking remains distance-driven; no new gait speed or simulation timing changes.
 
 Hand contact is measured on actual skinned exported index-finger vertices, not just rig targets. The Blender evaluated pose is updated before local hand-axis roll. GP keyboard is raised18mm to sit on the actual desk and aligned with the authored reach. Reception keyboard is centred at the actual staff post. CPU skinning checks strip texture references only in memory; the delivered GLBs keep embedded textures, checked separately in browser. These two keyboard performances pass sampled fingertip clearance checks. This does not establish perfect contact for every hand or item across the hospital.
+
+A second Blender execution of `blender/drape.py -- --fit-people` retained `people_drape.blend` and exported a fitted original cloth. The old mesh let shoes protrude by up to about65mm in the new resting skins. The revised contours clear the sampled torso/feet and lift while gathering lengthwise. Existing transfer/uncover timing, bed capacity and the original `drape.glb` are preserved. The check evaluates actual skinned positions for all eleven variants; see `asset-motion-tests.json`.
 
 ## Play and presentation
 
@@ -29,6 +31,7 @@ From `hospital-sim-source`:
 ```sh
 /Applications/Blender.app/Contents/MacOS/Blender -b --factory-startup -t 1 --python blender/people_presence.py -- --parallel
 /Applications/Blender.app/Contents/MacOS/Blender -b --factory-startup -t 2 --python blender/people_motion.py
+/Applications/Blender.app/Contents/MacOS/Blender -b --factory-startup -t 2 --python blender/drape.py -- --fit-people
 node tests/people-presence.mjs
 python3 tools/audit-assets.py
 python3 tools/qa-server.py --port 8774

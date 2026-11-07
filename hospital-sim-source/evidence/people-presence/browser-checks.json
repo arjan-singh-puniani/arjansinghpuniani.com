@@ -1,5 +1,5 @@
 {
-  "release": 156,
+  "release": 157,
   "model": "1.0.0-rc9",
   "hardware": "Apple M2 / ANGLE Metal in-app Chromium. Narrow viewport is not a physical iPhone.",
   "mobileViewport": [
@@ -23,7 +23,8 @@
     "runtime156 restore of same-ID different roles at129 paused",
     "corrected floor topology cache on replacement",
     "reference renderer capture at129 and1.08x zoom",
-    "H.264 playback and seek to consultation"
+    "H.264 playback and seek to consultation",
+    "Final fitted drape renderer capture, all eleven skinned poses checked separately"
   ],
   "testArtifacts": [
     "regressions.json",

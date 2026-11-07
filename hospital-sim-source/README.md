@@ -1,4 +1,4 @@
-Current people/animation iteration: [runtime156 notes](docs/PEOPLE_PRESENCE.md), including executed Blender work and remaining reference gaps. Model1.0.0-rc9 is unchanged.
+Current people/animation iteration: [runtime157 notes](docs/PEOPLE_PRESENCE.md), including executed Blender work and remaining reference gaps. Model1.0.0-rc9 is unchanged.
 
 # hospitalSIM — first-minute flow (RC9)
 
