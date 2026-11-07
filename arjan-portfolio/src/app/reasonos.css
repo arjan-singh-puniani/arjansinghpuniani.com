@@ -43,3 +43,5 @@
 .rosx-scientific .rosx-hero{color:#edf2f3}.rosx-scientific .rosx-hero .eyebrow{color:#b4c6d8}.rosx-scientific .vector-deck{color:#c7d5df}.rosx-scientific .vector-facts dt{color:#adbed0}.rosx-implementation-source{font-size:14px;line-height:1.8;margin-top:30px}
 
 .rosx-model-explanation{background:#0d1620;color:#edf2f3;border-top:1px solid #2d4052;padding:22px max(16px,calc((100vw - 1440px)/2));}.rosx-model-explanation>summary{cursor:pointer;font-size:15px;padding:0 14px;line-height:1.6}.rosx-model-explanation[open]>summary{margin-bottom:18px}
+
+.rosx-study-links { padding-block:20px; } .rosx-study-links a { text-decoration:underline; text-underline-offset:4px; color:#d8e9f4; } .rosx-study-details { margin-bottom:24px; }

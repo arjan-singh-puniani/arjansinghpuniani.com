@@ -35,6 +35,7 @@ for (const [name, engine] of [
       if (m.type() === "error") warnings.push(m.text());
     });
     await page.goto(`${base}/work/vector-ekg-reasonos`);
+    if (await page.locator(".rosx-study-details").getAttribute("open") === null) await page.locator(".rosx-study-details > summary").click();
     await page.locator("#heart-leads > summary").click();
     await page.locator("#ecg-connections .katex:visible").first().waitFor();
     await page.locator("#measurement-workbench > summary").click();

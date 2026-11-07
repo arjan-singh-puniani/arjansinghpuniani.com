@@ -38,6 +38,7 @@ for (const [name, engine] of [
       if (m.type() === "error") errors.push(m.text());
     });
     await page.goto(base + "/work/vector-ekg-reasonos#ecg-connections");
+    if (await page.locator(".rosx-study-details").getAttribute("open") === null) await page.locator(".rosx-study-details > summary").click();
     const root = page.locator("#ecg-connections");
     if (!(await root.isVisible())) await page.locator("#heart-leads > summary").click();
     await root.locator("[data-digital-handle=vector]").waitFor();
