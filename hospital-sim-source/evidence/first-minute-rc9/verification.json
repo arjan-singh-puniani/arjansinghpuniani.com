@@ -11,5 +11,14 @@
   "productionBuild": "passed Next15.5.28 /36 pages",
   "assetCheck": "all108 prior GLBs and24 standaloneREPLISOME files byte-identical",
   "browserChecks": "browser-checks.json",
-  "physicalIphone": "not performed"
+  "physicalIphone": "not performed",
+  "followup": {
+    "runtime": 150,
+    "newSuggestionRegression": "pass",
+    "firstMinuteModelAndGlbs": "pass",
+    "exactNativeRecordingReplay": "pass",
+    "narrowOpening": "pass,13.4/10.6ms preparation",
+    "fullPriorSuiteCount": 32,
+    "note": "Simulation and animation model unchanged; targeted checks rerun for the UI ranking change."
+  }
 }

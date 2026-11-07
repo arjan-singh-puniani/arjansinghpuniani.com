@@ -1,5 +1,7 @@
 # RC9 · November 6, 2026
 
+- Runtime150: identical32nearest valid placement suggestions with early navigation exit; measured final phone-width preparation13.4/10.6ms on AppleM2. Physical iPhone still unverified.
+
 - Reception and its paid administrator open the new clinic before GP construction; the first patient is visible while the player builds.
 - Seeded introductory arrivals are spaced across the first minute; first three need only the GP. Existing active/custom schedules are preserved.
 - Queue guidance derives from real waiting people and room count. Hiring/placement undo remains atomic and expires when the model advances.

@@ -1,0 +1,29 @@
+{
+  "hardware": "Apple M2 / Node22; actual app function, not iPhone or end-to-end input latency",
+  "results": [
+    {
+      "type": "intake",
+      "existingRooms": 0,
+      "exhaustiveChecks": 192,
+      "navigationChecks": 41,
+      "exhaustiveMs": 31.399040999999997,
+      "actualMs": 7.444917000000004
+    },
+    {
+      "type": "gp",
+      "existingRooms": 1,
+      "exhaustiveChecks": 192,
+      "navigationChecks": 36,
+      "exhaustiveMs": 26.268000000000015,
+      "actualMs": 6.685666000000026
+    },
+    {
+      "type": "intake",
+      "existingRooms": 2,
+      "exhaustiveChecks": 192,
+      "navigationChecks": 121,
+      "exhaustiveMs": 16.698957999999976,
+      "actualMs": 6.646625
+    }
+  ]
+}

@@ -1,13 +1,13 @@
-import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds,clinicSite} from './clinic.mjs?v=149';
-import {archiveHospital,hospitalArchives} from './archive.mjs?v=149';
-import {openingBuilds,openingCount} from './opening.mjs?v=149';
-import {characterReaction} from './reactions.mjs?v=149';
-import {deskPost,deskAvailable,staffTask,react,eventChoice,assignDesk,dispatchFacilities} from './operations.mjs?v=149';
-import {landingOptions,landingCheck} from './landing.mjs?v=149';
-import {initial,expandSite,gentleOpening,enableFirstMinute,enableEquipment,upgradePlan,shiftSeconds,shiftEnd,placementStep,siteOf,tick,openClinic,hireCost,build,buildCost,upgrade,remove,undo,policy,placement,door,queueFor,TYPES,VERSION,validate,report,TRAITS,SCENARIOS,DECOR,assignStaff,staffingPlan,staffModule,arrangeWaiting,decorate,acknowledge,causes,mastery,continueHospital,entrance,exit,gatePlacement,moveGate,canLift,dropPlacement,relocate,STAFF_ROLES} from './simulation.mjs?v=149';
-import {installExtras} from './extras.mjs?v=149';
-import {nextStep} from './guidance.mjs?v=149';
-import {Diorama} from './renderer.mjs?v=149';
+import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds,clinicSite} from './clinic.mjs?v=150';
+import {archiveHospital,hospitalArchives} from './archive.mjs?v=150';
+import {openingBuilds,openingCount} from './opening.mjs?v=150';
+import {characterReaction} from './reactions.mjs?v=150';
+import {deskPost,deskAvailable,staffTask,react,eventChoice,assignDesk,dispatchFacilities} from './operations.mjs?v=150';
+import {landingOptions,landingCheck} from './landing.mjs?v=150';
+import {initial,expandSite,gentleOpening,enableFirstMinute,enableEquipment,upgradePlan,shiftSeconds,shiftEnd,placementStep,siteOf,tick,openClinic,hireCost,build,buildCost,upgrade,remove,undo,policy,placement,door,queueFor,TYPES,VERSION,validate,report,TRAITS,SCENARIOS,DECOR,assignStaff,staffingPlan,staffModule,arrangeWaiting,decorate,acknowledge,causes,mastery,continueHospital,entrance,exit,gatePlacement,moveGate,canLift,dropPlacement,relocate,STAFF_ROLES} from './simulation.mjs?v=150';
+import {installExtras} from './extras.mjs?v=150';
+import {nextStep} from './guidance.mjs?v=150';
+import {Diorama} from './renderer.mjs?v=150';
 const $=id=>document.getElementById(id),money=n=>'$'+Math.floor(n).toLocaleString(),icons={intake:'⇥',gp:'✚',pharmacy:'℞',neuro:'◇',gait:'↔',eeg:'∿',sleep:'☾',consult:'✚',scan:'◎',care:'▱',rest:'⌑',plan:'◇',waiting:'♧'},STORE='common-good-diorama-v3';
 let s,restoreError='';try{const raw=localStorage.getItem(STORE)||localStorage.getItem('common-good-diorama-v2');s=raw?validate(JSON.parse(raw)):initial('clinic',431,'sandbox',{gentle:true,receptionFirst:true})}catch(error){restoreError=error.message;try{localStorage.setItem('common-good-recovery-v3',localStorage.getItem(STORE)||localStorage.getItem('common-good-diorama-v2'))}catch{}s=initial('clinic',431,'sandbox',{gentle:true,receptionFirst:true})}
 expandSite(s);gentleOpening(s);enableFirstMinute(s);enableEquipment(s);
@@ -75,7 +75,10 @@ function updateLocations(keepTile=false){
  for(let dy=-1;dy<=1;dy+=step)for(let dx=-1;dx<=1;dx+=step)candidates.push({x:tile.x+dx,y:tile.y+dy});
  for(let y=0;y<bounds.h;y+=3)for(let x=0;x<bounds.w;x+=3)candidates.push({x,y});
  for(const x of [0,bounds.w-1])for(const y of [0,bounds.h-1])candidates.push({x,y});
- const seen=new Set(),options=candidates.filter(p=>{const key=p.x+','+p.y;if(seen.has(key))return false;seen.add(key);return checkTile(p.x,p.y).ok}).sort((a,b)=>Math.abs(a.x-tile.x)+Math.abs(a.y-tile.y)-Math.abs(b.x-tile.x)-Math.abs(b.y-tile.y)).slice(0,32);
+ const seen=new Set(),options=[];
+ // Rank first: only the nearest32 valid suggestions need navigation checks.
+ candidates.sort((a,b)=>Math.abs(a.x-tile.x)+Math.abs(a.y-tile.y)-Math.abs(b.x-tile.x)-Math.abs(b.y-tile.y));
+ for(const p of candidates){const key=p.x+','+p.y;if(seen.has(key))continue;seen.add(key);if(checkTile(p.x,p.y).ok)options.push(p);if(options.length===32)break;}
  $('location').innerHTML='<option value="" disabled>Choose a nearby site</option>'+options.map(t=>`<option value="${t.x},${t.y}">X ${t.x.toFixed(2)} · Y ${t.y.toFixed(2)}</option>`).join('');
  if(!keepTile&&options.length&&!options.some(t=>t.x===tile.x&&t.y===tile.y))tile=options[0];
  for(const [id,max]of [['placeX',bounds.w-1],['placeY',bounds.h-1]]){$(id).max=max;$(id).step=step}
