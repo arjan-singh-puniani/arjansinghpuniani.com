@@ -99,4 +99,7 @@ body.starter-clinic .scene-heading h1{font:800 19px Arial,Helvetica,sans-serif!i
     bottom:auto;
     max-width:none;
   }
+  .selection-card:has([data-world-rotate]) [data-world-focus] {
+    display:none;
+  }
 }
