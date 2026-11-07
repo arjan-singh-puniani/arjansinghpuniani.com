@@ -138,4 +138,11 @@
 @media(max-width:760px) { .lesson { display:block; padding:12px; } .lesson button { margin-top:10px; } .strip { min-width:0; } .strip polyline { stroke-width:1.4; vector-effect:non-scaling-stroke; } }
 
 .journal li[data-needs-review="true"] { background:#faf1df; border-left:3px solid #9a6424; }
+.practice { display:block; }
+.practice details { margin-top:8px; }
+.practice summary { cursor:pointer; padding:6px 0; }
+.practice button { margin:8px 8px 0 0; }
+.practiceResult { background:#e8f0e9; border-left:3px solid var(--accent); margin-top:16px; padding:12px; }
+.practiceResult p { margin:6px 0; }
+.practiceResult a { font-size:12px; }
 @media(max-width:760px) { .strip { height:148px; } .strip .overlay text { font-size:25px; } }

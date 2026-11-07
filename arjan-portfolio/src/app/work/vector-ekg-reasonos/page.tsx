@@ -12,7 +12,7 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Vector EKG and ReasonOS",
   description:
-    "Practice systematic ECG interpretation on paired source photographs and four native digital reference recordings, with evidence-linked observations and feedback.",
+    "Practice R–R, PR, and QRS measurement on public PTB-XL recordings and see what your saved intervals support.",
   alternates: { canonical: "/work/vector-ekg-reasonos" },
   openGraph: {
     title: "Vector EKG and ReasonOS",
@@ -294,7 +294,7 @@ export default function VectorEkgReasonOSPage() {
         <div className="shell">
           <p className="eyebrow">Vector EKG / ReasonOS</p>
           <h1>Measure an ECG interval</h1>
-          <p className="vector-deck">Try a real recording. Measure the gap between two beats, then see what happens to your note when you revise the measurement.</p>
+          <p className="vector-deck">Choose a practice case, mark the interval on a real recording, and see what your measurement supports.</p>
         </div>
       </header>
       <section className="lab-embed rosx-lab" id="ecg-workspace" aria-label="ECG evidence workspace">

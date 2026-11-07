@@ -5,7 +5,7 @@
   "source": "https://physionet.org/content/ptb-xl/1.0.3/",
   "datasetDOI": "10.13026/kfzx-aw45",
   "publicationDOI": "10.1038/s41597-020-0495-6",
-  "modification": "Four selected WFDB records are copied unchanged; only selected non-demographic metadata is included.",
+  "modification": "Six selected WFDB records are copied unchanged. Selected non-demographic metadata is included for the four original reference cases.",
   "records": [
     {
       "id": "00010",
@@ -372,6 +372,26 @@
       "sha256": {
         "hea": "5a6290a005132b1e3a67f8c6b984ddc96370f9a53af1d22ecff1085ee6b42915",
         "dat": "394dea96e6aac1fcc30d500617b7e611fc6baf62aaa99d9a28c06d5af0fbfa2e"
+      }
+    },
+    {
+      "id": "00011",
+      "path": "records500/00000/00011_hr",
+      "sampleRate": 500,
+      "sampleCount": 5000,
+      "sha256": {
+        "hea": "ed787a054068639c1d2f652d4fda9a17d82df38c4d79b0a773af13c05b0415d7",
+        "dat": "4b10fa60a1ebdf7d7c2c315f66c4fe0a6076288607d56ac183ed4e6c9cc0676c"
+      }
+    },
+    {
+      "id": "00012",
+      "path": "records500/00000/00012_hr",
+      "sampleRate": 500,
+      "sampleCount": 5000,
+      "sha256": {
+        "hea": "8ee112b5fbd02cbe47d76f27b4abc1b87cefc2c8abcba0ef62958449912b6a17",
+        "dat": "f3e0521ae31f0a3f9ca6919601a8fb7e6321bf28eb6447b5b5c8a649daf16040"
       }
     }
   ],
