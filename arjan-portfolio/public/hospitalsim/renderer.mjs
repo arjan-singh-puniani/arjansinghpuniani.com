@@ -1,18 +1,18 @@
-import {clinicCue} from './reactions.mjs?v=157';
-import {unfoldPose,roomRevealPose} from './upgrade-motion.mjs?v=157';
-import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=157';
-import {installPointerInput} from './input.mjs?v=157';
-import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=157';
-import {roomAngle} from './navigation.mjs?v=157';
-import {landingCheck} from './landing.mjs?v=157';
+import {clinicCue} from './reactions.mjs?v=158';
+import {unfoldPose,roomRevealPose} from './upgrade-motion.mjs?v=158';
+import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=158';
+import {installPointerInput} from './input.mjs?v=158';
+import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=158';
+import {roomAngle} from './navigation.mjs?v=158';
+import {landingCheck} from './landing.mjs?v=158';
 import * as THREE from 'three';
-import {sampleSeatedWork,consultationGesture,landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=157';
-import {chairPhase,changingPath,WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=157';
+import {sampleSeatedWork,consultationGesture,landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=158';
+import {chairPhase,changingPath,WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=158';
 import {GLTFLoader} from './vendor/examples/jsm/loaders/GLTFLoader.js';
 import {clone} from './vendor/examples/jsm/utils/SkeletonUtils.js';
 import {OrbitControls} from './vendor/examples/jsm/controls/OrbitControls.js';
 import {RoomEnvironment} from './vendor/examples/jsm/environments/RoomEnvironment.js';
-import {placementStep,siteOf,GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=157';
+import {placementStep,siteOf,GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=158';
 
 export const roomHeight=type=>({scan:.63,care:.25,consult:.85,rest:.25,plan:.85,waiting:.25}[type]??.25);
 export function world(x,y,height=.25){return new THREE.Vector3((x-4)*GRID.step,height,(y-3.5)*GRID.step)}
@@ -108,7 +108,7 @@ export class Diorama {
  }
  syncGates(){
   if(!this.assets.doors)return;const s=this.state();
-  for(const kind of ['entrance','exit']){let g=this.gates.get(kind);if(!g){g=this.assets.doors.scene.clone(true);this.soften(g);this.scene.add(g);this.gates.set(kind,g);g.userData.sliders=[];g.traverse(o=>{if(o.name.replace(/[ _]/g,'').startsWith('Doorglass'))g.userData.sliders.push({object:o,x:o.position.x})});const c=document.createElement('canvas');c.width=512;c.height=96;const ctx=c.getContext('2d');ctx.fillStyle='#f6faf7';ctx.fillRect(0,0,512,96);ctx.fillStyle='#16556a';ctx.font='bold 44px sans-serif';ctx.textAlign='center';ctx.fillText(kind==='entrance'?'WELCOME  +':'HOME  →',256,64);const texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;const sign=new THREE.Mesh(new THREE.PlaneGeometry(1.3,.245),new THREE.MeshBasicMaterial({map:texture,side:THREE.DoubleSide}));sign.position.set(0,2.31,.96);g.add(sign)}
+  for(const kind of ['entrance','exit']){let g=this.gates.get(kind);if(!g){g=this.assets.doors.scene.clone(true);this.soften(g);this.scene.add(g);this.gates.set(kind,g);g.userData.gate=kind;g.userData.sliders=[];g.traverse(o=>{if(o.name.replace(/[ _]/g,'').startsWith('Doorglass'))g.userData.sliders.push({object:o,x:o.position.x})});const c=document.createElement('canvas');c.width=512;c.height=96;const ctx=c.getContext('2d');ctx.fillStyle='#f6faf7';ctx.fillRect(0,0,512,96);ctx.fillStyle='#16556a';ctx.font='bold 44px sans-serif';ctx.textAlign='center';ctx.fillText(kind==='entrance'?'WELCOME  +':'HOME  →',256,64);const texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;const sign=new THREE.Mesh(new THREE.PlaneGeometry(1.3,.245),new THREE.MeshBasicMaterial({map:texture,side:THREE.DoubleSide}));sign.position.set(0,2.31,.96);g.add(sign)}
    const gate=kind==='entrance'?entrance(s):exit(s),out=gateDirection(gate,siteOf(this.state()));g.position.copy(world(gate.x,gate.y));g.rotation.y=Math.atan2(out.x,out.y);
    const visit=s.patients.find(p=>p.state===(kind==='entrance'?'entering-hospital':'leaving-hospital'))||(kind==='entrance'?s.staff.filter(st=>st.entering!==undefined&&!st.entryWaiting).map(st=>({progress:st.entering}))[0]:null),opening=visit?Math.min(1,(visit.progress+(this.lastAlpha||0))*4,(2-visit.progress-(this.lastAlpha||0))*4):0;for(const slider of g.userData.sliders)slider.object.position.x=slider.x+Math.sign(slider.x)*.66*opening;
   }
@@ -168,7 +168,7 @@ export class Diorama {
 
  advancePerson(p,clip,simDt){advanceLocomotion(p,clip,simDt)}
  async load(){
-  const response=await assetDeadline(fetch('assets/patient-appearances.json?v=157'));if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
+  const response=await assetDeadline(fetch('assets/patient-appearances.json?v=158'));if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
   if(manifest.appearances?.length!==11||new Set(manifest.appearances.map(a=>a.id)).size!==11||manifest.appearances.some(a=>!/^patient-\d{2}-lod\.glb$/.test(a.lod)||!/^patient-\d{2}\.glb$/.test(a.high)))throw Error('Invalid patient appearance manifest');
   this.walkClips=new Map();this.seatClips=new Map();this.patientAppearances=manifest.appearances;this.lowPatients=new Map();this.highPatients=new Map();this.casualPatients=new Map();
   const loader=new GLTFLoader(),names=['scan','care','consult','rest','clinician','coat','drape','doors','lobby','service-props',...Object.values(CLINIC_DEPARTMENTS).map(d=>d.asset),...Object.entries(STAFF_ROLES).filter(([,d])=>!d.assetAlias).map(([r])=>'staff-'+r)],jobs=[...names.map(name=>({name,file:name==='drape'?'people-drape.glb':(['scan','care','consult','clinician','coat'].includes(name)||name.startsWith('staff-'))?(name.startsWith('staff-')?'people-'+name+'.glb':name+'-lod.glb'):name+'.glb'})),...this.patientAppearances.map(appearance=>({appearance,file:'people-'+appearance.id+'.glb'})),...this.patientAppearances.map(a=>({casual:a.id,file:'people-casual-'+a.id+'.glb'})),...['clinician','coat',...this.patientAppearances.map(a=>a.id)].map(key=>({walk:key,file:'presence-motion-'+key+'.glb'}))];let done=0;
@@ -187,7 +187,7 @@ export class Diorama {
  async ensureUpgradeAssets(){
   if(this.upgradeAssets)return this.upgradeAssets;if(this.upgradePromise)return this.upgradePromise;
   this.upgradeLoadAttempted=true;this.canvas.dataset.equipmentLoad='loading';this.upgradeError='';
-  this.upgradePromise=assetDeadline(new GLTFLoader().loadAsync('assets/equipment-upgrades.glb?v=157')).then(asset=>{this.upgradeAssets=asset;asset.scene.traverse(o=>{if(o.isMesh){this.sharedGeometry.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])this.sharedMaterial.add(m)}});this.canvas.dataset.equipmentLoad='ready';return asset}).catch(error=>{this.upgradePromise=null;this.upgradeError=error.message;this.canvas.dataset.equipmentLoad='error';throw error});
+  this.upgradePromise=assetDeadline(new GLTFLoader().loadAsync('assets/equipment-upgrades.glb?v=158')).then(asset=>{this.upgradeAssets=asset;asset.scene.traverse(o=>{if(o.isMesh){this.sharedGeometry.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])this.sharedMaterial.add(m)}});this.canvas.dataset.equipmentLoad='ready';return asset}).catch(error=>{this.upgradePromise=null;this.upgradeError=error.message;this.canvas.dataset.equipmentLoad='error';throw error});
   return this.upgradePromise;
  }
  syncUpgrades(group,r){
@@ -271,9 +271,38 @@ export class Diorama {
 
   if(high&&!this.highAssets)return;if(this.highMode===high)return;this.highMode=high;for(const kind of ['scan','care','consult'])this.assets[kind]=high?this.highAssets[kind]:this.lowAssets[kind];
  }
- tile(e){const rect=this.canvas.getBoundingClientRect();this.pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);this.ray.setFromCamera(this.pointer,this.camera);const hit=new THREE.Vector3();if(!this.ray.ray.intersectPlane(this.floor,hit))return null;this.pointerWorld=hit.clone();const spacing=this.carry?.25:placementStep(this.state()),x=Math.round((hit.x/GRID.step+4)/spacing)*spacing,y=Math.round((hit.z/GRID.step+3.5)/spacing)*spacing;return x>=0&&x<=siteOf(this.state()).w-1&&y>=0&&y<=siteOf(this.state()).h-1?{x,y}:null}
- pick(e){this.tile(e);if(!this.tool){const person=this.personAt(e);if(person){this.onPick(person.kind==='patient'?{patient:person.id}:{staff:person.id});return}const hits=this.ray.intersectObjects([...this.roomObjects.values()],true);if(hits.length){let o=hits[0].object;while(o&&!o.userData.patientId&&!o.userData.roomId&&!o.userData.staffId)o=o.parent;if(o){this.onPick(o.userData.patientId?{patient:o.userData.patientId}:o.userData.staffId?{staff:o.userData.staffId}:{room:o.userData.roomId});return}}}
-  const t=this.tile(e);if(t)this.onPick(t);
+ tile(e){
+  const rect=this.canvas.getBoundingClientRect();
+  this.pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);
+  this.ray.setFromCamera(this.pointer,this.camera);
+  const hit=new THREE.Vector3();
+  if(!this.ray.ray.intersectPlane(this.floor,hit))return null;
+  this.pointerWorld=hit.clone();
+  const bounds=siteOf(this.state()),right=bounds.w-1,bottom=bounds.h-1;
+  const spacing=this.carry?.25:placementStep(this.state());
+  const x=Math.round((hit.x/GRID.step+4)/spacing)*spacing;
+  const y=Math.round((hit.z/GRID.step+3.5)/spacing)*spacing;
+  if(this.tool==='entrance'||this.tool==='exit'){
+   const withinX=THREE.MathUtils.clamp(x,0,right),withinY=THREE.MathUtils.clamp(y,0,bottom);
+   const edges=[{x:0,y:withinY},{x:right,y:withinY},{x:withinX,y:0},{x:withinX,y:bottom}];
+   const distance=point=>Math.hypot(point.x-x,point.y-y);
+   const nearest=edges.reduce((best,point)=>distance(point)<distance(best)?point:best);
+   if(distance(nearest)<=.75)return nearest;
+  }
+  return x>=0&&x<=right&&y>=0&&y<=bottom?{x,y}:null;
+ }
+ pick(e){
+  const tile=this.tile(e);
+  if(!this.tool){
+   const person=this.personAt(e);
+   if(person){this.onPick(person.kind==='patient'?{patient:person.id}:{staff:person.id});return}
+   const hit=this.ray.intersectObjects([...this.roomObjects.values(),...this.gates.values()],true)[0];
+   for(let object=hit?.object;object;object=object.parent){
+    if(object.userData.gate){this.onPick({gate:object.userData.gate});return}
+    if(object.userData.roomId){this.onPick({room:object.userData.roomId});return}
+   }
+  }
+  if(tile)this.onPick(tile);
  }
  preview(type,tile,rotation=0,footprintOnly=false){
   this.tool=footprintOnly?null:type;this.grid.visible=!!type&&!footprintOnly;this.ghost.visible=!!type&&!!tile;if(!this.ghost.visible)return;const gate=['entrance','exit'].includes(type),check=gate?gatePlacement(this.state(),type,tile.x,tile.y):placement(this.state(),type,tile.x,tile.y,rotation);
