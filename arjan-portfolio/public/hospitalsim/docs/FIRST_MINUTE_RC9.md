@@ -1,6 +1,6 @@
 # First-minute flow — RC9
 
-Model `1.0.0-rc9`, browser runtime `149`. Original AI-assisted engineering prototype for Arjan Singh Puniani. No production-readiness, educational-benefit or commercial-game-superiority claim.
+Model `1.0.0-rc9`, browser runtime `150`. Original AI-assisted engineering prototype for Arjan Singh Puniani. No production-readiness, educational-benefit or commercial-game-superiority claim.
 
 ## Opening and continuity
 
@@ -45,3 +45,9 @@ Initial65GLBs measured6,357,443gzip bytes, plus runtime/vendor; optional equipme
 ## Remaining quality gaps
 
 The supplied reference has richer faces/fabric, smoother material lighting, softer contact shadows, denser intentional composition and convincing clinician hand contact. The fresh runtime149 reference comparison uses the advanced compact scene at129, paused,1.16× camera zoom. The left panel retains the supplied earlier comparison; the right is an unretouched current browser screenshot. RC9 does not rebuild scanner/equipment geometry. The empty estate remains plain; queues are rigid; people are simplified procedural humans. Sitting and walking improve contact but are not bespoke full-body task performances. This pass establishes functioning measurable interactions, not that play is fun. No outside player/clinician/educator review or learning study occurred. Evaluation protocol remains a draft. No new analytics or personal data collection.
+
+## Runtime150 placement follow-up
+
+A stalled runtime149 preparation trace led to a bounded change: sort candidate sites by distance first, then stop authoritative navigation checks after the32valid sites the menu can display. Same candidate pool, collision/routing validation and stable tie order. The actual app-function regression compares empty reception, GP during arrivals and a second reception against exhaustive results. All sites match; opening checks drop192→41/36, second reception192→121. This is reduced navigation work, not a lower validation standard.
+
+`node tests/placement-suggestions.mjs` passes. It records actual source-function timings and counts in placement-suggestions.json. First-minute model/GLB and native browser replay tests also pass after the change. The earlier full32suite regression remains separately retained. Final390×844 browser retest (same AppleM2):13.4ms reception and10.6ms GP preparation; both first hires/placements register, no overflow, opening camera2.8/26. Host load differs from the1.60s contended trace, so this is not a controlled phone latency comparison. Public recording146 and comparison149 retain their true runtime labels; model, geometry and animation are unchanged by150.

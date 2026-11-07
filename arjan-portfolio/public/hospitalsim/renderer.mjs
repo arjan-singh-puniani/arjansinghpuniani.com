@@ -1,17 +1,17 @@
-import {unfoldPose} from './upgrade-motion.mjs?v=149';
-import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=149';
-import {installPointerInput} from './input.mjs?v=149';
-import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=149';
-import {roomAngle} from './navigation.mjs?v=149';
-import {landingCheck} from './landing.mjs?v=149';
+import {unfoldPose} from './upgrade-motion.mjs?v=150';
+import {CLINIC_DEPARTMENTS} from './clinic.mjs?v=150';
+import {installPointerInput} from './input.mjs?v=150';
+import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=150';
+import {roomAngle} from './navigation.mjs?v=150';
+import {landingCheck} from './landing.mjs?v=150';
 import * as THREE from 'three';
-import {consultationGesture,landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=149';
-import {chairPhase,changingPath,WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=149';
+import {consultationGesture,landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=150';
+import {chairPhase,changingPath,WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=150';
 import {GLTFLoader} from './vendor/examples/jsm/loaders/GLTFLoader.js';
 import {clone} from './vendor/examples/jsm/utils/SkeletonUtils.js';
 import {OrbitControls} from './vendor/examples/jsm/controls/OrbitControls.js';
 import {RoomEnvironment} from './vendor/examples/jsm/environments/RoomEnvironment.js';
-import {placementStep,siteOf,GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=149';
+import {placementStep,siteOf,GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=150';
 
 export const roomHeight=type=>({scan:.63,care:.25,consult:.85,rest:.25,plan:.85,waiting:.25}[type]??.25);
 export function world(x,y,height=.25){return new THREE.Vector3((x-4)*GRID.step,height,(y-3.5)*GRID.step)}
@@ -150,7 +150,7 @@ export class Diorama {
 
  advancePerson(p,clip,simDt){advanceLocomotion(p,clip,simDt)}
  async load(){
-  const response=await assetDeadline(fetch('assets/patient-appearances.json?v=149'));if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
+  const response=await assetDeadline(fetch('assets/patient-appearances.json?v=150'));if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
   if(manifest.appearances?.length!==11||new Set(manifest.appearances.map(a=>a.id)).size!==11||manifest.appearances.some(a=>!/^patient-\d{2}-lod\.glb$/.test(a.lod)||!/^patient-\d{2}\.glb$/.test(a.high)))throw Error('Invalid patient appearance manifest');
   this.walkClips=new Map();this.seatClips=new Map();this.patientAppearances=manifest.appearances;this.lowPatients=new Map();this.highPatients=new Map();this.casualPatients=new Map();
   const loader=new GLTFLoader(),names=['scan','care','consult','rest','clinician','coat','drape','doors','lobby','service-props',...Object.values(CLINIC_DEPARTMENTS).map(d=>d.asset),...Object.entries(STAFF_ROLES).filter(([,d])=>!d.assetAlias).map(([r])=>'staff-'+r)],jobs=[...names.map(name=>({name,file:(['scan','care','consult','clinician','coat'].includes(name)||name.startsWith('staff-'))?name+'-lod.glb':name+'.glb'})),...this.patientAppearances.map(appearance=>({appearance,file:appearance.lod})),...this.patientAppearances.map(a=>({casual:a.id,file:a.casual})),...['clinician','coat',...this.patientAppearances.map(a=>a.id)].map(key=>({walk:key,file:'stride-'+key+'.glb'}))];let done=0;
@@ -169,7 +169,7 @@ export class Diorama {
  async ensureUpgradeAssets(){
   if(this.upgradeAssets)return this.upgradeAssets;if(this.upgradePromise)return this.upgradePromise;
   this.upgradeLoadAttempted=true;this.canvas.dataset.equipmentLoad='loading';this.upgradeError='';
-  this.upgradePromise=assetDeadline(new GLTFLoader().loadAsync('assets/equipment-upgrades.glb?v=149')).then(asset=>{this.upgradeAssets=asset;asset.scene.traverse(o=>{if(o.isMesh){this.sharedGeometry.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])this.sharedMaterial.add(m)}});this.canvas.dataset.equipmentLoad='ready';return asset}).catch(error=>{this.upgradePromise=null;this.upgradeError=error.message;this.canvas.dataset.equipmentLoad='error';throw error});
+  this.upgradePromise=assetDeadline(new GLTFLoader().loadAsync('assets/equipment-upgrades.glb?v=150')).then(asset=>{this.upgradeAssets=asset;asset.scene.traverse(o=>{if(o.isMesh){this.sharedGeometry.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])this.sharedMaterial.add(m)}});this.canvas.dataset.equipmentLoad='ready';return asset}).catch(error=>{this.upgradePromise=null;this.upgradeError=error.message;this.canvas.dataset.equipmentLoad='error';throw error});
   return this.upgradePromise;
  }
  syncUpgrades(group,r){
