@@ -53,6 +53,55 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await root.getByText("Needs review · supporting measurement revised", { exact: true }).waitFor();
     await root.getByText("834 ms", { exact: true }).waitFor();
     await page.screenshot({ path: `${out}/${name}-guided-revision.png` });
+
+    const selectPractice = async id => {
+      await root.getByLabel("Reference recording").selectOption(id);
+      await root.getByText(`PTB-XL · ${id}`, { exact: true }).waitFor();
+    };
+    const saveInterval = async (a, b) => {
+      await root.getByLabel("Endpoint A seconds").fill(a);
+      await root.getByLabel("Endpoint B seconds").fill(b);
+      await root.getByRole("button", { name: "Save measurement", exact: true }).click();
+    };
+    await selectPractice("00012");
+    await saveInterval("1.12", "2.364");
+    await root.getByText(/0 of 1 exercise intervals matched/).waitFor();
+    await saveInterval("1.184", "2.428");
+    await root.getByText(/This is a rate estimate from one pair of beats/).waitFor();
+
+    await selectPractice("08215");
+    await root.getByText("Show worked landmarks", { exact: true }).click();
+    await root.getByRole("button", { name: "Mark example interval 1", exact: true }).click();
+    await root.getByRole("button", { name: "Save measurement", exact: true }).click();
+    await root.getByText(/1 of 2 exercise intervals matched/).waitFor();
+    await saveInterval("0.988", "1.59");
+    await root.getByText("790 ms and 602 ms · 188 ms apart.", { exact: true }).waitFor();
+    await page.screenshot({ path: `${out}/${name}-rr-comparison.png` });
+
+    await selectPractice("00011");
+    assert.equal(await root.getByLabel("Focused time span").inputValue(), "1");
+    assert.equal(await root.getByLabel("Interval type").inputValue(), "PR");
+    await saveInterval("0.428", "0.602");
+    await root.getByText("174 ms.", { exact: true }).waitFor();
+    await root.getByText(/gradual rise of the P wave/).waitFor();
+
+    await selectPractice("03155");
+    assert.equal(await root.getByLabel("Focused lead").inputValue(), "V1");
+    await root.getByText("Show worked landmarks", { exact: true }).click();
+    await root.getByRole("button", { name: "Mark example endpoints", exact: true }).click();
+    await root.getByRole("button", { name: "Save measurement", exact: true }).click();
+    await root.getByText("126 ms.", { exact: true }).waitFor();
+    await root.getByText(/Compare synchronized leads/).waitFor();
+
+    await selectPractice("08215");
+    await root.getByText("790 ms and 602 ms · 188 ms apart.", { exact: true }).waitFor();
+    await root.getByRole("button", { name: "Review 2", exact: true }).click();
+    await root.getByRole("button", { name: "Revise endpoints", exact: true }).first().click();
+    await root.getByLabel("Endpoint A seconds").fill("0.25");
+    await root.getByRole("button", { name: "Save revision", exact: true }).click();
+    await root.getByRole("button", { name: "Measure", exact: true }).click();
+    await root.getByText(/1 of 2 exercise intervals matched/).waitFor();
+
     await page.reload();
     await root.getByText("PTB-XL · 00010", { exact: true }).waitFor();
     await root.getByRole("button", { name: "Source", exact: true }).click();
