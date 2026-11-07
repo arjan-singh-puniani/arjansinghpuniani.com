@@ -1,0 +1,15 @@
+{
+  "gameSuites": 32,
+  "gameFailures": 0,
+  "portfolioTests": {
+    "passed": 282,
+    "total": 282,
+    "command": "npx vitest run tests --maxWorkers=2 --testTimeout=30000",
+    "caveat": "Default5000ms timeout failed one unrelated Pit Stop test at5714ms after clean install;30s override passed all assertions. Earlier incomplete local dependencies also caused unrelated ECG/PitStop timeout failures."
+  },
+  "typecheck": "passed after clean npm ci",
+  "productionBuild": "passed Next15.5.28 /36 pages",
+  "assetCheck": "all108 prior GLBs and24 standaloneREPLISOME files byte-identical",
+  "browserChecks": "browser-checks.json",
+  "physicalIphone": "not performed"
+}

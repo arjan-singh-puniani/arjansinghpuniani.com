@@ -1,0 +1,66 @@
+{
+  "model": "1.0.0-rc9",
+  "runtime": 149,
+  "platform": "Apple M2 / in-app Chromium;390x844 narrow viewport, not iPhone",
+  "checks": [
+    "empty clinic",
+    "first placement/hire on first click",
+    "live GP placement while arrivals move",
+    "opposed GP/patient seats",
+    "SeatUp observed in live dataset and film",
+    "first fee and actual exit",
+    "extra reception with paid admin",
+    "pause/resume",
+    "reduced motion setting and dataset",
+    "no horizontal overflow",
+    "visible primary controls >=44px high",
+    "native film playback and seek",
+    "console no application errors",
+    "idle GP pickup: .5 opacity, 13411 valid green cells",
+    "GP put-down retains assignment and patient progress"
+  ],
+  "firstPassMobile": {
+    "simulationSecond": 78,
+    "arrivals": 5,
+    "completed": 1,
+    "roomCount": 3,
+    "staffCount": 3
+  },
+  "sceneSample": {
+    "simulationSecond": 41,
+    "mainTriangles": 49409,
+    "drawCalls": 57,
+    "patients": 3,
+    "staff": 2
+  },
+  "pooledFrames": {
+    "samples": 1800,
+    "meanMs": 33.41,
+    "p95Ms": 50,
+    "note": "Includes paused frames and inspector activity; not an isolated benchmark."
+  },
+  "unverified": [
+    "physical iPhone/Safari",
+    "Safari background lifecycle",
+    "assistive technology audit",
+    "independent usability/enjoyment evaluation"
+  ],
+  "additionalContendedSample": {
+    "samples": 1800,
+    "meanMs": 42.49,
+    "p95Ms": 100,
+    "buildPrepareMs": 1601.8,
+    "pickupPrepareMs": 45.2,
+    "note": "Final149 phone-width run during dependency install and other host verification; system contention was visible. Not a controlled device benchmark."
+  },
+  "finalOpening": {
+    "runtime": 149,
+    "firstClicksRegistered": true,
+    "roomCount": 2,
+    "staffCount": 2,
+    "cameraGridX": 2.8,
+    "cameraGridY": 26,
+    "zoom": 1.3,
+    "overflow": false
+  }
+}

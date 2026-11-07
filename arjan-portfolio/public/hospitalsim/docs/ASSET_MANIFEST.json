@@ -1499,6 +1499,240 @@
       "joints": 39
     },
     {
+      "file": "dist/assets/stride-clinician.glb",
+      "bytes": 142200,
+      "gzipBytes": 21697,
+      "sha256": "e2d78fb951eb5e42d33dbf8477479cc6eb8eda6baa9c225b1a3a903377684c1b",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-coat.glb",
+      "bytes": 142192,
+      "gzipBytes": 21687,
+      "sha256": "1d893ca68ba55b064f627a6c28cb5163de49b538313d58da9043e931bda2fdc7",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-01.glb",
+      "bytes": 142392,
+      "gzipBytes": 21842,
+      "sha256": "6d132a853a6dbf291f40f7a43ec96054a80e8faa27e0b44d2568fe478ebea045",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-02.glb",
+      "bytes": 142312,
+      "gzipBytes": 21952,
+      "sha256": "06eb719a7ed2fc5d3160d35bda452cbac7f6f0c94b28d833a2a72c84a4370eea",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-03.glb",
+      "bytes": 142408,
+      "gzipBytes": 22073,
+      "sha256": "06347d6a8fb566946d125688fad86f6144aa9cdd4e09bafbb6c49c105078bb33",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-04.glb",
+      "bytes": 142488,
+      "gzipBytes": 22272,
+      "sha256": "436b6d61343624095f68ff08bc9b16786d85c196f22feb5adaedf981853344eb",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-05.glb",
+      "bytes": 142688,
+      "gzipBytes": 22002,
+      "sha256": "1f87042c66f3b42b86cfb82495c064f7b7f08209c90d25eba7d7ab1991afe8b6",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-06.glb",
+      "bytes": 142624,
+      "gzipBytes": 22097,
+      "sha256": "3260030fe5a722855f227691c3f83fb9f9533a2f80f9b55da4a5b07e3b26b71a",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-07.glb",
+      "bytes": 142676,
+      "gzipBytes": 22063,
+      "sha256": "e85c6c1da038eae9e8c2aa4c71bbe2d0eeb5ffa7fc917c6c7f518a8061e10ff2",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-08.glb",
+      "bytes": 142640,
+      "gzipBytes": 21994,
+      "sha256": "848600f7a0051f8ee1d46cdb0e6723125209c8bd983166b682dfbb5200a17f0c",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-09.glb",
+      "bytes": 142728,
+      "gzipBytes": 22126,
+      "sha256": "43778ee2bbead43a31c7575adc525d60a6c89f74077354927a0bf8f094d76f6c",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-10.glb",
+      "bytes": 142572,
+      "gzipBytes": 22191,
+      "sha256": "4d8e3c62dd2fcf9299e893bb5e8f01e29f2e4ac468af55cf0c3b622d16fe99d7",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/stride-patient-11.glb",
+      "bytes": 142656,
+      "gzipBytes": 22067,
+      "sha256": "2ce5c84c6e485ab961b7797a0ff938b91aeeddbcb52856fa0b2405237f9cc59a",
+      "triangles": 1,
+      "primitives": 1,
+      "animations": [
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Walk"
+      ],
+      "source": "blender/first_minute_motion.py and first_minute_motion.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
       "file": "dist/assets/walk-clinician.glb",
       "bytes": 46648,
       "gzipBytes": 12387,
@@ -1716,7 +1950,7 @@
   },
   "fonts": "Georgia and platform sans-serif; system fonts, no font files redistributed",
   "authorship": "Substantial AI assistance in geometry, rigging, animation, code, design, tests and documentation. Owner contributions must be individually verified before portfolio claims.",
-  "updated": "2026-11-05",
+  "updated": "2026-11-06",
   "runtimeDecoration": {
     "source": "dist/renderer.mjs decorateRoom",
     "provenance": "Original procedural plant, geometric print and palette stripe; fixed clear sockets",

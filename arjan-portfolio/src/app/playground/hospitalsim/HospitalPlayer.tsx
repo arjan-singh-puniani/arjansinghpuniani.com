@@ -83,7 +83,7 @@ export default function HospitalPlayer() {
       <div>{playing && <><button onClick={close}>Close experience</button><button onClick={fullscreen}>Enter fullscreen ↗</button></>}<a href="/hospitalsim/index.html" target="_blank" rel="noreferrer">Open in a new tab ↗</a></div>
     </div>
     {message && <p role="status">{message}</p>}
-    <p className={styles.controls} id="hospital-controls">Build reception and hire Quinn, then add a GP room and hire Mira. Open the doors. Patients arrive in everyday clothes, check in, change, and queue for their GP. Completed services earn revenue; booked visits introduce pharmacy and specialist rooms. Click or tap a person to lift them; tap a green tile to put down. Settings keeps previous hospitals and advanced challenges. Progress saves on this device; no gameplay analytics.</p>
+    <p className={styles.controls} id="hospital-controls">Build reception and hire Quinn to open. Then add a GP room and hire Mira while the first patient checks in. Patients arrive in everyday clothes, check in, change, and queue for their GP. Completed services earn revenue; booked visits introduce pharmacy and specialist rooms. Click or tap a person to lift them; tap a green tile to put down. Settings keeps previous hospitals and advanced challenges. Progress saves on this device; no gameplay analytics.</p>
     <noscript><p>Open <a href="/hospitalsim/index.html">hospitalSIM in its own page</a>. JavaScript and WebGL2 are required for the interactive view; the descriptions and structural references below remain available.</p></noscript>
   </>;
 }

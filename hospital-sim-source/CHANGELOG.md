@@ -1,3 +1,12 @@
+# RC9 · November 6, 2026
+
+- Reception and its paid administrator open the new clinic before GP construction; the first patient is visible while the player builds.
+- Seeded introductory arrivals are spaced across the first minute; first three need only the GP. Existing active/custom schedules are preserved.
+- Queue guidance derives from real waiting people and room count. Hiring/placement undo remains atomic and expires when the model advances.
+- Blender executed thirteen original walking/seating exports. Shorter strides, safer rounded corners, planted-foot sit/stand phases and alternating consultation gestures replace the old opening motions.
+- Live placement, stable guided-button centre, compact existing transport controls, phone opening framing and an anchored consultation receipt. No new game menus.
+- Native90s film replays exactly;32 game suites pass. Physical iPhone testing and independent enjoyment/usability validation remain pending.
+
 # RC8 · November 5, 2026
 
 - Three-piece room-specific equipment packages replace the public generic upgrade. Original Blender source,54components, lazy GLB, unfold/settle feedback, reduced-motion endpoint and saved receipts.

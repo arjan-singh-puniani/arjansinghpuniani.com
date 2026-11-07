@@ -1,0 +1,988 @@
+{
+  "model": "1.0.0-rc9",
+  "scenario": "clinic",
+  "site": {
+    "w": 32,
+    "h": 28,
+    "shiftY": 20,
+    "version": 2
+  },
+  "checkpoint": {
+    "version": "1.0.0-rc9",
+    "scenario": "clinic",
+    "mode": "sandbox",
+    "entrance": {
+      "x": 4,
+      "y": 27,
+      "direction": 0
+    },
+    "exit": {
+      "x": 5.5,
+      "y": 27,
+      "direction": 0
+    },
+    "autoHandoff": true,
+    "communication": false,
+    "prevention": false,
+    "arrivalIndex": 0,
+    "arrivalTape": [
+      {
+        "id": 1000,
+        "at": 2,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1001,
+        "at": 19,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1002,
+        "at": 31,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1003,
+        "at": 48,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1004,
+        "at": 75,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1005,
+        "at": 101,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1006,
+        "at": 125,
+        "clinicalCase": "neuroReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1007,
+        "at": 149,
+        "clinicalCase": "neuroReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1008,
+        "at": 176,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1009,
+        "at": 201,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1010,
+        "at": 220,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1011,
+        "at": 239,
+        "clinicalCase": "mobility",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1012,
+        "at": 258,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1013,
+        "at": 277,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1014,
+        "at": 296,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1015,
+        "at": 315,
+        "clinicalCase": "epilepsy",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1016,
+        "at": 330,
+        "clinicalCase": "epilepsy",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1017,
+        "at": 345,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1018,
+        "at": 360,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1019,
+        "at": 375,
+        "clinicalCase": "sleepReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1020,
+        "at": 387,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1021,
+        "at": 401,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1022,
+        "at": 415,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1023,
+        "at": 428,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1024,
+        "at": 440,
+        "clinicalCase": "sleepReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1025,
+        "at": 456,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1026,
+        "at": 469,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1027,
+        "at": 483,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1028,
+        "at": 495,
+        "clinicalCase": "neuroReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1029,
+        "at": 507,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1030,
+        "at": 521,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1031,
+        "at": 535,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1032,
+        "at": 549,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1033,
+        "at": 565,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1034,
+        "at": 580,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1035,
+        "at": 595,
+        "clinicalCase": "sleepReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1036,
+        "at": 608,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1037,
+        "at": 620,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1038,
+        "at": 633,
+        "clinicalCase": "sleepReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1039,
+        "at": 647,
+        "clinicalCase": "neuroReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1040,
+        "at": 662,
+        "clinicalCase": "sleepReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1041,
+        "at": 675,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1042,
+        "at": 691,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1043,
+        "at": 703,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1044,
+        "at": 716,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1045,
+        "at": 732,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1046,
+        "at": 745,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Find a quieter waiting spot",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1047,
+        "at": 758,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1048,
+        "at": 774,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1049,
+        "at": 789,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1050,
+        "at": 802,
+        "clinicalCase": "sleepReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1051,
+        "at": 814,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1052,
+        "at": 827,
+        "clinicalCase": "collection",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1053,
+        "at": 843,
+        "clinicalCase": "neuroReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1054,
+        "at": 856,
+        "clinicalCase": "sleepReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1055,
+        "at": 870,
+        "clinicalCase": "routine",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Understand my next step",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1056,
+        "at": 883,
+        "clinicalCase": "sleepReview",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Get home before the cat judges me",
+        "returning": false,
+        "navDelay": 0
+      },
+      {
+        "id": 1057,
+        "at": 897,
+        "clinicalCase": "epilepsy",
+        "barrier": false,
+        "urgent": false,
+        "imaging": false,
+        "goal": "Have time to ask a question",
+        "returning": false,
+        "navDelay": 0
+      }
+    ],
+    "initialSeed": 431,
+    "seed": 431,
+    "seconds": 0,
+    "cash": 9000,
+    "served": 0,
+    "left": 0,
+    "arrivals": 0,
+    "trust": 85,
+    "energy": 100,
+    "breaks": false,
+    "access": false,
+    "urgency": true,
+    "rooms": [],
+    "staff": [],
+    "patients": [],
+    "nextId": 10,
+    "nextArrival": 1,
+    "surge": 0,
+    "eventDone": true,
+    "ended": false,
+    "records": [],
+    "actions": [
+      {
+        "at": 0,
+        "type": "expand-site",
+        "from": {
+          "w": 9,
+          "h": 8,
+          "shiftY": 0
+        },
+        "to": {
+          "w": 32,
+          "h": 28,
+          "shiftY": 20,
+          "version": 2
+        },
+        "translation": {
+          "x": 0,
+          "y": 20
+        },
+        "note": "Rooms, people, routes and doors move together; counts, fees and service progress are retained."
+      },
+      {
+        "at": 0,
+        "type": "equipment-model",
+        "mode": "kits-v1",
+        "note": "Existing paid levels retained as legacy bases. Future upgrades install complete room-specific equipment packages."
+      }
+    ],
+    "log": [
+      "Reception first. Then an administrator and a GP."
+    ],
+    "utilization": {},
+    "lastAction": null,
+    "clinic": {
+      "opened": false,
+      "gpVisits": 0,
+      "checkedIn": 0,
+      "revenue": 0,
+      "billing": [],
+      "pacing": "gentle",
+      "opening": "reception-first"
+    },
+    "periodSeconds": 960,
+    "periodNumber": 0,
+    "operations": {
+      "deskStaff": null,
+      "deskLevel": 1,
+      "intakePatient": null,
+      "checkedIn": 0,
+      "event": null,
+      "eventDone": true,
+      "unlocks": [],
+      "tutorial": {
+        "picked": false,
+        "placed": false,
+        "skip": false
+      },
+      "banter": null,
+      "decisions": [],
+      "recoveryCount": 0,
+      "loungeVoucher": false,
+      "supervision": "paired",
+      "coffeeDone": true,
+      "intakeAssists": 0,
+      "roomResets": 0,
+      "incidents": []
+    },
+    "site": {
+      "w": 32,
+      "h": 28,
+      "shiftY": 20,
+      "version": 2
+    },
+    "equipmentMode": "kits-v1"
+  },
+  "seed": 431,
+  "recordStart": 0,
+  "recordEnd": 90,
+  "actions": [
+    {
+      "at": 0,
+      "type": "build",
+      "room": {
+        "id": 10,
+        "type": "intake",
+        "x": 0.25,
+        "y": 25,
+        "rotation": 1,
+        "level": 1,
+        "staff": [],
+        "decor": [],
+        "paid": 400,
+        "builtAt": 0,
+        "readyAt": 0,
+        "spill": false,
+        "upgradeBase": 1,
+        "installations": []
+      }
+    },
+    {
+      "at": 0,
+      "type": "policy",
+      "key": "hire",
+      "value": "admin"
+    },
+    {
+      "at": 0,
+      "type": "assign",
+      "staffId": 1,
+      "roomId": 10
+    },
+    {
+      "at": 0,
+      "type": "open-clinic"
+    },
+    {
+      "at": 4,
+      "type": "build",
+      "room": {
+        "id": 11,
+        "type": "gp",
+        "x": 3.5,
+        "y": 24,
+        "rotation": 0,
+        "level": 1,
+        "staff": [],
+        "decor": [],
+        "paid": 900,
+        "builtAt": 4,
+        "readyAt": 0,
+        "spill": false,
+        "upgradeBase": 1,
+        "installations": []
+      }
+    },
+    {
+      "at": 4,
+      "type": "policy",
+      "key": "hire",
+      "value": "gp"
+    },
+    {
+      "at": 4,
+      "type": "assign",
+      "staffId": 2,
+      "roomId": 11
+    },
+    {
+      "at": 49,
+      "type": "service-revenue",
+      "patient": 1000,
+      "service": "gp",
+      "amount": 180
+    },
+    {
+      "at": 75,
+      "type": "service-revenue",
+      "patient": 1001,
+      "service": "gp",
+      "amount": 180
+    },
+    {
+      "at": 80,
+      "type": "build",
+      "room": {
+        "id": 12,
+        "type": "intake",
+        "x": 0,
+        "y": 21,
+        "rotation": 1,
+        "level": 1,
+        "staff": [],
+        "decor": [],
+        "paid": 400,
+        "builtAt": 80,
+        "readyAt": 0,
+        "spill": false,
+        "upgradeBase": 1,
+        "installations": []
+      }
+    },
+    {
+      "at": 80,
+      "type": "policy",
+      "key": "hire",
+      "value": "admin"
+    },
+    {
+      "at": 80,
+      "type": "assign",
+      "staffId": 3,
+      "roomId": 12
+    }
+  ],
+  "tracked": 1000,
+  "events": [
+    "00:00 Build reception, hire your team and open the doors",
+    "00:00 Clinic open · equip a room or follow the next visit",
+    "00:02 Arriving · Reception",
+    "00:03 Walking through the entrance · Reception",
+    "00:05 Waiting · Reception",
+    "00:06 Walking to waiting space · Reception",
+    "00:09 Waiting · Reception",
+    "00:11 Walking · Reception",
+    "00:16 Entering service room · Reception",
+    "00:19 Receiving service · Reception",
+    "00:23 Changing into a gown · Reception",
+    "00:29 Leaving service room · Reception",
+    "00:32 Communicating next step · GP consultation",
+    "00:33 Waiting · GP consultation",
+    "00:34 Walking · GP consultation",
+    "00:37 Entering service room · GP consultation",
+    "00:40 Receiving service · GP consultation",
+    "00:49 Leaving service room · GP consultation",
+    "00:52 Changing back into everyday clothes · GP consultation",
+    "00:54 Heading home · exit",
+    "00:59 Walking through the exit · GP consultation",
+    "01:01 Completed · discharged"
+  ],
+  "visit": {
+    "id": 1000,
+    "name": "Maya",
+    "x": 5.5,
+    "y": 27,
+    "direction": 0,
+    "stage": "gp",
+    "target": null,
+    "room": null,
+    "urgent": false,
+    "barrier": false,
+    "imaging": false,
+    "returning": false,
+    "goal": "One clear plan, preferably on one sheet of paper",
+    "caseId": "welcome",
+    "intakeDone": true,
+    "checkin": 4,
+    "recovery": 0,
+    "wait": 6,
+    "walking": 35,
+    "service": 9,
+    "handoff": 1,
+    "transfer": 0,
+    "yielding": 1,
+    "elapsedOffset": 0,
+    "arrival": 2,
+    "progress": 2,
+    "navDelay": 0,
+    "history": [
+      {
+        "stage": "intake",
+        "at": 19,
+        "room": 10,
+        "duration": 3.125,
+        "paid": 0,
+        "completedAt": 23
+      },
+      {
+        "stage": "gp",
+        "at": 40,
+        "room": 11,
+        "duration": 8.928571428571427,
+        "paid": 180,
+        "completedAt": 49
+      }
+    ],
+    "outside": false,
+    "stalled": 0,
+    "clinicalCase": "routine",
+    "plan": [
+      "intake",
+      "gp"
+    ],
+    "routeIndex": 1,
+    "wardrobe": "casual",
+    "changing": 4,
+    "moved": false,
+    "motion": null,
+    "teamWaiting": false,
+    "equipmentWaiting": false,
+    "destination": {
+      "x": 5.5,
+      "y": 27,
+      "direction": 0
+    },
+    "previous": {
+      "x": 5.5,
+      "y": 26.25
+    },
+    "duration": 8.928571428571427,
+    "handoffReady": false,
+    "outcome": "completed",
+    "total": 59
+  },
+  "counts": {
+    "arrivals": 5,
+    "completed": 2,
+    "departed": 0,
+    "unfinished": 3
+  }
+}

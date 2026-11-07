@@ -34,8 +34,8 @@ export function clinicBuilds(s){
 export function clinicStep(s){
  for(const type of ['intake','gp']){
   const room=s.rooms.find(r=>r.type===type),d=CLINIC_DEPARTMENTS[type];
-  if(!room)return{kind:'clinic-build',type,label:'Build '+d.name+' · $'+d.cost,title:type==='intake'?'First, a place to check in.':'Now add your GP’s room.',text:type==='intake'?'Start with a reception desk. Arrivals need someone to welcome them.':'The patient’s chair faces the GP, across the desk.'};
-  if(!room.staff.length)return{kind:'staff-room',id:room.id,label:'Hire '+CLINIC_ROLES[d.role].name+' · $'+CLINIC_ROLES[d.role].cost,title:type==='intake'?'Reception needs an administrator.':'Your GP room needs its doctor.',text:type==='intake'?'Quinn handles check-in. Hiring includes the room assignment.':'Mira will see one neighbor at a time. No free staff come with a room.'};
+  if(!room)return{kind:'clinic-build',type,label:'Build '+d.name+' · $'+d.cost,title:type==='intake'?'Build your first reception.':s.clinic.opening?'Your first patient needs a GP.':'Now add your GP’s room.',text:type==='intake'?'Start with a reception desk. Arrivals need someone to welcome them.':'The patient’s chair faces the GP, across the desk.'};
+  if(!room.staff.length)return{kind:'staff-room',id:room.id,label:'Hire '+CLINIC_ROLES[d.role].name+(type==='intake'&&s.clinic.opening&&!s.clinic.opened?' & open':'')+' · $'+CLINIC_ROLES[d.role].cost,title:type==='intake'?'Give Quinn the front desk.':'Mira needs this room to see your first patient.',text:type==='intake'?s.clinic.opening?'Hire Quinn to open reception and welcome the first arrival.':'Quinn handles check-in. Hiring includes the room assignment.':'Hire Mira. She will walk over and start the first consultation.'};
  }
  if(!s.clinic.opened)return{kind:'open-clinic',label:'Open the doors',title:'Your first team is ready.',text:'Quinn checks people in. Mira sees them next. Open when you are ready; there is no cost while closed.'};
  const closed=s.rooms.find(r=>CLINIC_DEPARTMENTS[r.type]&&!r.staff.length);
@@ -43,8 +43,10 @@ export function clinicStep(s){
  const needs=s.patients.find(p=>p.stage!=='intake'&&p.stage!=='gp'&&!s.rooms.some(r=>r.type===p.stage));
  if(needs){const d=CLINIC_DEPARTMENTS[needs.stage];return{kind:'clinic-build',type:needs.stage,label:'Build '+d.name+' · $'+d.cost,title:needs.name+' is waiting for '+d.name.toLowerCase()+'.',text:'This visit has a booked next step. More GP rooms cannot provide this service.'}}
  const p=s.patients[0];
- if(!s.clinic.gpVisits)return{kind:p?'patient':'watch',id:p?.id,label:p?'Follow '+p.name:'Waiting for an arrival…',title:p?.state==='changing'?'Checked in. A quick gown-change spin.':p?.stage==='gp'?'Next stop: the GP.':p?'Quinn is welcoming '+p.name+'.':'The doors are open.',text:'People arrive in everyday clothes, check in, change, then queue for their GP.'};
+ if(!s.clinic.gpVisits)return{kind:p?'patient':'watch',id:p?.id,label:p?'Follow '+p.name:'Waiting for an arrival…',title:p?.state==='service'&&p.stage==='gp'?'Mira is helping '+p.name+'.':p?.state==='changing'?'Checked in. A quick gown-change spin.':p?.stage==='gp'?'Next stop: the GP.':p?'Quinn is welcoming '+p.name+'.':'The doors are open.',text:'People arrive in everyday clothes, check in, change, then queue for their GP.'};
+ const queues=['intake','gp'].map(type=>({type,n:s.patients.filter(p=>p.stage===type&&!p.outside&&['waiting','queue-walking','seated','handoff'].includes(p.state)).length})).sort((a,b)=>b.n-a.n),queue=queues[0];if(s.clinic.opening&&queue.n>=2*s.rooms.filter(r=>r.type===queue.type).length)return{kind:'clinic-build',type:queue.type,label:queue.type==='intake'?'Add reception · $400':'Add GP room · $900',title:queue.n+' waiting '+(queue.type==='intake'?'to check in.':'for the GP.'),text:queue.type==='intake'?'Another reception with its own administrator can check people in together.':'A second staffed GP room can see the next patient in parallel.'};
+ if(s.clinic.opening&&!s.served&&p)return{kind:'patient',id:p.id,label:'Follow '+p.name,title:p.name+' has finished the consultation.',text:'Watch them change back and walk home. The consultation earned $180.'};
  return{kind:'grow',label:'Improve your clinic',title:clinicTotal(s)+(clinicTotal(s)===1?' neighbor':' neighbors')+' home · $'+s.clinic.revenue+' service revenue.',text:'Build to add capacity. Select a room to equip it.'};
 }
 
-export const clinicSite=(s,type)=>({...CLINIC_DEPARTMENTS[type].site,y:CLINIC_DEPARTMENTS[type].site.y+(s.site?.shiftY||0)});
+export const clinicSite=(s,type)=>({...CLINIC_DEPARTMENTS[type].site,...(s.clinic?.opening?type==='intake'?{x:.25}:type==='gp'?{x:3.5}:{}:{}),y:CLINIC_DEPARTMENTS[type].site.y+(s.site?.shiftY||0)});

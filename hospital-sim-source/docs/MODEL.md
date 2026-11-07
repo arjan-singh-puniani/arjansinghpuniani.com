@@ -1,3 +1,7 @@
+# Current RC9 model
+
+See [opening, motion, pipeline and checks](FIRST_MINUTE_RC9.md). Previous model notes follow with their original context.
+
 # Current RC8 model
 
 See [equipment, placement, shifts and replay rules](EQUIPMENT_RC8.md). Current browser enables `kits-v1`, a32×28clinic and16-minute fresh shifts. Historical model notes below retain their original context.

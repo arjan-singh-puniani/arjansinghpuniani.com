@@ -1,0 +1,110 @@
+FIRST_CONTACT clinician (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__clinician
+CONTACT clinician 0.0022520576163693263 -0.0021927955094724894
+22:16:02 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:16:04 | INFO: Starting glTF 2.0 export
+22:16:04 | INFO: Extracting primitive: Clip carrier
+22:16:04 | INFO: Primitives created: 1
+22:16:09 | INFO: Finished glTF 2.0 export in 5.215224027633667 s
+
+FIRST_CONTACT coat (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__coat
+CONTACT coat 0.0022520576163693263 -0.0021927955094724894
+22:16:39 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:16:39 | INFO: Starting glTF 2.0 export
+22:16:39 | INFO: Extracting primitive: Clip carrier.001
+22:16:39 | INFO: Primitives created: 1
+22:16:56 | INFO: Finished glTF 2.0 export in 16.966096878051758 s
+
+FIRST_CONTACT patient-01 (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-01
+CONTACT patient-01 0.0022520576163693263 -0.0021927955094724894
+22:18:04 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:18:05 | INFO: Starting glTF 2.0 export
+22:18:06 | INFO: Extracting primitive: Clip carrier.002
+22:18:06 | INFO: Primitives created: 1
+22:19:01 | INFO: Finished glTF 2.0 export in 56.58168888092041 s
+
+FIRST_CONTACT patient-02 (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-02
+CONTACT patient-02 0.0022520576163693263 -0.0021927955094724894
+22:19:26 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:19:26 | INFO: Starting glTF 2.0 export
+22:19:26 | INFO: Extracting primitive: Clip carrier.003
+22:19:26 | INFO: Primitives created: 1
+22:19:40 | INFO: Finished glTF 2.0 export in 13.66907811164856 s
+
+FIRST_CONTACT patient-03 (0.10500000417232513, -0.232200026512146, -1.07174798813503e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-03
+CONTACT patient-03 0.00225219043343572 -0.0021929340437054634
+22:20:05 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:20:05 | INFO: Starting glTF 2.0 export
+22:20:05 | INFO: Extracting primitive: Clip carrier.004
+22:20:05 | INFO: Primitives created: 1
+22:20:21 | INFO: Finished glTF 2.0 export in 15.398542165756226 s
+
+FIRST_CONTACT patient-04 (0.10500000417232513, -0.232200026512146, -1.07174798813503e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-04
+CONTACT patient-04 0.00225219043343572 -0.0021929340437054634
+22:20:53 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:20:53 | INFO: Starting glTF 2.0 export
+22:20:53 | INFO: Extracting primitive: Clip carrier.005
+22:20:53 | INFO: Primitives created: 1
+22:21:06 | INFO: Finished glTF 2.0 export in 13.6425940990448 s
+
+FIRST_CONTACT patient-05 (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-05
+CONTACT patient-05 0.0022520576163693263 -0.0021927955094724894
+22:23:36 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:23:36 | INFO: Starting glTF 2.0 export
+22:23:36 | INFO: Extracting primitive: Clip carrier.006
+22:23:36 | INFO: Primitives created: 1
+22:25:05 | INFO: Finished glTF 2.0 export in 88.70918893814087 s
+
+FIRST_CONTACT patient-06 (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-06
+CONTACT patient-06 0.0022520576163693263 -0.0021927955094724894
+22:26:12 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:26:12 | INFO: Starting glTF 2.0 export
+22:26:12 | INFO: Extracting primitive: Clip carrier.007
+22:26:12 | INFO: Primitives created: 1
+22:27:14 | INFO: Finished glTF 2.0 export in 61.85638880729675 s
+
+FIRST_CONTACT patient-07 (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-07
+CONTACT patient-07 0.0022520576163693263 -0.0021927955094724894
+22:28:12 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:28:12 | INFO: Starting glTF 2.0 export
+22:28:12 | INFO: Extracting primitive: Clip carrier.008
+22:28:12 | INFO: Primitives created: 1
+22:28:47 | INFO: Finished glTF 2.0 export in 34.49534726142883 s
+
+FIRST_CONTACT patient-08 (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-08
+CONTACT patient-08 0.0022520576163693263 -0.0021927955094724894
+22:29:29 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:29:29 | INFO: Starting glTF 2.0 export
+22:29:31 | INFO: Extracting primitive: Clip carrier.009
+22:29:31 | INFO: Primitives created: 1
+22:30:18 | INFO: Finished glTF 2.0 export in 49.041276931762695 s
+
+FIRST_CONTACT patient-09 (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-09
+CONTACT patient-09 0.0022520576163693263 -0.0021927955094724894
+22:31:14 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:31:14 | INFO: Starting glTF 2.0 export
+22:31:14 | INFO: Extracting primitive: Clip carrier.010
+22:31:14 | INFO: Primitives created: 1
+22:31:51 | INFO: Finished glTF 2.0 export in 37.18280506134033 s
+
+FIRST_CONTACT patient-10 (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-10
+CONTACT patient-10 0.0022520576163693263 -0.0021927955094724894
+22:34:16 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:34:17 | INFO: Starting glTF 2.0 export
+22:34:19 | INFO: Extracting primitive: Clip carrier.011
+22:34:19 | INFO: Primitives created: 1
+22:35:32 | INFO: Finished glTF 2.0 export in 75.49937319755554 s
+
+FIRST_CONTACT patient-11 (0.10500001162290573, -0.232200026512146, -1.3717091462694952e-07) (0.10499999672174454, -0.2321999967098236, 0.0) Walk__patient-11
+CONTACT patient-11 0.0022520576163693263 -0.0021927955094724894
+22:38:40 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+22:38:40 | INFO: Starting glTF 2.0 export
+22:38:41 | INFO: Extracting primitive: Clip carrier.012
+22:38:41 | INFO: Primitives created: 1
+22:41:22 | INFO: Finished glTF 2.0 export in 161.63883805274963 s
+
+Info: Saved "first_minute_motion.blend"
+COMPACT_INDOOR_STRIDES_EXPORTED [{"rig": "clinician", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "coat", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-01", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-02", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-03", "maxSupportDriftMetres": 0.00225219043343572, "minimumSoleMetres": -0.0021929340437054634, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-04", "maxSupportDriftMetres": 0.00225219043343572, "minimumSoleMetres": -0.0021929340437054634, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-05", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-06", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-07", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-08", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-09", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-10", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}, {"rig": "patient-11", "maxSupportDriftMetres": 0.0022520576163693263, "minimumSoleMetres": -0.0021927955094724894, "seating": [{"clip": "SeatDown", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "SeatUp", "duration": 0.6666666666666666, "plantedFootKeyframeDriftUnderMetres": 0.002}, {"clip": "Sit", "duration": 2.0, "plantedFootKeyframeDriftUnderMetres": 0.002}]}]
+Blender 4.0.2 (hash 9be62e85b727 built 2023-12-05 08:05:41)
+Read blend: "/Users/arjan/Documents/Codex/2026-10-28/rebuild-common-good-s-visual-experience/work/portfolio-release/hospital-sim-source/blender/characters.blend"
+
+Blender quit

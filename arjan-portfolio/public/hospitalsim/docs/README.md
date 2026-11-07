@@ -1,3 +1,13 @@
+# hospitalSIM — first-minute flow (RC9)
+
+Build reception and hire Quinn to open. Add a GP and hire Mira while the first neighbor checks in. Four seeded first-minute arrivals create a small, visible queue; completed consultations earn $180. The next construction prompt follows the actual intake/GP queue, scaled by existing room count. Construction stays live, with pause available. No new service family, management menu or progression system was added in RC9.
+
+Play https://arjansinghpuniani.com/playground/hospitalsim . [Current flow, Blender execution, verification and limits](docs/FIRST_MINUTE_RC9.md). [Actual patient-loop movie and retained reference comparison](https://arjansinghpuniani.com/hospitalsim/docs/first-minute.html). Substantial AI assistance; this remains an engineering prototype.
+
+---
+
+## Historical equipment release
+
 # hospitalSIM — equipment that unfolds (RC8)
 
 Build on a **32 × 28** estate with quarter-cell rotation/confirmation, **16-minute** new-clinic shifts and room-specific three-piece equipment packages. Equipment unfolds into the actual room; saved purchases remain visible.
