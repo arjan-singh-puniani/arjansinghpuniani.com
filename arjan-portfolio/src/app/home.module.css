@@ -27,7 +27,63 @@
 }
 
 .heroScope :global(.v2-actions) {
-  margin-top: 34px;
+  margin-top: 24px;
+}
+
+.resourceLinks {
+  display: grid;
+  max-width: 580px;
+  margin-top: 22px;
+  border-top: 1px solid #bcb9b0;
+}
+
+.resourceLinks a {
+  position: relative;
+  display: grid;
+  gap: 3px;
+  padding: 10px 32px 10px 0;
+  border-bottom: 1px solid #bcb9b0;
+  color: #303033;
+  text-decoration: none;
+}
+
+.resourceLinks a::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 24px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.resourceLinks a:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.resourceLinks span {
+  color: #55595b;
+  font-size: 14px;
+}
+
+.ecgActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+
+.ecgActions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+}
+
+.ecgActions a:first-child {
+  font-weight: 800;
 }
 
 .heroPortrait {

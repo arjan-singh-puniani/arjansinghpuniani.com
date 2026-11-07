@@ -48,12 +48,24 @@ export default function Home() {
             <p className={styles.heroFocus}>
               I am a neural engineer pursuing medicine. I have worked on human brain-computer interfaces, clinical research, and research software.
             </p>
-            <p>Explore the experiments, software, publications, and device concepts below.</p>
+            <nav className={styles.resourceLinks} aria-label="Explore research resources">
+              <Link href="/work/vector-ekg-reasonos/workspace">
+                <strong>Measure an ECG interval</strong>
+                <span>Work through a real recording in ReasonOS</span>
+              </Link>
+              <a href="/atlas">
+                <strong>Inspect a medical intervention</strong>
+                <span>Explore anatomy and original sources in BODY//ATLAS</span>
+              </a>
+              <Link href="/research">
+                <strong>Read my research</strong>
+                <span>Publications and research experience</span>
+              </Link>
+            </nav>
             <div className="v2-actions">
               <Link href="#selected-work" data-analytics-event="hero_project_click">
                 Selected work <b>↗</b>
               </Link>
-              <Link href="/research">Research</Link>
               <Link href="/cv">CV</Link>
             </div>
           </div>
@@ -143,10 +155,10 @@ export default function Home() {
         </article>
 
         <article className="v2-feature reasonos-home-feature">
-          <div className={`v2-feature-image ${styles.projectPreviewFrame} ${styles.darkPreviewFrame}`}>
+          <div className={`v2-feature-image ${styles.projectPreviewFrame} ${styles.lightPreviewFrame}`}>
             <Image
-              src="/images/home/reasonos-manifesto-preview.png"
-              alt="ReasonOS preview showing ECG reasoning, explicit measurements, calculations, competing explanations, and visible revision history"
+              src="/images/home/reasonos-interval-review.webp"
+              alt="A recorded ECG with two calipers and a note flagged for review after the interval was revised"
               fill
               className={styles.projectPreviewImage}
               sizes="(max-width: 800px) 100vw, 56vw"
@@ -156,7 +168,7 @@ export default function Home() {
             <p>04 / Research software · ECG education</p>
             <h3>Vector EKG + ReasonOS</h3>
             <p className="v2-feature-lead">
-              An educational ECG prototype I built to record measurements, calculations, alternative explanations, and revisions.
+              Measure the gap between two beats and save a note. Change the measurement to see which note needs review.
             </p>
             <dl>
               <div>
@@ -168,13 +180,14 @@ export default function Home() {
                 <dd>Tested educational prototype</dd>
               </div>
               <div>
-                <dt>Year</dt>
-                <dd>2026</dd>
+                <dt>Recording source</dt>
+                <dd><a href="https://physionet.org/content/ptb-xl/1.0.3/">PTB-XL v1.0.3 on PhysioNet</a> · Wagner et al. · CC BY 4.0</dd>
               </div>
             </dl>
-            <Link href="/work/vector-ekg-reasonos" data-analytics-event="view_project">
-              Open the case study <span>↗</span>
-            </Link>
+            <div className={styles.ecgActions}>
+              <Link href="/work/vector-ekg-reasonos/workspace">Try the ECG workspace <span aria-hidden="true">↗</span></Link>
+              <Link href="/work/vector-ekg-reasonos" data-analytics-event="view_project">Read the case study</Link>
+            </div>
           </div>
         </article>
 
