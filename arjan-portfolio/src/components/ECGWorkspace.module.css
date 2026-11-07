@@ -15,8 +15,6 @@
 .workspace h2,.workspace h3,.workspace p { margin:0; }
 .masthead { display:flex; justify-content:space-between; align-items:center; padding:24px 26px; background:#16392f; color:#f0f7ef; gap:16px; }
 .masthead h2 { font-size:23px; font-weight:500; letter-spacing:-.6px; margin-top:5px; color:inherit; }
-.brand { font-size:10px; letter-spacing:2px; font-weight:600; }
-.brand i { font-style:normal; padding:0 7px; color:#95b5a2; }
 .masthead a { color:#d8e8dd; font-size:12px; white-space:nowrap; }
 .toolbar { display:flex; align-items:center; gap:14px; padding:15px 26px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
 .toolbar label { flex-direction:row; align-items:center; gap:12px; }
@@ -25,14 +23,6 @@
 .open span { margin-left:16px; }
 .private { margin-left:auto; color:var(--muted); font-size:11px; }
 .file { display:none; }
-.flow { display:flex; gap:20px; align-items:center; padding:12px 26px; background:#e6eee5; color:#567062; font-size:10px; letter-spacing:1px; }
-.flow span { display:flex; gap:8px; align-items:center; }
-.flow b { font-weight:500; letter-spacing:.2px; color:#284b3c; font-size:12px; }
-.flow i { font-style:normal; opacity:.6; }
-.workspace .flow button { flex:1; max-width:180px; border:0; border-bottom:2px solid transparent; border-radius:0; background:transparent; text-align:left; font-size:12px; min-height:44px; }
-.workspace .flow button span { display:inline; font-size:10px; margin-right:8px; }
-.workspace .flow button[aria-current="step"] { border-bottom-color:var(--accent); color:#005b62; background:#d9e8df; }
-.scrollHint { font-size:10px; color:var(--muted); padding-top:7px; }
 .clipping { padding:10px 12px; margin:8px 0 14px!important; border:1px solid #c7b894; background:#f5efde; color:#654d24; font-size:11px; }
 .workspace .clipping button { font-size:11px; margin-left:8px; background:transparent; border-color:#b3a17b; }
 @media(max-width:760px) { .workspace .flow { gap:2px; padding:4px 10px; } .workspace .flow button { font-size:11px; padding:8px 5px; } .workspace .flow button span { display:block; margin:0; } .workspace input,.workspace select,.workspace textarea { font-size:16px; } .workspace .viewTools select,.workspace .endpoints input { font-size:16px; min-height:44px; } .workspace button { min-height:44px; } }
@@ -67,7 +57,6 @@
 .tabs button { flex:1; border:0; background:transparent; font-size:11px; padding:10px 6px; min-height:44px; border-radius:4px 4px 0 0; border-bottom:2px solid transparent; }
 .tabs button[aria-pressed="true"] { color:#005f68; border-bottom-color:#007783; background:#e7efea; }
 .panel { padding:24px 22px; }
-.kicker { font-size:9px; letter-spacing:1.4px; color:var(--muted); margin-bottom:12px!important; }
 .panel h3 { font-size:21px; font-weight:500; line-height:1.2; letter-spacing:-.5px; margin-bottom:12px; }
 .panel p { color:var(--muted); font-size:12px; margin-bottom:18px; }
 .panel > label { margin-top:20px; }
@@ -139,3 +128,14 @@
 
 .overview { margin-top:20px; }
 @media(max-width:760px) { .workspace .viewTools { column-gap:8px; } .workspace .viewTools label { gap:4px; font-size:10px; } .workspace .viewTools select { padding:5px 3px; } }
+
+.masthead p { color:#d8e8dd; font-size:13px; margin-top:5px; }
+.lesson { display:flex; justify-content:space-between; align-items:center; gap:18px; padding:16px; margin:12px 0; background:#f7faf5; border:1px solid #a6bbb0; border-radius:6px; }
+.lesson strong { font-size:16px; font-weight:600; }
+.lesson p { color:var(--muted); font-size:13px; max-width:50ch; margin-top:4px; }
+.workspace .lesson button { color:white; background:#176256; border-color:#176256; flex-shrink:0; }
+.workspace .lesson button:hover { color:white; background:#0f4d43; }
+@media(max-width:760px) { .lesson { display:block; padding:12px; } .lesson button { margin-top:10px; } .strip { min-width:0; } .strip polyline { stroke-width:1.4; vector-effect:non-scaling-stroke; } }
+
+.journal li[data-needs-review="true"] { background:#faf1df; border-left:3px solid #9a6424; }
+@media(max-width:760px) { .strip { height:148px; } .strip .overlay text { font-size:25px; } }

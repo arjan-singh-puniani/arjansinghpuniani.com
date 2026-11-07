@@ -35,6 +35,7 @@ for (const [name, engine] of [
       if (m.type() === "error") consoleErrors.push(m.text());
     });
     await page.goto(`${base}/work/vector-ekg-reasonos`);
+    if (await page.locator(".rosx-study-details").getAttribute("open") === null) await page.locator(".rosx-study-details > summary").click();
     await page.locator("[data-digital-handle=vector]").waitFor();
     await page.locator("#source-provenance > summary").click();
     await page.locator("#photo-evidence > summary").click();

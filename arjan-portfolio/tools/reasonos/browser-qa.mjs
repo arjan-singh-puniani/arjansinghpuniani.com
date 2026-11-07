@@ -34,6 +34,7 @@ for (const [name, engine] of [
       if (m.type() === "error") warnings.push(m.text());
     });
     await page.goto(`${base}/work/vector-ekg-reasonos`);
+    if (await page.locator(".rosx-study-details").getAttribute("open") === null) await page.locator(".rosx-study-details > summary").click();
     await page.locator("#ecg-connections .katex").first().waitFor();
     await page.locator("#model-explanation > summary").click();
     const lab = page.locator("#reasonos-lab");
@@ -357,6 +358,7 @@ for (const [name, engine] of [
     const phone = await context.newPage();
     await phone.setViewportSize({ width: 390, height: 844 });
     await phone.goto(`${base}/work/vector-ekg-reasonos`);
+    if (await phone.locator(".rosx-study-details").getAttribute("open") === null) await phone.locator(".rosx-study-details > summary").click();
     await phone.locator("#model-explanation > summary").click();
     await phone.waitForSelector("#reasonos-lab .katex");
     await phone

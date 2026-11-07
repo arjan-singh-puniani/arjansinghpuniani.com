@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ECGWorkspace } from "@/components/ECGWorkspace";
-import { ECGSignalOrigin } from "@/components/ECGSignalOrigin";
 import { DigitalECGScene } from "@/components/DigitalECGScene";
 import { ReferenceECGs } from "@/components/ReferenceECGs";
 import { RecordedECG } from "@/components/RecordedECG";
@@ -294,29 +293,16 @@ export default function VectorEkgReasonOSPage() {
       <header className="rosx-hero">
         <div className="shell">
           <p className="eyebrow">Vector EKG / ReasonOS</p>
-          <h1>ECG analysis with traceable evidence</h1>
-          <p className="vector-deck">
-            Open a real recording, measure the source, and connect each proposed
-            interpretation to its evidence. Local files stay in your browser.
-          </p>
+          <h1>Measure an ECG interval</h1>
+          <p className="vector-deck">Try a real recording. Measure the gap between two beats, then see what happens to your note when you revise the measurement.</p>
         </div>
       </header>
-      <nav className="rosx-science-nav shell" aria-label="ECG study sections">
-        <a href="#ecg-workspace">ECG workspace</a>
-        <a href="#signal-origin">How an ECG forms</a>
-        <a href="#heart-leads">Heart, leads & trace</a>
-        <a href="#measurement-workbench">Measurements & practice</a>
-        <a href="#ecg-reference-practice">Reference ECG practice</a>
-        <a href="#source-case">Source recordings</a>
-        <a href="#architecture">Clinical usefulness</a>
-        <a href="#model-references">Model & references</a>
-      </nav>
       <section className="lab-embed rosx-lab" id="ecg-workspace" aria-label="ECG evidence workspace">
         <ECGWorkspace />
       </section>
-      <section className="lab-embed rosx-lab" aria-label="Cardiac signal formation">
-        <ECGSignalOrigin />
-      </section>
+      <div className="shell rosx-study-links" id="signal-origin"><Link href="/work/vector-ekg-reasonos/signal">How an ECG forms →</Link></div>
+      <details className="rosx-model-explanation rosx-study-details">
+        <summary>Project background, other exercises and sources</summary>
       <details className="rosx-model-explanation" id="heart-leads">
         <summary>How the recording connects to heart activity and lead geometry</summary>
         <DigitalECGScene />
@@ -559,6 +545,7 @@ export default function VectorEkgReasonOSPage() {
           </details>
         </div>
       </section>
+      </details>
     </div>
   );
 }
