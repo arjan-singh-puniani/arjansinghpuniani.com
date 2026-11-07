@@ -1,0 +1,12 @@
+Blender 4.0.2 (hash 9be62e85b727 built 2023-12-05 08:05:41)
+Info: Total files 0 | Changed 0 | Failed 0
+04:25:40 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+04:25:40 | INFO: Starting glTF 2.0 export
+04:25:40 | INFO: Extracting primitive: Original sewn drape surface
+04:25:40 | INFO: Primitives created: 1
+04:25:40 | INFO: Finished glTF 2.0 export in 0.00861501693725586 s
+
+Info: Saved "people_drape.blend"
+OCCUPIED_DRAPE_PASS {"license": "CC0-1.0", "provenance": "Original procedural geometry; substantial OpenAI Codex assistance", "triangles": 1744, "primitives": 1, "bounds_gltf_metres": {"min": [-0.6536809206008911, 0.7676033973693848, -0.46904456615448], "max": [0.6536809206008911, 1.2195402383804321, 0.955727756023407]}, "mattress_y": 0.88, "bytes": 33008, "sha256": "d7ea8bbbc1e3cdae03a7e82425f54d8f331ecf0edd05691614cbecfde165287a", "frozen_characters_modified": false}
+
+Blender quit

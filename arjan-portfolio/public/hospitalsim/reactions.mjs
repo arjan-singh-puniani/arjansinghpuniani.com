@@ -27,3 +27,17 @@ export function characterReaction(person,kind,cue,history,now){
  if(history.size>128)history.delete(history.keys().next().value);
  return {name:person.name,line};
 }
+
+// Short original lines at real interaction beats; no inferred clinical outcome.
+export function clinicCue(s){
+ if(!s.clinic||s.clinic.gpVisits>3)return null;
+ const goodbye=s.patients.find(p=>p.state==='dressing-out'&&p.progress>=1);
+ if(goodbye)return{kind:'patient',id:goodbye.id,name:goodbye.name,line:['A plan that fits in my pocket. Perfect.','Right. Home before the cat notices.','Thank you. I know the next step.'][goodbye.id%3]};
+ const p=s.patients.find(p=>p.state==='service'&&['gp','intake'].includes(p.stage)&&p.progress<3&&!p.teamWaiting);
+ if(!p)return null;
+ const room=s.rooms.find(r=>r.id===p.room),staff=s.staff.find(st=>room?.staff.includes(st.id));
+ if(!staff)return null;
+ if(p.stage==='intake')return p.progress<2?{kind:'staff',id:staff.id,name:staff.name,line:p.name+'? You’re next.'}:null;
+ if(p.progress<2)return{kind:'staff',id:staff.id,name:staff.name,line:'What would help today?'};
+ return{kind:'patient',id:p.id,name:p.name,line:p.caseId==='welcome'?'One clear plan. One sheet of paper.':p.goal?.includes('cat')?'Getting home before the cat judges me.':'A little time for my questions.'};
+}

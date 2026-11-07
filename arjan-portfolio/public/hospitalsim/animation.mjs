@@ -1,9 +1,16 @@
-import {WALK_SPEED} from './motion.mjs?v=150';
+import {WALK_SPEED} from './motion.mjs?v=157';
 // Manually sampled clips cannot rely on mixer-time fades: their clock is held still.
 export function samplePose(person,name,time){
  const action=person.actions.get(name);
  for(const other of person.actions.values()){other.stopFading();other.enabled=other===action;other.setEffectiveWeight(other===action?1:0)}
  action.enabled=true;action.time=time;person.mixer.update(0);
+}
+
+export function sampleSeatedWork(person,time,weight){
+ const sit=person.actions.get('Sit'),work=person.actions.get('SeatedWork');
+ if(!work)return;
+ for(const action of person.actions.values()){action.stopFading();action.enabled=action===sit||action===work;action.setEffectiveWeight(action===work?weight:action===sit?1-weight:0)}
+ sit.play();work.play();sit.time=time%sit.getClip().duration;work.time=time%work.getClip().duration;person.mixer.update(0);person.blended=true;
 }
 
 export function restoreBones(pose){for(const b of pose){b.bone.position.copy(b.position);b.bone.quaternion.copy(b.quaternion);b.bone.scale.copy(b.scale)}}

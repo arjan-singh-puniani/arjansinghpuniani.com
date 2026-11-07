@@ -1,0 +1,143 @@
+{
+  "blender": "4.0.2",
+  "license": "CC0-1.0",
+  "keyboard": "GP wrists x\u00b1.08, forward.49m,height.86m; reception forward.20m,height1.035m. Evaluated hand matrices use local-axis roll. Runtime raises GP keyboard to sit on the desk; skin contact verified by tests/people-presence.mjs. Feet retain seated IK.",
+  "rigs": [
+    {
+      "rig": "clinician",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks",
+        "SeatedWork",
+        "CounterWork",
+        "Attend"
+      ],
+      "maximumKeyboardWristErrorMetres": 1.3738191809196602e-07,
+      "bytes": 381364
+    },
+    {
+      "rig": "coat",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks",
+        "SeatedWork",
+        "CounterWork",
+        "Attend"
+      ],
+      "maximumKeyboardWristErrorMetres": 1.3738191809196602e-07,
+      "bytes": 381364
+    },
+    {
+      "rig": "patient-01",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 257764
+    },
+    {
+      "rig": "patient-02",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 257696
+    },
+    {
+      "rig": "patient-03",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 257792
+    },
+    {
+      "rig": "patient-04",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 257868
+    },
+    {
+      "rig": "patient-05",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 258072
+    },
+    {
+      "rig": "patient-06",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 258008
+    },
+    {
+      "rig": "patient-07",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 258060
+    },
+    {
+      "rig": "patient-08",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 258024
+    },
+    {
+      "rig": "patient-09",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 258112
+    },
+    {
+      "rig": "patient-10",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 257960
+    },
+    {
+      "rig": "patient-11",
+      "clips": [
+        "Wait",
+        "Greet",
+        "Thanks"
+      ],
+      "maximumKeyboardWristErrorMetres": 0,
+      "bytes": 258040
+    }
+  ]
+}

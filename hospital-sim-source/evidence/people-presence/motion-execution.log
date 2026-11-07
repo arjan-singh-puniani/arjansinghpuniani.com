@@ -1,0 +1,96 @@
+03:23:43 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:23:44 | INFO: Starting glTF 2.0 export
+03:23:44 | INFO: Extracting primitive: Motion carrier
+03:23:44 | INFO: Primitives created: 1
+03:23:54 | INFO: Finished glTF 2.0 export in 10.085409879684448 s
+
+PRESENCE_MOTION {"rig": "clinician", "clips": ["Wait", "Greet", "Thanks", "SeatedWork", "CounterWork", "Attend"], "maximumKeyboardWristErrorMetres": 1.3738191809196602e-07, "bytes": 381364}
+03:24:01 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:24:01 | INFO: Starting glTF 2.0 export
+03:24:01 | INFO: Extracting primitive: Motion carrier.001
+03:24:01 | INFO: Primitives created: 1
+03:24:12 | INFO: Finished glTF 2.0 export in 11.284067153930664 s
+
+PRESENCE_MOTION {"rig": "coat", "clips": ["Wait", "Greet", "Thanks", "SeatedWork", "CounterWork", "Attend"], "maximumKeyboardWristErrorMetres": 1.3738191809196602e-07, "bytes": 381364}
+03:24:15 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:24:15 | INFO: Starting glTF 2.0 export
+03:24:15 | INFO: Extracting primitive: Motion carrier.002
+03:24:15 | INFO: Primitives created: 1
+03:24:21 | INFO: Finished glTF 2.0 export in 6.066845893859863 s
+
+PRESENCE_MOTION {"rig": "patient-01", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 257764}
+03:24:23 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:24:23 | INFO: Starting glTF 2.0 export
+03:24:23 | INFO: Extracting primitive: Motion carrier.003
+03:24:23 | INFO: Primitives created: 1
+03:24:28 | INFO: Finished glTF 2.0 export in 5.389061689376831 s
+
+PRESENCE_MOTION {"rig": "patient-02", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 257696}
+03:24:31 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:24:31 | INFO: Starting glTF 2.0 export
+03:24:31 | INFO: Extracting primitive: Motion carrier.004
+03:24:31 | INFO: Primitives created: 1
+03:24:36 | INFO: Finished glTF 2.0 export in 5.086129903793335 s
+
+PRESENCE_MOTION {"rig": "patient-03", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 257792}
+03:24:38 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:24:38 | INFO: Starting glTF 2.0 export
+03:24:38 | INFO: Extracting primitive: Motion carrier.005
+03:24:38 | INFO: Primitives created: 1
+03:24:49 | INFO: Finished glTF 2.0 export in 10.54054307937622 s
+
+PRESENCE_MOTION {"rig": "patient-04", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 257868}
+03:24:51 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:24:51 | INFO: Starting glTF 2.0 export
+03:24:51 | INFO: Extracting primitive: Motion carrier.006
+03:24:51 | INFO: Primitives created: 1
+03:24:57 | INFO: Finished glTF 2.0 export in 5.910531997680664 s
+
+PRESENCE_MOTION {"rig": "patient-05", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 258072}
+03:24:59 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:24:59 | INFO: Starting glTF 2.0 export
+03:24:59 | INFO: Extracting primitive: Motion carrier.007
+03:24:59 | INFO: Primitives created: 1
+03:25:06 | INFO: Finished glTF 2.0 export in 7.108115911483765 s
+
+PRESENCE_MOTION {"rig": "patient-06", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 258008}
+03:25:12 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:25:12 | INFO: Starting glTF 2.0 export
+03:25:12 | INFO: Extracting primitive: Motion carrier.008
+03:25:12 | INFO: Primitives created: 1
+03:25:36 | INFO: Finished glTF 2.0 export in 23.717687129974365 s
+
+PRESENCE_MOTION {"rig": "patient-07", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 258060}
+03:25:44 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:25:44 | INFO: Starting glTF 2.0 export
+03:25:44 | INFO: Extracting primitive: Motion carrier.009
+03:25:44 | INFO: Primitives created: 1
+03:26:13 | INFO: Finished glTF 2.0 export in 28.8023681640625 s
+
+PRESENCE_MOTION {"rig": "patient-08", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 258024}
+03:26:16 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:26:16 | INFO: Starting glTF 2.0 export
+03:26:16 | INFO: Extracting primitive: Motion carrier.010
+03:26:16 | INFO: Primitives created: 1
+03:26:33 | INFO: Finished glTF 2.0 export in 16.152114868164062 s
+
+PRESENCE_MOTION {"rig": "patient-09", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 258112}
+03:26:43 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:26:43 | INFO: Starting glTF 2.0 export
+03:26:43 | INFO: Extracting primitive: Motion carrier.011
+03:26:43 | INFO: Primitives created: 1
+03:27:08 | INFO: Finished glTF 2.0 export in 25.377591133117676 s
+
+PRESENCE_MOTION {"rig": "patient-10", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 257960}
+03:27:15 | INFO: Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/4.0/python/lib/python3.10/site-packages/libextern_draco.dylib
+03:27:16 | INFO: Starting glTF 2.0 export
+03:27:16 | INFO: Extracting primitive: Motion carrier.012
+03:27:16 | INFO: Primitives created: 1
+03:27:37 | INFO: Finished glTF 2.0 export in 21.308597087860107 s
+
+PRESENCE_MOTION {"rig": "patient-11", "clips": ["Wait", "Greet", "Thanks"], "maximumKeyboardWristErrorMetres": 0, "bytes": 258040}
+Blender 4.0.2 (hash 9be62e85b727 built 2023-12-05 08:05:41)
+Info: Total files 14 | Changed 14 | Failed 0
+Info: Saved "people_motion.blend"
+
+Blender quit

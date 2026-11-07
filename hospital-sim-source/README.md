@@ -1,3 +1,5 @@
+Current people/animation iteration: [runtime157 notes](docs/PEOPLE_PRESENCE.md), including executed Blender work and remaining reference gaps. Model1.0.0-rc9 is unchanged.
+
 # hospitalSIM — first-minute flow (RC9)
 
 Build reception and hire Quinn to open. Add a GP and hire Mira while the first neighbor checks in. Four seeded first-minute arrivals create a small, visible queue; completed consultations earn $180. The next construction prompt follows the actual intake/GP queue, scaled by existing room count. Construction stays live, with pause available. No new service family, management menu or progression system was added in RC9.
