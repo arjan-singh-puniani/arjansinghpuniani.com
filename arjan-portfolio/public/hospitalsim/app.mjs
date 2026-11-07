@@ -1,18 +1,18 @@
-import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds,clinicSite} from './clinic.mjs?v=150';
-import {archiveHospital,hospitalArchives} from './archive.mjs?v=150';
-import {openingBuilds,openingCount} from './opening.mjs?v=150';
-import {characterReaction} from './reactions.mjs?v=150';
-import {deskPost,deskAvailable,staffTask,react,eventChoice,assignDesk,dispatchFacilities} from './operations.mjs?v=150';
-import {landingOptions,landingCheck} from './landing.mjs?v=150';
-import {initial,expandSite,gentleOpening,enableFirstMinute,enableEquipment,upgradePlan,shiftSeconds,shiftEnd,placementStep,siteOf,tick,openClinic,hireCost,build,buildCost,upgrade,remove,undo,policy,placement,door,queueFor,TYPES,VERSION,validate,report,TRAITS,SCENARIOS,DECOR,assignStaff,staffingPlan,staffModule,arrangeWaiting,decorate,acknowledge,causes,mastery,continueHospital,entrance,exit,gatePlacement,moveGate,canLift,dropPlacement,relocate,STAFF_ROLES} from './simulation.mjs?v=150';
-import {installExtras} from './extras.mjs?v=150';
-import {nextStep} from './guidance.mjs?v=150';
-import {Diorama} from './renderer.mjs?v=150';
+import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds,clinicSite} from './clinic.mjs?v=156';
+import {archiveHospital,hospitalArchives} from './archive.mjs?v=156';
+import {openingBuilds,openingCount} from './opening.mjs?v=156';
+import {characterReaction} from './reactions.mjs?v=156';
+import {deskPost,deskAvailable,staffTask,react,eventChoice,assignDesk,dispatchFacilities} from './operations.mjs?v=156';
+import {landingOptions,landingCheck} from './landing.mjs?v=156';
+import {initial,expandSite,gentleOpening,enableFirstMinute,enableEquipment,upgradePlan,shiftSeconds,shiftEnd,placementStep,siteOf,tick,openClinic,hireCost,build,buildCost,upgrade,remove,undo,policy,placement,door,queueFor,TYPES,VERSION,validate,report,TRAITS,SCENARIOS,DECOR,assignStaff,staffingPlan,staffModule,arrangeWaiting,decorate,acknowledge,causes,mastery,continueHospital,entrance,exit,gatePlacement,moveGate,canLift,dropPlacement,relocate,STAFF_ROLES} from './simulation.mjs?v=156';
+import {installExtras} from './extras.mjs?v=156';
+import {nextStep} from './guidance.mjs?v=156';
+import {Diorama} from './renderer.mjs?v=156';
 const $=id=>document.getElementById(id),money=n=>'$'+Math.floor(n).toLocaleString(),icons={intake:'⇥',gp:'✚',pharmacy:'℞',neuro:'◇',gait:'↔',eeg:'∿',sleep:'☾',consult:'✚',scan:'◎',care:'▱',rest:'⌑',plan:'◇',waiting:'♧'},STORE='common-good-diorama-v3';
 let s,restoreError='';try{const raw=localStorage.getItem(STORE)||localStorage.getItem('common-good-diorama-v2');s=raw?validate(JSON.parse(raw)):initial('clinic',431,'sandbox',{gentle:true,receptionFirst:true})}catch(error){restoreError=error.message;try{localStorage.setItem('common-good-recovery-v3',localStorage.getItem(STORE)||localStorage.getItem('common-good-diorama-v2'))}catch{}s=initial('clinic',431,'sandbox',{gentle:true,receptionFirst:true})}
 expandSite(s);gentleOpening(s);enableFirstMinute(s);enableEquipment(s);
 let notifiedBills=s.clinic?.billing.length||0;let held=null,hireRole='doctor';const reactionHistory=new Map();const shownRoomVisits=new Set();
-let paused=s.ended,speed=1,acc=0,last=0,tool=null,buildWasPaused=false,rotation=0,previewPinned=false,tile={x:7,y:3},selected=null,drawerMode='people',renderer,ready=false,renderAcc=0,renderRaw=0,renderBudget=0,toastTimer,uiTimer=0,saveSecond=-1,notifiedServed=s.served;
+let paused=s.ended||s.seconds>0||!!s.clinic?.opened,speed=1,acc=0,last=0,tool=null,buildWasPaused=false,rotation=0,previewPinned=false,tile={x:7,y:3},selected=null,drawerMode='people',renderer,ready=false,renderAcc=0,renderRaw=0,renderBudget=0,toastTimer,uiTimer=0,saveSecond=-1,notifiedServed=s.served;
 document.addEventListener('click',e=>{if(!ready&&!e.target.closest('[data-retry-load]')&&e.target.closest('button,select,input')){e.preventDefault();e.stopImmediatePropagation()}},true);
 const fmt=n=>`${String(Math.floor(n/60)).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`;
 const writer=crypto.randomUUID(),WRITER=STORE+'-writer';let ownsSave=true;try{localStorage.setItem(WRITER,writer)}catch{}

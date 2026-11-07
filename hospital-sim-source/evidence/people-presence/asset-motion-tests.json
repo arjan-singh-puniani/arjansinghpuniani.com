@@ -1,0 +1,382 @@
+{
+  "standing": [
+    {
+      "key": "clinician",
+      "clips": [
+        "Attend",
+        "CounterWork",
+        "Greet",
+        "SeatDown",
+        "SeatedWork",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "coat",
+      "clips": [
+        "Attend",
+        "CounterWork",
+        "Greet",
+        "SeatDown",
+        "SeatedWork",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-01",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-02",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-03",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-04",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-05",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-06",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-07",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-08",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-09",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-10",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    },
+    {
+      "key": "patient-11",
+      "clips": [
+        "Greet",
+        "SeatDown",
+        "SeatUp",
+        "Sit",
+        "Thanks",
+        "Wait",
+        "Walk"
+      ],
+      "maximumStandingFootDrift": 0
+    }
+  ],
+  "contact": [
+    {
+      "role": "doctor",
+      "bounds": [
+        {
+          "t": 0,
+          "min": [
+            -0.09860333707501653,
+            0.8162705245674738,
+            0.6035537846475781
+          ],
+          "max": [
+            0.09914180597624911,
+            0.8459795190799346,
+            0.6398520607214824
+          ]
+        },
+        {
+          "t": 0.15,
+          "min": [
+            -0.09888930233143416,
+            0.8187345849063165,
+            0.6040471525515485
+          ],
+          "max": [
+            0.09866996153521243,
+            0.845429037305232,
+            0.6395831919488328
+          ]
+        },
+        {
+          "t": 0.45,
+          "min": [
+            -0.09888930236770312,
+            0.8159289011938955,
+            0.6034805522349707
+          ],
+          "max": [
+            0.09917729475478532,
+            0.8438282924506391,
+            0.6387042956265008
+          ]
+        },
+        {
+          "t": 0.9,
+          "min": [
+            -0.09930516172646636,
+            0.814984932539467,
+            0.6032719331210192
+          ],
+          "max": [
+            0.09869432229810235,
+            0.8452315824999554,
+            0.6394824906591026
+          ]
+        },
+        {
+          "t": 1.35,
+          "min": [
+            -0.09888930225889607,
+            0.8187345856153685,
+            0.6040471526848746
+          ],
+          "max": [
+            0.0986699615676096,
+            0.8454290370428359,
+            0.6395831918164295
+          ]
+        },
+        {
+          "t": 1.8,
+          "min": [
+            -0.09860333709809402,
+            0.8162705261599715,
+            0.6035537849861525
+          ],
+          "max": [
+            0.09914180581310507,
+            0.8459795188937995,
+            0.6398520606331399
+          ]
+        },
+        {
+          "t": 2.25,
+          "min": [
+            -0.0988893023556135,
+            0.8159289011183601,
+            0.603480552218645
+          ],
+          "max": [
+            0.09917729476501441,
+            0.8438282925171983,
+            0.6387042956659605
+          ]
+        }
+      ]
+    },
+    {
+      "role": "reception",
+      "bounds": [
+        {
+          "t": 0,
+          "min": [
+            -0.09860315542621573,
+            0.9912701051035421,
+            0.3135537264555376
+          ],
+          "max": [
+            0.09914161699760471,
+            1.0209788883274076,
+            0.349851955495615
+          ]
+        },
+        {
+          "t": 0.15,
+          "min": [
+            -0.09888911218763195,
+            0.9937339613587954,
+            0.31404704373712544
+          ],
+          "max": [
+            0.09866978416853225,
+            1.020428601329502,
+            0.3495831664993365
+          ]
+        },
+        {
+          "t": 0.45,
+          "min": [
+            -0.09888911222390065,
+            0.9909284824867185,
+            0.31348049414118107
+          ],
+          "max": [
+            0.0991770962767492,
+            1.0188276635347755,
+            0.3487041877310968
+          ]
+        },
+        {
+          "t": 0.9,
+          "min": [
+            -0.09930495950540597,
+            0.989984317632791,
+            0.3132718237328558
+          ],
+          "max": [
+            0.0986941447940713,
+            1.0202311467795675,
+            0.349482465280309
+          ]
+        },
+        {
+          "t": 1.35,
+          "min": [
+            -0.09888911211509444,
+            0.993733962067847,
+            0.314047043870452
+          ],
+          "max": [
+            0.09866978420092923,
+            1.0204286010671064,
+            0.349583166366933
+          ]
+        },
+        {
+          "t": 1.8,
+          "min": [
+            -0.09860315544929288,
+            0.991270106696039,
+            0.31355372679411225
+          ],
+          "max": [
+            0.09914161683446186,
+            1.0209788881412714,
+            0.3498519554072719
+          ]
+        },
+        {
+          "t": 2.25,
+          "min": [
+            -0.09888911221181108,
+            0.9909284824111836,
+            0.3134804941248557
+          ],
+          "max": [
+            0.09917709628697824,
+            1.0188276636013347,
+            0.34870418777055645
+          ]
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "actual skinned fingertip positions; textures stripped in memory only for CPU skinning",
+    "35 embedded original skins and cloth detail",
+    "39 joints and one primitive",
+    "old stride/chair tracks retained",
+    "planted standing feet",
+    "state-derived original dialogue",
+    "bounded/reduced room reveal"
+  ]
+}

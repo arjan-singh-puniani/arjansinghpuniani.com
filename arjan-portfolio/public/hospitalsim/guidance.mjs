@@ -1,6 +1,6 @@
-import {clinicStep} from './clinic.mjs?v=150';
-import {openingStep} from './opening.mjs?v=150';
-import {TYPES,queueFor,staffingPlan} from './simulation.mjs?v=150';
+import {clinicStep} from './clinic.mjs?v=156';
+import {openingStep} from './opening.mjs?v=156';
+import {TYPES,queueFor,staffingPlan} from './simulation.mjs?v=156';
 export function nextStep(s){if(s.clinic)return clinicStep(s);
  if(s.first)return openingStep(s);
  const op=s.operations;if(op?.event?.status==='open')return op.event.kind==='coffee'?{kind:'event',label:'Restore imaging',title:'Coffee is not a scanner accessory.',text:'Dispatch an available facilities colleague. The equipment resumes after they clear the spill.'}:{kind:'event',label:'Resolve paperwork',title:'The paperwork is winning.',text:'Check-in takes twice as long. Sort by hand, or invest in a better intake tray.'};

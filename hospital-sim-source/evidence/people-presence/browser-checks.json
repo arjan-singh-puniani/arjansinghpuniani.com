@@ -1,0 +1,39 @@
+{
+  "release": 156,
+  "model": "1.0.0-rc9",
+  "hardware": "Apple M2 / ANGLE Metal in-app Chromium. Narrow viewport is not a physical iPhone.",
+  "mobileViewport": [
+    390,
+    844
+  ],
+  "mobileRuntime": 155,
+  "mobileChecks": [
+    "empty start and guided placement",
+    "rotate and confirm door orientation",
+    "reception and GP paid staffing",
+    "real arrivals and two completed visits with $360 service revenue",
+    "patient follow",
+    "pickup at .5 opacity, green valid landings, dialogue and put down",
+    "reduced motion",
+    "paused reload"
+  ],
+  "desktopChecks": [
+    "actual native loop to game90",
+    "new paid reception used by Rae by151",
+    "runtime156 restore of same-ID different roles at129 paused",
+    "corrected floor topology cache on replacement",
+    "reference renderer capture at129 and1.08x zoom",
+    "H.264 playback and seek to consultation"
+  ],
+  "testArtifacts": [
+    "regressions.json",
+    "asset-motion-tests.json",
+    "desktop-loop.json",
+    "mobile-completed-metrics.json",
+    "mobile-pickup-metrics.json",
+    "expanded-metrics.json",
+    "reference-renderer-metrics.json"
+  ],
+  "console": "Initial local simple-server fetch failures recovered with larger request backlog; no warnings/errors for final load, restore and recorder playback.",
+  "limits": "No physical phone result for this release; phone-width timing is a pooled desktop sample. No parity, commercial-quality, education or production-readiness claim."
+}
