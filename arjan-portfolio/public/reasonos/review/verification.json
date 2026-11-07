@@ -1,0 +1,24 @@
+{
+  "candidate": "reasonos-quality-20261106",
+  "evidencePluginVersion": "1.1.0",
+  "automatedChecks": {
+    "unitTests": 301,
+    "unitTestCommand": "npm test",
+    "files": 34,
+    "browsers": [
+      "Chromium 153.0.8010.12",
+      "Firefox 153.0",
+      "WebKit 26.6"
+    ],
+    "inspectedAxeStates": 30,
+    "workspaceAndProtocolStates": 15,
+    "signalExplanationStates": 15,
+    "violations": 0
+  },
+  "independentClinicianReview": "pending",
+  "observedFirstTimeUse": "pending",
+  "physicalPhoneTesting": "pending",
+  "manualScreenReaderTesting": "pending",
+  "clinicalValidation": "not established",
+  "protocol": "/reasonos/review/index.html"
+}

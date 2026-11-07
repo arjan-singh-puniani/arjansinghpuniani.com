@@ -1,16 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import { REFERENCE_CASES } from "@/lib/reasonos/reference-ecg";
-import { imageInterval, type ImagePoint } from "@/lib/reasonos/recordings";
+import { type ImagePoint } from "@/lib/reasonos/recordings";
 import {
-  MAX_FILE_BYTES, decodeWorkspaceWFDB, decodeWorkspaceCSV, createWorkspaceTrace,
+  MAX_FILE_BYTES, STRIP_WIDTH, STRIP_HEIGHT, calculateWorkspaceInterval, decodeWorkspaceWFDB, decodeWorkspaceCSV, createWorkspaceTrace,
   appendWorkspaceState, workspaceStates, claimNeedsReview, type DigitalECG,
 } from "@/lib/reasonos/workspace";
 import type { JsonObject, State, Trace } from "@/lib/reasonos/core/browser";
 import s from "./ECGWorkspace.module.css";
+const SignalOrigin = dynamic(() => import("./ECGSignalOrigin").then(m => m.ECGSignalOrigin));
 
 type Source = {
   id: string; name: string; sha: string; headerSha?: string; local: boolean;
@@ -32,13 +34,15 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   const [loading, setLoading] = useState(true), [error, setError] = useState(""), [message, setMessage] = useState("");
   const [caseId, setCaseId] = useState("00010"), [lead, setLead] = useState("II"), [windowStart, setWindowStart] = useState(0);
   const [panel, setPanel] = useState<"measure" | "reason" | "review" | "source">("measure");
+  const [placed, setPlaced] = useState<[boolean, boolean]>([false, false]), [imageLeadConfirmed, setImageLeadConfirmed] = useState(false);
+  const inspector = useRef<HTMLElement>(null);
   const [overlays, setOverlays] = useState(true), [zoom, setZoom] = useState(1), [gain, setGain] = useState(10);
   const [points, setPoints] = useState<PointPair>(() => pair(250, 350)), [grid, setGrid] = useState<PointPair>(() => pair(150, 350));
   const [tool, setTool] = useState<"measure" | "calibrate">("measure"), [nextPoint, setNextPoint] = useState<0 | 1>(0);
   const [mm, setMm] = useState(25), [speed, setSpeed] = useState(25), [errorPx, setErrorPx] = useState(1), [confirmed, setConfirmed] = useState(false);
   const [kind, setKind] = useState("Other"), [imageLead, setImageLead] = useState("II"), [draft, setDraft] = useState("");
   const [selected, setSelected] = useState<string | null>(null), [editing, setEditing] = useState<string | null>(null);
-  const [overviewOpen, setOverviewOpen] = useState(true), [windowSeconds, setWindowSeconds] = useState(10);
+  const [overviewOpen, setOverviewOpen] = useState(false), [windowSeconds, setWindowSeconds] = useState(10);
   const [pageCount, setPageCount] = useState(0), [page, setPage] = useState(1);
   const pdf = useRef<PDFDocumentProxy | null>(null), pdfInfo = useRef<{ name: string; sha: string; local: boolean } | null>(null);
   const fileInput = useRef<HTMLInputElement>(null), serial = useRef(0), drag = useRef<0 | 1 | null>(null);
@@ -51,28 +55,24 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   const duration = signal ? (signal.sampleCount - 1) / signal.sampleRate : 0;
   const span = Math.min(windowSeconds, duration);
   const panelSpan = Math.min(2.5, span);
-  const stripWidth = 1000, stripHeight = 240;
+  const stripWidth = STRIP_WIDTH, stripHeight = STRIP_HEIGHT;
   const coordWidth = signal ? stripWidth : source?.width ?? 1000;
   const coordHeight = signal ? stripHeight : source?.height ?? 700;
   const calibrationKey = signal ? JSON.stringify({ source: source.id, sampleRate: signal.sampleRate, units: "mV" }) :
     JSON.stringify({ source: source?.id, grid, mm, speed, errorPx });
-  let measured: { duration: number; uncertainty: number; low: number; high: number; ordered: boolean } | null = null;
+  const measurementBasis: JsonObject = { sourceId: source?.id ?? "", lead: activeLead,
+    points: points.map(p => [p.x, p.y]), calibrationKey, windowStart, span, windowSeconds,
+    calibrationConfirmed: Boolean(signal || confirmed), leadConfirmed: Boolean(signal || imageLeadConfirmed), endpointsConfirmed: placed.every(Boolean), coordinateSystem: signal ? "focused-strip" : "source-image",
+    calibration: signal ? { sampleRateHz: signal.sampleRate } : { grid: grid.map(p => [p.x, p.y]), mm, speedMmPerSecond: speed, errorPx } };
+  let measured: ReturnType<typeof calculateWorkspaceInterval> | null = null;
   try {
-    if (signal) {
-      const a = Math.round(points[0].x / stripWidth * span * signal.sampleRate);
-      const b = Math.round(points[1].x / stripWidth * span * signal.sampleRate);
-      const value = (b - a) / signal.sampleRate * 1000;
-      measured = { duration: value, uncertainty: 1000 / signal.sampleRate, low: Math.max(0, value - 1000 / signal.sampleRate), high: value + 1000 / signal.sampleRate, ordered: b > a };
-    } else if (confirmed) measured = imageInterval(points[0], points[1], { a: grid[0], b: grid[1], mm, speed, errorPx });
-  } catch { /* Invalid draft calibration stays unmeasurable. */ }
-  const canSave = measured && measured.ordered && measured.duration > 0 && (signal ? points : [points, grid].flat()).every(p => Number.isFinite(p.x) && Number.isFinite(p.y) && p.x >= 0 && p.x <= coordWidth && p.y >= 0 && p.y <= coordHeight);
+    const metadata = states.find(st => st.role === "source")?.payload;
+    if (metadata) measured = calculateWorkspaceInterval(measurementBasis, metadata);
+  } catch { /* Incomplete or invalid draft endpoints remain unmeasurable. */ }
+  const canSave = Boolean(measured) && placed.every(Boolean) && Boolean(signal || imageLeadConfirmed);
 
-  useEffect(() => {
-    const media = window.matchMedia("(max-width: 760px)");
-    const update = () => setOverviewOpen(!media.matches);
-    update(); media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
+
+
 
   useEffect(() => {
     if (!fullScreen) return;
@@ -86,7 +86,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   function install(next: Source) {
     if (!next.page) void closePDF();
     setSource(next); setLead(next.signal?.leads.includes("II") ? "II" : next.signal?.leads[0] ?? "II");
-    setWindowStart(0); setWindowSeconds(window.innerWidth <= 760 ? 2.5 : 10); setOverviewOpen(window.innerWidth > 760); setZoom(1); setSelected(null); setEditing(null); setDraft(""); setConfirmed(false); setNextPoint(0); setTool("measure"); setGain(10);
+    setWindowStart(0); setWindowSeconds(window.innerWidth <= 760 ? 2.5 : 10); setOverviewOpen(window.innerWidth > 760); setPlaced([false, false]); setImageLeadConfirmed(false); setZoom(1); setSelected(null); setEditing(null); setDraft(""); setConfirmed(false); setNextPoint(0); setTool("measure"); setGain(10);
     setPoints(next.signal ? pair(250, 350) : pair(next.width * .25, next.width * .5, next.height * .65));
     setGrid(pair(next.width * .15, next.width * .35, next.height * .8));
     const nextTrace = worksheets.current.get(next.id) ?? createWorkspaceTrace(next.id, {
@@ -107,8 +107,9 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
       const root = "/ecg-reference/ptb-xl-1.0.3";
       const responses = await Promise.all([fetch(`${root}/${id}_hr.hea`), fetch(`${root}/${id}_hr.dat`), fetch(`${root}/provenance.json`)]);
       if (responses.some(r => !r.ok)) throw new Error("Reference recording unavailable. Retry or open a local file.");
-      const [header, buffer, manifest] = await Promise.all([responses[0].text(), responses[1].arrayBuffer(), responses[2].json()]);
-      const [sha, headerSha] = await Promise.all([hash(buffer), hash(new TextEncoder().encode(header))]);
+      const [headerBytes, buffer, manifest] = await Promise.all([responses[0].arrayBuffer(), responses[1].arrayBuffer(), responses[2].json()]);
+      const header = new TextDecoder("utf-8", { fatal: true }).decode(headerBytes);
+      const [sha, headerSha] = await Promise.all([hash(buffer), hash(headerBytes)]);
       const entry = manifest.records.find((item: { id: string }) => item.id === id);
       if (!entry || sha !== entry.sha256.dat || headerSha !== entry.sha256.hea) throw new Error("Reference digest mismatch. This recording was not opened.");
       const decoded = decodeWorkspaceWFDB(header, buffer, `${id}_hr.dat`);
@@ -150,9 +151,10 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
       if (files.length === 2) {
         const hea = files.find(f => /\.hea$/i.test(f.name)), dat = files.find(f => /\.dat$/i.test(f.name));
         if (!hea || !dat || hea.size > 64_000) throw new Error("Select the matching WFDB .hea and .dat files together.");
-        const [header, buffer] = await Promise.all([hea.text(), dat.arrayBuffer()]);
+        const [headerBytes, buffer] = await Promise.all([hea.arrayBuffer(), dat.arrayBuffer()]);
+        const header = new TextDecoder("utf-8", { fatal: true }).decode(headerBytes);
         const decoded = decodeWorkspaceWFDB(header, buffer, dat.name);
-        const [sha, headerSha] = await Promise.all([hash(buffer), hash(new TextEncoder().encode(header))]);
+        const [sha, headerSha] = await Promise.all([hash(buffer), hash(headerBytes)]);
         if (serial.current === token) install({ id: `${sha}:${headerSha}`, name: "Local digital ECG", sha, headerSha, local: true, signal: decoded, width: 1200, height: 700 });
       } else if (suffix === "pdf") {
         const bytes = new Uint8Array(await file.arrayBuffer()), sha = await hash(bytes);
@@ -171,7 +173,8 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
           if (old) void old.loadingTask.destroy();
         } else await document.loadingTask.destroy();
       } else if (suffix === "csv") {
-        const text = await file.text(), sha = await hash(new TextEncoder().encode(text));
+        const bytes = await file.arrayBuffer(), sha = await hash(bytes);
+        const text = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
         const decoded = decodeWorkspaceCSV(text);
         if (serial.current === token) install({ id: sha, name: "Local digital ECG", sha, local: true, signal: decoded, width: 1200, height: 700 });
       } else if (["png", "jpg", "jpeg", "webp"].includes(suffix ?? "")) {
@@ -196,10 +199,34 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
     const values = signal.millivolts[signal.leads.indexOf(lead)]; if (!values) return "";
     const first = Math.round(windowStart * signal.sampleRate), count = Math.min(values.length - first, Math.floor(span * signal.sampleRate) + 1);
     return Array.from({ length: count }, (_, j) => `${round(j / signal.sampleRate / span * stripWidth, 3)},${round(120 - Math.max(-1e6, Math.min(1e6, values[first + j])) * gain * 4, 3)}`).join(" ");
-  }, [signal, lead, windowStart, span, gain]);
+  }, [signal, lead, windowStart, span, gain, stripWidth]);
+  const overviewPaths = useMemo(() => {
+    if (!signal) return [];
+    const first = Math.round(windowStart * signal.sampleRate);
+    const count = Math.min(signal.sampleCount - first, Math.floor(panelSpan * signal.sampleRate) + 1);
+    return signal.millivolts.map(values => Array.from({ length: count }, (_, j) =>
+      `${round(j / signal.sampleRate / panelSpan * 250, 2)},${round(-Math.max(-1e6, Math.min(1e6, values[first + j])) * gain * 4, 2)}`).join(" "));
+  }, [signal, windowStart, panelSpan, gain]);
+  const clipped = useMemo(() => {
+    if (!signal) return false;
+    const first = Math.round(windowStart * signal.sampleRate);
+    return signal.leads.some((name, channel) => {
+      if (name !== lead && !overviewOpen) return false;
+      const seconds = name === lead ? span : panelSpan;
+      const limit = (overviewOpen ? 75 : stripHeight / 2) / (gain * 4);
+      const end = Math.min(signal.sampleCount, first + Math.floor(seconds * signal.sampleRate) + 1);
+      for (let i = first; i < end; i++) if (Math.abs(signal.millivolts[channel][i]) > limit) return true;
+      return false;
+    });
+  }, [signal, lead, windowStart, span, panelSpan, gain, overviewOpen, stripHeight]);
+  function goToPanel(next: typeof panel) {
+    setPanel(next);
+    if (window.innerWidth <= 760) inspector.current?.scrollIntoView({ block: "start", behavior: "instant" });
+    requestAnimationFrame(() => inspector.current?.querySelector("h3")?.focus({ preventScroll: true }));
+  }
   function movePoint(index: 0 | 1, point: ImagePoint) {
     const update = (old: PointPair): PointPair => old.map((p, i) => i === index ? point : p) as PointPair;
-    if (tool === "calibrate") { setGrid(update); setConfirmed(false); } else setPoints(update);
+    if (tool === "calibrate") { setGrid(update); setConfirmed(false); } else { setPoints(update); setPlaced(old => old.map((v, i) => i === index ? true : v) as [boolean, boolean]); }
   }
   function svgPoint(e: React.PointerEvent<SVGSVGElement>) {
     const matrix = e.currentTarget.getScreenCTM(); if (!matrix) return;
@@ -208,11 +235,10 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   }
   function saveMeasurement() {
     if (!source || !trace || !canSave || !measured) return;
-    const payload: JsonObject = { sourceId: source.id, label: kind, lead: activeLead, durationMs: measured.duration,
-      uncertaintyMs: measured.uncertainty, lowerMs: measured.low, upperMs: measured.high, points: points.map(p => [p.x, p.y]),
-      calibrationKey, windowStart, span, windowSeconds, sampleIndices: signal ? points.map(p => Math.round((windowStart + p.x / stripWidth * span) * signal.sampleRate)) : null, endpointBasis: signal ? "Manual endpoints snapped to recorded samples; ±1 sample bound for interval quantization only" : "Manual source pixels; user-specified endpoint bound; scan distortion excluded",
-      coordinateSystem: signal ? "focused-strip" : "source-image", calibration: signal ? { sampleRateHz: signal.sampleRate } : { grid: grid.map(p => [p.x, p.y]), mm, speedMmPerSecond: speed, errorPx },
-    };
+    const payload: JsonObject = { ...measurementBasis, label: kind, durationMs: measured.duration,
+      uncertaintyMs: measured.uncertainty, lowerMs: measured.low, upperMs: measured.high,
+      sampleIndices: measured.sampleIndices, endpointBasis: signal ? "User-confirmed sample endpoints; ±1 sample quantization bound only" : "User-confirmed source pixels; scan distortion and landmark ambiguity excluded" };
+
     const result = appendWorkspaceState(trace, "measurement", payload, ["source"], editing ?? undefined);
     setTrace(result.trace); worksheets.current.set(source.id, result.trace);
     if (result.transformation.accepted) { setSelected(result.transformation.outputStateId); setEditing(null); setMessage("Measurement saved with source endpoints and calibration."); }
@@ -229,6 +255,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
     setSelected(state.id); setOverlays(true);
     if (state.role === "measurement") {
       const p = state.payload;
+      setPlaced([true, true]); setImageLeadConfirmed(true);
       setPoints((p.points as number[][]).map(v => ({ x: v[0], y: v[1] })) as PointPair);
       setWindowSeconds(Number(p.windowSeconds ?? (Number(p.span) <= 2.5 ? 2.5 : Number(p.span) <= 5 ? 5 : 10))); setWindowStart(Number(p.windowStart)); setKind(String(p.label)); setTool("measure");
       if (signal) setLead(String(p.lead)); else {
@@ -276,7 +303,8 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
       <input ref={fileInput} className={s.file} type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.csv,.hea,.dat" aria-label="Open local ECG files" onChange={e => { void openFiles(Array.from(e.target.files ?? [])); e.target.value = ""; }} />
       <span className={s.private}>Local files stay in this browser tab</span>
     </div>
-    <div className={s.flow} aria-label="ReasonOS evidence workflow"><span>01 <b>Source</b></span><i>→</i><span>02 <b>Measure</b></span><i>→</i><span>03 <b>Reason</b></span><i>→</i><span>04 <b>Review</b></span></div>
+    <nav className={s.flow} aria-label="ReasonOS evidence workflow">{(["source", "measure", "reason", "review"] as const).map((step, i) => <button key={step} aria-label={`Step ${i + 1}: ${step}`} aria-current={panel === step ? "step" : undefined} aria-controls="workspace-inspector" onClick={() => goToPanel(step)}><span>{String(i + 1).padStart(2, "0")}</span> {step[0].toUpperCase() + step.slice(1)}</button>)}</nav>
+    {fullScreen && <SignalExplanation />}
     {error && <div className={s.error} role="alert">{error} <button disabled={loading} onClick={() => void reference(caseId)}>Reload reference</button></div>}
     <div className={s.layout}>
       <div className={s.recording}>
@@ -286,26 +314,36 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
         {loading && <p role="status" className={s.loading}>Opening and checking recording…</p>}
         {source && <div className={loading ? s.pending : undefined} aria-busy={loading}>
           <div className={s.viewTools}>
-            {signal ? <><label>Lead <select aria-label="Focused lead" value={lead} onChange={e => { setLead(e.target.value); setEditing(null); }}>{signal.leads.map(name => <option key={name} value={name}>{leadLabel(name)}</option>)}</select></label>
-              <label>Gain <select aria-label="Display gain" value={gain} onChange={e => setGain(Number(e.target.value))}><option value="5">5 mm/mV</option><option value="10">10 mm/mV</option><option value="20">20 mm/mV</option></select></label>
-              <label>Window <select aria-label="Focused time span" value={windowSeconds} onChange={e => { setWindowSeconds(Number(e.target.value)); setWindowStart(0); setEditing(null); }}><option value="2.5">2.5 s</option><option value="5">5 s</option><option value="10">10 s</option></select></label><span>Calibrated time & voltage axes</span></> : <><label>Zoom <select aria-label="Source image zoom" value={zoom} onChange={e => setZoom(Number(e.target.value))}><option value="1">Fit page</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select></label>
+            {signal ? <><label>Lead <select aria-label="Focused lead" value={lead} onChange={e => { setLead(e.target.value); setEditing(null); setPlaced([false, false]); }}>{signal.leads.map(name => <option key={name} value={name}>{leadLabel(name)}</option>)}</select></label>
+              <label>Gain <select aria-label="Display gain" value={gain} onChange={e => setGain(Number(e.target.value))}><option value="1">1 mm/mV</option><option value="5">5 mm/mV</option><option value="10">10 mm/mV</option><option value="20">20 mm/mV</option></select></label>
+              <label>Window <select aria-label="Focused time span" value={windowSeconds} onChange={e => { setWindowSeconds(Number(e.target.value)); setWindowStart(0); setEditing(null); setPlaced([false, false]); }}><option value="2.5">2.5 s</option><option value="5">5 s</option><option value="10">10 s</option></select></label><span>Calibrated time & voltage axes</span></> : <><label>Zoom <select aria-label="Source image zoom" value={zoom} onChange={e => setZoom(Number(e.target.value))}><option value="1">Fit page</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select></label>
                 {pageCount > 0 && <label>Page <select aria-label="PDF page" value={page} disabled={loading} onChange={e => void changePage(Number(e.target.value))}>{Array.from({ length: pageCount }, (_, i) => <option key={i} value={i + 1}>{i + 1} / {pageCount}</option>)}</select></label>}
                 <span>{confirmed ? "User-calibrated image" : "Calibrate before measuring"}</span></>}
           </div>
           {signal ? <>
+            {clipped && <p className={s.clipping} role="status">Some recorded peaks exceed the vertical display range. Original values are retained. {gain > 1 && <button onClick={() => setGain(gain > 10 ? 10 : gain > 5 ? 5 : 1)}>Lower display gain</button>}</p>}
+
+            <div className={s.stripHead}><strong>Lead {leadLabel(lead)} <span>· {round(windowStart, 2)}–{round(windowStart + span, 2)} s</span></strong><span>Place A, then B on the recorded trace</span></div>
+            <div className={s.stripFrame} tabIndex={0} role="region" aria-label="Focused trace; scroll horizontally on narrow screens"><svg viewBox={`0 0 ${stripWidth} ${stripHeight}`} className={s.strip} role="group" aria-label="Focused recorded ECG with movable calipers; exact endpoints are editable in the measurement panel" {...pointerProps}>
+              <defs><pattern id="ws-strip-minor" width={stripWidth / span / 25} height="4" patternUnits="userSpaceOnUse"><path d={`M${stripWidth / span / 25} 0H0V4`} fill="none" stroke="#d3dfd8" strokeWidth=".4" /></pattern><pattern id="ws-strip-major" width={stripWidth / span / 5} height="20" patternUnits="userSpaceOnUse"><rect width={stripWidth / span / 5} height="20" fill="url(#ws-strip-minor)"/><path d={`M${stripWidth / span / 5} 0H0V20`} fill="none" stroke="#b8cdc3" strokeWidth=".5" /></pattern></defs>
+              <rect width={stripWidth} height={stripHeight} fill="#fcfcf8"/><rect width={stripWidth} height={stripHeight} fill="url(#ws-strip-major)"/>
+              <polyline points={stripPath} fill="none" stroke="#233b35" strokeWidth="1.3"/>{overlay}
+            </svg></div>
+            <p className={s.scrollHint}>Full window {round(windowStart, 3)}–{round(windowStart + span, 3)} s. Scroll the trace horizontally if it extends beyond your screen.</p>
+            <label className={s.timeline}>Time window <input type="range" aria-label="Recording time window" min="0" max={Math.max(0, duration - span)} step={1 / signal.sampleRate} value={windowStart} disabled={duration <= span} onChange={e => { setWindowStart(Number(e.target.value)); setEditing(null); setPlaced([false, false]); }}/><output>{round(windowStart, 2)} s</output></label>
             <details className={s.overview} open={overviewOpen} onToggle={e => setOverviewOpen(e.currentTarget.open)}><summary>{signal.leads.length}-lead overview <span>Recorded signals · select a lead to focus</span></summary><div className={s.paperFrame} role="region" tabIndex={0} aria-label="Recorded ECG lead overview; select a lead below to inspect it">
-              <svg viewBox={`0 0 1200 ${signal.leads.length <= 3 ? 250 : 620}`} className={s.paper} role="group" aria-label="Overview rendered directly from recorded digital samples; all panels show the same 2.5-second window">
+              <svg viewBox={`0 0 1200 ${Math.ceil(signal.leads.length / 4) * 180 + 80}`} className={s.paper} role="group" aria-label={`Overview rendered directly from recorded digital samples; all panels show the same ${round(panelSpan, 3)}-second window`}>
                 <defs><pattern id="ws-grid" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M4 0H0V4" fill="none" stroke="#d4deda" strokeWidth=".35" /></pattern><pattern id="ws-major" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="url(#ws-grid)"/><path d="M20 0H0V20" fill="none" stroke="#b8c9c2" strokeWidth=".45"/></pattern>
                 <clipPath id="ws-cell"><rect width="250" height="150" y="-75" /></clipPath></defs>
                 <rect width="1200" height="620" fill="#fcfcf8" />
                 <text x="26" y="26" fontSize="12" fill="#536761">{source.name} · recorded samples · all panels {round(windowStart, 2)}–{round(windowStart + panelSpan, 2)} s</text>
                 {signal.leads.map((name, i) => {
                   const standard = [["I", "AVR", "V1", "V4"], ["II", "AVL", "V2", "V5"], ["III", "AVF", "V3", "V6"]];
-                  let row = standard.findIndex(r => r.includes(name)); const col = row < 0 ? i % 4 : standard[row].indexOf(name); if (row < 0) row = Math.floor(i / 4);
-                  const values = signal.millivolts[i], first = Math.round(windowStart * signal.sampleRate);
-                  const count = Math.min(values.length - first, Math.floor(panelSpan * signal.sampleRate) + 1);
-                  const path = Array.from({ length: count }, (_, j) => `${round(j / signal.sampleRate / panelSpan * 250, 2)},${round(-Math.max(-1e6, Math.min(1e6, values[first + j])) * gain * 4, 2)}`).join(" ");
-                  return <g key={name} role="button" tabIndex={0} aria-label={`Focus lead ${leadLabel(name)}`} onClick={() => setLead(name)} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setLead(name); } }} transform={`translate(${28 + col * 295} ${145 + row * 180})`}>
+                  const fullStandard = signal.leads.length === 12 && standard.flat().every(n => signal.leads.includes(n));
+                  const row = fullStandard ? standard.findIndex(r => r.includes(name)) : Math.floor(i / 4);
+                  const col = fullStandard ? standard[row].indexOf(name) : i % 4;
+                  const path = overviewPaths[i];
+                  return <g key={name} role="button" tabIndex={0} aria-label={`Focus lead ${leadLabel(name)}`} onClick={() => { setLead(name); setPlaced([false, false]); }} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setLead(name); setPlaced([false, false]); } }} transform={`translate(${28 + col * 295} ${145 + row * 180})`}>
                     <rect width="250" height="150" y="-75" fill="url(#ws-major)" stroke={lead === name ? "#087e87" : "#d6ded8"} strokeWidth={lead === name ? 1.5 : .5}/>
                     <text x="6" y="-58" fill="#314f47" fontSize="13">{leadLabel(name)}</text>
                     <g clipPath="url(#ws-cell)"><polyline points={path} fill="none" stroke="#233b35" strokeWidth="1" /></g>
@@ -313,13 +351,6 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
                 })}
               </svg>
             </div></details>
-            <div className={s.stripHead}><strong>Lead {leadLabel(lead)} <span>· {round(windowStart, 2)}–{round(windowStart + span, 2)} s</span></strong><span>Place A, then B on the recorded trace</span></div>
-            <div className={s.stripFrame}><svg viewBox={`0 0 ${stripWidth} ${stripHeight}`} className={s.strip} role="group" aria-label="Focused recorded ECG with movable calipers; exact endpoints are editable in the measurement panel" {...pointerProps}>
-              <defs><pattern id="ws-strip-minor" width={stripWidth / span / 25} height="4" patternUnits="userSpaceOnUse"><path d={`M${stripWidth / span / 25} 0H0V4`} fill="none" stroke="#d3dfd8" strokeWidth=".4" /></pattern><pattern id="ws-strip-major" width={stripWidth / span / 5} height="20" patternUnits="userSpaceOnUse"><rect width={stripWidth / span / 5} height="20" fill="url(#ws-strip-minor)"/><path d={`M${stripWidth / span / 5} 0H0V20`} fill="none" stroke="#b8cdc3" strokeWidth=".5" /></pattern></defs>
-              <rect width={stripWidth} height={stripHeight} fill="#fcfcf8"/><rect width={stripWidth} height={stripHeight} fill="url(#ws-strip-major)"/>
-              <polyline points={stripPath} fill="none" stroke="#233b35" strokeWidth="1.3"/>{overlay}
-            </svg></div>
-            <label className={s.timeline}>Time window <input type="range" aria-label="Recording time window" min="0" max={Math.max(0, duration - span)} step={1 / signal.sampleRate} value={windowStart} disabled={duration <= span} onChange={e => { setWindowStart(Number(e.target.value)); setEditing(null); }}/><output>{round(windowStart, 2)} s</output></label>
           </> : <div className={s.imageFrame} role="region" tabIndex={0} aria-label="Original ECG page with overlays; scroll to inspect when zoomed">
             <svg viewBox={`0 0 ${source.width} ${source.height}`} style={{ width: `${zoom * 100}%` }} role="group" aria-label="Imported original ECG page pixels; no waveform reconstruction or automatic interpretation" className={s.sourceImage} {...pointerProps}>
               <image href={source.image} width={source.width} height={source.height} />{overlay}
@@ -328,34 +359,36 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
           <div className={s.sourceFooter}><span>{signal ? "Recorded samples · no smoothing or generated beats" : "Original pixels · no inferred digital waveform"}</span><button onClick={() => setPanel("source")}>Source & calibration ↗</button></div>
         </div>}
       </div>
-      <aside className={s.inspector} aria-label="Measurements and reasoning">
-        <nav className={s.tabs} aria-label="Evidence panels">{(["measure", "reason", "review", "source"] as const).map(name => <button key={name} aria-pressed={panel === name} onClick={() => setPanel(name)}>{name[0].toUpperCase() + name.slice(1)}{name === "review" && saved.length > 0 ? ` ${saved.length}` : ""}</button>)}</nav>
+      <aside ref={inspector} id="workspace-inspector" className={s.inspector} aria-label="Measurements and reasoning">
+        <nav className={s.tabs} aria-label="Evidence panels">{(["measure", "reason", "review", "source"] as const).map(name => <button key={name} aria-pressed={panel === name} onClick={() => goToPanel(name)}>{name[0].toUpperCase() + name.slice(1)}{name === "review" && saved.length > 0 ? ` ${saved.length}` : ""}</button>)}</nav>
         {panel === "measure" && <div className={s.panel}>
-          <p className={s.kicker}>02 / SOURCE MEASUREMENT</p><h3>{editing ? "Revise measurement" : "Place your calipers"}</h3>
-          <p>Mark the endpoints yourself. No features or diagnoses are detected automatically.</p>
+          <p className={s.kicker}>02 / SOURCE MEASUREMENT</p><h3 tabIndex={-1}>{editing ? "Revise measurement" : "Place your calipers"}</h3>
+          <p>Place A and B on the interval you want to inspect.</p>
           <div className={s.fields}><label>Interval <select aria-label="Interval type" value={kind} onChange={e => setKind(e.target.value)}>{["RR", "PR", "QRS", "QT", "Other"].map(k => <option key={k} value={k}>{k === "Other" ? "Manual interval" : k}</option>)}</select></label>
-            {!signal && <label>Lead <input aria-label="Image lead label" value={imageLead} maxLength={40} onChange={e => setImageLead(e.target.value)} /></label>}</div>
+            {!signal && <label>Lead <input aria-label="Image lead label" value={imageLead} maxLength={40} onChange={e => { setImageLead(e.target.value); setImageLeadConfirmed(false); }} /></label>}</div>
           {!signal && <div className={s.calibrationNotice}>{confirmed ? "Grid calibration confirmed by you." : "First calibrate a known horizontal grid span."}<button onClick={() => { setPanel("source"); setTool("calibrate"); setOverlays(true); }}>Check calibration →</button></div>}
+          <p className={s.limit}>{placed.every(Boolean) ? "Both endpoints selected. Check their locations before saving." : "Starter guides only. Select both endpoints before saving."}</p>
           <div className={s.pointButtons}>{([0, 1] as const).map(i => <button key={i} aria-pressed={nextPoint === i} onClick={() => { setTool("measure"); setNextPoint(i); setOverlays(true); }}>Place {i === 0 ? "A" : "B"}</button>)}</div>
-          <fieldset className={s.endpoints}><legend>{signal ? "Endpoints · seconds from recording start" : "Endpoints · source pixels"}</legend>{points.map((p, i) => <div key={i}><span>{i === 0 ? "A" : "B"}</span><label><span className={s.srOnly}>{i === 0 ? "A" : "B"} {signal ? "time in seconds" : "x coordinate"}</span><input aria-label={`Endpoint ${i === 0 ? "A" : "B"} ${signal ? "seconds" : "x"}`} type="number" step={signal ? 1 / signal.sampleRate : 1} min={signal ? windowStart : 0} max={signal ? windowStart + span : coordWidth} value={signal ? round(windowStart + p.x / stripWidth * span, 6) : round(p.x, 2)} onChange={e => { const x = signal ? (Number(e.target.value) - windowStart) / span * stripWidth : Number(e.target.value); setPoints(old => old.map((v, j) => j === i ? { ...v, x } : v) as PointPair); }}/></label>
-            {!signal && <label><span className={s.srOnly}>{i === 0 ? "A" : "B"} y coordinate</span><input aria-label={`Endpoint ${i === 0 ? "A" : "B"} y`} type="number" min="0" max={coordHeight} value={round(p.y, 2)} onChange={e => setPoints(old => old.map((v, j) => j === i ? { ...v, y: Number(e.target.value) } : v) as PointPair)}/></label>}</div>)}</fieldset>
-          <div className={s.readout}><span>{kind === "Other" ? "Selected" : kind} interval</span><strong>{measured && measured.ordered ? round(measured.duration, 2) : "—"}<small> ms</small></strong><p>{measured && measured.ordered ? `Endpoint bound ±${round(measured.uncertainty, 2)} ms` : "Ordered endpoints and calibration required"}</p></div>
-          <small className={s.limit}>{signal ? "Bound covers one-sample interval quantization. Manual feature selection and acquisition uncertainty are additional." : "Bound uses your pixel-placement estimate. Perspective, paper distortion and ambiguous feature boundaries are additional."}</small>
+          <fieldset className={s.endpoints}><legend>{signal ? "Endpoints · seconds from recording start" : "Endpoints · source pixels"}</legend>{points.map((p, i) => <div key={i}><span>{i === 0 ? "A" : "B"}</span><label><span className={s.srOnly}>{i === 0 ? "A" : "B"} {signal ? "time in seconds" : "x coordinate"}</span><input aria-label={`Endpoint ${i === 0 ? "A" : "B"} ${signal ? "seconds" : "x"}`} type="number" step={signal ? 1 / signal.sampleRate : 1} min={signal ? windowStart : 0} max={signal ? windowStart + span : coordWidth} value={signal ? round(windowStart + p.x / stripWidth * span, 6) : round(p.x, 2)} onChange={e => { const x = signal ? (Number(e.target.value) - windowStart) / span * stripWidth : Number(e.target.value); setPoints(old => old.map((v, j) => j === i ? { ...v, x } : v) as PointPair); setPlaced(old => old.map((v, j) => j === i ? true : v) as [boolean, boolean]); }}/></label>
+            {!signal && <label><span className={s.srOnly}>{i === 0 ? "A" : "B"} y coordinate</span><input aria-label={`Endpoint ${i === 0 ? "A" : "B"} y`} type="number" min="0" max={coordHeight} value={round(p.y, 2)} onChange={e => { setPoints(old => old.map((v, j) => j === i ? { ...v, y: Number(e.target.value) } : v) as PointPair); setPlaced(old => old.map((v, j) => j === i ? true : v) as [boolean, boolean]); }}/></label>}</div>)}</fieldset>
+          {!signal && <label className={s.check}><input type="checkbox" checked={imageLeadConfirmed} onChange={e => setImageLeadConfirmed(e.target.checked)} /> Both endpoints use the stated lead and the same time scale.</label>}
+          <div className={s.readout}><span>{!placed.every(Boolean) ? "Preview" : kind === "Other" ? "Selected" : kind} interval</span><strong>{measured && measured.ordered ? round(measured.duration, 2) : "—"}<small> ms</small></strong><p>{measured && measured.ordered ? `±${round(measured.uncertainty, 2)} ms · ${signal ? "sample quantization only" : "pixel-placement bound only"}` : "Ordered endpoints and calibration required"}</p></div>
+          <small className={s.limit}>{signal ? "Manual landmark selection and acquisition uncertainty are additional." : "Bound uses your pixel-placement estimate. Perspective, paper distortion and ambiguous feature boundaries are additional."}</small>
           <button className={s.primary} disabled={!canSave || loading} onClick={saveMeasurement}>{editing ? "Save revision" : "Save measurement"}</button>
           {selectedState?.role === "measurement" && <button className={s.secondary} onClick={() => setPanel("reason")}>Attach reasoning →</button>}
         </div>}
-        {panel === "reason" && <div className={s.panel}><p className={s.kicker}>03 / LINK THE EVIDENCE</p><h3>Explain what you observed</h3><p>Your proposed interpretation stays linked to a specific measurement. ReasonOS checks the evidence structure; it does not diagnose the ECG.</p>
+        {panel === "reason" && <div className={s.panel}><p className={s.kicker}>03 / LINK THE EVIDENCE</p><h3 tabIndex={-1}>Explain what you observed</h3><p>Your proposed interpretation stays linked to a specific measurement. ReasonOS checks the evidence structure; it does not diagnose the ECG.</p>
           <label>Supporting measurement<select aria-label="Supporting measurement" value={selectedState?.role === "measurement" ? selectedState.id : ""} onChange={e => { const st = saved.find(v => v.id === e.target.value); if (st) inspect(st); }}><option value="">Select saved evidence</option>{saved.filter(st => st.role === "measurement").map(st => <option key={st.id} value={st.id}>{st.payload.label as string} · {st.payload.lead as string} · {round(Number(st.payload.durationMs))} ms · {st.id}</option>)}</select></label>
           <label>Your observation and reasoning<textarea aria-label="Observation and reasoning" value={draft} maxLength={2000} onChange={e => setDraft(e.target.value)} placeholder="What did you observe? What does the measurement support, and what remains uncertain?" rows={7}/></label>
           <button className={s.primary} disabled={!selectedState || selectedState.role !== "measurement" || draft.trim().length < 3 || loading} onClick={saveClaim}>Save proposed interpretation</button>
           <p className={s.limit}>Admission means the claim has traceable evidence. It does not confirm clinical correctness.</p>
         </div>}
-        {panel === "review" && <div className={s.panel}><p className={s.kicker}>04 / REVIEW & EXPORT</p><h3>Evidence journal</h3><p>Select a measurement to restore its exact source view. Revisions preserve the original and flag dependent claims.</p>
+        {panel === "review" && <div className={s.panel}><p className={s.kicker}>04 / REVIEW & EXPORT</p><h3 tabIndex={-1}>Evidence journal</h3><p>Select a measurement to restore its exact source view. Revisions preserve the original and flag dependent claims.</p>
           {!saved.length && <div className={s.empty}>No saved evidence yet.<button onClick={() => setPanel("measure")}>Start with a measurement →</button></div>}
-          <ol className={s.journal}>{saved.map(st => <li key={st.id} data-selected={selected === st.id}><button className={s.journalItem} onClick={() => inspect(st)}><span>{st.role === "measurement" ? `${st.payload.label} · lead ${st.payload.lead}` : "Proposed interpretation"}</span><strong>{st.role === "measurement" ? `${round(Number(st.payload.durationMs), 2)} ms` : String(st.payload.text)}</strong><small>{st.role === "claim" ? claimNeedsReview(st, states) ? "Needs review · supporting measurement revised" : "User-authored · not clinically validated" : st.payload.revisionOf ? `Revises ${st.payload.revisionOf}` : "User-positioned endpoints"}</small></button>{st.role === "measurement" && <button className={s.revise} onClick={() => inspect(st, true)}>Revise endpoints</button>}</li>)}</ol>
+          <ol className={s.journal}>{saved.map(st => <li key={st.id} data-selected={selected === st.id}><button className={s.journalItem} onClick={() => inspect(st)}><span>{st.role === "measurement" ? `${st.payload.label} · lead ${st.payload.lead}` : "Proposed interpretation"}</span><strong>{st.role === "measurement" ? `${round(Number(st.payload.durationMs), 2)} ms` : String(st.payload.text)}</strong><small>{st.role === "claim" ? claimNeedsReview(st, states) ? "Needs review · supporting measurement revised" : "User-authored · not clinically validated" : st.payload.revisionOf ? `Revises ${st.payload.revisionOf}` : "User-confirmed endpoints"}</small></button>{st.role === "measurement" && <button className={s.revise} onClick={() => inspect(st, true)}>Revise endpoints</button>}</li>)}</ol>
           <div className={s.export}><button disabled={!trace} onClick={() => exportWorksheet("text")}>Export summary</button><button disabled={!trace} onClick={() => exportWorksheet("json")}>Export full trace</button></div><small className={s.limit}>Exports omit the recording. Your written notes are included. Worksheets last for this tab session; export before closing.</small>
         </div>}
-        {panel === "source" && <div className={s.panel}><p className={s.kicker}>01 / SOURCE & CALIBRATION</p><h3>{signal ? "Recorded digital signal" : "Original source page"}</h3><p>{signal ? "Voltage is decoded from original samples using the header gain and baseline. Time comes from the sample rate." : "The page remains an image. Calibrate a known paper-grid span before recording a time interval."}</p>
+        {panel === "source" && <div className={s.panel}><p className={s.kicker}>01 / SOURCE & CALIBRATION</p><h3 tabIndex={-1}>{signal ? "Recorded digital signal" : "Original source page"}</h3><p>{signal ? "Voltage is decoded from original samples using the header gain and baseline. Time comes from the sample rate." : "The page remains an image. Calibrate a known paper-grid span before recording a time interval."}</p>
           {!signal && source && <><div className={s.pointButtons}><button aria-pressed={tool === "calibrate"} onClick={() => { setTool("calibrate"); setNextPoint(0); setOverlays(true); }}>Place grid A, then B</button><button onClick={() => { setTool("measure"); setPanel("measure"); }}>Return to interval</button></div>
             <p className={s.limit}>Choose two points along one horizontal grid line. Verify the span and printed speed yourself. This corrects rotation, not perspective distortion.</p>
             <div className={s.fields}><label>Grid span (mm)<input aria-label="Calibration span mm" type="number" min=".1" max="1000" value={mm} onChange={e => { setMm(Number(e.target.value)); setConfirmed(false); }}/></label><label>Paper speed (mm/s)<input aria-label="Paper speed mm per second" type="number" min="1" max="200" value={speed} onChange={e => { setSpeed(Number(e.target.value)); setConfirmed(false); }}/></label><label>Endpoint bound (px)<input aria-label="Pixel endpoint bound" type="number" min="0" max="100" value={errorPx} onChange={e => { setErrorPx(Number(e.target.value)); setConfirmed(false); }}/></label></div>
@@ -364,10 +397,15 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
           </>}
           {source && <dl className={s.metadata}><dt>Source</dt><dd>{source.local ? "Local import · no upload" : "PTB-XL 1.0.3 · CC BY 4.0"}</dd><dt>SHA-256</dt><dd className={s.digest}>{source.sha}</dd>{source.page && <><dt>PDF page</dt><dd>{source.page} of {pageCount}</dd></>}{signal && <><dt>Sampling</dt><dd>{signal.sampleRate} samples/s · {signal.sampleCount} samples/lead</dd><dt>Voltage</dt><dd>Millivolts · original calibration</dd></>}</dl>}
           <details className={s.formats}><summary>Supported files & limits</summary><p>PDF (up to 100 pages), PNG/JPEG/WebP, CSV, or WFDB .hea + .dat selected together. 25 MB per file.</p><p>WFDB: one multiplexed format-16 file, 1–12 channels, explicit mV/µV calibration and checksums. Other encodings and missing samples are rejected.</p><p>CSV: <code>time_ms,I_mV,II_mV</code> then numeric rows at a uniform interval. Up to 2 million samples across leads.</p><p>DICOM, SCP-ECG and vendor XML are not supported. PDF/image import does not recover raw samples.</p></details>
-          <p className={s.limit}><a href="https://physionet.org/content/ptb-xl/1.0.3/" target="_blank" rel="noreferrer">PTB-XL source & attribution ↗</a> · <a href="https://wfdb.io/spec/" target="_blank" rel="noreferrer">WFDB specification ↗</a></p>
+          <p className={s.limit}><a href="/reasonos/review/index.html" target="_blank" rel="noreferrer">Independent review tasks ↗</a><br/><a href="https://physionet.org/content/ptb-xl/1.0.3/" target="_blank" rel="noreferrer">PTB-XL source & attribution ↗</a> · <a href="https://wfdb.io/spec/" target="_blank" rel="noreferrer">WFDB specification ↗</a></p>
         </div>}
         <div className={s.feedback} role="status" aria-live="polite">{message || "Educational prototype · no automated diagnosis"}</div>
       </aside>
     </div>
   </section>;
+}
+
+function SignalExplanation() {
+  const [open, setOpen] = useState(false);
+  return <details className={s.signalExplanation} onToggle={e => setOpen(e.currentTarget.open)}><summary>How does an ECG form? Explore cells, the cardiac vector and electrode measurements.</summary>{open && <SignalOrigin />}</details>;
 }

@@ -1,0 +1,22 @@
+ReasonOS independent review response
+
+Reviewer role: clinician / first-time participant observer / physical-phone tester
+Anonymous label: C1 / U1 / U2 / P1
+Candidate URL and review date:
+Device, OS and browser version:
+
+Tasks completed and time:
+Help required or unfinished task:
+
+Finding:
+Action:
+Observed result:
+Expected result:
+Severity: critical / major / minor
+
+Comprehension: what came from the source, what the user supplied, what uncertainty covers, and whether a saved interpretation is clinically confirmed.
+
+Release-blocking issues:
+Retest after fixes:
+
+Use public reference recordings only. Do not include patient data or identifying medical information. No responses are submitted or stored by the review page; return findings through the person who invited you.

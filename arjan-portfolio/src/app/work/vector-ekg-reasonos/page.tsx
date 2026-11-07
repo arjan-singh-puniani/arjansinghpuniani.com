@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ECGWorkspace } from "@/components/ECGWorkspace";
+import { ECGSignalOrigin } from "@/components/ECGSignalOrigin";
 import { DigitalECGScene } from "@/components/DigitalECGScene";
 import { ReferenceECGs } from "@/components/ReferenceECGs";
 import { RecordedECG } from "@/components/RecordedECG";
@@ -302,6 +303,7 @@ export default function VectorEkgReasonOSPage() {
       </header>
       <nav className="rosx-science-nav shell" aria-label="ECG study sections">
         <a href="#ecg-workspace">ECG workspace</a>
+        <a href="#signal-origin">How an ECG forms</a>
         <a href="#heart-leads">Heart, leads & trace</a>
         <a href="#measurement-workbench">Measurements & practice</a>
         <a href="#ecg-reference-practice">Reference ECG practice</a>
@@ -311,6 +313,9 @@ export default function VectorEkgReasonOSPage() {
       </nav>
       <section className="lab-embed rosx-lab" id="ecg-workspace" aria-label="ECG evidence workspace">
         <ECGWorkspace />
+      </section>
+      <section className="lab-embed rosx-lab" aria-label="Cardiac signal formation">
+        <ECGSignalOrigin />
       </section>
       <details className="rosx-model-explanation" id="heart-leads">
         <summary>How the recording connects to heart activity and lead geometry</summary>

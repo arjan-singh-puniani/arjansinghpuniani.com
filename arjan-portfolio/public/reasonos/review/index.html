@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ReasonOS independent review protocol</title>
+<style>body{margin:0;background:#f2f5ef;color:#173b30;font:16px/1.65 system-ui,sans-serif}main{max-width:860px;margin:auto;padding:48px 22px 90px}h1{font-size:clamp(30px,5vw,46px);line-height:1.1;font-weight:550;letter-spacing:-1.5px}h2{font-size:24px;margin-top:48px;font-weight:550}h3{font-size:18px;margin-top:30px}a{color:#006b73;text-underline-offset:4px}a:focus-visible{outline:3px solid #007b8b;outline-offset:4px}.intro{font-size:18px;color:#466659}.links{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}.links a{border:1px solid #97b4a3;padding:11px 16px;border-radius:5px;background:#fffefa;text-decoration:none;min-height:24px}.status{background:#e4ede1;padding:18px 22px;border-left:3px solid #538373}li{margin:10px 0}table{border-collapse:collapse;width:100%;font-size:14px}td,th{border-bottom:1px solid #bfd0c3;text-align:left;padding:12px 8px;vertical-align:top}code{overflow-wrap:anywhere}small{color:#4a6558}pre{white-space:pre-wrap;background:#fbfcf7;padding:20px;border:1px solid #c2d1c3;font:13px/1.6 ui-monospace,monospace}.table{overflow:auto}footer{margin-top:45px;border-top:1px solid #c2d1c3;padding-top:20px;font-size:13px}</style></head>
+<body><main>
+<a href="/work/vector-ekg-reasonos">← ReasonOS case study</a>
+<h1>Independent review protocol</h1>
+<p class="intro">Evaluate whether the ECG workspace is understandable, scientifically explicit and usable. Use the public reference files below. Do not send patient recordings or identifying health information.</p>
+<div class="links"><a href="/work/vector-ekg-reasonos/workspace" target="_blank" rel="noreferrer">Open the workspace ↗</a><a href="reference-00010.pdf" download>Reference PDF ↓</a><a href="reference-00010.csv" download>Matching digital samples ↓</a><a href="response.txt" download>Review response template ↓</a></div>
+<p class="status"><strong>Independent results are pending.</strong> Automated tests and agent reviews do not substitute for clinician review, observed first-time use or physical-phone testing. This page does not submit or store responses. Return findings to the person who invited you.</p>
+<h2>1. Clinician review · about 25 minutes</h2>
+<p>Ask a clinician familiar with ECG interpretation to assess presentation and reasoning boundaries. This is a software review, not a diagnostic-performance study.</p>
+<ol><li>Open public reference recording 01. Confirm that the source, leads, sample clock and voltage units are identifiable. Assess whether the difference between recorded samples, an imported page image and a proposed interpretation is clear.</li>
+<li>Set a manual interval from 1.000 to 1.800 seconds. The time-scale result should be 800 ms. Change display gain: the numeric interval should stay unchanged. This checks arithmetic, not physiological landmark selection.</li>
+<li>Save the measurement and attach a short observation. Revise the endpoint to 1.900 seconds. Check that the new interval is 900 ms, the earlier evidence remains visible, and the dependent interpretation needs review.</li>
+<li>Import the supplied PDF. On page 2, calibrate a 25 mm grid span using the printed 25 mm/s speed. Mark two positions 20 mm apart along the same time axis: the result should be approximately 800 ms, within the displayed placement bound.</li>
+<li>Assess whether the uncertainty label makes its exclusions clear. It covers sample quantization or pixel placement; it does not establish the accuracy of a manually selected P/QRS/T boundary, scan geometry, acquisition clock or clinical interpretation.</li>
+<li>Identify wording, graphics or interactions that could encourage an unsupported clinical conclusion. Check whether the actual source and calculation can be inspected for a saved entry.</li>
+<li>Open <a href="/work/vector-ekg-reasonos/signal" target="_blank" rel="noreferrer">How an ECG forms</a>. Check the distinction between the current dipole, activation/recovery sequence, body potential and lead sensitivity. Reverse recorder inputs and verify that the source remains unchanged. Inspect all four tissue-boundary polarity cases and the stated limitations of the T-wave explanation. Identify any incorrect anatomy, physiology, units or mathematical assumptions.</li></ol>
+<p>Report each finding with the action that triggered it, what appeared, what should happen, and severity: <strong>critical</strong> (could materially mislead), <strong>major</strong> (blocks or confuses a core task), or <strong>minor</strong> (presentation or convenience). Do not give this software clinical clearance based on these tasks.</p>
+<h2>2. First-time use · two unfamiliar participants</h2>
+<p>Use two people who have not seen the interface. They need not interpret ECGs. Ask them to complete the tasks below without a demonstration or instructions naming buttons. Observe silently; record time, failures and any help requested. Stop after five minutes and record unfinished tasks.</p>
+<ol><li>Open a public reference recording and save a manually chosen time interval.</li><li>Write an observation linked to that measurement.</li><li>Change the saved measurement and find what happens to the earlier observation.</li><li>Export a readable summary.</li></ol>
+<p>Afterwards ask: “What information came from the recording? What did you choose yourself? Does the uncertainty bound include all sources of error? Does a saved interpretation mean it is medically correct?” Record the participant's own explanation.</p>
+<p>Then allow three minutes to explore <a href="/work/vector-ekg-reasonos/signal">How an ECG forms</a>. Ask: “Where does the cardiac vector come from? What does the recorder do? What changes if its inputs are reversed? Are these diagrams reconstructed from the recording?” Record misunderstandings without correcting them during the attempt.</p>
+<p><strong>Release gate:</strong> both participants finish the core sequence without coaching, with no unresolved critical misunderstanding. Any major task failure triggers a fix and another observed attempt. Two participants provide a small usability check; they do not establish population-level usability.</p>
+<h2>3. Physical-phone check · about 10 minutes</h2>
+<p>Record phone model, operating system and browser version. Emulation does not count. Use only the supplied public reference data.</p>
+<ul><li>Open the workspace in portrait and landscape. Check text, controls and whether all workflow stages are reachable.</li><li>Place calipers by touch and edit their numeric endpoints. Check that the on-screen keyboard does not hide the active field or prevent saving.</li><li>Open the twelve-lead overview, select a lead, move the time window and adjust display gain. Check that horizontal trace scrolling is understandable and does not drag the whole page sideways.</li><li>Download the supplied reference PDF, reopen it with the local-file picker, navigate between its pages, calibrate the grid and save a measurement.</li><li>Try an unsupported file and verify that the existing recording, page navigation and worksheet remain available.</li><li>Export a summary and verify it can be opened using the phone's normal download/share interface.</li></ul>
+<h3>Manual screen-reader check</h3><p>If available, enable VoiceOver or TalkBack. Navigate the workflow, identify the selected stage and lead, enter the known 1.000 and 1.800 second endpoints, save the measurement and find the status message. Report missing labels, lost focus or unreachable controls. Record this separately from the automated accessibility scans; do not infer a pass if it was not attempted.</p>
+<h2>4. Acceptance record</h2>
+<div class="table"><table><thead><tr><th>Standard</th><th>Evidence needed</th><th>Decision</th></tr></thead><tbody>
+<tr><td>Scientific clarity</td><td>Clinician findings; reproducible source/units/calculations; no unresolved critical errors</td><td>Pending independent review</td></tr>
+<tr><td>First-time usability</td><td>Two uncoached task records and comprehension responses</td><td>Pending observed use</td></tr>
+<tr><td>Visual precision</td><td>Actual desktop/phone renders plus participant feedback; no clipped explanations or hidden critical content</td><td>Software review completed; participant assessment pending</td></tr>
+<tr><td>Reliability</td><td>Parser, calculation, browser, accessibility and recovery checks</td><td><a href="verification.json">Release verification record</a>; automated scope only</td></tr>
+<tr><td>Physical-phone behavior</td><td>Device/browser/version and task outcomes</td><td>Pending physical-device check</td></tr>
+</tbody></table></div>
+<h2>Response format</h2><pre>Reviewer role: clinician / first-time participant observer / phone tester
+Candidate URL and review date:
+Device, OS and browser:
+Tasks completed and time:
+Help required or unfinished task:
+Finding: action → observed result → expected result
+Severity: critical / major / minor
+What the measurement and uncertainty mean, in the participant's words:
+Release-blocking issues:
+Re-test outcome after fixes:
+
+Use anonymous labels such as C1, U1, U2 and P1.
+Do not include patient data or personal medical details.</pre>
+<footer>The fixtures derive from <a href="https://physionet.org/content/ptb-xl/1.0.3/">PTB-XL 1.0.3</a>, record 00010, Wagner et al., <a href="LICENSE.txt">CC BY 4.0</a>. The PDF is a new rendering at explicit physical scale; the CSV contains calibrated recorded samples. Neither is a patient-specific interpretation or an original hospital export. <a href="/work/vector-ekg-reasonos">Return to the project</a>.</footer>
+</main></body></html>
