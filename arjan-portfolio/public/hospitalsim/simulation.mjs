@@ -1,13 +1,13 @@
-import {roomKits} from './upgrades.mjs?v=157';
-import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds} from './clinic.mjs?v=157';
-import {openingBuilds,openingCount} from './opening.mjs?v=157';
-import {initOperations,upgradeOperations,roomReady,teamFor,startTurnover,say,intakeAssistant,validTeam,validateOperations,tickOperations,claimDesk,checkIn,caseFor,react,deskAvailable,deskPost,deskStation,deskBay,assignDesk,reliefBay} from './operations.mjs?v=157';
-import {entrance,exit,gateDirection,door,blocked,path,reachable} from './navigation.mjs?v=157';
-export {entrance,exit,gateDirection,door,blocked,path,reachable} from './navigation.mjs?v=157';
+import {roomKits} from './upgrades.mjs?v=158';
+import {CLINIC_DEPARTMENTS,CLINIC_ROLES,CLINIC_CASES,clinicBuilds} from './clinic.mjs?v=158';
+import {openingBuilds,openingCount} from './opening.mjs?v=158';
+import {initOperations,upgradeOperations,roomReady,teamFor,startTurnover,say,intakeAssistant,validTeam,validateOperations,tickOperations,claimDesk,checkIn,caseFor,react,deskAvailable,deskPost,deskStation,deskBay,assignDesk,reliefBay} from './operations.mjs?v=158';
+import {entrance,exit,gateDirection,door,blocked,path,reachable} from './navigation.mjs?v=158';
+export {entrance,exit,gateDirection,door,blocked,path,reachable} from './navigation.mjs?v=158';
 // The original LCG, BFS, pathway and queue policy are retained from Hospital Works v0.1.
 // No DOM, clock or renderer dependencies. One tick is one fictional game second.
-import {shiftSeconds,shiftEnd,CAMPUS,CAMPUS_V1,placementStep,siteOf,VERSION,STEP,GRID,WALK_SUBSTEPS,TYPES,TRAITS,SCENARIOS,DECOR,GOALS,STAFF_ROLES,initialRole,CASES,ROLE_SKILLS,ROOM_ROLES} from './content.mjs?v=157';
-export {shiftSeconds,shiftEnd,placementStep,siteOf,VERSION,STEP,GRID,TYPES,TRAITS,SCENARIOS,DECOR,STAFF_ROLES,initialRole} from './content.mjs?v=157';
+import {shiftSeconds,shiftEnd,CAMPUS,CAMPUS_V1,placementStep,siteOf,VERSION,STEP,GRID,WALK_SUBSTEPS,TYPES,TRAITS,SCENARIOS,DECOR,GOALS,STAFF_ROLES,initialRole,CASES,ROLE_SKILLS,ROOM_ROLES} from './content.mjs?v=158';
+export {shiftSeconds,shiftEnd,placementStep,siteOf,VERSION,STEP,GRID,TYPES,TRAITS,SCENARIOS,DECOR,STAFF_ROLES,initialRole} from './content.mjs?v=158';
 const names=['Alex','Sam','Noor','Jordan','Maya','Eli','Robin','Avery','Kai','Imani','Rae','Morgan'];
 export function initial(scenario='clinic',seed=431,mode='sandbox',continuity={}){
  const s={version:VERSION,scenario,mode,entrance:{...GRID.entry},exit:{...GRID.exit},autoHandoff:true,communication:false,prevention:!!continuity.prevention,arrivalIndex:0,arrivalTape:arrivalTape(scenario,seed,continuity.prevention),initialSeed:seed,seed,seconds:0,cash:8000,served:0,left:0,arrivals:0,trust:85,energy:100,breaks:false,access:false,urgency:true,rooms:[{id:1,x:5,y:2,type:'consult',level:1,staff:[1]},{id:2,x:1,y:0,type:'scan',level:1,staff:[2]},{id:3,x:1,y:3,type:'care',level:1,staff:[3,4]}],staff:['Mira','Jules','Remy','Ash','Sage','Kit'].map((name,i)=>({id:i+1,name,role:initialRole(i+1),skills:[...ROLE_SKILLS[initialRole(i+1)]],trait:['listener','steady','steady','brisk','brisk','listener'][i],shiftEnd:scenario==='staffing'&&i===3?300:480,fatigue:0,breakUntil:0,...(i>=4?{position:{x:4.5+(i%2)*.5,y:5.75}}:{})})),patients:[],nextId:10,nextArrival:1,surge:0,eventDone:false,ended:false,records:[],actions:[],log:['Doors open. A little space. A lot of care.'],utilization:{},lastAction:null};
@@ -58,7 +58,53 @@ export function upgrade(s,id,items){
  const snapshot=JSON.stringify({...s,lastAction:null});s.cash-=cost;r.level++;if(kit)r.installations.push({level:r.level,items:[...items],at:s.seconds,cost});recordAction(s,'upgrade',{id,level:r.level,...(kit?{equipment:[...items],cost}: {})});s.lastAction={at:s.seconds,snapshot};return true;
 }
 
-export function remove(s,id){const r=s.rooms.find(r=>r.id===id);if(!r||s.ended)return {ok:false,reason:'Select a module.'};if(s.patients.some(p=>p.room===id||p.target===id||p.seat?.roomId===id)||s.staff.some(st=>st.job?.roomId===id||st.breakTrip&&(st.breakTrip.home===id||st.breakTrip.origin===id||st.breakTrip.lounge===id)))return {ok:false,reason:'This module has a reserved or occupied visit. Let it finish first.'};const snapshot=JSON.stringify({...s,lastAction:null});s.rooms=s.rooms.filter(r=>r.id!==id);if(s.site)for(const staffId of r.staff){const st=s.staff.find(st=>st.id===staffId);st.position=reliefBay(s,st,door(r))||{...door(r)}}s.cash+=(r.paid??TYPES[r.type].cost)*.5;recordAction(s,'remove',{id});s.lastAction={at:s.seconds,snapshot};return {ok:true}}
+export function roomEditCheck(s,id){
+ const room=s.rooms.find(r=>r.id===id);
+ if(!room||s.ended)return {ok:false,reason:'Select a room during an active shift.'};
+ if(s.patients.some(p=>p.room===id||p.target===id||p.seat?.roomId===id)||
+    s.staff.some(st=>st.job?.roomId===id||[st.breakTrip?.home,st.breakTrip?.origin,st.breakTrip?.lounge].includes(id))){
+  return {ok:false,reason:'Let the reserved visit or staff trip finish first.'};
+ }
+ return {ok:true,room};
+}
+
+export function rotateRoom(s,id){
+ const check=roomEditCheck(s,id);
+ if(!check.ok)return check;
+ const room=check.room;
+ const current=room.rotation||0;
+ const connected=reachable(entrance(s),s.rooms,siteOf(s));
+ const occupied=[entrance(s),exit(s),...s.rooms.filter(r=>r!==room).map(door),
+  ...s.patients.filter(p=>!p.outside),...s.staff.flatMap(st=>[st.position,st.breakTrip?.position].filter(Boolean))];
+ const rotation=[1,2,3].map(step=>(current+step)%4).find(next=>{
+  const doorway=door({...room,rotation:next});
+  return connected(doorway)&&!blocked(doorway.x,doorway.y,s.rooms)&&
+   occupied.every(p=>Math.hypot(p.x-doorway.x,p.y-doorway.y)>=.6);
+ });
+ if(rotation===undefined)return {ok:false,reason:'No other side has a clear, connected doorway.'};
+ const snapshot=JSON.stringify({...s,lastAction:null});
+ room.rotation=rotation;
+ recordAction(s,'rotate-room',{id,rotation});
+ s.lastAction={at:s.seconds,snapshot};
+ return {ok:true,room};
+}
+
+export function remove(s,id){
+ const check=roomEditCheck(s,id);
+ if(!check.ok)return check;
+ const room=check.room;
+ const snapshot=JSON.stringify({...s,lastAction:null});
+ s.rooms=s.rooms.filter(r=>r.id!==id);
+ if(s.site)for(const staffId of room.staff){
+  const st=s.staff.find(st=>st.id===staffId);
+  st.position=reliefBay(s,st,door(room))||{...door(room)};
+ }
+ s.cash+=(room.paid??TYPES[room.type].cost)*.5;
+ recordAction(s,'remove',{id});
+ s.lastAction={at:s.seconds,snapshot};
+ return {ok:true};
+}
+
 export function policy(s,key,value){
  if(s.ended)return false;
  const snapshot=JSON.stringify({...s,lastAction:null});
@@ -228,7 +274,7 @@ export function gatePlacement(s,kind,x,y){
  if(blocked(x,y,s.rooms)||Math.hypot(x-other.x,y-other.y)<1.5||s.rooms.some(r=>door(r).x===x&&door(r).y===y))return {ok:false,reason:'Keep doors clear of modules and the other entrance.'};
  if(kind==='entrance'&&(!deskStation({...s,entrance:point})||s.operations.intakePatient!==null||s.staff.some(st=>st.role==='reception'&&st.travel)))return{ok:false,reason:'Keep a clear intake bay beside the door and let the current check-in finish.'};
  if(s.cash<150)return {ok:false,reason:'Moving a doorway costs $150.'};
- if(s.patients.some(p=>p.outside&&kind==='entrance'||['entering-hospital','leaving-hospital','exiting'].includes(p.state)||!p.outside&&(Math.hypot(p.x-x,p.y-y)<.75||Math.hypot(p.x-old.x,p.y-old.y)<.75))||s.staff.some(st=>st.breakTrip&&(Math.hypot(st.breakTrip.position.x-x,st.breakTrip.position.y-y)<.75)))return {ok:false,reason:'Let people clear the doors before moving them.'};
+ if(kind==='entrance'&&s.staff.some(st=>st.entering!==undefined)||s.patients.some(p=>p.outside&&kind==='entrance'||['entering-hospital','leaving-hospital','exiting'].includes(p.state)||!p.outside&&(Math.hypot(p.x-x,p.y-y)<.75||Math.hypot(p.x-old.x,p.y-old.y)<.75))||s.staff.some(st=>st.breakTrip&&(Math.hypot(st.breakTrip.position.x-x,st.breakTrip.position.y-y)<.75)))return {ok:false,reason:'Let people clear the doors before moving them.'};
  if(!path(point,other,s.rooms,[],siteOf(s))||s.rooms.some(r=>!path(point,door(r),s.rooms,[],siteOf(s))))return {ok:false,reason:'Every service and the exit need a clear route.'};
  return {ok:true,reason:'Connected outside doorway · $150'};
 }

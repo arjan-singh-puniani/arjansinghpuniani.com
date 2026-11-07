@@ -1,6 +1,6 @@
-import {roomKits} from './upgrades.mjs?v=157';
-import {siteOf,WALK_SUBSTEPS,CASES,VOICES,STAFF_ROLES,ROLE_SKILLS,ROOM_ROLES,TYPES} from './content.mjs?v=157';
-import {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=157';
+import {roomKits} from './upgrades.mjs?v=158';
+import {siteOf,WALK_SUBSTEPS,CASES,VOICES,STAFF_ROLES,ROLE_SKILLS,ROOM_ROLES,TYPES} from './content.mjs?v=158';
+import {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=158';
 export function deskStation(s){const g=entrance(s),o=gateDirection(g,siteOf(s)),t={x:o.y,y:-o.x};for(const side of [1,-1]){const bay={x:g.x+t.x*.75*side,y:g.y+t.y*.75*side},post={x:bay.x-o.x*.75,y:bay.y-o.y*.75},assistant={x:post.x-t.x*.5*side+o.x*.5,y:post.y-t.y*.5*side+o.y*.5};if([bay,post,assistant].every(p=>p.x>=0&&p.x<=siteOf(s).w-1&&p.y>=0&&p.y<=siteOf(s).h-1&&!blocked(p.x,p.y,s.rooms)))return{bay,post,assistant,side}}return null}
 export const deskPost=s=>deskStation(s)?.post||entrance(s);
 export const deskBay=s=>deskStation(s)?.bay||entrance(s);
