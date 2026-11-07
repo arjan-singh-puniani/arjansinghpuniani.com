@@ -3,6 +3,7 @@ import {
   type ActorId, type StateId, type ProvenanceId, type TransformationId,
   type IsoTimestamp, type JsonObject, type State, type Trace, type DomainPlugin,
 } from "./core/browser";
+import { imageInterval } from "./recordings";
 
 export interface DigitalECG {
   sampleRate: number;
@@ -11,6 +12,43 @@ export interface DigitalECG {
   millivolts: Float64Array[];
 }
 export const MAX_FILE_BYTES = 25 * 1024 * 1024;
+export const STRIP_WIDTH = 1000, STRIP_HEIGHT = 240;
+
+function pointPair(value: unknown, width: number, height: number) {
+  if (!Array.isArray(value) || value.length !== 2 || !value.every(p => Array.isArray(p) && p.length === 2 &&
+    p.every(Number.isFinite) && p[0] >= 0 && p[0] <= width && p[1] >= 0 && p[1] <= height))
+    throw new Error("Endpoints must lie inside the source view.");
+  return value.map(p => ({ x: p[0] as number, y: p[1] as number }));
+}
+
+export function calculateWorkspaceInterval(p: JsonObject, source: JsonObject) {
+  if (p.sourceId !== source.sourceId || typeof p.lead !== "string" || !p.lead.trim() || p.lead.length > 40 ||
+    typeof p.calibrationKey !== "string" || !p.calibrationKey || !p.calibration || typeof p.calibration !== "object" || Array.isArray(p.calibration))
+    throw new Error("A source identity, lead and calibration record are required.");
+  const c = p.calibration as JsonObject;
+  if (source.format === "digital-waveform") {
+    const fs = source.sampleRateHz, count = source.sampleCount, start = p.windowStart, span = p.span;
+    if (typeof fs !== "number" || !Number.isFinite(fs) || fs <= 0 || typeof count !== "number" || !Number.isInteger(count) || count < 2 ||
+      c.sampleRateHz !== fs || !Array.isArray(source.leads) || !source.leads.includes(p.lead) ||
+      p.coordinateSystem !== "focused-strip" || typeof start !== "number" || !Number.isFinite(start) || start < 0 ||
+      typeof span !== "number" || !Number.isFinite(span) || span <= 0 || start + span > (count - 1) / fs + 1e-9)
+      throw new Error("The view and sampling calibration must match the imported recording.");
+    const points = pointPair(p.points, STRIP_WIDTH, STRIP_HEIGHT);
+    const first = Math.round(start * fs);
+    const indices = points.map(point => first + Math.round(point.x / STRIP_WIDTH * span * fs));
+    if (indices[1] <= indices[0] || indices[1] >= count) throw new Error("Choose two ordered samples in the recording.");
+    const duration = (indices[1] - indices[0]) / fs * 1000, uncertainty = 1000 / fs;
+    return { duration, uncertainty, low: Math.max(0, duration - uncertainty), high: duration + uncertainty, ordered: true, sampleIndices: indices };
+  }
+  if (source.format !== "source-image" || p.coordinateSystem !== "source-image" || p.calibrationConfirmed !== true ||
+    typeof source.width !== "number" || typeof source.height !== "number" ||
+    typeof c.mm !== "number" || typeof c.speedMmPerSecond !== "number" || typeof c.errorPx !== "number")
+    throw new Error("An image needs confirmed grid calibration and paper speed.");
+  const points = pointPair(p.points, source.width, source.height), grid = pointPair(c.grid, source.width, source.height);
+  const result = imageInterval(points[0], points[1], { a: grid[0], b: grid[1], mm: c.mm, speed: c.speedMmPerSecond, errorPx: c.errorPx });
+  if (!result.ordered || result.duration <= 0) throw new Error("Choose ordered endpoints along the calibrated paper axis.");
+  return { ...result, sampleIndices: null };
+}
 
 /** Deliberately bounded: one multiplexed format-16 file, calibrated in mV or µV. */
 export function decodeWorkspaceWFDB(header: string, buffer: ArrayBuffer, filename: string): DigitalECG {
@@ -41,6 +79,7 @@ export function decodeWorkspaceWFDB(header: string, buffer: ArrayBuffer, filenam
       if (i === 0 && raw !== Number(f[5])) throw new Error("WFDB initial sample does not match the header.");
       checksum = (checksum + raw) & 65535;
       values[i] = (raw - baseline) / gain / (scale[3] === "mV" ? 1 : 1000);
+      if (!Number.isFinite(values[i])) throw new Error("WFDB calibration produces non-finite voltages.");
     }
     if (checksum !== (Number(f[6]) & 65535)) throw new Error("WFDB checksum failed. Select the matching, unmodified header and data file.");
     leads.push(lead); millivolts.push(values);
@@ -74,7 +113,7 @@ export function decodeWorkspaceCSV(text: string): DigitalECG {
 
 const kernel = new InMemoryTraceStore();
 const actor = "workspace-learner" as ActorId;
-const version = "1.0.0";
+const version = "1.1.0";
 function provenance(id: string, source: string, method: string, time: IsoTimestamp, revisionOf: ProvenanceId | null = null) {
   return {
     id: id as ProvenanceId, source, method, actorId: actor,
@@ -93,17 +132,28 @@ const plugin: DomainPlugin = {
       let passed = inputs.length > 0 && inputs.every(s => s && s.payload.sourceId === p.sourceId);
       let reason = "Evidence must refer to the same recording page or digital signal.";
       if (draft.outputState.role === "measurement") {
-        passed = passed && typeof p.durationMs === "number" && Number.isFinite(p.durationMs) && p.durationMs > 0 &&
-          typeof p.uncertaintyMs === "number" && Number.isFinite(p.uncertaintyMs) && p.uncertaintyMs >= 0 &&
-          typeof p.calibrationKey === "string" && p.calibrationKey.length > 0 &&
-          Array.isArray(p.points) && p.points.length === 2 && p.points.every(point => Array.isArray(point) && point.length === 2 && point.every(n => typeof n === "number" && Number.isFinite(n) && n >= 0));
-        reason = "A measurement needs ordered source endpoints, positive duration, uncertainty and a calibration record.";
+        try {
+          if (p.endpointsConfirmed !== true || p.leadConfirmed !== true) throw new Error("Confirm endpoints and lead.");
+          const source = [...trace.states.values()].find(s => s.role === "source" && s.payload.sourceId === p.sourceId);
+          if (!source) throw new Error("Source missing.");
+          const calculated = calculateWorkspaceInterval(p, source.payload);
+          const same = (a: unknown, b: number) => typeof a === "number" && Number.isFinite(a) && Math.abs(a - b) <= 1e-8 * Math.max(1, Math.abs(b));
+          passed = passed && same(p.durationMs, calculated.duration) && same(p.uncertaintyMs, calculated.uncertainty) &&
+            same(p.lowerMs, calculated.low) && same(p.upperMs, calculated.high) &&
+            (calculated.sampleIndices === null ? p.sampleIndices === null : Array.isArray(p.sampleIndices) && p.sampleIndices.length === 2 && p.sampleIndices.every((v, i) => v === calculated.sampleIndices![i]));
+        } catch { passed = false; }
+        reason = "Duration, uncertainty and sample indices must recompute from the imported source, saved endpoints and calibration.";
       }
       if (draft.outputState.role === "claim") {
+        const refs = p.measurementIds;
+        const measurements = inputs.filter(s => s?.role === "measurement");
         passed = passed && typeof p.text === "string" && p.text.trim().length >= 3 && p.text.length <= 2000 &&
-          inputs.some(s => s?.role === "measurement");
+          Array.isArray(refs) && refs.length > 0 && refs.length === measurements.length && new Set(refs).size === refs.length &&
+          refs.every(id => typeof id === "string" && inputs.some(s => s?.id === id && s.role === "measurement" && s.payload.lead === p.lead));
         reason = "A proposed interpretation needs text and a source-linked measurement; admission does not establish clinical truth.";
       }
+      if (p.revisionOf !== null && p.revisionOf !== undefined)
+        passed = passed && inputs.some(s => s?.id === p.revisionOf && s.role === draft.outputState.role);
       return { code: this.code, scope: "domain", severity: "required", passed, reason,
         evaluator: "ReasonOS ECG workspace", evaluatorVersion: version, details: {} };
     },

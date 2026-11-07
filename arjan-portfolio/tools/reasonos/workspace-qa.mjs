@@ -1,6 +1,7 @@
 import { chromium, firefox, webkit } from "playwright";
 import AxeBuilder from "@axe-core/playwright";
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile, access } from "node:fs/promises";
 import { homedir } from "node:os";
 
@@ -22,8 +23,8 @@ const fixturePage = await fixtureBrowser.newPage();
 await fixturePage.goto(base + rootPath);
 await fixturePage.getByText("PTB-XL · 00010", { exact: true }).waitFor();
 const sheet = await fixturePage.locator('svg[aria-label^="Overview rendered"]').evaluate(el => el.outerHTML);
-await fixturePage.setContent(`<html><body style="margin:0">${sheet}<div style="break-before:page">Public reference fixture · second page</div></body></html>`);
-const pdfBuffer = await fixturePage.pdf({ width: "1200px", height: "700px", printBackground: true, margin: { top: 0, bottom: 0, left: 0, right: 0 } });
+await fixturePage.setContent(`<html><body style="margin:0"><style>svg{width:300mm;height:155mm;display:block}</style>${sheet}<div style="break-before:page">Public reference fixture · second page</div></body></html>`);
+const pdfBuffer = await fixturePage.pdf({ width: "300mm", height: "175mm", printBackground: true, margin: { top: 0, bottom: 0, left: 0, right: 0 } });
 await fixtureBrowser.close();
 
 for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["webkit", webkit]]) {
@@ -36,11 +37,19 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await page.goto(base + rootPath);
     const root = page.locator("[data-ecg-workspace]");
     await root.getByText("PTB-XL · 00010", { exact: true }).waitFor();
+    await root.getByRole("button", { name: "Step 1: source", exact: true }).click();
+    await root.getByRole("heading", { name: "Recorded digital signal", exact: true }).waitFor();
+    await root.getByRole("button", { name: "Step 2: measure", exact: true }).click();
+    assert.equal(await root.getByRole("button", { name: "Save measurement", exact: true }).isDisabled(), true);
+    if (!(await root.getByRole("button", { name: "Focus lead V1", exact: true }).isVisible())) await root.locator("summary").filter({ hasText: "12-lead overview" }).click();
     await root.getByRole("button", { name: "Focus lead V1", exact: true }).press("Enter");
+    await page.waitForFunction(() => document.querySelector('[aria-label="Focused lead"]')?.value === "V1");
     assert.equal(await root.getByLabel("Focused lead", { exact: true }).inputValue(), "V1");
     await root.getByLabel("Focused lead", { exact: true }).selectOption("II");
     await root.getByLabel("Endpoint A seconds", { exact: true }).fill("1");
+    assert.equal(await root.getByRole("button", { name: "Save measurement", exact: true }).isDisabled(), true);
     await root.getByLabel("Endpoint B seconds", { exact: true }).fill("1.8");
+    await root.getByLabel("Display gain", { exact: true }).selectOption("5");
     await root.getByRole("button", { name: "Save measurement", exact: true }).click();
     await root.getByRole("button", { name: "Attach reasoning →", exact: true }).click();
     await root.getByLabel("Observation and reasoning", { exact: true }).fill("The manually selected interval is 800 ms. I would check adjacent cycles before describing regularity.");
@@ -52,6 +61,8 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     assert.equal(data.rawRecordingIncluded, false);
     const tx = data.trace.entries.filter(e => e.event.type === "transformation.attempted");
     assert.equal(tx.length, 2); assert.equal(tx[0].event.outputState.payload.durationMs, 800);
+    assert.equal(tx[0].event.outputState.provenance.domainVersion, "1.1.0");
+    assert.equal(tx[0].event.outputState.payload.durationMs, (tx[0].event.outputState.payload.sampleIndices[1] - tx[0].event.outputState.payload.sampleIndices[0]) / 500 * 1000);
     assert.deepEqual(tx[1].event.transformation.inputStateIds, [tx[0].event.outputState.id]);
     await root.getByRole("button", { name: "Revise endpoints", exact: true }).click();
     await root.getByLabel("Endpoint B seconds", { exact: true }).fill("1.9");
@@ -84,12 +95,15 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await root.getByRole("button", { name: "Source", exact: true }).click();
     await root.getByLabel("Grid A x", { exact: true }).fill("100");
     await root.getByLabel("Grid A y", { exact: true }).fill("100");
-    await root.getByLabel("Grid B x", { exact: true }).fill("300");
+    await root.getByLabel("Grid B x", { exact: true }).fill("283.33");
     await root.getByLabel("Grid B y", { exact: true }).fill("100");
     await root.getByLabel("I checked the grid span and printed paper speed.", { exact: true }).check();
     await root.getByRole("button", { name: "Measure", exact: true }).click();
-    await root.getByLabel("Endpoint A x", { exact: true }).fill("500");
-    await root.getByLabel("Endpoint B x", { exact: true }).fill("700");
+    await root.getByLabel("Endpoint A x", { exact: true }).fill("150");
+    await root.getByLabel("Endpoint A y", { exact: true }).fill("600");
+    await root.getByLabel("Endpoint B x", { exact: true }).fill("333.33");
+    await root.getByLabel("Endpoint B y", { exact: true }).fill("600");
+    await root.getByLabel("Both endpoints use the stated lead and the same time scale.", { exact: true }).check();
     await root.getByRole("button", { name: "Save measurement", exact: true }).click();
     await root.getByRole("button", { name: /^Review 1$/ }).click();
     await root.getByText("1000 ms", { exact: true }).waitFor();
@@ -114,6 +128,22 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await root.locator('input[type="file"]').setInputFiles({ name: "broken.csv", mimeType: "text/csv", buffer: Buffer.from("bad data") });
     await root.getByRole("alert").waitFor();
     assert.equal(await root.getByText("Local digital ECG", { exact: true }).isVisible(), true, "failed import preserves prior recording");
+    const text = "time_ms,I_mV,II_mV\n0,0,1\n2,1,0\n4,0,-1";
+    for (const bom of [false, true]) {
+      const buffer = Buffer.concat([bom ? Buffer.from([239, 187, 191]) : Buffer.alloc(0), Buffer.from(text)]);
+      const digest = createHash("sha256").update(buffer).digest("hex");
+      await root.locator('input[type="file"]').setInputFiles({ name: "identity.csv", mimeType: "text/csv", buffer });
+      await root.getByRole("button", { name: "Source", exact: true }).click();
+      await root.getByText(digest, { exact: true }).waitFor();
+    }
+    await root.locator('input[type="file"]').setInputFiles({ name: "amplitude.csv", mimeType: "text/csv", buffer: Buffer.from("time_ms,V6_mV\n0,0\n2,10\n4,0\n6,-10\n8,0") });
+    await root.getByText(/^Some recorded peaks exceed/).waitFor();
+    const leadBox = await root.getByRole("button", { name: "Focus lead V6", exact: true }).locator("rect").first().boundingBox();
+    const sheetBox = await root.locator('svg[aria-label^="Overview rendered"]').boundingBox();
+    assert.ok(leadBox && sheetBox && leadBox.y >= sheetBox.y && leadBox.y + leadBox.height <= sheetBox.y + sheetBox.height + 1, "subset lead must lie inside the overview");
+    await root.getByRole("button", { name: "Lower display gain", exact: true }).click();
+    await root.getByRole("button", { name: "Lower display gain", exact: true }).click();
+    await root.getByText(/^Some recorded peaks exceed/).waitFor({ state: "hidden" });
     const raw = `${process.cwd()}/public/ecg-reference/ptb-xl-1.0.3`;
     await root.locator('input[type="file"]').setInputFiles([`${raw}/00010_hr.hea`, `${raw}/00010_hr.dat`]);
     await root.getByRole("alert").waitFor({ state: "hidden" });
@@ -122,6 +152,16 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     assert.equal(fileRequests.length, 0, "recording bytes or notes sent in request bodies");
     assert.deepEqual(errors, []);
     results.push({ engine: name, version: browser.version(), workflow: "pass", imports: ["PDF", "PNG", "CSV", "WFDB"], malformedFile: "prior source retained", networkRequestBodies: fileRequests.length, checks });
+    await page.goto(base + "/reasonos/review/index.html");
+    await page.getByRole("heading", { name: "Independent review protocol", exact: true }).waitFor();
+    assert.equal(await page.locator("form").count(), 0);
+    const reviewAxe = await new AxeBuilder({ page }).include("main").analyze();
+    checks.push({ viewport: "review-protocol", violations: reviewAxe.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.length })) });
+    for (const file of ["reference-00010.pdf", "reference-00010.csv", "response.txt"]) {
+      const response = await page.request.get(base + "/reasonos/review/" + file);
+      assert.ok(response.ok(), "Public review fixture must load: " + file);
+    }
+    await page.screenshot({ path: `${out}/${name}-review-protocol.png` });
     await context.close();
   } finally { await browser.close(); }
 }

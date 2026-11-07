@@ -1,0 +1,83 @@
+[
+  {
+    "engine": "chromium",
+    "version": "153.0.8010.12",
+    "linkedModel": "pass",
+    "inputReversal": "source unchanged",
+    "fourBoundaryCases": "pass",
+    "keyboardScrub": "pass",
+    "workspaceEvidencePreserved": "pass",
+    "checks": [
+      {
+        "viewport": "desktop",
+        "violations": []
+      },
+      {
+        "viewport": "tablet",
+        "violations": []
+      },
+      {
+        "viewport": "phone",
+        "violations": []
+      },
+      {
+        "viewport": "phone-disclosures",
+        "violations": []
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "version": "153.0",
+    "linkedModel": "pass",
+    "inputReversal": "source unchanged",
+    "fourBoundaryCases": "pass",
+    "keyboardScrub": "pass",
+    "workspaceEvidencePreserved": "pass",
+    "checks": [
+      {
+        "viewport": "desktop",
+        "violations": []
+      },
+      {
+        "viewport": "tablet",
+        "violations": []
+      },
+      {
+        "viewport": "phone",
+        "violations": []
+      },
+      {
+        "viewport": "phone-disclosures",
+        "violations": []
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "version": "26.6",
+    "linkedModel": "pass",
+    "inputReversal": "source unchanged",
+    "fourBoundaryCases": "pass",
+    "keyboardScrub": "pass",
+    "workspaceEvidencePreserved": "pass",
+    "checks": [
+      {
+        "viewport": "desktop",
+        "violations": []
+      },
+      {
+        "viewport": "tablet",
+        "violations": []
+      },
+      {
+        "viewport": "phone",
+        "violations": []
+      },
+      {
+        "viewport": "phone-disclosures",
+        "violations": []
+      }
+    ]
+  }
+]

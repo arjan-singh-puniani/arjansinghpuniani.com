@@ -1,0 +1,95 @@
+[
+  {
+    "engine": "chromium",
+    "version": "153.0.8010.12",
+    "workflow": "pass",
+    "imports": [
+      "PDF",
+      "PNG",
+      "CSV",
+      "WFDB"
+    ],
+    "malformedFile": "prior source retained",
+    "networkRequestBodies": 0,
+    "checks": [
+      {
+        "viewport": "desktop",
+        "violations": []
+      },
+      {
+        "viewport": "tablet",
+        "violations": []
+      },
+      {
+        "viewport": "phone",
+        "violations": []
+      },
+      {
+        "viewport": "pdf",
+        "violations": []
+      }
+    ]
+  },
+  {
+    "engine": "firefox",
+    "version": "153.0",
+    "workflow": "pass",
+    "imports": [
+      "PDF",
+      "PNG",
+      "CSV",
+      "WFDB"
+    ],
+    "malformedFile": "prior source retained",
+    "networkRequestBodies": 0,
+    "checks": [
+      {
+        "viewport": "desktop",
+        "violations": []
+      },
+      {
+        "viewport": "tablet",
+        "violations": []
+      },
+      {
+        "viewport": "phone",
+        "violations": []
+      },
+      {
+        "viewport": "pdf",
+        "violations": []
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "version": "26.6",
+    "workflow": "pass",
+    "imports": [
+      "PDF",
+      "PNG",
+      "CSV",
+      "WFDB"
+    ],
+    "malformedFile": "prior source retained",
+    "networkRequestBodies": 0,
+    "checks": [
+      {
+        "viewport": "desktop",
+        "violations": []
+      },
+      {
+        "viewport": "tablet",
+        "violations": []
+      },
+      {
+        "viewport": "phone",
+        "violations": []
+      },
+      {
+        "viewport": "pdf",
+        "violations": []
+      }
+    ]
+  }
+]

@@ -1,0 +1,126 @@
+{
+  "browser": "153.0.8010.12",
+  "environment": "Local macOS browser; GPU mode not profiled",
+  "route": "http://127.0.0.1:3235",
+  "initial": {
+    "resources": [
+      {
+        "path": "/_next/static/css/bdfa83d2a274fce8.css",
+        "encodedBytes": 13104,
+        "decodedBytes": 62494
+      },
+      {
+        "path": "/_next/static/css/6a1f32f031c10c6a.css",
+        "encodedBytes": 5635,
+        "decodedBytes": 27082
+      },
+      {
+        "path": "/_next/static/css/72b88cfcd0252b5d.css",
+        "encodedBytes": 18805,
+        "decodedBytes": 91514
+      },
+      {
+        "path": "/_next/static/chunks/webpack-6fb9180868cb7bb5.js",
+        "encodedBytes": 1882,
+        "decodedBytes": 3669
+      },
+      {
+        "path": "/_next/static/chunks/4bd1b696-f785427dddbba9fb.js",
+        "encodedBytes": 54365,
+        "decodedBytes": 173020
+      },
+      {
+        "path": "/_next/static/chunks/main-app-2f70a9014e8da573.js",
+        "encodedBytes": 560,
+        "decodedBytes": 560
+      },
+      {
+        "path": "/_next/static/chunks/2619-3c9e02e22d10480a.js",
+        "encodedBytes": 3377,
+        "decodedBytes": 8538
+      },
+      {
+        "path": "/_next/static/chunks/1356-a15dc0d1f45610b6.js",
+        "encodedBytes": 5196,
+        "decodedBytes": 13618
+      },
+      {
+        "path": "/_next/static/chunks/3024-468da80344d9aa99.js",
+        "encodedBytes": 26552,
+        "decodedBytes": 92631
+      },
+      {
+        "path": "/_next/static/chunks/1255-dc3ddf72a1dc71a7.js",
+        "encodedBytes": 46709,
+        "decodedBytes": 174134
+      },
+      {
+        "path": "/_next/static/chunks/8081-46e392f5895f27e5.js",
+        "encodedBytes": 24079,
+        "decodedBytes": 71732
+      },
+      {
+        "path": "/_next/static/chunks/app/work/vector-ekg-reasonos/workspace/page-d91a171898e02b18.js",
+        "encodedBytes": 193,
+        "decodedBytes": 193
+      },
+      {
+        "path": "/_next/static/chunks/app/layout-b4d3518ead527118.js",
+        "encodedBytes": 2810,
+        "decodedBytes": 7600
+      },
+      {
+        "path": "/_next/static/chunks/app/work/vector-ekg-reasonos/page-692e181983d5dba1.js",
+        "encodedBytes": 52762,
+        "decodedBytes": 170667
+      },
+      {
+        "path": "/ecg-reference/ptb-xl-1.0.3/00010_hr.hea",
+        "encodedBytes": 613,
+        "decodedBytes": 613
+      },
+      {
+        "path": "/ecg-reference/ptb-xl-1.0.3/00010_hr.dat",
+        "encodedBytes": 120000,
+        "decodedBytes": 120000
+      },
+      {
+        "path": "/ecg-reference/ptb-xl-1.0.3/provenance.json",
+        "encodedBytes": 1304,
+        "decodedBytes": 8514
+      },
+      {
+        "path": "/icon.svg",
+        "encodedBytes": 224,
+        "decodedBytes": 224
+      },
+      {
+        "path": "/work/vector-ekg-reasonos",
+        "encodedBytes": 8175,
+        "decodedBytes": 32824
+      },
+      {
+        "path": "/_next/static/css/e7ebeb4e12ba67df.css",
+        "encodedBytes": 9499,
+        "decodedBytes": 50153
+      }
+    ],
+    "paint": [
+      {
+        "name": "first-paint",
+        "ms": 124
+      },
+      {
+        "name": "first-contentful-paint",
+        "ms": 124
+      }
+    ]
+  },
+  "inputToTwoAnimationFramesMs": {
+    "samples": 30,
+    "median": 33.30000001192093,
+    "p95": 34.10000002384186,
+    "maximum": 34.19999998807907
+  },
+  "limitations": "Callbacks approximate interface settlement; not GPU execution timings, physical-phone performance or clinical validation."
+}
