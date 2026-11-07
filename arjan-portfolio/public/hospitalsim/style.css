@@ -84,3 +84,10 @@ body.starter-clinic .scene-heading h1{font:800 19px Arial,Helvetica,sans-serif!i
 
 /* Keep the purchase and cancellation visible while the parts list scrolls. */
 .equipment-panel{display:flex;flex-direction:column;overflow:hidden}.equipment-title{flex:none}#equipmentContent{display:flex;flex-direction:column;min-height:0;padding:0;overflow:hidden}.equipment-scroll{padding:12px 14px;overflow:auto;min-height:0}.equipment-purchase{padding:8px 12px 12px;border-top:1px solid #9cb2c0;background:#fff;flex:none}.equipment-purchase .kit-status{margin:0 0 8px}
+
+.service-receipt{position:absolute;z-index:12;transform:translate(-50%,-100%);pointer-events:none;padding:10px 12px;border:2px solid #16616e;background:#fff;color:#124d58;font:800 13px Arial,sans-serif;box-shadow:3px 3px 0 #16616e24;white-space:nowrap}.service-receipt[hidden]{display:none}
+
+/* The guided action keeps its hit target as its wording changes. */
+.starter-clinic .guidance{display:grid;grid-template-columns:minmax(0,1fr) 210px auto;min-height:80px}.starter-clinic .guidance>div:nth-child(2){grid-column:1;min-width:0}.starter-clinic #nextAction{grid-column:2;width:210px;min-height:48px;white-space:normal}.starter-clinic .transport{grid-column:3;justify-self:end;margin-left:0}@media(max-width:700px){.starter-clinic .guidance{grid-template-columns:minmax(0,1fr) 170px;min-height:64px}.starter-clinic #nextAction{width:170px;max-width:170px}.starter-clinic .transport{grid-column:1/-1}.starter-clinic .guidance>div:nth-child(2){min-height:48px;display:flex;align-items:center}}
+
+.reception-opening .transport{min-width:430px;min-height:44px;justify-content:flex-end}.reception-opening .transport #toggleBuild,.reception-opening .transport #undo{font-size:12px}.reception-opening .tool-row{display:none}.reception-opening .tool-row:has(#buildTools:not([hidden])){display:flex}@media(max-width:700px){.reception-opening .transport{min-width:0;width:100%;min-height:44px;flex-wrap:wrap}.reception-opening .transport #elapsed{display:none}}

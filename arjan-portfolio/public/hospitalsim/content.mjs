@@ -1,5 +1,5 @@
-import {CLINIC_DEPARTMENTS,CLINIC_ROLES} from './clinic.mjs?v=138';
-export const VERSION='1.0.0-rc8', STEP=1;
+import {CLINIC_DEPARTMENTS,CLINIC_ROLES} from './clinic.mjs?v=149';
+export const VERSION='1.0.0-rc9', STEP=1;
 export const WALK_SUBSTEPS=3;
 export const GRID={w:9,h:8,entry:{x:4,y:7},exit:{x:7,y:7},step:1.65};
 export const CAMPUS_V1={w:24,h:20,shiftY:12,version:1};

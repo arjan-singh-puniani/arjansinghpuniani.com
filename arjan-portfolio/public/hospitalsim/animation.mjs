@@ -1,4 +1,4 @@
-import {WALK_SPEED} from './motion.mjs?v=138';
+import {WALK_SPEED} from './motion.mjs?v=149';
 // Manually sampled clips cannot rely on mixer-time fades: their clock is held still.
 export function samplePose(person,name,time){
  const action=person.actions.get(name);
@@ -9,8 +9,8 @@ export function samplePose(person,name,time){
 export function restoreBones(pose){for(const b of pose){b.bone.position.copy(b.position);b.bone.quaternion.copy(b.quaternion);b.bone.scale.copy(b.scale)}}
 export function landingGesture(person,time,reduced=false,cancelled=false){
  if(reduced||time<0||time>=.9)return [];
- const pulse=Math.sin(Math.PI*time/.9)**2*(cancelled ? .6 : 1),pose=person.restBones.filter(b=>['head','forearm.R','hand.R'].includes(b.bone.name)).map(({bone})=>({bone,position:bone.position.clone(),quaternion:bone.quaternion.clone(),scale:bone.scale.clone()}));
- for(const {bone}of pose){if(bone.name==='head')bone.rotateX(.14*pulse);if(bone.name==='forearm.R')bone.rotateX(-.28*pulse);if(bone.name==='hand.R')bone.rotateZ(.10*pulse)}
+ const pulse=Math.sin(Math.PI*time/.9)**2*(cancelled ? .6 : 1),pose=person.restBones.filter(b=>['head','forearmR','handR'].includes(b.bone.name.replace(/[._]/g,''))).map(({bone})=>({bone,position:bone.position.clone(),quaternion:bone.quaternion.clone(),scale:bone.scale.clone()}));
+ for(const {bone}of pose){if(bone.name==='head')bone.rotateX(.14*pulse);if(bone.name.replace(/[._]/g,'')==='forearmR')bone.rotateX(-.28*pulse);if(bone.name.replace(/[._]/g,'')==='handR')bone.rotateZ(.10*pulse)}
  return pose;
 }
 export function dangle(person,time,reduced=false,sway={x:0,z:0}){
@@ -39,3 +39,10 @@ export function advanceLocomotion(p,clip,simDt){
   }
   p.mixer.update(simDt);p.lastWalkPosition=p.group.position.clone();p.previousClip=clip;
  }
+
+export function consultationGesture(person,seconds,speaker=false){
+ const phase=(seconds+(speaker?0:1.5))%3,pulse=phase<1.1?Math.sin(Math.PI*phase/1.1)**2:0;
+ if(!pulse)return[];
+ const pose=person.restBones.filter(b=>['head','spine','forearmR','handR'].includes(b.bone.name.replace(/[._]/g,''))).map(({bone})=>({bone,position:bone.position.clone(),quaternion:bone.quaternion.clone(),scale:bone.scale.clone()}));
+ for(const {bone}of pose){if(bone.name==='head')bone.rotateX(.07*pulse);if(bone.name==='spine')bone.rotateX(-.025*pulse);if(speaker&&bone.name.replace(/[._]/g,'')==='forearmR')bone.rotateX(-.12*pulse);if(speaker&&bone.name.replace(/[._]/g,'')==='handR')bone.rotateZ(.10*pulse)}return pose;
+}

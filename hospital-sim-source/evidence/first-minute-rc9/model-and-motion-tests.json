@@ -1,0 +1,111 @@
+{
+  "model": "1.0.0-rc9",
+  "firstBill": 48,
+  "firstExit": 60,
+  "secondReceptionOffer": 51,
+  "arrivalsFirstMinute": 4,
+  "capacityPair": [
+    {
+      "counts": {
+        "arrivals": 9,
+        "completed": 3,
+        "departed": 0,
+        "unfinished": 6
+      },
+      "waiting": 282,
+      "cash": 6736,
+      "staff": 2
+    },
+    {
+      "counts": {
+        "arrivals": 9,
+        "completed": 3,
+        "departed": 0,
+        "unfinished": 6
+      },
+      "waiting": 230,
+      "cash": 5737,
+      "staff": 3
+    }
+  ],
+  "clips": [
+    {
+      "profile": "clinician",
+      "bytes": 142200,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    },
+    {
+      "profile": "coat",
+      "bytes": 142192,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    },
+    {
+      "profile": "patient-01",
+      "bytes": 142392,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    },
+    {
+      "profile": "patient-02",
+      "bytes": 142312,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    },
+    {
+      "profile": "patient-03",
+      "bytes": 142408,
+      "chairMaximumFootDriftMetres": 0.0006213365333602367
+    },
+    {
+      "profile": "patient-04",
+      "bytes": 142488,
+      "chairMaximumFootDriftMetres": 0.0006213365333602367
+    },
+    {
+      "profile": "patient-05",
+      "bytes": 142688,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    },
+    {
+      "profile": "patient-06",
+      "bytes": 142624,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    },
+    {
+      "profile": "patient-07",
+      "bytes": 142676,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    },
+    {
+      "profile": "patient-08",
+      "bytes": 142640,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    },
+    {
+      "profile": "patient-09",
+      "bytes": 142728,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    },
+    {
+      "profile": "patient-10",
+      "bytes": 142572,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    },
+    {
+      "profile": "patient-11",
+      "bytes": 142656,
+      "chairMaximumFootDriftMetres": 0.0006213261569397373
+    }
+  ],
+  "checks": [
+    "empty start",
+    "paid admin opens reception",
+    "atomic hire/open undo",
+    "GP built while arrivals move",
+    "first completed visit and actual fee",
+    "queue-derived reception capacity action",
+    "exact active save continuation",
+    "active/custom old schedules retained",
+    "bounded chair phases",
+    "converted GLB planted feet",
+    "runtime-normalized bone gestures"
+  ]
+}

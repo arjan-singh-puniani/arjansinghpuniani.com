@@ -1,0 +1,293 @@
+{
+  "speedMetresPerSecond": 1.2375,
+  "durationSeconds": 0.8,
+  "strideMetres": 0.9900000000000001,
+  "checks": [
+    {
+      "rig": "clinician",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "coat",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-01",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-02",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-03",
+      "maxSupportDriftMetres": 0.00225219043343572,
+      "minimumSoleMetres": -0.0021929340437054634,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-04",
+      "maxSupportDriftMetres": 0.00225219043343572,
+      "minimumSoleMetres": -0.0021929340437054634,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-05",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-06",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-07",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-08",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-09",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-10",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    },
+    {
+      "rig": "patient-11",
+      "maxSupportDriftMetres": 0.0022520576163693263,
+      "minimumSoleMetres": -0.0021927955094724894,
+      "seating": [
+        {
+          "clip": "SeatDown",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "SeatUp",
+          "duration": 0.6666666666666666,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        },
+        {
+          "clip": "Sit",
+          "duration": 2.0,
+          "plantedFootKeyframeDriftUnderMetres": 0.002
+        }
+      ]
+    }
+  ]
+}
