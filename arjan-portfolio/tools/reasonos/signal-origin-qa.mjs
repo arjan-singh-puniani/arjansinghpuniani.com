@@ -32,6 +32,8 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await root.getByRole("button", { name: "Reverse recorder inputs" }).click();
     assert.ok(Math.abs(await value() + forward) < 1e-12);
     assert.deepEqual(await arrows(), source);
+    const reversedBox = await root.locator("[data-synthetic-wave]").evaluate(el => { const b = el.getBBox(); return { y: b.y, bottom: b.y + b.height }; });
+    assert.ok(reversedBox.y >= 26 && reversedBox.bottom <= 171, "the reversed waveform must stay inside the plotted voltage range");
     await root.getByRole("button", { name: "Reverse recorder inputs" }).click();
     await root.getByLabel("Explanation lead").selectOption("I"); assert.notEqual(await value(), forward);
     await root.getByLabel("Explanation lead").selectOption("II");
@@ -81,6 +83,17 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await page.locator("[data-signal-origin]").waitFor();
     await page.locator("summary").filter({ hasText: "How does an ECG form?" }).click();
     assert.equal(await page.getByLabel("Endpoint A seconds", { exact: true }).inputValue(), "1");
+    await page.goto(base + "/work/vector-ekg-reasonos");
+    const embedded = page.locator("[data-signal-origin]");
+    await embedded.getByRole("heading", { name: "From cardiac cells to the ECG", exact: true }).waitFor();
+    assert.equal(await page.locator("[data-ecg-workspace]").count(), 1);
+    await embedded.getByRole("button", { name: "T", exact: true }).click();
+    assert.ok(Number(await embedded.locator("[data-voltage-mv]").getAttribute("data-voltage-mv")) > 0);
+    const integrated = await new AxeBuilder({ page }).include("[data-signal-origin]").withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+    assert.deepEqual(integrated.violations, []);
+    checks.push({ viewport: "phone-case-integration", violations: integrated.violations });
+    await embedded.getByRole("heading", { name: "From cardiac cells to the ECG", exact: true }).scrollIntoViewIfNeeded();
+    await page.screenshot({ path: `${out}/${name}-case-integration.png` });
     assert.deepEqual(errors, []);
     results.push({ engine: name, version: browser.version(), linkedModel: "pass", inputReversal: "source unchanged", fourBoundaryCases: "pass", keyboardScrub: "pass", workspaceEvidencePreserved: "pass", checks });
   } finally { await browser.close(); }

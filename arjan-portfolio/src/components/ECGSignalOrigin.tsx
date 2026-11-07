@@ -87,7 +87,7 @@ export function ECGSignalOrigin({ standalone = false }: { standalone?: boolean }
   const [minus, plus] = [state.negative, state.positive];
   const a = ELECTRODES[minus], b = ELECTRODES[plus];
   const heartColor = phase.id === "T" ? "#c4b0df" : "#e6b5a3";
-  const xTrace = (t: number) => 44 + t / 820 * 992, yTrace = (v: number) => 125 - v * 66;
+  const xTrace = (t: number) => 44 + t / 820 * 992, yTrace = (v: number) => 100 - v * 60;
   useEffect(() => {
     const view = traceViewport.current;
     if (!view) return;
@@ -152,12 +152,12 @@ export function ECGSignalOrigin({ standalone = false }: { standalone?: boolean }
     <figure className={s.trace}>
       <figcaption><div><span>04 / SYNTHETIC DIFFERENCE OVER TIME</span><h3>Synthetic lead {lead}{reversed ? " · reversed inputs" : ""}</h3></div><p>The cursor, source arrow, body field and electrode readings use the same time.</p></figcaption>
       <p className={s.scrollHint}>Scrollable cycle. Use the time slider to follow the cursor.</p><div ref={traceViewport} className={s.traceScroll} role="region" tabIndex={0} aria-label="Synthetic ECG cycle; scroll horizontally on a small screen"><svg viewBox="0 0 1080 205" role="img" aria-label={`Synthetic lead ${lead} waveform. At ${time} milliseconds, ${phase.title.toLowerCase()}, voltage is ${number(state.voltageMv)} millivolts.`}>
-        <defs><pattern id={`${id}grid`} x="44" y="26" width={992 * 50 / 820} height="33" patternUnits="userSpaceOnUse"><path d={`M${992 * 50 / 820} 0 H0 V33`} fill="none" stroke="#cedcd0" strokeWidth=".7"/></pattern></defs>
-        <rect x="44" y="26" width="992" height="145" fill={`url(#${id}grid)`}/><path d="M44 125 H1036" stroke="#b6c7bb"/>
+        <defs><pattern id={`${id}grid`} x="44" y="10" width={992 * 50 / 820} height="30" patternUnits="userSpaceOnUse"><path d={`M${992 * 50 / 820} 0 H0 V30`} fill="none" stroke="#cedcd0" strokeWidth=".7"/></pattern></defs>
+        <rect x="44" y="26" width="992" height="145" fill={`url(#${id}grid)`}/><path d="M44 100 H1036" stroke="#b6c7bb"/>
         {(["P", "QRS", "T"] as const).map((item, i) => <text key={item} x={xTrace([80, 240, 530][i])} y="18" textAnchor="middle" fontSize="12">{item}</text>)}
-        <path d={trace.map(([t, v], i) => `${i ? "L" : "M"}${number(xTrace(t), 2)} ${number(yTrace(v), 2)}`).join(" ")} fill="none" stroke="#24594f" strokeWidth="2.5"/>
+        <path data-synthetic-wave d={trace.map(([t, v], i) => `${i ? "L" : "M"}${number(xTrace(t), 2)} ${number(yTrace(v), 2)}`).join(" ")} fill="none" stroke="#24594f" strokeWidth="2.5"/>
         <path d={`M${xTrace(time)} 27 V172`} stroke="#64439c" strokeWidth="1.5"/><circle cx={xTrace(time)} cy={yTrace(state.voltageMv)} r="5" fill="#64439c" stroke="#f8faf2" strokeWidth="2"/>
-        <text x="5" y="63" fontSize="10">1 mV</text><text x="13" y="128" fontSize="10">0</text>{[0, 200, 400, 600, 800].map(t => <text key={t} x={xTrace(t)} y="191" fontSize="11" textAnchor="middle">{t} ms</text>)}
+        <text x="5" y="43" fontSize="10">1 mV</text><text x="13" y="103" fontSize="10">0</text>{[0, 200, 400, 600, 800].map(t => <text key={t} x={xTrace(t)} y="191" fontSize="11" textAnchor="middle">{t} ms</text>)}
       </svg></div>
       <p className={s.traceNote}><strong>Grid spacing: 50 ms horizontally · 0.5 mV vertically.</strong> Prescribed P/QRS/T source functions, not a cellular simulation or measured heartbeat. Changing a lead or reversing inputs changes the measurement; it does not change cardiac activity.</p>
     </figure>

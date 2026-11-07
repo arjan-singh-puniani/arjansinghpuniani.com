@@ -10,9 +10,9 @@
       "Firefox 153.0",
       "WebKit 26.6"
     ],
-    "inspectedAxeStates": 27,
+    "inspectedAxeStates": 30,
     "workspaceAndProtocolStates": 15,
-    "signalExplanationStates": 12,
+    "signalExplanationStates": 15,
     "violations": 0
   },
   "independentClinicianReview": "pending",
