@@ -142,7 +142,13 @@
 .practice details { margin-top:8px; }
 .practice summary { cursor:pointer; padding:6px 0; }
 .practice button { margin:8px 8px 0 0; }
-.practiceResult { background:#e8f0e9; border-left:3px solid var(--accent); margin-top:16px; padding:12px; }
+.traceActions { display:grid; gap:10px; padding:12px 0; }
+.traceButtons { display:flex; flex-wrap:wrap; gap:8px; }
+.workspace .traceButtons button { min-height:44px; }
+.workspace .traceButtons .primary { width:auto; margin:0; }
+.traceStatus { color:var(--muted); font-size:12px; }
+.traceActions > :empty { position:absolute; }
+.practiceResult { background:#e8f0e9; border-left:3px solid var(--accent); padding:12px; }
 .practiceResult p { margin:6px 0; }
 .practiceResult a { font-size:12px; }
 @media(max-width:760px) { .strip { height:148px; } .strip .overlay text { font-size:25px; } }

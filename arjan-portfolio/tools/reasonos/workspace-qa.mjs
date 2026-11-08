@@ -70,12 +70,32 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await root.getByText(/This is a rate estimate from one pair of beats/).waitFor();
 
     await selectPractice("08215");
+    const traceActions = root.getByRole("group", { name: "Trace actions", exact: true });
+    const traceSave = traceActions.getByRole("button", { name: "Save measurement", exact: true });
+    const measureNext = traceActions.getByRole("button", { name: "Measure next interval", exact: true });
+    await page.setViewportSize({ width: 390, height: 844 });
     await root.getByText("Show worked landmarks", { exact: true }).click();
     await root.getByRole("button", { name: "Mark example interval 1", exact: true }).click();
-    await root.getByRole("button", { name: "Save measurement", exact: true }).click();
-    await root.getByText(/1 of 2 exercise intervals matched/).waitFor();
-    await saveInterval("0.988", "1.59");
-    await root.getByText("790 ms and 602 ms · 188 ms apart.", { exact: true }).waitFor();
+    await traceSave.click();
+    await traceActions.getByText(/1 of 2 exercise intervals matched/).waitFor();
+    const stripFrame = root.getByRole("region", { name: /^Focused trace/ });
+    assert.equal(await traceActions.evaluate(el => el.previousElementSibling?.getAttribute("aria-label")?.startsWith("Focused trace")), true);
+    for (const element of [stripFrame, traceActions]) {
+      const bounds = await element.boundingBox();
+      assert.ok(bounds && bounds.y >= 0 && bounds.y + bounds.height <= 844, "trace and actions must share the phone viewport after saving");
+    }
+    await page.screenshot({ path: `${out}/${name}-rr-phone-next.png` });
+    await measureNext.focus();
+    await page.keyboard.press("Enter");
+    assert.equal(await stripFrame.evaluate(el => el === document.activeElement), true);
+    assert.equal(await root.getByLabel("Endpoint A seconds").inputValue(), "0.988");
+    assert.equal(await stripFrame.locator("[data-caliper]").count(), 1);
+    assert.equal(await traceSave.isDisabled(), true);
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    await root.getByLabel("Endpoint B seconds").fill("1.59");
+    await traceSave.click();
+    await traceActions.getByText("790 ms and 602 ms · 188 ms apart.", { exact: true }).waitFor();
+    assert.equal(await measureNext.count(), 0);
     await page.screenshot({ path: `${out}/${name}-rr-comparison.png` });
 
     await selectPractice("00011");
