@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {inspectCharacterAsset} from '../dist/animation/CharacterAssetIntake.js';
-import {RACKET} from '../dist/animation/RacketGeometry.js';
+import {RACKET,supportRacketHand} from '../dist/animation/RacketGeometry.js';
 import {skinMatrices,BONE} from '../dist/animation/CharacterSkin.js';
 import {Vec3,transformPoint,compose} from '../dist/rendering/Math3D.js';
 import {Character} from '../dist/entities/Character.js';
@@ -88,21 +88,28 @@ try{
  globalThis.Image=class{naturalWidth=1024;naturalHeight=1024;async decode(){}};
  const {loadAuthoredAthlete,authoredAthleteMeshes,advanceAuthoredHands}=await import('../dist/animation/AuthoredAthlete.js');await loadAuthoredAthlete();
  const verifiedFetch=globalThis.fetch;
- for(const invalid of [{neck:[0,meta.bind.head[1]+.1,0]},{neck:[0,meta.bind.neck[1],1]},{spine:[0,meta.bind.chest[1]+.1,0]},{foreArmL:meta.bind.upperArmL}]){globalThis.fetch=async url=>new URL(url).pathname.endsWith('/provenance.json')?new Response(JSON.stringify({...meta,bind:{...meta.bind,...invalid}})):verifiedFetch(url);await assert.rejects(()=>loadAuthoredAthlete(),/registration|arm lengths/);}
+ for(const invalid of [{neck:[0,meta.bind.head[1]+.1,0]},{neck:[0,meta.bind.neck[1],1]},{spine:[0,meta.bind.chest[1]+.1,0]},{foreArmL:meta.bind.upperArmL},{wristL:meta.bind.foreArmL},{wristR:meta.bind.handR.map((n,i)=>n+(i===0?.4:0))}]){globalThis.fetch=async url=>new URL(url).pathname.endsWith('/provenance.json')?new Response(JSON.stringify({...meta,bind:{...meta.bind,...invalid}})):verifiedFetch(url);await assert.rejects(()=>loadAuthoredAthlete(),/registration|arm lengths/);}
  globalThis.fetch=verifiedFetch;
- const restNeckPose={...new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{}).analysisPose(),pelvisCenter:rest.pelvis.clone(),head:rest.head.clone(),shoulderL:rest.upperArmL.clone(),shoulderR:rest.upperArmR.clone(),headYaw:0,torsoYaw:0,hipYaw:0};
+ const restNeckPose={...new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{}).analysisPose(),pelvisCenter:rest.pelvis.clone(),chest:rest.chest.clone(),head:rest.head.clone(),shoulderL:rest.upperArmL.clone(),shoulderR:rest.upperArmR.clone(),headYaw:0,torsoYaw:0,hipYaw:0};
  const restTorso=authoredAthleteMeshes(restNeckPose,new Vec3(),0,[{pitch:0,yaw:0},{pitch:0,yaw:0}],0)[0];let maxRestTorsoError=0;
  for(const bone of [BONE.pelvis,BONE.spine,BONE.chest,BONE.neck])for(let i=0;i<16;i++)maxRestTorsoError=Math.max(maxRestTorsoError,Math.abs(restTorso.boneMatrices[bone*16+i]-(i%5===0?1:0)));
  assert(maxRestTorsoError<1e-5,'matching authored chest/head landmarks must preserve the source torso');console.log(JSON.stringify({maxRestTorsoError,registeredNeck:restTorso.rig.pose.neck}));
 const character=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});for(let i=0;i<240;i++)character.update(1/60);
 const standing=character.analysisPose(),shoulderRatio=Vec3.sub(standing.shoulderL,standing.shoulderR).len()/Vec3.sub(rest.upperArmL,rest.upperArmR).len();
 assert(shoulderRatio>.97&&shoulderRatio<.99,'the standing hero must retain the deliberately narrower shoulder span');console.log(JSON.stringify({shoulderRatio}));
-const idleRig=character.meshes().find(m=>m.rig).rig.pose;
-for(const side of ['L','R'])assert(Vec3.dot(Vec3.sub(idleRig['hand'+side],idleRig['foreArm'+side]).normalize(),idleRig['handDirection'+side])>.98,'resting hands must follow the forearms instead of folding down at the wrists');
+// Open hands on hips flex the wrist; the previous straight forearm-to-grip contract no longer applies.
+for(const side of ['L','R']){
+ assert(Math.abs(Vec3.sub(standing['wrist'+side],standing['elbow'+side]).len()-Vec3.sub(rest['wrist'+side],rest['foreArm'+side]).len())<.003,'Rest retains the actual elbow-to-wrist length');
+ assert(Vec3.dot(Vec3.sub(standing['wrist'+side],standing['elbow'+side]).normalize(),standing['handDirection'+side])>Math.cos(50*Math.PI/180),'Resting wrist bend stays below fifty degrees');
+}
 let samples=0,maxGripGap=0,minSole=Infinity,minForearmVolume=Infinity;
 for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand','serve']){
  character.trigger(state);for(let t=0;t<90;t++){character.update(1/120);if(t%15)continue;
-  const observed=character.analysisPose();for(const side of ['L','R'])for(const [a,b,expected] of [[`shoulder${side}`,`elbow${side}`,Vec3.sub(rest[`upperArm${side}`],rest[`foreArm${side}`]).len()],[`elbow${side}`,`hand${side}`,Vec3.sub(rest[`foreArm${side}`],rest[`hand${side}`]).len()]]){const ratio=Vec3.sub(observed[a],observed[b]).len()/expected;assert(ratio>.999&&ratio<1.04,'the authored arm must retain its source length through poses');}
+  const observed=character.analysisPose();for(const side of ['L','R']){const ratio=Vec3.sub(observed[`shoulder${side}`],observed[`elbow${side}`]).len()/Vec3.sub(rest[`upperArm${side}`],rest[`foreArm${side}`]).len();assert(ratio>.999&&ratio<1.04,`${state}/${t}/${side}: the authored upper arm must retain its source length through poses`);}
+  if(!observed.shot)for(const side of ['L','R']){
+   const w=character.clubIdleRelax,endpoint=Vec3.lerp(observed['hand'+side],observed['wrist'+side],w),length=(1-w)*Vec3.sub(rest['hand'+side],rest['foreArm'+side]).len()+w*Vec3.sub(rest['wrist'+side],rest['foreArm'+side]).len(),ratio=Vec3.sub(endpoint,observed['elbow'+side]).len()/length;
+   assert(ratio>.999&&ratio<1.04,'Non-stroke rest/grip transitions retain their calibrated arm lengths');
+  }
   const part=character.meshes().find(p=>'skin' in p&&p.rig),rig=part.rig.pose,matrices=part.boneMatrices;assert(matrices.every(Number.isFinite));
   for(const geometry of [body,sleeves])for(const side of ['L','R'])for(let v=0;v<geometry.positions.length/3;v+=3){
    const joints=[0,1,2,3].map(j=>geometry.boneIndices[v*4+j]),weights=[0,1,2,3].map(j=>geometry.boneWeights[v*4+j]);
@@ -115,6 +122,29 @@ for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand'
   for(let v=0;v<shoes.positions.length/3;v+=3){let y=0;for(let j=0;j<4;j++){const weight=shoes.boneWeights[v*4+j];if(!weight)continue;const bone=shoes.boneIndices[v*4+j],point=transformPoint(matrices.slice(bone*16,bone*16+16),new Vec3(...shoes.positions.slice(v*3,v*3+3)));y+=point.y*weight;}low=Math.min(low,y);}
   minSole=Math.min(minSole,low);assert(low>-.005,'shoe penetrated the floor');samples++;
  }
+}
+// The grip is inside the palm; measuring the forearm to it hid a stretched sleeve.
+{
+ let checks=0,maxWristScale=0;
+ for(const spec of [playerSpec('taylor'),...memberData.filter(s=>s.presentation==='feminine')])for(const hz of [30,60,120])for(const state of ['swingForehand','swingBackhand','serve','volley'])for(const height of (state==='serve'?[2.36]:[.64,1.02,1.50])){
+  const actor=new Character(spec,new Vec3(),new Navigation([]),{});actor.matchCompetitor=true;actor.setAnimation('ready');for(let i=0;i<hz/2;i++)actor.update(1/hz);
+  if(state!=='serve')actor.setIncomingContact(new Vec3(state==='swingBackhand'?-.6:.6,height,.9));actor.triggerShot(state,new Vec3(0,.09,5));
+  for(let frame=0;frame<hz*.6;frame++){
+   actor.update(1/hz);if(frame/hz<.20||actor.state!==state||frame%Math.max(1,Math.round(hz/30)))continue;
+   const mesh=actor.meshes().find(m=>m.rig),rig=mesh.rig;
+   for(const side of ['L','R']){
+    const wrist=transformPoint(mesh.boneMatrices.subarray(BONE[`hand${side}`]*16,BONE[`hand${side}`]*16+16),rig.bind[`wrist${side}`]),length=Vec3.sub(new Vec3(wrist.x,wrist.y,wrist.z),rig.pose[`foreArm${side}`]).len(),expected=Vec3.sub(rig.bind[`wrist${side}`],rig.bind[`foreArm${side}`]).len(),scale=length/expected;
+    const world=transformPoint(compose(mesh.position,mesh.rotation,mesh.scale),new Vec3(wrist.x,wrist.y,wrist.z));assert(Vec3.sub(new Vec3(world.x,world.y,world.z),actor.analysisPose()[`wrist${side}`]).len()<2e-6,'live wrist analysis must match the rendered hand');
+    maxWristScale=Math.max(maxWristScale,scale);assert(scale>.99&&scale<1.04,`${spec.id}/${state}/${hz}/${height}/${side}: anatomical forearm stretches (${scale})`);checks++;
+   }
+  }
+ }
+ assert(checks>1000,'Inspect rendered anatomical wrists throughout loaded strokes');console.log(JSON.stringify({wristLengthChecks:checks,maxWristScale}));
+}
+for(const state of ['swingForehand','swingBackhand']){
+ const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});actor.matchCompetitor=true;actor.setAnimation('ready');for(let i=0;i<60;i++)actor.update(1/120);
+ actor.setIncomingContact(new Vec3(state==='swingBackhand'?-.6:.6,1.02,.9));actor.triggerShot(state,new Vec3(0,.09,5));for(let i=0;i<10;i++)actor.update(1/120);
+ const p=actor.analysisPose();assert(state==='swingForehand'?p.shoulderR.z<p.shoulderL.z:p.shoulderR.z>p.shoulderL.z,'the hitting shoulder must load back on a forehand and forward on a backhand');
 }
 // Compare the emitted soles with the actual floor layers, including rug patterns and paint.
 const floorWorld=new World(),floorParts=floorWorld.meshes.filter(m=>['box','roundBox'].includes(m.kind)&&m.position.y<.1&&m.position.y+m.scale.y/2<.15);
@@ -137,9 +167,11 @@ for(const stroke of ['swingForehand','swingBackhand','volley','serve'])for(const
 }
 console.log(JSON.stringify({maxAuthoredContactError}));
 console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0),samples,maxGripGap,minSole,minForearmVolume}));
- const {captureFrame,interpolateFrame}=await import('../dist/analysis/MotionCapture.js');
+ const {captureFrame,interpolateFrame,jointTriplet}=await import('../dist/analysis/MotionCapture.js');
  const c=new Character(playerSpec('taylor'),new Vec3(2,0,-1),new Navigation([]),{});c.trigger('swingForehand');c.update(.12);const a=captureFrame(c,0,null);c.update(1/30);const b=captureFrame(c,1/30,null),middle=interpolateFrame(a,b,1/60),parts=middle.body.filter(p=>'skin' in p&&p.poseRig);
  assert.equal(parts.find(p=>p.material==='groomedHair').color,'#65584f','replay must retain the strand tint that matches the brunette scalp');assert.equal(parts.find(p=>p.material==='humanSkin').color,'#ffffff','hair tint must not affect face or body');assert.equal(parts.length,6);assert(parts.every(p=>p.rig&&p.boneMatrices===parts[0].boneMatrices));assert.equal(parts.filter(p=>p.skirt).length,1,'replay must retain the garment clearance flag');
+ for(const part of parts)for(const side of ['L','R']){const local=transformPoint(part.boneMatrices.subarray(BONE[`hand${side}`]*16,BONE[`hand${side}`]*16+16),part.rig.bind[`wrist${side}`]),world=transformPoint(compose(part.position,part.rotation,part.scale),new Vec3(local.x,local.y,local.z));assert(Vec3.sub(new Vec3(world.x,world.y,world.z),middle.pose[`wrist${side}`]).len()<2e-6,'replayed wrist analysis must match the rendered hand');}
+ assert.strictEqual(jointTriplet(middle.pose,'elbow')[2],middle.pose.wristR,'elbow flexion must end at the anatomical wrist');
  for(const part of parts){const rig=part.rig.pose;const neckA=a.body.find(p=>p.skin?.id===part.skin.id).rig.pose.neck,neckB=b.body.find(p=>p.skin?.id===part.skin.id).rig.pose.neck;assert(Vec3.sub(rig.neck,Vec3.lerp(neckA,neckB,.5)).len()<1e-8,'replay lost the observed neck registration');const spineA=a.body.find(p=>p.skin?.id===part.skin.id).rig.pose.spine,spineB=b.body.find(p=>p.skin?.id===part.skin.id).rig.pose.spine;assert(Vec3.sub(rig.spine,Vec3.lerp(spineA,spineB,.5)).len()<1e-8,'replay lost the observed spine registration');for(const side of ['L','R']){const actual=transformPoint(part.boneMatrices.slice(BONE['hand'+side]*16,BONE['hand'+side]*16+16),part.rig.bind['hand'+side]),expected=rig['hand'+side];assert(Math.hypot(actual.x-expected.x,actual.y-expected.y,actual.z-expected.z)<1e-5,'replay used the wrong body bind');}assert.deepEqual(part.expression,a.body.find(p=>p.skin?.id===part.skin.id).expression.map((v,i)=>(v+b.body.find(p=>p.skin?.id===part.skin.id).expression[i])/2));}
  c.racketStowed=false;c.matchCompetitor=true;c.trigger('ready');for(let i=0;i<90;i++)c.update(1/120);
  const skin=c.meshes().find(p=>'skin' in p&&p.rig),palette=skin.boneMatrices;
@@ -220,7 +252,7 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  }
  assert(topVertices>1000&&torsoWidth<Math.abs(rest.upperArmL.x)+.06,'fitted crop must retain the narrow torso');assert(sleeveVertices>100,'the reference kit must retain weighted long sleeves');
  assert(meta.author.includes('punkduck')&&meta.license.includes('CC-BY-4.0'),'authored top must retain creator and license metadata');
- const {memberData}=await import('../dist/content/content.js');const castFaces=new Set(),castKits=new Set();
+ const castFaces=new Set(),castKits=new Set();
  for(const spec of memberData.filter(s=>s.presentation==='feminine')){
   const actor=new Character({...spec},new Vec3(),new Navigation([]),{});actor.racketStowed=true;for(let i=0;i<180;i++)actor.update(1/60);
   const parts=actor.meshes(),skin=parts.find(m=>m.rig&&m.material==='humanSkin'),eyes=parts.find(m=>m.eyeCenters),kit=parts.find(m=>m.rig&&m.material==='performanceKnit'&&!m.skirt);
@@ -229,7 +261,13 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
   assert(!Array.from({length:skin.skin.positions.length/9},(_,t)=>[0,1,2].every(j=>{const v=t*3+j;return skin.skin.uvs[v*2]>.5&&skin.skin.uvs[v*2+1]>.8&&skin.skin.positions[v*3+2]<-.075;})).some(Boolean),'alternate hairstyles must not retain the source ponytail core');
   for(let v=0;v<skin.skin.normals.length;v+=3*29)for(const delta of skin.skin.morphNormals){const n=skin.skin.normals;assert(Math.abs(Math.hypot(n[v]+delta[v],n[v+1]+delta[v+1],n[v+2]+delta[v+2])-1)<1e-5,'shaped expression normals must remain unit length');}
   const eg=eyes.skin;for(const side of [0,1])for(let axis=0;axis<3;axis++){const values=[];for(let v=0;v<eg.positions.length/3;v++)if((eg.positions[v*3]<0?0:1)===side)values.push(eg.positions[v*3+axis]);assert(Math.abs(eyes.eyeCenters[side*3+axis]-(Math.min(...values)+Math.max(...values))/2)<1e-6,'shaped eyes must retain their actual rotation centers');}
-  for(let v=0;v<body.positions.length/3;v+=31)if(![0,1,2,3].some(j=>body.boneIndices[v*4+j]===BONE.head&&body.boneWeights[v*4+j]>.99))for(let axis=0;axis<3;axis++)assert.equal(skin.skin.positions[v*3+axis],body.positions[v*3+axis],'face shaping must preserve the fitted body');
+  let fittedCore=0;
+  for(let v=0;v<body.positions.length/3;v+=31)if(![0,1,2,3].some(j=>body.boneIndices[v*4+j]===BONE.head&&body.boneWeights[v*4+j]>.99)){
+   const source=new Vec3(...body.positions.slice(v*3,v*3+3)),fitted=new Vec3(...skin.skin.positions.slice(v*3,v*3+3));assert(Vec3.sub(source,fitted).len()<.025,'Cast fitting stays close to the verified body');
+   if([0,1,2,3].some(j=>[BONE.handL,BONE.handR,BONE.footL,BONE.footR].includes(body.boneIndices[v*4+j])&&body.boneWeights[v*4+j]>.99))assert.deepEqual(fitted,source,'Cast fitting preserves palms and shoe anchors');
+   if(source.y>1.4&&source.y<1.6&&Math.abs(source.x)>.1&&Math.abs(source.x)<.3){assert(Math.abs(fitted.x)<Math.abs(source.x),'The torso fit must actually narrow the waist');fittedCore++;}
+  }
+  assert(fittedCore>8,'Inspect the fitted torso, not just the face');
   for(const state of ['sit','idle','ready']){actor.trigger(state);for(let i=0;i<90;i++)actor.update(1/60);assert(actor.meshes().filter(m=>m.rig).every(m=>m.boneMatrices.every(Number.isFinite)));}
   actor.matchCompetitor=true;actor.racketStowed=false;actor.setAnimation('ready');actor.update(.3);actor.setIncomingContact(new Vec3(-.6,1.02,.9));actor.triggerShot('swingBackhand',new Vec3(0,.09,5));const contactTime=actor.shotContactTime('swingBackhand');for(let i=0;i<60;i++)actor.update(contactTime/60);assert(Vec3.sub(actor.analysisPose().racketCenter,actor.debugKinematics().contactTarget).len()<1e-6,'cast appearance must preserve the world-owned racket contact');
   const frame=captureFrame(actor,0,null);assert(frame.body.some(m=>m.skin===skin.skin),'capture must retain the selected face geometry');
@@ -260,9 +298,9 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  for(const spec of [playerSpec('taylor'),...floorMembers.filter(s=>s.presentation==='feminine')])for(const hz of [30,60,120]){
   const actor=new Character(spec,new Vec3(),new Navigation([]),{});actor.matchCompetitor=true;actor.trigger('ready');for(let i=0;i<hz;i++)actor.update(1/hz);
   const first=actor.analysisPose(),offset=Vec3.sub(first.racketCenter,first.racketGrip);let turn=0;
-  for(let i=0;i<hz*3;i++){actor.update(1/hz);const p=actor.analysisPose();turn=Math.max(turn,Vec3.sub(Vec3.sub(p.racketCenter,p.racketGrip),offset).len());assert(Vec3.sub(p.handL,Vec3.lerp(p.racketHandleTop,p.racketCenter,.20)).len()<.001,'Authored free palm must follow the visible throat');for(const side of ['L','R'])assert(Vec3.sub(p['foot'+side],first['foot'+side]).len()<1e-8,'Grip adjustment must not move ready shoes');}
+  for(let i=0;i<hz*3;i++){actor.update(1/hz);const p=actor.analysisPose();turn=Math.max(turn,Vec3.sub(Vec3.sub(p.racketCenter,p.racketGrip),offset).len());assert(Vec3.sub(p.handL,supportRacketHand(p.racketGrip,p.racketCenter)).len()<.001,'Authored free palm must follow the visible throat');for(const side of ['L','R'])assert(Vec3.sub(p['foot'+side],first['foot'+side]).len()<1e-8,'Grip adjustment must not move ready shoes');}
   assert(turn>.035&&turn<.15,'Authored waiting grip must move without exaggerated fidgeting');
-  const a=captureFrame(actor,0,null);actor.update(1/hz);const b=captureFrame(actor,1/hz,null),replay=interpolateFrame(a,b,.5/hz).pose;assert(Vec3.sub(replay.handL,Vec3.lerp(replay.racketHandleTop,replay.racketCenter,.20)).len()<.001,'Replay must retain the throat support');
+  const a=captureFrame(actor,0,null);actor.update(1/hz);const b=captureFrame(actor,1/hz,null),replay=interpolateFrame(a,b,.5/hz).pose;assert(Vec3.sub(replay.handL,supportRacketHand(replay.racketGrip,replay.racketCenter)).len()<.001,'Replay must retain the throat support');
  }
  console.log('Authored athlete loader, actual Character meshes, shared replay palette and facial interpolation PASS.');
 }finally{globalThis.fetch=previousFetch;if(previousImage)globalThis.Image=previousImage;else delete globalThis.Image;}
@@ -353,12 +391,13 @@ for(const spec of [playerSpec('taylor'),...memberData.filter(c=>c.presentation==
    for(const side of ['L','R']){
     const upper=Vec3.sub(p[`elbow${side}`],p[`shoulder${side}`]),lower=Vec3.sub(p[`hand${side}`],p[`elbow${side}`]),flex=Math.acos(Math.max(-1,Math.min(1,Vec3.dot(upper.clone().normalize(),lower.clone().normalize()))));
     minWalkFlex=Math.min(minWalkFlex,flex);maxWalkFlex=Math.max(maxWalkFlex,flex);
-    assert(flex>.20&&flex<1,`${spec.id}/${hz}/${frame}: walking elbow ${(flex*180/Math.PI).toFixed(2)}° in ${actor.state}`);
+    assert(flex>.20&&flex<.65,`${spec.id}/${hz}/${frame}: walking elbow ${(flex*180/Math.PI).toFixed(2)}° in ${actor.state}`);
     assert(Math.abs(upper.len()-Vec3.sub(rest[`upperArm${side}`],rest[`foreArm${side}`]).len())<.001,'Walking must not stretch the authored upper arm');
     assert(Math.abs(lower.len()-Vec3.sub(rest[`foreArm${side}`],rest[`hand${side}`]).len())<.001,'Walking must not stretch the authored forearm');walkSamples++;
    }
   }
-  const bob=Math.max(...heads)-Math.min(...heads);maxHeadBob=Math.max(maxHeadBob,bob);assert(bob<.105,'Walking support must avoid the deep repeated body dip');
+  const bob=Math.max(...heads)-Math.min(...heads);maxHeadBob=Math.max(maxHeadBob,bob);assert(bob<.075,'Walking support must avoid the deep repeated body dip');
  }
+ assert(maxWalkFlex-minWalkFlex>.12,'Walking elbows flex through the stride instead of holding one fixed bend');
  console.log(JSON.stringify({walkSamples,minWalkFlex,maxWalkFlex,maxHeadBob}));
 }

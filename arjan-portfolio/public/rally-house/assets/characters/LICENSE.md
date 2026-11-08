@@ -39,3 +39,11 @@ For these and/or other purposes and motivations, and without any expectation of 
     c. Affirmer disclaims responsibility for clearing rights of other persons that may apply to the Work or any use thereof, including without limitation any person's Copyright and Related Rights in the Work. Further, Affirmer disclaims responsibility for obtaining any necessary consents, permissions or other rights required for any use of the Work.
 
     d. Affirmer understands and acknowledges that Creative Commons is not a party to this document and has no duty or obligation with respect to this CC0 or use of the Work.
+
+## Reference face topology
+
+The facial connection topology in `src/animation/ArjanFaceData.ts` is adapted from Google MediaPipe FaceLandmarksConnections, licensed under Apache-2.0. See `MEDIAPIPE-LICENSE.txt`. The coordinates are derived from the user-supplied reference for their own character, with an authored depth adjustment. The reference photos and the inference model are not distributed with the game.
+
+Source: https://github.com/google-ai-edge/mediapipe/tree/master/mediapipe/tasks/python/vision
+
+Arjan head candidate: Microsoft Rocketbox Male_Adult_02 geometry and unchanged generic head/hair textures, MIT License. Geometry is fitted and groomed for Rally House. Full Microsoft copyright and permission notice: ROCKETBOX-LICENSE.txt. Source revision and checksums: arjan/head-provenance.json.

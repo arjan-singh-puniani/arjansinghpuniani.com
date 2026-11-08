@@ -5,6 +5,7 @@ import type {CameraController} from '../rendering/CameraController.js';
 import type {CharacterSpec} from '../entities/Character.js';
 import type {PhoneRecording} from './PhoneCapture.js';
 import {demonstration} from './LabDemonstrations.js';
+import {serveSnapshots,type ServeSnapshot} from './ServeSnapshots.js';
 import {ReplayTimeline,FOCUS_KEYS,JOINT_KEYS,LIMBS,METRIC_NAMES,jointTriplet,value,summary,type Joint,type LabMode,type MotionClip,type MotionFrame,type SampleKind} from './MotionCapture.js';
 
 const text=(node:HTMLElement,value:string)=>{if(node.textContent!==value)node.textContent=value;};
@@ -35,6 +36,8 @@ export class PerformanceLab {
   private plotMarker=document.createElementNS(svgNS,'line');
   private plotTitle=document.createElement('p');
   private phase=document.createElement('p');
+  private snapshots=document.createElement('section');
+  private snapshotCards:{moment:ServeSnapshot;button:HTMLButtonElement}[]=[];
   private lens=document.createElement('button');
   private separation=document.createElement('button');
   private courtClip:MotionClip|null=null;private courtIndex=-1;private courtHistory:RenderItem[]=[];
@@ -47,8 +50,10 @@ export class PerformanceLab {
   separateRig=false;
   private restoreFocus:HTMLElement|null=null;
   private lastAspect=0;
+  private lastWidth=0;private lastHeight=0;
   private priorAspect=0;
   private cameraBodyLift=0;
+  private bodyViewport:{top:number;bottom:number;height:number;center:number;shift:number}|null=null;
   onReturn=()=>{};onRecord=()=>{};
   private phone:PhoneRecording|null=null;private video=document.createElement('video');private videoBox=document.createElement('details');
   constructor(private camera:CameraController,private canvas:HTMLCanvasElement){
@@ -66,6 +71,7 @@ export class PerformanceLab {
     }
     const label=document.createElement('label');label.textContent='Replay source';label.htmlFor='labSource';this.source.id='labSource';
     this.source.onchange=()=>this.load(this.source.value as SampleKind);
+    this.snapshots.className='lab-snapshots';this.snapshots.setAttribute('aria-label','Serve snapshots');this.snapshots.hidden=true;
     this.readout.className='lab-readout';this.readout.setAttribute('aria-label','Selected joint measurement');
     const focus=document.createElement('div');focus.className='lab-focus';focus.setAttribute('role','group');focus.setAttribute('aria-label','Joint focus');
     for(const j of ['knee','hip','ankle','shoulder','elbow'] as Joint[]){const b=document.createElement('button');b.dataset.joint=j;b.textContent=j;b.onclick=()=>this.focus(j);focus.append(b);}
@@ -86,7 +92,7 @@ export class PerformanceLab {
     this.phase.className='lab-phase';
     const inspection=document.createElement('div');inspection.className='lab-orbit';inspection.append(this.lens,this.separation);
     const metrics=document.createElement('div');metrics.className='lab-metrics';metrics.append(this.readout,this.plotTitle,this.plot);
-    this.panel.append(this.heading,this.provenance,products,record,modes,label,this.source,focus,metrics,this.phase,this.stats,inspection,orbit,note);
+    this.panel.append(this.heading,this.provenance,modes,label,this.source,this.snapshots,focus,metrics,this.phase,this.stats,inspection,orbit,record,products,note);
     this.transport.className='lab-transport';this.play.dataset.labAction='play';this.play.onclick=()=>this.togglePlay();
     this.scrub.type='range';this.scrub.min='0';this.scrub.max='1000';this.scrub.step='1';this.scrub.setAttribute('aria-label','Replay time');
     this.scrub.oninput=()=>{if(!this.timeline)return;this.timeline.playing=false;this.timeline.seek(this.timeline.start+(this.timeline.end-this.timeline.start)*Number(this.scrub.value)/1000);if(this.timeline.clip.kind==='phone'&&this.phone?.url){this.video.pause();this.video.currentTime=this.timeline.time;}this.invalidate();this.refresh();};
@@ -123,7 +129,7 @@ export class PerformanceLab {
     if(this.prior)this.camera.restoreState(this.prior);
     if(this.camera.aspect!==this.priorAspect){const aspect=this.camera.aspect;this.camera.aspect=0;this.camera.setAspect(aspect);this.camera.update(0);}
     this.video.pause();this.video.removeAttribute('src');this.video.load();this.videoBox.hidden=true;this.phone=null;
-    this.prior=null;this.timeline=null;this.cached=[];this.clips.clear();this.source.replaceChildren();this.plotClip=null;this.courtClip=null;this.courtHistory=[];
+    this.prior=null;this.timeline=null;this.cached=[];this.clips.clear();this.source.replaceChildren();this.plotClip=null;this.courtClip=null;this.courtHistory=[];this.snapshotCards=[];this.snapshots.replaceChildren();this.snapshots.hidden=true;
     for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=false;
     const target=this.restoreFocus?.isConnected&&!this.restoreFocus.closest('[hidden]')?this.restoreFocus:this.canvas;
     target.focus({preventScroll:true});this.restoreFocus=null;this.onReturn();
@@ -135,12 +141,27 @@ export class PerformanceLab {
     this.cameraBodyLift=Math.max(0,Math.min(.7,Math.max(...clip.frames.map(f=>f.pose.head.y-f.root.y))-1.85));
     this.timeline.speed=Number(this.transport.querySelector<HTMLSelectElement>('select')?.value??1);
     this.source.value=kind;
+    this.buildSnapshots(clip);
     this.video.pause();this.videoBox.hidden=clip.kind!=='phone'||!this.phone?.url;
     if(clip.kind==='phone'&&this.phone?.url){if(this.video.getAttribute('src')!==this.phone.url)this.video.src=this.phone.url;this.video.defaultPlaybackRate=this.timeline.speed;this.video.playbackRate=this.timeline.speed;this.video.currentTime=this.timeline.start;this.timeline.playing=false;this.videoBox.open=this.canvas.clientWidth>850;const a=this.videoBox.querySelector('a')!;a.href=this.phone.url;a.download=`Rally-House-phone-capture.${this.phone.mime.includes('mp4')?'mp4':'webm'}`;}
     this.provenance.textContent=clip.source==='phone-recording'?`IN-GAME PHONE CAPTURE · ${this.phone?.url?'video + shared motion':'motion replay; video encoder unavailable'}`:clip.source==='game-recording'?'YOUR RECENT PLAY · recorded in this club':'AUTHORED DEMO · simulated movement';
     const s=summary(clip);
     this.stats.textContent=`${format(s.distance,1)} club units travelled · ${s.contacts} player racket contacts${s.cadence===null?'':` · ${format(s.cadence)} steps/min · ${format(s.stride,2)} u stride · stance L ${format(s.stance[0])}% / R ${format(s.stance[1])}% · footsteps: L mint / R gold`}`;
     this.invalidate();this.frameCamera();this.syncControls();this.refresh();
+  }
+  private buildSnapshots(clip:MotionClip){
+    this.snapshots.replaceChildren();this.snapshotCards=serveSnapshots(clip).map((moment,index)=>{
+      const button=document.createElement('button'),title=document.createElement('strong'),caption=document.createElement('small');
+      title.textContent=`${index+1} · ${moment.title}`;caption.textContent=`${format(value(moment.frame,moment.joint))}° · ${moment.joint}`;
+      button.type='button';button.title=moment.caption;button.dataset.servePhase=moment.title.toLowerCase();button.append(title,caption);
+      button.onclick=()=>{
+        const t=this.timeline;if(!t)return;t.playing=false;t.seek(moment.frame.time);t.mode='body';
+        if(t.clip.kind==='phone'&&this.phone?.url){this.video.pause();this.video.currentTime=t.time;}
+        this.focus(moment.joint);this.frameCamera();
+      };
+      this.snapshots.append(button);return {moment,button};
+    });this.snapshots.hidden=!this.snapshotCards.length;
+    if(this.snapshotCards.length){const title=document.createElement('p');title.className='lab-snapshot-title';title.textContent='Serve · three moments';this.snapshots.prepend(title);}
   }
   focus(j:Joint){if(!this.timeline)return;this.timeline.focus=j;this.invalidate();this.syncControls();this.refresh();}
   togglePlay(){if(!this.timeline)return;if(this.timeline.time>=this.timeline.end)this.timeline.seek(this.timeline.start);if(this.timeline.clip.kind==='phone'&&this.phone?.url){if(this.video.paused){if(this.video.ended)this.video.currentTime=this.timeline.start;void this.video.play().catch(()=>{if(this.timeline)this.timeline.playing=false;});}else this.video.pause();}else this.timeline.playing=!this.timeline.playing;this.refresh();}
@@ -178,7 +199,22 @@ export class PerformanceLab {
     this.camera.desiredAzimuth=t.mode==='court'?.36:t.clip.kind==='phone'?1.85:2.55;this.camera.desiredElevation=t.mode==='court'?.72:.36;
     this.camera.desiredDistance=t.mode==='court'?(portrait?48:35):t.clip.kind==='phone'?(t.mode==='body'?(portrait?(tall?11:12):8):(portrait?(tall?13:14):10)):t.mode==='body'?(portrait?(tall?10:14):9):(portrait?(tall?14:18):13);
     if(t.mode==='body'&&t.clip.kind==='championship')this.camera.desiredDistance=12;
-    this.lastAspect=this.camera.aspect;this.trackCamera(f);
+    this.bodyViewport=null;
+    const serve=!!this.snapshotCards?.length;
+    // Fit overhead action into the exposed canvas on desktop as well as above phone controls.
+    if((this.canvas.clientWidth<=850||serve)&&this.canvas.clientHeight>0&&t.mode!=='court'){
+      const height=this.canvas.clientHeight,panel=this.panel.getBoundingClientRect(),sidePanel=panel.left>this.canvas.clientWidth/2;
+      const top=this.layer.querySelector('header')!.getBoundingClientRect().bottom+12,bottom=sidePanel?this.transport.getBoundingClientRect().top-16:panel.top-16;
+      if(bottom>top){
+        const low=serve?Math.min(...t.clip.frames.flatMap(f=>[f.pose.footL.y-f.root.y,f.pose.footR.y-f.root.y]))-.1:0;
+        // An overhead snapshot must include the racket hoop and toss, not just the wrist landmark.
+        const high=Math.max(...t.clip.frames.map(f=>Math.max(f.pose.head.y+.24,f.pose.handL.y+.1,f.pose.handR.y+.1,serve?f.pose.racketCenter.y+.65:0,serve&&f.state==='serve'&&f.ball?f.ball.y+.1:0)-f.root.y));
+        this.bodyViewport={top,bottom,height,center:serve?(high+low)/2:1.15+(this.cameraBodyLift??0)*.7,shift:sidePanel?1-(panel.left-16)/this.canvas.clientWidth:0};
+        const bodyHeight=high-low;
+        this.camera.desiredDistance=Math.max(this.camera.desiredDistance,bodyHeight/(2*Math.tan(this.camera.fov/2)*(bottom-top)/height*.88));
+      }
+    }
+    this.lastAspect=this.camera.aspect;this.lastWidth=this.canvas.clientWidth;this.lastHeight=this.canvas.clientHeight;this.trackCamera(f);
   }
   private trackCamera(f:MotionFrame){
     if(!this.timeline)return;
@@ -187,11 +223,19 @@ export class PerformanceLab {
     const review=this.timeline.mode==='body'&&this.timeline.clip.kind==='championship';
     const shift=wide&&!court?1.25:0;
     this.camera.desiredTarget.set(court?1:f.root.x+Math.cos(this.camera.desiredAzimuth)*shift,court?0:f.root.y+(portrait?-.05:1.15)+(this.cameraBodyLift??0)*(portrait?.5:.7)-(review?(portrait?.3:.7):0),court?0:f.root.z-Math.sin(this.camera.desiredAzimuth)*shift);
+    if(this.bodyViewport&&!court){
+      const {top,bottom,height,center,shift}=this.bodyViewport,angle=this.camera.desiredAzimuth,elevation=this.camera.desiredElevation;
+      const offset=(1-(top+bottom)/height)*this.camera.desiredDistance*Math.tan(this.camera.fov/2);
+      const horizontal=shift*this.camera.desiredDistance*Math.tan(this.camera.fov/2)*this.camera.aspect;
+      this.camera.desiredTarget.set(f.root.x, f.root.y+center, f.root.z)
+        .add(new Vec3(Math.sin(angle)*Math.sin(elevation),-Math.cos(elevation),Math.cos(angle)*Math.sin(elevation)).scale(offset))
+        .add(new Vec3(Math.cos(angle),0,-Math.sin(angle)).scale(horizontal));
+    }
   }
   update(dt:number,reducedMotion:boolean){
     if(!this.active||!this.timeline)return;
     if(this.timeline.clip.kind==='phone'&&this.phone?.url){this.timeline.seek(this.video.currentTime);this.timeline.playing=!this.video.paused&&!this.video.ended;}else this.timeline.update(dt,this.contactLens&&!reducedMotion);
-    if(this.lastAspect!==this.camera.aspect)this.frameCamera();
+    if(this.lastAspect!==this.camera.aspect||this.lastWidth!==this.canvas.clientWidth||this.lastHeight!==this.canvas.clientHeight)this.frameCamera();
     if(this.timeline.clip.kind==='phone'&&this.timeline.mode!=='court')this.camera.desiredAzimuth=clamp(this.camera.desiredAzimuth,-.55,1.9);
     const f=this.timeline.frame;if(f)this.trackCamera(f);
     this.refresh();
@@ -202,6 +246,7 @@ export class PerformanceLab {
     this.scrub.value=String(Math.round(1000*(t.time-t.start)/Math.max(.001,t.end-t.start)));
     text(this.timeLabel,`${(t.time-t.start).toFixed(2)} / ${(t.end-t.start).toFixed(2)}s`);
     this.scrub.setAttribute('aria-valuetext',this.timeLabel.textContent??'');
+    for(const card of this.snapshotCards)card.button.setAttribute('aria-pressed',String(!t.playing&&Math.abs(t.time-card.moment.frame.time)<.015));
     const j=t.focus,unit=j==='ankle'?'u':'°',v=f?value(f,j):null;
     text(this.readout,`${format(v,j==='ankle'?2:0)}${v===null?'':unit}`);
     text(this.plotTitle,`${METRIC_NAMES[j]} · ${unit}${f?'':' · no sample in this gap'}`);
@@ -256,7 +301,7 @@ export class PerformanceLab {
     // Opaque surfaces preserve the silhouette. An annotation pass makes the
     // captured joint centres visible through clothing without displacing them.
     if(t.mode!=='court'){
-      const p=f.pose;
+      const p={...f.pose,handL:f.pose.wristL??f.pose.handL,handR:f.pose.wristR??f.pose.handR};
       for(const [a,b] of LIMBS)m.push({...rod(p[a].clone().add(offset),p[b].clone().add(offset),'#a4ded0',.022,1),overlay:true});
       for(const j of JOINT_KEYS){const selected=j===FOCUS_KEYS[t.focus],size=selected?.08:.042;m.push({kind:'sphere',position:p[j].clone().add(offset),scale:new Vec3(size,size,size),color:selected?'#ffe3a0':'#cff2e5',unlit:true,noShadow:true,overlay:true});}
       const triple=jointTriplet(p,t.focus);

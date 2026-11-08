@@ -1,5 +1,7 @@
 import { Game, SavedClubLoadError } from './Game.js';
 import { loadAuthoredAthlete } from './animation/AuthoredAthlete.js';
+import { loadArjanAuthoredHead } from './animation/ArjanAuthoredHead.js';
+import { loadArjanUpperBody } from './animation/ArjanUpperBody.js';
 const canvas = document.getElementById('game');
 function showFallback(err, stage) {
     console.error(err);
@@ -45,7 +47,7 @@ catch (err) {
 }
 if (game) {
     try {
-        await loadAuthoredAthlete();
+        await Promise.all([loadAuthoredAthlete(), loadArjanUpperBody(), loadArjanAuthoredHead()]);
         await game.init();
     }
     catch (err) {

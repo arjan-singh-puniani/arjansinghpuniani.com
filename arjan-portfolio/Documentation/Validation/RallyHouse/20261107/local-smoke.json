@@ -1,0 +1,52 @@
+{
+  "base": "http://127.0.0.1:18107",
+  "errors": [],
+  "assets": 144,
+  "views": [
+    {
+      "width": 1440,
+      "steps": 4,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "steps": 4,
+      "overflow": false
+    }
+  ],
+  "head": {
+    "avatar": "arjan",
+    "parts": 6
+  },
+  "snapshots": [
+    {
+      "phase": "load",
+      "playing": false,
+      "focus": "knee",
+      "source": "game-recording",
+      "kind": "championship",
+      "frames": 130
+    },
+    {
+      "phase": "contact",
+      "playing": false,
+      "focus": "elbow",
+      "source": "game-recording",
+      "kind": "championship",
+      "frames": 130
+    },
+    {
+      "phase": "finish",
+      "playing": false,
+      "focus": "shoulder",
+      "source": "game-recording",
+      "kind": "championship",
+      "frames": 130
+    }
+  ],
+  "switch": {
+    "avatar": "taylor",
+    "busy": false
+  },
+  "passed": true
+}

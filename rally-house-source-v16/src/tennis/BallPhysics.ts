@@ -1,7 +1,8 @@
 import {COURT} from './CourtGeometry.js';
 import {Vec3} from '../rendering/Math3D.js';
+export const BALL_GRAVITY=-9.81;
 export class BallPhysics {
-  position=new Vec3();velocity=new Vec3();active=false;radius=.09;gravity=-9.81;restitution=.56;bounces=0;lastZ=0;
+  position=new Vec3();velocity=new Vec3();active=false;radius=.09;gravity=BALL_GRAVITY;restitution=.56;bounces=0;lastZ=0;
   bounds={halfWidth:5.2,halfDepth:COURT.halfLength+1.5};netEnabled=true;
   launch(start:Vec3,target:Vec3,flightTime=.82){this.position=start.clone();this.lastZ=start.z;this.velocity=new Vec3((target.x-start.x)/flightTime,(target.y-start.y-.5*this.gravity*flightTime*flightTime)/flightTime,(target.z-start.z)/flightTime);this.active=true;this.bounces=0;}
   /** Forecast the first landing using the same semi-implicit fixed step as update. */
@@ -20,4 +21,4 @@ export class BallPhysics {
     if(Math.abs(this.position.x)>this.bounds.halfWidth||Math.abs(this.position.z)>this.bounds.halfDepth)this.active=false;return {bounced,net};
   }
 }
-export function solveLaunch(start:Vec3,target:Vec3,flightTime:number,gravity=-9.81){return new Vec3((target.x-start.x)/flightTime,(target.y-start.y-.5*gravity*flightTime*flightTime)/flightTime,(target.z-start.z)/flightTime);}
+export function solveLaunch(start:Vec3,target:Vec3,flightTime:number,gravity=BALL_GRAVITY){return new Vec3((target.x-start.x)/flightTime,(target.y-start.y-.5*gravity*flightTime*flightTime)/flightTime,(target.z-start.z)/flightTime);}

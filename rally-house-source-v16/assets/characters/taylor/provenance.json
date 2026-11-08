@@ -206,17 +206,20 @@
   ],
   "textures": {
     "cast-skin.webp": "0c11a14f25710b8d215d01bd967386a34c853ba0586f5b1ad03f0aef22314f9f",
-    "coach-kit.webp": "633c36742cda14d28f91fbe26255f246ed566afbe558875317f40e02783238e7",
+    "coach-kit.webp": "b5f84e4d5781dcd15b19a69c135e0734e91d9111a5a5c4bf0c11eef8b8de331b",
     "coach-skirt.webp": "45ecbb67c6471328682a351e587439c709310b8fcba72e875120424e4cdf6246",
     "hair.webp": "a549fa4b5f121e176e18a2d8fde0f6750b46ca778f93daec700540609ef16df7",
-    "kit.webp": "81e0a7b1b29ea03ff544656b8e20b18d66f5865f38ac69911f6019b9bf7b6b2b",
-    "mika-kit.webp": "fb8ccef5e13e18a7dd762c56a9b305fb7ddcceee8a6ba3519a5cbd2a674cd770",
-    "mika-skirt.webp": "67bf2e24d1db65c86be0920aa34f3a7b792ef3928a48e0c777d5a27ce3f0458b",
-    "nia-kit.webp": "aed485db35569c9866148a8f9560eb185cc16af797ddf438b9ea45fd41bd8aea",
-    "nia-skirt.webp": "8e2b936d61510e0a1195e37a580be86bfde058c968a2925a1677e1ae6924be66",
+    "kit.webp": "7b22adba72984860acb331292cd99941c547f73d72e9d3e08c69f800efd191d0",
+    "mika-kit.webp": "07aa657a7f25762829c0492da4015b46b6568869ed95ee0c41a4a408813d18cf",
+    "mika-skirt.webp": "539883a145a020c33712a8a74738326b021eda7284e1567ae24d8ec104979fe5",
+    "nia-kit.webp": "2c8b9be97ee763a147a63c2aab3df72b0c394f5576fa3ad16238ecd4c79caabc",
+    "nia-skirt.webp": "1398a5dfbf6191a4f27aae9d21ff2e86c5a7a7cfc1f437270e7a9e633b9cc61e",
     "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
     "skin.webp": "ec769c1543ecb476613019d221950cd0ffb439d5d85679167b6b2b150a9418a4",
-    "skirt.webp": "3ac69eb7fd0f27c3c78318e71cab59928b76632a4d236f80a6a8af47199fe822"
+    "skirt.webp": "3ac69eb7fd0f27c3c78318e71cab59928b76632a4d236f80a6a8af47199fe822",
+    "coach-skin.webp": "bb0f63406bb5b552504e80dd54dc5dcc0677448bc298ed8f07b45e039fd5f81d",
+    "nia-skin.webp": "75d9ccf9e303a333c62e186c334a01fcdcd1bb9f06ff1da5c3bab34c5544f115",
+    "mika-skin.webp": "92cd7b6fbee69fc27af14e2f6bd26af6fc4b9c89b975355eccb9b94348761730"
   },
   "sourceHashes": {
     "base.obj": "8e761e6624b8f54536409135d1636da63b32486a90d4897f84e121d144f6fb4c",
@@ -249,7 +252,13 @@
     "tools/athlete-textures/head-refined-v2.png": "80a2cbcb900afd1634e290b80aaca5fe853b6ef3b92710a73b3c8c691e151c54",
     "tools/athlete-textures/head-refined-v2.prompt.txt": "d28384704cfe0e02fcf3f6d086d2016e290ec1417b4819dfde1b411ca63c47be",
     "tools/athlete-textures/head-brunette.png": "577fa9e05a0b53e23bb519e2088834f08dc083c795a629ccbe03dbe71f02309e",
-    "tools/athlete-poses/crouch.json": "4ab566af92d738a97d4ad0ac3e3cb0f74711d300b8201f9b0f4e0b6033c88252"
+    "tools/athlete-poses/crouch.json": "4ab566af92d738a97d4ad0ac3e3cb0f74711d300b8201f9b0f4e0b6033c88252",
+    "tools/athlete-textures/coach-face-v2.prompt.txt": "01a56d4821c6a9fcee4079c0da2a8e8507a094b25c7a6d0f017a138257afcaf7",
+    "tools/athlete-textures/mika-face-v2.png": "16626ebee03f7b281b5462cb77260a19b252966f2853ae174b56a5071f4739da",
+    "tools/athlete-textures/nia-face-v2.png": "52a756bccd364cf6a19dc3a5b4ea093d24b6ad4b030aec69dab2e0a0ad0db73a",
+    "tools/athlete-textures/nia-face-v2.prompt.txt": "48eba06a2db722d0beb2a471be70cf790281c435acef8eca60be4f1b69f19a27",
+    "tools/athlete-textures/mika-face-v2.prompt.txt": "06575c64052e2d5f424f65436f27b7f3d438e3be359d43c62683e58fe9fe89e1",
+    "tools/athlete-textures/coach-face-v2.png": "589e62a07b0804c72a0dabfbbc648694ae0be428463a2b8d1cbbe6d5b2ad6650"
   },
   "gripSign": {
     "L": -1,
@@ -278,7 +287,8 @@
     "license": "MIT",
     "revision": "0943055db6ec570bcef9f2c8b41c9e5467c808f9",
     "source": "https://github.com/microsoft/Microsoft-Rocketbox",
-    "textureAdaptation": "Brunette recolor and face albedo refinement using built-in imagegen; source image and exact prompt in tools/athlete-textures/"
+    "textureAdaptation": "Brunette recolor and face albedo refinement using built-in imagegen; source image and exact prompt in tools/athlete-textures/",
+    "castTextureAdaptation": "Three original adult face UV variants authored with built-in imagegen; exact prompts in tools/athlete-textures; packed at 1024 square with neck-calibrated body albedo."
   },
   "assetPacks": [
     "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
@@ -287,8 +297,9 @@
     "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "f281492369365194c1e9162f46df18a82fc8990be70e5053b0795925ef6c379c",
+    "bake-authored-athlete.py": "f4372abfc81d4873d5c3f6bc5dac4ec9c55f708dfa77611a022fff3c706e5984",
     "fit-athlete-kit.py": "45f342144d1c7c32c8db2065adeb40da11ba304884ad6ed1160c2734a0e0c62c",
-    "fit-athlete-head.py": "4cc1fcdec5710d4b11e052b39f08bb8443cc715825518a2c785f009864b85c2f"
+    "fit-athlete-head.py": "4cc1fcdec5710d4b11e052b39f08bb8443cc715825518a2c785f009864b85c2f",
+    "pack-cast-textures.py": "5a7e2f4e6c290a816851841a352ccbbd1d51871e70c092dbe757efba34c6b6d4"
   }
 }

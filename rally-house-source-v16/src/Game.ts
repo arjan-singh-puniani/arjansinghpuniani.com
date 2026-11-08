@@ -1,6 +1,7 @@
 import {COURT} from './tennis/CourtGeometry.js';
 import {PhoneCapture} from './analysis/PhoneCapture.js';
 import {deriveActing} from './animation/ActingState.js';
+import {hugBackContacts} from './animation/HugContact.js';
 import {DialogueComposer} from './simulation/DialogueComposer.js';
 import {playerSpec,type PlayerAvatar} from './content/PlayerAvatars.js';
 import {CharacterMind,MEMBERS,motiveFor,type MindContext} from './simulation/CharacterMind.js';
@@ -69,6 +70,7 @@ export class Game {
   private interactiveMatch: InteractiveMatchSystem | null = null;
   private championshipActivityId: string | null = null;
   private championshipOpponentId: string | null = null;
+  private queuedChampionship:{courtId:string|null;points:number}|null=null;
   private championshipPriorSpeed = 1;
   private championshipPriorPaused = false;
   private championshipRound = 1;
@@ -216,10 +218,11 @@ export class Game {
     document.addEventListener('visibilitychange',()=>{
       this.last=performance.now();this.simAcc=0;
       this.matchInput.reset();this.championshipHud.resetTouch();
-      if(document.hidden){this.phoneCapture?.cancel();this.setChampionshipPaused(true);this.audio.stopAmbience();}
+      if(document.hidden){this.phoneCapture?.cancel();this.setChampionshipPaused(true);this.audio.stopVoice();this.audio.stopAmbience();}
     });
     window.addEventListener('blur',()=>{
       this.matchInput.reset();this.championshipHud.resetTouch();
+      this.audio.stopVoice();
       this.setChampionshipPaused(true);
     });
     document.addEventListener('focusin',e=>{
@@ -254,7 +257,7 @@ export class Game {
       }
 
       const key=e.key.toLowerCase();
-      if(e.key==='Escape'){const connection=this.activities.active.find(a=>a.kind.startsWith('connection-')&&a.participants.includes('player'));if(connection)this.cancelActivity(connection);const hadPanel=!!this.spatial.selectedId||!!document.querySelector('#context.open,#book.open');this.spatial.dismiss(true);this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.buildRotation=0;this.movingPlacement=null;if(!hadPanel)this.canvas.focus();return;}
+      if(e.key==='Escape'){this.leavePlayerActivity();const hadPanel=!!this.spatial.selectedId||!!document.querySelector('#context.open,#book.open');this.spatial.dismiss(true);this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.buildRotation=0;this.movingPlacement=null;if(!hadPanel)this.canvas.focus();return;}
       if(this.buildType&&(key==='q'||key==='e')){e.preventDefault();this.rotateBuild(key==='q'?-1:1,e.shiftKey);return;}
       if(e.target!==this.canvas)return;
       const c=this.characters[Number(e.key)-1];if(c)this.openCharacter(c);if(key==='c')this.openCoaching();if(key==='b')this.ui.toggleBuild();if(e.key.startsWith('Arrow')){e.preventDefault();this.camera.pan(e.key==='ArrowLeft'?-25:e.key==='ArrowRight'?25:0,e.key==='ArrowUp'?-25:e.key==='ArrowDown'?25:0);}
@@ -307,7 +310,7 @@ export class Game {
     if(picked?.placement){this.openFurniture(picked.placement);return;}
     if(picked?.object){this.openObject(picked.object);return;}
     this.spatial.dismiss();
-    const g=this.camera.groundPoint(x,y);if(g&&!this.activities.busy('player')&&g.x>-12.2&&g.x<12.2&&g.z>-9.2&&g.z<9.2){this.stopPlayerWatching(false);this.ui.closeContext();this.player.goTo(new Vec3(clamp(g.x,-12,12),0,clamp(g.z,-9,9)),'idle')}
+    const g=this.camera.groundPoint(x,y);if(g&&g.x>-12.2&&g.x<12.2&&g.z>-9.2&&g.z<9.2){this.leavePlayerActivity();this.stopPlayerWatching(false);this.ui.closeContext();this.player.goTo(new Vec3(clamp(g.x,-12,12),0,clamp(g.z,-9,9)),'idle')}
   }
   private pickWorld(x:number,y:number){
     const ray=this.camera.rayFromScreen(x,y);
@@ -367,6 +370,8 @@ export class Game {
       return;
     }
 
+    this.queuedChampionship=null;this.ui.setTennisQueued(false);
+
     this.championshipPriorSpeed=this.clock.speed;
     this.championshipPriorPaused=this.clock.paused;
     this.championshipApproachSpeeds=new Map([this.player,opponent].map(c=>[c,c.speed]));
@@ -400,14 +405,21 @@ export class Game {
   private playTennis(){
     if(!this.playerAvatar){this.openAvatarPicker();return;}
     if(this.championship.active||this.performanceLab?.active||this.phoneCapture?.active)return;
-    const opponent=['leo','mika','coach','nia'].map(id=>this.byId(id)).find(c=>c&&championshipOpponentFor(c.id)&&!this.activities.busy(c.id));
-    if(!opponent||this.activities.reserved('court')){
-      this.ui.toast('A rally is already on. The court will be yours when they finish.');
+    if(this.queuedChampionship){this.queuedChampionship=null;this.ui.setTennisQueued(false);this.ui.toast('Match request cancelled.');return;}
+    this.leavePlayerActivity();
+    const opponent=this.availableChampionshipOpponent();
+    if(!opponent||this.activities.reserved('court')||this.activities.busy('player')){
+      const court=this.activities.active.find(a=>a.resource==='court'),rally=court?.kind==='match'?this.socialRally:this.rally;
+      this.queuedChampionship={courtId:court?.id??null,points:court?.phase==='active'&&rally?Object.values(rally.score).reduce((sum,n)=>sum+n,0):0};
+      this.clock.paused=false;this.ui.setTennisQueued(true);
+      this.ui.toast('You’re next. Tap Queued to cancel.');
       this.camera.nudgeFocus(1,0,.6);
       return;
     }
     this.startChampionship(opponent);
   }
+
+  private availableChampionshipOpponent(){return ['leo','mika','coach','nia'].map(id=>this.byId(id)).find(c=>c&&championshipOpponentFor(c.id)&&!this.activities.busy(c.id));}
 
   private createInteractiveMatch(
     opponent:Character,
@@ -433,6 +445,10 @@ export class Game {
         onPoint:(winner,reason,rallyLength)=>{
           this.matchInput.setEnabled(false);
           this.championship.resolvePoint({winner,reason,rallyLength});
+          const opponent=this.actor(this.championshipOpponentId!);
+          if(winner==='player'&&this.audio.opponentMiss()){
+            opponent.setEmotion('frustrated',1.3);this.activeSpeechId=opponent.id;this.speechUntil=performance.now()+1300;this.ui.showSpeech(opponent.spec.name,"D'oh!",1300,true);
+          }
           if(this.championship.phase==='matchResult')this.audio.success();
         },
       },
@@ -455,6 +471,7 @@ export class Game {
 
   private requestChampionshipExit(){
     if(!this.championship.active)return;
+    this.audio.stopVoice();this.ui.hideSpeech();this.activeSpeechId=null;
     this.rememberChampionshipResult();
     this.matchInput.setEnabled(false);
     this.championshipHud.resetTouch();
@@ -470,7 +487,7 @@ export class Game {
   private setChampionshipPaused(paused:boolean){
     if(!this.championship.active || this.championship.phase==='exiting' ||
       this.championship.phase==='matchResult')return;
-    this.clock.paused=paused;
+    this.clock.paused=paused;if(paused)this.audio.stopVoice();
     this.matchInput.setEnabled(!paused && this.championship.acceptsGameplayInput);
     this.matchInput.reset();
     this.championshipHud.resetTouch();
@@ -485,6 +502,7 @@ export class Game {
   }
 
   private cleanupChampionship(){
+    this.audio.stopVoice();this.ui.hideSpeech();this.activeSpeechId=null;
     this.restoreChampionshipApproach();
     this.matchInput.setEnabled(false);
     this.interactiveMatch?.stop();
@@ -560,13 +578,13 @@ export class Game {
       const after=this.championship.phase;
 
       if(after==='serving'&&before!=='serving'){
-        this.interactiveMatch?.startPoint(this.championship.snapshot().server);
+        this.audio.stopVoice();this.interactiveMatch?.startPoint(this.championship.snapshot().server);
       }
 
       const acceptsInput=after==='serving'||after==='rally';
       this.matchInput.setEnabled(acceptsInput);
 
-      if(acceptsInput){
+      if(acceptsInput||after==='pointResult'){
         this.interactiveMatch?.update(dt);
       }
 
@@ -667,7 +685,17 @@ export class Game {
       if(!close){player.setAnimation('watch');player.socialGesture='laugh';c.socialGesture='laugh';c.setAnimation('talk');this.activeSpeechId=c.id;this.ui.showSpeech(c.spec.name,kind==='tennis'?'“Then you’ll have to stay for another point with me.”':'“Good. I was hoping you’d stay a little longer.”',0);}
     }
     if(a.phase==='active'){
-      if(close){const weight=smoothstep(0,.7,a.phaseTime)*(1-smoothstep(duration-.7,duration,a.phaseTime));for(const person of [player,c])if(person.affection)person.affection.weight=weight;}
+      if(close){
+        const weight=smoothstep(0,.7,a.phaseTime)*(1-smoothstep(duration-.7,duration,a.phaseTime));
+        const contacts=kind==='hug'?[hugBackContacts(player.meshes()),hugBackContacts(c.meshes())]:[];
+        for(const [i,person] of [player,c].entries())if(person.affection){
+          person.affection.weight=weight;
+          if(kind==='hug'){
+            const back=contacts[1-i];
+            if(back)person.affection.back={L:back.R,R:back.L};
+          }
+        }
+      }
       if(a.phaseTime>=duration)this.activities.transition(a,'resolving');
     }
     if(a.phase==='resolving'&&a.phaseTime>=.25){
@@ -944,6 +972,8 @@ export class Game {
   private playerAvatar:PlayerAvatar|null=null;
   private arrivalPaused=false;
   private choosePlayerAvatar(id:PlayerAvatar){
+    if(this.championship?.active||this.performanceLab?.active||this.phoneCapture?.active)return;
+    this.leavePlayerActivity();
     this.playerAvatar=id;this.player.spec=playerSpec(id);if(id==='taylor'&&!this.player.matchCompetitor)this.player.racketStowed=true;this.ui.closeContext();
     if(this.arrivalPaused){this.arrivalPaused=false;this.clock.paused=false;this.camera.frameAcademy();}
     else this.camera.focus(this.player.position.x,this.player.position.z,22);
@@ -1018,6 +1048,11 @@ export class Game {
 
   private get absoluteMinute(){return this.clock.day*1440+this.clock.minutes;}
   private actor(id:string){return id==='player'?this.player:this.byId(id)!;}
+  private leavePlayerActivity(){
+    // A new player intent must release both conversation partners, not wait for a busy timeout.
+    const activity=this.activities.active.find(a=>a.kind!=='championship'&&a.participants.includes('player'));
+    if(activity)this.cancelActivity(activity);
+  }
   private routes=new Map<string,Vec3[]>();private waitingForPlace=new Map<string,string>();
   private startActivity(kind:string,ids:string[],resource:string,targets:Vec3[],detail=''){
     if(ids.includes('player'))this.stopPlayerWatching(false);
@@ -1254,9 +1289,13 @@ export class Game {
         // Nonparticipants watch from the side instead of occupying a reserved court.
         if(this.activities.reserved('court')&&this.world.nav.onCourt(c.position)){const exit=courtSpectatorSpots[c.id],target=c.path[c.path.length-1];if(!target||Vec3.sub(exit,target).len()>.1)c.goTo(exit,'watch');c.activity='Watching from the side';const court=this.activities.active.find(a=>a.resource==='court');if(court)this.waitingForPlace.set(c.id,court.id);}
       }
-      c.update(step);if(c.consumeStepEvent())this.audio.shoe(c.state==='shuffle');
+      c.update(step);
     }
     if(!phoneOwnsPlayer)this.player.update(step);
+    for(const c of crowd)if(c.consumeStepEvent()){
+      const onCourt=this.world.nav.onCourt(c.position),near=Vec3.sub(c.position,this.player.position).len(),weight=c===this.player?1:this.championship?.active?(c.id===this.championshipOpponentId ? .85 : .15):Math.max(.12,1-near/20);
+      const pan=clamp((c.position.x-this.player.position.x)/10,-.7,.7);this.audio.shoe(onCourt?'court':'tile',onCourt&&c.state==='shuffle',pan,weight);
+    }
     if(!phoneOwnsPlayer&&!this.performanceLab?.active)this.updatePlayerWatching();
     this.updateSpectatorAttention();
     for(const a of [...this.activities.active]){
@@ -1282,7 +1321,8 @@ export class Game {
       if(a.phase==='active'){
         if(a.resource==='court'){
           const r=a.kind==='match'?this.socialRally:this.rally;r.update(step);
-          const finished=a.kind==='lesson'?this.evidence.complete:a.kind==='match'?Math.max(...Object.values(r.score))>=3||r.sessionHits>=60:r.sessionHits>=16;
+          const requested=a.kind!=='lesson'&&this.queuedChampionship?.courtId===a.id&&Object.values(r.score).reduce((sum,n)=>sum+n,0)>this.queuedChampionship.points;
+          const finished=requested||(a.kind==='lesson'?this.evidence.complete:a.kind==='match'?Math.max(...Object.values(r.score))>=3||r.sessionHits>=60:r.sessionHits>=16);
           if(finished){this.activities.transition(a,'resolving');r.enabled=false;this.evidence.practicing=false;people.forEach(c=>c.setAnimation('watch'));}
         }else if(Vec3.sub(people[0].position,people[1].position).len()>1.8){this.cancelActivity(a);continue;}else if(a.phaseTime>=10)this.activities.transition(a,'resolving');
       }
@@ -1292,6 +1332,10 @@ export class Game {
     if(this.activities.active.some(a=>a.kind==='touch'&&a.phase==='active'&&this.touchRuns.get(a.id)?.touch.watchCourt)){
       const ball=this.interactiveMatch?.ball.active?this.interactiveMatch.ball:this.socialRally.enabled?this.socialRally.ball:this.rally.ball;
       this.player.setLook(ball.active?ball.position:new Vec3(1,1,0));
+    }
+    // A human invitation gets the newly free court before autonomous club decisions.
+    if(this.queuedChampionship&&!this.championship?.active&&!this.performanceLab?.active&&!this.phoneCapture?.active&&!this.activities.reserved('court')&&!this.activities.busy('player')){
+      const opponent=this.availableChampionshipOpponent();if(opponent){this.startChampionship(opponent);return;}
     }
     if(this.queuedLesson&&Math.floor(this.everyday.time)%5===0&&Math.floor(this.everyday.time-step)%5!==0)this.traceCoaching('waiting',{key:this.queuedLesson,active:this.activities.active.map(a=>({kind:a.kind,phase:a.phase,people:a.participants}))});
     // Low frequency, state-derived opportunities. No autonomous camera control.
@@ -1352,12 +1396,14 @@ export class Game {
       });
     }
     this.spatial.update(this.renderDt,this.performanceLab.active||this.championship.active||this.phoneCapture?.active||!!this.buildType||!!document.querySelector('#context.open,#book.open,#buildPanel.open'),this.settings.reducedMotion,this.worldNotices);
-    // One world composition for club, tennis and analysis. Replay changes only
-    // the existing player's visual pose; every other entity and object remains.
+    // Keep the club as context, but isolate recorded motion from live actors and balls.
     const labFrame=this.performanceLab.active?this.performanceLab.timeline?.frame:null;
     const meshes:RenderItem[]=[...this.world.presentationMeshes(this.camera.position,this.camera.target,this.renderDt),...this.world.courtDetails,...this.spatial.meshes(),...this.world.placementMeshes(),...this.world.dynamicMeshes(this.settings.reducedMotion?0:now/1000,this.clock.minutes,this.camera.position,this.renderDt,0,now/1000)];
-    for(const c of this.characters)meshes.push(...c.meshes(false));
-    meshes.push(...(labFrame?.body??this.player.meshes(false)),...this.rally.meshes(),...this.socialRally.meshes(),...(this.interactiveMatch?.meshes(this.settings.reducedMotion)??[]));
+    if(!labFrame){
+      for(const c of this.characters)meshes.push(...c.meshes(false));
+      meshes.push(...this.rally.meshes(),...this.socialRally.meshes(),...(this.interactiveMatch?.meshes(this.settings.reducedMotion)??[]));
+    }
+    meshes.push(...(labFrame?.body??this.player.meshes(false)));
     if(this.performanceLab.active)meshes.push(...this.performanceLab.meshes(this.settings.reducedMotion).slice(labFrame?.body.length??0));
     meshes.push(...(this.phoneCapture?.meshes()??[]));
 

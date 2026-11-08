@@ -197,6 +197,8 @@ export class ChampionshipHUD {
         if (phase === 'ready')
             return 'Ready';
         if (phase === 'serving') {
+            if (cue === 'serving')
+                return 'SERVING';
             return snapshot.server === 'player' ? (matchMedia('(pointer:coarse)').matches ? 'STICK TO AIM · SWING TO SERVE' : 'SPACE TO SERVE') : 'WATCH THE BALL';
         }
         if (phase === 'rally') {

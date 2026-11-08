@@ -9,10 +9,11 @@ export const SHADOW_RESOLUTION=2048;
 export const LAMP_SHADOW_RESOLUTION=1024;
 
 export type GeometryKind='box'|'roundBox'|'sphere'|'cylinder'|'cone'|'torus'|'foliage';
-export type MaterialKind='matte'|'wood'|'fabric'|'ceramic'|'metal'|'glass'|'court'|'skin'|'hair'|'leaf'|'stone'|'toon'|'humanSkin'|'groomedHair'|'lip'|'iris'|'performanceKnit';
-const MATERIAL_ID:Record<MaterialKind,number>={matte:0,wood:1,fabric:2,ceramic:3,metal:4,glass:5,court:6,skin:7,hair:8,leaf:9,stone:10,toon:11,humanSkin:12,groomedHair:13,lip:14,iris:15,performanceKnit:16};
+export type MaterialKind='matte'|'wood'|'fabric'|'ceramic'|'metal'|'glass'|'court'|'skin'|'hair'|'leaf'|'stone'|'toon'|'humanSkin'|'groomedHair'|'lip'|'iris'|'performanceKnit'|'referenceSkin';
+const MATERIAL_ID:Record<MaterialKind,number>={matte:0,wood:1,fabric:2,ceramic:3,metal:4,glass:5,court:6,skin:7,hair:8,leaf:9,stone:10,toon:11,humanSkin:12,groomedHair:13,lip:14,iris:15,performanceKnit:16,referenceSkin:17};
 export interface Mesh {
   kind:GeometryKind;
+  geometry?:SkinGeometry;doubleSided?:boolean;
   position:Vec3;
   rotation?:Vec3;
   scale:Vec3;
@@ -31,7 +32,7 @@ export interface Mesh {
 export interface SkinGeometry {id:string;positions:Float32Array;normals:Float32Array;boneIndices:Float32Array;boneWeights:Float32Array;uvs?:Float32Array;morphs?:Float32Array[];morphNormals?:Float32Array[]}
 export interface SkinnedMesh {
   /** Character body skin driven by the authoritative anatomical landmarks. */
-  poseRig?:boolean;eyeCenters?:Float32Array;eyeYaw?:number;skirt?:boolean;rig?:{bind:RigPoseLocal;pose:RigPoseLocal};diffuse?:HTMLImageElement;alphaCutoff?:number;doubleSided?:boolean;expression?:[number,number,number,number];handGrip?:[number,number];
+  poseRig?:boolean;neckBlend?:boolean;brownIris?:boolean;eyeCenters?:Float32Array;eyeYaw?:number;skirt?:boolean;rig?:{bind:RigPoseLocal;pose:RigPoseLocal};diffuse?:HTMLImageElement;alphaCutoff?:number;doubleSided?:boolean;expression?:[number,number,number,number];handGrip?:[number,number];
   skin:SkinGeometry; boneMatrices:Float32Array; position:Vec3; rotation?:Vec3; scale?:Vec3; color:string; material?:MaterialKind; alpha?:number; unlit?:boolean; noShadow?:boolean; id?:string;
 }
 export type RenderItem=Mesh|SkinnedMesh;
@@ -54,7 +55,7 @@ export interface Lighting {
 
 /** Shared lighting maths. One source of truth for both the rigid and skinned fragment shaders. */
 const LIGHT_UNIFORMS=`
-uniform sampler2D u_albedo;uniform float u_textured;uniform float u_alphaCutoff;uniform int u_material;uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_emission;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
+uniform float u_maskCoverage;uniform float u_brownIris;uniform vec3 u_irisCenters[2];uniform sampler2D u_albedo;uniform float u_textured;uniform float u_alphaCutoff;uniform int u_material;uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_emission;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
 uniform vec3 u_pointPos[8];uniform vec3 u_pointColor[8];uniform vec2 u_pointParams[8];
 uniform mat4 u_lightVP;uniform highp sampler2DShadow u_shadowMap;uniform float u_shadowStrength;uniform float u_shadowTexel;
 uniform mat4 u_lampVP;uniform highp sampler2DShadow u_lampShadow;uniform float u_lampStrength;uniform vec3 u_lampDir;uniform float u_lampTexel;
@@ -123,7 +124,7 @@ vec3 surfaceColor(vec3 p){
     variation=filteredWave(p.x*195.0+sin(p.z*137.0))*.022;
   }else if(u_material==8){
     variation=filteredWave(p.y*95.0+p.x*11.0)*.065;
-  }else if(u_material==12){
+  }else if((u_material==12||u_material==17)){
     variation=filteredWave(dot(p,vec3(821.0,619.0,743.0))+2.7*sin(dot(p,vec3(379.0,521.0,433.0))))*.006;
   }else if(u_material==13&&u_textured<.5){
     // Authored textures already contain strand direction and contrast.
@@ -146,12 +147,24 @@ vec3 surfaceColor(vec3 p){
     variation=filteredWave(p.x*77.0+sin(p.y*61.0+p.z*43.0))*.018;
   }
   vec3 pigment=pow(max(u_color,vec3(0.0)),vec3(2.2))*(1.0+variation);
-  if(u_material==12){
+  if((u_material==12||u_material==17)){
     // Face-local warm cheek/nose undertones; body bind coordinates are outside
     // this region. The pigment stays attached to the sculpt through motion.
     vec2 cheek=vec2((abs(p.x)-.073)/.031,(p.y+.032)/.029);
     float warmth=exp(-dot(cheek,cheek))*smoothstep(.045,.085,p.z);
     pigment*=mix(vec3(1.0),vec3(1.08,.86,.83),warmth*.38);
+    if(u_material==17){
+      // Small facial cavities are below the room shadow-map resolution; keep their shading face-local.
+      vec2 orbit=vec2((abs(p.x)-.059)/.030,(p.y-.034)/.014);
+      vec2 underEye=vec2((abs(p.x)-.060)/.031,(p.y+.001)/.010);
+      vec2 wing=vec2((abs(p.x)-.025)/.012,(p.y+.061)/.009);
+      vec2 philtrum=vec2(p.x/.012,(p.y+.078)/.011);
+      float cavity=.16*exp(-dot(orbit,orbit))+.07*exp(-dot(underEye,underEye))+.10*exp(-dot(wing,wing))+.05*exp(-dot(philtrum,philtrum));
+      float front=smoothstep(.045,.085,p.z);
+      pigment*=1.0-cavity*front;
+      float beard=(1.0-smoothstep(-.115,-.055,p.y))*smoothstep(-.18,-.15,p.y)*front;
+      pigment*=mix(vec3(1.0),vec3(.83,.87,.91),beard*.38);
+    }
   }else if(u_material==15&&u_textured<.5){
     vec2 eye=vec2((abs(p.x)-.048)/.0073,(p.y-.018)/.0073);
     float radius=clamp(length(eye),0.0,1.0),angle=dot(eye,eye)>.000001?atan(eye.y,eye.x):0.0;
@@ -159,13 +172,15 @@ vec3 surfaceColor(vec3 p){
     pigment*=mix(vec3(1.28,1.05,.73),vec3(.36,.40,.43),smoothstep(.55,1.0,radius))*(1.0+fibres);
   }
   if(u_textured>.5)pigment*=pow(texture(u_albedo,v_uv).rgb,vec3(2.2));
+  // Tint the licensed iris detail in place; the flag is reset per mesh so other characters keep their eyes.
+  if(u_brownIris>.5&&u_material==15&&u_textured>.5){vec2 centre=u_irisCenters[p.x<0.0?0:1].xy;float iris=1.0-smoothstep(.0078,.0094,length(p.xy-centre));float light=max(pigment.r,max(pigment.g,pigment.b));pigment=mix(pigment,vec3(1.0,.26,.08)*light*.38,iris);}
   return pigment;
 }
 // Surface gradients use rest coordinates for stable detail and world-space
 // derivatives for the correct normal under nonuniform skin deformation.
 vec3 characterSurfaceNormal(vec3 N,vec3 world){
   float h=0.0;vec3 p=v_surface;
-  if(u_material==12){
+  if((u_material==12||u_material==17)){
     h=.000018*filteredWave(dot(p,vec3(1243.0,1399.0,1583.0))+3.0*sin(dot(p,vec3(733.0,617.0,911.0))));
   }else if(u_material==13&&u_textured<.5){
     h=.00007*filteredWave(p.x*840.0+p.z*300.0+sin(p.y*25.0)*12.0);
@@ -195,7 +210,7 @@ vec3 shade(vec3 N,vec3 world){
   vec3 ambient=u_ambient*mix(u_bounceColor,u_skyColor,hemi);
   // Direct sun, occluded by the shadow map.
   vec3 direct=u_sunColor*wrap*0.62*shadow;
-  if(u_material==12){ambient*=.88;direct*=1.18;}
+  if((u_material==12||u_material==17)){ambient*=.88;direct*=1.18;}
   // Very soft sky-side rim so silhouettes separate from the background.
   float rim=pow(1.0-max(dot(N,V),0.0),3.2)*0.055;
   // Contact darkening near the floor keeps small props anchored.
@@ -204,7 +219,7 @@ vec3 shade(vec3 N,vec3 world){
   vec3 H=normalize(L+V);
   float glossExp=mix(72.0,9.0,clamp(u_roughness,0.0,1.0));
   float spec=pow(max(dot(N,H),0.0),glossExp)*u_specular*(0.18+ndl*0.82)*shadow;
-  if(u_material==12){
+  if((u_material==12||u_material==17)){
     // A broad secondary lobe avoids a waxy, single white highlight.
     spec+=pow(max(dot(N,H),0.0),8.0)*.018*shadow;
   }else if(u_material==13){
@@ -235,7 +250,7 @@ vec3 shade(vec3 N,vec3 world){
   }
   vec3 warmTint=mix(vec3(1.0),vec3(1.06,0.985,0.905),clamp(u_warmth,0.0,1.0));
   vec3 c=base*warmTint*((ambient+direct)*ground)+base*local+localSpec+u_sunColor*rim+u_sunColor*spec+base*velvet;
-  if(u_material==12){
+  if((u_material==12||u_material==17)){
     // Soft wrap is an artistic thin-surface approximation, not a skin volume
     // simulation. It is deliberately small and follows the actual lights.
     float back=pow(max(dot(-L,V),0.0),3.0)*(1.0-ndl)*shadow;
@@ -267,6 +282,7 @@ export class Renderer {
   private albedos=new WeakMap<HTMLImageElement,WebGLTexture>();
   // Shared pose arrays are immutable within a frame; each shader owns its uniforms.
   private skinBones:Float32Array|null=null;private shadowBones:Float32Array|null=null;
+  private frameModels=new Map<RenderItem,Mat4>();
   private shadowFB:WebGLFramebuffer;
   private shadowTex:WebGLTexture;
   private lampFB:WebGLFramebuffer;
@@ -277,18 +293,20 @@ export class Renderer {
   private su:Record<string,WebGLUniformLocation>={};
   private du:Record<string,WebGLUniformLocation>={};
   private dsu:Record<string,WebGLUniformLocation>={};
+  private alphaCoverage=false;
   renderScale=1;
   drawCalls=0; triangles=0; shadowCasters=0; instancedDraws=0;
 
   constructor(public canvas:HTMLCanvasElement){
     const gl=canvas.getContext('webgl2',{antialias:true,alpha:false,powerPreference:'high-performance',premultipliedAlpha:false});
     if(!gl) throw new Error('WebGL2 is unavailable.'); this.gl=gl;
+    this.alphaCoverage=gl.getParameter(gl.SAMPLES)>1;
     this.program=this.link(this.rigidVS(false),this.litFS());
     this.skinProgram=this.link(this.skinVS(false),this.litFS());
     this.depthProgram=this.link(this.rigidVS(true),this.depthFS());
     this.depthSkinProgram=this.link(this.skinVS(true),this.depthFS());
 
-    const litNames=['u_textured','u_alphaCutoff','u_albedo','u_model','u_vp','u_material','u_color','u_sun','u_ambient','u_alpha','u_unlit','u_emission','u_viewPos','u_warmth','u_roughness','u_specular','u_softness','u_pointPos[0]','u_pointColor[0]','u_pointParams[0]','u_lightVP','u_shadowMap','u_shadowStrength','u_shadowTexel','u_lampVP','u_lampShadow','u_lampStrength','u_lampDir','u_lampTexel','u_sunColor','u_skyColor','u_bounceColor'];
+    const litNames=['u_maskCoverage','u_brownIris','u_irisCenters[0]','u_textured','u_alphaCutoff','u_albedo','u_model','u_vp','u_material','u_color','u_sun','u_ambient','u_alpha','u_unlit','u_emission','u_viewPos','u_warmth','u_roughness','u_specular','u_softness','u_pointPos[0]','u_pointColor[0]','u_pointParams[0]','u_lightVP','u_shadowMap','u_shadowStrength','u_shadowTexel','u_lampVP','u_lampShadow','u_lampStrength','u_lampDir','u_lampTexel','u_sunColor','u_skyColor','u_bounceColor'];
     const grab=(p:WebGLProgram,names:string[],required:string[])=>{
       const map:Record<string,WebGLUniformLocation>={};
       for(const n of names){const loc=gl.getUniformLocation(p,n);if(loc)map[n.replace('[0]','')]=loc;else if(required.includes(n))throw new Error(`Missing uniform ${n}`);}
@@ -349,7 +367,7 @@ export class Renderer {
 
   render(items:RenderItem[],viewProjection:Mat4,lighting:Lighting,viewPosition:Vec3){
     const gl=this.gl;
-    this.drawCalls=0;this.triangles=0;this.shadowCasters=0;this.instancedDraws=0;this.skinBones=null;this.shadowBones=null;
+    this.drawCalls=0;this.triangles=0;this.shadowCasters=0;this.instancedDraws=0;this.skinBones=null;this.shadowBones=null;this.frameModels.clear();
     const meshes:Mesh[]=[],skins:SkinnedMesh[]=[],overlays:Mesh[]=[];for(const it of items){if('skin' in it)skins.push(it);else if(it.overlay)overlays.push(it);else meshes.push(it);}
     const lightVP=sunViewProjection(lighting.sunDir,SHADOW_CENTRE,SHADOW_RADIUS,SHADOW_RESOLUTION);
     const strength=this.shadowEnabled?(lighting.shadowStrength??1):0;
@@ -397,6 +415,12 @@ export class Renderer {
     for(const m of meshes)this.staticData.set(m,{model:compose(m.position,m.rotation??new Vec3(),m.scale),color:hexToRgb(m.color),material:this.materialParams(m.material)});
   }
 
+  private model(item:RenderItem){
+    const cached=('skin' in item?undefined:this.staticData.get(item)?.model)??this.frameModels.get(item);if(cached)return cached;
+    // Mesh transforms are immutable during a frame; both shadow passes and color use the same matrix.
+    const matrix=compose(item.position,item.rotation??new Vec3(),item.scale??new Vec3(1,1,1));this.frameModels.set(item,matrix);return matrix;
+  }
+
   private shadowPass(meshes:Mesh[],skins:SkinnedMesh[],lightVP:Mat4,fb:WebGLFramebuffer,res:number){
     const gl=this.gl;
     gl.bindFramebuffer(gl.FRAMEBUFFER,fb);
@@ -407,15 +431,15 @@ export class Renderer {
     gl.useProgram(this.depthProgram);gl.uniform1f(this.du['u_textured'],0);gl.uniform1i(this.du['u_albedo'],2);gl.uniformMatrix4fv(this.du['u_lightVP'],false,lightVP);
     for(const m of meshes){
       if(!this.casts(m))continue;
-      const g=this.geos.get(m.kind)!;
-      gl.uniformMatrix4fv(this.du['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));
-      gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.shadowCasters++;
+      const g=m.geometry?this.skinGeometry(m.geometry):this.geos.get(m.kind)!;
+      gl.uniformMatrix4fv(this.du['u_model'],false,this.model(m));
+      if(m.doubleSided)gl.disable(gl.CULL_FACE);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);if(m.doubleSided)gl.enable(gl.CULL_FACE);this.shadowCasters++;
     }
     gl.useProgram(this.depthSkinProgram);gl.uniformMatrix4fv(this.dsu['u_lightVP'],false,lightVP);
     for(const s of skins){
       if(!this.casts(s))continue;
       const g=this.skinGeometry(s.skin);this.bindSurface(s,this.dsu);
-      gl.uniformMatrix4fv(this.dsu['u_model'],false,compose(s.position,s.rotation??new Vec3(),s.scale??new Vec3(1,1,1)));
+      gl.uniformMatrix4fv(this.dsu['u_model'],false,this.model(s));
       if(this.shadowBones!==s.boneMatrices){gl.uniformMatrix4fv(this.dsu['u_bones'],false,s.boneMatrices);this.shadowBones=s.boneMatrices;}
       gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.shadowCasters++;
     }
@@ -465,6 +489,7 @@ export class Renderer {
       case 'court': return {roughness:.84,specular:.026,softness:.035};
       case 'skin': return {roughness:.68,specular:.040,softness:.30};
       case 'hair': return {roughness:.72,specular:.028,softness:.14};
+      case 'referenceSkin':
       case 'humanSkin': return {roughness:.53,specular:.082,softness:.27};
       case 'groomedHair': return {roughness:.52,specular:.065,softness:.10};
       case 'lip': return {roughness:.28,specular:.19,softness:.16};
@@ -475,11 +500,16 @@ export class Renderer {
     }
   }
 
-  private drawMesh(m:Mesh){const gl=this.gl,g=this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));const cached=this.staticData.get(m),c=cached?.color??hexToRgb(m.color),mp=cached?.material??this.materialParams(m.material);gl.uniform1i(this.u['u_material'],this.materialId(m.material));gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_emission'],m.emission??0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
-  private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));if(this.skinBones!==m.boneMatrices){gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);this.skinBones=m.boneMatrices;}this.bindSurface(m,this.su);const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform1i(this.su['u_material'],this.materialId(m.material));gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
+  private drawMesh(m:Mesh){const gl=this.gl,g=m.geometry?this.skinGeometry(m.geometry):this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,this.model(m));const cached=this.staticData.get(m),c=cached?.color??hexToRgb(m.color),mp=cached?.material??this.materialParams(m.material);gl.uniform1i(this.u['u_material'],this.materialId(m.material));gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_emission'],m.emission??0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);if(m.doubleSided)gl.disable(gl.CULL_FACE);else gl.enable(gl.CULL_FACE);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
+  private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,this.model(m));if(this.skinBones!==m.boneMatrices){gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);this.skinBones=m.boneMatrices;}this.bindSurface(m,this.su);const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform1i(this.su['u_material'],this.materialId(m.material));gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);const coverage=this.alphaCoverage&&(m.alphaCutoff??0)>0&&(m.alpha??1)>=.999;
+    gl.uniform1f(this.su['u_maskCoverage'],coverage?1:0);
+    // Coverage smooths cutout strands without blending their color twice or changing transparent gestures.
+    if(coverage){gl.enable(gl.SAMPLE_ALPHA_TO_COVERAGE);gl.disable(gl.BLEND);}
+    gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);
+    if(coverage){gl.disable(gl.SAMPLE_ALPHA_TO_COVERAGE);gl.enable(gl.BLEND);}this.drawCalls++;this.triangles+=g.count/3;}
   private bindSurface(m:SkinnedMesh,u:Record<string,WebGLUniformLocation>){
     // shortcut: bounds approximate cloth contact; use authored or simulated cloth when folds need independent motion.
-    const gl=this.gl;if(u['u_skirt']){const pose=m.skirt?m.rig?.pose:undefined;gl.uniform1f(u['u_skirt'],pose?1:0);if(pose){gl.uniform3f(u['u_skirtPelvis'],pose.pelvis.x,pose.pelvis.y,pose.pelvis.z);gl.uniform4fv(u['u_skirtHips'],new Float32Array([pose.thighL.x,pose.thighL.y,pose.thighL.z,.18,pose.thighR.x,pose.thighR.y,pose.thighR.z,.18]));gl.uniform4fv(u['u_skirtKnees'],new Float32Array([pose.shinL.x,pose.shinL.y,pose.shinL.z,.145,pose.shinR.x,pose.shinR.y,pose.shinR.z,.145]));}}
+    const gl=this.gl;if(u['u_brownIris'])gl.uniform1f(u['u_brownIris'],m.brownIris&&m.eyeCenters?1:0);if(u['u_irisCenters']&&m.brownIris&&m.eyeCenters)gl.uniform3fv(u['u_irisCenters'],m.eyeCenters);if(u['u_skirt']){const pose=m.skirt?m.rig?.pose:undefined;gl.uniform1f(u['u_skirt'],pose?1:0);if(pose){gl.uniform3f(u['u_skirtPelvis'],pose.pelvis.x,pose.pelvis.y,pose.pelvis.z);gl.uniform4fv(u['u_skirtHips'],new Float32Array([pose.thighL.x,pose.thighL.y,pose.thighL.z,.18,pose.thighR.x,pose.thighR.y,pose.thighR.z,.18]));gl.uniform4fv(u['u_skirtKnees'],new Float32Array([pose.shinL.x,pose.shinL.y,pose.shinL.z,.145,pose.shinR.x,pose.shinR.y,pose.shinR.z,.145]));}}
     if(u['u_eyeYaw'])gl.uniform1f(u['u_eyeYaw'],m.eyeCenters?m.eyeYaw??0:0);if(u['u_eyeCenters']&&m.eyeCenters)gl.uniform3fv(u['u_eyeCenters'],m.eyeCenters);
     if(u['u_expression'])gl.uniform4fv(u['u_expression'],m.expression??[0,0,0,0]);if(u['u_handGrip'])gl.uniform2fv(u['u_handGrip'],m.handGrip??[0,0]);gl.uniform1i(u['u_albedo'],2);gl.uniform1f(u['u_textured'],m.diffuse?1:0);gl.uniform1f(u['u_alphaCutoff'],m.alphaCutoff??0);
     if(m.diffuse){gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,this.albedo(m.diffuse));gl.activeTexture(gl.TEXTURE0);}
@@ -546,7 +576,19 @@ export class Renderer {
     precision highp float;in vec3 v_normal;in vec3 v_world;in vec3 v_surface;in vec2 v_uv;out vec4 outColor;
     ${LIGHT_UNIFORMS}
     ${LIGHT_BODY}
-    void main(){if(u_textured>.5&&texture(u_albedo,v_uv).a<u_alphaCutoff)discard;vec3 N=normalize(v_normal)*(gl_FrontFacing?1.0:-1.0);outColor=vec4(shade(N,v_world),u_alpha);}`;
+    void main(){
+      float coverage=1.0;
+      if(u_textured>.5&&u_alphaCutoff>0.0){
+        float alpha=texture(u_albedo,v_uv).a;
+        if(u_maskCoverage>.5){
+          float width=max(fwidth(alpha),.0001);
+          coverage=smoothstep(u_alphaCutoff-width,u_alphaCutoff+width,alpha);
+          if(coverage<.001)discard;
+        }else if(alpha<u_alphaCutoff)discard;
+      }
+      vec3 N=normalize(v_normal)*(gl_FrontFacing?1.0:-1.0);
+      outColor=vec4(shade(N,v_world),u_alpha*coverage);
+    }`;
   }
   private depthFS(){return `#version 300 es
     precision highp float;in vec2 v_uv;uniform sampler2D u_albedo;uniform float u_textured;uniform float u_alphaCutoff;void main(){if(u_textured>.5&&texture(u_albedo,v_uv).a<u_alphaCutoff)discard;}`;}

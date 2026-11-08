@@ -11,7 +11,7 @@ for(let i=0;i<90;i++){
  const visible=world.presentationMeshes(new Vec3(1,8,18),new Vec3(1,.74,0),1/60);
  assert.equal(visible.length,world.meshes.length);for(let j=0;j<visible.length;j++){assert.strictEqual(visible[j].position,world.meshes[j].position);assert.strictEqual(visible[j].scale,world.meshes[j].scale);}
 }
-assert(world.presentationMeshes(new Vec3(1,8,18),new Vec3(1,.74,0),0).every((m,i)=>m.id!=='court-pendant'||m.alpha/(world.meshes[i].alpha??1)>.1&&m.alpha/(world.meshes[i].alpha??1)<.5));
+assert(world.presentationMeshes(new Vec3(1,8,18),new Vec3(1,.74,0),0).every((m,i)=>m.id!=='court-pendant'||m.alpha/(world.meshes[i].alpha??1)<.001));
 for(let i=0;i<180;i++)world.presentationMeshes(new Vec3(20,22,20),new Vec3(),1/60);
 assert(world.presentationMeshes(new Vec3(20,22,20),new Vec3(),0).every((m,i)=>m.id!=='court-pendant'||m.alpha/(world.meshes[i].alpha??1)>.99));
 assert.equal(JSON.stringify(world.meshes),transforms);assert.deepEqual(world.objects,objects);assert.strictEqual(world.courtDetails,net);assert(!world.meshes.some(m=>m.id==='spectatorRow'));

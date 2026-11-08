@@ -1,0 +1,47 @@
+{
+  "club": {
+    "image": "guide-club.webp",
+    "width": 1440,
+    "height": 960,
+    "callout": null
+  },
+  "challenge": {
+    "image": "guide-challenge.webp",
+    "width": 1440,
+    "height": 960,
+    "callout": {
+      "left": 75.70138719346788,
+      "top": 55.382486979166664,
+      "width": 19.02777777777778,
+      "height": 6.207682291666667
+    }
+  },
+  "championship": {
+    "image": "guide-championship.webp",
+    "width": 1440,
+    "height": 960,
+    "callout": {
+      "left": 39.689670138888886,
+      "top": 94.79166666666666,
+      "width": 20.62065972222222,
+      "height": 3.854166666666667
+    }
+  },
+  "analyze": {
+    "image": "guide-analyze.webp",
+    "width": 1440,
+    "height": 960,
+    "callout": {
+      "left": 0.7638888888888888,
+      "top": 10.729166666666666,
+      "width": 10.768229166666666,
+      "height": 5
+    }
+  },
+  "lab": {
+    "image": "guide-lab.webp",
+    "width": 1440,
+    "height": 960,
+    "callout": null
+  }
+}

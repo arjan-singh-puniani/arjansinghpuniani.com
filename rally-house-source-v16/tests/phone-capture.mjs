@@ -29,7 +29,7 @@ try{
   const northWall=world.meshes.find(m=>m.position.z===-9.75&&m.scale.x===26),nearEdge=northWall.position.z+northWall.scale.z/2;
   for(const width of [390,1440])for(const mode of ['body','combined']){
    const view=new CameraController(canvas);view.setAspect(width===390?390/844:1440/900);const timeline=new ReplayTimeline(p.last.clip);timeline.mode=mode;timeline.seek(timeline.start+(timeline.end-timeline.start)*.5);
-   const lab={timeline,camera:view,canvas:{clientWidth:width},trackCamera:PerformanceLab.prototype.trackCamera};PerformanceLab.prototype.frameCamera.call(lab);view.target=view.desiredTarget.clone();view.distance=view.desiredDistance;view.azimuth=view.desiredAzimuth;view.elevation=view.desiredElevation;view.update(0);
+   const lab={timeline,camera:view,canvas:{clientWidth:width,clientHeight:width===390?844:900},layer:{querySelector:()=>({getBoundingClientRect:()=>({bottom:56})})},panel:{getBoundingClientRect:()=>({top:436})},trackCamera:PerformanceLab.prototype.trackCamera};PerformanceLab.prototype.frameCamera.call(lab);view.target=view.desiredTarget.clone();view.distance=view.desiredDistance;view.azimuth=view.desiredAzimuth;view.elevation=view.desiredElevation;view.update(0);
    assert(view.position.z>nearEdge,'Phone review camera cannot hide the body behind the actual opaque back wall');PerformanceLab.prototype.zoom.call(lab,10000);assert(view.desiredDistance<15,'Phone inspection zoom cannot leave the authored room');
   }
   const first=p.last.clip.frames[0],root=first.root.clone();c.position.set(12,0,7);assert.deepEqual(first.root,root,'Motion recording is detached from future movement');

@@ -1,0 +1,32 @@
+Continuous jersey PASS: one surface, four closed boundary loops, manifold seams.
+{"neckSamples":2714}
+{"surface":"sleeves","arm":"upperArmL","radius95":0.06323056209294364,"samples":2448}
+{"surface":"sleeves","arm":"foreArmL","radius95":0.050937951317313296,"samples":1642}
+{"surface":"sleeves","arm":"upperArmR","radius95":0.06339529476200653,"samples":2485}
+{"surface":"sleeves","arm":"foreArmR","radius95":0.050956226687602815,"samples":1615}
+{"shoulderRollSamples":66,"maxShoulderRollStep":0.0001817332987498217}
+{"maxRestTorsoError":9.297784231421247e-8,"registeredNeck":{"x":1.0764837929000149e-17,"y":2.0239413500000003,"z":-0.0022391999999999967}}
+{"shoulderRatio":0.9760892904599162}
+{"wristLengthChecks":2880,"maxWristScale":1.0000006550569462}
+{"soleFloorChecks":661824,"maxFloorPenetration":0}
+{"maxAuthoredContactError":1.9809057570879613e-8}
+{"assetTriangles":35834,"samples":42,"maxGripGap":1.665430808173112e-7,"minSole":0.0008214089926851624,"minForearmVolume":0.34611206128925126}
+{"fingerSamples":2250,"openRadius":0.1013285654926816,"closedRadius":0.0392271468162634,"wristDeflection":0.4685876806497379}
+{"readyArmChecks":1080,"strokeArmChecks":2712}
+{"palmChecks":84,"maxPalmGripShift":0.0009691736363346435}
+{"minFaceClearance":1.2066793911730915}
+{"skirtHem":1.1139721870422363,"shortsHem":1.1854853630065918}
+{"maxSeatedGazeTranslation":0.006524167248953288}
+{"maxDrapeStep":0.12546464347596925,"seatedReplay":true,"crouchReplay":true}
+Three distinct authored adult cast looks retain their body, eye centers, seated pose, contact and capture.
+{"maxBlink":1,"maxBlinkStep":0.12439814814813799}
+{"gazeLead":0.27393872222439875,"gazeReverse":-0.3,"replayedGaze":-0.01303063888780065}
+{"transitionChecks":450,"zeroTimeJump":5.933936338141144e-9,"maxHandRelativeStep":0.0495338409693113}
+Authored athlete loader, actual Character meshes, shared replay palette and facial interpolation PASS.
+{"backhandGripChecks":60,"minFingerGap":0.01971450070515461}
+Loaded backhand: front sleeve and shoulder panels remain separated at 30/60/120 Hz.
+{"walkSamples":5040,"minWalkFlex":0.3496655347011317,"maxWalkFlex":0.5539865301794122,"maxHeadBob":0.06305241416925256}
+{"maxCrease95":17.961806838066593}
+Garment deformation PASS: rounded shoulder and sleeve transitions through rest and strokes across the adult women.
+{"jerseyPoses":84,"maxResidualDepth":0.009319114463367055}
+{"rigidInterpolationSamples":448,"halfTurn":true,"shortestArc":true,"parallelHint":true}

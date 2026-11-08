@@ -1,0 +1,74 @@
+{
+  "author": "Microsoft Rocketbox; Rally House geometry fitting and rig adaptation",
+  "source": "https://github.com/microsoft/Microsoft-Rocketbox/tree/0943055db6ec570bcef9f2c8b41c9e5467c808f9",
+  "license": "MIT",
+  "sha256": "28b7468e3f8321d8c283d82b1965fbc1015c93b387ec86e4723702204c463615",
+  "sourceAsset": "Male_Adult_02_facial.fbx",
+  "neckBoundaryVertices": 20,
+  "bodySha256": "5d7722b90cfcd1e5f9ec5eed21ab4fff35ef9a67c5d2aa7e71e1234279f35ae8",
+  "boneMap": {
+    "head": "head",
+    "neck": "neck",
+    "chest": "chest",
+    "upperArmL": "upperArmL",
+    "upperArmR": "upperArmR"
+  },
+  "eyeCenters": [
+    [
+      -0.038165966060035764,
+      0.017590370320908127,
+      0.10850316073847767
+    ],
+    [
+      0.03803583194230345,
+      0.01794850645938605,
+      0.1132160238823414
+    ]
+  ],
+  "parts": [
+    {
+      "material": "face",
+      "triangles": 2396,
+      "vertices": 1389
+    },
+    {
+      "material": "scalp",
+      "triangles": 434,
+      "vertices": 273
+    },
+    {
+      "material": "eyes",
+      "triangles": 252,
+      "vertices": 146
+    },
+    {
+      "material": "hair",
+      "triangles": 704,
+      "vertices": 696
+    },
+    {
+      "material": "browCore",
+      "triangles": 960,
+      "vertices": 558
+    },
+    {
+      "material": "browStrands",
+      "triangles": 1800,
+      "vertices": 5400
+    }
+  ],
+  "sourceFaceGeometrySha256": "acf570735525fdb7f9f888492c5c3af872a8afb1c5733169f4d395f4edaf8f17",
+  "textures": {
+    "head-skin.webp": "771bdf5f350f52da1b6e43fe17ef7d860c8fbed9c23363ccb30aee5a0f008151",
+    "head-hair.webp": "26cea28f1cac8761f31ec7363e06aa9b2bf1f7fc8e094398c5131a0b32e586eb"
+  },
+  "sourceHashes": {
+    "fitted.json": "a9c594bd36d2fdc9d395a4f3394e8b5be774bb90d1290f57cb62eeada68f19e0",
+    "provenance.json": "f93a0a3ec146c49f1dda8948dc387d24dbc02c8e927f2a76edb7a28867296e11",
+    "Male_Adult_02_facial.fbx": "0f8dea5317896e16a4490ca76f7273cdaf513cc50eb855d228826ed874a15186",
+    "m003_head_color.tga": "f7d7d06bc9e3bee73bb037a0c55ca2915593fa5ef7b08da3f6a59409ed5cfc8f",
+    "m003_opacity_color.tga": "2c0751e05d78587d3898ce60bbea8b3f23e78150b7e497b7e97fe8c66e91ee1e"
+  },
+  "authoringScriptSha256": "9c91c6fa95e9fb3e2119af42af9fc0e242165a04dc99c23c858f56d4e933cc3d",
+  "limit": "Multi-view landmark geometry fit on a licensed generic head, not a scan or an approved personal likeness. Original generic texture images unchanged; no user photographs shipped."
+}

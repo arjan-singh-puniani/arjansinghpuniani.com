@@ -1,12 +1,13 @@
-import { Vec3, scaling, multiply, invertRigid, rigidFrame, transformPoint, interpolateRigidFrame } from '../rendering/Math3D.js';
+import { Vec3, scaling, multiply, invertRigid, rigidFrame, transformPoint, interpolateRigidFrame, smoothstep } from '../rendering/Math3D.js';
 export const BONE = { pelvis: 0, spine: 1, chest: 2, neck: 3, head: 4, upperArmL: 5, foreArmL: 6, handL: 7, upperArmR: 8, foreArmR: 9, handR: 10, thighL: 11, shinL: 12, thighR: 13, shinR: 14, footL: 15, footR: 16, foreArmTwistL: 17, foreArmTwistR: 18 };
 export const BONE_COUNT = 19;
 /** The mesh and continuous replay use the same landmark-to-skin mapping. */
 export function rigFromPose(p, root, yaw, relax = 0) {
     const local = (v) => { const dx = v.x - root.x, dz = v.z - root.z, s = Math.sin(yaw), c = Math.cos(yaw); return new Vec3(c * dx - s * dz, v.y, s * dx + c * dz); };
     const arm = (v, x, y) => Vec3.lerp(local(v), new Vec3(x, y + p.baseY - p.knee, -.015), relax);
-    const chest = Vec3.lerp(p.shoulderL, p.shoulderR, .5);
-    return { pelvis: local(p.pelvisCenter), spine: local(Vec3.lerp(p.pelvisCenter, p.torsoCenter, .62)), chest: local(chest), neck: local(Vec3.lerp(chest, p.head, .58)), head: local(p.head), upperArmL: local(p.shoulderL), foreArmL: arm(p.elbowL, -.397, 1.095), handL: arm(p.handL, -.36, .89), upperArmR: local(p.shoulderR), foreArmR: arm(p.elbowR, .397, 1.095), handR: arm(p.handR, .36, .89), thighL: local(p.hipL), shinL: local(p.kneeL), footL: local(p.footL), thighR: local(p.hipR), shinR: local(p.kneeR), footR: local(p.footR), forward: new Vec3(Math.sin(p.torsoYaw - yaw), 0, Math.cos(p.torsoYaw - yaw)) };
+    const chest = p.chest ?? Vec3.lerp(p.shoulderL, p.shoulderR, .5);
+    const pitch = p.headPitch ?? 0, heading = p.headYaw - yaw, gaze = p.headPitch === undefined ? {} : { headUp: new Vec3(-Math.sin(heading) * Math.sin(pitch), Math.cos(pitch), -Math.cos(heading) * Math.sin(pitch)), headForward: new Vec3(Math.sin(heading) * Math.cos(pitch), Math.sin(pitch), Math.cos(heading) * Math.cos(pitch)) };
+    return { ...gaze, pelvis: local(p.pelvisCenter), spine: local(Vec3.lerp(p.pelvisCenter, p.torsoCenter, .62)), chest: local(chest), neck: local(Vec3.lerp(chest, p.head, .58)), head: local(p.head), upperArmL: local(p.shoulderL), foreArmL: arm(p.elbowL, -.397, 1.095), handL: arm(p.handL, -.36, .89), upperArmR: local(p.shoulderR), foreArmR: arm(p.elbowR, .397, 1.095), handR: arm(p.handR, .36, .89), thighL: local(p.hipL), shinL: local(p.kneeL), footL: local(p.footL), thighR: local(p.hipR), shinR: local(p.kneeR), footR: local(p.footR), forward: new Vec3(Math.sin(p.torsoYaw - yaw), 0, Math.cos(p.torsoYaw - yaw)) };
 }
 const bind = {
     pelvis: new Vec3(0, .79, 0), spine: new Vec3(0, 1.05, .01), chest: new Vec3(0, 1.34, .015), neck: new Vec3(0, 1.56, .01), head: new Vec3(0, 1.78, .01),
@@ -45,14 +46,14 @@ function frameFor(p, def) {
     const leg = def.joint.startsWith('thigh') || def.joint.startsWith('shin'), forward = leg ? Vec3.cross(new Vec3(-p.forward.z, 0, p.forward.x), Vec3.sub(target, a)) : p.forward;
     return rigidFrame(a, target, def.joint === 'foreArmTwistL' && p.foreArmForwardL ? p.foreArmForwardL : def.joint === 'foreArmTwistR' && p.foreArmForwardR ? p.foreArmForwardR : def.joint === 'head' && p.headForward ? p.headForward : forward.len() > .001 ? forward : p.forward);
 }
-function transportedFrame(source, start, end) {
+export function transportedFrame(source, start, end) {
     const from = new Vec3(source[4], source[5], source[6]), to = Vec3.sub(end, start).normalize(), axis = Vec3.cross(from, to), cosine = Vec3.dot(from, to), forward = new Vec3(source[8], source[9], source[10]), turn = Vec3.cross(axis, forward);
     const hint = cosine > -.9999 ? forward.clone().add(turn).add(Vec3.cross(axis, turn).scale(1 / (1 + cosine))) : forward.clone().scale(-1);
     return rigidFrame(start, end, hint);
 }
 const bindInv = defs.map(d => invertRigid(frameFor(bind, d)));
 const authoredBindInv = new WeakMap();
-export function skinMatrices(p, restPose = bind) {
+export function skinMatrices(p, restPose = bind, stroke = 0) {
     let inverse = bindInv;
     if (restPose !== bind) {
         inverse = authoredBindInv.get(restPose) ?? defs.map(d => invertRigid(frameFor(restPose, d)));
@@ -70,6 +71,9 @@ export function skinMatrices(p, restPose = bind) {
     for (let i = 0; i < BONE_COUNT; i++) {
         const d = defs[i], length = Vec3.sub(endpoint(p, d), jointPoint(p, d.joint)).len(), rest = Vec3.sub(endpoint(restPose, d), jointPoint(restPose, d.joint)).len(), rigid = d.joint.startsWith('hand') || d.joint.startsWith('foot') || restPose !== bind && d.joint === 'head';
         let frame = frameFor(p, d);
+        // Reaching shoulders turn the ribcage beyond the earlier torso-yaw guide.
+        if (d.joint === 'chest' && restPose.wristL)
+            frame = rigidFrame(p.chest, endpoint(p, d), Vec3.cross(Vec3.sub(p.upperArmR, p.upperArmL), new Vec3(0, 1, 0)));
         if ((d.joint.startsWith('upperArm') || d.joint === 'foreArmL' || d.joint === 'foreArmR') && restPose.wristL) {
             // Forward-axis projection flips the sleeve; carry the authored shoulder roll with the torso.
             const parent = d.joint.startsWith('upperArm') ? BONE.chest : BONE[d.joint.endsWith('L') ? 'upperArmL' : 'upperArmR'], source = multiply(multiply(frames[parent], inverse[parent]), frameFor(restPose, d));
@@ -77,7 +81,7 @@ export function skinMatrices(p, restPose = bind) {
             if (d.joint === 'foreArmL' || d.joint === 'foreArmR') {
                 // Start grip roll above the twist seam instead of concentrating it at the wrist.
                 const palm = BONE[d.joint.endsWith('L') ? 'handL' : 'handR'], palmFrame = multiply(multiply(frameFor(p, defs[palm]), inverse[palm]), frameFor(restPose, d));
-                frame = interpolateRigidFrame(frame, transportedFrame(palmFrame, jointPoint(p, d.joint), endpoint(p, d)), .25);
+                frame = interpolateRigidFrame(frame, transportedFrame(palmFrame, jointPoint(p, d.joint), endpoint(p, d)), .25 + .35 * stroke);
             }
         }
         if (d.joint.startsWith('foreArmTwist') && restPose.wristL) {
@@ -339,7 +343,7 @@ for (const side of [-1, 1]) {
         }
 }
 export const HUMAN_TENNIS_SKIN = { dress: finish('taylor-human-tailored-dress-v2', humanDress), yoke: finish('taylor-human-shoulder-yoke-v2', humanYoke), trim: finish('taylor-human-scoop-piping-v2', humanTrim), seams: finish('taylor-human-princess-seams-v1', humanSeams) };
-const athleteBodice = build(), athleteSkirt = build(), athleteTop = build(), athleteLegs = build(), athleteCalves = build(), athleteArms = build(), athleteFeminineArms = build(), athleteBand = build(), athleteSocks = build(), athleteFreeHands = build(), athleteShorts = { p: [...shorts.p], n: [...shorts.n], bi: [...shorts.bi], bw: [...shorts.bw] };
+const athleteBodice = build(), athleteSkirt = build(), athleteTop = build(), athleteLegs = build(), athleteCalves = build(), athleteArms = build(), athleteFeminineArms = build(), athleteBand = build(), athleteSocks = build(), arjanSocks = build(), athleteFreeHands = build(), athleteShorts = { p: [...shorts.p], n: [...shorts.n], bi: [...shorts.bi], bw: [...shorts.bw] };
 humanSurface(athleteBodice, () => .895, humanNeckY, 24, .003);
 humanSurface(athleteSkirt, () => .575, () => .905, 16, .003);
 sculptSegment(athleteTop, bind.pelvis, bind.spine, [[0, .265, .181], [.55, .244, .166], [1, .249, .172]], BONE.pelvis, BONE.spine, 12, 24);
@@ -359,6 +363,8 @@ for (const side of ['L', 'R']) {
     sculptSegment(athleteCalves, bind[`shin${side}`], bind[`foot${side}`], [[0, .087, .078], [.28, .103, .088], [.5, .088, .075], [.78, .065, .057], [1, .052, .047]], BONE[`shin${side}`], BONE[`shin${side}`], 16, 24);
     const elbow = bind[`foreArm${side}`], hand = bind[`hand${side}`], shin = bind[`shin${side}`], foot = bind[`foot${side}`], handBone = BONE[`hand${side}`], frame = basis(Vec3.sub(hand, elbow)), sign = side === 'L' ? -1 : 1;
     sculptSegment(athleteBand, Vec3.lerp(elbow, hand, .82), Vec3.lerp(elbow, hand, .96), [[0, .063, .056], [1, .056, .050]], BONE[`foreArm${side}`], handBone, 4, 24, true, [.82, .96]);
+    // Match the calf taper throughout the taller cuff so fabric stays outside the skin in every pose.
+    sculptSegment(arjanSocks, Vec3.lerp(shin, foot, .56), foot, [[0, .087, .074], [.09, .085, .071], [.20, .078, .067], [.50, .069, .061], [1, .056, .051]], BONE[`shin${side}`], BONE[`shin${side}`], 10, 24);
     sculptSegment(athleteSocks, Vec3.lerp(shin, foot, .84), foot, [[0, .064, .057], [.5, .058, .052], [1, .055, .050]], BONE[`shin${side}`], BONE[`shin${side}`], 6, 24);
     const point = (x, y, z) => hand.clone().add(frame.x.clone().scale(x)).add(frame.y.clone().scale(y)).add(frame.z.clone().scale(z));
     handVolume(athleteFreeHands, point(0, .020, .002), frame, new Vec3(.058, .047, .030), handBone);
@@ -403,7 +409,99 @@ for (const side of ['L', 'R']) {
     balanceJoint(athleteCalves, BONE[`thigh${side}`], BONE[`shin${side}`]);
 }
 sculptSegment(athleteShorts, new Vec3(0, .74, 0), new Vec3(0, .825, 0), [[0, .323, .170], [.7, .287, .175], [1, .269, .177]], BONE.pelvis, BONE.pelvis, 8, 32);
-export const ATHLETE_WARDROBE = { bodice: finish('athlete-fitted-bodice-v1', athleteBodice), skirt: finish('athlete-pleated-skirt-v1', athleteSkirt), top: finish('athlete-performance-shirt-v2', athleteTop), legs: finish('athlete-shaped-legs-v1', athleteLegs), calves: finish('athlete-shaped-calves-v1', athleteCalves), arms: finish('athlete-shaped-arms-v1', athleteArms), feminineArms: finish('athlete-feminine-arms-v1', athleteFeminineArms), shorts: finish('athlete-performance-shorts-v1', athleteShorts), wristband: finish('athlete-performance-wristband-v1', athleteBand), socks: finish('athlete-court-socks-v1', athleteSocks), freeHands: finish('athlete-relaxed-hands-v1', athleteFreeHands) };
+const arjanTop = build(), arjanArms = build(), arjanBand = build(), arjanShorts = build(), arjanLegs = build();
+// Omit only skin concealed by the shorts; the retained ring overlaps the thigh-following hem.
+for (let v = 0; v < athleteLegs.p.length / 3; v += 3) {
+    const side = athleteLegs.p[v * 3] < 0 ? 'L' : 'R', a = bind[`thigh${side}`], axis = Vec3.sub(bind[`shin${side}`], a);
+    if (![0, 1, 2].some(i => Vec3.dot(Vec3.sub(new Vec3(...athleteLegs.p.slice((v + i) * 3, (v + i + 1) * 3)), a), axis) / axis.len() ** 2 >= .46))
+        continue;
+    for (let i = 0; i < 3; i++) {
+        arjanLegs.p.push(...athleteLegs.p.slice((v + i) * 3, (v + i + 1) * 3));
+        arjanLegs.n.push(...athleteLegs.n.slice((v + i) * 3, (v + i + 1) * 3));
+        arjanLegs.bi.push(...athleteLegs.bi.slice((v + i) * 4, (v + i + 1) * 4));
+        arjanLegs.bw.push(...athleteLegs.bw.slice((v + i) * 4, (v + i + 1) * 4));
+    }
+}
+const arjanProfile = [[.79, .255, .175], [.93, .234, .158], [1.05, .241, .165], [1.15, .284, .191], [1.245, .316, .214], [1.30, .328, .209], [1.34, .330, .200], [1.38, .282, .162], [1.42, .180, .114], [1.445, .108, .098]];
+function arjanTorsoPoint(y, angle) {
+    const [rx, rz] = radiusAt(arjanProfile, y), x = Math.cos(angle) * rx, front = Math.max(0, Math.sin(angle)), rear = Math.max(0, -Math.sin(angle)), pec = .012 * [-1, 1].reduce((v, side) => v + Math.exp(-(((x - side * .14) / .11) ** 2) - ((y - 1.27) / .08) ** 2), 0), back = .006 * [-1, 1].reduce((v, side) => v + Math.exp(-(((x - side * .14) / .09) ** 2) - ((y - 1.29) / .10) ** 2), 0);
+    return new Vec3(x, y, .015 * clampUnit((y - .79) / .55) + Math.sin(angle) * rz + front * front * pec - rear * rear * back);
+}
+const arjanRings = build();
+for (let row = 0; row <= 40; row++) {
+    const y = .79 + row / 40 * .655, [a, b, t] = dressWeights(y);
+    for (let i = 0; i < 48; i++) {
+        const angle = i / 48 * Math.PI * 2, p = arjanTorsoPoint(y, angle), dy = Vec3.sub(arjanTorsoPoint(Math.min(1.445, y + .001), angle), arjanTorsoPoint(Math.max(.79, y - .001), angle)), da = Vec3.sub(arjanTorsoPoint(y, angle + .001), arjanTorsoPoint(y, angle - .001)), n = Vec3.cross(dy, da).normalize();
+        arjanRings.p.push(p.x, p.y, p.z);
+        arjanRings.n.push(n.x, n.y, n.z);
+        arjanRings.bi.push(a, b, 0, 0);
+        arjanRings.bw.push(1 - t, t, 0, 0);
+    }
+}
+appendSurface(arjanTop, arjanRings, 40, 48);
+for (const side of ['L', 'R']) {
+    const shoulder = bind[`upperArm${side}`], elbow = bind[`foreArm${side}`], hand = bind[`hand${side}`], upper = BONE[`upperArm${side}`], fore = BONE[`foreArm${side}`];
+    sculptSegment(arjanArms, shoulder, elbow, [[0, .076, .073], [.16, .086, .081], [.38, .084, .076], [.65, .070, .063], [1, .057, .053]], upper, fore, 14, 24, true);
+    sculptSegment(arjanArms, elbow, hand, [[0, .057, .053], [.28, .068, .060], [.50, .061, .053], [.78, .051, .045], [1, .046, .041]], fore, BONE[`hand${side}`], 14, 24, true);
+    shoulderCap(arjanArms, shoulder, Vec3.sub(elbow, shoulder), upper, .076, .073, 24, .022);
+    balanceJoint(arjanArms, upper, fore);
+    sculptSegment(arjanBand, Vec3.lerp(elbow, hand, .82), Vec3.lerp(elbow, hand, .96), [[0, .054, .048], [1, .050, .045]], fore, BONE[`hand${side}`], 4, 24, true, [.82, .96]);
+}
+function shortsPanel(rings, rows, reverse) {
+    const panel = build();
+    appendSurface(panel, rings, rows, 24);
+    for (let v = 0; v < panel.p.length / 3; v++) {
+        const i = reverse ? Math.floor(v / 3) * 3 + [0, 2, 1][v % 3] : v;
+        arjanShorts.p.push(...panel.p.slice(i * 3, i * 3 + 3));
+        arjanShorts.n.push(0, 0, 0);
+        arjanShorts.bi.push(...panel.bi.slice(i * 4, i * 4 + 4));
+        arjanShorts.bw.push(...panel.bw.slice(i * 4, i * 4 + 4));
+    }
+}
+// The upper waistband sits inside the untucked polo while the seat and leg seams keep their fit.
+const shortsWaist = build();
+for (let row = 0; row <= 4; row++)
+    for (let i = 0; i < 24; i++) {
+        const t = row / 4, angle = i / 24 * Math.PI * 2, [rx, rz] = radiusAt([[0, .176, .108], [.4, .229, .143], [.75, .292, .173], [1, .323, .180]], t);
+        shortsWaist.p.push(Math.cos(angle) * rx, .824 - .084 * t, Math.sin(angle) * rz);
+        shortsWaist.n.push(0, 0, 0);
+        shortsWaist.bi.push(BONE.pelvis, 0, 0, 0);
+        shortsWaist.bw.push(1, 0, 0, 0);
+    }
+shortsPanel(shortsWaist, 4, true);
+for (const side of ['L', 'R']) {
+    // The tennis reference has loose shorts ending above the knees, with room for a loaded serve.
+    const rings = build(), sign = side === 'L' ? -1 : 1, a = bind[`thigh${side}`], b = bind[`shin${side}`], hem = Vec3.lerp(a, b, .80), frame = basis(Vec3.sub(b, a));
+    for (let row = 0; row <= 6; row++)
+        for (let i = 0; i < 24; i++) {
+            const t = row / 6, angle = i / 24 * Math.PI * 2, c = Math.cos(angle), s = Math.sin(angle);
+            // Both legs share this crotch seam and the waist ring; overlapping tubes leave a floating hip shelf.
+            const top = new Vec3(sign * .323 * Math.max(0, c), .74 + .07 * Math.min(0, c), .18 * s);
+            // A gently raised rear hem leaves space behind the knee when sitting or loading a serve.
+            const bottom = hem.clone().add(new Vec3(sign * .16 * c, frame.z.y * .145 * s, frame.z.z * .145 * s)).add(Vec3.sub(a, b).scale(.12 * Math.max(0, -s) ** 2)), p = Vec3.lerp(top, bottom, t), w = smoothstep(.74, .70, p.y);
+            const spread = smoothstep(0, .6, t), right = smoothstep(-.08, .08, p.x) * (1 - spread) + (sign > 0 ? spread : 0);
+            rings.p.push(p.x, p.y, p.z);
+            rings.n.push(0, 0, 0);
+            rings.bi.push(BONE.pelvis, BONE.thighL, BONE.thighR, 0);
+            rings.bw.push(1 - w, w * (1 - right), w * right, 0);
+        }
+    shortsPanel(rings, 6, sign > 0);
+}
+// Shared normals and weights keep the sewn boundaries continuous in live play and recorded replay.
+const shortsNormals = new Map(), shortsKey = (v) => arjanShorts.p.slice(v * 3, v * 3 + 3).map(n => Math.round(n * 1e6)).join(',');
+for (let v = 0; v < arjanShorts.p.length / 3; v += 3) {
+    const [a, b, c] = [0, 1, 2].map(i => new Vec3(...arjanShorts.p.slice((v + i) * 3, (v + i + 1) * 3))), normal = Vec3.cross(Vec3.sub(b, a), Vec3.sub(c, a));
+    for (let i = 0; i < 3; i++) {
+        const key = shortsKey(v + i), sum = shortsNormals.get(key) ?? new Vec3();
+        sum.add(normal);
+        shortsNormals.set(key, sum);
+    }
+}
+for (let v = 0; v < arjanShorts.p.length / 3; v++) {
+    const n = shortsNormals.get(shortsKey(v)).clone().normalize();
+    arjanShorts.n.splice(v * 3, 3, n.x, n.y, n.z);
+}
+export const ATHLETE_WARDROBE = { arjanTop: finish('arjan-contoured-performance-tank-v2', arjanTop), arjanArms: finish('arjan-shaped-arms-v1', arjanArms), arjanBand: finish('arjan-fitted-wristbands-v1', arjanBand), arjanShorts: finish('arjan-continuous-tennis-shorts-v3', arjanShorts), arjanLegs: finish('arjan-shorts-exposed-legs-v1', arjanLegs), bodice: finish('athlete-fitted-bodice-v1', athleteBodice), skirt: finish('athlete-pleated-skirt-v1', athleteSkirt), top: finish('athlete-performance-shirt-v2', athleteTop), legs: finish('athlete-shaped-legs-v1', athleteLegs), calves: finish('athlete-shaped-calves-v1', athleteCalves), arms: finish('athlete-shaped-arms-v1', athleteArms), feminineArms: finish('athlete-feminine-arms-v1', athleteFeminineArms), shorts: finish('athlete-performance-shorts-v1', athleteShorts), wristband: finish('athlete-performance-wristband-v1', athleteBand), socks: finish('athlete-court-socks-v1', athleteSocks), arjanSocks: finish('arjan-crew-socks', arjanSocks), freeHands: finish('athlete-relaxed-hands-v1', athleteFreeHands) };
 // A small embroidered crescent recreates the reference's central gold detail.
 // It samples the same surface and weights as the tunic, including in replay.
 const taylorTunicMark = build();
