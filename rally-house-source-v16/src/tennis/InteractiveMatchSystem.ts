@@ -38,7 +38,6 @@ interface PendingContact {
   captureAt: number;
   incomingStart: Vec3 | null;
   contactTarget: Vec3 | null;
-  tossStart: Vec3;
   captured: boolean;
   impactStarted: boolean;
   released: boolean;
@@ -100,6 +99,7 @@ export class InteractiveMatchSystem {
   private flightHitter: Side | null = null;
   private pending: PendingContact | null = null;
   private pointResolved = false;
+  private pointResultAge = 0;
   private firstBounceSeen = false;
   private shotSequence = 0;
   private opponentServeDelay = 0;
@@ -144,6 +144,7 @@ export class InteractiveMatchSystem {
     this.flightHitter = null;
     this.pending = null;
     this.pointResolved = false;
+    this.pointResultAge = 0;
     this.firstBounceSeen = false;
     this.rallyLength = 0;
     this.ball.active = false;
@@ -195,7 +196,18 @@ export class InteractiveMatchSystem {
   }
 
   update(dt: number) {
-    if (!this.enabled || this.pointResolved || !Number.isFinite(dt) || dt <= 0) {
+    if (!this.enabled || !Number.isFinite(dt) || dt <= 0) {
+      return;
+    }
+
+    if(this.pointResolved){
+      const before=this.pointResultAge;this.pointResultAge+=dt;
+      if(before<CHAMPIONSHIP_TUNING.pointReactionSeconds&&this.pointResultAge>=CHAMPIONSHIP_TUNING.pointReactionSeconds){
+        // A stopped steering input must not turn baseline recovery into a crawl.
+        this.player.setCourtSpeedScale(CHAMPIONSHIP_TUNING.playerMaxCourtSpeedScale);
+        this.player.moveOnCourt(new Vec3(COURT_CENTER_X,0,PLAYER_BASELINE_Z),this.opponent.position,false);
+        this.opponent.moveOnCourt(new Vec3(COURT_CENTER_X,0,-this.opponentProfile.courtDepth),this.player.position,false);
+      }
       return;
     }
 
@@ -243,6 +255,10 @@ export class InteractiveMatchSystem {
   }
 
   private updatePlayerMovement(dt: number) {
+    const serving=this.pending?.hitter===this.player&&this.pending.stroke==='serve';
+    if(serving&&this.player.animTime<this.pending!.contactAt+.18){
+      this.movementX=this.movementZ=0;this.player.clearCourtMove();return;
+    }
     const intent=this.input.movement();
     const moving=Math.hypot(intent.x,intent.z)>.01;
     const reversing=intent.x*this.movementX+intent.z*this.movementZ<0;
@@ -274,7 +290,8 @@ export class InteractiveMatchSystem {
   }
 
   /** An edge HUD cue shares the physical return window with the input consumer. */
-  playerCue():'none'|'swing'|'queued'|'sweet'|'nice' {
+  playerCue():'none'|'swing'|'queued'|'sweet'|'nice'|'serving' {
+    if(this.pending?.side==='player'&&this.pending.stroke==='serve'&&!this.pending.released)return 'serving';
     if(this.playerHitPraise>0)return this.lastPlayerQuality==='perfect'?'sweet':'nice';
     if(this.enabled&&!this.pending&&this.ball.active&&this.receiver==='player'&&this.input.hasBufferedSwing())return 'queued';
     if(!this.enabled||this.pending||!this.ball.active||this.receiver!=='player')return 'none';
@@ -455,7 +472,6 @@ export class InteractiveMatchSystem {
       captureAt,
       incomingStart: stroke === 'serve' ? null : this.ball.position.clone(),
       contactTarget,
-      tossStart: hitter.serveTossPoint(),
       captured: stroke === 'serve',
       impactStarted: false,
       released: false,
@@ -471,6 +487,9 @@ export class InteractiveMatchSystem {
   private updatePendingContact(dt: number) {
     const pending = this.pending;
     if (!pending) return;
+    if(pending.stroke==='serve'&&!pending.impactStarted&&pending.hitter.state!=='serve'){
+      this.resolvePoint(this.otherSide(pending.side),'miss');return;
+    }
 
     if (!pending.captured && pending.hitter.animTime >= pending.captureAt) {
       pending.incomingStart = this.ball.position.clone();
@@ -485,10 +504,11 @@ export class InteractiveMatchSystem {
         const gap = Vec3.sub(staged, frame.center).len();
         const contactWindow = pending.hitter.animTime >= pending.contactAt - 0.025;
 
-        if (pending.captured && contactWindow && gap <= 0.12) {
+        // The serve toss must reach the strings, rather than triggering on the wider return-assist radius.
+        if (pending.captured && contactWindow && gap <= (pending.stroke==='serve'?.055:.12)) {
           pending.impactStarted = true;
           const feel=CHAMPIONSHIP_CONTACT_FEEL[pending.quality];
-          pending.latchRemaining = feel.dwell;
+          pending.latchRemaining = pending.stroke==='serve'?0:feel.dwell;
           this.flightHitter = pending.side;
           this.receiver = this.otherSide(pending.side);
           this.firstBounceSeen = false;
@@ -504,7 +524,7 @@ export class InteractiveMatchSystem {
 
           pending.normalDirection=Vec3.dot(Vec3.sub(pending.target,frame.center),frame.normal)>=0?1:-1;
           pending.hitter.notifyRacketImpact(pending.quality,pending.normalDirection);
-          pending.hitter.holdRacketContact(feel.hold);
+          if(pending.stroke!=='serve')pending.hitter.holdRacketContact(feel.hold);
 
           this.impactAge=0;
           this.impactQuality=pending.quality;
@@ -515,17 +535,14 @@ export class InteractiveMatchSystem {
           }
           this.callbacks.onHit?.(pending.quality,pending.side,clamp((pending.target.x-frame.center.x)/4,-1,1));
           this.callbacks.onRallyContact?.(pending.side, pending.quality);
+          if(pending.stroke==='serve')this.releaseBall(pending,frame.center);
         }
       } else {
         pending.latchRemaining -= dt;
 
         if (pending.latchRemaining <= 0) {
           const frame = pending.hitter.racketContactFrame();
-          pending.released = true;
-          this.ball.launch(frame.center, pending.target, pending.flightTime);
-          this.landingTarget=this.ball.firstLanding();
-          this.trail.reset();
-          this.trailSpeed = this.ball.velocity.len();
+          this.releaseBall(pending,frame.center);
         }
       }
     }
@@ -555,6 +572,11 @@ export class InteractiveMatchSystem {
     }
   }
 
+  private releaseBall(pending:PendingContact,point:Vec3){
+    pending.released=true;this.ball.launch(point,pending.target,pending.flightTime);
+    this.landingTarget=this.ball.firstLanding();this.trail.reset();this.trailSpeed=this.ball.velocity.len();
+  }
+
   private stagedBall(pending: PendingContact) {
     const frame = pending.hitter.racketContactFrame();
     const liveContact = frame.center;
@@ -571,12 +593,7 @@ export class InteractiveMatchSystem {
     );
 
     if (pending.stroke === 'serve') {
-      const tossProgress = clamp(pending.hitter.animTime / pending.contactAt, 0, 1);
-      const rise = smoothstep(0, 0.72, tossProgress);
-      const settle = smoothstep(0.72, 1, tossProgress);
-      const ball = Vec3.lerp(pending.tossStart, liveContact, rise);
-      ball.y += Math.sin(Math.PI * tossProgress) * (0.58 - 0.18 * settle);
-      return ball;
+      return pending.hitter.serveBallPoint();
     }
 
     const incoming = pending.incomingStart ?? plannedContact;
@@ -688,6 +705,7 @@ export class InteractiveMatchSystem {
     if (this.pointResolved) return;
 
     this.pointResolved = true;
+    this.pointResultAge = 0;
     this.impactBurst=0;this.impactAge=1;
     this.player.clearShotIntent();this.opponent.clearShotIntent();
     this.landingTarget=null;
@@ -708,8 +726,6 @@ export class InteractiveMatchSystem {
       loserCharacter.trigger('reactMiss');
     }
 
-    this.player.moveOnCourt(new Vec3(COURT_CENTER_X,0,PLAYER_BASELINE_Z),this.opponent.position,false);
-    this.opponent.moveOnCourt(new Vec3(COURT_CENTER_X,0,-this.opponentProfile.courtDepth),this.player.position,false);
     this.callbacks.onPoint?.(winner, reason, this.rallyLength);
   }
 
@@ -719,7 +735,10 @@ export class InteractiveMatchSystem {
 
   /** Same authoritative visible ball for rendering and detached replay capture. */
   visibleBallPosition():Vec3|null {
-    return this.pending&&this.pending.captured&&!this.pending.released?this.stagedBall(this.pending):this.ball.active?this.ball.position.clone():null;
+    if(this.pending&&this.pending.captured&&!this.pending.released)return this.stagedBall(this.pending);
+    if(this.ball.active)return this.ball.position.clone();
+    return this.enabled&&!this.pointResolved&&!this.pending&&this.rallyLength===0&&this.flightHitter===null
+      ?(this.server==='player'?this.player:this.opponent).serveTossPoint():null;
   }
 
   meshes(reducedMotion=false): Mesh[] {
@@ -733,6 +752,7 @@ export class InteractiveMatchSystem {
         color:'#fff4bd',alpha:CHAMPIONSHIP_TUNING.landingCueOpacity,unlit:true,noShadow:true});
     }
     const visible=this.visibleBallPosition();
+    if(visible&&!this.pending&&!this.ball.active)meshes.push({kind:'sphere',id:'match-ball',position:visible.clone(),scale:new Vec3(CHAMPIONSHIP_TUNING.ballVisualRadius,CHAMPIONSHIP_TUNING.ballVisualRadius,CHAMPIONSHIP_TUNING.ballVisualRadius),color:'#f5ff7a',unlit:true,noShadow:true});
     if(visible){
       meshes.push({kind:'sphere',position:new Vec3(visible.x,.108,visible.z),scale:new Vec3(.25,.015,.25),color:'#152c23',alpha:.48,unlit:true,noShadow:true});
       meshes.push({kind:'sphere',position:visible.clone(),scale:new Vec3(CHAMPIONSHIP_TUNING.ballHaloRadius,CHAMPIONSHIP_TUNING.ballHaloRadius,CHAMPIONSHIP_TUNING.ballHaloRadius),color:'#fffbc3',alpha:.13,unlit:true,noShadow:true});

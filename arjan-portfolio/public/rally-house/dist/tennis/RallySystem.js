@@ -42,9 +42,7 @@ export class RallySystem {
         const t = clamp(p.hitter.animTime / Math.max(.001, p.contactAt), 0, 1), live = p.hitter.racketContactPoint(), planned = p.contactTarget ?? live;
         const contact = Vec3.lerp(planned, live, smoothstep(.70, 1, t));
         if (p.state === 'serve') {
-            const rise = smoothstep(0, .72, t), settle = smoothstep(.72, 1, t), q = Vec3.lerp(p.tossStart, contact, rise);
-            q.y += Math.sin(Math.PI * t) * (.58 - .18 * settle);
-            return q;
+            return p.hitter.serveBallPoint();
         }
         if (p.incomingStart) {
             const q = Vec3.lerp(p.incomingStart, contact, smoothstep(0, 1, t));
@@ -60,12 +58,16 @@ export class RallySystem {
         this.netRipple = Math.max(0, this.netRipple - dt * 3.8);
         if (this.pending) {
             const p = this.pending;
+            if (p.state === 'serve' && !p.impactStarted && p.hitter.state !== 'serve') {
+                this.finishError('miss');
+                return;
+            }
             if (!p.released) {
                 if (!p.impactStarted) {
                     const staged = this.stagedBall(p), frame = p.hitter.racketContactFrame(), gap = Vec3.sub(staged, frame.center).len();
-                    // stagedBall converges onto the live string-bed center. No time-only "near enough" release.
+                    // The independent serve toss must meet the live string bed before launch.
                     const contactWindow = p.hitter.animTime >= p.contactAt - .025;
-                    if (contactWindow && gap <= .12) {
+                    if (contactWindow && gap <= (p.state === 'serve' ? .055 : .12)) {
                         p.impactStarted = true;
                         p.latchRemaining = .055;
                         this.flightHitter = p.hitter;
@@ -79,25 +81,22 @@ export class RallySystem {
                         this.waitingForReceiver = false;
                         // Sound and visual burst begin on the same authoritative contact event.
                         this.callbacks.onHit?.(p.outcome === 'frame' ? 'frame' : p.outcome === 'net' ? 'net' : 'clean');
+                        if (p.state === 'serve')
+                            this.releaseBall(p, frame.center);
                     }
                 }
                 else {
                     p.latchRemaining -= dt;
                     if (p.latchRemaining <= 0) {
-                        const frame = p.hitter.racketContactFrame();
-                        p.released = true;
-                        this.ball.launch(frame.center, p.target, p.flight);
-                        this.trail = [];
-                        this.trailSpeed = this.ball.velocity.len();
-                        if (p.outcome === 'clean' || p.outcome === 'frame') {
-                            this.rallyCount++;
-                            this.bestRally = Math.max(this.bestRally, this.rallyCount);
-                            this.callbacks.onRally?.(this.rallyCount);
-                        }
+                        this.releaseBall(p, p.hitter.racketContactFrame().center);
                     }
                 }
             }
             if (p.hitter.animTime >= p.duration) {
+                if (!p.impactStarted) {
+                    this.finishError('miss');
+                    return;
+                }
                 if (p.hitter.state === p.state) {
                     p.hitter.setAnimation('ready');
                     p.hitter.clearShotIntent();
@@ -163,7 +162,7 @@ export class RallySystem {
     finishError(kind) {
         const striker = this.flightHitter ?? (this.hitter === 0 ? this.north : this.south);
         const receiver = striker === this.north ? this.south : this.north;
-        const lastHitter = kind === 'net' || kind === 'long' ? striker : receiver;
+        const lastHitter = kind === 'net' || kind === 'long' || kind === 'miss' ? striker : receiver;
         lastHitter.setEmotion(kind === 'net' ? 'frustrated' : 'disappointed', .8);
         lastHitter.trigger('reactMiss');
         const other = lastHitter === this.north ? this.south : this.north;
@@ -180,6 +179,17 @@ export class RallySystem {
         this.trailSpeed = 0;
         this.capturedIncoming = null;
         this.shotTimer = .72;
+    }
+    releaseBall(p, point) {
+        p.released = true;
+        this.ball.launch(point, p.target, p.flight);
+        this.trail = [];
+        this.trailSpeed = this.ball.velocity.len();
+        if (p.outcome === 'clean' || p.outcome === 'frame') {
+            this.rallyCount++;
+            this.bestRally = Math.max(this.bestRally, this.rallyCount);
+            this.callbacks.onRally?.(this.rallyCount);
+        }
     }
     outcomeFor(hitter, state) {
         if (state === 'serve' && this.shotCount === 0)
@@ -228,7 +238,7 @@ export class RallySystem {
         hitter.triggerShot(state, target);
         const kin = hitter.debugKinematics(), contactAt = hitter.shotContactTime(state), duration = hitter.shotDuration(state);
         const evidence = { who: hitter.id, stroke: state, preparation: clamp((contactAt - .24) / .15, 0, 1), spacing: this.capturedIncoming && kin.contactTarget ? clamp(1 - Vec3.sub(this.capturedIncoming, kin.contactTarget).len() / 1.5, 0, 1) : .75, recovery: clamp(1 - Math.abs(hitter.position.x - 1) / 2.8, 0, 1), clean: outcome === 'clean' };
-        this.pending = { evidence, hitter, receiver, state, target, flight, contactAt, duration, released: false, impactStarted: false, latchRemaining: 0, outcome, incomingStart: this.capturedIncoming?.clone() ?? null, contactTarget: kin.contactTarget?.clone() ?? null, tossStart: hitter.serveTossPoint() };
+        this.pending = { evidence, hitter, receiver, state, target, flight, contactAt, duration, released: false, impactStarted: false, latchRemaining: 0, outcome, incomingStart: this.capturedIncoming?.clone() ?? null, contactTarget: kin.contactTarget?.clone() ?? null };
         this.capturedIncoming = null;
         this.shotCount++;
     }

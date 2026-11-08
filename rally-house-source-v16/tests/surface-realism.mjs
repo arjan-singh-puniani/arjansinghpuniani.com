@@ -7,7 +7,7 @@ import {Character} from '../dist/entities/Character.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
 import {Navigation} from '../dist/world/Navigation.js';
 import {World} from '../dist/world/World.js';
-import {RACKET_FRAME} from '../dist/animation/RacketGeometry.js';
+import {RACKET_FRAME,RACKET} from '../dist/animation/RacketGeometry.js';
 
 const pupil=HUMAN_TAYLOR_GEOMETRY.pupil.positions;
 for(const side of [-1,1]){const points=[];for(let i=0;i<pupil.length;i+=3)if(Math.sign(pupil[i])===side)points.push([pupil[i],pupil[i+1]]);const span=k=>Math.max(...points.map(p=>p[k]))-Math.min(...points.map(p=>p[k]));assert(Math.abs(span(0)/span(1)-1)<.01,'Human pupils have a circular emitted aperture');}
@@ -26,15 +26,36 @@ let kneeChecks=0,maxKneeGap=0;
 for(const hz of [30,60,120])for(const state of ['idle','walk','serve','swingForehand','reach']){const c=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});if(state==='reach')c.setInteractionTarget(new Vec3(.4,1.6,.5));else c.trigger(state);if(state==='walk')c.goTo(new Vec3(1,0,3));for(let f=0;f<30;f++){c.update(1/hz);const parts=c.meshes(),a=parts.find(m=>m.skin===thigh).boneMatrices,b=parts.find(m=>m.skin===calf).boneMatrices;for(const [i,j] of pairs){const gap=Vec3.sub(deform(thigh,i,a),deform(calf,j,b)).len();maxKneeGap=Math.max(maxKneeGap,gap);assert(gap<1e-6,'Actual knee boundaries stay joined during animation');kneeChecks++;}}}
 // Intersect the actual trainer triangles in X/Z to ensure the added laces
 // follow the upper surface instead of floating beside or passing through it.
-function shoeTop(x,z){const p=TAYLOR_FOOTWEAR.upper.positions;let y=-Infinity;for(let i=0;i<p.length;i+=9){const ax=p[i],az=p[i+2],bx=p[i+3],bz=p[i+5],cx=p[i+6],cz=p[i+8],det=(bz-cz)*(ax-cx)+(cx-bx)*(az-cz);if(Math.abs(det)<1e-12)continue;const a=((bz-cz)*(x-cx)+(cx-bx)*(z-cz))/det,b=((cz-az)*(x-cx)+(ax-cx)*(z-cz))/det,c=1-a-b;if(a>=-1e-6&&b>=-1e-6&&c>=-1e-6)y=Math.max(y,a*p[i+1]+b*p[i+4]+c*p[i+7]);}return y;}
+function shoeTop(x,z,p=TAYLOR_FOOTWEAR.upper.positions){let y=-Infinity;for(let i=0;i<p.length;i+=9){const ax=p[i],az=p[i+2],bx=p[i+3],bz=p[i+5],cx=p[i+6],cz=p[i+8],det=(bz-cz)*(ax-cx)+(cx-bx)*(az-cz);if(Math.abs(det)<1e-12)continue;const a=((bz-cz)*(x-cx)+(cx-bx)*(z-cz))/det,b=((cz-az)*(x-cx)+(ax-cx)*(z-cz))/det,c=1-a-b;if(a>=-1e-6&&b>=-1e-6&&c>=-1e-6)y=Math.max(y,a*p[i+1]+b*p[i+4]+c*p[i+7]);}return y;}
 let trainerChecks=0;for(const g of Object.values(ATHLETE_TRAINER_DETAIL))for(let i=0;i<g.positions.length;i+=3){const gap=g.positions[i+1]-shoeTop(g.positions[i],g.positions[i+2]);assert(gap>0&&gap<.008,'Emitted trainer detail stays just above its real shoe surface');trainerChecks++;}
+const arjan=new Character(playerSpec('arjan'),new Vec3(),new Navigation([]),{});
+const trainers=arjan.meshes().filter(item=>item.skin?.id.startsWith('arjan-trainer-'));
+assert.equal(trainers.length,8,'Both Arjan feet render complete trainers');
+const [upper,sole,laces,panels]=trainers.slice(0,4).map(item=>item.skin);
+for(const {positions:p} of [laces,panels])for(let i=0;i<p.length;i+=9){
+ // The corners can all clear the shoe while a triangle cuts through it in the middle.
+ const x=(p[i]+p[i+3]+p[i+6])/3,y=(p[i+1]+p[i+4]+p[i+7])/3,z=(p[i+2]+p[i+5]+p[i+8])/3;
+ const gap=y-shoeTop(x,z,upper.positions);
+ assert(gap>0&&gap<.008,'Arjan trainer detail follows the actual curved upper');
+ trainerChecks++;
+}
+function soleContact({positions:p},pitch){
+ let y=Infinity;
+ for(let i=0;i<p.length;i+=3)y=Math.min(y,p[i+1]*Math.cos(pitch)-p[i+2]*Math.sin(pitch));
+ return y;
+}
+for(let step=-35;step<=35;step++){
+ const pitch=step/100,delta=soleContact(sole,pitch)-soleContact(TAYLOR_FOOTWEAR.sole,pitch);
+ assert(delta>=-.0001&&delta<.010,'The trainer fits the established foot plant through the heel and toe pivots');
+}
 console.log(JSON.stringify({kneeChecks,maxKneeGap,trainerChecks,masculineTriangles:face.positions.length/9}));
 const w=new World(),baseline=w.meshes.filter(m=>m.id==='court-line'&&Math.abs(m.scale.z-.055)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>6),width=baseline[0].scale.x,length=Math.abs(baseline[0].position.z-baseline[1].position.z);
 assert.equal(baseline.length,2);assert(Math.abs(length/width-23.77/10.97)<1e-6,'Emitted outer court markings use the regulation aspect ratio');
 const service=w.meshes.filter(m=>m.id==='court-line'&&Math.abs(m.scale.z-.045)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>3);
 assert.equal(service.length,2);assert(Math.abs(service[0].scale.x/width-8.23/10.97)<1e-6,'Service boxes end at singles sidelines, preserving doubles alleys');
 assert(Math.abs(Math.abs(service[0].position.z)/length-6.40/23.77)<1e-6);
-const rp=RACKET_FRAME.positions,xs=[...rp.filter((_,i)=>i%3===0)],ys=[...rp.filter((_,i)=>i%3===1)],headWidth=Math.max(...xs)-Math.min(...xs),headHeight=Math.max(...ys)-Math.min(...ys);
+// The new frame includes its open throat; measure the hoop above the throat.
+const rp=RACKET_FRAME.positions.filter((_,i,a)=>a[Math.floor(i/3)*3+1]>=-RACKET.headHalfHeight-RACKET.beamRadius*1.2),xs=[...rp.filter((_,i)=>i%3===0)],ys=[...rp.filter((_,i)=>i%3===1)],headWidth=Math.max(...xs)-Math.min(...xs),headHeight=Math.max(...ys)-Math.min(...ys);
 assert(headWidth>.35&&headWidth<.40&&headHeight>.49&&headHeight<.53,'Actual adult racket head stays proportional to the 2.4-unit player');
 console.log(JSON.stringify({courtLength:length,courtDoublesWidth:width,racketHeadWidth:headWidth,racketHeadHeight:headHeight}));
 console.log('Surface realism PASS: round pupils, closed facial variant, continuous knees, registered trainers, regulation court ratios and proportional racket head.');

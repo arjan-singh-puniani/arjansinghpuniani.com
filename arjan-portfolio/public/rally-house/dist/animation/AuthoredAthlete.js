@@ -1,10 +1,11 @@
-import { Vec3, rigidFrame, interpolateRigidFrame, compose, transformPoint, smoothstep } from '../rendering/Math3D.js';
+import { Vec3, rigidFrame, invertRigid, interpolateRigidFrame, compose, transformPoint, smoothstep } from '../rendering/Math3D.js';
 import { inspectCharacterAsset } from './CharacterAssetIntake.js';
-import { BONE, rigFromPose, skinMatrices } from './CharacterSkin.js';
+import { BONE, rigFromPose, skinMatrices, transportedFrame } from './CharacterSkin.js';
 import { CAST_DESIGN } from '../content/CastDesign.js';
 import { humanHairMeshes } from './TaylorHuman.js';
 const castIds = ['coach', 'mika', 'nia'];
-const castTextures = ['cast-skin.webp', ...castIds.flatMap(id => [`${id}-kit.webp`, `${id}-skirt.webp`])];
+const castTextures = castIds.flatMap(id => [`${id}-skin.webp`, `${id}-kit.webp`, `${id}-skirt.webp`]);
+export const ATHLETE_REST_HAND = { palm: new Vec3(.22, .30, .02), fingers: new Vec3(0, -.3, 1), normal: new Vec3(-1, 0, 0) };
 let athlete;
 const root = new URL('../../assets/characters/taylor/', import.meta.url);
 const digest = async (bytes) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), n => n.toString(16).padStart(2, '0')).join('');
@@ -30,9 +31,35 @@ export async function loadAuthoredAthlete() {
     const neckRatio = (bind.neck.y - bind.chest.y) / (bind.head.y - bind.chest.y), neckDepth = bind.neck.z - (bind.chest.z + (bind.head.z - bind.chest.z) * neckRatio);
     if (!Number.isFinite(neckRatio) || neckRatio <= 0 || neckRatio >= 1 || !Number.isFinite(neckDepth) || Math.abs(neckDepth) > .15)
         throw Error('Invalid character neck registration');
-    const armLengths = { upperArm: Vec3.sub(bind.upperArmL, bind.foreArmL).len(), forearm: Vec3.sub(bind.foreArmL, bind.handL).len() };
+    const armLengths = { upperArm: Vec3.sub(bind.upperArmL, bind.foreArmL).len(), forearm: Vec3.sub(bind.foreArmL, bind.handL).len(), wristForearm: Vec3.sub(bind.foreArmL, bind.wristL).len() };
     if (!Object.values(armLengths).every(n => Number.isFinite(n) && n > .2 && n < .6))
         throw Error('Invalid character arm lengths');
+    const wristOffsets = {};
+    for (const side of ['L', 'R']) {
+        const hand = bind[`hand${side}`], frame = rigidFrame(hand, Vec3.add(hand, bind[`handDirection${side}`]), bind[`handForward${side}`]), offset = transformPoint(invertRigid(frame), bind[`wrist${side}`]);
+        wristOffsets[side] = new Vec3(offset.x, offset.y, offset.z);
+        if (!Number.isFinite(wristOffsets[side].len()) || wristOffsets[side].len() > .25)
+            throw Error('Invalid character wrist registration');
+    }
+    const palmOffsets = {}, body = result.primitives.find(p => p.materialSlot === 'skin').geometry;
+    for (const side of ['L', 'R']) {
+        const centre = new Vec3(), wrist = bind[`wrist${side}`], direction = bind[`handDirection${side}`];
+        let count = 0;
+        for (let v = 0; v < body.positions.length / 3; v++) {
+            if (![0, 1, 2, 3].some(j => body.boneIndices[v * 4 + j] === BONE[`hand${side}`] && body.boneWeights[v * 4 + j] > .99))
+                continue;
+            const point = new Vec3(...body.positions.subarray(v * 3, v * 3 + 3)), delta = Vec3.sub(point, wrist), along = Vec3.dot(delta, direction);
+            if (along > .04 && along < .09 && delta.sub(direction.clone().scale(along)).len() < .04) {
+                centre.add(point);
+                count++;
+            }
+        }
+        if (count < 8)
+            throw Error('Missing authored palm contact surface');
+        centre.scale(1 / count);
+        const hand = bind[`hand${side}`], offset = transformPoint(invertRigid(rigidFrame(hand, Vec3.add(hand, direction), bind[`handForward${side}`])), centre);
+        palmOffsets[side] = new Vec3(offset.x, offset.y, offset.z);
+    }
     const images = new Map();
     await Promise.all([...new Set([...result.primitives.map(p => p.albedo).filter((s) => !!s), ...castTextures])].map(async (name) => {
         const data = await get(name);
@@ -75,9 +102,9 @@ export async function loadAuthoredAthlete() {
         throw Error('Invalid character eye geometry');
     const looks = new Map();
     for (const id of castIds) {
-        const { width = 1, height = 1 } = CAST_DESIGN[id].head, center = bind.head;
+        const { width = 1, height = 1, jaw = 1 } = CAST_DESIGN[id].head, center = bind.head;
         const parts = result.primitives.filter(p => p.materialSlot !== 'hair').map(part => {
-            if (!['skin', 'eyes'].includes(part.materialSlot))
+            if (part.materialSlot === 'shoes')
                 return part;
             let g = part.geometry;
             if (part.materialSlot === 'skin') {
@@ -96,33 +123,55 @@ export async function loadAuthoredAthlete() {
             }
             const positions = g.positions.slice(), normals = g.normals.slice(), morphs = g.morphs?.map(d => d.slice()), morphNormals = g.morphNormals?.map(d => d.slice());
             for (let v = 0; v < positions.length / 3; v++) {
-                if (![0, 1, 2, 3].some(j => g.boneIndices[v * 4 + j] === BONE.head && g.boneWeights[v * 4 + j] > .99))
+                const head = [0, 1, 2, 3].some(j => g.boneIndices[v * 4 + j] === BONE.head && g.boneWeights[v * 4 + j] > .99);
+                let core = 0;
+                for (let j = 0; j < 4; j++)
+                    if ([0, 1, 2, 11, 13].includes(g.boneIndices[v * 4 + j]))
+                        core += g.boneWeights[v * 4 + j];
+                if (!head && core < .001)
                     continue;
-                const i = v * 3, n = new Vec3(g.normals[i] / width, g.normals[i + 1] / height, g.normals[i + 2]).normalize();
-                positions[i] *= width;
-                positions[i + 1] = center.y + (positions[i + 1] - center.y) * height;
-                normals.set([n.x, n.y, n.z], i);
+                // shortcut: fitted to this verified body; refit the shaping when replacing the source mesh.
+                const fit = (p, n) => {
+                    const gauss = (at, spread) => { const d = (p.y - at) / spread, value = Math.exp(-d * d); return [value, -2 * d / spread * value]; };
+                    const [cheek, cheekSlope] = gauss(center.y - .10, .09), [waist, waistSlope] = gauss(1.52, .16), [hip, hipSlope] = gauss(1.20, .17);
+                    const sx = head ? width * (1 - (1 - jaw) * cheek) : 1 - core * (.045 * waist + .025 * hip), dx = head ? -width * (1 - jaw) * cheekSlope : -core * (.045 * waistSlope + .025 * hipSlope), sy = head ? height : 1;
+                    const sz = !head && p.z < 0 ? 1 - core * .05 * hip : 1, dz = !head && p.z < 0 ? -core * .05 * hipSlope : 0;
+                    return { p: new Vec3(p.x * sx, head ? center.y + (p.y - center.y) * height : p.y, p.z * sz), n: new Vec3(n.x / sx, (n.y - p.x * dx * n.x / sx - p.z * dz * n.z / sz) / sy, n.z / sz).normalize() };
+                };
+                const i = v * 3, p = new Vec3(...g.positions.subarray(i, i + 3)), normal = new Vec3(...g.normals.subarray(i, i + 3)), base = fit(p, normal);
+                positions.set([base.p.x, base.p.y, base.p.z], i);
+                normals.set([base.n.x, base.n.y, base.n.z], i);
                 for (let channel = 0; channel < (morphs?.length ?? 0); channel++) {
-                    morphs[channel][i] *= width;
-                    morphs[channel][i + 1] *= height;
-                    if (morphNormals) {
-                        const d = g.morphNormals[channel], target = new Vec3((g.normals[i] + d[i]) / width, (g.normals[i + 1] + d[i + 1]) / height, g.normals[i + 2] + d[i + 2]).normalize();
-                        morphNormals[channel].set([target.x - n.x, target.y - n.y, target.z - n.z], i);
-                    }
+                    const delta = g.morphs[channel], dn = g.morphNormals?.[channel];
+                    if ([0, 1, 2].every(k => delta[i + k] === 0 && (!dn || dn[i + k] === 0)))
+                        continue;
+                    const target = fit(p.clone().add(new Vec3(...delta.subarray(i, i + 3))), normal.clone().add(dn ? new Vec3(...dn.subarray(i, i + 3)) : new Vec3()));
+                    morphs[channel].set([target.p.x - base.p.x, target.p.y - base.p.y, target.p.z - base.p.z], i);
+                    morphNormals?.[channel].set([target.n.x - base.n.x, target.n.y - base.n.y, target.n.z - base.n.z], i);
                 }
             }
             return { ...part, geometry: { ...g, id: g.id + ':' + id, positions, normals, morphs, morphNormals } };
         });
-        const centers = eyeCenters.map((v, i) => i % 3 === 0 ? v * width : i % 3 === 1 ? center.y + (v - center.y) * height : v);
-        looks.set(id, { parts, eyeCenters: centers, skin: id === 'coach' ? '#fff8ed' : id === 'mika' ? '#f5dfcf' : '#d7b6a2' });
+        const centers = eyeCenters.slice(), eyes = parts.find(p => p.materialSlot === 'eyes').geometry.positions;
+        for (const side of [0, 1])
+            for (let axis = 0; axis < 3; axis++) {
+                let lo = Infinity, hi = -Infinity;
+                for (let i = 0; i < eyes.length; i += 3)
+                    if ((eyes[i] < 0 ? 0 : 1) === side) {
+                        lo = Math.min(lo, eyes[i + axis]);
+                        hi = Math.max(hi, eyes[i + axis]);
+                    }
+                centers[side * 3 + axis] = (lo + hi) / 2;
+            }
+        looks.set(id, { parts, eyeCenters: centers, skin: '#ffffff' });
     }
     bind.headUp = new Vec3(0, 1, 0);
-    athlete = { looks, parts: result.primitives, bind: bind, images, gripSign: meta.gripSign, eyeCenters, neckRatio, neckDepth, spineRatio, spineDepth, armLengths };
+    athlete = { looks, parts: result.primitives, bind: bind, images, gripSign: meta.gripSign, eyeCenters, neckRatio, neckDepth, spineRatio, spineDepth, armLengths: { ...armLengths, wristOffsets, palmOffsets, restPalm: ATHLETE_REST_HAND.palm } };
 }
 export const authoredArmLengths = () => athlete?.armLengths;
 /** Advance once with the actor; rendering and replay only consume the result. */
-export function advanceAuthoredHands(p, position, yaw, previous, dt) {
-    if (!athlete)
+export function advanceAuthoredHands(p, position, yaw, previous, dt, serving = false, hugWeight = 0, gripSign = athlete?.gripSign, style) {
+    if (!gripSign)
         return;
     const rig = rigFromPose(p, position, yaw), result = {};
     const racketGrip = [p.handGripL, p.handRacketWeight], origin = new Vec3(), racket = compose(origin, p.racketRot), c = Math.cos(yaw), s = Math.sin(yaw);
@@ -130,15 +179,25 @@ export function advanceAuthoredHands(p, position, yaw, previous, dt) {
     for (const [i, side] of ['L', 'R'].entries()) {
         const direction = Vec3.sub(rig[`hand${side}`], rig[`foreArm${side}`]), pole = Vec3.cross(Vec3.sub(rig[`foreArm${side}`], rig[`upperArm${side}`]), direction).scale(side === 'L' ? 1 : -1);
         let frame = rigidFrame(origin, direction, pole.len() > .001 ? pole : rig.forward), weight = Math.max(0, 1 - p.handRestWeight - p.handLapWeight - racketGrip[i]);
+        // Keep a free stroke hand's roll when the elbow plane passes through straight.
+        if (p.shot && racketGrip[i] < .001 && previous)
+            frame = transportedFrame(rigidFrame(origin, previous[`handDirection${side}`], previous[`handForward${side}`]), origin, direction);
+        // The tossing palm faces the court instead of carrying the previous racket-support roll.
+        if (serving && side === 'L')
+            frame = rigidFrame(origin, style?.tossFingers ?? direction, style?.tossNormal ?? rig.forward);
         const add = (target, amount) => { if (amount > 0) {
             frame = interpolateRigidFrame(frame, target, amount / (weight + amount));
             weight += amount;
         } };
-        add(rigidFrame(origin, direction, new Vec3(side === 'L' ? 1 : -1, 0, 0)), p.handRestWeight);
+        const resting = !p.shot && !p.walking && p.handRestWeight > .5;
+        const sign = side === 'L' ? -1 : 1;
+        const restFingers = style?.restFingers ?? ATHLETE_REST_HAND.fingers;
+        add(rigidFrame(origin, resting ? new Vec3(sign * restFingers.x, restFingers.y, restFingers.z) : direction, resting ? new Vec3(sign * ATHLETE_REST_HAND.normal.x, ATHLETE_REST_HAND.normal.y, ATHLETE_REST_HAND.normal.z) : new Vec3(-sign, 0, 0)), p.handRestWeight);
         add(rigidFrame(origin, new Vec3(0, 0, 1), new Vec3(0, 1, 0)), p.handLapWeight);
+        add(rigidFrame(origin, new Vec3(-sign * .9, -.3, .1), new Vec3(0, 0, -1)), hugWeight);
         if (racketGrip[i] > .0001) {
             // The grip can roll around its shaft to follow the forearm without moving contact.
-            const axis = local(Vec3.sub(p.racketHandleTop, p.racketGrip)).normalize().scale(athlete.gripSign[side]), fingers = direction.clone();
+            const axis = local(Vec3.sub(p.racketHandleTop, p.racketGrip)).normalize().scale(gripSign[side]), fingers = new Vec3(frame[4], frame[5], frame[6]);
             fingers.sub(axis.clone().scale(Vec3.dot(fingers, axis)));
             if (fingers.len() < .1) {
                 const width = transformPoint(racket, new Vec3((side === 'L' ? 1 : -1) * Math.cos(.8), 0, Math.sin(.8)));
@@ -153,7 +212,7 @@ export function advanceAuthoredHands(p, position, yaw, previous, dt) {
             frame = interpolateRigidFrame(rigidFrame(origin, previous[`handDirection${side}`], previous[`handForward${side}`]), frame, 1 - Math.exp(-12 * dt));
         // Smooth grip roll without letting the palm's width lag behind the moving shaft.
         if (p.shot && racketGrip[i] > .0001) {
-            const axis = local(Vec3.sub(p.racketHandleTop, p.racketGrip)).normalize().scale(athlete.gripSign[side]), fingers = new Vec3(frame[4], frame[5], frame[6]);
+            const axis = local(Vec3.sub(p.racketHandleTop, p.racketGrip)).normalize().scale(gripSign[side]), fingers = new Vec3(frame[4], frame[5], frame[6]);
             fingers.sub(axis.clone().scale(Vec3.dot(fingers, axis)));
             if (fingers.len() > .001)
                 frame = interpolateRigidFrame(frame, rigidFrame(origin, fingers.normalize(), Vec3.cross(axis, fingers).normalize()), racketGrip[i]);
@@ -170,21 +229,21 @@ export function authoredAthleteMeshes(p, position, yaw, feet, time, identity = '
     // The compact rig's internal ratios distort this authored torso; retain its source landmarks.
     rig.spine = Vec3.lerp(rig.pelvis, rig.chest, athlete.spineRatio).add(rig.forward.clone().scale(athlete.spineDepth));
     rig.neck = Vec3.lerp(rig.chest, rig.head, athlete.neckRatio).add(rig.forward.clone().scale(athlete.neckDepth));
-    rig.headUp = new Vec3(0, 1, 0);
-    rig.headForward = new Vec3(Math.sin(p.headYaw - yaw), 0, Math.cos(p.headYaw - yaw));
+    rig.headUp ??= new Vec3(0, 1, 0);
+    rig.headForward ??= new Vec3(Math.sin(p.headYaw - yaw), 0, Math.cos(p.headYaw - yaw));
     const hands = p.handDirectionL && p.handDirectionR && p.handForwardL && p.handForwardR ? p : advanceAuthoredHands(p, position, yaw, undefined, 0);
     for (const side of ['L', 'R']) {
         rig[`handDirection${side}`] = hands[`handDirection${side}`];
         rig[`handForward${side}`] = hands[`handForward${side}`];
         rig[`foreArmForward${side}`] = hands[`handForward${side}`];
     }
-    const handGrip = [p.handGripL, p.handGripR];
+    const hugGrip = .22 * (p.hugWeight ?? 0), handGrip = [Math.max(p.handGripL, hugGrip), Math.max(p.handGripR, hugGrip)];
     for (const [i, side] of ['L', 'R'].entries()) {
         const f = feet[i], angle = f.yaw - yaw;
         rig[`footForward${side}`] = new Vec3(Math.sin(angle) * Math.cos(f.pitch), -Math.sin(f.pitch), Math.cos(angle) * Math.cos(f.pitch));
         rig[`footUp${side}`] = new Vec3(Math.sin(angle) * Math.sin(f.pitch), Math.cos(f.pitch), Math.cos(angle) * Math.sin(f.pitch));
     }
-    const bones = skinMatrices(rig, athlete.bind), phase = (time + .47) % 3.75, blink = phase < .05 ? smoothstep(0, .05, phase) : 1 - smoothstep(.05, .18, phase);
+    const bones = skinMatrices(rig, athlete.bind, smoothstep(0, .15, p.sp)), phase = (time + .47) % 3.75, blink = phase < .05 ? smoothstep(0, .05, phase) : 1 - smoothstep(.05, .18, phase);
     const expression = [p.face.smile, p.face.mouthOpen, Math.min(1, blink + p.face.squint * .35), p.face.browRaise];
     // Thigh pitch alone also occurs during a serve; retain the seated transition gate.
     // shortcut: seated/crouched correctives; use cloth simulation for unrestricted contact folds.
@@ -193,6 +252,6 @@ export function authoredAthleteMeshes(p, position, yaw, feet, time, identity = '
     const drape = [seated * smoothstep(.5, .99, (thighPitch('L') + thighPitch('R')) / 2), crouch, 0, 0];
     const sourceRig = { bind: athlete.bind, pose: rig };
     const look = athlete.looks.get(identity), parts = look?.parts ?? athlete.parts;
-    const meshes = parts.map(part => ({ poseRig: true, eyeCenters: part.materialSlot === 'eyes' ? (look?.eyeCenters ?? athlete.eyeCenters) : undefined, eyeYaw: part.materialSlot === 'eyes' ? p.eyeYaw ?? 0 : 0, skirt: part.materialSlot === 'skirt', rig: sourceRig, expression: part.materialSlot === 'skirt' ? drape : expression, handGrip, skin: part.geometry, boneMatrices: bones, position: new Vec3(position.x, 0, position.z), rotation: new Vec3(0, yaw, 0), color: part.materialSlot === 'skin' && look ? look.skin : part.materialSlot === 'hair' ? '#65584f' : '#ffffff', material: part.materialSlot === 'skin' ? 'humanSkin' : part.materialSlot === 'eyes' ? 'iris' : part.materialSlot === 'teeth' ? 'ceramic' : ['hair', 'brows', 'lashes'].includes(part.materialSlot) ? 'groomedHair' : 'performanceKnit', diffuse: part.albedo ? athlete.images.get(look ? (part.materialSlot === 'skin' || part.materialSlot === 'eyes' ? 'cast-skin.webp' : part.materialSlot === 'kit' ? `${identity}-kit.webp` : part.materialSlot === 'skirt' ? `${identity}-skirt.webp` : part.albedo) : part.albedo) : undefined, alphaCutoff: part.alphaCutoff, doubleSided: part.doubleSided }));
-    return look ? [...meshes, ...humanHairMeshes(p.head, p.headYaw, 0, CAST_DESIGN[identity].head)] : meshes;
+    const meshes = parts.map(part => ({ poseRig: true, eyeCenters: part.materialSlot === 'eyes' ? (look?.eyeCenters ?? athlete.eyeCenters) : undefined, eyeYaw: part.materialSlot === 'eyes' ? p.eyeYaw ?? 0 : 0, skirt: part.materialSlot === 'skirt', rig: sourceRig, expression: part.materialSlot === 'skirt' ? drape : expression, handGrip, skin: part.geometry, boneMatrices: bones, position: new Vec3(position.x, 0, position.z), rotation: new Vec3(0, yaw, 0), color: part.materialSlot === 'skin' && look ? look.skin : part.materialSlot === 'hair' ? '#65584f' : '#ffffff', material: part.materialSlot === 'skin' ? 'humanSkin' : part.materialSlot === 'eyes' ? 'iris' : part.materialSlot === 'teeth' ? 'ceramic' : ['hair', 'brows', 'lashes'].includes(part.materialSlot) ? 'groomedHair' : 'performanceKnit', diffuse: part.albedo ? athlete.images.get(look ? (part.materialSlot === 'skin' || part.materialSlot === 'eyes' ? `${identity}-skin.webp` : part.materialSlot === 'kit' ? `${identity}-kit.webp` : part.materialSlot === 'skirt' ? `${identity}-skirt.webp` : part.albedo) : part.albedo) : undefined, alphaCutoff: part.alphaCutoff, doubleSided: part.doubleSided }));
+    return look ? [...meshes, ...humanHairMeshes(p.head, p.headYaw, 0, { ...CAST_DESIGN[identity].head, pitch: p.headPitch })] : meshes;
 }

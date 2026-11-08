@@ -9,9 +9,9 @@ export type ShotQuality='clean'|'frame'|'net';
 type ShotOutcome='clean'|'frame'|'net'|'long';
 interface PendingShot {
   hitter:Character;receiver:Character;state:Stroke;target:Vec3;flight:number;contactAt:number;duration:number;released:boolean;impactStarted:boolean;latchRemaining:number;outcome:ShotOutcome;
-  evidence:import('../simulation/CoachingEvidence.js').ShotEvidence;incomingStart:Vec3|null;contactTarget:Vec3|null;tossStart:Vec3;
+  evidence:import('../simulation/CoachingEvidence.js').ShotEvidence;incomingStart:Vec3|null;contactTarget:Vec3|null;
 }
-export interface RallyCallbacks {onShot?:(e:import('../simulation/CoachingEvidence.js').ShotEvidence)=>void;onPoint?:(winner:string,loser:string,kind:string)=>void;onHit?:((quality:ShotQuality)=>void);onBounce?:()=>void;onNet?:()=>void;onRally?:((count:number)=>void);onMiss?:((who:string,kind:ShotOutcome)=>void);}
+export interface RallyCallbacks {onShot?:(e:import('../simulation/CoachingEvidence.js').ShotEvidence)=>void;onPoint?:(winner:string,loser:string,kind:string)=>void;onHit?:((quality:ShotQuality)=>void);onBounce?:()=>void;onNet?:()=>void;onRally?:((count:number)=>void);onMiss?:((who:string,kind:ShotOutcome|'miss')=>void);}
 
 const fract=(v:number)=>v-Math.floor(v);
 const hash=(n:number)=>fract(Math.sin(n*12.9898+78.233)*43758.5453);
@@ -28,8 +28,7 @@ export class RallySystem {
     const t=clamp(p.hitter.animTime/Math.max(.001,p.contactAt),0,1),live=p.hitter.racketContactPoint(),planned=p.contactTarget??live;
     const contact=Vec3.lerp(planned,live,smoothstep(.70,1,t));
     if(p.state==='serve'){
-      const rise=smoothstep(0,.72,t),settle=smoothstep(.72,1,t),q=Vec3.lerp(p.tossStart,contact,rise);
-      q.y+=Math.sin(Math.PI*t)*(.58-.18*settle);return q;
+      return p.hitter.serveBallPoint();
     }
     if(p.incomingStart){const q=Vec3.lerp(p.incomingStart,contact,smoothstep(0,1,t));q.y+=Math.sin(Math.PI*t)*.06;return q;}
     return contact.clone();
@@ -39,29 +38,30 @@ export class RallySystem {
     if(!this.enabled)return;this.impactBurst=Math.max(0,this.impactBurst-dt*4.8);this.netRipple=Math.max(0,this.netRipple-dt*3.8);
     if(this.pending){
       const p=this.pending;
+      if(p.state==='serve'&&!p.impactStarted&&p.hitter.state!=='serve'){this.finishError('miss');return;}
       if(!p.released){
         if(!p.impactStarted){
           const staged=this.stagedBall(p),frame=p.hitter.racketContactFrame(),gap=Vec3.sub(staged,frame.center).len();
-          // stagedBall converges onto the live string-bed center. No time-only "near enough" release.
+          // The independent serve toss must meet the live string bed before launch.
           const contactWindow=p.hitter.animTime>=p.contactAt-.025;
-          if(contactWindow&&gap<=.12){
+          if(contactWindow&&gap<=(p.state==='serve'?.055:.12)){
             p.impactStarted=true;p.latchRemaining=.055;this.flightHitter=p.hitter;this.sessionHits++;this.callbacks.onShot?.(p.evidence);
             this.lastContact=frame.center.clone();this.lastContactFrame={rotation:frame.rotation.clone(),horizontal:frame.horizontal.clone(),vertical:frame.vertical.clone()};
             p.hitter.notifyRacketImpact(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
             this.impactBurst=1;this.lastOutcome=p.outcome;this.waitingForReceiver=false;
             // Sound and visual burst begin on the same authoritative contact event.
             this.callbacks.onHit?.(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
+            if(p.state==='serve')this.releaseBall(p,frame.center);
           }
         }else{
           p.latchRemaining-=dt;
           if(p.latchRemaining<=0){
-            const frame=p.hitter.racketContactFrame();p.released=true;
-            this.ball.launch(frame.center,p.target,p.flight);this.trail=[];this.trailSpeed=this.ball.velocity.len();
-            if(p.outcome==='clean'||p.outcome==='frame'){this.rallyCount++;this.bestRally=Math.max(this.bestRally,this.rallyCount);this.callbacks.onRally?.(this.rallyCount);}
+            this.releaseBall(p,p.hitter.racketContactFrame().center);
           }
         }
       }
       if(p.hitter.animTime>=p.duration){
+        if(!p.impactStarted){this.finishError('miss');return;}
         if(p.hitter.state===p.state){p.hitter.setAnimation('ready');p.hitter.clearShotIntent();const recovery=new Vec3(1,0,p.hitter.position.z<0?-5:5);p.hitter.moveOnCourt(recovery,p.receiver.position,false);}
         if(p.released)this.pending=null;
       }
@@ -91,9 +91,14 @@ export class RallySystem {
     this.shotTimer-=dt;if(this.shotTimer<=0)this.prepareHit();
   }
 
-  private finishError(kind:ShotOutcome){
-    const striker=this.flightHitter??(this.hitter===0?this.north:this.south);const receiver=striker===this.north?this.south:this.north;const lastHitter=kind==='net'||kind==='long'?striker:receiver;lastHitter.setEmotion(kind==='net'?'frustrated':'disappointed',.8);lastHitter.trigger('reactMiss');
+  private finishError(kind:ShotOutcome|'miss'){
+    const striker=this.flightHitter??(this.hitter===0?this.north:this.south);const receiver=striker===this.north?this.south:this.north;const lastHitter=kind==='net'||kind==='long'||kind==='miss'?striker:receiver;lastHitter.setEmotion(kind==='net'?'frustrated':'disappointed',.8);lastHitter.trigger('reactMiss');
     const other=lastHitter===this.north?this.south:this.north;this.score[other.id]=(this.score[other.id]??0)+1;this.errors[lastHitter.id]=(this.errors[lastHitter.id]??0)+1;this.callbacks.onPoint?.(other.id,lastHitter.id,kind);other.setEmotion('attentive',.55);this.callbacks.onMiss?.(lastHitter.id,kind);this.rallyCount=0;this.waitingForReceiver=false;this.pending=null;this.ball.active=false;this.trail=[];this.trailSpeed=0;this.capturedIncoming=null;this.shotTimer=.72;
+  }
+
+  private releaseBall(p:PendingShot,point:Vec3){
+    p.released=true;this.ball.launch(point,p.target,p.flight);this.trail=[];this.trailSpeed=this.ball.velocity.len();
+    if(p.outcome==='clean'||p.outcome==='frame'){this.rallyCount++;this.bestRally=Math.max(this.bestRally,this.rallyCount);this.callbacks.onRally?.(this.rallyCount);}
   }
 
   private outcomeFor(hitter:Character,state:Stroke):ShotOutcome{
@@ -115,7 +120,7 @@ export class RallySystem {
     const target=new Vec3(targetX,.11,targetDepth);
     const receiveX=clamp(targetX+(receiver.practiceCue==='spacing'?.40:(this.shotCount%2?.22:-.18)),COURT_MIN_X+.3,COURT_MAX_X-.3),receiveZ=receiver.position.z<0?-5:5;
     receiver.moveOnCourt(new Vec3(receiveX,0,receiveZ),hitter.position);receiver.setLook(hitter.position);receiver.setEmotion('focused',.8);hitter.face(target);hitter.setLook(receiver.position);hitter.triggerShot(state,target);
-    const kin=hitter.debugKinematics(),contactAt=hitter.shotContactTime(state),duration=hitter.shotDuration(state);const evidence={who:hitter.id,stroke:state,preparation:clamp((contactAt-.24)/.15,0,1),spacing:this.capturedIncoming&&kin.contactTarget?clamp(1-Vec3.sub(this.capturedIncoming,kin.contactTarget).len()/1.5,0,1):.75,recovery:clamp(1-Math.abs(hitter.position.x-1)/2.8,0,1),clean:outcome==='clean'};this.pending={evidence,hitter,receiver,state,target,flight,contactAt,duration,released:false,impactStarted:false,latchRemaining:0,outcome,incomingStart:this.capturedIncoming?.clone()??null,contactTarget:kin.contactTarget?.clone()??null,tossStart:hitter.serveTossPoint()};this.capturedIncoming=null;this.shotCount++;
+    const kin=hitter.debugKinematics(),contactAt=hitter.shotContactTime(state),duration=hitter.shotDuration(state);const evidence={who:hitter.id,stroke:state,preparation:clamp((contactAt-.24)/.15,0,1),spacing:this.capturedIncoming&&kin.contactTarget?clamp(1-Vec3.sub(this.capturedIncoming,kin.contactTarget).len()/1.5,0,1):.75,recovery:clamp(1-Math.abs(hitter.position.x-1)/2.8,0,1),clean:outcome==='clean'};this.pending={evidence,hitter,receiver,state,target,flight,contactAt,duration,released:false,impactStarted:false,latchRemaining:0,outcome,incomingStart:this.capturedIncoming?.clone()??null,contactTarget:kin.contactTarget?.clone()??null};this.capturedIncoming=null;this.shotCount++;
   }
 
   meshes():Mesh[]{

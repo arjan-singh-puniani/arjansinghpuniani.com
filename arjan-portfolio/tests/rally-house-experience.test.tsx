@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import RallyHouseExperience from "@/app/playground/rally-house/RallyHouseExperience";
 
@@ -16,14 +16,17 @@ describe("Rally House experience", () => {
     fireEvent.load(screen.getByTitle("Play Rally House"));
     expect(screen.queryByText("Opening the club…")).not.toBeInTheDocument();
   });
-  it("makes every scene selectable without an automatic carousel", () => {
+  it("shows the complete four-step guide without hiding instructions behind tabs", () => {
     render(<RallyHouseExperience />);
-    for (const name of ["Challenge", "Rally", "Wander"]) {
-      const button = within(screen.getByLabelText("Gameplay scenes")).getByRole("button", { name: new RegExp(name) });
-      fireEvent.click(button);
-      expect(button).toHaveAttribute("aria-pressed", "true");
-    }
-    expect(screen.getByLabelText("Continuous Rally House gameplay capture")).not.toHaveAttribute("autoplay");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("The Sims meets Mario Tennis.");
+    expect(screen.getAllByRole("heading", { level: 3 }).map(h => h.textContent)).toEqual([
+      "Play tennis immediately.", "Championship mode.", "Replay your last shot.", "Analyze your swing like a pro.",
+    ]);
+    expect(screen.getAllByTestId("screen-callout")).toHaveLength(3);
+    for (const box of screen.getAllByTestId("screen-callout")) expect(box).toHaveAttribute("aria-hidden", "true");
+    expect(screen.getByAltText(/Isometric club view/)).toBeInTheDocument();
+    expect(screen.getByAltText(/registered body rig/)).toBeInTheDocument();
+    expect(screen.queryByLabelText("Gameplay scenes")).not.toBeInTheDocument();
   });
   it("explains fullscreen rejection while keeping play available", async () => {
     render(<RallyHouseExperience />);

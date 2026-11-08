@@ -1,0 +1,26 @@
+{
+  "status": "approved release candidate",
+  "scope": [
+    "Simplified four-screen walkthrough",
+    "Reference-fitted Arjan in red polo and black shorts",
+    "Approved square stance and heavier walk",
+    "Connected serve and selectable recorded serve phases",
+    "Idle/conversation avatar-switch lockout fix"
+  ],
+  "userApproval": {
+    "stance": "Yes, this fits",
+    "eyes": "Closer to me",
+    "production": "User explicitly requested production publication"
+  },
+  "build": "passed with production main locked dependencies",
+  "releaseArtifacts": 134,
+  "browserAssetMatches": 144,
+  "portfolioTests": "All 301 tests covered: 300 initial passes and all 3 walkthrough tests passed after including the approved guide test.",
+  "gameTests": "All 62 programs passed: initial suite through body-clearance; final four passed after including required authoring-source fixtures.",
+  "localBrowser": "desktop/mobile landing, iframe game, loaded head, recorded serve phases and conversation switch pass",
+  "limitations": [
+    "Physical phones not tested",
+    "Likeness is a reference-guided model, not a scan"
+  ],
+  "headSha256": "28b7468e3f8321d8c283d82b1965fbc1015c93b387ec86e4723702204c463615"
+}

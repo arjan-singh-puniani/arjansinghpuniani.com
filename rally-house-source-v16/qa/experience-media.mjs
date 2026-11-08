@@ -1,51 +1,27 @@
 import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
+import path from 'node:path';
 import assert from 'node:assert/strict';
 import {chromium,browserOptions} from './runtime.mjs';
-
-const report={errors:[],failedRequests:[],mediaRangeCancellations:[],packageReloads:0};
-const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
-try {
-  const page=await browser.newPage({viewport:{width:1440,height:900}});
-  page.on('pageerror',e=>report.errors.push(e.message));
-  page.on('requestfailed',r=>{
-    const row={url:r.url(),error:r.failure()};
-    // Seeking/cancelling a loaded video cancels range requests in Chromium.
-    const cancelledRange=r.url().endsWith('/club-to-court.webm')&&r.failure()?.errorText==='net::ERR_ABORTED';
-    (cancelledRange?report.mediaRangeCancellations:report.failedRequests).push(row);
-  });
-  await page.goto('http://127.0.0.1:3096/playground/rally-house');
-  await page.waitForLoadState('networkidle');
-  assert.equal(await page.locator('iframe').count(),0);
-  await page.screenshot({path:'../takeover-evidence/after/portfolio-final.png',fullPage:true});
-  await page.addStyleTag({content:'[class*="heroGrid"]{grid-template-columns:1fr!important;max-width:850px!important}[class*="heroCopy"]{text-align:center}[class*="deck"]{margin-left:auto;margin-right:auto}[class*="actions"]{justify-content:center}'});
-  await page.evaluate(()=>scrollTo(0,0));
-  await page.screenshot({path:'../takeover-evidence/experiments/hero-stacked.png'});
-  await page.reload();await page.waitForLoadState('networkidle');
-  await page.getByText('Watch the continuous club-to-court capture',{exact:false}).click();
-  report.video=await page.locator('video').evaluate(async v=>{
-    v.load();await new Promise((resolve,reject)=>{v.addEventListener('loadedmetadata',resolve,{once:true});v.addEventListener('error',reject,{once:true});});
-    const result={duration:v.duration,width:v.videoWidth,height:v.videoHeight,tracks:v.textTracks.length};
-    v.currentTime=17;await new Promise(resolve=>v.addEventListener('seeked',resolve,{once:true}));return result;
-  });
-  assert(report.video.duration>25&&report.video.duration<40);assert.equal(report.video.tracks,1);
-  await page.locator('video').screenshot({path:'../takeover-evidence/after/video-contact.png'});
-  await page.getByRole('button',{name:'Play Rally House ↗'}).focus();
-  await page.keyboard.press('Enter');await page.locator('iframe').waitFor();
-  await enterClub(page.frameLocator('iframe'),'Arjan');
-  report.keyboardLoadsGame=true;
-  await page.evaluate(()=>{document.querySelector('[class*="frameShell"]').requestFullscreen=()=>Promise.reject(Error('Controlled QA rejection'));});
-  await page.getByRole('button',{name:'Enter fullscreen ↗'}).click();
-  assert(await page.getByRole('status').filter({hasText:'Fullscreen is unavailable'}).isVisible());
-  report.fullscreenFallback=true;
-  // Exercise the actual Python server code embedded in the standalone launcher.
-  for(let i=0;i<5;i++){
-    await page.goto('http://127.0.0.1:8082/?debug');
-    await page.waitForFunction(()=>window.__rh?.ready,null,{timeout:20000});
-    await enterClub(page,'Arjan');report.packageReloads++;
+const out='evidence/landing-walkthrough-20261101/page';fs.mkdirSync(out,{recursive:true});
+const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']}),report={views:[],errors:[],http:[]};
+try{
+ for(const profile of [{name:'desktop',width:1440,height:1000},{name:'phone',width:390,height:844},{name:'small-phone',width:320,height:800},{name:'landscape',width:844,height:390}]){
+  const context=await browser.newContext({viewport:{width:profile.width,height:profile.height},deviceScaleFactor:1,hasTouch:profile.width<500}),page=await context.newPage();
+  page.on('pageerror',e=>report.errors.push(e.message));page.on('response',r=>{if(r.status()>=400)report.http.push([r.status(),r.url()]);});
+  const response=await page.goto(process.env.QA_URL??'http://127.0.0.1:18086/playground/rally-house');assert.equal(response.status(),200);await page.getByRole('heading',{level:1}).waitFor();await page.evaluate(()=>document.fonts.ready);
+  assert.equal(await page.locator('iframe').count(),0,'Game defers until intent');
+  const guide=page.getByRole('region',{name:'How to play'});assert.deepEqual(await guide.locator('h3').allTextContents(),['Play tennis immediately.','Championship mode.','Replay your last shot.','Analyze your swing like a pro.']);
+  for(const image of await page.locator('main img').all()){await image.scrollIntoViewIfNeeded();await image.evaluate(i=>i.decode());}
+  const boxes=await page.getByTestId('screen-callout').evaluateAll(nodes=>nodes.map(n=>{const a=n.getBoundingClientRect(),b=n.parentElement.getBoundingClientRect();return {width:a.width,height:a.height,inside:a.x>=b.x&&a.y>=b.y&&a.right<=b.right&&a.bottom<=b.bottom};}));assert.equal(boxes.length,3);assert(boxes.every(b=>b.inside&&b.width>0&&b.height>0),'Highlights remain registered to screenshots');
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'No horizontal overflow');await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(out,profile.name+'-hero.png')});await page.screenshot({path:path.join(out,profile.name+'-page.png'),fullPage:true});
+  const row={...profile,boxes,deferredGame:true};
+  if(profile.name==='desktop'){
+   await page.getByRole('button',{name:'Play Rally House ↗',exact:true}).focus();await page.keyboard.press('Enter');await page.locator('iframe').waitFor();await enterClub(page.frameLocator('iframe'),'Arjan');row.keyboardEntry=true;
+   await page.evaluate(()=>{document.querySelector('iframe').parentElement.requestFullscreen=()=>Promise.reject(Error('Controlled QA rejection'));});await page.getByRole('button',{name:'Enter fullscreen ↗',exact:true}).click();assert(await page.getByRole('status').filter({hasText:'Fullscreen is unavailable'}).isVisible());row.fullscreenFallback=true;
+   await page.screenshot({path:path.join(out,'live-entry.png')});
   }
-  assert.deepEqual(report.errors,[]);assert.deepEqual(report.failedRequests,[]);
-  console.log('Final footage, captions, keyboard entry, fullscreen fallback, and five standalone reloads PASS');
-}finally{
-  fs.writeFileSync('../takeover-evidence/after/media.json',JSON.stringify(report,null,2));await browser.close();
-}
+  report.views.push(row);await context.close();
+ }
+ assert.deepEqual(report.errors,[]);assert.deepEqual(report.http,[]);console.log(JSON.stringify(report));
+}finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));await browser.close();}

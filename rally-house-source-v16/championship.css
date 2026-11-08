@@ -197,6 +197,8 @@ body.championship-active .speech {
   transition: opacity 180ms ease;
 }
 
+body.championship-active .speech.show.match-reaction {opacity:1;}
+
 
 .championshipTouchPad[hidden],
 .championshipSwing[hidden] {

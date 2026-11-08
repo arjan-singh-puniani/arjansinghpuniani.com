@@ -1,8 +1,9 @@
-import {secondRacketHand} from '../animation/RacketGeometry.js';
-import {Vec3,clamp,rigidFrame,interpolateRigidFrame} from '../rendering/Math3D.js';
+import {arjanNeckMatrices} from '../animation/ArjanAuthoredHead.js';
+import {secondRacketHand,RACKET,RACKET_FRAME,racketMeshes} from '../animation/RacketGeometry.js';
+import {Vec3,clamp,smoothstep,rigidFrame,interpolateRigidFrame,compose,transformPoint} from '../rendering/Math3D.js';
 import type {RenderItem} from '../rendering/Renderer.js';
 import type {Character,CharacterPose} from '../entities/Character.js';
-import {rigFromPose,skinMatrices,type RigPoseLocal} from '../animation/CharacterSkin.js';
+import {BONE,rigFromPose,skinMatrices,type RigPoseLocal} from '../animation/CharacterSkin.js';
 
 export type Joint='knee'|'hip'|'ankle'|'shoulder'|'elbow';
 export type LabMode='combined'|'court'|'body';
@@ -25,7 +26,7 @@ export function angle(a:Vec3,v:Vec3,b:Vec3):number|null{
 }
 export function jointTriplet(p:CharacterPose,j:Joint):[Vec3,Vec3,Vec3]|null{
   if(j==='knee')return [p.hipR,p.kneeR,p.footR];
-  if(j==='elbow')return [p.shoulderR,p.elbowR,p.handR];
+  if(j==='elbow')return [p.shoulderR,p.elbowR,p.wristR??p.handR];
   if(j==='hip')return [p.shoulderR,p.hipR,p.kneeR];
   if(j==='shoulder')return [p.shoulderR.clone().add(Vec3.sub(Vec3.lerp(p.hipL,p.hipR,.5),Vec3.lerp(p.shoulderL,p.shoulderR,.5))),p.shoulderR,p.elbowR];
   // The stylized rig has no independent heel/toe landmark. Do not invent ankle angles.
@@ -77,6 +78,15 @@ export function interpolateFrame(a:MotionFrame,b:MotionFrame,time:number):Motion
   if(x instanceof Vec3&&y instanceof Vec3)(pose as unknown as Record<string,unknown>)[key]=key==='racketRot'?rotationLerp(x,y,t):Vec3.lerp(x,y,t);
   else if(typeof x==='number'&&typeof y==='number')(pose as unknown as Record<string,unknown>)[key]=key.endsWith('Yaw')?angleLerp(x,y,t):x+(y-x)*t;
  }
+ if(a.pose.headPitch!==undefined||b.pose.headPitch!==undefined)pose.headPitch=(a.pose.headPitch??0)*(1-t)+(b.pose.headPitch??0)*t;
+ const racketObserved=[a,b].every(f=>f.body.some(m=>'skin' in m&&m.skin.id===RACKET_FRAME.id));
+ let racketParts:ReturnType<typeof racketMeshes>|undefined;
+ if(racketObserved){
+  // Interpolate the held frame rigidly; separate endpoint chords shrink the shaft in slow motion.
+  const frame=compose(new Vec3(),pose.racketRot),axis=new Vec3(frame[4],frame[5],frame[6]),length=Vec3.sub(a.pose.racketCenter,a.pose.racketGrip).len()*(1-t)+Vec3.sub(b.pose.racketCenter,b.pose.racketGrip).len()*t;
+  pose.racketCenter=pose.racketGrip.clone().add(axis.clone().scale(length));pose.racketHandleTop=pose.racketCenter.clone().add(axis.scale(RACKET.handleTopY));
+  racketParts=racketMeshes(pose.racketCenter,pose.racketRot,length);
+ }
  // Preserve an observed two-hand grip instead of shortening it along an interpolated chord.
  if(a.state==='swingBackhand'&&b.state==='swingBackhand'){
   const stacked=(p:CharacterPose)=>Vec3.sub(p.handL,secondRacketHand(p.handR,Vec3.sub(p.racketHandleTop,p.racketGrip))).len()<.001;
@@ -86,21 +96,28 @@ export function interpolateFrame(a:MotionFrame,b:MotionFrame,time:number):Motion
  pose.face={...a.pose.face};
  for(const key of Object.keys(pose.face) as (keyof CharacterPose['face'])[])pose.face[key]=a.pose.face[key]+(b.pose.face[key]-a.pose.face[key])*t;
  let bones:Float32Array|undefined;
- const authored=new Map<RigPoseLocal,{bind:RigPoseLocal;pose:RigPoseLocal;matrices:Float32Array}>();
+ const authored=new Map<RigPoseLocal,{bind:RigPoseLocal;pose:RigPoseLocal;matrices:Float32Array;position:Vec3;rotation:Vec3}>();
  const body=a.body.map((part,i):RenderItem=>{
-  const other=b.body[i],position=Vec3.lerp(part.position,other.position,t),rotation=rotationLerp(part.rotation,other.rotation,t);
+  const other=b.body[i],attachment='skin' in part?racketParts?.find(m=>m.skin.id===part.skin.id):undefined,position=attachment?.position??Vec3.lerp(part.position,other.position,t),rotation=attachment?.rotation??rotationLerp(part.rotation,other.rotation,t);
   if('skin' in part&&'skin' in other){
    let rig=part.rig,palette=part.boneMatrices;
+   if(part.neckBlend&&other.neckBlend&&part.rig){
+    // Rebuild from the interpolated torso: rigid matrix interpolation loses its longitudinal bone scale.
+    const source=authored.get(part.rig.bind);if(!source)throw Error('Neck replay requires its observed body rig');
+    rig={bind:source.bind,pose:source.pose};palette=arjanNeckMatrices(position,rotation,{position:source.position,rotation:source.rotation,rig,boneMatrices:source.matrices});
+   }
    if(part.poseRig&&part.rig&&other.rig){
     let source=authored.get(part.rig.bind);
     if(!source){const local=rigFromPose(pose,root,rotation.y);for(const key of ['spine','neck','headUp','headForward','handDirectionL','handDirectionR','handForwardL','handForwardR','foreArmForwardL','foreArmForwardR','footForwardL','footForwardR','footUpL','footUpR'] as const){const x=part.rig.pose[key],y=other.rig.pose[key];if(x&&y)local[key]=Vec3.lerp(x,y,t);}
      for(const side of ['L','R'] as const){const x=part.rig.pose,y=other.rig.pose,dx=x[`handDirection${side}`],dy=y[`handDirection${side}`],fx=x[`handForward${side}`],fy=y[`handForward${side}`];if(dx&&dy&&fx&&fy){const origin=new Vec3(),frame=interpolateRigidFrame(rigidFrame(origin,dx,fx),rigidFrame(origin,dy,fy),t);local[`handDirection${side}`]=new Vec3(frame[4],frame[5],frame[6]);local[`handForward${side}`]=new Vec3(frame[8],frame[9],frame[10]);local[`foreArmForward${side}`]=local[`handForward${side}`];}}
-     source={bind:part.rig.bind,pose:local,matrices:skinMatrices(local,part.rig.bind)};authored.set(part.rig.bind,source);}
+     source={bind:part.rig.bind,pose:local,matrices:skinMatrices(local,part.rig.bind,smoothstep(0,.15,pose.sp)),position,rotation};authored.set(part.rig.bind,source);
+     for(const side of ['L','R'] as const){const bind=source.bind[`wrist${side}`];if(bind){const wrist=transformPoint(source.matrices.subarray(BONE[`hand${side}`]*16,BONE[`hand${side}`]*16+16),bind),scale=part.scale&&other.scale?Vec3.lerp(part.scale,other.scale,t):part.scale,world=transformPoint(compose(position,rotation,scale),new Vec3(wrist.x,wrist.y,wrist.z));pose[`wrist${side}`]=new Vec3(world.x,world.y,world.z);}}
+    }
     rig={bind:source.bind,pose:source.pose};palette=source.matrices;
    }else if(part.poseRig){bones??=skinMatrices(rigFromPose(pose,root,rotation.y));palette=bones;}
    const expression=part.expression&&other.expression?part.expression.map((n,j)=>n+(other.expression![j]-n)*t) as [number,number,number,number]:part.expression;
    const handGrip=part.handGrip&&other.handGrip?part.handGrip.map((n,j)=>n+(other.handGrip![j]-n)*t) as [number,number]:part.handGrip;
-   return {...part,position,rotation,rig,expression,handGrip,eyeYaw:(part.eyeYaw??0)+((other.eyeYaw??0)-(part.eyeYaw??0))*t,scale:part.scale&&other.scale?Vec3.lerp(part.scale,other.scale,t):part.scale,boneMatrices:palette};
+   return {...part,position,rotation,rig,expression,handGrip,eyeYaw:(part.eyeYaw??0)+((other.eyeYaw??0)-(part.eyeYaw??0))*t,scale:attachment?.scale??(part.scale&&other.scale?Vec3.lerp(part.scale,other.scale,t):part.scale),boneMatrices:palette};
   }
   if('skin' in part||'skin' in other)throw Error('Replay topology changed');
   return {...part,position,rotation,scale:Vec3.lerp(part.scale,other.scale,t),alpha:(part.alpha??1)+((other.alpha??1)-(part.alpha??1))*t};

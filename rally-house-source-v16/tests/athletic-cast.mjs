@@ -1,3 +1,4 @@
+import {supportRacketHand} from '../dist/animation/RacketGeometry.js';
 import assert from 'node:assert/strict';
 import {memberData} from '../dist/content/content.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
@@ -15,18 +16,17 @@ for(const [name,g] of [...Object.entries(ATHLETE_WARDROBE),...Object.entries(CAS
  for(let i=0;i<g.positions.length;i+=9){const a=new Vec3(...g.positions.slice(i,i+3)),b=new Vec3(...g.positions.slice(i+3,i+6)),c=new Vec3(...g.positions.slice(i+6,i+9));assert(Vec3.cross(Vec3.sub(b,a),Vec3.sub(c,a)).len()>1e-8,`${name}: no collapsed faces`);}
 }
 const specs=[...memberData,playerSpec('arjan'),playerSpec('taylor')],signatures=new Set();
-const headGeometries=new Set([...Object.values(HUMAN_TAYLOR_GEOMETRY),...Object.values(CAST_HAIR_GEOMETRY),...Object.values(HUMAN_FACE_VARIANTS)]);
 let poses=0,maxStretch=1,maxContactError=0,minStrokePelvis=Infinity;
 for(const spec of specs){
  assert.equal(spec.appearance,'human');const actor=()=>new Character({...spec},new Vec3(),new Navigation([]),{}),c=actor();c.racketStowed=true;for(let i=0;i<180;i++)c.update(1/60);
- const rest=c.analysisPose(),parts=c.meshes(),face=parts.find(m=>m.skin===(spec.presentation==='masculine'?HUMAN_FACE_VARIANTS.masculineFace:HUMAN_TAYLOR_GEOMETRY.face));assert(face);assert.deepEqual(face.position,rest.head);
+ const rest=c.analysisPose(),parts=c.meshes(),face=parts.find(m=>m.skin===(spec.avatar==='arjan'?HUMAN_FACE_VARIANTS.arjanFace:spec.presentation==='masculine'?HUMAN_FACE_VARIANTS.masculineFace:HUMAN_TAYLOR_GEOMETRY.face));assert(face);assert.deepEqual(face.position,rest.head);
  const origin=rest.head.clone().add(new Vec3(0,0,4)),direction=new Vec3(0,0,-1);
  assert.equal(rayBox(origin,direction,{centre:new Vec3(0,.95,0),size:new Vec3(.72,1.85,.72)}),null,'Original fixed box misses the taller visible head');
  assert.notEqual(rayBox(origin,direction,c.selectionBounds()),null,'Actual head can be selected with its pose-derived bounds');
  const height=rest.head.y+.175*face.scale.y-rest.footL.y,ratio=height/(.352*face.scale.y);assert(ratio>5.5&&ratio<8,'Adult rendered head/body proportion');
  const span=Vec3.sub(rest.shoulderL,rest.shoulderR).len()/(.228*face.scale.x);assert(span>1.8&&span<2.8,'Balanced adult shoulder girdle');
  assert(parts.some(m=>m.skin===ATHLETE_WARDROBE.freeHands),'Free hands relax outside contact actions');
- assert(parts.filter(m=>m.skin&&headGeometries.has(m.skin)).reduce((sum,m)=>sum+m.skin.positions.length/9,0)<20000,'Each actual head stays below the established budget');
+ assert(parts.filter(m=>m.skin&&Vec3.sub(m.position,rest.head).len()<.4).reduce((sum,m)=>sum+m.skin.positions.length/9,0)<20000,'Each actual head stays below the established budget');
  signatures.add(JSON.stringify({width:face.scale.x,height:face.scale.y,skin:face.color,hair:parts.filter(m=>m.material==='groomedHair').map(m=>m.skin?.id??m.kind),wardrobe:parts.filter(m=>m.poseRig&&m.material==='fabric').map(m=>[m.skin.id,m.color])}));
  for(const hz of [30,60,120])for(const state of ['idle','walk','jog','ready','serve','swingForehand','swingBackhand','volley','sit','drink','reach','coachFeed']){
   const c=actor();c.yaw=Math.PI;
@@ -69,7 +69,7 @@ for(const spec of specs)for(const hz of [30,60,120])for(const yaw of [0,.7,Math.
   for(const side of ['L','R']){assert(Vec3.sub(p[`foot${side}`],first[`foot${side}`]).len()<1e-8,'Ready shoes stay planted while the body breathes');assert(Math.abs(p[`foot${side}`].y-.11)<1e-8,'Ready soles remain on the court');}
   assert(Vec3.dot(Vec3.sub(p.handR,c.position),right)>.05,'Racket wrist stays on its own side, without crossed forearms');
   assert(p.handL.y>p.handR.y+.08,'Free hand supports the throat above the grip');
-  assert(Vec3.sub(p.handL,Vec3.lerp(p.racketHandleTop,p.racketCenter,.20)).len()<.001,'Free palm follows the physical racket throat after retargeting');
+  assert(Vec3.sub(p.handL,supportRacketHand(p.racketGrip,p.racketCenter)).len()<.001,'Free palm follows the physical racket throat after retargeting');
   assert(p.shoulderR.y-p.shoulderL.y>.015,'Racket shoulder breaks the horizontal shoulder bar');
  }
  assert(high-low>.025&&high-low<.08,'Ready weight transfer is visible and restrained');
@@ -97,7 +97,9 @@ for(const spec of specs)for(const hz of [30,60,120])for(const yaw of [0,.7,Math.
  const c=new Character({...spec},new Vec3(),new Navigation([]),{});c.yaw=c.targetYaw=yaw;c.acting.setRole('exit');
  for(let i=0;i<hz*2;i++)c.update(1/hz);
  const right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw)),first=c.analysisPose(),feet=Vec3.lerp(first.footL,first.footR,.5);
- assert(Vec3.dot(Vec3.sub(first.pelvisCenter,feet),right)>.04,'Rest visibly loads one leg, including after an interaction');
+ const lateral=Vec3.dot(Vec3.sub(first.pelvisCenter,feet),right);
+ if(spec.avatar==='arjan')assert(Math.abs(lateral)<.005,'Arjan keeps his resting weight centered after an interaction');
+ else assert(lateral>.04,'The other characters retain their one-leg resting stance');
  for(let i=0;i<hz;i++){
   c.update(1/hz);const p=c.analysisPose();
   for(const side of ['L','R']){
@@ -111,7 +113,7 @@ for(const spec of specs)for(const hz of [30,60,120])for(const yaw of [0,.7,Math.
  let prior=c.analysisPose();c.goTo(new Vec3(Math.sin(yaw)*4,0,Math.cos(yaw)*4));
  for(let i=0;i<hz;i++){c.update(1/hz);const p=c.analysisPose();assert(Vec3.sub(p.handL,prior.handL).len()<.20,'Hands leave the waist continuously when walking begins');prior=p;}
 }
-console.log('Rest stance PASS: hands at the waist, open elbows, visible one-leg loading, grounded shoes, return after interactions and continuous walking departure.');
+console.log('Rest stance PASS: hands at the waist, open elbows, character-specific weight distribution, grounded shoes, return after interactions and continuous walking departure.');
 for(const spec of specs)for(const hz of [30,60,120])for(const stroke of ['serve','swingForehand','swingBackhand']){
  const c=new Character({...spec},new Vec3(),new Navigation([]),{});for(let i=0;i<hz*2;i++)c.update(1/hz);
  c.triggerShot(stroke,new Vec3(0,.1,5));const contact=c.shotContactTime(stroke);for(let i=0;i<60;i++)c.update(contact/60);

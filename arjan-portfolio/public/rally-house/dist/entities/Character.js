@@ -1,17 +1,22 @@
-import { RACKET, RACKET_FRAME, RACKET_BONES, secondRacketHand } from '../animation/RacketGeometry.js';
+import { SERVE_RELEASE, SERVE_TIMING, releaseServeToss, serveToss } from '../tennis/ServeToss.js';
+import { RACKET, racketMeshes, secondRacketHand } from '../animation/RacketGeometry.js';
 import { CHAMPIONSHIP_TUNING } from '../tennis/ChampionshipTuning.js';
 import { ActingState } from '../animation/ActingState.js';
 import { WalkCycle } from '../animation/WalkCycle.js';
-import { Vec3, clamp, smoothstep, rigidFrame, interpolateRigidFrame } from '../rendering/Math3D.js';
+import { Vec3, clamp, smoothstep, rigidFrame, interpolateRigidFrame, compose } from '../rendering/Math3D.js';
 import { Navigation } from '../world/Navigation.js';
 import { clipForState, sampleClip } from '../animation/ClipLibrary.js';
-import { taylorHeadMeshes, taylorTailMeshes, taylorFootMeshes, TAYLOR_PALETTE } from '../animation/TaylorAppearance.js';
+import { taylorHeadMeshes, taylorTailMeshes, arjanFootMeshes, taylorFootMeshes, TAYLOR_PALETTE } from '../animation/TaylorAppearance.js';
 import { adultTaylorPose, TAYLOR_BODY } from '../animation/TaylorBody.js';
+import { advanceArjanHands, arjanUpperBodyMeshes, hasArjanHands } from '../animation/ArjanUpperBody.js';
 import { humanTaylorHead } from '../animation/TaylorHuman.js';
 import { CHARACTER_SKIN, HUMAN_TENNIS_SKIN, ATHLETE_WARDROBE, skinMatrices, rigFromPose } from '../animation/CharacterSkin.js';
 import { CAST_DESIGN } from '../content/CastDesign.js';
 import { authoredAthleteMeshes, authoredArmLengths, advanceAuthoredHands } from '../animation/AuthoredAthlete.js';
 export function locomotionStyleFor(id) {
+    // Arjan takes longer, lower steps with restrained hip rotation.
+    if (id === 'arjan')
+        return { cadence: 4.16, bounce: .018, armSwing: .17, hipSwing: .022, torsoCounter: .044, stride: 1.06, headStabilize: .72, turnSharpness: 8.2 };
     if (id === 'coach')
         return { cadence: 4.22, bounce: .018, armSwing: .155, hipSwing: .042, torsoCounter: .048, stride: .94, headStabilize: .72, turnSharpness: 8.0 };
     if (id === 'mika')
@@ -24,12 +29,15 @@ export function locomotionStyleFor(id) {
 }
 const isShot = (s) => s === 'swingForehand' || s === 'swingBackhand' || s === 'serve' || s === 'volley';
 const MOVING = new Set(['walk', 'jog', 'shuffle']);
+const SERVE_DRIVE_LIFT = .055;
 function expDamp(current, target, sharpness, dt) { return current + (target - current) * (1 - Math.exp(-sharpness * dt)); }
 function angleDelta(a, b) { let d = (b - a + Math.PI) % (Math.PI * 2) - Math.PI; if (d < -Math.PI)
     d += Math.PI * 2; return d; }
 function dampAngle(current, target, sharpness, dt) { return current + angleDelta(current, target) * (1 - Math.exp(-sharpness * dt)); }
 function bell(x, width) { const q = x / Math.max(.001, width); return Math.exp(-q * q * 3.2); }
 function blendVec(a, b, t) { return Vec3.lerp(a, b, t); }
+// Cubic Bézier: a/d are endpoints; b/c set the departure/arrival direction and speed.
+function strokeCurve(a, b, c, d, t) { const u = 1 - t; return a.clone().scale(u * u * u).add(b.clone().scale(3 * u * u * t)).add(c.clone().scale(3 * u * t * t)).add(d.clone().scale(t * t * t)); }
 function blendFace(a, b, t) { return { smile: a.smile + (b.smile - a.smile) * t, mouthOpen: a.mouthOpen + (b.mouthOpen - a.mouthOpen) * t, browRaise: a.browRaise + (b.browRaise - a.browRaise) * t, squint: a.squint + (b.squint - a.squint) * t, focus: a.focus + (b.focus - a.focus) * t }; }
 function mixHex(a, b, t) { const parse = (h) => { const s = h.replace('#', ''); return [parseInt(s.slice(0, 2), 16), parseInt(s.slice(2, 4), 16), parseInt(s.slice(4, 6), 16)]; }; const aa = parse(a), bb = parse(b), c = aa.map((v, i) => Math.round(v + (bb[i] - v) * t)); return '#' + c.map(v => v.toString(16).padStart(2, '0')).join(''); }
 /** Rotate a local racket-plane vector by the same Y * X * Z order used by Math3D.compose. */
@@ -81,9 +89,20 @@ export class Character {
     transitionAge = 1;
     transitionDuration = .20;
     walkCycle = new WalkCycle();
+    shuffleCycle = new WalkCycle();
+    shuffleShape = { halfWidth: .29, lift: .06, stance: .32 };
     exitWalkPose = null;
-    walkingStride() { return (this.spec.appearance === 'human' ? 1.7 + clamp((this.travelSpeed - 2.2) / 3.3, 0, 1) * .7 : 1.02) * locomotionStyleFor(this.spec.id).stride; }
-    walkingShape() { const jog = clamp((this.travelSpeed - 2.2) / 3.3, 0, 1); return this.spec.appearance === 'human' ? { halfWidth: .135, lift: .045 + jog * .155, stance: .52 - jog * .12 } : undefined; }
+    exitWalkOrigin = new Vec3();
+    walkingStride() {
+        const style = locomotionStyleFor(this.spec.avatar ?? this.spec.id), jog = clamp((this.travelSpeed - 2.2) / 3.3, 0, 1);
+        // Restore the established jog length before a fast court approach needs its full reach.
+        const stride = this.spec.avatar === 'arjan' ? 1 + (style.stride - 1) * (1 - smoothstep(2.2, 2.8, this.travelSpeed)) : style.stride;
+        return (this.spec.appearance === 'human' ? 1.7 + jog * .7 : 1.02) * stride;
+    }
+    walkingShape() {
+        const jog = clamp((this.travelSpeed - 2.2) / 3.3, 0, 1), grounded = this.spec.avatar === 'arjan' ? 1 - smoothstep(2.2, 2.8, this.travelSpeed) : 0;
+        return this.spec.appearance === 'human' ? { halfWidth: .135 + .035 * grounded, lift: .045 + jog * .155 - .013 * grounded, stance: .52 - jog * .12 + .04 * grounded } : undefined;
+    }
     targetYaw = 0;
     locomotion = 0;
     horizontalSpeed = 0;
@@ -91,8 +110,6 @@ export class Character {
     travelSpeed = 0;
     leftFootLock = null;
     rightFootLock = null;
-    prevLeftStance = false;
-    prevRightStance = false;
     incomingContact = null;
     contactTarget = null;
     outgoingTarget = null;
@@ -111,11 +128,11 @@ export class Character {
     conversationTarget;
     racketImpactAge = 1;
     contactHoldRemaining = 0;
+    serveFlight = null;
     stringImpactStrength = 0;
     stringImpactDirection = 1;
     racketVibration = 0;
     stepEvent = false;
-    lastStanceKey = '';
     clubIdleRelax = 0;
     strokeAnchor = null;
     strokeSupport() {
@@ -179,14 +196,16 @@ export class Character {
             const heading = Vec3.sub(goal ?? target, this.position).normalize();
             const detour = new Vec3(this.position.x + heading.x * .3 + heading.z * 1.05, 0, this.position.z + heading.z * .3 - heading.x * 1.05);
             const dynamic = new Navigation([...this.nav.obstacles, ...blockers.map(c => ({ x: c.position.x, z: c.position.z, w: 1.24, d: 1.24 }))]);
-            const first = dynamic.clubPath(this.position, detour), last = goal ? dynamic.clubPath(detour, goal) : [];
+            dynamic.courtReserved = () => this.nav.courtReserved() && (!goal || !this.nav.onCourt(goal));
+            const outsideCourt = dynamic.courtReserved() && !dynamic.onCourt(this.position);
+            const first = outsideCourt && dynamic.onCourt(detour) ? [] : dynamic.clubPath(this.position, detour), last = goal ? dynamic.clubPath(detour, goal) : [];
             const path = first.length && last.length ? [...first, ...last] : goal ? dynamic.clubPath(this.position, goal) : [];
             if (path.length) {
                 this.path = path;
                 this.pathIndex = 0;
             }
             else {
-                const options = Array.from({ length: 16 }, (_, i) => { const a = i * Math.PI / 8; return new Vec3(this.position.x + Math.cos(a) * .5, 0, this.position.z + Math.sin(a) * .5); }).filter(p => this.nav.clearSegment(this.position, p) && blockers.every(c => Math.hypot(p.x - c.position.x, p.z - c.position.z) > Math.min(.84, Math.hypot(this.position.x - c.position.x, this.position.z - c.position.z)) && ((p.x - this.position.x) * (c.position.x - this.position.x) + (p.z - this.position.z) * (c.position.z - this.position.z) <= 0)));
+                const options = Array.from({ length: 16 }, (_, i) => { const a = i * Math.PI / 8; return new Vec3(this.position.x + Math.cos(a) * .5, 0, this.position.z + Math.sin(a) * .5); }).filter(p => (!outsideCourt || (!dynamic.onCourt(p) && this.nav.clubPath(this.position, p).length === 1)) && this.nav.clearSegment(this.position, p) && blockers.every(c => Math.hypot(p.x - c.position.x, p.z - c.position.z) > Math.min(.84, Math.hypot(this.position.x - c.position.x, this.position.z - c.position.z)) && ((p.x - this.position.x) * (c.position.x - this.position.x) + (p.z - this.position.z) * (c.position.z - this.position.z) <= 0)));
                 const cost = (p) => Vec3.sub(p, goal ?? target).len() + .4 * (heading.x * (p.z - this.position.z) - heading.z * (p.x - this.position.x));
                 options.sort((a, b) => cost(a) - cost(b));
                 for (const escape of options) {
@@ -309,15 +328,28 @@ export class Character {
     }
     consumeStepEvent() { const v = this.stepEvent; this.stepEvent = false; return v; }
     face(target) { const d = Vec3.sub(target, this.position); this.targetYaw = Math.atan2(d.x, d.z); }
-    trigger(state) { this.changeState(state, true); if (isShot(state))
+    reactionRacket = false;
+    trigger(state) { if (state === 'celebrate' || state === 'reactMiss')
+        this.reactionRacket = this.holdsRacket(); this.changeState(state, true); if (isShot(state))
         this.clearCourtMove(); }
     setAnimation(state) { this.changeState(state, false); }
     setIncomingContact(point) { this.incomingContact = point.clone(); }
-    triggerShot(state, outgoingTarget) { this.outgoingTarget = outgoingTarget.clone(); this.contactTarget = this.solveContactTarget(state, this.incomingContact); this.incomingContact = null; this.courtPhase = 'stroke'; this.courtPhaseAge = 0; this.setEmotion('focused', this.shotDuration(state)); this.trigger(state); const foot = state === 'swingForehand' ? 'R' : 'L', stance = this.poseFor(state, this.shotContactTime(state) * .72), point = stance[`foot${foot}`].clone(); point.y = .11; this.strokeAnchor = { foot, point, root: this.position.clone() }; }
+    triggerShot(state, outgoingTarget) { this.serveFlight = null; this.outgoingTarget = outgoingTarget.clone(); this.contactTarget = this.solveContactTarget(state, this.incomingContact); this.incomingContact = null; this.courtPhase = 'stroke'; this.courtPhaseAge = 0; this.setEmotion('focused', this.shotDuration(state)); this.trigger(state); const foot = state === 'swingForehand' ? 'R' : 'L', stance = this.poseFor(state, this.shotContactTime(state) * .72), point = stance[`foot${foot}`].clone(); point.y = .11; this.strokeAnchor = { foot, point, root: this.position.clone() }; }
     clearShotIntent() { this.strokeAnchor = null; this.contactHoldRemaining = 0; this.contactTarget = null; this.outgoingTarget = null; this.incomingContact = null; this.courtPhase = 'recover'; this.courtPhaseAge = 0; }
-    shotContactTime(state = this.state) { const style = this.strokeStyle(); const base = state === 'serve' ? .48 : state === 'volley' ? .21 : state === 'swingBackhand' ? .35 : .33; const dev = this.spec.id === 'mika' ? (this.development - 50) * .0007 : 0; const tempo = this.matchCompetitor ? CHAMPIONSHIP_TUNING.arcadeContactTempo : 1; return Math.max(.11, (base * style.timing + dev + this.preparationBonus + (this.practiceCue === 'preparation' ? .065 : 0)) * tempo); }
-    shotDuration(state = this.state) { const style = this.strokeStyle(); const base = state === 'serve' ? .96 : state === 'volley' ? .50 : state === 'swingBackhand' ? .78 : .76; return base * style.tempo * (this.matchCompetitor ? CHAMPIONSHIP_TUNING.arcadeStrokeTempo : 1); }
+    shotContactTime(state = this.state) { const style = this.strokeStyle(); const base = state === 'serve' ? SERVE_TIMING.contact : state === 'volley' ? .21 : state === 'swingBackhand' ? .35 : .33; const dev = this.spec.id === 'mika' ? (this.development - 50) * .0007 : 0; const tempo = this.matchCompetitor && state !== 'serve' ? CHAMPIONSHIP_TUNING.arcadeContactTempo : 1; return Math.max(.11, (base * style.timing + dev + this.preparationBonus + (this.practiceCue === 'preparation' ? .065 : 0)) * tempo); }
+    shotDuration(state = this.state) { const style = this.strokeStyle(); const base = state === 'serve' ? SERVE_TIMING.duration : state === 'volley' ? .50 : state === 'swingBackhand' ? .78 : .76; return base * style.tempo * (this.matchCompetitor && state !== 'serve' ? CHAMPIONSHIP_TUNING.arcadeStrokeTempo : 1); }
     serveTossPoint() { const p = this.pose(); return p.handL.clone(); }
+    serveBallPoint() {
+        if (!this.serveFlight)
+            return this.serveTossPoint();
+        return serveToss(this.serveFlight, this.animTime - this.shotContactTime('serve') * SERVE_RELEASE);
+    }
+    serveTorso(time) {
+        const contact = this.shotContactTime('serve'), pre = clamp(time / contact, 0, 1), post = clamp((time - contact) / (this.shotDuration('serve') - contact), 0, 1);
+        // shortcut: authored arcade shoulder transfer; calibrate against the serve reference.
+        const loadRoll = this.spec.presentation === 'masculine' ? .18 : .17;
+        return { roll: -loadRoll * smoothstep(.12, .55, pre) * (1 - smoothstep(.70, 1, pre)) + .20 * smoothstep(.70, 1, pre) * (1 - smoothstep(0, .85, post)), load: 1 - smoothstep(.70, 1, pre), lean: -.055 * Math.sin(pre * Math.PI) ** 2 + .12 * smoothstep(.45, 1, pre) };
+    }
     strokeStyle() {
         if (this.spec.id === 'coach')
             return { timing: 1.08, tempo: .92, coil: .88, follow: .92, reach: .96 };
@@ -332,6 +364,7 @@ export class Character {
         return { timing: 1, tempo: 1, coil: 1, follow: 1, reach: 1 };
     }
     update(dt) {
+        const tossHand = this.state === 'serve' && !this.serveFlight ? this.serveTossPoint() : null, tossTime = this.animTime;
         const reserved = this.nav.courtReserved();
         if (reserved !== this.courtWasReserved) {
             this.courtWasReserved = reserved;
@@ -380,6 +413,8 @@ export class Character {
         this.transitionAge += dt;
         this.courtPhaseAge += strokeDt;
         this.racketVibration = expDamp(this.racketVibration, 0, 18, dt);
+        if (this.spec.appearance === 'human' && (this.state === 'swingForehand' || this.state === 'swingBackhand') && this.animTime - strokeDt < this.shotDuration() && this.animTime >= this.shotDuration())
+            this.stepEvent = true;
         if (this.emotionUntil > 0) {
             this.emotionUntil = Math.max(0, this.emotionUntil - dt);
             if (this.emotionUntil === 0)
@@ -466,7 +501,7 @@ export class Character {
                 this.courtPhaseAge = 0;
             }
         }
-        const locomotionStyle = locomotionStyleFor(this.spec.id);
+        const locomotionStyle = locomotionStyleFor(this.spec.avatar ?? this.spec.id);
         this.yaw = dampAngle(this.yaw, this.targetYaw, isShot(this.state) ? 12 : this.acting.role === 'speak' || this.acting.role === 'listen' ? 2.8 : locomotionStyle.turnSharpness, dt);
         const worldVel = Vec3.sub(this.position, before).scale(dt > 0 ? 1 / dt : 0);
         const s = Math.sin(this.yaw), c = Math.cos(this.yaw);
@@ -480,10 +515,12 @@ export class Character {
             this.stepEvent = this.walkCycle.update(this.position, this.yaw, moved, stride, this.walkingShape()) || this.stepEvent;
             this.gaitPhase = this.walkCycle.phase * Math.PI * 2;
         }
-        else if (this.locomotion > .02) {
-            const cadence = this.state === 'shuffle' ? 5.8 : locomotionStyle.cadence;
-            this.gaitPhase = (this.gaitPhase + Math.max(.25, this.horizontalSpeed) * cadence * dt) % (Math.PI * 2);
+        else if (this.state === 'shuffle') {
+            this.stepEvent = this.shuffleCycle.update(this.position, this.yaw, moved, 1.4, this.shuffleShape, worldVel.clone().normalize()) || this.stepEvent;
+            this.gaitPhase = this.shuffleCycle.phase * Math.PI * 2;
         }
+        else if (this.locomotion > .02)
+            this.gaitPhase = (this.gaitPhase + Math.max(.25, this.horizontalSpeed) * locomotionStyle.cadence * dt) % (Math.PI * 2);
         this.updateFootPlanting();
         const desired = this.expressionFor(this.state), reaction = this.acting.reaction, w = this.acting.reactionWeight;
         if (!isShot(this.state)) {
@@ -492,11 +529,23 @@ export class Character {
         }
         this.facePose = { smile: expDamp(this.facePose.smile, desired.smile, 10, dt), mouthOpen: expDamp(this.facePose.mouthOpen, desired.mouthOpen, 14, dt), browRaise: expDamp(this.facePose.browRaise, desired.browRaise, 10, dt), squint: expDamp(this.facePose.squint, desired.squint, 12, dt), focus: expDamp(this.facePose.focus, desired.focus, 12, dt) };
         const racket = this.holdsRacket(), hands = { handRestWeight: this.state === 'idle' && !this.propKind && !this.interactionTarget && !this.affection && this.socialGesture === 'none' && this.interactionWeight < .001 ? 1 : 0, handLapWeight: this.state === 'sit' && !this.propKind && !this.affection && !racket ? 1 : 0, handGripL: racket ? (this.state === 'swingBackhand' ? 1 : this.state === 'ready' || this.state === 'shuffle' ? .45 : 0) : 0, handGripR: racket ? 1 : this.state === 'drink' || this.propKind === 'cup' ? .45 : 0, handRacketWeight: racket ? 1 : 0 };
+        // The existing hand blend also drives the rest solver, so fingers and arms change pose together.
+        if (this.spec.avatar === 'arjan' && hands.handRestWeight) {
+            const phase = this.animTime % 20;
+            hands.handRestWeight = 1 - smoothstep(6, 8, phase) + smoothstep(16, 18, phase);
+        }
         for (const key of Object.keys(hands))
             this.handPose[key] = expDamp(this.handPose[key], hands[key], 12, dt);
         this.clubIdleRelax = expDamp(this.clubIdleRelax, this.canRelaxClubIdle() ? 1 : 0, 7, dt);
-        if (this.spec.presentation === 'feminine' && this.spec.appearance === 'human')
-            this.authoredHands = advanceAuthoredHands(this.pose(), this.position, this.yaw, this.authoredHands, dt);
+        if (this.spec.avatar === 'arjan' && hasArjanHands())
+            this.authoredHands = advanceArjanHands(this.pose(), this.position, this.yaw, this.authoredHands, dt, this.state === 'serve', this.affection?.kind === 'hug' ? this.affection.weight : 0);
+        else if (this.spec.presentation === 'feminine' && this.spec.appearance === 'human')
+            this.authoredHands = advanceAuthoredHands(this.pose(), this.position, this.yaw, this.authoredHands, dt, this.state === 'serve', this.affection?.kind === 'hug' ? this.affection.weight : 0);
+        if (tossHand && this.state === 'serve' && this.animTime >= this.shotContactTime('serve') * SERVE_RELEASE) {
+            const release = this.shotContactTime('serve') * SERVE_RELEASE;
+            const origin = Vec3.lerp(tossHand, this.serveTossPoint(), clamp((release - tossTime) / Math.max(.001, this.animTime - tossTime), 0, 1));
+            this.serveFlight = releaseServeToss(origin, this.contactTarget ?? this.solveContactTarget('serve', null), this.shotContactTime('serve') - release);
+        }
         this.prevPosition = this.position.clone();
     }
     racketContactPoint() { const pose = this.pose(); return pose.racketCenter.clone(); }
@@ -512,13 +561,21 @@ export class Character {
         }
         this.contactHoldRemaining = 0;
         this.strokeAnchor = null;
+        if (next === 'shuffle' && this.state !== 'shuffle') {
+            const pose = this.pose(), direction = this.courtTarget ? this.localFromWorld(this.courtTarget) : new Vec3();
+            this.shuffleCycle.reset([pose.footL, pose.footR]);
+            this.shuffleCycle.update(this.position, this.yaw, 0, 1.4, this.shuffleShape);
+            this.shuffleCycle.phase = (Math.abs(direction.x) > Math.abs(direction.z) ? direction.x > 0 : direction.z < 0) ? .5 : 0;
+            this.shuffleCycle.planted = [true, true];
+        }
         if ((next === 'walk' || next === 'jog') && this.state !== 'walk' && this.state !== 'jog') {
             this.walkCycle.reset();
             this.walkCycle.update(this.position, this.yaw, 0, this.walkingStride(), this.walkingShape());
         }
-        if ((this.state === 'walk' || this.state === 'jog') && !MOVING.has(next) || this.state === 'sit') {
+        if (MOVING.has(this.state) && !MOVING.has(next) || this.state === 'ready' && next === 'shuffle' || this.state === 'sit') {
             this.pose();
             this.exitWalkPose = this.lastPose;
+            this.exitWalkOrigin = this.position.clone();
         }
         else
             this.exitWalkPose = null;
@@ -533,9 +590,14 @@ export class Character {
         if (!MOVING.has(next)) {
             this.leftFootLock = null;
             this.rightFootLock = null;
-            this.prevLeftStance = false;
-            this.prevRightStance = false;
         }
+    }
+    serveContactHeight() {
+        if (this.spec.avatar !== 'taylor' && this.spec.appearance !== 'human')
+            return 2.36;
+        const arm = this.spec.presentation === 'feminine' && this.spec.appearance === 'human' ? authoredArmLengths() : undefined;
+        // The toss target rises with the leg drive; a resting-height target folds the elbow at impact.
+        return TAYLOR_BODY.pelvisHeight + .55 * TAYLOR_BODY.torsoScale + SERVE_DRIVE_LIFT + (arm?.upperArm ?? TAYLOR_BODY.upperArm) + (arm?.wristForearm ?? TAYLOR_BODY.forearm) + Math.sqrt(RACKET.gripDistance ** 2 - .125 ** 2) - .04;
     }
     solveContactTarget(state, incoming) {
         // Intercept toward the opponent, even while the body is still turning
@@ -543,7 +605,7 @@ export class Character {
         const aim = this.outgoingTarget;
         const shotYaw = aim ? Math.atan2(aim.x - this.position.x, aim.z - this.position.z) : this.yaw;
         if (state === 'serve')
-            return this.worldLocal(.14, this.spec.avatar === 'taylor' || this.spec.appearance === 'human' ? 3.04 : 2.36, .38, shotYaw);
+            return this.worldLocal(.14, this.serveContactHeight(), .38, shotYaw);
         const local = incoming ? this.localFromWorld(incoming, shotYaw) : new Vec3(state === 'swingForehand' ? .54 : state === 'swingBackhand' ? -.42 : .30, 1.02, .48);
         local.y = clamp(local.y, state === 'volley' ? .90 : .66, state === 'volley' ? 1.58 : 1.38);
         local.z = clamp(local.z, .55, .90);
@@ -559,44 +621,11 @@ export class Character {
         if (!(this.state === 'walk' || this.state === 'jog' || this.state === 'shuffle')) {
             this.leftFootLock = null;
             this.rightFootLock = null;
-            this.prevLeftStance = false;
-            this.prevRightStance = false;
-            this.lastStanceKey = '';
             return;
         }
-        if (this.state === 'walk' || this.state === 'jog') {
-            this.leftFootLock = this.walkCycle.planted[0] ? this.walkCycle.feet[0].clone() : null;
-            this.rightFootLock = this.walkCycle.planted[1] ? this.walkCycle.feet[1].clone() : null;
-            return;
-        }
-        const phase = this.gaitPhase, isShuffle = this.state === 'shuffle', wave = Math.sin(phase);
-        const leftStance = isShuffle ? wave < .22 : Math.cos(phase) > .08, rightStance = isShuffle ? wave > -.22 : Math.cos(phase + Math.PI) > .08;
-        const speedRef = this.courtSpeed;
-        const speed01 = clamp(this.horizontalSpeed / Math.max(.01, speedRef), 0, 1);
-        const style = locomotionStyleFor(this.spec.id);
-        const stride = (.22) * speed01 * style.stride;
-        const side = clamp(this.localVelocity.x / Math.max(.01, this.courtSpeed), -1, 1);
-        const fore = clamp(this.localVelocity.z / Math.max(.01, this.courtSpeed), -1, 1);
-        const predict = Math.min(.12, this.horizontalSpeed * .035);
-        const future = this.position.clone().add(new Vec3(Math.sin(this.yaw) * fore * predict + Math.cos(this.yaw) * side * predict, 0, Math.cos(this.yaw) * fore * predict - Math.sin(this.yaw) * side * predict));
-        const desired = (left) => { const lateral = (left ? -.29 : .29) + (isShuffle ? -side * .10 : 0); const z = isShuffle ? (left ? .12 : -.03) + (left ? wave : -wave) * .045 : (.04 + (left ? Math.sin(phase) : Math.sin(phase + Math.PI)) * stride); const old = this.position; this.position = future; const v = this.worldLocal(lateral, .11, z); this.position = old; return v; };
-        const leftDesired = desired(true), rightDesired = desired(false);
-        if (leftStance && !this.prevLeftStance) {
-            this.leftFootLock = leftDesired.clone();
-            this.stepEvent = true;
-        }
-        if (!leftStance)
-            this.leftFootLock = null;
-        if (rightStance && !this.prevRightStance) {
-            this.rightFootLock = rightDesired.clone();
-            this.stepEvent = true;
-        }
-        if (!rightStance)
-            this.rightFootLock = null;
-        const key = `${leftStance ? 'L' : ''}${rightStance ? 'R' : ''}`;
-        this.lastStanceKey = key;
-        this.prevLeftStance = leftStance;
-        this.prevRightStance = rightStance;
+        const cycle = this.state === 'shuffle' ? this.shuffleCycle : this.walkCycle;
+        this.leftFootLock = cycle.planted[0] ? cycle.feet[0].clone() : null;
+        this.rightFootLock = cycle.planted[1] ? cycle.feet[1].clone() : null;
     }
     expressionFor(state) {
         const emotional = {
@@ -661,11 +690,13 @@ export class Character {
             weightShift = smoothstep(.20, .78, sp);
         }
         if (state === 'serve') {
+            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), load = Math.sin(pre * Math.PI) ** 2, drive = smoothstep(.45, 1, pre), land = smoothstep(0, .65, post);
             coil += (-.36 + sp * .72) * style.coil;
             hipCoil += (-.18 + sp * .34) * style.coil;
-            lean += -.045 + sp * .12;
-            knee += .15 * Math.sin(Math.min(1, sp / .57) * Math.PI);
-            weightShift = smoothstep(.34, .82, sp);
+            baseY = -.035 * load + SERVE_DRIVE_LIFT * drive * (1 - land);
+            lean = this.serveTorso(time).lean;
+            knee = .12 * load + .045 * land;
+            weightShift = drive;
         }
         if (state === 'volley') {
             coil += (sp < contact ? -.14 : .20);
@@ -673,13 +704,25 @@ export class Character {
             knee += .055;
             weightShift = smoothstep(.18, .66, sp);
         }
+        // The hitting shoulder loads back for a forehand and forward for a backhand.
+        if (this.spec.appearance === 'human' && (state === 'swingForehand' || state === 'swingBackhand')) {
+            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), turn = (state === 'swingForehand' ? 1 : -1) * (.90 * Math.sin(pre * Math.PI) - .78 * style.follow * smoothstep(0, 1, post)) * style.coil;
+            coil = -clip.torsoTwist + turn;
+            hipCoil = -clip.hipTwist + turn * .52;
+        }
         const moving = state === 'walk' || state === 'jog';
         const shuffle = state === 'shuffle';
         const gait = moving ? Math.cos(this.gaitPhase) : 0;
-        const gaitStyle = locomotionStyleFor(this.spec.id);
+        const gaitStyle = locomotionStyleFor(this.spec.avatar ?? this.spec.id);
         const stepLift = moving ? Math.pow(Math.abs(Math.sin(this.gaitPhase)), 1.7) * gaitStyle.bounce * (this.spec.appearance === 'human' ? .25 : 1) : 0;
         const gaitCounter = moving ? Math.sin(this.gaitPhase) * gaitStyle.torsoCounter : 0;
         const splitHop = this.courtPhase === 'split' ? Math.sin(Math.min(1, this.courtPhaseAge / .10) * Math.PI) * .055 : 0;
+        // Keep the receiving hinge while the legs spring beneath a steady torso.
+        if (shuffle && this.spec.appearance === 'human') {
+            baseY = -.020;
+            knee = .038;
+            lean = .10;
+        }
         if (!shot && !moving && this.socialGesture === 'think') {
             lean += .055;
         }
@@ -689,6 +732,11 @@ export class Character {
             hipCoil += Math.sin(phase) * amp;
             coil -= Math.sin(phase) * amp * .72;
             baseY += Math.sin(phase * 1.7) * amp * .13;
+        }
+        // Keep Arjan square at rest while preserving breathing and conversational gestures.
+        if (state === 'idle' && this.spec.avatar === 'arjan') {
+            hipCoil *= .15;
+            coil *= .15;
         }
         if (moving) {
             coil = -gait * gaitStyle.torsoCounter * .45;
@@ -708,8 +756,8 @@ export class Character {
         const contactLocal = this.contactTarget ? this.localFromWorld(this.contactTarget) : new Vec3(state === 'swingBackhand' ? -.52 : state === 'serve' ? .14 : .56, state === 'serve' ? 2.36 : 1.02, .5);
         const outside = clamp(contactLocal.x, -.85, .85);
         const readyPhase = time * 2.1 + this.seed() * .071, readyWeight = state === 'ready' ? Math.sin(readyPhase) : 0;
-        const pelvisShiftX = shot ? outside * .05 * bell(sp - contact, .24) : state === 'ready' ? readyWeight * .035 : moving && this.spec.appearance === 'human' ? -Math.sin(this.gaitPhase) * .018 : 0;
-        const pelvisShiftZ = (shot ? .08 * weightShift : 0) + clip.pelvisZ;
+        const pelvisShiftX = shot ? outside * .05 * bell(sp - contact, .24) : state === 'ready' ? readyWeight * .035 : moving && this.spec.appearance === 'human' ? -Math.sin(this.gaitPhase) * (this.spec.avatar === 'arjan' ? .008 : .018) : 0;
+        const pelvisShiftZ = (state === 'serve' ? .24 * weightShift : shot ? .08 * weightShift : 0) + clip.pelvisZ;
         const pelvisCenter = this.worldLocal(pelvisShiftX, .79 + baseY - knee + splitHop, pelvisShiftZ, hipYaw);
         const torsoCenter = this.worldLocal(pelvisShiftX * .45, 1.14 + baseY + breathe - knee + splitHop, .025 + pelvisShiftZ * .6, torsoYaw);
         const actingLift = shot ? 0 : this.acting.values.postureLift + (this.acting.reaction?.lift ?? 0) * this.acting.reactionWeight;
@@ -788,6 +836,8 @@ export class Character {
             const pre = clamp(sp / contact, 0, 1), follow = smoothstep(contact + .02, .94, sp);
             handR = Vec3.lerp(this.worldLocal(.54 * Math.cos(a), 1.05 + baseY - knee, .58 * Math.sin(a) + .29, torsoYaw), this.worldLocal(-.32, 1.42 + baseY - knee, .34, torsoYaw), follow);
             handL = this.worldLocal(-.32 - .18 * Math.sin(pre * Math.PI), 1.18 + baseY - knee + .10 * (1 - pre), .42 - .28 * pre + .10 * follow, torsoYaw);
+            if (this.spec.appearance === 'human')
+                handL = Vec3.lerp(this.worldLocal(-.34 - .14 * Math.sin(pre * Math.PI), 1.27 + baseY - knee, .48 - .10 * pre, torsoYaw), this.worldLocal(-.24, 1.40 + baseY - knee, .50, torsoYaw), smoothstep(contact, .82, sp));
         }
         if (state === 'swingBackhand') {
             const a = 1.30 - smoothstep(0, .70, sp / contact) * 1.72 - smoothstep(contact, 1, sp) * .98;
@@ -798,6 +848,12 @@ export class Character {
         if (state === 'serve') {
             const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), toss = smoothstep(0, .70, pre) * (1 - smoothstep(.78, 1.55, sp / contact)), reach = smoothstep(.35, 1, pre), finish = smoothstep(0, .80, post);
             handL = this.worldLocal(-.26 - .20 * Math.sin(post * Math.PI) + finish * .10, 1.25 + baseY + toss * .92 - finish * .10, .23 + finish * .08);
+            if (this.spec.appearance === 'human') {
+                // Keep the toss arm raised through trophy, then fold it during the leg drive.
+                const tuck = smoothstep(.70, 1, pre);
+                handL = Vec3.lerp(handL, this.worldLocal(-.16, .98 + baseY, .30), tuck).add(this.localVector(0, 0, .20 * Math.sin(Math.PI * tuck)));
+                handL = Vec3.lerp(handL, neutralL, finish);
+            }
             handR = this.worldLocal(.31 + .28 * Math.sin(finish * Math.PI) - smoothstep(.55, 1, finish) * .62, 1.20 + baseY + reach * 1.02 - finish * 1.18, -.12 + reach * .14 + finish * .46, torsoYaw);
         }
         if (state === 'volley') {
@@ -890,28 +946,76 @@ export class Character {
         let headOffset = Vec3.add(new Vec3(0, .425, 0), racketForward.clone().scale(.225));
         const readyRotation = humanReady ? new Vec3((authoredReady ? .6 : .12) + (state === 'ready' ? .06 * Math.cos(readyPhase) : 0), torsoYaw, (authoredReady ? -.70 : .35) + .10 * readyWeight) : null;
         if (readyRotation)
-            headOffset = rotateEulerVector(new Vec3(0, .48, 0), readyRotation);
+            headOffset = rotateEulerVector(new Vec3(0, RACKET.gripDistance, 0), readyRotation);
         if (state === 'serve')
-            headOffset = Vec3.add(new Vec3(0, .525, 0), racketForward.clone().scale(.125));
+            headOffset = Vec3.add(new Vec3(0, Math.sqrt(RACKET.gripDistance ** 2 - .125 ** 2), 0), racketForward.clone().scale(.125));
         if (state === 'volley')
             headOffset = Vec3.add(new Vec3(0, .3875, 0), racketForward.clone().scale(.2625));
+        if (this.holdsRacket() || shot || humanReady)
+            headOffset.normalize().scale(RACKET.gripDistance);
+        const humanServe = this.spec.appearance === 'human' && state === 'serve';
+        let serveFrame;
         const humanGroundstroke = this.spec.appearance === 'human' && (state === 'swingForehand' || state === 'swingBackhand');
-        let groundRise = 0, groundSide = 0, groundDepth = .14;
         if (humanGroundstroke) {
             // At a low ball the racket head drops beside the wrist. Keeping it
             // upright forced the grip toward the ankle and collapsed the body.
-            groundRise = clamp(((this.contactTarget?.y ?? this.position.y + 1.02) - this.position.y - 1.02) * .5, -.20, .20);
-            groundSide = Math.sqrt(.48 ** 2 - .14 ** 2 - groundRise ** 2) * (state === 'swingForehand' ? 1 : -1);
+            const groundRise = clamp(((this.contactTarget?.y ?? this.position.y + 1.02) - this.position.y - 1.02) * .5, -.20, .20);
+            const groundSide = Math.sqrt(RACKET.gripDistance ** 2 - .14 ** 2 - groundRise ** 2) * (state === 'swingForehand' ? 1 : -1);
             headOffset = racketRight.clone().scale(groundSide).add(racketForward.clone().scale(.14)).add(new Vec3(0, groundRise, 0));
             // Rotate into the opposite-shoulder finish; a normalized chord snaps near the half-turn.
             const finish = racketRight.clone().scale(state === 'swingForehand' ? -.38 : .38).add(racketForward.clone().scale(-.14)).add(new Vec3(0, .25, 0));
             const origin = new Vec3(), release = interpolateRigidFrame(rigidFrame(origin, headOffset, racketForward), rigidFrame(origin, finish, racketForward), smoothstep(contact + .08, .94, sp));
-            headOffset = new Vec3(release[4], release[5], release[6]).scale(.48);
-            groundRise = headOffset.y;
-            groundSide = Vec3.dot(headOffset, racketRight);
-            groundDepth = Vec3.dot(headOffset, racketForward);
+            headOffset = new Vec3(release[4], release[5], release[6]).scale(RACKET.gripDistance);
+            if (sp < contact) {
+                const pre = sp / contact, side = state === 'swingForehand' ? 1 : -1;
+                const raised = racketRight.clone().scale(.23 * side).add(racketForward.clone().scale(-.13)).add(new Vec3(0, .40, 0)), dropped = racketRight.clone().scale(.36 * side).add(racketForward.clone().scale(-.14)).add(new Vec3(0, -.28, 0));
+                const from = pre < .60 ? raised : dropped, to = pre < .60 ? dropped : headOffset, t = pre < .60 ? smoothstep(0, .60, pre) : smoothstep(.60, 1, pre);
+                const frame = interpolateRigidFrame(rigidFrame(origin, from, racketForward), rigidFrame(origin, to, racketForward), t);
+                headOffset = new Vec3(frame[4], frame[5], frame[6]).scale(RACKET.gripDistance);
+            }
         }
-        if (shot && this.contactTarget) {
+        if (humanGroundstroke) {
+            // The adult wrist travels through contact; a brief contact override used to yank the compact arc onto the ball.
+            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), side = state === 'swingBackhand' ? -1 : 1, rise = clamp((contactLocal.y - 1.02) * .5, -.20, .20);
+            const impactOffset = racketRight.clone().scale(Math.sqrt(RACKET.gripDistance ** 2 - .14 ** 2 - rise ** 2) * side).add(racketForward.clone().scale(.14)).add(new Vec3(0, rise, 0));
+            const impact = Vec3.sub(this.contactTarget ?? this.worldLocal(side * .65, 1.02, .75), impactOffset), start = this.worldLocal(.48 * side, 1.72, -.10), finish = this.worldLocal(state === 'swingBackhand' ? .18 : -.36, 2.02, .40, torsoYaw);
+            const approach = racketForward.clone().scale(.32).add(new Vec3(0, .16, 0)), exit = approach.clone().scale((1 - contact) / contact);
+            handR = sp < contact ? strokeCurve(start, this.worldLocal(.64 * side, 1.55, -.10), impact.clone().sub(approach), impact, pre) : strokeCurve(impact, impact.clone().add(exit), finish.clone().add(racketForward.clone().scale(.24)), finish, post);
+        }
+        if (humanServe) {
+            // Each half of the shot gets its own 0→1 clock; contact stays authoritative.
+            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1);
+            // Solve backward from the ball: grip = string-bed contact minus the racket shaft.
+            const impactOffset = Vec3.add(new Vec3(0, Math.sqrt(RACKET.gripDistance ** 2 - .125 ** 2), 0), racketForward.clone().scale(.125));
+            const impact = Vec3.sub(this.contactTarget ?? this.worldLocal(.14, this.serveContactHeight(), .38), impactOffset);
+            const approach = racketForward.clone().scale(.18).add(new Vec3(0, .30, 0)), exit = approach.clone().scale((1 - contact) / contact);
+            if (post > 0 && this.contactTarget && this.strokeAnchor)
+                impact.add(Vec3.sub(this.position, this.strokeAnchor.root));
+            // Keep the elbow folded through the racket drop, then extend toward contact.
+            // The authored cast has a shorter upper arm; its loading grip must sit lower too.
+            const arm = this.spec.presentation === 'feminine' ? authoredArmLengths() : undefined, loadingHeight = 1.93 - (TAYLOR_BODY.upperArm - (arm?.upperArm ?? TAYLOR_BODY.upperArm));
+            const dropTime = .70, loaded = this.worldLocal(.50, loadingHeight, -.22), loadingTangent = this.localVector(-.02, .06, .02);
+            // Split at 70% of time-to-contact. Rescale the shared tangent by each segment's
+            // duration so the join has no speed jump; retain the original impact velocity.
+            if (sp < contact) {
+                if (pre < dropTime)
+                    handR = strokeCurve(this.worldLocal(.34, 1.55, .24), this.worldLocal(.48, 1.72, .10), loaded.clone().sub(loadingTangent), loaded, pre / dropTime);
+                else
+                    handR = strokeCurve(loaded, loaded.clone().add(loadingTangent.clone().scale((1 - dropTime) / dropTime)), impact.clone().sub(approach.clone().scale(1 - dropTime)), impact, (pre - dropTime) / (1 - dropTime));
+            }
+            else
+                handR = strokeCurve(impact, impact.clone().add(exit), this.worldLocal(-.36, .98, .68), this.worldLocal(.30, 1.48, .50), post);
+            // The racket drops behind the wrist before accelerating up; the face turns through the release.
+            // shortcut: normalized arcade timing; tune to the supplied serve footage.
+            const origin = new Vec3();
+            const trophy = rigidFrame(origin, racketRight.clone().scale(.15).add(new Vec3(0, .49, 0)).add(racketForward.clone().scale(-.14)), racketRight);
+            const drop = rigidFrame(origin, racketRight.clone().scale(.10).add(new Vec3(0, -.42, 0)).add(racketForward.clone().scale(-.31)), racketRight);
+            const hit = rigidFrame(origin, impactOffset, racketForward);
+            const finish = rigidFrame(origin, racketRight.clone().scale(-.15).add(new Vec3(0, -.35, 0)).add(racketForward.clone().scale(.36)), racketRight.clone().scale(-1));
+            serveFrame = sp < contact ? (pre < .70 ? interpolateRigidFrame(trophy, drop, smoothstep(.38, .70, pre)) : interpolateRigidFrame(drop, hit, smoothstep(.70, 1, pre))) : interpolateRigidFrame(interpolateRigidFrame(hit, finish, smoothstep(0, .45, post)), hit, smoothstep(.55, 1, post));
+            headOffset = new Vec3(serveFrame[4], serveFrame[5], serveFrame[6]).scale(impactOffset.len());
+        }
+        if (shot && this.contactTarget && !humanGroundstroke && !humanServe) {
             const w = bell(sp - contact, .11);
             const desiredHand = Vec3.sub(this.contactTarget, headOffset);
             handR = blendVec(handR, desiredHand, w);
@@ -935,16 +1039,22 @@ export class Character {
             racketRot = new Vec3(.04, torsoYaw, -.12);
         if (readyRotation)
             racketRot = readyRotation;
-        if (humanGroundstroke)
-            racketRot = new Vec3(Math.atan2(groundDepth, groundRise), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-groundSide, Math.hypot(groundRise, groundDepth)));
+        if (!readyRotation && (shot || this.holdsRacket()))
+            racketRot = new Vec3(Math.atan2(Vec3.dot(headOffset, racketForward), headOffset.y), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-Vec3.dot(headOffset, racketRight), Math.hypot(headOffset.y, Vec3.dot(headOffset, racketForward))));
         const vib = this.racketVibration * Math.sin(this.animTime * 62) * .045;
-        racketRot.z += vib;
-        racketRot.x += vib * .35;
+        if (vib) {
+            const frame = serveFrame ?? compose(new Vec3(), racketRot), normal = new Vec3(frame[8] * Math.cos(vib) + frame[0] * Math.sin(vib), frame[9] * Math.cos(vib) + frame[1] * Math.sin(vib), frame[10] * Math.cos(vib) + frame[2] * Math.sin(vib));
+            serveFrame = rigidFrame(new Vec3(), headOffset, normal);
+        }
+        if (serveFrame) {
+            const pole = Math.abs(serveFrame[9]) > .999999;
+            racketRot = new Vec3(Math.asin(-clamp(serveFrame[9], -1, 1)), pole ? Math.atan2(-serveFrame[2], serveFrame[0]) : Math.atan2(serveFrame[8], serveFrame[10]), pole ? 0 : Math.atan2(serveFrame[1], serveFrame[5]));
+        }
         const racketHandleTop = Vec3.add(racketCenter, rotateEulerVector(new Vec3(0, RACKET.handleTopY, 0), racketRot));
         const hipHalf = this.spec.presentation === 'feminine' ? .175 : .165;
         const hipL = this.worldLocal(-hipHalf + pelvisShiftX, .76 + baseY - knee, pelvisShiftZ, hipYaw), hipR = this.worldLocal(hipHalf + pelvisShiftX, .76 + baseY - knee, pelvisShiftZ, hipYaw);
         if ((moving || state === 'ready') && this.spec.appearance === 'human') {
-            const roll = moving ? Math.sin(this.gaitPhase) * .006 : readyWeight * .004;
+            const roll = moving ? Math.sin(this.gaitPhase) * (this.spec.avatar === 'arjan' ? .002 : .006) : readyWeight * .004;
             hipL.y += roll;
             hipR.y -= roll;
         }
@@ -954,10 +1064,14 @@ export class Character {
             footL = this.walkCycle.feet[0].clone();
             footR = this.walkCycle.feet[1].clone();
         }
-        if (state === 'ready' || shuffle) {
-            const sideMotion = clamp(this.localVelocity.x / Math.max(.01, this.courtSpeed), -1, 1), foreMotion = clamp(this.localVelocity.z / Math.max(.01, this.courtSpeed), -1, 1), lateral = shuffle ? Math.sin(this.gaitPhase) * .055 + sideMotion * .045 : 0, wide = this.courtPhase === 'split' ? .07 : 0;
-            footL = this.leftFootLock && shuffle ? this.leftFootLock.clone() : this.worldLocal(-.29 - wide - lateral, .11 + splitHop, .16 + foreMotion * .07);
-            footR = this.rightFootLock && shuffle ? this.rightFootLock.clone() : this.worldLocal(.29 + wide - lateral, .11 + splitHop, -.05 + foreMotion * .07);
+        if (state === 'ready') {
+            const foreMotion = clamp(this.localVelocity.z / Math.max(.01, this.courtSpeed), -1, 1), wide = this.courtPhase === 'split' ? .07 : 0;
+            footL = this.worldLocal(-.29 - wide, .11 + splitHop, .16 + foreMotion * .07);
+            footR = this.worldLocal(.29 + wide, .11 + splitHop, -.05 + foreMotion * .07);
+        }
+        if (shuffle) {
+            footL = this.shuffleCycle.feet[0].clone();
+            footR = this.shuffleCycle.feet[1].clone();
         }
         if (shot) {
             const stance = Math.min(.16, Math.abs(outside) * .13);
@@ -970,8 +1084,9 @@ export class Character {
                 footR = this.worldLocal(.25, .11 + baseY, .13 + weightShift * .08);
             }
             else if (state === 'serve') {
-                footL = this.worldLocal(-.20, .11 + baseY, .14 + weightShift * .08);
-                footR = this.worldLocal(.23, .11 + baseY, -.14 + weightShift * .12);
+                const post = clamp((sp - contact) / (1 - contact), 0, 1), land = smoothstep(0, .65, post);
+                footL = this.worldLocal(-.20, .11, .14 + weightShift * .08 + land * .18);
+                footR = this.worldLocal(.23, .11 + .08 * Math.sin(post * Math.PI) ** 2, -.14 + weightShift * .12 + land * .30);
             }
             else {
                 footL = this.worldLocal(-.26, .11 + baseY, .12);
@@ -982,10 +1097,33 @@ export class Character {
             footL = this.worldLocal(-.22, .11, .48);
             footR = this.worldLocal(.22, .11, .48);
         }
-        if (!moving && !this.leftFootLock)
+        if (!moving && !shuffle && !this.leftFootLock)
             footL.add(this.localVector(-clip.stance + clip.footL.x, clip.footL.y, clip.footL.z));
-        if (!moving && !this.rightFootLock)
+        if (!moving && !shuffle && !this.rightFootLock)
             footR.add(this.localVector(clip.stance + clip.footR.x, clip.footR.y, clip.footR.z));
+        let footPitchL = 0, footPitchR = 0, footYawL = this.yaw, footYawR = this.yaw, footRecoveryL = 0, footRecoveryR = 0, footPivotL, footPivotR;
+        if (humanGroundstroke) {
+            const forehand = state === 'swingForehand', drive = smoothstep(contact * 1.30, Math.min(contact + .28, .82), sp), recover = smoothstep(.78, 1, sp), pitch = .32 * drive * (1 - recover), yaw = this.yaw + (forehand ? -.50 : .50) * drive * (1 - recover * .5);
+            if (forehand) {
+                footPitchR = pitch;
+                footYawR = yaw;
+                footRecoveryR = recover;
+                footPivotR = footR.clone().sub(this.localVector(0, baseY, weightShift * .04));
+            }
+            else {
+                footPitchL = pitch;
+                footYawL = yaw;
+                footRecoveryL = recover;
+                footPivotL = footL.clone().sub(this.localVector(0, baseY, weightShift * .05));
+            }
+        }
+        if (humanServe) {
+            const drive = smoothstep(.62, 1, sp / contact), land = smoothstep(0, .65, (sp - contact) / (1 - contact));
+            footPitchR = .28 * drive * (1 - land);
+            footYawR = this.yaw - .22 * drive * (1 - land);
+            footRecoveryR = land;
+            footPivotR = footR.clone();
+        }
         const kneePulse = moving ? Math.max(0, -Math.cos(this.gaitPhase * 2)) * .018 : 0;
         const kneeL = Vec3.lerp(hipL, footL, .54).add(this.localVector(-.015, .04 - kneePulse, .10)), kneeR = Vec3.lerp(hipR, footR, .54).add(this.localVector(.015, .04 - kneePulse, .10));
         if (sit) {
@@ -1002,25 +1140,55 @@ export class Character {
         const head = this.worldLocal(pelvisShiftX * .25, 1.80 + baseY + actingLift + breathe - knee + splitHop + clip.headNod - headStabilize + (!shot && !moving && (this.socialGesture === 'nod' || this.socialGesture === 'laugh') ? Math.sin(time * 6) * .022 : 0), .01 + pelvisShiftZ * .45, headYaw);
         const elbowL = Vec3.lerp(shoulderL, handL, .50).add(forward.clone().scale(.055)).add(right.clone().scale(-.035));
         const elbowR = Vec3.lerp(shoulderR, handR, .50).add(forward.clone().scale(.055)).add(right.clone().scale(.035));
-        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, eyeYaw: clamp(angleDelta(headYaw, this.eyeAim), -.30, .30), right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose, ...this.authoredHands };
+        const headPitch = state === 'serve' && this.spec.appearance === 'human' ? .60 * smoothstep(.18, .65, sp / contact) * (1 - smoothstep(0, .65, (sp - contact) / (1 - contact))) : undefined;
+        return { ...(headPitch === undefined ? {} : { headPitch }), baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, eyeYaw: clamp(angleDelta(headYaw, this.eyeAim), -.30, .30), right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, footPitchL, footPitchR, footYawL, footYawR, footRecoveryL, footRecoveryR, footPivotL, footPivotR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose, ...this.authoredHands };
     }
     localVector(x, y, z) { const s = Math.sin(this.yaw), c = Math.cos(this.yaw); return new Vec3(c * x + s * z, y, -s * x + c * z); }
     blendPose(a, b, t) {
         const av = (k) => a[k], bv = (k) => b[k];
         const v = (k) => blendVec(av(k), bv(k), t);
-        return { ...b, baseY: a.baseY + (b.baseY - a.baseY) * t, breathe: a.breathe + (b.breathe - a.breathe) * t, gait: a.gait + (b.gait - a.gait) * t, torsoYaw: a.torsoYaw + angleDelta(a.torsoYaw, b.torsoYaw) * t, hipYaw: a.hipYaw + angleDelta(a.hipYaw, b.hipYaw) * t, headYaw: a.headYaw + angleDelta(a.headYaw, b.headYaw) * t, eyeYaw: (a.eyeYaw ?? 0) + ((b.eyeYaw ?? 0) - (a.eyeYaw ?? 0)) * t, right: v('right'), forward: v('forward'), shoulderL: v('shoulderL'), shoulderR: v('shoulderR'), elbowL: v('elbowL'), elbowR: v('elbowR'), handL: v('handL'), handR: v('handR'), hipL: v('hipL'), hipR: v('hipR'), kneeL: v('kneeL'), kneeR: v('kneeR'), footL: v('footL'), footR: v('footR'), torsoCenter: v('torsoCenter'), pelvisCenter: v('pelvisCenter'), head: v('head'), racketGrip: v('racketGrip'), racketHandleTop: v('racketHandleTop'), racketCenter: v('racketCenter'), racketRot: v('racketRot'), lean: a.lean + (b.lean - a.lean) * t, knee: a.knee + (b.knee - a.knee) * t, sp: a.sp + (b.sp - a.sp) * t, face: blendFace(a.face, b.face, t), weightShift: a.weightShift + (b.weightShift - a.weightShift) * t };
+        let racketGrip = v('racketGrip'), racketCenter = v('racketCenter'), racketHandleTop = v('racketHandleTop'), racketRot = v('racketRot');
+        if (this.holdsRacket() || this.spec.appearance === 'human' && (isShot(this.state) || isShot(this.previousState))) {
+            // A rigid racket turns into the stroke; blending its endpoints shortened the shaft and jerked the grip.
+            const frame = interpolateRigidFrame(compose(new Vec3(), a.racketRot), compose(new Vec3(), b.racketRot), t), pole = Math.abs(frame[9]) > .999999;
+            racketRot = new Vec3(Math.asin(-clamp(frame[9], -1, 1)), pole ? Math.atan2(-frame[2], frame[0]) : Math.atan2(frame[8], frame[10]), pole ? 0 : Math.atan2(frame[1], frame[5]));
+            const axis = new Vec3(frame[4], frame[5], frame[6]), length = this.holdsRacket() ? RACKET.gripDistance : Vec3.sub(a.racketCenter, a.racketGrip).len() * (1 - t) + Vec3.sub(b.racketCenter, b.racketGrip).len() * t;
+            racketCenter = Vec3.add(racketGrip, axis.clone().scale(length));
+            racketHandleTop = Vec3.add(racketCenter, axis.scale(RACKET.handleTopY));
+        }
+        const feet = {};
+        for (const side of ['L', 'R']) {
+            for (const field of ['footPitch', 'footRecovery'])
+                feet[`${field}${side}`] = (a[`${field}${side}`] ?? 0) * (1 - t) + (b[`${field}${side}`] ?? 0) * t;
+            const start = a[`footYaw${side}`] ?? this.yaw;
+            feet[`footYaw${side}`] = start + angleDelta(start, b[`footYaw${side}`] ?? this.yaw) * t;
+            feet[`footPivot${side}`] = Vec3.lerp(a[`footPivot${side}`] ?? a[`foot${side}`], b[`footPivot${side}`] ?? b[`foot${side}`], t);
+        }
+        const gaze = a.headPitch !== undefined || b.headPitch !== undefined ? { headPitch: (a.headPitch ?? 0) * (1 - t) + (b.headPitch ?? 0) * t } : {};
+        return { ...b, ...feet, ...gaze, baseY: a.baseY + (b.baseY - a.baseY) * t, breathe: a.breathe + (b.breathe - a.breathe) * t, gait: a.gait + (b.gait - a.gait) * t, torsoYaw: a.torsoYaw + angleDelta(a.torsoYaw, b.torsoYaw) * t, hipYaw: a.hipYaw + angleDelta(a.hipYaw, b.hipYaw) * t, headYaw: a.headYaw + angleDelta(a.headYaw, b.headYaw) * t, eyeYaw: (a.eyeYaw ?? 0) + ((b.eyeYaw ?? 0) - (a.eyeYaw ?? 0)) * t, right: v('right'), forward: v('forward'), shoulderL: v('shoulderL'), shoulderR: v('shoulderR'), elbowL: v('elbowL'), elbowR: v('elbowR'), handL: v('handL'), handR: v('handR'), hipL: v('hipL'), hipR: v('hipR'), kneeL: v('kneeL'), kneeR: v('kneeR'), footL: v('footL'), footR: v('footR'), torsoCenter: v('torsoCenter'), pelvisCenter: v('pelvisCenter'), head: v('head'), racketGrip, racketHandleTop, racketCenter, racketRot, lean: a.lean + (b.lean - a.lean) * t, knee: a.knee + (b.knee - a.knee) * t, sp: a.sp + (b.sp - a.sp) * t, face: blendFace(a.face, b.face, t), weightShift: a.weightShift + (b.weightShift - a.weightShift) * t };
     }
     pose() {
         const target = this.poseFor(this.state, this.animTime);
         const t = smoothstep(0, this.transitionDuration, this.transitionAge);
         let result = target;
         if (t < .999) {
-            const prior = this.exitWalkPose ?? this.poseFor(this.previousState, this.previousAnimTime + this.transitionAge * .25);
+            let prior = this.exitWalkPose ?? this.poseFor(this.previousState, this.previousAnimTime + this.transitionAge * .25);
+            // Carry a captured ready body with court travel; support shoes stay in world space.
+            if (this.exitWalkPose && this.state === 'shuffle') {
+                prior = { ...prior };
+                const delta = Vec3.sub(this.position, this.exitWalkOrigin);
+                for (const key of ['pelvisCenter', 'torsoCenter', 'shoulderL', 'shoulderR', 'elbowL', 'elbowR', 'handL', 'handR', 'hipL', 'hipR', 'kneeL', 'kneeR', 'head', 'racketGrip', 'racketCenter', 'racketHandleTop'])
+                    prior[key] = prior[key].clone().add(delta);
+            }
             result = this.blendPose(prior, target, t);
         }
         // A planted foot is a world-space constraint, not merely another animation channel.
         // Re-apply it after state blending so transition smoothing cannot make the shoe skate.
         if (this.state === 'walk' || this.state === 'jog' || this.state === 'shuffle') {
+            if (this.state === 'shuffle') {
+                result.footL = this.shuffleCycle.feet[0].clone();
+                result.footR = this.shuffleCycle.feet[1].clone();
+            }
             if (this.leftFootLock) {
                 result.footL = this.leftFootLock.clone();
                 result.kneeL = Vec3.lerp(result.hipL, result.footL, .54).add(this.localVector(-.015, .04, .10));
@@ -1058,7 +1226,8 @@ export class Character {
         this.lastPose = result;
         if (this.spec.avatar === 'taylor' || this.spec.appearance === 'human') {
             const contact = isShot(this.state) && this.contactTarget ? bell(result.sp - this.shotContactTime(this.state) / this.shotDuration(this.state), .11) : 0;
-            let right = Math.max(contact, this.interactionWeight), left = this.state === 'swingBackhand' ? contact : 0;
+            const serveWeight = (this.state === 'serve' ? t : 0) + (this.previousState === 'serve' ? 1 - t : 0);
+            let right = Math.max(contact, this.interactionWeight, this.spec.appearance === 'human' ? serveWeight : 0), left = this.state === 'swingBackhand' ? contact : 0;
             if (this.propKind && this.propAnchor) {
                 const weight = this.propWanted ? 1 - smoothstep(.4, 1, this.propAge) : smoothstep(0, .65, this.propAge);
                 if (this.propKind === 'notebook')
@@ -1067,15 +1236,17 @@ export class Character {
                     right = Math.max(right, weight);
             }
             let posture;
-            if (isShot(this.state) && this.contactTarget && this.spec.appearance === 'human') {
-                const offset = Vec3.sub(result.racketCenter, result.racketGrip), grip = Vec3.sub(this.contactTarget, offset);
-                posture = { weight: bell(result.sp - this.shotContactTime(this.state) / this.shotDuration(this.state), .34), right: grip, left: this.state === 'swingBackhand' ? secondRacketHand(grip, offset) : undefined };
-            }
-            if (this.spec.appearance === 'human' && this.canRelaxClubIdle()) {
-                result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
+            if (isShot(this.state) && this.spec.appearance === 'human' && (this.contactTarget || t > 0 && result.sp < 1 && (this.state === 'swingForehand' || this.state === 'swingBackhand'))) {
+                const offset = Vec3.sub(result.racketCenter, result.racketGrip), grip = this.contactTarget ? Vec3.sub(this.contactTarget, offset) : result.racketGrip.clone(), load = this.contactTarget ? 1 : t * (1 - smoothstep(.8, 1, result.sp));
+                posture = { weight: load * bell(result.sp - this.shotContactTime(this.state) / this.shotDuration(this.state), .34), right: grip, left: this.state === 'swingBackhand' ? secondRacketHand(grip, offset) : undefined };
             }
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { armLengths: this.spec.presentation === 'feminine' && this.spec.appearance === 'human' ? authoredArmLengths() : undefined, sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, strokeWeight: isShot(this.state) ? t : isShot(this.previousState) ? 1 - t : 0, backhandWeight: this.state === 'swingBackhand' ? t : this.previousState === 'swingBackhand' ? 1 - t : 0, readyWeight: this.state === 'ready' || this.state === 'shuffle' ? t : this.previousState === 'ready' || this.previousState === 'shuffle' ? 1 - t : 0, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
+            if (this.spec.appearance === 'human' && this.canRelaxClubIdle()) {
+                result.face = { ...result.face, smile: Math.max(design.restSmile, result.face.smile), squint: Math.max(.08, result.face.squint) };
+            }
+            const serveNow = this.state === 'serve' ? this.serveTorso(this.animTime) : undefined, serveBefore = this.previousState === 'serve' ? this.serveTorso(this.previousAnimTime + this.transitionAge * .25) : undefined;
+            const serve = serveWeight ? { roll: (serveNow?.roll ?? 0) * t + (serveBefore?.roll ?? 0) * (1 - t), load: (serveNow?.load ?? 0) * t + (serveBefore?.load ?? 0) * (1 - t), lean: (serveNow?.lean ?? 0) * t + (serveBefore?.lean ?? 0) * (1 - t) } : undefined;
+            return adultTaylorPose(result, this.position, this.yaw, { armLengths: this.spec.presentation === 'feminine' && this.spec.appearance === 'human' ? authoredArmLengths() : undefined, sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', serve, shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, squareRest: this.spec.avatar === 'arjan', strokeWeight: (isShot(this.state) ? t : 0) + (isShot(this.previousState) ? 1 - t : 0), groundstrokeWeight: (this.state === 'swingForehand' || this.state === 'swingBackhand' ? t : 0) + (this.previousState === 'swingForehand' || this.previousState === 'swingBackhand' ? 1 - t : 0), backhandWeight: (this.state === 'swingBackhand' ? t : 0) + (this.previousState === 'swingBackhand' ? 1 - t : 0), readyWeight: (this.state === 'ready' || this.state === 'shuffle' ? t : 0) + (this.previousState === 'ready' || this.previousState === 'shuffle' ? 1 - t : 0), affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: [!!this.leftFootLock, !!this.rightFootLock], swing: locomotionStyleFor(this.spec.avatar ?? this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }
@@ -1091,7 +1262,10 @@ export class Character {
         const low = Math.max(0, Math.min(p.footL.y, p.footR.y) - .12), high = Math.max(p.head.y + (this.spec.appearance === 'human' ? .23 : .42), p.handL.y + .1, p.handR.y + .1);
         return { centre: new Vec3((minX + maxX) / 2, (low + high) / 2, (minZ + maxZ) / 2), size: new Vec3(maxX - minX, high - low, maxZ - minZ) };
     }
-    holdsRacket() { return (this.matchCompetitor || this.spec.id !== 'nia') && (isShot(this.state) || this.state === 'ready' || this.state === 'shuffle' || this.socialGesture === 'inspect') && !this.racketStowed && this.state !== 'drink' && !this.propKind; }
+    holdsRacket() {
+        const retained = this.reactionRacket && (this.state === 'celebrate' || this.state === 'reactMiss');
+        return (retained || (this.matchCompetitor || this.spec.id !== 'nia') && (isShot(this.state) || this.state === 'ready' || this.state === 'shuffle' || this.socialGesture === 'inspect')) && !this.racketStowed && this.state !== 'drink' && !this.propKind;
+    }
     meshes(selected = false) {
         const m = [];
         const p = this.position;
@@ -1103,8 +1277,8 @@ export class Character {
         m.push({ kind: 'sphere', position: new Vec3(p.x, .028, p.z), scale: new Vec3(.78, .045, .50), color: '#4f5d53', alpha: .16, unlit: true });
         if (selected)
             m.push({ kind: 'torus', position: new Vec3(p.x, .055, p.z), rotation: new Vec3(Math.PI / 2, 0, 0), scale: new Vec3(1.35, 1.35, .55), color: '#e4c967', alpha: .52, unlit: true });
-        const leftShoePitch = pose.walking && !this.leftFootLock ? clamp(-pose.gait * .18, -.18, .18) : 0, rightShoePitch = pose.walking && !this.rightFootLock ? clamp(pose.gait * .18, -.18, .18) : 0;
-        const leftShoeYaw = pose.walking ? this.walkCycle.yaws[0] : this.yaw, rightShoeYaw = pose.walking ? this.walkCycle.yaws[1] : this.yaw;
+        const leftShoePitch = pose.walking && !this.leftFootLock ? clamp(-pose.gait * .18, -.18, .18) : pose.footPitchL ?? 0, rightShoePitch = pose.walking && !this.rightFootLock ? clamp(pose.gait * .18, -.18, .18) : pose.footPitchR ?? 0;
+        const leftShoeYaw = pose.walking ? this.walkCycle.yaws[0] : pose.footYawL ?? this.yaw, rightShoeYaw = pose.walking ? this.walkCycle.yaws[1] : pose.footYawR ?? this.yaw;
         const holdsRacket = this.holdsRacket();
         const authored = feminine && human ? authoredAthleteMeshes(pose, p, this.yaw, [{ pitch: leftShoePitch, yaw: leftShoeYaw }, { pitch: rightShoePitch, yaw: rightShoeYaw }], this.animTime, this.spec.avatar ?? this.spec.id) : undefined;
         if (authored)
@@ -1116,7 +1290,13 @@ export class Character {
             const skinRoot = { position: new Vec3(p.x, 0, p.z), rotation: new Vec3(0, this.yaw, 0), boneMatrices: bones, poseRig: true };
             const torsoSkin = athlete ? (feline ? CHARACTER_SKIN.taylorDress : taylor ? HUMAN_TENNIS_SKIN.dress : feminine ? ATHLETE_WARDROBE.bodice : ATHLETE_WARDROBE.top) : this.spec.presentation === 'feminine' ? CHARACTER_SKIN.feminineTop : CHARACTER_SKIN.top;
             const skinMaterial = human ? 'humanSkin' : 'skin', garmentMaterial = human ? 'performanceKnit' : 'fabric';
-            m.push({ ...skinRoot, skin: torsoSkin, color: this.spec.shirt, material: garmentMaterial }, { ...skinRoot, skin: athlete ? (human ? ATHLETE_WARDROBE.legs : CHARACTER_SKIN.taylorLegs) : CHARACTER_SKIN.pants, color: this.spec.skin, material: skinMaterial }, { ...skinRoot, skin: athlete ? (human ? (feminine ? ATHLETE_WARDROBE.feminineArms : ATHLETE_WARDROBE.arms) : CHARACTER_SKIN.taylorArms) : CHARACTER_SKIN.arms, color: this.spec.skin, material: skinMaterial });
+            const fittedHands = this.spec.avatar === 'arjan' && hasArjanHands();
+            const upper = this.spec.avatar === 'arjan' ? arjanUpperBodyMeshes(pose, p, this.yaw, this.spec, this.state === 'serve') : undefined;
+            if (upper)
+                m.push(...upper);
+            else
+                m.push({ ...skinRoot, skin: this.spec.avatar === 'arjan' ? ATHLETE_WARDROBE.arjanTop : torsoSkin, color: this.spec.shirt, material: garmentMaterial }, { ...skinRoot, skin: athlete ? (human ? (feminine ? ATHLETE_WARDROBE.feminineArms : this.spec.avatar === 'arjan' ? ATHLETE_WARDROBE.arjanArms : ATHLETE_WARDROBE.arms) : CHARACTER_SKIN.taylorArms) : CHARACTER_SKIN.arms, color: this.spec.skin, material: skinMaterial });
+            m.push({ ...skinRoot, skin: athlete ? (human ? (this.spec.avatar === 'arjan' ? ATHLETE_WARDROBE.arjanLegs : ATHLETE_WARDROBE.legs) : CHARACTER_SKIN.taylorLegs) : CHARACTER_SKIN.pants, color: this.spec.skin, material: skinMaterial });
             if (feline)
                 m.push({ ...skinRoot, skin: CHARACTER_SKIN.taylorNeckline, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorDressEdging, color: '#f6dc7d', material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorTunicMark, color: '#b69a2a', material: 'toon', unlit: true }, { ...skinRoot, skin: CHARACTER_SKIN.taylorBoots, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorGloves, color: TAYLOR_PALETTE.indigo, material: 'fabric' });
             else if (human) {
@@ -1126,8 +1306,10 @@ export class Character {
                     m.push({ ...skinRoot, skin: HUMAN_TENNIS_SKIN.yoke, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: HUMAN_TENNIS_SKIN.trim, color: this.spec.accent ?? '#cedb68', material: 'fabric' }, { ...skinRoot, skin: HUMAN_TENNIS_SKIN.seams, color: mixHex(this.spec.shirt, '#b7cced', .15), material: 'fabric' });
                 }
                 else
-                    m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.shorts, color: design.bottom, material: garmentMaterial });
-                m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.calves, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: ATHLETE_WARDROBE.socks, color: '#f3f1e8', material: 'fabric' }, { ...skinRoot, skin: feminine ? CHARACTER_SKIN.taylorWristband : ATHLETE_WARDROBE.wristband, color: this.spec.accent ?? '#cedb68', material: 'fabric' });
+                    m.push({ ...skinRoot, skin: this.spec.avatar === 'arjan' ? ATHLETE_WARDROBE.arjanShorts : ATHLETE_WARDROBE.shorts, color: design.bottom, material: garmentMaterial });
+                m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.calves, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: this.spec.avatar === 'arjan' ? ATHLETE_WARDROBE.arjanSocks : ATHLETE_WARDROBE.socks, color: this.spec.avatar === 'arjan' ? '#292c30' : '#f3f1e8', material: 'fabric' });
+                if (!fittedHands)
+                    m.push({ ...skinRoot, skin: feminine ? CHARACTER_SKIN.taylorWristband : this.spec.avatar === 'arjan' ? ATHLETE_WARDROBE.arjanBand : ATHLETE_WARDROBE.wristband, color: this.spec.accent ?? '#cedb68', material: 'fabric' });
             }
             else {
                 m.push({ kind: 'sphere', position: torsoCenter.clone().add(new Vec3(0, .025, 0)), rotation: new Vec3(0, torsoYaw, 0), scale: new Vec3(this.spec.presentation === 'feminine' ? .53 : .57, .68, .40), color: this.spec.shirt, material: 'fabric' });
@@ -1142,16 +1324,16 @@ export class Character {
             const shoeColor = feline ? this.spec.skin : this.spec.shoe ?? '#fff8ee', soleColor = mixHex(shoeColor, '#ffffff', .62);
             if (athlete) {
                 for (const [foot, pitch, yaw] of [[footL, leftShoePitch, leftShoeYaw], [footR, rightShoePitch, rightShoeYaw]])
-                    m.push(...taylorFootMeshes(foot, pitch, yaw, feline ? undefined : this.spec.shoe, feline ? undefined : '#b5bcb6', human));
+                    m.push(...(this.spec.avatar === 'arjan' ? arjanFootMeshes(foot, pitch, yaw, shoeColor) : taylorFootMeshes(foot, pitch, yaw, feline ? undefined : this.spec.shoe, feline ? undefined : '#b5bcb6', human)));
             }
             else {
                 m.push({ kind: 'roundBox', position: footL, rotation: new Vec3(leftShoePitch, leftShoeYaw, 0), scale: new Vec3(.29, .135, .43), color: shoeColor, material: 'fabric' }, { kind: 'roundBox', position: footR, rotation: new Vec3(rightShoePitch, rightShoeYaw, 0), scale: new Vec3(.29, .135, .43), color: shoeColor, material: 'fabric' });
                 m.push({ kind: 'roundBox', position: new Vec3(footL.x, footL.y - .055, footL.z), rotation: new Vec3(leftShoePitch, leftShoeYaw, 0), scale: new Vec3(.30, .055, .445), color: soleColor, material: 'fabric' }, { kind: 'roundBox', position: new Vec3(footR.x, footR.y - .055, footR.z), rotation: new Vec3(rightShoePitch, rightShoeYaw, 0), scale: new Vec3(.30, .055, .445), color: soleColor, material: 'fabric' });
             }
             const freeHands = human && !this.propKind && !this.interactionTarget && this.interactionWeight < .001 && ['idle', 'walk', 'jog', 'watch', 'talk', 'sit'].includes(this.state) && this.socialGesture !== 'inspect';
-            if (athlete)
+            if (athlete && !fittedHands)
                 m.push({ ...skinRoot, skin: freeHands ? ATHLETE_WARDROBE.freeHands : CHARACTER_SKIN.taylorHands, color: feline ? TAYLOR_PALETTE.indigo : this.spec.skin, material: feline ? 'toon' : 'humanSkin' });
-            else {
+            else if (!athlete) {
                 m.push({ kind: 'sphere', position: handL, scale: new Vec3(.16, .20, .15), color: this.spec.skin, material: 'skin' }, { kind: 'sphere', position: handR, scale: new Vec3(.16, .20, .15), color: this.spec.skin, material: 'skin' });
                 for (const [hand, side] of [[handL, -1], [handR, 1]])
                     m.push({ kind: 'sphere', position: Vec3.add(hand, this.localVector(-side * .075, .025, .045)), scale: new Vec3(.095, .12, .10), color: this.spec.skin, material: 'skin' });
@@ -1165,9 +1347,13 @@ export class Character {
                 m.push(...taylorTailMeshes(pelvisCenter, hipYaw, this.animTime, this.horizontalSpeed));
             }
             else if (human) {
-                m.push(...humanTaylorHead(head, headYaw, tilt, pose.face, this.animTime, this.spec.skin, design.head));
-                const shoulder = Vec3.lerp(shoulderL, shoulderR, .5), jaw = head.clone().add(new Vec3(0, -.143, 0)), neck = Vec3.lerp(shoulder, jaw, .5);
-                m.push({ kind: 'sphere', position: neck, rotation: new Vec3(0, headYaw, tilt), scale: new Vec3(.099, Math.max(.09, jaw.y - shoulder.y) + .065, .104), color: this.spec.skin, material: 'humanSkin' });
+                const headMeshes = humanTaylorHead(head, headYaw, tilt, pose.face, this.animTime, this.spec.skin, { ...design.head, pitch: pose.headPitch, eyeYaw: pose.eyeYaw, neckBody: upper?.find((part) => 'skin' in part) });
+                m.push(...headMeshes);
+                // The weighted authored neck already spans the collar; a second primitive shows through it when the head tilts.
+                if (!headMeshes.some(part => 'skin' in part && part.neckBlend)) {
+                    const shoulder = Vec3.lerp(shoulderL, shoulderR, .5), jaw = head.clone().add(new Vec3(0, -.143, 0)), neck = Vec3.lerp(shoulder, jaw, .5);
+                    m.push({ kind: 'sphere', position: neck, rotation: new Vec3(0, headYaw, tilt), scale: new Vec3(.099, Math.max(.09, jaw.y - shoulder.y) + .065, .104), color: this.spec.skin, material: 'humanSkin' });
+                }
             }
             else {
                 const headStart = m.length;
@@ -1324,37 +1510,7 @@ export class Character {
             }
         }
         if (holdsRacket) {
-            m.push(this.limb(racketGrip, racketHandleTop, .035, '#4b514e'));
-            // One readable frame, then an actual string bed. The old second torus read as a hollow ring.
-            m.push({ skin: RACKET_FRAME, boneMatrices: RACKET_BONES, position: racketCenter, rotation: racketRot, color: this.spec.accent ?? '#e0c474', material: 'metal' });
-            for (const side of [-1, 1])
-                m.push({ ...this.limb(racketHandleTop, Vec3.add(racketCenter, rotateEulerVector(new Vec3(side * .115, -.175, 0), racketRot)), .017, this.spec.accent ?? '#e0c474'), material: 'metal' });
-            // Fixed ends and a yielding middle make impact read as a string bed,
-            // rather than a solid paddle. Only a confirmed contact loads the strings.
-            const depth = this.racketStringOffset();
-            const stringColor = this.racketImpactAge < .10 ? '#fffbd6' : '#d8e9dc';
-            const worldPoint = (x, y, z) => Vec3.add(racketCenter, rotateEulerVector(new Vec3(x, y, z), racketRot));
-            const stringHalf = (a, b) => {
-                const segment = this.limb(a, b, .0045, stringColor);
-                segment.id = 'racket-string';
-                segment.unlit = true;
-                segment.noShadow = true;
-                m.push(segment);
-            };
-            for (const x of [-.12, -.08, -.04, 0, .04, .08, .12]) {
-                const halfHeight = RACKET.stringHalfHeight * Math.sqrt(1 - (x / RACKET.stringHalfWidth) ** 2);
-                const middle = worldPoint(x, 0, depth * (1 - (x / RACKET.stringHalfWidth) ** 2));
-                stringHalf(worldPoint(x, -halfHeight, 0), middle);
-                stringHalf(middle, worldPoint(x, halfHeight, 0));
-            }
-            for (const y of [-.18, -.12, -.06, 0, .06, .12, .18]) {
-                const halfWidth = RACKET.stringHalfWidth * Math.sqrt(1 - (y / RACKET.stringHalfHeight) ** 2);
-                const middle = worldPoint(0, y, depth * (1 - (y / RACKET.stringHalfHeight) ** 2));
-                stringHalf(worldPoint(-halfWidth, y, 0), middle);
-                stringHalf(middle, worldPoint(halfWidth, y, 0));
-            }
-            // A tiny butt cap makes the hand-to-racket constraint visually obvious at close zoom.
-            m.push({ kind: 'cylinder', position: racketGrip, rotation: new Vec3(Math.PI / 2, this.yaw, 0), scale: new Vec3(.045, .065, .045), color: '#44372f', material: 'fabric' });
+            m.push(...racketMeshes(racketCenter, racketRot, Vec3.sub(racketCenter, racketGrip).len(), this.racketStringOffset()));
         }
         const propHandR = this.propKind && this.propWanted && this.propAge < .4 && this.propAnchor ? this.propAnchor : handR, propHandL = this.propKind && this.propWanted && this.propAge < .4 && this.propAnchor ? this.propAnchor : handL;
         if (this.propKind === 'wateringCan') {

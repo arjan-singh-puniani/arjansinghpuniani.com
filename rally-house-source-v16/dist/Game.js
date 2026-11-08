@@ -1,6 +1,7 @@
 import { COURT } from './tennis/CourtGeometry.js';
 import { PhoneCapture } from './analysis/PhoneCapture.js';
 import { deriveActing } from './animation/ActingState.js';
+import { hugBackContacts } from './animation/HugContact.js';
 import { DialogueComposer } from './simulation/DialogueComposer.js';
 import { playerSpec } from './content/PlayerAvatars.js';
 import { CharacterMind, MEMBERS, motiveFor } from './simulation/CharacterMind.js';
@@ -77,6 +78,7 @@ export class Game {
     interactiveMatch = null;
     championshipActivityId = null;
     championshipOpponentId = null;
+    queuedChampionship = null;
     championshipPriorSpeed = 1;
     championshipPriorPaused = false;
     championshipRound = 1;
@@ -333,12 +335,14 @@ export class Game {
             if (document.hidden) {
                 this.phoneCapture?.cancel();
                 this.setChampionshipPaused(true);
+                this.audio.stopVoice();
                 this.audio.stopAmbience();
             }
         });
         window.addEventListener('blur', () => {
             this.matchInput.reset();
             this.championshipHud.resetTouch();
+            this.audio.stopVoice();
             this.setChampionshipPaused(true);
         });
         document.addEventListener('focusin', e => {
@@ -390,9 +394,7 @@ export class Game {
             }
             const key = e.key.toLowerCase();
             if (e.key === 'Escape') {
-                const connection = this.activities.active.find(a => a.kind.startsWith('connection-') && a.participants.includes('player'));
-                if (connection)
-                    this.cancelActivity(connection);
+                this.leavePlayerActivity();
                 const hadPanel = !!this.spatial.selectedId || !!document.querySelector('#context.open,#book.open');
                 this.spatial.dismiss(true);
                 this.ui.closeContext();
@@ -553,7 +555,8 @@ export class Game {
         }
         this.spatial.dismiss();
         const g = this.camera.groundPoint(x, y);
-        if (g && !this.activities.busy('player') && g.x > -12.2 && g.x < 12.2 && g.z > -9.2 && g.z < 9.2) {
+        if (g && g.x > -12.2 && g.x < 12.2 && g.z > -9.2 && g.z < 9.2) {
+            this.leavePlayerActivity();
             this.stopPlayerWatching(false);
             this.ui.closeContext();
             this.player.goTo(new Vec3(clamp(g.x, -12, 12), 0, clamp(g.z, -9, 9)), 'idle');
@@ -636,6 +639,8 @@ export class Game {
             this.cancelActivity(activity);
             return;
         }
+        this.queuedChampionship = null;
+        this.ui.setTennisQueued(false);
         this.championshipPriorSpeed = this.clock.speed;
         this.championshipPriorPaused = this.clock.paused;
         this.championshipApproachSpeeds = new Map([this.player, opponent].map(c => [c, c.speed]));
@@ -680,14 +685,26 @@ export class Game {
         }
         if (this.championship.active || this.performanceLab?.active || this.phoneCapture?.active)
             return;
-        const opponent = ['leo', 'mika', 'coach', 'nia'].map(id => this.byId(id)).find(c => c && championshipOpponentFor(c.id) && !this.activities.busy(c.id));
-        if (!opponent || this.activities.reserved('court')) {
-            this.ui.toast('A rally is already on. The court will be yours when they finish.');
+        if (this.queuedChampionship) {
+            this.queuedChampionship = null;
+            this.ui.setTennisQueued(false);
+            this.ui.toast('Match request cancelled.');
+            return;
+        }
+        this.leavePlayerActivity();
+        const opponent = this.availableChampionshipOpponent();
+        if (!opponent || this.activities.reserved('court') || this.activities.busy('player')) {
+            const court = this.activities.active.find(a => a.resource === 'court'), rally = court?.kind === 'match' ? this.socialRally : this.rally;
+            this.queuedChampionship = { courtId: court?.id ?? null, points: court?.phase === 'active' && rally ? Object.values(rally.score).reduce((sum, n) => sum + n, 0) : 0 };
+            this.clock.paused = false;
+            this.ui.setTennisQueued(true);
+            this.ui.toast('You’re next. Tap Queued to cancel.');
             this.camera.nudgeFocus(1, 0, .6);
             return;
         }
         this.startChampionship(opponent);
     }
+    availableChampionshipOpponent() { return ['leo', 'mika', 'coach', 'nia'].map(id => this.byId(id)).find(c => c && championshipOpponentFor(c.id) && !this.activities.busy(c.id)); }
     createInteractiveMatch(opponent, profile) {
         return new InteractiveMatchSystem(this.player, opponent, profile, this.matchInput, {
             onHit: (quality, side, direction) => this.playChampionshipHit(quality, side, direction),
@@ -705,6 +722,13 @@ export class Game {
             onPoint: (winner, reason, rallyLength) => {
                 this.matchInput.setEnabled(false);
                 this.championship.resolvePoint({ winner, reason, rallyLength });
+                const opponent = this.actor(this.championshipOpponentId);
+                if (winner === 'player' && this.audio.opponentMiss()) {
+                    opponent.setEmotion('frustrated', 1.3);
+                    this.activeSpeechId = opponent.id;
+                    this.speechUntil = performance.now() + 1300;
+                    this.ui.showSpeech(opponent.spec.name, "D'oh!", 1300, true);
+                }
                 if (this.championship.phase === 'matchResult')
                     this.audio.success();
             },
@@ -729,6 +753,9 @@ export class Game {
     requestChampionshipExit() {
         if (!this.championship.active)
             return;
+        this.audio.stopVoice();
+        this.ui.hideSpeech();
+        this.activeSpeechId = null;
         this.rememberChampionshipResult();
         this.matchInput.setEnabled(false);
         this.championshipHud.resetTouch();
@@ -750,6 +777,8 @@ export class Game {
             this.championship.phase === 'matchResult')
             return;
         this.clock.paused = paused;
+        if (paused)
+            this.audio.stopVoice();
         this.matchInput.setEnabled(!paused && this.championship.acceptsGameplayInput);
         this.matchInput.reset();
         this.championshipHud.resetTouch();
@@ -764,6 +793,9 @@ export class Game {
         this.championshipApproachSpeeds?.clear();
     }
     cleanupChampionship() {
+        this.audio.stopVoice();
+        this.ui.hideSpeech();
+        this.activeSpeechId = null;
         this.restoreChampionshipApproach();
         this.matchInput.setEnabled(false);
         this.interactiveMatch?.stop();
@@ -838,11 +870,12 @@ export class Game {
             this.championship.update(dt, this.settings.reducedMotion);
             const after = this.championship.phase;
             if (after === 'serving' && before !== 'serving') {
+                this.audio.stopVoice();
                 this.interactiveMatch?.startPoint(this.championship.snapshot().server);
             }
             const acceptsInput = after === 'serving' || after === 'rally';
             this.matchInput.setEnabled(acceptsInput);
-            if (acceptsInput) {
+            if (acceptsInput || after === 'pointResult') {
                 this.interactiveMatch?.update(dt);
             }
             // Contact callbacks may change phase during match.update, after `after`
@@ -984,9 +1017,16 @@ export class Game {
         if (a.phase === 'active') {
             if (close) {
                 const weight = smoothstep(0, .7, a.phaseTime) * (1 - smoothstep(duration - .7, duration, a.phaseTime));
-                for (const person of [player, c])
-                    if (person.affection)
+                const contacts = kind === 'hug' ? [hugBackContacts(player.meshes()), hugBackContacts(c.meshes())] : [];
+                for (const [i, person] of [player, c].entries())
+                    if (person.affection) {
                         person.affection.weight = weight;
+                        if (kind === 'hug') {
+                            const back = contacts[1 - i];
+                            if (back)
+                                person.affection.back = { L: back.R, R: back.L };
+                        }
+                    }
             }
             if (a.phaseTime >= duration)
                 this.activities.transition(a, 'resolving');
@@ -1474,6 +1514,9 @@ export class Game {
     playerAvatar = null;
     arrivalPaused = false;
     choosePlayerAvatar(id) {
+        if (this.championship?.active || this.performanceLab?.active || this.phoneCapture?.active)
+            return;
+        this.leavePlayerActivity();
         this.playerAvatar = id;
         this.player.spec = playerSpec(id);
         if (id === 'taylor' && !this.player.matchCompetitor)
@@ -1595,6 +1638,12 @@ export class Game {
     get clubHeart() { const social = this.characters.reduce((sum, c) => sum + this.relations.get(c.spec.id).familiarity + this.relations.get(c.spec.id).warmth * .5, 0); return Math.min(5, Math.max(1, 1 + Math.floor((social + this.mikaProgress + this.coachXP + this.world.placements.length * 12) / 170))); }
     get absoluteMinute() { return this.clock.day * 1440 + this.clock.minutes; }
     actor(id) { return id === 'player' ? this.player : this.byId(id); }
+    leavePlayerActivity() {
+        // A new player intent must release both conversation partners, not wait for a busy timeout.
+        const activity = this.activities.active.find(a => a.kind !== 'championship' && a.participants.includes('player'));
+        if (activity)
+            this.cancelActivity(activity);
+    }
     routes = new Map();
     waitingForPlace = new Map();
     startActivity(kind, ids, resource, targets, detail = '') {
@@ -2213,11 +2262,15 @@ export class Game {
                 }
             }
             c.update(step);
-            if (c.consumeStepEvent())
-                this.audio.shoe(c.state === 'shuffle');
         }
         if (!phoneOwnsPlayer)
             this.player.update(step);
+        for (const c of crowd)
+            if (c.consumeStepEvent()) {
+                const onCourt = this.world.nav.onCourt(c.position), near = Vec3.sub(c.position, this.player.position).len(), weight = c === this.player ? 1 : this.championship?.active ? (c.id === this.championshipOpponentId ? .85 : .15) : Math.max(.12, 1 - near / 20);
+                const pan = clamp((c.position.x - this.player.position.x) / 10, -.7, .7);
+                this.audio.shoe(onCourt ? 'court' : 'tile', onCourt && c.state === 'shuffle', pan, weight);
+            }
         if (!phoneOwnsPlayer && !this.performanceLab?.active)
             this.updatePlayerWatching();
         this.updateSpectatorAttention();
@@ -2298,7 +2351,8 @@ export class Game {
                 if (a.resource === 'court') {
                     const r = a.kind === 'match' ? this.socialRally : this.rally;
                     r.update(step);
-                    const finished = a.kind === 'lesson' ? this.evidence.complete : a.kind === 'match' ? Math.max(...Object.values(r.score)) >= 3 || r.sessionHits >= 60 : r.sessionHits >= 16;
+                    const requested = a.kind !== 'lesson' && this.queuedChampionship?.courtId === a.id && Object.values(r.score).reduce((sum, n) => sum + n, 0) > this.queuedChampionship.points;
+                    const finished = requested || (a.kind === 'lesson' ? this.evidence.complete : a.kind === 'match' ? Math.max(...Object.values(r.score)) >= 3 || r.sessionHits >= 60 : r.sessionHits >= 16);
                     if (finished) {
                         this.activities.transition(a, 'resolving');
                         r.enabled = false;
@@ -2320,6 +2374,14 @@ export class Game {
         if (this.activities.active.some(a => a.kind === 'touch' && a.phase === 'active' && this.touchRuns.get(a.id)?.touch.watchCourt)) {
             const ball = this.interactiveMatch?.ball.active ? this.interactiveMatch.ball : this.socialRally.enabled ? this.socialRally.ball : this.rally.ball;
             this.player.setLook(ball.active ? ball.position : new Vec3(1, 1, 0));
+        }
+        // A human invitation gets the newly free court before autonomous club decisions.
+        if (this.queuedChampionship && !this.championship?.active && !this.performanceLab?.active && !this.phoneCapture?.active && !this.activities.reserved('court') && !this.activities.busy('player')) {
+            const opponent = this.availableChampionshipOpponent();
+            if (opponent) {
+                this.startChampionship(opponent);
+                return;
+            }
         }
         if (this.queuedLesson && Math.floor(this.everyday.time) % 5 === 0 && Math.floor(this.everyday.time - step) % 5 !== 0)
             this.traceCoaching('waiting', { key: this.queuedLesson, active: this.activities.active.map(a => ({ kind: a.kind, phase: a.phase, people: a.participants })) });
@@ -2422,13 +2484,15 @@ export class Game {
             });
         }
         this.spatial.update(this.renderDt, this.performanceLab.active || this.championship.active || this.phoneCapture?.active || !!this.buildType || !!document.querySelector('#context.open,#book.open,#buildPanel.open'), this.settings.reducedMotion, this.worldNotices);
-        // One world composition for club, tennis and analysis. Replay changes only
-        // the existing player's visual pose; every other entity and object remains.
+        // Keep the club as context, but isolate recorded motion from live actors and balls.
         const labFrame = this.performanceLab.active ? this.performanceLab.timeline?.frame : null;
         const meshes = [...this.world.presentationMeshes(this.camera.position, this.camera.target, this.renderDt), ...this.world.courtDetails, ...this.spatial.meshes(), ...this.world.placementMeshes(), ...this.world.dynamicMeshes(this.settings.reducedMotion ? 0 : now / 1000, this.clock.minutes, this.camera.position, this.renderDt, 0, now / 1000)];
-        for (const c of this.characters)
-            meshes.push(...c.meshes(false));
-        meshes.push(...(labFrame?.body ?? this.player.meshes(false)), ...this.rally.meshes(), ...this.socialRally.meshes(), ...(this.interactiveMatch?.meshes(this.settings.reducedMotion) ?? []));
+        if (!labFrame) {
+            for (const c of this.characters)
+                meshes.push(...c.meshes(false));
+            meshes.push(...this.rally.meshes(), ...this.socialRally.meshes(), ...(this.interactiveMatch?.meshes(this.settings.reducedMotion) ?? []));
+        }
+        meshes.push(...(labFrame?.body ?? this.player.meshes(false)));
         if (this.performanceLab.active)
             meshes.push(...this.performanceLab.meshes(this.settings.reducedMotion).slice(labFrame?.body.length ?? 0));
         meshes.push(...(this.phoneCapture?.meshes() ?? []));

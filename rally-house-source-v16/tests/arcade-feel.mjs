@@ -61,3 +61,5 @@ for(const hz of [30,60,120])for(const aim of [-1,1]){
  const club=actor('player',5),{p,match}=setup();assert(p.shotDuration('swingForehand')<club.shotDuration('swingForehand')*.75);match.stop();assert.equal(p.shotDuration('swingForehand'),club.shotDuration('swingForehand'),'Club animation remains unchanged');
 }
 console.log('Arcade movement, reversal, release, early/late contact at 3 rates, shot aiming and club restoration PASS',distances);
+
+assert.equal(ChampionshipHUD.prototype.messageFor({phase:'serving',server:'player'},'serving','Leo'),'SERVING','A consumed serve press acknowledges the ongoing motion');

@@ -15,10 +15,10 @@ const actor=(id,z)=>new Character({id,name:id,role:'member',shirt:'#888888',skin
 for(const hz of [30,60,120])for(const quality of Object.keys(CHAMPIONSHIP_CONTACT_FEEL)){
  const player=actor('player',5),opponent=actor('leo',-5),input=new MatchInput();let hits=0;
  const match=new InteractiveMatchSystem(player,opponent,CHAMPIONSHIP_OPPONENTS.leo,input,{onHit:()=>hits++});
- match.startPoint('player');input.setEnabled(true);match.prepareShot('player','serve',quality);
+ match.startPoint('player');input.setEnabled(true);match.prepareShot('player','swingForehand',quality);
  for(let i=0;i<hz&&!hits;i++){player.update(1/hz);opponent.update(1/hz);match.update(1/hz);}
  assert.equal(hits,1);const feel=CHAMPIONSHIP_CONTACT_FEEL[quality],contactTime=player.animTime;
- // Feet continue to respond even during the actual pose hold. The racket and
+ // Groundstroke feet continue to respond even during the actual pose hold. The racket and
  // compressed ball stay attached to the same live frame while the body moves.
  player.steerOnCourt(new Vec3(3,0,5),opponent.position);
  const x=player.position.x,part=feel.hold/2;

@@ -43,7 +43,7 @@ for(const id of Object.keys(CHAMPIONSHIP_OPPONENTS)){
   tick();if(m.ball.active&&!released){released=true;assert(Vec3.sub(m.ball.position,p.racketContactFrame().center).len()<.4,'Launch comes from string bed');}
  }
  assert(released&&hits.length>=1,`${id}: animated serve releases`);
- assert(o.meshes().some(v=>v.skin?.id==='adult-tennis-racket-slim-frame-v1'&&v.material==='metal'),'Every competitor has a racket');
+ assert(o.meshes().some(v=>v.skin?.id==='arjan-aero-frame-v1'&&v.material==='metal'),'Every competitor has a racket');
  m.stop();assert.equal(p.matchCompetitor,false);assert.equal(o.matchCompetitor,false);assert.equal(o.getCourtSpeedScale(),1);
 }
 // A broken contact geometry cannot emit a fake strike or launch.
@@ -98,11 +98,12 @@ const {simulation}=await import('../qa/sim-harness.mjs');
  m.ball.active=true;m.ball.position.set(1,.10,-6.98);m.ball.velocity.set(0,-1,-4);m.ball.bounces=1;
  m.update(1/60);assert.equal(outcome.winner,'player');assert.notEqual(outcome.reason,'long');
 }
-// Input remains meaningful during a stroke, and cannot replace the stroke animation.
+// Serving acknowledges immediately, keeps the toss planted, then accepts held recovery steering.
 {
  const {m,p,input,tick}=match();input.setTouchMovement(1,0);input.queueSwing();
- for(let i=0;i<12;i++)tick();assert.equal(p.state,'serve');assert(p.position.x>1.05);
- for(let i=0;i<90;i++)tick();assert(p.position.x>2);m.stop();
+ tick();assert.equal(p.state,'serve','Serve input is acknowledged on the first update');
+ for(let i=0;i<11;i++)tick();assert.equal(p.state,'serve');assert(Math.abs(p.position.x-1)<.02,'Do not run away from a released serve toss');
+ for(let i=0;i<Math.ceil((p.shotContactTime('serve')+.45)*60);i++)tick();assert(p.position.x>2,'Held steering resumes through recovery');m.stop();
 }
 console.log('Game-level tactile transaction, spectator tracking, legal-bounce scoring and movement-through-stroke pass.');
 const {ClubAtmosphere}=await import('../dist/rendering/ClubAtmosphere.js');
@@ -124,7 +125,7 @@ const {ClubAtmosphere}=await import('../dist/rendering/ClubAtmosphere.js');
   if(a.bounced){assert(b.bounced);assert.deepEqual(original.position,springier.position);reboundBefore=original.velocity.y;reboundAfter=springier.velocity.y;break;}
  }
  assert(reboundAfter>reboundBefore*1.1&&reboundAfter<reboundBefore*1.2,'Springier rebound without a new landing target');
- const {m,p,input,tick}=match();input.queueSwing();let compressed=false,released=false;
+ const {m,p,tick}=match();m.prepareShot('player','swingForehand','clean');let compressed=false,released=false;
  for(let i=0;i<120;i++){
   tick();
   if(m.pending?.impactStarted&&!m.pending.released){
@@ -133,7 +134,7 @@ const {ClubAtmosphere}=await import('../dist/rendering/ClubAtmosphere.js');
    assert.deepEqual(ball.rotation,p.racketContactFrame().rotation,'Compression follows the live face');
    assert(Vec3.sub(ball.position,p.racketContactFrame().center).len()<.12);
    assert(Math.abs(p.racketStringOffset())>.015,'The string bed yields at real impact');
-   assert.equal(p.meshes().filter(mesh=>mesh.id==='racket-string').length,28);
+   assert.equal(p.meshes().filter(mesh=>mesh.id==='racket-string').length,1);
    compressed=true;
   }
   if(m.ball.active){released=true;break;}

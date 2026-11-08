@@ -1,11 +1,12 @@
 import { COURT } from './CourtGeometry.js';
 import { Vec3 } from '../rendering/Math3D.js';
+export const BALL_GRAVITY = -9.81;
 export class BallPhysics {
     position = new Vec3();
     velocity = new Vec3();
     active = false;
     radius = .09;
-    gravity = -9.81;
+    gravity = BALL_GRAVITY;
     restitution = .56;
     bounces = 0;
     lastZ = 0;
@@ -58,4 +59,4 @@ export class BallPhysics {
         return { bounced, net };
     }
 }
-export function solveLaunch(start, target, flightTime, gravity = -9.81) { return new Vec3((target.x - start.x) / flightTime, (target.y - start.y - .5 * gravity * flightTime * flightTime) / flightTime, (target.z - start.z) / flightTime); }
+export function solveLaunch(start, target, flightTime, gravity = BALL_GRAVITY) { return new Vec3((target.x - start.x) / flightTime, (target.y - start.y - .5 * gravity * flightTime * flightTime) / flightTime, (target.z - start.z) / flightTime); }

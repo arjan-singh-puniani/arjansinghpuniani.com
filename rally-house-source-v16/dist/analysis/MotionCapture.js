@@ -1,6 +1,7 @@
-import { secondRacketHand } from '../animation/RacketGeometry.js';
-import { Vec3, clamp, rigidFrame, interpolateRigidFrame } from '../rendering/Math3D.js';
-import { rigFromPose, skinMatrices } from '../animation/CharacterSkin.js';
+import { arjanNeckMatrices } from '../animation/ArjanAuthoredHead.js';
+import { secondRacketHand, RACKET, RACKET_FRAME, racketMeshes } from '../animation/RacketGeometry.js';
+import { Vec3, clamp, smoothstep, rigidFrame, interpolateRigidFrame, compose, transformPoint } from '../rendering/Math3D.js';
+import { BONE, rigFromPose, skinMatrices } from '../animation/CharacterSkin.js';
 export const LIMBS = [['shoulderL', 'elbowL'], ['elbowL', 'handL'], ['shoulderR', 'elbowR'], ['elbowR', 'handR'], ['shoulderL', 'shoulderR'], ['shoulderL', 'hipL'], ['shoulderR', 'hipR'], ['hipL', 'hipR'], ['hipL', 'kneeL'], ['kneeL', 'footL'], ['hipR', 'kneeR'], ['kneeR', 'footR']];
 export const JOINT_KEYS = ['shoulderL', 'shoulderR', 'elbowL', 'elbowR', 'handL', 'handR', 'hipL', 'hipR', 'kneeL', 'kneeR', 'footL', 'footR', 'pelvisCenter'];
 export const FOCUS_KEYS = { knee: 'kneeR', hip: 'hipR', ankle: 'footR', shoulder: 'shoulderR', elbow: 'elbowR' };
@@ -15,7 +16,7 @@ export function jointTriplet(p, j) {
     if (j === 'knee')
         return [p.hipR, p.kneeR, p.footR];
     if (j === 'elbow')
-        return [p.shoulderR, p.elbowR, p.handR];
+        return [p.shoulderR, p.elbowR, p.wristR ?? p.handR];
     if (j === 'hip')
         return [p.shoulderR, p.hipR, p.kneeR];
     if (j === 'shoulder')
@@ -81,6 +82,17 @@ export function interpolateFrame(a, b, time) {
         else if (typeof x === 'number' && typeof y === 'number')
             pose[key] = key.endsWith('Yaw') ? angleLerp(x, y, t) : x + (y - x) * t;
     }
+    if (a.pose.headPitch !== undefined || b.pose.headPitch !== undefined)
+        pose.headPitch = (a.pose.headPitch ?? 0) * (1 - t) + (b.pose.headPitch ?? 0) * t;
+    const racketObserved = [a, b].every(f => f.body.some(m => 'skin' in m && m.skin.id === RACKET_FRAME.id));
+    let racketParts;
+    if (racketObserved) {
+        // Interpolate the held frame rigidly; separate endpoint chords shrink the shaft in slow motion.
+        const frame = compose(new Vec3(), pose.racketRot), axis = new Vec3(frame[4], frame[5], frame[6]), length = Vec3.sub(a.pose.racketCenter, a.pose.racketGrip).len() * (1 - t) + Vec3.sub(b.pose.racketCenter, b.pose.racketGrip).len() * t;
+        pose.racketCenter = pose.racketGrip.clone().add(axis.clone().scale(length));
+        pose.racketHandleTop = pose.racketCenter.clone().add(axis.scale(RACKET.handleTopY));
+        racketParts = racketMeshes(pose.racketCenter, pose.racketRot, length);
+    }
     // Preserve an observed two-hand grip instead of shortening it along an interpolated chord.
     if (a.state === 'swingBackhand' && b.state === 'swingBackhand') {
         const stacked = (p) => Vec3.sub(p.handL, secondRacketHand(p.handR, Vec3.sub(p.racketHandleTop, p.racketGrip))).len() < .001;
@@ -95,9 +107,17 @@ export function interpolateFrame(a, b, time) {
     let bones;
     const authored = new Map();
     const body = a.body.map((part, i) => {
-        const other = b.body[i], position = Vec3.lerp(part.position, other.position, t), rotation = rotationLerp(part.rotation, other.rotation, t);
+        const other = b.body[i], attachment = 'skin' in part ? racketParts?.find(m => m.skin.id === part.skin.id) : undefined, position = attachment?.position ?? Vec3.lerp(part.position, other.position, t), rotation = attachment?.rotation ?? rotationLerp(part.rotation, other.rotation, t);
         if ('skin' in part && 'skin' in other) {
             let rig = part.rig, palette = part.boneMatrices;
+            if (part.neckBlend && other.neckBlend && part.rig) {
+                // Rebuild from the interpolated torso: rigid matrix interpolation loses its longitudinal bone scale.
+                const source = authored.get(part.rig.bind);
+                if (!source)
+                    throw Error('Neck replay requires its observed body rig');
+                rig = { bind: source.bind, pose: source.pose };
+                palette = arjanNeckMatrices(position, rotation, { position: source.position, rotation: source.rotation, rig, boneMatrices: source.matrices });
+            }
             if (part.poseRig && part.rig && other.rig) {
                 let source = authored.get(part.rig.bind);
                 if (!source) {
@@ -116,8 +136,15 @@ export function interpolateFrame(a, b, time) {
                             local[`foreArmForward${side}`] = local[`handForward${side}`];
                         }
                     }
-                    source = { bind: part.rig.bind, pose: local, matrices: skinMatrices(local, part.rig.bind) };
+                    source = { bind: part.rig.bind, pose: local, matrices: skinMatrices(local, part.rig.bind, smoothstep(0, .15, pose.sp)), position, rotation };
                     authored.set(part.rig.bind, source);
+                    for (const side of ['L', 'R']) {
+                        const bind = source.bind[`wrist${side}`];
+                        if (bind) {
+                            const wrist = transformPoint(source.matrices.subarray(BONE[`hand${side}`] * 16, BONE[`hand${side}`] * 16 + 16), bind), scale = part.scale && other.scale ? Vec3.lerp(part.scale, other.scale, t) : part.scale, world = transformPoint(compose(position, rotation, scale), new Vec3(wrist.x, wrist.y, wrist.z));
+                            pose[`wrist${side}`] = new Vec3(world.x, world.y, world.z);
+                        }
+                    }
                 }
                 rig = { bind: source.bind, pose: source.pose };
                 palette = source.matrices;
@@ -128,7 +155,7 @@ export function interpolateFrame(a, b, time) {
             }
             const expression = part.expression && other.expression ? part.expression.map((n, j) => n + (other.expression[j] - n) * t) : part.expression;
             const handGrip = part.handGrip && other.handGrip ? part.handGrip.map((n, j) => n + (other.handGrip[j] - n) * t) : part.handGrip;
-            return { ...part, position, rotation, rig, expression, handGrip, eyeYaw: (part.eyeYaw ?? 0) + ((other.eyeYaw ?? 0) - (part.eyeYaw ?? 0)) * t, scale: part.scale && other.scale ? Vec3.lerp(part.scale, other.scale, t) : part.scale, boneMatrices: palette };
+            return { ...part, position, rotation, rig, expression, handGrip, eyeYaw: (part.eyeYaw ?? 0) + ((other.eyeYaw ?? 0) - (part.eyeYaw ?? 0)) * t, scale: attachment?.scale ?? (part.scale && other.scale ? Vec3.lerp(part.scale, other.scale, t) : part.scale), boneMatrices: palette };
         }
         if ('skin' in part || 'skin' in other)
             throw Error('Replay topology changed');

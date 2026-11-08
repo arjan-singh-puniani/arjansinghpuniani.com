@@ -46,6 +46,76 @@ export function taylorFootMeshes(foot:Vec3,pitch:number,yaw:number,upper=TAYLOR_
  {skin:TAYLOR_FOOTWEAR.sole,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:sole,material:'fabric'},
  ...detailed?[{skin:laces,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:'#ecebe4',material:'fabric'},{skin:heelPanel,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:'#84949a',material:'fabric'}] as RenderItem[]:[],
 ];}
+// The trainer and its details sample the same section so seams hug the shoe as it pivots.
+const trainerSections:Point[]=[
+ [-.181,0,0],[-.171,.041,.060],[-.146,.064,.109],[-.09,.069,.128],
+ [-.025,.071,.137],[.035,.076,.118],[.105,.088,.079],[.165,.081,.062],
+ [.197,.053,.044],[.209,.025,.026],[.215,0,0],
+];
+const trainerRings=trainerSections.flatMap(([z],i)=>{
+ const next=trainerSections[i+1]?.[0];
+ return next===undefined?[z]:[z,z+(next-z)/3,z+2*(next-z)/3];
+});
+function trainerShell(sole:boolean){
+ return geometry(sole?'arjan-trainer-sole':'arjan-trainer-upper',tri=>{
+  const point=(z:number,i:number):Point=>{
+   const [width,height]=profile(trainerSections,z);
+   const upperBase=-.081+Math.max(0,z-.155)*.19;
+   if(width===0)return [0,sole?-.089:upperBase,sole?z:z*.99];
+   const angle=i/24*Math.PI*2,x=Math.cos(angle),y=Math.sin(angle);
+   if(sole){
+    const bevel=Math.min(1,width/.038);
+    // Keep the contact plane flat under the heel and ball, with clearance at the toe.
+    const rocker=Math.max(0,z-.14)*.11+Math.max(0,-z-.13)*.12;
+    return [Math.sign(x)*Math.abs(x)**.64*(width+.005*bevel),-.089+rocker+Math.sign(y)*Math.abs(y)**.42*.016*bevel,z];
+   }
+   return [x*width,upperBase+height*Math.max(0,y)+.004*Math.min(0,y),z*.99];
+  };
+  for(let row=0;row<trainerRings.length-1;row++)for(let i=0;i<24;i++){
+   const a=point(trainerRings[row],i),b=point(trainerRings[row],i+1);
+   const c=point(trainerRings[row+1],i+1),d=point(trainerRings[row+1],i);
+   tri(a,b,c);tri(a,c,d);
+  }
+ },true);
+}
+const arjanTrainerUpper=trainerShell(false),arjanTrainerSole=trainerShell(true);
+function arjanTrainerSurface(z:number,across:number,lift:number):Point{
+ const [width,height]=profile(trainerSections,z);
+ return [width*across,-.081+Math.max(0,z-.155)*.19+height*Math.sqrt(1-across*across)+lift,z*.99];
+}
+const arjanTrainerLaces=geometry('arjan-trainer-laces',tri=>{
+ for(let row=0;row<5;row++){
+  const z=.018+row*.022;
+  for(let col=0;col<12;col++){
+   const point=(j:number,edge:number)=>arjanTrainerSurface(z+(j/12-.5)*.015+edge*.0035,(j/6-1)*.42,.002);
+   const a=point(col,-1),b=point(col+1,-1),c=point(col+1,1),d=point(col,1);
+   tri(a,c,b);tri(a,d,c);
+  }
+ }
+},true);
+const arjanTrainerPanels=geometry('arjan-trainer-side-panels',tri=>{
+ // Intermediate samples keep the wide panel from cutting through the rounded upper.
+ for(const side of [-1,1])for(let i=0;i<20;i++)for(let j=0;j<5;j++){
+  const point=(row:number,col:number)=>{
+   const t=row/20,z=-.137+t*.284;
+   const edge=.96-(.04+col/5*.19)*Math.sin(Math.PI*t);
+   return arjanTrainerSurface(z,side*edge,.002);
+  };
+  const a=point(i,j),b=point(i+1,j),c=point(i+1,j+1),d=point(i,j+1);
+  if(side>0){tri(a,c,b);tri(a,d,c);}else{tri(a,b,c);tri(a,c,d);}
+ }
+},true);
+export function arjanFootMeshes(foot:Vec3,pitch:number,yaw:number,upper:string):RenderItem[]{
+ const rotation=new Vec3(pitch,yaw,0);
+ const part=(skin:SkinGeometry,color:string,material:SkinnedMesh['material']):SkinnedMesh=>
+  ({skin,boneMatrices:rigidBones,position:foot,rotation,color,material});
+ return [
+  part(arjanTrainerUpper,upper,'performanceKnit'),
+  part(arjanTrainerSole,'#ddd9cc','fabric'),
+  part(arjanTrainerLaces,'#868783','fabric'),
+  part(arjanTrainerPanels,'#464d4b','fabric'),
+ ];
+}
 // Monotone cubic radius interpolation avoids pinched chins and bulges between
 // authored cross sections. The same profile projects the face graphics onto
 // the skin surface, giving them actual cheek curvature rather than flat cards.

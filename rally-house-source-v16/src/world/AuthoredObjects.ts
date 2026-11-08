@@ -1,3 +1,4 @@
+import {displayRacketMeshes} from '../animation/RacketGeometry.js';
 import {COURT} from '../tennis/CourtGeometry.js';
 import {Vec3} from '../rendering/Math3D.js';
 import type {Mesh} from '../rendering/Renderer.js';
@@ -38,7 +39,7 @@ export function authorObjectTargets(objects:InteractiveObject[]){
   add('clubClock','Club clock','clock',[5.7,2.75,-9.12],[.95,.95,.45],'A brass-hearted clock. Its mechanism has a little secret.',[5.7,2.75,-9.12]);
   add('deskBell','Brass desk bell','reception',[-8.35,1.31,5.22],[.26,.22,.26],'One clear note. A polite interruption.',[-8.35,1.30,5.22]);
   add('courtRack','Court-side racket rack','equipment',[6.54,.85,2.83],[1.62,1.35,.4],'Three frames, three different voices.',[6.53,.99,2.87]);
-  add('shopRack','Pro-shop racket display','displayRackets',[9.14,2.15,-7.02],[3.65,1.55,.42],'Five frames above the shop shelf. Look them over; pluck the reachable frame at the stringing bench.',[9.14,2.43,-6.98]);
+  add('shopRack','Pro-shop racket display','displayRackets',[9.14,2.06,-7.02],[3.65,1.60,.42],'Five frames above the shop shelf. Look them over; pluck the reachable frame at the stringing bench.',[9.14,2.43,-6.98]);
   add('courtBench','Courtside bench','lounge',[6.5,.65,4.8],[2.22,1.1,.8],'A short pause between points.',[6.5,.55,4.8],.55);
   add('sidePerch','Mint spectator perch','lounge',[4.55,.62,8],[2.35,1.2,.86],'Watch the far baseline from here.',[4.55,.82,8],.82);
   add('lobbyChair','Peach entrance chair','lounge',[-10.35,.65,8.05],[1.35,1.3,1.15],'A softer landing before the first serve.',[-10.35,.8,8.05],.8);
@@ -122,11 +123,11 @@ export class AuthoredObjects {
         const arrow=mesh('roundBox',3.54,2.32,-9.185,.85,.025,.018,'#be775b');arrow.rotation!.z=.35;m.push(arrow);
         for(const tilt of [.9,-.2]){const tip=mesh('roundBox',3.89,2.45,-9.18,.17,.023,.018,'#be775b');tip.rotation!.z=tilt;m.push(tip);}
       }
-      if(['equipment','trolley','displayRackets'].includes(o.kind)){
-        const c=o.interactionPoint!,a=this.active.get(o.id),wave=reducedMotion?0:a?.action.effect==='stringing'?Math.sin(a.age*42)*.026*Math.exp(-a.age*2):0;
-        const r=o.id==='proshop'?.38:o.id==='equipment'?.16:.23;
-        for(let i=-2;i<=2;i++){
-          m.push(mesh('roundBox',c.x+i*r*.3,c.y,c.z+.03+wave,.009,r*1.35,.009,'#d9d0b9'),mesh('roundBox',c.x,c.y+i*r*.3,c.z+.03-wave,r*1.35,.009,.009,'#d9d0b9'));
+      if(o.id==='proshop'){
+        const a=this.active.get(o.id),wave=reducedMotion?0:a?.action.effect==='stringing'?Math.sin(a.age*42)*.012*Math.exp(-a.age*2):0;
+        for(const part of displayRacketMeshes(new Vec3(9.2,1.75,-3.25),new Vec3(-Math.PI/2,0,0),1.25)){
+          if(part.geometry?.id.includes('strings')||part.geometry?.id.includes('stencil'))part.position.y+=wave;
+          m.push(part);
         }
       }
     }
