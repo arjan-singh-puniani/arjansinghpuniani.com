@@ -176,9 +176,9 @@ export class Game {
         const nia = new Character(get('nia'), destinations.cafe, this.world.nav, destinations);
         this.characters = [coach, mika, leo, nia];
         this.player = new Character({ id: 'player', name: 'You', role: 'Club founder', shirt: '#d89a77', skin: '#d3a17d', hair: '#3e332b', accent: '#f1dfcf', hairStyle: 'crop', playStyle: 'curious all-court', goal: 'Build a club people want to linger in', quirk: 'Stops to watch good rallies' }, new Vec3(-11.9, 0, 8.1), this.world.nav, destinations);
-        this.rally = new RallySystem(coach, mika, { onShot: e => this.evidence.observe(e), onHit: q => this.audio.hit(q), onBounce: () => this.audio.bounce(), onNet: () => this.audio.net() });
+        this.rally = new RallySystem(coach, mika, { onShot: e => this.evidence.observe(e), onHit: (q, speed) => this.audio.hit(q, speed), onBounce: () => this.audio.bounce(), onNet: () => this.audio.net() });
         this.rally.stop();
-        this.socialRally = new RallySystem(leo, mika, { onShot: e => this.evidence.observe(e), onHit: q => this.audio.hit(q), onBounce: () => this.audio.bounce(), onNet: () => this.audio.net() });
+        this.socialRally = new RallySystem(leo, mika, { onShot: e => this.evidence.observe(e), onHit: (q, speed) => this.audio.hit(q, speed), onBounce: () => this.audio.bounce(), onNet: () => this.audio.net() });
         this.socialRally.stop();
         this.championshipCamera = new ChampionshipCameraRig(this.camera);
         this.championshipHud = new ChampionshipHUD(this.matchInput, {
@@ -710,7 +710,7 @@ export class Game {
     availableChampionshipOpponent() { return ['leo', 'mika', 'coach', 'nia'].map(id => this.byId(id)).find(c => c && championshipOpponentFor(c.id) && !this.activities.busy(c.id)); }
     createInteractiveMatch(opponent, profile) {
         return new InteractiveMatchSystem(this.player, opponent, profile, this.matchInput, {
-            onHit: (quality, side, direction) => this.playChampionshipHit(quality, side, direction),
+            onHit: (quality, side, direction, speed) => this.playChampionshipHit(quality, side, direction, speed),
             onBounce: () => { this.audio.bounce(); this.motionRecorder?.markBounce(); },
             onNet: () => this.audio.net(),
             onRallyContact: (_side, quality) => {
@@ -737,8 +737,8 @@ export class Game {
             },
         });
     }
-    playChampionshipHit(quality, side, direction) {
-        this.audio.tennisImpact(quality);
+    playChampionshipHit(quality, side, direction, speed) {
+        this.audio.tennisImpact(quality, speed);
         if (!this.settings.reducedMotion)
             this.championshipCamera.pulseImpact(CHAMPIONSHIP_CONTACT_FEEL[quality].camera * (side === 'player' ? 1 : .45), direction);
         for (const c of this.characters)
