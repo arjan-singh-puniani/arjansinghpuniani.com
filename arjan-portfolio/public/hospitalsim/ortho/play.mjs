@@ -103,15 +103,12 @@ export async function mount() {
     if (!trace) return;
     const points = list => list.map(({x,y})=>x+','+y).join(' ');
     const reached = trace.slice(0,state.edges+1);
-    const start = reached.at(-1), next = trace[state.edges+1], marker = $('seal-next');
+    const next = trace[state.edges+1], marker = $('seal-next');
     marker.toggleAttribute('hidden',!next);
     if (next) {
       marker.setAttribute('cx',next.x);
       marker.setAttribute('cy',next.y);
-      const dx=next.x-start.x, dy=next.y-start.y;
-      const length=Math.hypot(dx,dy), x=handle.x-start.x, y=handle.y-start.y;
-      const t=Math.max(0,Math.min(1,(x*dx+y*dy)/(length*length)));
-      if (Math.abs(x*dy-y*dx)/length<19) reached.push({x:start.x+dx*t,y:start.y+dy*t});
+      reached.push(handle);
     }
     $('seal-track').setAttribute('points',points(trace));
     $('seal-fill').setAttribute('points',points(reached));
@@ -152,7 +149,7 @@ export async function mount() {
       setText('directions',fixing ? (distalTarget
         ? 'Side shows the distal opening end-on. Align the virtual reticle to its center and release.'
         : 'The proximal aiming jig is attached to the insertion handle. Center the virtual reticle on the guide sleeve and release.')
-        : sealing ? 'Hold the round pad and trace the border. Lift at any point to resume from the last corner.' : directions);
+        : sealing ? 'Hold the round pad and sweep around the border. Lift whenever you like, then pick up where you stopped.' : directions);
       $('fluoro').hidden = stage !== 'inspect' && !reducing;
       $('fluoro').setAttribute('aria-pressed', fluoro);
       setText('view-label',stage === 'seat' || (fixing && !distalTarget) ? 'EDUCATIONAL CUTAWAY'

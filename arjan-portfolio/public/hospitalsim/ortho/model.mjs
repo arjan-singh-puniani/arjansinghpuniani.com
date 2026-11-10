@@ -15,6 +15,7 @@ const tray = {x:1.10,y:-.86};
 export const sealPath = [
   {x:-.31,y:.60}, {x:.31,y:.60}, {x:.31,y:-.60}, {x:-.31,y:-.60}, {x:-.31,y:.60}
 ];
+const traceWidth = .26;
 
 export function makeCase(seed = openingSeed, expert = false) {
   seed >>>= 0;
@@ -140,7 +141,8 @@ export function confirmImage(s) {
 
 export function begin(s) {
   if (s.grip || !['reduce', 'seat', 'fix', 'dress'].includes(s.stage)) return false;
-  s.grip = {pose:{...s.pose}, aim:{...s.aim}, dressing:{...s.dressing}, edges:s.edges, nail:s.nail, blocked:false};
+  s.grip = {pose:{...s.pose}, aim:{...s.aim}, dressing:{...s.dressing}, edges:s.edges,
+    smoother:s.smoother, nail:s.nail, blocked:false};
   s.notice = '';
   return true;
 }
@@ -170,9 +172,18 @@ export function move(s, dx, dy) {
     if (!s.dressingPlaced) {
       s.dressing = {x:clamp(grip.dressing.x + dx, -1.35, 1.35), y:clamp(grip.dressing.y - dy, -1.45, 1.45)};
     } else {
-      const start=sealPath[grip.edges], next=sealPath[s.edges+1];
-      s.smoother = {x:clamp(start.x+dx,-1.35,1.35), y:clamp(start.y-dy,-1.45,1.45)};
-      if (next && Math.hypot(s.smoother.x-next.x,s.smoother.y-next.y) <= .14) s.edges++;
+      const start=sealPath[s.edges], next=sealPath[s.edges+1];
+      if (!next) return;
+      const vx=next.x-start.x, vy=next.y-start.y, length=Math.hypot(vx,vy);
+      const x=grip.smoother.x+dx-start.x, y=grip.smoother.y-dy-start.y;
+      if (Math.abs(x*vy-y*vx)/length > traceWidth) return;
+      const along=(x*vx+y*vy)/length;
+      if (along >= length-.17) {
+        s.edges++;
+        s.smoother=next;
+      } else if (along > Math.hypot(s.smoother.x-start.x,s.smoother.y-start.y)) {
+        s.smoother={x:start.x+vx*along/length,y:start.y+vy*along/length};
+      }
     }
   }
 }
@@ -184,7 +195,7 @@ export function cancel(s) {
   s.aim = s.grip.aim;
   s.dressing = s.grip.dressing;
   s.edges = s.grip.edges;
-  s.smoother = sealPath[s.edges];
+  s.smoother = s.grip.smoother;
   s.grip = null;
   s.notice = '';
 }
@@ -241,7 +252,6 @@ export function release(s) {
     s.notice = 'Target missed. Bring the two reticles together and release.';
   } else if (s.stage === 'dress') {
     if (s.dressingPlaced) {
-      s.smoother = sealPath[s.edges];
       return s.edges === sealPath.length-1 ? dress(s) : '';
     }
     if (Math.hypot(s.dressing.x,s.dressing.y) <= dressingTolerance) return dress(s);

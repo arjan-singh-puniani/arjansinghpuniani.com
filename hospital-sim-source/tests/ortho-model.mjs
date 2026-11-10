@@ -88,6 +88,12 @@ test('orthogonal angulation, axial twist, seating stop and correction', () => {
   assert.equal(dress(tap),'done');
   assert.equal(tap.stage,'review');
   assert.equal(drag(s,-tray.x,tray.y),'applied');
+  const resumed=structuredClone(s);
+  assert.equal(drag(resumed,.30,0),'');
+  assert.equal(resumed.edges,0);
+  assert(Math.abs(resumed.smoother.x+.01)<1e-8);
+  assert.equal(drag(resumed,.19,.18),'');
+  assert.equal(resumed.edges,1);
   const [start,...corners]=sealPath;
   const visit=({x,y})=>move(s,x-start.x,start.y-y);
   assert(begin(s)); visit(corners[0]); assert.equal(s.edges,1); cancel(s);

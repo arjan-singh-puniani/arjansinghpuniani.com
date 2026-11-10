@@ -113,5 +113,5 @@ figcaption{padding:.55rem;text-align:center;color:var(--muted);font:700 .69rem/1
 #seal-track{stroke:#163a45a0;stroke-dasharray:2 8}
 #seal-fill{stroke:#ddffdc;filter:drop-shadow(0 1px 3px #307f66)}
 #seal-next{fill:#ffd887;stroke:#382b17;stroke-width:2}
-.workbench[data-stage=dress] #field[data-sealing] #grip{width:44px;height:44px;border-radius:50%;border-color:transparent}
+.workbench[data-stage=dress] #field[data-sealing] #grip{width:60px;height:60px;border-radius:50%;border-color:transparent}
 .workbench[data-stage=dress] #field[data-sealing] #grip::before{display:block;width:20px;height:20px;border-radius:50%;border:2px solid #e9ffff;background:#38786be8;box-shadow:0 0 0 2px #173942}

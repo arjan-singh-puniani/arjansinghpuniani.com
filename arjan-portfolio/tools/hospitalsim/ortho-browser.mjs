@@ -246,7 +246,8 @@ try {
     if(!touch) await grip.dispatchEvent('pointercancel',{pointerId:1});
     await interruptedTrace();
     await p.getByRole('status').filter({hasText:'0 of 4 edges'}).waitFor();
-    await drive(...trace.at(-1),{pixels:true,via:trace.slice(0,-1)});
+    const via = trace.slice(0,-1).map(([x,y],i)=>touch ? [x+(i===2?8:-8),y+(i===0?8:-8)] : [x,y]);
+    await drive(...trace.at(-1),{pixels:true,via});
     await waitStep('Compare your result');
     assert.match(await p.locator('#notice').textContent(),/Alignment [45-6]\d\/60 · Fixation 30\/30/);
     const sideImage = await p.locator('#after').getAttribute('src');
