@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {aligned, begin, cancel, challengeSeed, changeView, confirmImage, dress, error, limits, makeCase, move, release, returnToReduction, score, startReduction, views} from '../dist/ortho/model.mjs';
+import {aligned, begin, cancel, challengeSeed, changeView, confirmImage, dress, error, limits, makeCase, move, release, returnToReduction, score, startReduction, views, nextAdjustment, nudgeAlignment} from '../dist/ortho/model.mjs';
 
 const neutral = {x:0,z:0,gap:.055,front:0,side:0,twist:0};
 function drag(s,x,y) {
@@ -40,6 +40,9 @@ test('orthogonal angulation, axial twist, seating stop and correction', () => {
   s.pose={...neutral,side:.054};
   assert(confirmImage(s));
   assert.equal(s.stage,'seat');
+  drag(s,0,.4);
+  assert(s.nail>.20);
+  s.pose.side=.20;
   drag(s,0,2);
   assert.equal(s.nail,.43);
   assert.match(s.notice,/blocked/i);
@@ -81,4 +84,21 @@ test('the first replay challenge starts with a larger combined alignment error',
   const distance = s => views.flatMap(view=>Object.entries(error(s.baseline,view)))
     .reduce((sum,[key,value])=>sum+value/limits[key],0);
   assert(distance(makeCase(challengeSeed)) > distance(makeCase()));
+});
+
+test('Guided nudges teach directions and finish both views without rechecking a good projection', () => {
+  const s=makeCase();
+  startReduction(s);
+  assert.equal(nextAdjustment(s.pose,'front').direction,'right');
+  for (const view of views) {
+    changeView(s,view);
+    for (let i=0; i<20; i++) if (!nudgeAlignment(s)) break;
+    assert(aligned(s.pose,view));
+    assert(confirmImage(s));
+  }
+  assert.equal(s.stage,'seat');
+  assert.equal(drag(s,0,2),'seated');
+  const expert=makeCase(431,true);
+  startReduction(expert);
+  assert(!nudgeAlignment(expert));
 });

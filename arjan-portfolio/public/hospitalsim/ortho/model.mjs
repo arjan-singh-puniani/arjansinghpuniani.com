@@ -40,6 +40,36 @@ export function aligned(pose, view, factor = 1) {
   return Object.entries(error(pose, view)).every(([key, value]) => value <= limits[key] * factor);
 }
 
+const offsetAxis = view => view === 'front' ? 'x' : 'z';
+const moveGain = offset => .65 + .35 * Math.min(1, Math.abs(offset) / .40);
+
+export function nextAdjustment(pose, view) {
+  const axis = offsetAxis(view);
+  const candidates = [
+    ['offset', 'move', -pose[axis] / moveGain(pose[axis]), true],
+    ['gap', 'move', (neutral.gap - pose.gap) / .76, false],
+    ['tilt', 'rotate', -pose[view] / .48, true],
+    ['twist', 'rotate', pose.twist / .51, false]
+  ];
+  const readings = error(pose, view);
+  const next = candidates.find(([key]) => readings[key] > limits[key]);
+  if (!next) return null;
+  const [key, mode, distance, horizontal] = next;
+  const direction = horizontal ? (distance > 0 ? 'right' : 'left') : (distance > 0 ? 'down' : 'up');
+  const delta = clamp(distance, -.20, .20);
+  return {key, mode, direction, dx:horizontal ? delta : 0, dy:horizontal ? 0 : delta};
+}
+
+export function nudgeAlignment(s) {
+  if (s.stage !== 'reduce' || s.expert) return false;
+  const next = nextAdjustment(s.pose, s.view);
+  if (!next || !begin(s)) return false;
+  s.mode = next.mode;
+  move(s, next.dx, next.dy);
+  release(s);
+  return true;
+}
+
 function log(s, action, detail = {}) {
   s.actions.push({action, ...detail});
 }
@@ -63,7 +93,7 @@ export function confirmImage(s) {
     if (!aligned(s.pose, s.view)) {
       s.corrections++;
       log(s, 'alignment-check-failed', {view:s.view, error:error(s.pose, s.view)});
-      s.notice = 'Alignment is still outside the game band. Adjust the fragment, then check again.';
+      s.notice = 'Alignment is still outside the game band.';
       return false;
     }
     s.checked[s.view] = true;
@@ -71,7 +101,7 @@ export function confirmImage(s) {
     if (views.every(view => s.checked[view])) {
       s.stage = 'seat';
       s.notice = 'Both views checked. The nail is ready to advance.';
-    } else s.notice = 'View checked. Switch projections and check the other view.';
+    } else s.notice = s.view === 'front' ? 'Front checked. Switch to Side and check it.' : 'Side checked. Switch to Front and check it.';
     return true;
   }
   if (s.stage === 'image') {
@@ -97,8 +127,8 @@ export function move(s, dx, dy) {
   if (!s.grip || !Number.isFinite(dx) || !Number.isFinite(dy)) return;
   const grip = s.grip;
   if (s.stage === 'reduce') {
-    const axis = s.view === 'front' ? 'x' : 'z';
-    const gain = .65 + .35 * Math.min(1, Math.abs(grip.pose[axis]) / .40);
+    const axis = offsetAxis(s.view);
+    const gain = moveGain(grip.pose[axis]);
     if (s.mode === 'move') {
       s.pose[axis] = clamp(grip.pose[axis] + dx * gain, -.85, .85);
       s.pose.gap = clamp(grip.pose.gap + dy * .76, .035, .72);
@@ -107,7 +137,7 @@ export function move(s, dx, dy) {
       s.pose.twist = clamp(grip.pose.twist - dy * .51, -.75, .75);
     }
   } else if (s.stage === 'seat') {
-    const clears = views.every(view => aligned(s.pose, view, .80));
+    const clears = views.every(view => aligned(s.pose, view));
     const wanted = grip.nail + dy * (grip.nail > .35 ? .46 : .62);
     s.nail = clamp(wanted, 0, clears ? 1 : .43);
     grip.blocked = !clears && wanted > .43;
@@ -137,7 +167,9 @@ export function release(s) {
         const band = key === 'gap' || key === 'x' || key === 'z' ? .025 : .018;
         if (Math.abs(s.pose[key] - neutral[key]) < band) s.pose[key] = neutral[key];
       }
-      s.checked = {};
+      for (const view of views) {
+        if (view === s.view || !aligned(s.pose, view)) delete s.checked[view];
+      }
       log(s, 'reduction', {view:s.view, mode:s.mode, pose:{...s.pose}});
     }
   } else if (s.stage === 'seat') {

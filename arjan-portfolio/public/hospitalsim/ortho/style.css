@@ -42,6 +42,7 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .controls{display:flex;flex-direction:column;align-items:start;gap:.62rem;padding:1rem}
 .controls p:not(.eyebrow){font-size:.9rem;color:var(--muted)}
 .controls #notice{color:#ffe4a2}
+.controls #reduction-progress{font-weight:650;color:var(--mint)}
 .controls #notice:empty{display:none}
 #metrics{display:grid;width:100%;grid-template-columns:1fr 1fr;gap:.32rem;margin:0;font:600 .78rem/1.4 ui-monospace,monospace}
 #metrics div{padding:.38rem .43rem;background:#0a1b24;border:1px solid var(--edge);border-radius:5px}

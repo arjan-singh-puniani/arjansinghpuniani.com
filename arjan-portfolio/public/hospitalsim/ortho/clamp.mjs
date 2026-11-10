@@ -63,33 +63,7 @@ function curvedJaw(profile, quarter, sign) {
   return g;
 }
 
-export function gloveMesh() {
-  const forms=[];
-  const ellipsoid=(x,y,z,rx,ry,rz,roll)=>{
-    const g=new T.SphereGeometry(1,20,12);
-    g.scale(rx,ry,rz);g.rotateZ(roll);g.translate(x,y,z);
-    return g;
-  };
-  forms.push(ellipsoid(1.44,.011,.202,.225,.152,.104,-.08));
-  forms.push(ellipsoid(1.63,-.026,.189,.177,.104,.089,-.18));
-  forms.push(ellipsoid(1.16,.143,.212,.14,.055,.047,.30));
-  for(let i=0;i<4;i++){
-    const t=i/3, x=1.20+.213*t, y=.095-.12*t;
-    const r=.037+.010*Math.sin(Math.PI*t);
-    const bend=new T.CatmullRomCurve3([
-      V(x+.052,y-.075,.189),V(x+.026,y-.094,.247),V(x-.039,y-.045,.254),
-      V(x-.055,y+.023,.173)
-    ]);
-    forms.push(new T.TubeGeometry(bend,14,r,10,false));
-    forms.push(ellipsoid(x-.055,y+.022,.174,r,r*.84,r,.14));
-  }
-  const finish=new T.MeshStandardMaterial({color:0x22678c,roughness:.55});
-  const geometry=mergeGeometries(forms);
-  for(const f of forms)f.dispose();
-  return new T.Mesh(geometry,finish);
-}
-
-export function fitClamp(data, view, steel, darkSteel) {
+export function fitClamp(data, view, steel, darkSteel, hand) {
   const tool=new T.Group();
   tool.position.fromArray(data.gripCenter);
   const quarter=view==='side'?Math.PI/2:0;
@@ -122,7 +96,7 @@ export function fitClamp(data, view, steel, darkSteel) {
   socket.rotateX(Math.PI/2);
   socket.position.copy(hinge).z+=.053;
   tool.add(socket);
-  const glove=gloveMesh();
+  const glove=hand.clone();
   tool.add(glove);
   const sleeve=new T.Mesh(new T.CylinderGeometry(.13,.10,1.98,24),new T.MeshStandardMaterial({color:0x145071,roughness:.83}));
   sleeve.rotateZ(-Math.PI/2+.12);
