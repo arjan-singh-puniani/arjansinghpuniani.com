@@ -34,8 +34,13 @@ export function metric(f, j) {
 export const METRIC_NAMES = { knee: 'Right knee flexion', elbow: 'Right elbow flexion', hip: 'Right trunk–thigh angle', shoulder: 'Right upper-arm elevation', ankle: 'Right ankle height' };
 export function value(f, j) { return j === 'ankle' ? f.pose.footR.y : metric(f, j); }
 export function detachedBody(items) {
+    // Body parts share a pose palette; detach it once per frame, never once per part.
+    const palettes = new Map();
+    for (const m of items)
+        if ('skin' in m && !palettes.has(m.boneMatrices))
+            palettes.set(m.boneMatrices, m.boneMatrices.slice());
     return items.map(m => 'skin' in m
-        ? { ...m, position: m.position.clone(), rotation: m.rotation?.clone(), boneMatrices: m.boneMatrices.slice(), scale: m.scale?.clone() }
+        ? { ...m, position: m.position.clone(), rotation: m.rotation?.clone(), boneMatrices: palettes.get(m.boneMatrices), scale: m.scale?.clone() }
         : { ...m, position: m.position.clone(), rotation: m.rotation?.clone(), scale: m.scale.clone() });
 }
 export function captureFrame(c, time, ball, contact = false, bounce = false) {

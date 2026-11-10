@@ -3,7 +3,7 @@ import {Vec3} from '../dist/rendering/Math3D.js';
 import {Character} from '../dist/entities/Character.js';
 import {Navigation} from '../dist/world/Navigation.js';
 import {World} from '../dist/world/World.js';
-import {angle,metric,value,summary,captureFrame,MotionRecorder,ReplayTimeline} from '../dist/analysis/MotionCapture.js';
+import {angle,metric,value,summary,captureFrame,detachedBody,MotionRecorder,ReplayTimeline} from '../dist/analysis/MotionCapture.js';
 import {demonstration} from '../dist/analysis/LabDemonstrations.js';
 import {PerformanceLab,rod,COURT_OVERLAY} from '../dist/analysis/PerformanceLab.js';
 import {simulation} from '../qa/sim-harness.mjs';
@@ -36,7 +36,17 @@ checkFraming(clips);
 {
  const previousFetch=globalThis.fetch,previousImage=globalThis.Image;
  try{globalThis.fetch=async url=>new Response(fs.readFileSync(new URL(url)));globalThis.Image=class{naturalWidth=1024;naturalHeight=1024;async decode(){}};await loadAuthoredAthlete();
-  for(const avatar of ['taylor','arjan'])checkFraming(['gait','forehand','serve'].map(kind=>demonstration(kind,playerSpec(avatar))));
+  for(const avatar of ['taylor','arjan']){
+   checkFraming(['gait','forehand','serve'].map(kind=>demonstration(kind,playerSpec(avatar))));
+   const actor=new Character(playerSpec(avatar),new Vec3(),new Navigation([]),{}),live=actor.meshes().filter(m=>'skin' in m),captured=detachedBody(live),next=detachedBody(live);
+   const unique=new Set(live.map(m=>m.boneMatrices));assert(unique.size<live.length,'Exercise shared live palettes');
+   assert.equal(new Set(captured.map(m=>m.boneMatrices)).size,unique.size,'Capture retains one detached copy per live palette');
+   for(let i=0;i<live.length;i++){
+    assert.notEqual(captured[i].boneMatrices,live[i].boneMatrices);assert.notEqual(captured[i].boneMatrices,next[i].boneMatrices);
+    assert.deepEqual(captured[i].boneMatrices,live[i].boneMatrices);
+    for(let j=0;j<live.length;j++)assert.equal(captured[i].boneMatrices===captured[j].boneMatrices,live[i].boneMatrices===live[j].boneMatrices,'Only genuinely shared palettes may share their captured copy');
+   }
+  }
  }finally{globalThis.fetch=previousFetch;globalThis.Image=previousImage;}
 }
 for(const clip of clips){

@@ -12,6 +12,8 @@ export interface BookData {culture?:string;philosophy?:string;
   heart:number;coachLevel:string;coachXP:number;bestRally:number;placements:number;goals:DailyGoal[];moments:string[];members:MemberBook[];
 }
 const byId=<T extends HTMLElement>(id:string)=>document.getElementById(id) as T;
+// Replacing unchanged labels every frame forces layout before the canvas can render.
+const text=(node:Node,value:string)=>{if(node.textContent!==value)node.textContent=value;};
 export class HUD {
   onContextClose=()=>{};onPanelOpen=()=>{};
   onBuildClose=()=>{};onPlay=()=>{};onSpeed=()=>{};onBook=(tab?:string)=>{};onCoach=()=>{};onBuild=()=>{};onWeather=()=>{};onCamera=()=>{};onSave=()=>{};onBuildSelect=(type:string)=>{};onBuildRotate=(direction:number)=>{};
@@ -54,8 +56,9 @@ export class HUD {
       this.buildFunds=Math.floor(stats.coins);byId('buildFunds').textContent=String(this.buildFunds);byId('fundsBtn').setAttribute('aria-label',`Open build catalog, ${this.buildFunds} club funds`);
       this.build.querySelectorAll<HTMLButtonElement>('button[data-build]').forEach(b=>{const cost=Number(b.dataset.cost);b.disabled=cost>stats.coins;b.querySelector('small')!.textContent=cost>stats.coins?`${cost} funds · need ${cost-this.buildFunds} more`:`${cost} funds`;});
     }
-    byId('coins').textContent=String(Math.floor(stats.coins));byId('clock').textContent=stats.clock;byId('weatherChip').firstChild!.textContent=stats.weather==='rain'?'☂ ':stats.weather==='cloudy'?'☁ ':'☀ ';byId<HTMLButtonElement>('weatherBtn').textContent=stats.weather==='rain'?'☂':stats.weather==='cloudy'?'☁':'☀';byId<HTMLButtonElement>('playBtn').textContent=paused?'▶':'Ⅱ';byId('playBtn').setAttribute('aria-label',paused?'Resume':'Pause');byId<HTMLButtonElement>('playBtn').classList.toggle('primary',!paused);byId<HTMLButtonElement>('speedBtn').textContent=`${speed}×`;}
-  setObjective(title:string,text:string){byId('objectiveTitle').textContent=title;byId('objectiveText').textContent=text;}
+    text(byId('coins'),String(Math.floor(stats.coins)));text(byId('clock'),stats.clock);text(byId('weatherChip').firstChild!,stats.weather==='rain'?'☂ ':stats.weather==='cloudy'?'☁ ':'☀ ');text(byId('weatherBtn'),stats.weather==='rain'?'☂':stats.weather==='cloudy'?'☁':'☀');text(byId('playBtn'),paused?'▶':'Ⅱ');
+    const play=byId('playBtn'),label=paused?'Resume':'Pause';if(play.getAttribute('aria-label')!==label){play.setAttribute('aria-label',label);play.classList.toggle('primary',!paused);}text(byId('speedBtn'),`${speed}×`);}
+  setObjective(title:string,description:string){text(byId('objectiveTitle'),title);text(byId('objectiveText'),description);}
   setTennisQueued(queued:boolean){const button=byId<HTMLButtonElement>('tennisBtn');button.textContent=queued?'Queued ×':'Play tennis ↗';button.setAttribute('aria-label',queued?'Cancel queued tennis match':'Play tennis');button.title=queued?'Your match starts when the court and an opponent are free. Tap to cancel.':'';}
   showContext(eyebrow:string,title:string,text:string,meta:string[],actions:ActionDef[]){this.context.classList.remove('arrival-card');this.onPanelOpen();byId('contextEyebrow').textContent=eyebrow.toUpperCase();byId('contextTitle').textContent=title;byId('contextText').textContent=text;const mb=byId('contextMeta');mb.innerHTML='';for(const x of meta){const s=document.createElement('span');s.textContent=x;mb.appendChild(s)}const box=byId('contextActions');box.innerHTML='';for(const a of actions){const b=document.createElement('button');const strong=document.createElement('strong');strong.textContent=a.title;const span=document.createElement('span');span.textContent=a.subtitle;b.append(strong,span);b.onclick=()=>a.run();box.appendChild(b)}this.toggleBuild(false);this.context.scrollTop=0;this.book.classList.remove('open');this.context.classList.add('open');this.focusPanel(this.context);}
   closeContext(){this.onContextClose();const had=this.context.contains(document.activeElement);this.context.classList.remove('open','arrival-card');if(had)this.opener?.focus();}
