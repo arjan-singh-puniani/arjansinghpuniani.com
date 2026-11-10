@@ -21,7 +21,18 @@ Open [the local case](http://127.0.0.1:8782/hospitalsim/ortho/index.html). Start
 - Pointer and keyboard previews start from a transaction snapshot. Cancel, lost capture, view changes, viewport resizing and backgrounding restore it. Committed movement invalidates prior alignment checks. Verified alignment permits seating. Residual error near the edge of the reduction band can block nail travel until the player refines the alignment.
 - Guided can settle an affected translation coordinate inside 0.025 model units, or an affected rotation inside 0.018 radians. Expert uses the same underlying case and disables this snap. The locking reticle accepts an error radius of 0.092 model units in Guided and 0.052 in Expert.
 - A successful finish records both final images, the two spatial lock confirmations, and the dressing. The debrief separates alignment, fixation and corrections. Elapsed time does not affect scores. Same-setup replay is immediate, and the first alternate seed increases the combined starting error.
-- The case uses HospitalSIM’s bundled Three.js renderer and original procedural meshes, with no asset fetches for anatomy, tools or sound. Procedural drape and tissue keep the field readable on portrait screens. Muscle fibers share a merged mesh. Imaging is rendered from the live model with matched before/after framing. Substantial AI assistance covered implementation, visual geometry and verification.
+- HospitalSIM’s bundled Three.js renderer loads a local atlas-derived femur GLB. The drape, layered tissue, retractors, machined clamp and gloved grip are procedural. Both imaging views and the before/after comparison use the same fragments. Substantial AI assistance covered implementation, visual geometry and verification.
+- Pressing the handle closes independently pivoted serrated jaws, fitted using the exported cross-section of the distal fragment. Starting a drag seats the jaws immediately so input remains direct. A stationary press leaves the pose untouched. Opening and closing are skipped when reduced motion is requested. The underlying reduction thresholds and replay model use the existing game rules.
+
+## Anatomy asset and rebuild
+
+The retained BodyParts3D right femur STL (FMA24474), the editable Blender model, and the exporter live in `hospital-sim-source/blender/ortho`. The source and derivatives are CC Attribution-Share Alike 2.1 Japan. The browser copy includes the attribution and modification record beside the GLB. [Pinned source mesh](https://github.com/Kevin-Mattheus-Moerman/BodyParts3D/blob/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24474.stl) · [License](https://creativecommons.org/licenses/by-sa/2.1/jp/deed.en)
+
+```sh
+blender -b -t 4 --python-exit-code 1 --python hospital-sim-source/blender/ortho/build.py
+```
+
+Executed with Blender 4.0.2. The export has 13,982 triangles and is 294,636 bytes. The split is authored, with a matching cortical rim, a recessed canal and two independently movable fragments. The mesh cross-section supplies 64 samples for the clamp. The nail path follows sampled section centers for illustration.
 
 ## Clinical references and model limits
 
@@ -50,4 +61,4 @@ Mac14,2 with Apple M2. Chromium 153.0.8010.12 and WebKit 26.6. The browser check
 
 Both completed the full case and compared matched final images. Checks covered a passing front view with an unresolved side error, cancellation, resize, changing projection during a drag, background interruption, three same-seed restarts, keyboard adjustment and rollback, missing modules and WebGL fallback. WebKit checked case entry, projection taps and portrait layout. Model checks covered blocked advance, prevention of duplicate locks, the narrow Guided snap and deterministic replay. Existing clinic checks passed for construction, map editing, navigation and continuing visits.
 
-The automated timings measure scripted actions. First-time completion time, physical iPhone frame pacing and hands-on feel still require device and player testing. The references show finer anatomy, material detail and hand-tool contact than the procedural scene.
+The automated timings measure scripted actions. First-time completion time, physical iPhone frame pacing and hands-on feel still require device and player testing. The references show finer tissue anatomy, hand deformation and contact detail than the game scene.

@@ -79,6 +79,14 @@ try {
       };
     };
 
+    const stationary = await drive(0,0,{finish:false,steps:1});
+    await p.locator('#grip-state[data-locked]').waitFor();
+    assert.equal(await p.locator('#metrics').innerText(),initial);
+    await screenshot('jaws-locked');
+    await stationary(touch?'touchEnd':undefined);
+    await p.getByText('Jaws open',{exact:true}).waitFor();
+    assert.equal(await p.locator('#metrics').innerText(),initial);
+    await screenshot('jaws-open');
     if (!touch) {
       await click(action);
       await p.getByRole('status').filter({hasText:'outside the game band'}).waitFor();
@@ -140,7 +148,9 @@ try {
     await drive(-baseline.side/.48,0);
     await click(action);
     await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
-    await click(button('Front')); await click(action);
+    await click(button('Front'));
+    await screenshot('reduction-aligned');
+    await click(action);
     await waitStep('Advance the nail');
     await drive(0,.85);
     assert(Number(await progress.getAttribute('value')) > .3);
@@ -198,9 +208,10 @@ try {
     if(video) {await video.saveAs(join(out,touch?'femur-touch.webm':'femur-case.webm')); await video.delete();}
     console.log('Completed',report.runs.at(-1));
   }
-  for(const failure of ['missing module','WebGL disabled']) {
+  for(const failure of ['missing module','missing anatomy','WebGL disabled']) {
     const page=await browser.newPage();
     if(failure==='missing module')await page.route('**/scene.mjs',route=>route.abort());
+    else if(failure==='missing anatomy')await page.route('**/femur.glb',route=>route.abort());
     else await page.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;
       HTMLCanvasElement.prototype.getContext=function(type,...args){return type.startsWith('webgl')?null:original.call(this,type,...args);};});
     await page.goto(url);

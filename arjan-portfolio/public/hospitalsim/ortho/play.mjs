@@ -3,7 +3,7 @@ import {makeScene} from './scene.mjs';
 
 const steps = {
   inspect:['01 / Orientation','Find the break','Find the fracture in the thigh. Toggle Fluoro to compare front and side images.','Take the clamp'],
-  reduce:['02 / Fracture reduction','Line up the fragments','Drag the crosshair. Move adjusts offset and gap. Rotate adjusts tilt left/right and twist up/down. Check both views.','Check this view'],
+  reduce:['02 / Fracture reduction','Line up the fragments','Press the clamp handles to close the jaws. Drag to move the fragment. In Rotate, drag sideways for tilt and vertically for twist.','Check this view'],
   seat:['03 / Implant','Advance the nail','Drag the handle down in short strokes. Pull back or refine alignment if the nail stops.',''],
   fix:['04 / Fixation','Match the locking target','Drag the crosshair into the ring, then release. The upper and lower targets each need a lock.',''],
   image:['05 / Verification','Save the final images','Inspect the implant and both locks in each projection. Save both images.','Save this image'],
@@ -13,14 +13,19 @@ const steps = {
 const timeline = Object.keys(steps).slice(0, 6);
 const degrees = n => (n * 180 / Math.PI).toFixed(1) + '°';
 
-export function mount() {
+export async function mount() {
   const $ = id => document.getElementById(id);
+  const setText = (id,text) => {
+    const el=$(id);
+    if(el.textContent!==text)el.textContent=text;
+  };
   const field = $('field'), grip = $('grip'), target = $('target');
-  const scene = makeScene($('scene'));
+  const scene = await makeScene($('scene'));
   const requested = new URLSearchParams(location.search).get('seed');
   let state = makeCase(requested && /^\d{1,10}$/.test(requested) ? Number(requested) : openingSeed);
   let pointer, keyboard, frame = 0, audio, muted = true, reviewView = '', fluoro = false, dressing = false;
   let elapsed = 0, runningSince = null;
+  let closure = 0, lastDraw = 0;
   const stopClock = () => {
     if (runningSince === null) return;
     elapsed += performance.now() - runningSince;
@@ -41,11 +46,12 @@ export function mount() {
   function cue(kind) {
     if (muted || !audio || audio.state !== 'running') return;
     const now = audio.currentTime;
-    const tones = {grab:[232], engaged:[402], check:[435, 573], seated:[280, 480, 680], locked:[393, 610, 785], done:[490, 620, 820]};
+    const tones = {grab:[178], bite:[318,126], settle:[395,605], engaged:[402], check:[435, 573], seated:[280, 480, 680], locked:[393, 610, 785], done:[490, 620, 820]};
     tones[kind].forEach((frequency, index) => {
       const oscillator = audio.createOscillator(), gain = audio.createGain();
       const time = now + .058 * index;
       oscillator.frequency.value = frequency;
+      if (kind === 'bite') oscillator.type = 'triangle';
       gain.gain.setValueAtTime(.0001, time);
       gain.gain.exponentialRampToValueAtTime(.062, time + .013);
       gain.gain.exponentialRampToValueAtTime(.0001, time + .13);
@@ -61,29 +67,41 @@ export function mount() {
     const inset = element === grip ? 27 : 15;
     const x = Math.min(field.clientWidth - inset, Math.max(inset, point.x));
     const y = Math.min(field.clientHeight - inset, Math.max(inset, point.y));
-    element.style.left = x + 'px';
-    element.style.top = y + 'px';
+    element.style.translate = x + 'px ' + y + 'px';
   }
 
   function redraw() {
     if (frame || dressing) return;
-    frame = requestAnimationFrame(() => {
+    frame = requestAnimationFrame(now => {
       frame = 0;
       const {stage, view, mode, pose} = state;
-      $('workbench').dataset.stage = stage;
+      if($('workbench').dataset.stage!==stage)$('workbench').dataset.stage=stage;
       const reducing = stage === 'reduce', fixing = stage === 'fix', reviewing = stage === 'review';
       const active = reducing || fixing || stage === 'seat';
+      const beforeClosure = closure;
+      const held = reducing && Boolean(state.grip);
+      const dt = Math.min(28,Math.max(10,now-lastDraw));
+      lastDraw = now;
+      if (!reducing || reduced.matches || pointer?.moved || keyboard?.moved) closure = Number(held);
+      else closure = held ? Math.min(1,closure+dt/102) : Math.max(0,closure-dt/154);
+      if (held && closure === 1 && beforeClosure < 1) cue('bite');
+      const gripState = $('grip-state');
+      gripState.hidden = !reducing;
+      const gripStatus = held ? (closure < 1 ? 'Closing jaws' : 'Grip locked')
+        : closure > 0 ? 'Opening jaws' : 'Jaws open';
+      if (gripState.textContent !== gripStatus) gripState.textContent = gripStatus;
+      gripState.toggleAttribute('data-locked',held&&closure===1);
       const previousAction = document.activeElement === $('action');
       const wasGrip = document.activeElement === grip;
       const [tag, title, directions, action] = steps[stage];
-      $('seed').textContent = 'SETUP ' + state.seed;
-      $('stage-label').textContent = tag;
-      $('step').textContent = title;
-      $('directions').textContent = directions;
+      setText('seed','SETUP ' + state.seed);
+      setText('stage-label',tag);
+      setText('step',title);
+      setText('directions',directions);
       $('fluoro').hidden = stage !== 'inspect';
       $('fluoro').setAttribute('aria-pressed', fluoro);
-      $('view-label').textContent = stage === 'seat' || fixing ? 'EDUCATIONAL CUTAWAY'
-        : stage === 'image' || reviewing || (stage === 'inspect' && fluoro) ? 'SIMULATED FLUOROSCOPY' : 'OPERATIVE MODEL';
+      setText('view-label',stage === 'seat' || fixing ? 'EDUCATIONAL CUTAWAY'
+        : stage === 'image' || reviewing || (stage === 'inspect' && fluoro) ? 'SIMULATED FLUOROSCOPY' : 'OPERATIVE MODEL');
       $('modes').hidden = !reducing;
       $('keyboard').hidden = !active;
       $('comparison').hidden = !reviewing;
@@ -101,12 +119,12 @@ export function mount() {
       for (const choice of ['move','rotate']) $(choice).setAttribute('aria-pressed', choice === mode);
       $('action').hidden = !action;
       const checked = reducing ? state.checked[view] : stage === 'image' && state.reviewed[view];
-      $('action').textContent = checked ? (reducing ? 'View checked ✓' : 'Image saved ✓') : action;
+      setText('action',checked ? (reducing ? 'View checked ✓' : 'Image saved ✓') : action);
       $('action').disabled = Boolean(checked || state.grip);
       const alternate = reviewing
         ? (state.seed === openingSeed ? 'Try harder setup' : 'Try another setup')
         : stage === 'seat' ? 'Refine alignment' : '';
-      $('secondary').textContent = alternate;
+      setText('secondary',alternate);
       $('secondary').hidden = !alternate;
       $('restart').hidden = reviewing || stage === 'inspect';
       $('travel').hidden = stage !== 'seat';
@@ -120,7 +138,9 @@ export function mount() {
       }
       const aimGood = Math.hypot(state.aim.x,state.aim.y) <= (state.expert ? .052 : .092);
       let notice = state.notice;
-      if (reducing && !notice) notice = aligned(pose,view) ? 'Inside the game band for this view.' : 'Offset and gap are in game units. ✓ marks the game band.';
+      if (reducing && !notice) notice = held
+        ? (aligned(pose,view) ? 'Aligned in this view. Release to hold.' : 'Jaws engaged. Drag against the pull.')
+        : (aligned(pose,view) ? 'Alignment held. Check this view.' : 'Offset and gap are in game units. ✓ marks the game band.');
       if (stage === 'seat' && !notice) notice = state.grip ? 'Travel preview. Release to hold position.' : Math.round(state.nail * 100) + '% seated';
       if (fixing && !notice) notice = aimGood ? 'Target acquired. Release to confirm.' : (state.locks ? 'Lower locking target' : 'Upper locking target');
       if (reviewing) {
@@ -140,17 +160,18 @@ export function mount() {
           reviewView = view;
         }
       } else {
-        const points = scene.draw(state,{film:stage === 'inspect' && fluoro});
+        const points = scene.draw(state,{film:stage === 'inspect' && fluoro,closure});
         place(grip, points.handle);
-        place(target, state.expert && reducing ? null : points.contact);
+        place(target, reducing ? null : points.contact);
         grip.toggleAttribute('data-active', Boolean(state.grip));
         target.toggleAttribute('data-good', fixing ? aimGood : reducing && aligned(pose,view));
-        place($('offset-reticle'), pointer?.touch && fixing && points.handle ? {x:points.handle.x,y:points.handle.y - 36} : null);
+        place($('offset-reticle'), pointer?.touch && (fixing||reducing) && points.handle ? {x:points.handle.x,y:points.handle.y - 36} : null);
         grip.setAttribute('aria-label', reducing ? 'Grab reduction clamp' : fixing ? 'Grab locking reticle' : 'Grab nail handle');
       }
       if ($('notice').textContent !== notice) $('notice').textContent = notice;
       if (previousAction && active && $('action').hidden) grip.focus({preventScroll:true});
       if (wasGrip && !active && !$('action').hidden) $('action').focus({preventScroll:true});
+      if (reducing && closure !== Number(held)) redraw();
     });
   }
 
@@ -162,6 +183,7 @@ export function mount() {
     if (commit && moved) {
       const feedback = release(state);
       if (feedback) cue(feedback);
+      else if(state.stage==='reduce' && aligned(state.pose,state.view)) cue('settle');
     } else cancel(state);
     redraw();
   }
@@ -247,6 +269,7 @@ export function mount() {
     state = makeCase(seed, $('difficulty').value === 'expert');
     reviewView = '';
     fluoro = dressing = false;
+    closure = 0;
     elapsed = 0;
     runningSince = null;
     redraw();
