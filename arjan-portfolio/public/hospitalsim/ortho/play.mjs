@@ -381,7 +381,9 @@ export async function mount() {
   $('secondary').onclick = () => {
     if (viewChecks(state)?.[state.view]) {
       fluoro = false;
-      selectView(otherView(state.view));
+      const next = otherView(state.view);
+      selectView(next);
+      $(next).scrollIntoView({block:'nearest'});
     } else if (state.stage === 'reduce') {
       if (!fluoro && nudgeAlignment(state)) cue('settle');
       redraw();

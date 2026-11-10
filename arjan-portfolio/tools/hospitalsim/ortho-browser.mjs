@@ -175,6 +175,7 @@ try {
     await screenshot('next-side');
     await click(button('Next · Side'));
     assert.equal(await button('Side').getAttribute('aria-pressed'),'true');
+    assert(await button('Side').evaluate(tab=>tab.getBoundingClientRect().top>=0));
     const gripRect = await grip.boundingBox(), fieldRect = await field.boundingBox();
     assert(gripRect.x > fieldRect.x + 2 && gripRect.x + gripRect.width < fieldRect.x + fieldRect.width - 2,
       'Side-view grip follows the tool inside the field instead of sticking to a viewport edge');
