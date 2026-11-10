@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {aligned, begin, cancel, challengeSeed, changeView, confirmImage, dress, error, limits, makeCase, move, release, returnToReduction, score, startReduction, views, nextAdjustment, nudgeAlignment} from '../dist/ortho/model.mjs';
+import {aligned, begin, cancel, challengeSeed, changeView, confirmImage, dress, error, limits, makeCase, move, release, returnToReduction, score, sealPath, startReduction, views, nextAdjustment, nudgeAlignment} from '../dist/ortho/model.mjs';
 
 const neutral = {x:0,z:0,gap:.055,front:0,side:0,twist:0};
 function drag(s,x,y) {
@@ -61,7 +61,7 @@ test('orthogonal angulation, axial twist, seating stop and correction', () => {
   assert(confirmImage(s));
   assert.equal(s.stage,'fix');
   assert.equal(s.view,'side');
-  assert.equal(dress(s),false);
+  assert.equal(dress(s),'');
   const previous={...s.aim};
   begin(s); move(s,-s.aim.x,s.aim.y); cancel(s);
   assert.deepEqual(s.aim,previous);
@@ -83,11 +83,19 @@ test('orthogonal angulation, axial twist, seating stop and correction', () => {
   assert.equal(drag(s,0,-.25),'');
   assert.equal(s.stage,'dress');
   assert.deepEqual(s.dressing,tray);
-  const tap={...s};
-  assert(dress(tap));
+  const tap=structuredClone(s);
+  assert.equal(dress(tap),'applied');
+  assert.equal(dress(tap),'done');
   assert.equal(tap.stage,'review');
-  assert.equal(drag(s,-tray.x,tray.y),'done');
-  assert.equal(dress(s),false);
+  assert.equal(drag(s,-tray.x,tray.y),'applied');
+  const [start,...corners]=sealPath;
+  const visit=({x,y})=>move(s,x-start.x,start.y-y);
+  assert(begin(s)); visit(corners[0]); assert.equal(s.edges,1); cancel(s);
+  assert.equal(s.edges,0);
+  assert(begin(s)); visit(corners[1]); assert.equal(s.edges,0);
+  for (const corner of corners) visit(corner);
+  assert.equal(release(s),'done');
+  assert.equal(dress(s),'');
   assert.equal(s.stage,'review');
   assert.deepEqual(score(s),{alignment:60,fixation:30,correction:4});
 });

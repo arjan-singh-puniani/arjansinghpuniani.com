@@ -2,7 +2,7 @@ import * as T from '../vendor/build/three.module.js';
 import {GLTFLoader} from '../vendor/examples/jsm/loaders/GLTFLoader.js';
 import {corticalFinish, operativeTissue, theatreDetails} from './anatomy.mjs';
 import {fitClamp, steelReflections} from './clamp.mjs';
-import {aligned, stations} from './model.mjs';
+import {aligned, sealPath, stations} from './model.mjs';
 
 const V = (x,y,z) => new T.Vector3(x,y,z);
 const mat = (color, roughness=.55, metalness=0) => new T.MeshStandardMaterial({color, roughness, metalness});
@@ -180,9 +180,10 @@ export async function makeScene(canvas) {
     width=Math.max(1,w);height=Math.max(1,h);
     renderer.setSize(width,height,false);
   }
-  function frame(view, close, operative, seating, distalLevel) {
+  function frame(view, close, operative, seating, dressing, distalLevel) {
     const aspect=width/height;
-    span=Math.max(distalLevel!==undefined?2.5:seating?8.6:operative?3.5:close?3.28:5.86, (distalLevel!==undefined?2.4:operative?4.25:close?2.76:2.88)/aspect);
+    span=Math.max(distalLevel!==undefined?2.5:seating?8.6:operative?3.5:dressing?3.08:close?3.28:5.86,
+      (distalLevel!==undefined?2.4:operative?4.25:close?2.76:2.88)/aspect);
     const half=span/2, center=distalLevel??(seating?1.15:operative?-.43:close?-.11:0);
     const yaw=(view==='front'?0:-Math.PI/2)+(operative?-.31:0);
     roll=operative?-.23:0;
@@ -209,8 +210,9 @@ export async function makeScene(canvas) {
     const close=s.stage==='reduce';
     const operative=close&&!film;
     const seating=s.stage==='seat';
+    const dressing=!film&&(s.stage==='dress'||s.stage==='review');
     backdrop.scale.set(seating?1.85:1,seating?1.5:1,1);
-    frame(view,close,operative,seating,distalTarget?target.y:undefined);
+    frame(view,close,operative,seating,dressing,distalTarget?target.y:undefined);
     // Recess the illustrative bed so it does not obscure the tools in an educational cutaway.
     if(cutaway) field.position.copy(camera.getWorldDirection(fieldDepth).multiplyScalar(2.8));
     else if(operative) field.position.copy(camera.getWorldDirection(fieldDepth).multiplyScalar(.36));
@@ -233,7 +235,7 @@ export async function makeScene(canvas) {
     props.visible=operative;
     cover.visible=s.stage==='dress'||s.stage==='review';
     closureDrape.visible=cover.visible;
-    cover.scale.setScalar(.54);
+    cover.scale.setScalar(.85);
     cover.position.set(s.dressing.x,s.dressing.y-.15,.50);
     for(const {part,original,orientation} of boneMeshes) part.material=film?xray:cutaway?cut:s.stage==='inspect'?orientation:original;
     xray.opacity=.72;
@@ -255,7 +257,13 @@ export async function makeScene(canvas) {
     renderer.render(scene,camera);
     if(operative)return {handle:point(tool.localToWorld(handle.clone()))};
     if(seating)return {handle:point(V(.36,2.36+nail.position.y,tip[2]))};
-    if(s.stage==='dress')return {handle:point(cover.getWorldPosition(V())),contact:point(field.localToWorld(V(0,-.15,.50)))};
+    if(dressing) {
+      const project=({x,y})=>point(field.localToWorld(V(x,y-.15,.63)));
+      if(s.dressingPlaced)return {handle:project(s.smoother),trace:sealPath.map(project)};
+      const corner=project({x:.39,y:.70}), contact=project({x:0,y:0});
+      return {handle:point(cover.getWorldPosition(V())),contact,
+        patchWidth:2*(corner.x-contact.x),patchHeight:2*(contact.y-corner.y)};
+    }
     if(target){
       const {x,y,z}=target;
       const contact=distalTarget?V(x-.071,y,z):V(sleeveX,y,z);

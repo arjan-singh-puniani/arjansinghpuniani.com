@@ -69,13 +69,13 @@ try {
       await click(button('Fluoro'));
       await grip.waitFor();
     }
-    const drive = async (dx,dy,{finish=true,steps=12,pixels=false}={}) => {
+    const drive = async (dx,dy,{finish=true,steps=12,pixels=false,via=[]}={}) => {
       await grip.scrollIntoViewIfNeeded();
       const g=await grip.boundingBox(), f=await field.boundingBox();
       const title = await step.textContent();
       const close = title === 'Line up the fragments';
       const distal = title==='Match the locking target' && await button('Side').getAttribute('aria-pressed')==='true';
-      const scale = Math.max(distal?2.5:title==='Advance the nail'?8.6:close?3.5:5.86,
+      const scale = Math.max(distal?2.5:title==='Advance the nail'?8.6:close?3.5:title==='Cover the site'?3.08:5.86,
         (distal?2.4:close?4.25:2.88)/(f.width/f.height))/f.height;
       const x=g.x+g.width/2, y=g.y+g.height/2;
       if(close&&!pixels){
@@ -85,10 +85,15 @@ try {
       const send = (type,px,py)=>client.send('Input.dispatchTouchEvent',{type,touchPoints:px===undefined?[]:[{x:px,y:py,id:1}]});
       if(touch)await send('touchStart',x,y);
       else {await p.mouse.move(x,y); await p.mouse.down();}
-      for(let i=1;i<=steps;i++) {
-        const px=x+dx*i/steps/(pixels?1:scale),py=y+dy*i/steps/(pixels?1:scale);
-        if(touch) await send('touchMove',px,py);
-        else await p.mouse.move(px,py);
+      let [lastX,lastY]=[x,y];
+      for(const [toX,toY] of [...via,[dx,dy]]) {
+        const destX=x+toX/(pixels?1:scale), destY=y+toY/(pixels?1:scale);
+        for(let i=1;i<=steps;i++) {
+          const px=lastX+(destX-lastX)*i/steps, py=lastY+(destY-lastY)*i/steps;
+          if(touch) await send('touchMove',px,py);
+          else await p.mouse.move(px,py);
+        }
+        [lastX,lastY]=[destX,destY];
       }
       if (finish) {
         if(touch)await send('touchEnd');
@@ -232,6 +237,16 @@ try {
     await cancelledDressing();
     await p.locator('#target:not([data-good])').waitFor();
     await drive(dx,dy,{pixels:true});
+    await waitStep('Smooth the dressing');
+    await screenshot('dressing-trace');
+    const [start,...corners] = (await p.locator('#seal-track').getAttribute('points')).split(' ').map(point=>point.split(',').map(Number));
+    const trace = corners.map(([x,y])=>[x-start[0],y-start[1]]);
+    const interruptedTrace = await drive(...trace[0],{pixels:true,finish:false});
+    await p.getByRole('status').filter({hasText:'1 of 4 edges'}).waitFor();
+    if(!touch) await grip.dispatchEvent('pointercancel',{pointerId:1});
+    await interruptedTrace();
+    await p.getByRole('status').filter({hasText:'0 of 4 edges'}).waitFor();
+    await drive(...trace.at(-1),{pixels:true,via:trace.slice(0,-1)});
     await waitStep('Compare your result');
     assert.match(await p.locator('#notice').textContent(),/Alignment [45-6]\d\/60 · Fixation 30\/30/);
     const sideImage = await p.locator('#after').getAttribute('src');
