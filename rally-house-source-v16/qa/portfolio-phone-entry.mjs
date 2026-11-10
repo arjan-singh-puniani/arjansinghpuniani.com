@@ -8,7 +8,7 @@ try{
  await page.getByRole('link',{name:'Play Rally House ↗',exact:true}).click();await page.locator('iframe[title="Play Rally House"]').waitFor();
  await enterClub(page.frameLocator('iframe[title="Play Rally House"]'),'Arjan');
  const frame=page.frames().find(f=>f.url().includes('/rally-house/index.html'));assert(frame);await frame.locator('#loading').waitFor({state:'hidden'});await frame.locator('#labBtn').click();await page.waitForTimeout(250);const find=frame.getByRole('button',{name:'Find Performance Lab ↗',exact:true});if(await find.isVisible())await find.click();await frame.locator('[data-action=capture]').waitFor({state:'visible'});
- report.owner=await page.getByText('Three apps by Arjan Singh Puniani',{exact:true}).textContent();report.ready=await frame.locator('[data-action=capture]').isVisible();
+ report.owner=await page.locator('main footer').textContent();report.ready=await frame.locator('[data-action=capture]').isVisible();
  assert(report.ready);assert.deepEqual(report.errors,[]);assert.deepEqual(report.http,[]);
 }finally{fs.writeFileSync(`${out}/portfolio-entry.json`,JSON.stringify(report,null,2)+'\n');await browser.close();}
 console.log(report);

@@ -162,3 +162,20 @@ const {ClubAtmosphere}=await import('../dist/rendering/ClubAtmosphere.js');
  assert(Math.max(...lengths)-Math.min(...lengths)<.12,'Trail length is frame-rate independent');
 }
 console.log('Ball feel passes: springier bounce, face-aligned compression, string recovery, bounded frame-rate-independent comet and reduced motion.');
+
+// The phone court stays large without cropping its baselines after browser chrome changes.
+{
+ const {COURT}=await import('../dist/tennis/CourtGeometry.js');
+ for(const [width,height] of [[320,568],[402,580],[402,681],[402,874],[440,763],[440,956],[756,352],[838,390],[1440,900]]){
+  const camera=new CameraController({getBoundingClientRect:()=>({width,height,left:0,top:0})});
+  camera.setAspect(width/height);const rig=new ChampionshipCameraRig(camera);
+  for(let i=0;i<240;i++){rig.update('behindPlayer',new Vec3(1,0,COURT.baselineDepth),new Vec3(1,0,-COURT.baselineDepth),null,width/height,1/60);camera.update(1/60);}
+  const corners=[[-1,-1],[1,-1],[-1,1],[1,1]].map(([x,z])=>camera.project(new Vec3(1+x*COURT.doublesHalfWidth,0,z*COURT.halfLength)));
+  for(const p of corners)assert(p.x>=10&&p.x<=width-10&&p.y>=110&&p.y<=height-20,`Court clipped at ${width}x${height}: ${JSON.stringify(p)}`);
+  if(width<height){
+   assert(corners[3].x-corners[2].x>=width*.58,`Portrait court is too small at ${width}x${height}`);
+   assert(corners[3].y<height-130,`Baseline falls under thumb controls at ${width}x${height}`);
+  }
+ }
+}
+console.log('Phone framing PASS: readable court width and visible baselines across nine viewports.');

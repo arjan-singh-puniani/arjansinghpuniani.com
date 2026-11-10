@@ -189,18 +189,14 @@ export class ChampionshipCameraRig {
         this.impactKick = 0;
     }
     gameplayPose(player, courtCenter, ball, portrait) {
-        // Keep the ball involved in framing, but only slightly. The old close view
-        // let the ball tug the camera around too much and made the player's avatar
-        // occupy a large fraction of the screen. This wider/higher framing makes
-        // the full rally readable like an arcade sports game while preserving the
-        // charming Rally House environment around it.
+        // Follow the ball gently; portrait framing brings both baselines above the thumb controls.
         const ballInfluence = ball ? 0.075 : 0;
         const focusX = courtCenter.x * (0.86 - ballInfluence) +
             player.x * 0.065 +
             (ball?.x ?? courtCenter.x) * ballInfluence;
         return {
-            target: new Vec3(focusX, 0.74, .05),
-            distance: 20.4 + (COURT.baselineDepth - 5) * 1.3 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraDistance - 20.4),
+            target: new Vec3(focusX, 0.74 - portrait * 1.04, .05),
+            distance: (20.4 + (COURT.baselineDepth - 5) * 1.3) * (1 - portrait) + portrait * CHAMPIONSHIP_TUNING.portraitCameraDistance,
             azimuth: 0,
             elevation: 0.49 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraElevation - 0.49),
             fov: (35.5 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraFovDegrees - 35.5)) * Math.PI / 180,

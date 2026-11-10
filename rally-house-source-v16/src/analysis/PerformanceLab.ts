@@ -61,13 +61,13 @@ export class PerformanceLab {
     this.layer.setAttribute('aria-label','Performance Lab replay');
     const header=document.createElement('header'),identity=document.createElement('div'),brand=document.createElement('span'),close=document.createElement('button');
     brand.textContent='RALLY HOUSE / PERFORMANCE LAB';
-    const sub=document.createElement('small');sub.textContent='Three apps by Arjan Singh Puniani';identity.append(brand,sub);
+    const sub=document.createElement('small');sub.textContent='Analyze your swing';identity.append(brand,sub);
     close.textContent='Return to club ↗';close.dataset.labAction='close';close.onclick=()=>this.close();header.append(identity,close);
     this.panel.className='lab-panel';this.panel.setAttribute('aria-labelledby','labTitle');this.heading.id='labTitle';this.heading.textContent='Analyze your swing.';
     this.provenance.className='lab-provenance';
     const modes=document.createElement('div');modes.className='lab-modes';modes.setAttribute('role','group');modes.setAttribute('aria-label','Analysis view');
-    for(const [id,title] of [['court','VectorCourt'],['body','AnatomyMotion'],['combined','Combined']] as [LabMode,string][]){
-      const b=document.createElement('button');b.textContent=title;b.title=id==='combined'?'Both apps, one movement':`${title} · an app by Arjan Singh Puniani`;b.dataset.mode=id;b.onclick=()=>{if(!this.timeline)return;this.timeline.mode=id;this.invalidate();this.frameCamera();this.syncControls();};modes.append(b);
+    for(const [id,title] of [['court','Court'],['body','Body'],['combined','Both']] as [LabMode,string][]){
+      const b=document.createElement('button');b.textContent=title;b.title=id==='combined'?'Court and body together':id==='court'?'VectorCourt · court movement':'AnatomyMotion · body movement';b.dataset.mode=id;b.onclick=()=>{if(!this.timeline)return;this.timeline.mode=id;this.invalidate();this.frameCamera();this.syncControls();};modes.append(b);
     }
     const label=document.createElement('label');label.textContent='Replay source';label.htmlFor='labSource';this.source.id='labSource';
     this.source.onchange=()=>this.load(this.source.value as SampleKind);

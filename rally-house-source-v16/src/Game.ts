@@ -984,7 +984,7 @@ export class Game {
     if(!arriving){
       this.ui.showContext('YOUR CHARACTER','Who’s arriving at Rally House?','Choose your look. You can switch anytime in Settings.',[],[
         {title:'Taylor',subtitle:'Dark ponytail · blue tennis dress',run:()=>this.choosePlayerAvatar('taylor')},
-        {title:'Arjan',subtitle:'Swept hair · charcoal tenniswear',run:()=>this.choosePlayerAvatar('arjan')}
+        {title:'Arjan',subtitle:'Swept hair · red polo and black shorts',run:()=>this.choosePlayerAvatar('arjan')}
       ]);
       return;
     }
@@ -995,7 +995,7 @@ export class Game {
     };
     this.ui.showContext('WELCOME TO YOUR CLUB','A little club.\nOne more rally.','Take the court, then stay for the people. Choose who you’ll be today.',[],[
       {title:'Taylor',subtitle:'Blue dress · ponytail',run:()=>select('taylor')},
-      {title:'Arjan',subtitle:'Charcoal tenniswear',run:()=>select('arjan')},
+      {title:'Arjan',subtitle:'Red polo · black shorts',run:()=>select('arjan')},
       {title:'Play tennis',subtitle:'Step onto the court',run:()=>{this.choosePlayerAvatar(choice);this.playTennis();}},
       {title:'Explore the club',subtitle:'Take your time',run:()=>this.choosePlayerAvatar(choice)}
     ]);

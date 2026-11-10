@@ -26,20 +26,22 @@ try {
       }
       await page.goto(base+'/rally-house/index.html?debug');
       await page.waitForFunction(()=>window.__rh?.ready,null,{timeout:60000});
+      await page.locator('#loading').waitFor({state:'hidden'});
       await page.getByText('Arjan',{exact:true}).tap();
-      await page.locator('[data-arrival-action="explore"]').tap();
-      // Skip NPC travel only; swing input, recording, and replay below use the live game.
-      await page.evaluate(()=>{
-        const g=window.__rh.game;g.autosave=-1e6;
-        for(const a of [...g.activities.active])g.cancelActivity(a);
-        g.settings.reducedMotion=true;g.startChampionship(g.actor('leo'));
-        for(let i=0;i<6000&&g.championship.phase!=='serving';i++)g.updateFixed(1/60);
-        g.settings.reducedMotion=false;
-        if(g.championship.phase!=='serving')throw Error('Match did not start');
+      const began=Date.now();await page.locator('.arrival-play').tap();
+      await page.locator('.championshipHud[data-phase=serving]').waitFor({timeout:15000});
+      result.firstServeMs=Date.now()-began;
+      assert(result.firstServeMs<15000,'First-time play takes too long');
+      await page.waitForTimeout(1000);
+      result.idleTextChanges=await page.evaluate(async()=>{
+        let count=0;const observer=new MutationObserver(records=>count+=records.length);
+        observer.observe(document.querySelector('.championshipHud'),{subtree:true,childList:true,characterData:true});
+        await new Promise(resolve=>setTimeout(resolve,500));observer.disconnect();return count;
       });
+      assert(result.idleTextChanges<=3,'Idle HUD replaces unchanged text every frame');
       for(const [view,width,height] of views) {
         await page.setViewportSize({width,height});
-        await page.waitForTimeout(300);
+        await page.waitForTimeout(1000);
         for(const selector of ['#game','.championshipTouchPad','.championshipSwing','.championshipPause','.championshipExit']) {
           const rect=await page.locator(selector).boundingBox();assert(rect,view+' '+selector);
           assert(rect.x>=-1&&rect.y>=-1&&rect.x+rect.width<=width+1&&rect.y+rect.height<=height+1,view+' clipped '+selector);
@@ -58,15 +60,25 @@ try {
         const pad=await page.locator('.championshipTouchPad').boundingBox();
         const swing=await page.locator('.championshipSwing').boundingBox();
         const cdp=await context.newCDPSession(page);
-        const finger={x:pad.x+pad.width*.75,y:pad.y+pad.height*.5,id:1};
+        const center={x:pad.x+pad.width*.52,y:pad.y+pad.height*.5,id:1};
+        await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[center]});
+        assert.equal(await page.evaluate(()=>window.__rh.game.matchInput.movement().x),0,'Neutral thumb must not drift');
+        await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+        const finger={x:pad.x+pad.width*.85,y:pad.y+pad.height*.5,id:1};
         await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[finger]});
-        assert(await page.evaluate(()=>window.__rh.game.matchInput.movement().x>0));
+        assert(await page.evaluate(()=>window.__rh.game.matchInput.movement().x>.5));
+        assert(await page.locator('.championshipTouchPad').evaluate(e=>parseFloat(e.style.getPropertyValue('--thumb-x'))>0),'Thumb should follow touch');
         await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[finger,{x:swing.x+swing.width/2,y:swing.y+swing.height/2,id:2}]});
         await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
         assert.equal(await page.evaluate(()=>window.__rh.game.matchInput.movement().x),0);
+        assert.equal(await page.locator('.championshipTouchPad').evaluate(e=>e.style.getPropertyValue('--thumb-x')),'0px');
         result.multitouch=true;
       } else await page.getByRole('button',{name:'Swing racket'}).tap();
       await page.waitForFunction(()=>window.__rh.game.motionRecorder.clip.frames.some(f=>f.contact),null,{timeout:20000});
+      await page.locator('.championshipHud[data-cue=swing]').waitFor({timeout:20000});
+      await page.getByRole('button',{name:'Swing racket'}).tap();
+      await page.waitForFunction(()=>window.__rh.game.motionRecorder.clip.frames.filter(f=>f.contact).length>=2,null,{timeout:15000});
+      result.playerContacts=await page.evaluate(()=>window.__rh.game.motionRecorder.clip.frames.filter(f=>f.contact).length);
       await page.waitForFunction(()=>window.__rh.game.championship.phase==='pointResult',null,{timeout:40000});
       await page.locator('.championshipQuickReview').tap();
       await page.waitForFunction(()=>window.__rh.game.performanceLab.active);
@@ -78,6 +90,10 @@ try {
           const timeline=await page.evaluate(()=>{const t=window.__rh.game.performanceLab.timeline;return {playing:t.playing,focus:t.focus,source:t.clip.source};});
           assert.deepEqual(timeline,{playing:false,focus:joint,source:'game-recording'});
           result.phases.push(view+':'+phase);
+        }
+        if(view==='portrait'){
+          const panel=await page.locator('.lab-panel').boundingBox(),measurement=await page.locator('.lab-readout').boundingBox();
+          assert(measurement.y>=panel.y&&measurement.y+measurement.height<=panel.y+panel.height,'Primary measurement requires scrolling');
         }
         await page.screenshot({path:out+'/'+name+'-analysis-'+view+'.png'});
       }

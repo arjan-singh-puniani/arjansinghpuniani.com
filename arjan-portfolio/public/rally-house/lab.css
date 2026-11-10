@@ -81,3 +81,11 @@
 
 .lab-video{pointer-events:auto;position:absolute;left:24px;top:104px;width:min(28vw,320px);padding:10px 14px;background:#203a35f2;border:1px solid #c6d2b833;border-radius:14px;box-shadow:0 12px 40px #0f292530}.lab-video summary{padding:8px 0}.lab-video-download{font-size:11px}.lab-video video{max-height:210px}
 @media(max-width:850px){.lab-video{left:12px;right:12px;top:84px;width:auto;padding:4px 12px}.lab-video video{max-height:23vh}.lab-video summary{font-size:11px;padding:8px 0}.lab-video-download{padding:6px 0;min-height:34px}}
+
+/* Put the recorded moment and its measurement before view configuration on a phone. */
+@media(max-width:850px) and (min-height:541px){
+ .lab-provenance{order:-4}
+ .lab-snapshots{order:-3}
+ .lab-metrics{order:-2}
+ .lab-phase{order:-1}
+}
