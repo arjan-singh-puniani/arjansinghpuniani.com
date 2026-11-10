@@ -168,8 +168,9 @@ export async function makeScene(canvas) {
     const axis=view==='front'?'x':'z';
     const tension=close&&s.grip ? Math.min(1,Math.hypot(pose[axis]-s.grip.pose[axis],pose.gap-s.grip.pose.gap)*2.8) : 0;
     for(let i=0;i<tissueSides.length;i++){
-      tissueSides[i].position.x=(i===0?-1:1)*tension*.052;
+      tissueSides[i].position.x=(i===0?-1:1)*tension*.052+(close&&i===1?.075:0);
       tissueSides[i].scale.z=1-tension*.07;
+      tissueSides[i].position.z=close&&i===1?-.045:0;
     }
     props.visible=close;
     cover.visible=s.stage==='dress'||s.stage==='review';

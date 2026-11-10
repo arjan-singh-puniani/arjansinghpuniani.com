@@ -7,10 +7,13 @@ import {makeCase} from '../../public/hospitalsim/ortho/model.mjs';
 const base = process.env.ORTHO_BASE || 'http://127.0.0.1:8782/hospitalsim';
 const out = process.env.ORTHO_OUT;
 const soft = process.env.ORTHO_SOFTWARE === '1';
+const metal = process.env.ORTHO_METAL === '1';
 const url = base + '/ortho/index.html';
 if (out) await mkdir(out,{recursive:true});
-const browser = await chromium.launch({args:soft ? ['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'] : []});
-const report = {chromium:browser.version(), software:soft, runs:[]};
+const browser = await chromium.launch({args:soft
+  ? ['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']
+  : metal ? ['--use-gl=angle','--use-angle=metal','--enable-gpu'] : []});
+const report = {chromium:browser.version(), runs:[]};
 const baseline = makeCase().baseline;
 
 try {
@@ -45,6 +48,11 @@ try {
     await p.goto(url);
     await waitStep('Find the break');
     const ready = now();
+    if (!report.renderer) report.renderer = await p.evaluate(() => {
+      const gl=document.querySelector('#scene').getContext('webgl2');
+      const info=gl.getExtension('WEBGL_debug_renderer_info');
+      return gl.getParameter(info ? info.UNMASKED_RENDERER_WEBGL : gl.RENDERER);
+    });
     if (!touch) {
       await click(button('Fluoro')); await click(button('Side'));
       assert.equal(await p.locator('#view-label').textContent(),'SIMULATED FLUOROSCOPY');

@@ -48,9 +48,13 @@ cd arjan-portfolio
 node tools/hospitalsim/ortho-browser.mjs
 ```
 
-The browser check defaults to the local production server at port 8782. Set `ORTHO_OUT` to a capture directory and `ORTHO_VIDEO=1` to record. Headless Chromium uses CDP touch for the iPhone 13 profile. The WebKit smoke check uses the same portrait profile and engine-level taps. These modes run on desktop hardware.
+The browser check defaults to the local production server at port 8782. Set `ORTHO_OUT` to a capture directory and `ORTHO_VIDEO=1` to record. Set `ORTHO_METAL=1` to select ANGLE Metal on the test Mac. Headless Chromium uses CDP touch for the iPhone 13 profile. The WebKit smoke check uses the same portrait profile and engine-level taps. These modes run on desktop hardware.
 
-### Recorded results
+### Anatomy and grip verification
+
+The browser suite now checks that stationary mouse and touch holds reach the locked-jaw state with no pose change, then reopen on release. It covers interrupted drags, both views, fixation, replay and missing anatomy recovery. On the Apple M2 Metal backend in Chromium 153, the 1.25-second clamp sample had a 16.7 ms median and 16.7 ms 95th-percentile frame interval in the desktop and emulated iPhone 13 runs. The separate SwiftShader fallback run showed slower desktop frame pacing. These desktop measurements do not establish physical iPhone performance.
+
+### Initial release baseline
 
 Mac14,2 with Apple M2. Chromium 153.0.8010.12 and WebKit 26.6. The browser checks drove the Next production route with capture enabled. Frame intervals were sampled by animation frame over 1.25 seconds spanning continuous clamp input.
 

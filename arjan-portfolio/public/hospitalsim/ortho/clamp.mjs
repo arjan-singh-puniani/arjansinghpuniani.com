@@ -3,7 +3,7 @@ import {mergeGeometries} from '../vendor/examples/jsm/utils/BufferGeometryUtils.
 
 const V = (x,y,z) => new T.Vector3(x,y,z);
 const hinge=V(.32,.025,.085);
-const hingeAxis=V(0,.86,-.51).normalize();
+const hingeAxis=V(0,.48,-.88).normalize();
 
 export function contactRadius(radii, angle) {
   const n=radii.length, index=(((angle+Math.PI)/(2*Math.PI)*n)%n+n)%n;
@@ -22,7 +22,7 @@ function handleOutline(sign) {
   const g=new T.ExtrudeGeometry(s,{depth:.037,bevelEnabled:true,bevelThickness:.012,bevelSize:.012,bevelSegments:2,curveSegments:12});
   const positions=g.attributes.position;
   for(let i=0;i<positions.count;i++){
-    const lift=.46*T.MathUtils.smoothstep(positions.getX(i),.04,.64);
+    const lift=.66*T.MathUtils.smoothstep(positions.getX(i),.015,.27);
     positions.setZ(i,positions.getZ(i)+lift-.018);
   }
   g.computeVertexNormals();
@@ -126,17 +126,18 @@ export function fitClamp(data, view, steel, darkSteel) {
   tool.add(glove);
   const sleeve=new T.Mesh(new T.CylinderGeometry(.13,.10,1.98,24),new T.MeshStandardMaterial({color:0x145071,roughness:.83}));
   sleeve.rotateZ(-Math.PI/2+.12);
-  sleeve.position.set(2.55,-.14,.60);
+  sleeve.position.set(2.63,.09,.82);
   tool.add(sleeve);
-  const handle=V(1.11,0,.54);
+  const handle=V(1.11,0,.745);
   return {
     tool,handle,
     setClosure(amount){
       glove.visible=amount>.08;
       glove.position.x=(1-amount)*.15;
-      glove.position.z=.43+(1-amount)*.12;
+      glove.position.z=.63+(1-amount)*.12;
       sleeve.visible=glove.visible;
-      sleeve.position.x=2.55+glove.position.x;
+      sleeve.position.x=2.63+glove.position.x;
+      sleeve.position.z=glove.position.z+.19;
       for(const {jaw,sign} of jaws)jaw.quaternion.setFromAxisAngle(hingeAxis,sign*.40*(1-amount));
     }
   };
