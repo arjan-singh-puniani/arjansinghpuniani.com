@@ -298,3 +298,17 @@ button:focus-visible{outline:3px solid #d6a745;outline-offset:3px}
 @keyframes contactPraise{from{transform:translateX(-50%) scale(1.08)}to{transform:translateX(-50%) scale(1)}}
 .championshipHud[data-motion="reduced"] .championshipMessage{animation:none}
 @media(prefers-reduced-motion:reduce){.championshipMessage{animation:none!important}}
+
+/* Keep the right-thumb action legible and the left thumb visibly attached to its input. */
+.championshipThumb{position:absolute;left:50%;top:50%;width:36%;height:36%;border-radius:50%;background:#f5f0d9cc;border:1px solid #fffdf7;box-shadow:0 3px 12px #18382d33;transform:translate(calc(-50% + var(--thumb-x,0px)),calc(-50% + var(--thumb-y,0px)));pointer-events:none}
+.championshipTouchPad::after{content:attr(data-label);position:absolute;left:0;right:0;bottom:8px;text-align:center;font-size:9px;font-weight:800;letter-spacing:.12em;color:#fffdf7;pointer-events:none}
+.championshipTouchPad.is-held{background:#294f4366;border-color:#fffdf7}
+.championshipSwing:active{transform:scale(.95);background:#315845}
+.championshipHud[data-cue="swing"] .championshipSwing{background:#eee4a5;color:#244c3e;border-color:#fff8d0;box-shadow:0 0 0 5px #eee4a526}
+.championshipHud[data-cue="queued"] .championshipSwing{background:#d8e8bb;color:#244c3e}
+@media(pointer:coarse) and (orientation:portrait){
+ .championshipMessage{top:116px;bottom:auto;max-width:calc(100vw - 32px);font-size:11px}
+ .championshipQuickReview{top:158px;min-height:44px}
+}
+/* The home indicator remains reserved even with Safari's short landscape viewport. */
+@media(max-height:480px){.championshipTouchPad,.championshipSwing{bottom:max(14px,calc(env(safe-area-inset-bottom) + 8px))}}

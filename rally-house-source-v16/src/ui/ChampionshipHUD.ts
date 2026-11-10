@@ -6,6 +6,9 @@ import type {
 import type { MatchInput } from '../tennis/MatchInput.js';
 import type { InteractiveMatchSystem } from '../tennis/InteractiveMatchSystem.js';
 
+// Identical text must not create new DOM nodes on every rendered frame.
+const text=(node:HTMLElement,value:string)=>{if(node.textContent!==value)node.textContent=value;};
+
 type ChampionshipPlayerCue = ReturnType<InteractiveMatchSystem['playerCue']>;
 
 export interface ChampionshipHUDActions {
@@ -126,6 +129,7 @@ export class ChampionshipHUD {
     this.touchPad = document.createElement('div');
     this.touchPad.className = 'championshipTouchPad';
     this.touchPad.setAttribute('aria-label', 'Move player');
+    const thumb=document.createElement('span');thumb.className='championshipThumb';thumb.setAttribute('aria-hidden','true');this.touchPad.append(thumb);
 
     this.swingButton = document.createElement('button');
     this.swingButton.className = 'championshipSwing';
@@ -178,6 +182,9 @@ export class ChampionshipHUD {
       this.touchPad.releasePointerCapture(pointer);
     }
     this.input.setTouchMovement(0, 0);
+    this.touchPad.style.setProperty('--thumb-x','0px');
+    this.touchPad.style.setProperty('--thumb-y','0px');
+    this.touchPad.classList.remove('is-held');
   }
 
   render(
@@ -202,20 +209,23 @@ export class ChampionshipHUD {
     this.exitButton.hidden=snapshot.phase==='matchResult'||paused;
     this.root.dataset.phase = snapshot.phase;
     this.root.dataset.cue=this.gameplayPhase(snapshot.phase)?cue:'none';
+    const serving=snapshot.phase==='serving'&&snapshot.server==='player';
+    this.touchPad.dataset.label=serving?'AIM':'MOVE';
+    text(this.swingButton,cue==='queued'?'READY':serving&&cue!=='serving'?'SERVE':'SWING');
     this.root.dataset.motion=reducedMotion?'reduced':'full';
     this.root.dataset.paused=String(paused);
     this.pauseButton.hidden=paused||snapshot.phase==='exiting'||snapshot.phase==='matchResult';
     this.pausePanel.hidden=!paused;
-    for(const button of this.reviewButtons)button.hidden=!canReview||(button.classList.contains('championshipQuickReview')&&(paused||!['pointResult','serving','rally','matchResult'].includes(snapshot.phase)));
-    this.soundButton.textContent=muted?'Sound: off':'Sound: on';
+    for(const button of this.reviewButtons)button.hidden=!canReview||(button.classList.contains('championshipQuickReview')&&(paused||!['pointResult','serving','matchResult'].includes(snapshot.phase)));
+    text(this.soundButton,muted?'Sound: off':'Sound: on');
     this.soundButton.setAttribute('aria-pressed',String(!muted));
     this.motionButton.setAttribute('aria-pressed',String(reducedMotion));
     if(paused&&!this.paused&&document.hasFocus())this.resumeButton.focus({preventScroll:true});
     this.paused=paused;
     if(paused||!this.gameplayPhase(snapshot.phase)||!this.input.enabled)this.resetTouch();
 
-    this.matchup.textContent = `${playerName.toUpperCase()}  vs  ${opponentName.toUpperCase()}`;
-    this.score.textContent = `${snapshot.score.player}  –  ${snapshot.score.opponent}`;
+    text(this.matchup,`${playerName.toUpperCase()}  vs  ${opponentName.toUpperCase()}`);
+    text(this.score,`${snapshot.score.player}  –  ${snapshot.score.opponent}`);
     const message=paused?'':this.messageFor(snapshot,cue,opponentName);
     if(this.message.textContent!==message)this.message.textContent=message;
 
@@ -223,8 +233,8 @@ export class ChampionshipHUD {
     this.results.hidden = !showResults;
     if(showResults){
       const playerWon=snapshot.score.player>snapshot.score.opponent;
-      this.resultTitle.textContent=playerWon?'YOU WIN':`${opponentName.toUpperCase()} WINS`;
-      this.resultSummary.textContent=`${snapshot.score.player} – ${snapshot.score.opponent}  ·  Best rally ${snapshot.bestRally}  ·  +${CHAMPIONSHIP_TUNING.completionFunds} club funds`;
+      text(this.resultTitle,playerWon?'YOU WIN':`${opponentName.toUpperCase()} WINS`);
+      text(this.resultSummary,`${snapshot.score.player} – ${snapshot.score.opponent}  ·  Best rally ${snapshot.bestRally}  ·  +${CHAMPIONSHIP_TUNING.completionFunds} club funds`);
     }
     this.touchPad.hidden = paused || !this.gameplayPhase(snapshot.phase);
     this.swingButton.hidden = paused || !this.gameplayPhase(snapshot.phase);
@@ -242,7 +252,7 @@ export class ChampionshipHUD {
     if (phase === 'ready') return 'Ready';
     if (phase === 'serving') {
       if(cue==='serving')return 'SERVING';
-      return snapshot.server === 'player' ? (matchMedia('(pointer:coarse)').matches?'STICK TO AIM · SWING TO SERVE':'SPACE TO SERVE') : 'WATCH THE BALL';
+      return snapshot.server === 'player' ? (matchMedia('(pointer:coarse)').matches?'Aim with the stick · Tap Serve':'SPACE TO SERVE') : 'WATCH THE BALL';
     }
     if (phase === 'rally') {
       if (cue === 'queued') return 'READY TO RETURN';
@@ -280,10 +290,14 @@ export class ChampionshipHUD {
       const centerY = bounds.top + bounds.height / 2;
       const radius = Math.max(1, Math.min(bounds.width, bounds.height) / 2);
 
-      this.input.setTouchMovement(
-        (event.clientX - centerX) / radius,
-        (event.clientY - centerY) / radius,
-      );
+      const x=(event.clientX-centerX)/radius,y=(event.clientY-centerY)/radius;
+      const length=Math.hypot(x,y),scale=Math.max(1,length);
+      // The thumb shows the same circular range as movement; a small neutral zone prevents drift.
+      const strength=Math.max(0,(Math.min(1,length)-.12)/.88);
+      this.input.setTouchMovement(length?x/length*strength:0,length?y/length*strength:0);
+      this.touchPad.style.setProperty('--thumb-x',`${x/scale*radius*.55}px`);
+      this.touchPad.style.setProperty('--thumb-y',`${y/scale*radius*.55}px`);
+      this.touchPad.classList.add('is-held');
     };
 
     this.touchPad.addEventListener('pointerdown', (event) => {

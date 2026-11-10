@@ -17,10 +17,10 @@ try{for(const width of [1440,390]){
   // Advance only the walk to the existing physical instrument; replay uses RAF.
   await page.evaluate(()=>{const g=window.__rh.game;g.clock.paused=false;for(let i=0;i<6000&&!g.performanceLab.active;i++)g.updateFixed(1/60);});
   await page.locator('.performance-lab').waitFor({state:'visible'});assert.equal(await page.locator('#labTitle').textContent(),'Analyze your swing.');
-  await page.getByRole('button',{name:'VectorCourt',exact:true}).click();
+  await page.locator('[data-mode=court]').click();
   report.court=await page.evaluate(()=>{const g=window.__rh.game;return {kind:g.performanceLab.timeline.clip.kind,mode:g.performanceLab.timeline.mode,sameWorld:g.world===window.entryWorld.world&&g.characters.every((c,i)=>c===window.entryWorld.cast[i])};});assert.equal(report.court.kind,'forehand');assert.equal(report.court.mode,'court');assert(report.court.sameWorld);
   await page.screenshot({path:`${out}/${width}-court.png`});
-  await page.getByRole('button',{name:'AnatomyMotion',exact:true}).click();await page.locator('[data-joint=elbow]').click();await page.locator('.lab-transport input').fill('500');
+  await page.locator('[data-mode=body]').click();await page.locator('[data-joint=elbow]').click();await page.locator('.lab-transport input').fill('500');
   report.body=await page.evaluate(()=>{const l=window.__rh.game.performanceLab;return {mode:l.timeline.mode,focus:l.timeline.focus,readout:document.querySelector('.lab-readout').textContent,overflow:document.documentElement.scrollWidth>innerWidth};});assert.equal(report.body.mode,'body');assert.equal(report.body.focus,'elbow');assert.match(report.body.readout,/\d/);assert(!report.body.overflow);
   await page.screenshot({path:`${out}/${width}-body.png`});assert(await page.locator('.lab-record').isVisible());
   await page.locator('#labSource').selectOption('serve');assert.equal(await page.evaluate(()=>window.__rh.game.performanceLab.timeline.clip.kind),'serve');

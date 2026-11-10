@@ -74,7 +74,7 @@ export class PerformanceLab {
         const header = document.createElement('header'), identity = document.createElement('div'), brand = document.createElement('span'), close = document.createElement('button');
         brand.textContent = 'RALLY HOUSE / PERFORMANCE LAB';
         const sub = document.createElement('small');
-        sub.textContent = 'Three apps by Arjan Singh Puniani';
+        sub.textContent = 'Analyze your swing';
         identity.append(brand, sub);
         close.textContent = 'Return to club ↗';
         close.dataset.labAction = 'close';
@@ -89,10 +89,10 @@ export class PerformanceLab {
         modes.className = 'lab-modes';
         modes.setAttribute('role', 'group');
         modes.setAttribute('aria-label', 'Analysis view');
-        for (const [id, title] of [['court', 'VectorCourt'], ['body', 'AnatomyMotion'], ['combined', 'Combined']]) {
+        for (const [id, title] of [['court', 'Court'], ['body', 'Body'], ['combined', 'Both']]) {
             const b = document.createElement('button');
             b.textContent = title;
-            b.title = id === 'combined' ? 'Both apps, one movement' : `${title} · an app by Arjan Singh Puniani`;
+            b.title = id === 'combined' ? 'Court and body together' : id === 'court' ? 'VectorCourt · court movement' : 'AnatomyMotion · body movement';
             b.dataset.mode = id;
             b.onclick = () => { if (!this.timeline)
                 return; this.timeline.mode = id; this.invalidate(); this.frameCamera(); this.syncControls(); };

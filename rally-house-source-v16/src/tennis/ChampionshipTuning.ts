@@ -59,9 +59,9 @@ export const CHAMPIONSHIP_TUNING = {
   arcadeContactTempo: 0.7,
   opponentServeReadSeconds: 0.3,
 
-  /** Portrait profile B: larger court, with measured corner clearance. */
-  portraitCameraDistance: 28.6,
-  portraitCameraElevation: 0.60,
+  /** Bring the court above the thumb controls; projected corners are checked at phone sizes. */
+  portraitCameraDistance: 21,
+  portraitCameraElevation: 0.65,
   portraitCameraFovDegrees: 48,
 
   /** Presentation scale for the championship ball and its locator. */

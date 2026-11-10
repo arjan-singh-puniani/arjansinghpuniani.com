@@ -19,7 +19,7 @@ try{for(const width of [1440,390]){
  }
  await page.goto(base+'/?debug');await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Taylor');
  await page.evaluate(()=>{const g=window.__rh.game;g.clock.minutes=1040;g.clock.paused=true;g.settings.visuals='detail';g.settings.reducedMotion=true;g.performanceLab.open(g.player.spec,null);});
- await page.locator('#labSource').selectOption('serve');await page.getByRole('button',{name:'AnatomyMotion',exact:true}).click();
+ await page.locator('#labSource').selectOption('serve');await page.locator('[data-mode=body]').click();
  await page.evaluate(()=>{const t=window.__rh.game.performanceLab.timeline;t.playing=false;t.seek(t.clip.frames.find(f=>f.contact).time);});
 
  await page.waitForTimeout(100);
