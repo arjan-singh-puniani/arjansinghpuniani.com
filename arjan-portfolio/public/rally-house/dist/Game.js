@@ -133,6 +133,7 @@ export class Game {
     buildRotation = 0;
     hoverGround = null;
     frameSamples = [];
+    fastFrameWindows = 0;
     graphicsLost = false;
     last = performance.now();
     simAcc = 0;
@@ -330,6 +331,8 @@ export class Game {
         document.addEventListener('visibilitychange', () => {
             this.last = performance.now();
             this.simAcc = 0;
+            this.frameSamples = [];
+            this.fastFrameWindows = 0;
             this.matchInput.reset();
             this.championshipHud.resetTouch();
             if (document.hidden) {
@@ -1565,7 +1568,7 @@ export class Game {
     openSettings() {
         this.ui.showContext('COMFORT', 'Make yourself comfortable', 'Your character, camera motion and sound are yours to adjust.', [], [
             { title: `Character: ${this.playerAvatar ? this.player.spec.name : 'choose your look'}`, subtitle: 'Play as Taylor or Arjan', run: () => this.openAvatarPicker() },
-            { title: `Visuals: ${this.settings.visuals === 'auto' ? 'adaptive' : 'full detail'}`, subtitle: 'Keep lighting and geometry; adapt pixel resolution on slower devices', run: () => { this.settings.visuals = this.settings.visuals === 'auto' ? 'detail' : 'auto'; this.renderer.renderScale = 1; this.frameSamples = []; this.openSettings(); void this.save(); } },
+            { title: `Visuals: ${this.settings.visuals === 'auto' ? 'adaptive' : 'full detail'}`, subtitle: 'Keep lighting and geometry; adapt pixel resolution on slower devices', run: () => { this.settings.visuals = this.settings.visuals === 'auto' ? 'detail' : 'auto'; this.renderer.renderScale = 1; this.frameSamples = []; this.fastFrameWindows = 0; this.openSettings(); void this.save(); } },
             { title: this.settings.reducedMotion ? 'Motion: reduced' : 'Motion: full', subtitle: 'Reduce camera and environmental motion', run: () => { this.settings.reducedMotion = !this.settings.reducedMotion; this.openSettings(); void this.save(); } },
             { title: `Volume: ${Math.round(this.settings.volume * 100)}%`, subtitle: 'Cycle muted, quiet, medium, full', run: () => { const levels = [0, .3, .65, 1]; this.settings.volume = levels[(levels.indexOf(this.settings.volume) + 1) % 4]; this.audio.volume = this.settings.volume; this.openSettings(); void this.save(); } }
         ]);
@@ -2517,6 +2520,33 @@ export class Game {
             this.activeSpeechId = null;
     }
     previewMeshes(type, x, z, valid) { return this.world.previewPlacement(type, x, z, this.buildRotation, valid); }
+    adaptResolution(elapsed) {
+        if (this.settings.visuals === 'detail') {
+            this.renderer.renderScale = 1;
+            this.frameSamples.length = 0;
+            this.fastFrameWindows = 0;
+            return;
+        }
+        if (!Number.isFinite(elapsed) || elapsed <= 0) {
+            this.frameSamples.length = 0;
+            this.fastFrameWindows = 0;
+            return;
+        }
+        // Cap isolated stalls so they cannot outweigh the rest of a smooth window.
+        this.frameSamples.push(Math.min(.1, elapsed));
+        if (this.frameSamples.length < 60)
+            return;
+        const mean = this.frameSamples.reduce((a, b) => a + b, 0) / this.frameSamples.length;
+        this.frameSamples.length = 0;
+        this.fastFrameWindows = mean < .018 ? this.fastFrameWindows + 1 : 0;
+        // React before play becomes choppy; require six smooth windows before restoring detail.
+        if (mean > .026)
+            this.renderer.renderScale = Math.max(.64, this.renderer.renderScale - .08);
+        else if (this.fastFrameWindows >= 6) {
+            this.renderer.renderScale = Math.min(1, this.renderer.renderScale + .04);
+            this.fastFrameWindows = 0;
+        }
+    }
     loop = (now) => {
         if (this.graphicsLost)
             return;
@@ -2530,16 +2560,7 @@ export class Game {
         this.last = now;
         this.renderDt = Math.min(.05, realDt);
         this.audio.updateClubAmbience(realDt, this.clock.minutes, this.world.weather, this.championship.active);
-        if (this.settings.visuals === 'auto') {
-            this.frameSamples.push(elapsed);
-            if (this.frameSamples.length >= 12) {
-                const mean = this.frameSamples.reduce((a, b) => a + b, 0) / this.frameSamples.length;
-                this.renderer.renderScale = clamp(this.renderer.renderScale + (mean > .055 ? -.12 : mean < .024 ? .04 : 0), .64, 1);
-                this.frameSamples = [];
-            }
-        }
-        else
-            this.renderer.renderScale = 1;
+        this.adaptResolution(elapsed);
         const step = 1 / 60, maxSteps = this.championship.active ? 6 : 120;
         // Tennis must remain observable after a visible stall. Drop excess debt
         // rather than simulate an unseen return window; club catch-up stays intact.

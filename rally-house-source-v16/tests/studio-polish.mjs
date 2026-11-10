@@ -12,6 +12,25 @@ import {CHAMPIONSHIP_TUNING as tuning} from '../dist/tennis/ChampionshipTuning.j
 import {MatchInput} from '../dist/tennis/MatchInput.js';
 import {BallPhysics} from '../dist/tennis/BallPhysics.js';
 import {interactionWitnesses,touchForDecor} from '../dist/simulation/ClubInteractions.js';
+import {Game} from '../dist/Game.js';
+
+{
+ const g=Object.create(Game.prototype);
+ Object.assign(g,{settings:{visuals:'auto'},renderer:{renderScale:1},frameSamples:[],fastFrameWindows:0});
+ const frames=(dt,n=60)=>{for(let i=0;i<n;i++)g.adaptResolution(dt);};
+ frames(1/60,600);assert.equal(g.renderer.renderScale,1,'Smooth play retains full resolution');
+ frames(.041,59);assert.equal(g.renderer.renderScale,1,'Short bursts cannot change quality');
+ frames(.041,1);assert.equal(g.renderer.renderScale,.92,'Sustained phone slowdown adapts before 18 fps');
+ frames(.041,600);assert.equal(g.renderer.renderScale,.64,'Pixel density remains bounded');
+ frames(1/60,359);assert.equal(g.renderer.renderScale,.64,'Recovery waits to avoid repeated sharpness changes');
+ frames(1/60,1);assert.equal(g.renderer.renderScale,.68,'Stable recovery restores detail gradually');
+ frames(.023,600);assert.equal(g.renderer.renderScale,.68,'Intermediate pacing holds the current detail level');
+ frames(1/60,59);g.adaptResolution(2);assert.equal(g.frameSamples.length,0);assert.equal(g.fastFrameWindows,0);
+ assert.equal(g.renderer.renderScale,.68,'A resume stall does not reduce resolution');
+ frames(1/60,6000);assert.equal(g.renderer.renderScale,1,'Recovery never exceeds full resolution');
+ frames(.15,600);assert.equal(g.renderer.renderScale,.64,'Sustained severe slowdown still adapts');
+ g.renderer.renderScale=.64;g.settings.visuals='detail';g.adaptResolution(.041);assert.equal(g.renderer.renderScale,1,'Full-detail preference is respected');
+}
 const actor=(id,x,z)=>new Character({id,name:id,role:'member',shirt:'#888888',skin:'#c99977',hair:'#333333',playStyle:'test',goal:'test'},new Vec3(x,0,z),new Navigation(),{});
 function match(id='leo'){
  const p=actor('player',1,5),o=actor(id,1,-5),input=new MatchInput(),hits=[];
