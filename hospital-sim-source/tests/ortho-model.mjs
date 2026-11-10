@@ -77,7 +77,17 @@ test('orthogonal angulation, axial twist, seating stop and correction', () => {
   assert.deepEqual(s.actions.filter(a=>a.action==='lock-confirmed').map(a=>a.station),['Distal 1','Distal 2','Proximal']);
   assert(confirmImage(s)); assert.equal(s.stage,'image');
   changeView(s,'side'); assert(confirmImage(s));
-  assert(dress(s));
+  const tray={...s.dressing};
+  assert(begin(s)); move(s,-tray.x,tray.y); cancel(s);
+  assert.deepEqual(s.dressing,tray);
+  assert.equal(drag(s,0,-.25),'');
+  assert.equal(s.stage,'dress');
+  assert.deepEqual(s.dressing,tray);
+  const tap={...s};
+  assert(dress(tap));
+  assert.equal(tap.stage,'review');
+  assert.equal(drag(s,-tray.x,tray.y),'done');
+  assert.equal(dress(s),false);
   assert.equal(s.stage,'review');
   assert.deepEqual(score(s),{alignment:60,fixation:30,correction:4});
 });

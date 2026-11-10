@@ -1,7 +1,7 @@
 import * as T from '../vendor/build/three.module.js';
 import {GLTFLoader} from '../vendor/examples/jsm/loaders/GLTFLoader.js';
 import {corticalFinish, operativeTissue, theatreDetails} from './anatomy.mjs';
-import {fitClamp, steelReflections} from './clamp.mjs';
+import {addGownSleeve, fitClamp, steelReflections} from './clamp.mjs';
 import {aligned, stations} from './model.mjs';
 
 const V = (x,y,z) => new T.Vector3(x,y,z);
@@ -35,6 +35,21 @@ function drape(parent, material) {
   const cloth=mesh(geom,material,parent);
   cloth.position.z=-1.15;
   return cloth;
+}
+
+function roundedRect(path, w, h, r) {
+  const x=w/2,y=h/2;
+  path.moveTo(-x+r,-y);
+  path.lineTo(x-r,-y);
+  path.quadraticCurveTo(x,-y,x,-y+r);
+  path.lineTo(x,y-r);
+  path.quadraticCurveTo(x,y,x-r,y);
+  path.lineTo(-x+r,y);
+  path.quadraticCurveTo(-x,y,-x,y-r);
+  path.lineTo(-x,-y+r);
+  path.quadraticCurveTo(-x,-y,-x+r,-y);
+  path.closePath();
+  return path;
 }
 
 export async function makeScene(canvas) {
@@ -77,12 +92,19 @@ export async function makeScene(canvas) {
   const skin=bead(0,0,-.37,1.03,2.95,.40,mat(0xa86859,.81),field);
   const {group:muscle,sides:tissueSides}=operativeTissue();
   field.add(muscle);
+  const clothOpening=roundedRect(new T.Shape(),18,15,.2);
+  clothOpening.holes.push(roundedRect(new T.Path(),1.04,1.72,.24));
+  const closureDrape=mesh(new T.ShapeGeometry(clothOpening),mat(0x22627b,.94),field);
+  closureDrape.position.set(0,-.15,.42);
   const cover=new T.Group();
   field.add(cover);
-  const pad=bead(0,0,.03,.46,.95,.15,mat(0xf1eee4,.92),cover);
-  pad.rotation.z=-.09;
-  const seamMat=mat(0xd1dfd9,.95);
-  for(let i=-7;i<=7;i++)curve([[-.26,i*.094,.145],[0,i*.094,.19],[.26,i*.094,.145]],.006,seamMat,cover,10);
+  const patchShape=(w,h,r)=>new T.ExtrudeGeometry(roundedRect(new T.Shape(),w,h,r),
+    {depth:.04,bevelThickness:.022,bevelSize:.026,bevelSegments:2,curveSegments:6});
+  mesh(patchShape(.83,1.54,.18),mat(0xddddd2,.96),cover);
+  const pad=mesh(patchShape(.60,1.29,.14),mat(0xf4f2e6,.93),cover);
+  pad.position.z=.06;
+  const seamMat=mat(0xd9dfd5,.95);
+  for(let i=-6;i<=6;i++)curve([[-.245,i*.086,.125],[0,i*.086,.126],[.245,i*.086,.125]],.006,seamMat,cover,8);
 
   const steel=mat(0xa6b4bc,.22,.78), darkSteel=mat(0x465b69,.33,.68), gripMat=mat(0x254957,.39,.25);
   steel.envMap=darkSteel.envMap=steelReflections();
@@ -98,10 +120,12 @@ export async function makeScene(canvas) {
   const supportGlove=hand.clone();
   supportGlove.rotation.set(0,Math.PI,-.22);
   supportGlove.position.set(-.14,1.06,.98);
-  const cuff=new T.Mesh(new T.CylinderGeometry(.12,.16,1.6,18),mat(0x17536d,.83));
-  cuff.rotation.z=1.28;
-  cuff.position.set(-2.47,.90,.79);
-  props.add(supportGlove,cuff);
+  addGownSleeve(supportGlove);
+  const oppositeGlove=hand.clone();
+  oppositeGlove.rotation.z=.27;
+  oppositeGlove.position.set(.20,.18,.55);
+  addGownSleeve(oppositeGlove);
+  props.add(supportGlove,oppositeGlove);
   field.add(props);
   const implant=mat(0x548ca0,.26,.62);
   const canal=atlasDistal.userData.canal;
@@ -217,7 +241,9 @@ export async function makeScene(canvas) {
     }
     props.visible=operative;
     cover.visible=s.stage==='dress'||s.stage==='review';
-    cover.scale.setScalar(s.stage==='review'?1:.76);
+    closureDrape.visible=cover.visible;
+    cover.scale.setScalar(.54);
+    cover.position.set(s.dressing.x,s.dressing.y-.15,.50);
     for(const {part,original,orientation} of boneMeshes) part.material=film?xray:cutaway?cut:s.stage==='inspect'?orientation:original;
     xray.opacity=.72;
     proximal.visible=distal.visible=s.stage!=='dress'&&s.stage!=='review'||film;
@@ -238,6 +264,7 @@ export async function makeScene(canvas) {
     renderer.render(scene,camera);
     if(operative)return {handle:point(tool.localToWorld(handle.clone()))};
     if(seating)return {handle:point(V(.36,2.36+nail.position.y,tip[2]))};
+    if(s.stage==='dress')return {handle:point(cover.getWorldPosition(V())),contact:point(field.localToWorld(V(0,-.15,.50)))};
     if(target){
       const {x,y,z}=target;
       const contact=distalTarget?V(x-.071,y,z):V(sleeveX,y,z);

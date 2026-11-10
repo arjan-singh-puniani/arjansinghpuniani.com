@@ -101,3 +101,10 @@ figcaption{padding:.55rem;text-align:center;color:var(--muted);font:700 .69rem/1
 #grip-state[data-locked]{background:#123d36;border-color:#7ec9aa;color:#c5ffdc}
 
 #grip,#target,#offset-reticle{left:0;top:0}
+#guide-track,#guide-end{position:absolute;left:0;top:0;pointer-events:none}
+#guide-track{border-top:2px dotted #f6dfad;transform-origin:left center}
+#guide-end{z-index:2;transform:translate(-50%,-50%);width:24px;height:24px;border:2px dashed #ffe4a2;border-radius:50%;box-shadow:0 0 0 2px #0a1b24}
+#guide-end[data-good]{background:#a8f0d4;border:3px solid #143e35}
+.workbench[data-stage=dress] #grip,.workbench[data-stage=dress] #target{width:46px;height:72px;border-radius:9px}
+.workbench[data-stage=dress] #grip{background:transparent;box-shadow:none}
+.workbench[data-stage=dress] #grip::before,.workbench[data-stage=dress] #grip::after{display:none}

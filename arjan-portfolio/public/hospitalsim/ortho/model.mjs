@@ -10,6 +10,8 @@ export const openingSeed = 431, challengeSeed = 439;
 const neutral = {x:0, z:0, gap:.055, front:0, side:0, twist:0};
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 export const limits = {offset:.085, gap:.10, tilt:.060, twist:.085};
+export const dressingTolerance = .27;
+const tray = {x:1.10,y:-.86};
 
 export function makeCase(seed = openingSeed, expert = false) {
   seed >>>= 0;
@@ -22,7 +24,7 @@ export function makeCase(seed = openingSeed, expert = false) {
   };
   return {
     seed, expert, stage:'inspect', view:'front', mode:'move', pose:{...baseline}, baseline,
-    checked:{}, prelock:{}, reviewed:{}, nail:0, locks:0, aim:initialAim(0), grip:null,
+    checked:{}, prelock:{}, reviewed:{}, nail:0, locks:0, aim:initialAim(0), dressing:{...tray}, grip:null,
     actions:[], corrections:0, misses:0, lockError:0, notice:''
   };
 }
@@ -133,8 +135,8 @@ export function confirmImage(s) {
 }
 
 export function begin(s) {
-  if (s.grip || !['reduce', 'seat', 'fix'].includes(s.stage)) return false;
-  s.grip = {pose:{...s.pose}, aim:{...s.aim}, nail:s.nail, blocked:false};
+  if (s.grip || !['reduce', 'seat', 'fix', 'dress'].includes(s.stage)) return false;
+  s.grip = {pose:{...s.pose}, aim:{...s.aim}, dressing:{...s.dressing}, nail:s.nail, blocked:false};
   s.notice = '';
   return true;
 }
@@ -160,6 +162,8 @@ export function move(s, dx, dy) {
     s.notice = grip.blocked ? 'Advance blocked at the fracture. Retract or return to reduction.' : '';
   } else if (s.stage === 'fix') {
     s.aim = {x:clamp(grip.aim.x + dx, -.8, .8), y:clamp(grip.aim.y - dy, -.68, .68)};
+  } else if (s.stage === 'dress') {
+    s.dressing = {x:clamp(grip.dressing.x + dx, -1.35, 1.35), y:clamp(grip.dressing.y - dy, -1.45, 1.45)};
   }
 }
 
@@ -168,6 +172,7 @@ export function cancel(s) {
   s.pose = s.grip.pose;
   s.nail = s.grip.nail;
   s.aim = s.grip.aim;
+  s.dressing = s.grip.dressing;
   s.grip = null;
   s.notice = '';
 }
@@ -222,6 +227,10 @@ export function release(s) {
     s.misses++;
     log(s, 'lock-missed', {distance});
     s.notice = 'Target missed. Bring the two reticles together and release.';
+  } else if (s.stage === 'dress') {
+    if (Math.hypot(s.dressing.x,s.dressing.y) <= dressingTolerance && dress(s)) return 'done';
+    s.dressing = {...tray};
+    s.notice = 'The dressing returned to its tray. Drag it onto the dashed outline and release.';
   }
   return '';
 }
@@ -239,8 +248,9 @@ export function returnToReduction(s) {
 }
 
 export function dress(s) {
-  if (s.stage !== 'dress') return false;
+  if (s.stage !== 'dress' || s.grip) return false;
   s.stage = 'review';
+  s.dressing = {x:0,y:0};
   s.notice = '';
   log(s, 'dressing-placed');
   return true;
