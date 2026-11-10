@@ -72,8 +72,11 @@ try {
     const drive = async (dx,dy,{finish=true,steps=12}={}) => {
       await grip.scrollIntoViewIfNeeded();
       const g=await grip.boundingBox(), f=await field.boundingBox();
-      const close = (await step.textContent()) === 'Line up the fragments';
-      const scale = Math.max(close?4.2:5.86,(close?5:2.88)/(f.width/f.height))/f.height;
+      const title = await step.textContent();
+      const close = title === 'Line up the fragments';
+      const distal = title==='Match the locking target' && await button('Side').getAttribute('aria-pressed')==='true';
+      const scale = Math.max(distal?2.5:title==='Advance the nail'?8.6:close?4.2:5.86,
+        (distal?2.4:close?5:2.88)/(f.width/f.height))/f.height;
       const x=g.x+g.width/2, y=g.y+g.height/2;
       if(close){
         const roll=-.15, c=Math.cos(roll), s=Math.sin(roll);
@@ -176,13 +179,26 @@ try {
     assert.match(await p.locator('#reduction-progress').textContent(),/Front ✓/);
     await click(action);
     await waitStep('Advance the nail');
+    await screenshot('seat-start');
     await drive(0,.85);
     assert(Number(await progress.getAttribute('value')) > .3);
     await drive(0,1.10);
+    await waitStep('Review the seated nail');
+    assert.equal(await grip.isVisible(),false);
+    await screenshot('prelock');
+    await click(action);
+    await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
+    assert.equal(await grip.isVisible(),false);
+    await click(button('Side')); await click(action);
     await waitStep('Match the locking target');
-    await screenshot('cutaway');
+    assert.equal(await button('Side').getAttribute('aria-pressed'),'true');
+    await screenshot('distal-lock');
     await drive(.36,-.30);
-    await p.getByRole('status').filter({hasText:'Upper lock seated'}).waitFor();
+    await p.getByRole('status').filter({hasText:'First distal lock placed'}).waitFor();
+    await drive(-.37,.29);
+    await p.getByRole('status').filter({hasText:'proximal aiming jig'}).waitFor();
+    assert.equal(await button('Front').getAttribute('aria-pressed'),'true');
+    await screenshot('proximal-jig');
     await drive(-.37,.29);
     await waitStep('Save the final images');
     await screenshot('final-image');

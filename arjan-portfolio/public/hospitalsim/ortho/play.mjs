@@ -1,16 +1,17 @@
-import {makeCase, openingSeed, challengeSeed, views, limits, aligned, error, changeView, startReduction, confirmImage, begin, move, cancel, release, returnToReduction, dress, score, nextAdjustment, nudgeAlignment} from './model.mjs';
+import {makeCase, openingSeed, challengeSeed, views, stations, limits, aligned, error, changeView, startReduction, confirmImage, begin, move, cancel, release, returnToReduction, dress, score, nextAdjustment, nudgeAlignment} from './model.mjs';
 import {makeScene} from './scene.mjs';
 
 const steps = {
-  inspect:['01 / Orientation','Find the break','Check alignment in Front and Side, seat and lock the nail, save both images, then apply the dressing to finish.','Take the clamp'],
+  inspect:['01 / Orientation','Find the break','Follow a simplified antegrade nailing case for a simple oblique midshaft fracture. Check both views before and after locking.','Take the clamp'],
   reduce:['02 / Fracture reduction','Line up the fragments','Drag the clamp in Move for offset and gap, or Rotate for tilt and twist. Get four checkmarks, then verify this view.','Check this view'],
-  seat:['03 / Implant','Advance the nail','Drag the handle down and release. Repeat until the nail reaches 100%.',''],
-  fix:['04 / Fixation','Match the locking target','Drag the crosshair to the center of the ring. Release when the ring turns green. Repeat for the second lock.',''],
-  image:['05 / Verification','Save the final images','Inspect the implant and both locks in each projection. Save both images.','Save this image'],
-  dress:['06 / Dressing','Cover the site','Place the dressing to finish the case.','Place dressing'],
+  seat:['03 / Implant','Advance the nail','Entry, guidewire passage and canal preparation are represented as already complete. Drag the virtual handle down in short strokes to seat the nail.',''],
+  prelock:['04 / Before locking','Review the seated nail','Compare nail position and shaft alignment in Front and Side. Rotation assessment in the real procedure requires anatomical references beyond this model.','Confirm this view'],
+  fix:['05 / Fixation','Match the locking target','',''],
+  image:['06 / Verification','Save the final images','Inspect the nail and all three modeled locks in each projection. Save both images.','Save this image'],
+  dress:['07 / Dressing','Cover the site','Closure is represented as already complete. Place the dressing to finish the case.','Place dressing'],
   review:['Case complete','Compare your result','Switch projections to compare the same framing before and after.','Replay same setup']
 };
-const timeline = Object.keys(steps).slice(0, 6);
+const timeline = Object.keys(steps).slice(0, -1);
 const degrees = n => (n * 180 / Math.PI).toFixed(1) + '°';
 
 export async function mount() {
@@ -79,6 +80,7 @@ export async function mount() {
       const {stage, view, mode, pose} = state;
       if($('workbench').dataset.stage!==stage)$('workbench').dataset.stage=stage;
       const reducing = stage === 'reduce', fixing = stage === 'fix', reviewing = stage === 'review';
+      const distalTarget = fixing && stations[state.locks].view === 'side';
       const active = reducing || fixing || stage === 'seat';
       const beforeClosure = closure;
       const held = reducing && Boolean(state.grip);
@@ -97,13 +99,16 @@ export async function mount() {
       const wasGrip = document.activeElement === grip;
       const [tag, title, directions, action] = steps[stage];
       setText('seed','SETUP ' + state.seed);
-      setText('stage-label',tag);
+      setText('stage-label',fixing ? '05 / ' + stations[state.locks].label : tag);
       setText('step',title);
-      setText('directions',directions);
+      setText('directions',fixing ? (distalTarget
+        ? 'Side shows the distal opening end-on. Align the virtual reticle to its center and release.'
+        : 'The proximal aiming jig is attached to the insertion handle. Center the virtual reticle on the guide sleeve and release.')
+        : directions);
       $('fluoro').hidden = stage !== 'inspect' && !reducing;
       $('fluoro').setAttribute('aria-pressed', fluoro);
-      setText('view-label',stage === 'seat' || fixing ? 'EDUCATIONAL CUTAWAY'
-        : stage === 'image' || reviewing || ((stage === 'inspect' || reducing) && fluoro) ? 'SIMULATED FLUOROSCOPY' : 'OPERATIVE FIELD');
+      setText('view-label',stage === 'seat' || (fixing && !distalTarget) ? 'EDUCATIONAL CUTAWAY'
+        : stage === 'image' || stage === 'prelock' || distalTarget || reviewing || ((stage === 'inspect' || reducing) && fluoro) ? 'SIMULATED FLUOROSCOPY' : 'OPERATIVE FIELD');
       $('modes').hidden = !reducing;
       $('keyboard').hidden = !active;
       $('comparison').hidden = !reviewing;
@@ -120,8 +125,8 @@ export async function mount() {
       }
       for (const choice of ['move','rotate']) $(choice).setAttribute('aria-pressed', choice === mode);
       $('action').hidden = !action;
-      const checked = reducing ? state.checked[view] : stage === 'image' && state.reviewed[view];
-      setText('action',checked ? (reducing ? 'View checked ✓' : 'Image saved ✓') : action);
+      const checked = reducing ? state.checked[view] : stage === 'prelock' ? state.prelock[view] : stage === 'image' && state.reviewed[view];
+      setText('action',checked ? (reducing || stage === 'prelock' ? 'View checked ✓' : 'Image saved ✓') : action);
       $('action').disabled = Boolean(checked || state.grip);
       const next = reducing ? nextAdjustment(pose,view) : null;
       const help = reducing && !state.expert && next && !fluoro;
@@ -135,7 +140,7 @@ export async function mount() {
       const alternate = help ? 'Nudge ' + metricNames[next.key] + ' ' + arrows[next.direction]
         : reviewing
         ? (state.seed === openingSeed ? 'Try harder setup' : 'Try another setup')
-        : stage === 'seat' ? 'Refine alignment' : '';
+        : stage === 'seat' || stage === 'prelock' ? 'Refine alignment' : '';
       setText('secondary',alternate);
       $('secondary').hidden = !alternate;
       $('secondary').disabled = Boolean(held);
@@ -166,7 +171,7 @@ export async function mount() {
         } else if (!notice) notice = 'Use Move for offset and gap, and Rotate for tilt and twist.';
       }
       if (stage === 'seat' && !notice) notice = state.grip ? 'Travel preview. Release to hold position.' : Math.round(state.nail * 100) + '% seated';
-      if (fixing && !notice) notice = aimGood ? 'Target acquired. Release to confirm.' : (state.locks ? 'Lower locking target' : 'Upper locking target');
+      if (fixing && !notice) notice = aimGood ? 'Target acquired. Release to confirm.' : stations[state.locks].label + ' locking target';
       if (reviewing) {
         const points = score(state);
         notice = 'Alignment ' + points.alignment + '/60 · Fixation ' + points.fixation + '/30 · Corrections ' + points.correction + '/10. '

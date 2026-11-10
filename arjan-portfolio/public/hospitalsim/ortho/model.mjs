@@ -1,7 +1,11 @@
 // Game coordinates: +Y toward the hip, +X right in Front, +Z right in Side.
 // Tilts are radians in their named projection. Twist is about the shaft.
 export const views = ['front', 'side'];
-export const stations = [1.55, -1.55];
+export const stations = [
+  {y:-1.88, view:'side', label:'Distal 1'},
+  {y:-1.55, view:'side', label:'Distal 2'},
+  {y:1.55, view:'front', label:'Proximal'}
+];
 export const openingSeed = 431, challengeSeed = 439;
 const neutral = {x:0, z:0, gap:.055, front:0, side:0, twist:0};
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
@@ -18,7 +22,7 @@ export function makeCase(seed = openingSeed, expert = false) {
   };
   return {
     seed, expert, stage:'inspect', view:'front', mode:'move', pose:{...baseline}, baseline,
-    checked:{}, reviewed:{}, nail:0, locks:0, aim:initialAim(0), grip:null,
+    checked:{}, prelock:{}, reviewed:{}, nail:0, locks:0, aim:initialAim(0), grip:null,
     actions:[], corrections:0, misses:0, lockError:0, notice:''
   };
 }
@@ -100,8 +104,20 @@ export function confirmImage(s) {
     log(s, 'alignment-checked', {view:s.view});
     if (views.every(view => s.checked[view])) {
       s.stage = 'seat';
-      s.notice = 'Both views checked. The nail is ready to advance.';
+      s.view = 'front';
+      s.notice = 'Both views checked. This simulation starts nail travel after canal preparation.';
     } else s.notice = s.view === 'front' ? 'Front checked. Switch to Side and check it.' : 'Side checked. Switch to Front and check it.';
+    return true;
+  }
+  if (s.stage === 'prelock') {
+    if (s.prelock[s.view] || s.nail !== 1 || !aligned(s.pose, s.view)) return false;
+    s.prelock[s.view] = true;
+    log(s, 'seated-nail-checked', {view:s.view});
+    if (views.every(view => s.prelock[view])) {
+      s.stage = 'fix';
+      s.view = stations[0].view;
+      s.notice = 'Seated nail checked in both views. Start with the distal targets.';
+    } else s.notice = 'Check the seated nail in the other projection.';
     return true;
   }
   if (s.stage === 'image') {
@@ -178,9 +194,9 @@ export function release(s) {
       log(s, 'advance-blocked', {travel:s.nail});
     }
     if (s.nail >= 1) {
-      s.stage = 'fix';
+      s.stage = 'prelock';
       s.view = 'front';
-      s.notice = 'Nail seated. Match the virtual reticle to the locking target.';
+      s.notice = 'Review nail position and the reduced shaft before locking.';
       log(s, 'nail-seated');
       return 'seated';
     }
@@ -188,14 +204,18 @@ export function release(s) {
     const distance = Math.hypot(s.aim.x, s.aim.y);
     if (distance <= (s.expert ? .052 : .092)) {
       s.lockError += distance;
-      log(s, 'lock-confirmed', {station:s.locks, distance});
+      log(s, 'lock-confirmed', {station:stations[s.locks].label, distance});
       s.locks++;
       if (s.locks === stations.length) {
         s.stage = 'image';
+        s.view = 'front';
         s.notice = 'Fixation confirmed. Save a final image in each view.';
       } else {
         s.aim = initialAim(s.locks);
-        s.notice = 'Upper lock seated. Match the lower target.';
+        s.view = stations[s.locks].view;
+        s.notice = stations[s.locks].label === 'Proximal'
+          ? 'Distal targets complete. Switch to the simulated proximal aiming jig.'
+          : 'First distal lock placed. Match the second distal target.';
       }
       return 'locked';
     }
@@ -207,11 +227,12 @@ export function release(s) {
 }
 
 export function returnToReduction(s) {
-  if (s.stage !== 'seat') return;
+  if (s.stage !== 'seat' && s.stage !== 'prelock') return;
   cancel(s);
   s.stage = 'reduce';
   s.nail = 0;
   s.checked = {};
+  s.prelock = {};
   s.corrections++;
   s.notice = 'Nail withdrawn in the model. Refine both views.';
   log(s, 'returned-to-reduction');
@@ -230,7 +251,7 @@ export function score(s) {
   const fraction = errors.reduce((sum, [key, value]) => sum + value / limits[key], 0) / errors.length;
   return {
     alignment:Math.max(0, Math.round(60 - 22 * fraction)),
-    fixation:Math.max(0, Math.round(12 * s.locks + (Object.keys(s.reviewed).length * 3) - s.lockError * 28)),
+    fixation:Math.max(0, Math.round(24 * s.locks / stations.length + (Object.keys(s.reviewed).length * 3) - s.lockError * 28)),
     correction:Math.max(0, 10 - 2 * s.corrections - s.misses)
   };
 }
