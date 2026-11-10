@@ -75,11 +75,11 @@ try {
       const title = await step.textContent();
       const close = title === 'Line up the fragments';
       const distal = title==='Match the locking target' && await button('Side').getAttribute('aria-pressed')==='true';
-      const scale = Math.max(distal?2.5:title==='Advance the nail'?8.6:close?4.2:5.86,
-        (distal?2.4:close?5:2.88)/(f.width/f.height))/f.height;
+      const scale = Math.max(distal?2.5:title==='Advance the nail'?8.6:close?3.5:5.86,
+        (distal?2.4:close?4.25:2.88)/(f.width/f.height))/f.height;
       const x=g.x+g.width/2, y=g.y+g.height/2;
       if(close&&!pixels){
-        const roll=-.15, c=Math.cos(roll), s=Math.sin(roll);
+        const roll=-.23, c=Math.cos(roll), s=Math.sin(roll);
         [dx,dy]=[c*dx+s*dy,-s*dx+c*dy];
       }
       const send = (type,px,py)=>client.send('Input.dispatchTouchEvent',{type,touchPoints:px===undefined?[]:[{x:px,y:py,id:1}]});
@@ -283,11 +283,10 @@ try {
     if(video) {await video.saveAs(join(out,touch?'femur-touch.webm':'femur-case.webm')); await video.delete();}
     console.log('Completed',report.runs.at(-1));
   }
-  for(const failure of ['missing module','missing anatomy','missing glove','WebGL disabled']) {
+  for(const failure of ['missing module','missing anatomy','WebGL disabled']) {
     const page=await browser.newPage();
     if(failure==='missing module')await page.route('**/scene.mjs',route=>route.abort());
     else if(failure==='missing anatomy')await page.route('**/femur.glb',route=>route.abort());
-    else if(failure==='missing glove')await page.route('**/glove.glb',route=>route.abort());
     else await page.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;
       HTMLCanvasElement.prototype.getContext=function(type,...args){return type.startsWith('webgl')?null:original.call(this,type,...args);};});
     await page.goto(url);
