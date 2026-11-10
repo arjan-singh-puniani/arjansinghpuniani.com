@@ -69,13 +69,16 @@ try {
       await click(button('Fluoro'));
       await grip.waitFor();
     }
-    const drive = async (dx,dy,{finish=true,steps=12}={}) => {
+    const drive = async (dx,dy,{finish=true,steps=12,pixels=false}={}) => {
       await grip.scrollIntoViewIfNeeded();
       const g=await grip.boundingBox(), f=await field.boundingBox();
-      const close = (await step.textContent()) === 'Line up the fragments';
-      const scale = Math.max(close?4.2:5.86,(close?5:2.88)/(f.width/f.height))/f.height;
+      const title = await step.textContent();
+      const close = title === 'Line up the fragments';
+      const distal = title==='Match the locking target' && await button('Side').getAttribute('aria-pressed')==='true';
+      const scale = Math.max(distal?2.5:title==='Advance the nail'?8.6:close?4.2:5.86,
+        (distal?2.4:close?5:2.88)/(f.width/f.height))/f.height;
       const x=g.x+g.width/2, y=g.y+g.height/2;
-      if(close){
+      if(close&&!pixels){
         const roll=-.15, c=Math.cos(roll), s=Math.sin(roll);
         [dx,dy]=[c*dx+s*dy,-s*dx+c*dy];
       }
@@ -83,7 +86,7 @@ try {
       if(touch)await send('touchStart',x,y);
       else {await p.mouse.move(x,y); await p.mouse.down();}
       for(let i=1;i<=steps;i++) {
-        const px=x+dx*i/steps/scale,py=y+dy*i/steps/scale;
+        const px=x+dx*i/steps/(pixels?1:scale),py=y+dy*i/steps/(pixels?1:scale);
         if(touch) await send('touchMove',px,py);
         else await p.mouse.move(px,py);
       }
@@ -134,6 +137,16 @@ try {
       assert.equal(await p.locator('#metrics').innerText(),initial);
     }
     await screenshot('reduction');
+    const guide = p.locator('#guide-end');
+    const follow = async (steps=12) => {
+      if (!await guide.isVisible()) {
+        const mode = await button('Move').getAttribute('aria-pressed')==='true'?'Rotate':'Move';
+        await click(button(mode));
+      }
+      await guide.waitFor();
+      const g = await grip.boundingBox(), t = await guide.boundingBox();
+      await drive(t.x+t.width/2-g.x-g.width/2,t.y+t.height/2-g.y-g.height/2,{pixels:true,steps});
+    };
     const measure = p.evaluate(() => new Promise(resolve => {
       const gaps=[];
       const start=performance.now();
@@ -150,10 +163,12 @@ try {
       }
       requestAnimationFrame(tick);
     }));
-    const gain = axis => .65+.35*Math.min(1,Math.abs(baseline[axis])/.40);
-    await drive(-baseline.x/gain('x'),(.055-baseline.gap)/.76,{steps:60});
-    await click(button('Rotate'));
-    await drive(-baseline.front/.48,baseline.twist/.51);
+    await screenshot('guided-stroke');
+    await follow(60);
+    const firstStroke = await p.locator('#metrics').innerText();
+    assert.notEqual(firstStroke,initial);
+    for(let i=0;i<20 && await p.locator('#metrics [data-good]').count()<4;i++) await follow();
+    assert.equal(await p.locator('#metrics [data-good]').count(),4);
     await click(action);
     await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
     await click(button('Side'));
@@ -168,29 +183,53 @@ try {
       await click(action);
       await p.getByRole('status').filter({hasText:'outside the game band'}).waitFor();
     }
-    await click(button('Move'));
-    await drive(-baseline.z/gain('z'),0);
-    await click(button('Rotate'));
-    await drive(-baseline.side/.48,0);
+    for(let i=0;i<20 && await p.locator('#metrics [data-good]').count()<4;i++) await follow();
+    assert.equal(await p.locator('#metrics [data-good]').count(),4);
     await screenshot('reduction-aligned');
     assert.match(await p.locator('#reduction-progress').textContent(),/Front ✓/);
     await click(action);
     await waitStep('Advance the nail');
+    await screenshot('seat-start');
     await drive(0,.85);
     assert(Number(await progress.getAttribute('value')) > .3);
     await drive(0,1.10);
+    await waitStep('Review the seated nail');
+    assert.equal(await grip.isVisible(),false);
+    await screenshot('prelock');
+    await click(action);
+    await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
+    assert.equal(await grip.isVisible(),false);
+    await click(button('Side')); await click(action);
     await waitStep('Match the locking target');
-    await screenshot('cutaway');
+    assert.equal(await button('Side').getAttribute('aria-pressed'),'true');
+    await screenshot('distal-lock');
     await drive(.36,-.30);
-    await p.getByRole('status').filter({hasText:'Upper lock seated'}).waitFor();
+    await p.getByRole('status').filter({hasText:'First distal lock placed'}).waitFor();
+    await drive(-.37,.29);
+    await p.getByRole('status').filter({hasText:'proximal aiming jig'}).waitFor();
+    assert.equal(await button('Front').getAttribute('aria-pressed'),'true');
+    await screenshot('proximal-jig');
     await drive(-.37,.29);
     await waitStep('Save the final images');
     await screenshot('final-image');
     await click(action); await click(button('Side')); await click(action);
     await waitStep('Cover the site');
-    await click(action);
+    await screenshot('dressing-tray');
+    const dressing = await grip.boundingBox();
+    await drive(0,-.25);
+    await p.getByRole('status').filter({hasText:'returned to its tray'}).waitFor();
+    assert.deepEqual(await grip.boundingBox(),dressing);
+    const patch = await grip.boundingBox(), site = await p.locator('#target').boundingBox();
+    const dx = site.x+site.width/2-patch.x-patch.width/2;
+    const dy = site.y+site.height/2-patch.y-patch.height/2;
+    const cancelledDressing = await drive(dx,dy,{pixels:true,finish:false});
+    await p.locator('#target[data-good]').waitFor();
+    if(!touch) await grip.dispatchEvent('pointercancel',{pointerId:1});
+    await cancelledDressing();
+    await p.locator('#target:not([data-good])').waitFor();
+    await drive(dx,dy,{pixels:true});
     await waitStep('Compare your result');
-    assert.match(await p.locator('#notice').textContent(),/Alignment 60\/60 · Fixation 30\/30/);
+    assert.match(await p.locator('#notice').textContent(),/Alignment [45-6]\d\/60 · Fixation 30\/30/);
     const sideImage = await p.locator('#after').getAttribute('src');
     await screenshot('comparison-side');
     await click(button('Front'));
@@ -226,6 +265,8 @@ try {
     }
     if(touch) {
       const nudge = p.getByRole('button',{name:/^Nudge /});
+      await click(nudge);
+      assert.equal(await p.locator('#metrics').innerText(),firstStroke);
       for (const view of ['Front','Side']) {
         await click(button(view));
         for(let i=0; i<20 && await nudge.isVisible(); i++) await click(nudge);

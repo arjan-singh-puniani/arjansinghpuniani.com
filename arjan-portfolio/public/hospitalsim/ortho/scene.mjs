@@ -1,7 +1,7 @@
 import * as T from '../vendor/build/three.module.js';
 import {GLTFLoader} from '../vendor/examples/jsm/loaders/GLTFLoader.js';
 import {corticalFinish, operativeTissue, theatreDetails} from './anatomy.mjs';
-import {fitClamp, steelReflections} from './clamp.mjs';
+import {addGownSleeve, fitClamp, steelReflections} from './clamp.mjs';
 import {aligned, stations} from './model.mjs';
 
 const V = (x,y,z) => new T.Vector3(x,y,z);
@@ -34,6 +34,22 @@ function drape(parent, material) {
   material.vertexColors=true;
   const cloth=mesh(geom,material,parent);
   cloth.position.z=-1.15;
+  return cloth;
+}
+
+function roundedRect(path, w, h, r) {
+  const x=w/2,y=h/2;
+  path.moveTo(-x+r,-y);
+  path.lineTo(x-r,-y);
+  path.quadraticCurveTo(x,-y,x,-y+r);
+  path.lineTo(x,y-r);
+  path.quadraticCurveTo(x,y,x-r,y);
+  path.lineTo(-x+r,y);
+  path.quadraticCurveTo(-x,y,-x,y-r);
+  path.lineTo(-x,-y+r);
+  path.quadraticCurveTo(-x,-y,-x+r,-y);
+  path.closePath();
+  return path;
 }
 
 export async function makeScene(canvas) {
@@ -72,16 +88,23 @@ export async function makeScene(canvas) {
     boneMeshes.push({part,original,orientation});
   });
 
-  drape(field,new T.MeshBasicMaterial({color:0x145a73}));
+  const backdrop=drape(field,new T.MeshBasicMaterial({color:0x145a73}));
   const skin=bead(0,0,-.37,1.03,2.95,.40,mat(0xa86859,.81),field);
   const {group:muscle,sides:tissueSides}=operativeTissue();
   field.add(muscle);
+  const clothOpening=roundedRect(new T.Shape(),18,15,.2);
+  clothOpening.holes.push(roundedRect(new T.Path(),1.04,1.72,.24));
+  const closureDrape=mesh(new T.ShapeGeometry(clothOpening),mat(0x22627b,.94),field);
+  closureDrape.position.set(0,-.15,.42);
   const cover=new T.Group();
   field.add(cover);
-  const pad=bead(0,0,.03,.46,.95,.15,mat(0xf1eee4,.92),cover);
-  pad.rotation.z=-.09;
-  const seamMat=mat(0xd1dfd9,.95);
-  for(let i=-7;i<=7;i++)curve([[-.26,i*.094,.145],[0,i*.094,.19],[.26,i*.094,.145]],.006,seamMat,cover,10);
+  const patchShape=(w,h,r)=>new T.ExtrudeGeometry(roundedRect(new T.Shape(),w,h,r),
+    {depth:.04,bevelThickness:.022,bevelSize:.026,bevelSegments:2,curveSegments:6});
+  mesh(patchShape(.83,1.54,.18),mat(0xddddd2,.96),cover);
+  const pad=mesh(patchShape(.60,1.29,.14),mat(0xf4f2e6,.93),cover);
+  pad.position.z=.06;
+  const seamMat=mat(0xd9dfd5,.95);
+  for(let i=-6;i<=6;i++)curve([[-.245,i*.086,.125],[0,i*.086,.126],[.245,i*.086,.125]],.006,seamMat,cover,8);
 
   const steel=mat(0xa6b4bc,.22,.78), darkSteel=mat(0x465b69,.33,.68), gripMat=mat(0x254957,.39,.25);
   steel.envMap=darkSteel.envMap=steelReflections();
@@ -97,10 +120,12 @@ export async function makeScene(canvas) {
   const supportGlove=hand.clone();
   supportGlove.rotation.set(0,Math.PI,-.22);
   supportGlove.position.set(-.14,1.06,.98);
-  const cuff=new T.Mesh(new T.CylinderGeometry(.12,.16,1.6,18),mat(0x17536d,.83));
-  cuff.rotation.z=1.28;
-  cuff.position.set(-2.47,.90,.79);
-  props.add(supportGlove,cuff);
+  addGownSleeve(supportGlove);
+  const oppositeGlove=hand.clone();
+  oppositeGlove.rotation.z=.27;
+  oppositeGlove.position.set(.20,.18,.55);
+  addGownSleeve(oppositeGlove);
+  props.add(supportGlove,oppositeGlove);
   field.add(props);
   const implant=mat(0x548ca0,.26,.62);
   const canal=atlasDistal.userData.canal;
@@ -109,22 +134,43 @@ export async function makeScene(canvas) {
   const tip=path.at(-1);
   curve(path,.070,implant,nail,52);
   bead(...tip,.083,.090,.083,implant,nail);
-  const locks=stations.map(y=>{
-    const group=new T.Group(), [x,,z]=center(y);
-    group.position.y=y;
+  proximal.updateMatrixWorld(true);
+  distal.updateMatrixWorld(true);
+  const ray=new T.Raycaster();
+  const targets=stations.map(({y,view})=>{
+    const [x,,z]=center(y);
+    const fragment=y<0?distal:proximal;
+    const cortex=sign=>{
+      ray.set(V(x+sign*2,y,z),V(-sign,0,0));
+      return ray.intersectObject(fragment.children[0],true)[0]?.point.x ?? x+sign*.24;
+    };
+    return {x,y,z,near:cortex(-1),far:cortex(1),view};
+  });
+  const locks=targets.map(({y,z,near,far})=>{
+    const group=new T.Group();
     scene.add(group);
-    curve([[x,0,z-.20],[x,0,z+.23]],.036,steel,group,12);
-    bead(x,0,z+.23,.060,.060,.024,steel,group);
+    curve([[near-.035,y,z],[far+.014,y,z]],.032,steel,group,12);
+    bead(near-.035,y,z,.027,.056,.056,steel,group);
     return group;
   });
   const seatTool=new T.Group();
   nail.add(seatTool);
   curve([tip,[tip[0],2.27,tip[2]],[.37,2.36,tip[2]]],.049,steel,seatTool);
   curve([[.22,2.36,tip[2]],[.48,2.36,tip[2]]],.08,gripMat,seatTool);
-  const ports=stations.map(y=>{
-    const [x,,z]=center(y);
-    return bead(x,y,z+.064,.042,.042,.018,mat(0x102a37,.55),nail);
+  const ports=targets.map(({x,y,z})=>{
+    const rim=mesh(new T.TorusGeometry(.043,.012,8,24),steel,nail);
+    rim.rotation.y=Math.PI/2;
+    rim.position.set(x-.071,y,z);
+    const center=mesh(new T.CircleGeometry(.035,24),new T.MeshBasicMaterial({color:0x102a37,side:T.DoubleSide}),rim);
+    center.position.z=-.001;
+    return rim;
   });
+  const jig=new T.Group(), upper=targets.at(-1), sleeveX=upper.near-.52;
+  nail.add(jig);
+  curve([[tip[0],2.25,tip[2]],[sleeveX,2.18,upper.z],[sleeveX,upper.y,upper.z]],.039,gripMat,jig);
+  const sleeve=mesh(new T.CylinderGeometry(.056,.056,.28,16),steel,jig);
+  sleeve.rotation.z=Math.PI/2;
+  sleeve.position.set(sleeveX+.14,upper.y,upper.z);
   const guides=new T.Group();
   scene.add(guides);
   const line=new T.Line(new T.BufferGeometry().setFromPoints([V(0,-1.24,.31),V(0,1.24,.31)]),new T.LineDashedMaterial({color:0x78d8e7,dashSize:.075,gapSize:.055,transparent:true,opacity:.56,depthTest:false}));
@@ -145,10 +191,10 @@ export async function makeScene(canvas) {
     width=Math.max(1,w);height=Math.max(1,h);
     renderer.setSize(width,height,false);
   }
-  function frame(view, close, operative) {
+  function frame(view, close, operative, seating, distalLevel) {
     const aspect=width/height;
-    span=Math.max(operative?4.2:close?3.28:5.86, (operative?5:close?2.76:2.88)/aspect);
-    const half=span/2, center=operative?-.57:close?-.11:0;
+    span=Math.max(distalLevel!==undefined?2.5:seating?8.6:operative?4.2:close?3.28:5.86, (distalLevel!==undefined?2.4:operative?5:close?2.76:2.88)/aspect);
+    const half=span/2, center=distalLevel??(seating?1.15:operative?-.57:close?-.11:0);
     const yaw=(view==='front'?0:-Math.PI/2)+(operative?-.23:0);
     roll=operative?-.15:0;
     camera.left=-half*aspect;camera.right=half*aspect;camera.top=half;camera.bottom=-half;
@@ -158,9 +204,6 @@ export async function makeScene(canvas) {
     if(operative) camera.translateX(.49);
     camera.updateProjectionMatrix();
     camera.updateMatrixWorld();
-    // Stage the illustrated tissue bed behind the working geometry without shifting its projection.
-    if(operative) field.position.copy(camera.getWorldDirection(fieldDepth).multiplyScalar(2.8));
-    else field.position.set(0,0,0);
     field.rotation.y=view==='front'?0:-Math.PI/2;
     guides.rotation.y=field.rotation.y;
   }
@@ -170,11 +213,18 @@ export async function makeScene(canvas) {
   }
   function draw(s, options={}) {
     const pose=options.pose||s.pose, view=s.view;
-    const film=options.film||s.stage==='image';
+    const target=s.stage==='fix'?targets[s.locks]:null;
+    const distalTarget=target?.view==='side';
+    const film=options.film||s.stage==='image'||s.stage==='prelock'||distalTarget;
     const cutaway=['seat','fix'].includes(s.stage)&&!film;
     const close=s.stage==='reduce';
     const operative=close&&!film;
-    frame(view,close,operative);
+    const seating=s.stage==='seat';
+    backdrop.scale.set(seating?1.85:1,seating?1.5:1,1);
+    frame(view,close,operative,seating,distalTarget?target.y:undefined);
+    // Recess the illustrative bed so it does not obscure the tools in an educational cutaway.
+    if(operative||cutaway) field.position.copy(camera.getWorldDirection(fieldDepth).multiplyScalar(2.8));
+    else field.position.set(0,0,0);
     distal.position.set(pose.x,-pose.gap,pose.z);
     distal.rotation.set(pose.side,pose.twist,-pose.front,'YXZ');
     field.visible=!film;
@@ -191,17 +241,20 @@ export async function makeScene(canvas) {
     }
     props.visible=operative;
     cover.visible=s.stage==='dress'||s.stage==='review';
-    cover.scale.setScalar(s.stage==='review'?1:.76);
+    closureDrape.visible=cover.visible;
+    cover.scale.setScalar(.54);
+    cover.position.set(s.dressing.x,s.dressing.y-.15,.50);
     for(const {part,original,orientation} of boneMeshes) part.material=film?xray:cutaway?cut:s.stage==='inspect'?orientation:original;
     xray.opacity=.72;
     proximal.visible=distal.visible=s.stage!=='dress'&&s.stage!=='review'||film;
     for(const [name,result] of Object.entries(tools))result.tool.visible=operative&&view===name;
     const {tool,handle,setClosure}=tools[view];
     setClosure(options.closure ?? Number(Boolean(s.grip)));
-    nail.visible=options.hardware!==undefined?options.hardware:['seat','fix','image'].includes(s.stage);
-    nail.position.y=(1-s.nail)*2.04;
-    seatTool.visible=s.stage==='seat'&&!film;
-    for(const port of ports)port.visible=!film;
+    nail.visible=options.hardware!==undefined?options.hardware:['seat','prelock','fix','image'].includes(s.stage);
+    nail.position.y=(1-s.nail)*2.24;
+    jig.visible=Boolean(target&&!distalTarget);
+    seatTool.visible=s.stage==='seat'||jig.visible;
+    ports.forEach((port,i)=>{port.visible=distalTarget&&i===s.locks});
     locks.forEach((lock,i)=>{lock.visible=nail.visible&&i<s.locks});
     movingMark.visible=guides.visible=operative&&!s.expert;
     const markColor=aligned(pose,view)?0x98e6ba:0x78d8e7;
@@ -210,10 +263,13 @@ export async function makeScene(canvas) {
     background.set(film?0x101d26:0x0b3e51);
     renderer.render(scene,camera);
     if(operative)return {handle:point(tool.localToWorld(handle.clone()))};
-    if(s.stage==='seat')return {handle:point(V(.42,Math.min(2.5,2.36+nail.position.y),.04)),contact:point(V(0,Math.min(2.45,1.98+nail.position.y),.08))};
-    if(s.stage==='fix'){
-      const y=stations[s.locks], [x,,z]=center(y);
-      return {handle:point(V(x+s.aim.x,y+s.aim.y,z+.23)),contact:point(V(x,y,z+.23))};
+    if(seating)return {handle:point(V(.36,2.36+nail.position.y,tip[2]))};
+    if(s.stage==='dress')return {handle:point(cover.getWorldPosition(V())),contact:point(field.localToWorld(V(0,-.15,.50)))};
+    if(target){
+      const {x,y,z}=target;
+      const contact=distalTarget?V(x-.071,y,z):V(sleeveX,y,z);
+      const grip=contact.clone().add(V(distalTarget?0:s.aim.x,s.aim.y,distalTarget?s.aim.x:0));
+      return {handle:point(grip),contact:point(contact)};
     }
     return {};
   }

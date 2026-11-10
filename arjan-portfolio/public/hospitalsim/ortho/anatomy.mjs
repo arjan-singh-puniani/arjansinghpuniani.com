@@ -158,7 +158,7 @@ export function theatreDetails(steel) {
   const props=new T.Group();
   for(const side of [-1,1]){
     const s=(x,y,z)=>[x*side,y,z], y=side<0?.52:.28;
-    const shape=retractor([s(.68,y-.11,.35),s(.83,y,.46),s(.92,y+.05,.61),s(1.26,y+.16,.72),s(2.58,y+.63,.78)]);
+    const shape=retractor([s(.68,y-.11,.35),s(.83,y,.46),s(.92,y+.05,.61),s(1.26,y+.16,.72),s(1.72,y+.31,.74)]);
     props.add(new T.Mesh(shape,steel));
   }
   const structures=[

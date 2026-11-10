@@ -1,16 +1,17 @@
-import {makeCase, openingSeed, challengeSeed, views, limits, aligned, error, changeView, startReduction, confirmImage, begin, move, cancel, release, returnToReduction, dress, score, nextAdjustment, nudgeAlignment} from './model.mjs';
+import {makeCase, openingSeed, challengeSeed, views, stations, limits, dressingTolerance, aligned, error, changeView, startReduction, confirmImage, begin, move, cancel, release, returnToReduction, dress, score, nextAdjustment, nudgeAlignment} from './model.mjs';
 import {makeScene} from './scene.mjs';
 
 const steps = {
-  inspect:['01 / Orientation','Find the break','Check alignment in Front and Side, seat and lock the nail, save both images, then apply the dressing to finish.','Take the clamp'],
+  inspect:['01 / Orientation','Find the break','Follow a simplified antegrade nailing case for a simple oblique midshaft fracture. Check both views before and after locking.','Take the clamp'],
   reduce:['02 / Fracture reduction','Line up the fragments','Drag the clamp in Move for offset and gap, or Rotate for tilt and twist. Get four checkmarks, then verify this view.','Check this view'],
-  seat:['03 / Implant','Advance the nail','Drag the handle down and release. Repeat until the nail reaches 100%.',''],
-  fix:['04 / Fixation','Match the locking target','Drag the crosshair to the center of the ring. Release when the ring turns green. Repeat for the second lock.',''],
-  image:['05 / Verification','Save the final images','Inspect the implant and both locks in each projection. Save both images.','Save this image'],
-  dress:['06 / Dressing','Cover the site','Place the dressing to finish the case.','Place dressing'],
+  seat:['03 / Implant','Advance the nail','Entry, guidewire passage and canal preparation are represented as already complete. Drag the virtual handle down in short strokes to seat the nail.',''],
+  prelock:['04 / Before locking','Review the seated nail','Compare nail position and shaft alignment in Front and Side. Rotation assessment in the real procedure requires anatomical references beyond this model.','Confirm this view'],
+  fix:['05 / Fixation','Match the locking target','',''],
+  image:['06 / Verification','Save the final images','Inspect the nail and all three modeled locks in each projection. Save both images.','Save this image'],
+  dress:['07 / Dressing','Cover the site','Drag the dressing onto the dashed outline and release. You can also use Place dressing.','Place dressing'],
   review:['Case complete','Compare your result','Switch projections to compare the same framing before and after.','Replay same setup']
 };
-const timeline = Object.keys(steps).slice(0, 6);
+const timeline = Object.keys(steps).slice(0, -1);
 const degrees = n => (n * 180 / Math.PI).toFixed(1) + '°';
 
 export async function mount() {
@@ -25,7 +26,7 @@ export async function mount() {
   let state = makeCase(requested && /^\d{1,10}$/.test(requested) ? Number(requested) : openingSeed);
   let pointer, keyboard, frame = 0, audio, muted = true, reviewView = '', fluoro = false, dressing = false;
   let elapsed = 0, runningSince = null;
-  let closure = 0, lastDraw = 0;
+  let closure = 0, lastDraw = 0, nextGesture;
   const stopClock = () => {
     if (runningSince === null) return;
     elapsed += performance.now() - runningSince;
@@ -70,16 +71,38 @@ export async function mount() {
     const x = Math.min(field.clientWidth - inset, Math.max(inset, point.x));
     const y = Math.min(field.clientHeight - inset, Math.max(inset, point.y));
     element.style.translate = x + 'px ' + y + 'px';
+    return {x,y};
+  }
+
+  function drawGuide(next, origin) {
+    const track = $('guide-track'), end = $('guide-end');
+    nextGesture = undefined;
+    if (origin && next && state.mode === next.mode) {
+      const [x,y] = [Math.sign(next.dx), Math.sign(next.dy)];
+      const available = x > 0 ? field.clientWidth-origin.x : x < 0 ? origin.x
+        : y > 0 ? field.clientHeight-origin.y : origin.y;
+      nextGesture = {next,origin,x,y,length:Math.min(54,available-13)};
+    }
+    const gesture = pointer ? pointer.guide : keyboard ? undefined : nextGesture;
+    track.hidden = end.hidden = !gesture;
+    if (!gesture) return;
+    const {origin:start,x,y,length} = gesture;
+    track.style.width = length + 'px';
+    track.style.transform = `translate(${start.x}px,${start.y}px) rotate(${Math.atan2(y,x)}rad)`;
+    end.style.translate = `${start.x+x*length}px ${start.y+y*length}px`;
+    end.toggleAttribute('data-good',Boolean(pointer?.guideReady));
   }
 
   function redraw() {
     if (frame || dressing) return;
     frame = requestAnimationFrame(now => {
       frame = 0;
+      if (dressing) return;
       const {stage, view, mode, pose} = state;
       if($('workbench').dataset.stage!==stage)$('workbench').dataset.stage=stage;
       const reducing = stage === 'reduce', fixing = stage === 'fix', reviewing = stage === 'review';
-      const active = reducing || fixing || stage === 'seat';
+      const distalTarget = fixing && stations[state.locks].view === 'side';
+      const placing = stage === 'dress', active = reducing || fixing || placing || stage === 'seat';
       const beforeClosure = closure;
       const held = reducing && Boolean(state.grip);
       const dt = Math.min(28,Math.max(10,now-lastDraw));
@@ -97,13 +120,16 @@ export async function mount() {
       const wasGrip = document.activeElement === grip;
       const [tag, title, directions, action] = steps[stage];
       setText('seed','SETUP ' + state.seed);
-      setText('stage-label',tag);
+      setText('stage-label',fixing ? '05 / ' + stations[state.locks].label : tag);
       setText('step',title);
-      setText('directions',directions);
+      setText('directions',fixing ? (distalTarget
+        ? 'Side shows the distal opening end-on. Align the virtual reticle to its center and release.'
+        : 'The proximal aiming jig is attached to the insertion handle. Center the virtual reticle on the guide sleeve and release.')
+        : directions);
       $('fluoro').hidden = stage !== 'inspect' && !reducing;
       $('fluoro').setAttribute('aria-pressed', fluoro);
-      setText('view-label',stage === 'seat' || fixing ? 'EDUCATIONAL CUTAWAY'
-        : stage === 'image' || reviewing || ((stage === 'inspect' || reducing) && fluoro) ? 'SIMULATED FLUOROSCOPY' : 'OPERATIVE FIELD');
+      setText('view-label',stage === 'seat' || (fixing && !distalTarget) ? 'EDUCATIONAL CUTAWAY'
+        : stage === 'image' || stage === 'prelock' || distalTarget || reviewing || ((stage === 'inspect' || reducing) && fluoro) ? 'SIMULATED FLUOROSCOPY' : 'OPERATIVE FIELD');
       $('modes').hidden = !reducing;
       $('keyboard').hidden = !active;
       $('comparison').hidden = !reviewing;
@@ -120,8 +146,8 @@ export async function mount() {
       }
       for (const choice of ['move','rotate']) $(choice).setAttribute('aria-pressed', choice === mode);
       $('action').hidden = !action;
-      const checked = reducing ? state.checked[view] : stage === 'image' && state.reviewed[view];
-      setText('action',checked ? (reducing ? 'View checked ✓' : 'Image saved ✓') : action);
+      const checked = reducing ? state.checked[view] : stage === 'prelock' ? state.prelock[view] : stage === 'image' && state.reviewed[view];
+      setText('action',checked ? (reducing || stage === 'prelock' ? 'View checked ✓' : 'Image saved ✓') : action);
       $('action').disabled = Boolean(checked || state.grip);
       const next = reducing ? nextAdjustment(pose,view) : null;
       const help = reducing && !state.expert && next && !fluoro;
@@ -135,7 +161,7 @@ export async function mount() {
       const alternate = help ? 'Nudge ' + metricNames[next.key] + ' ' + arrows[next.direction]
         : reviewing
         ? (state.seed === openingSeed ? 'Try harder setup' : 'Try another setup')
-        : stage === 'seat' ? 'Refine alignment' : '';
+        : stage === 'seat' || stage === 'prelock' ? 'Refine alignment' : '';
       setText('secondary',alternate);
       $('secondary').hidden = !alternate;
       $('secondary').disabled = Boolean(held);
@@ -160,13 +186,17 @@ export async function mount() {
           : 'All four readings are in range. Select Check this view.';
         else if (help) {
           const modeName = next.mode === 'move' ? 'Move' : 'Rotate';
-          const instruction = (mode !== next.mode ? 'Select ' + modeName + ', then drag' : 'Drag')
-            + ' the clamp ' + next.direction + ' in short strokes until ' + metricNames[next.key] + ' shows ✓.';
+          const instruction = pointer?.guideReady ? 'Release to keep this correction.'
+            : pointer?.guide ? 'Bring your drag to the dashed marker and release.'
+            : mode !== next.mode ? 'Select ' + modeName + ' to adjust ' + metricNames[next.key] + '.'
+            : 'Drag the clamp ' + next.direction + ' to the dashed marker to adjust ' + metricNames[next.key] + '.';
           notice = (notice ? notice + ' ' : '') + instruction;
         } else if (!notice) notice = 'Use Move for offset and gap, and Rotate for tilt and twist.';
       }
       if (stage === 'seat' && !notice) notice = state.grip ? 'Travel preview. Release to hold position.' : Math.round(state.nail * 100) + '% seated';
-      if (fixing && !notice) notice = aimGood ? 'Target acquired. Release to confirm.' : (state.locks ? 'Lower locking target' : 'Upper locking target');
+      if (fixing && !notice) notice = aimGood ? 'Target acquired. Release to confirm.' : stations[state.locks].label + ' locking target';
+      const dressingReady = placing && Math.hypot(state.dressing.x,state.dressing.y) <= dressingTolerance;
+      if (placing && dressingReady) notice = 'Dressing centered. Release to place it.';
       if (reviewing) {
         const points = score(state);
         notice = 'Alignment ' + points.alignment + '/60 · Fixation ' + points.fixation + '/30 · Corrections ' + points.correction + '/10. '
@@ -185,18 +215,36 @@ export async function mount() {
         }
       } else {
         const points = scene.draw(state,{film:(stage === 'inspect' || reducing) && fluoro,closure});
-        place(grip, points.handle);
+        const handle = place(grip, points.handle);
         place(target, reducing ? null : points.contact);
+        drawGuide(help ? next : null,handle);
         grip.toggleAttribute('data-active', Boolean(state.grip));
-        target.toggleAttribute('data-good', fixing ? aimGood : reducing && aligned(pose,view));
+        target.toggleAttribute('data-good', fixing ? aimGood : dressingReady);
         place($('offset-reticle'), pointer?.touch && (fixing||reducing) && points.handle ? {x:points.handle.x,y:points.handle.y - 36} : null);
-        grip.setAttribute('aria-label', reducing ? 'Grab reduction clamp' : fixing ? 'Grab locking reticle' : 'Grab nail handle');
+        grip.setAttribute('aria-label', reducing ? 'Grab reduction clamp' : fixing ? 'Grab locking reticle' : placing ? 'Grab dressing' : 'Grab nail handle');
       }
       if ($('notice').textContent !== notice) $('notice').textContent = notice;
       if (previousAction && active && $('action').hidden) grip.focus({preventScroll:true});
-      if (wasGrip && !active && !$('action').hidden) $('action').focus({preventScroll:true});
+      if ((wasGrip || previousAction) && !active && !$('action').hidden) $('action').focus({preventScroll:true});
       if (reducing && closure !== Number(held)) redraw();
     });
+  }
+
+  function finishDressing() {
+    stopClock();
+    cue('done');
+    if (reduced.matches) return;
+    dressing = true;
+    $('action').disabled = true;
+    scene.draw(state);
+    grip.hidden = target.hidden = true;
+    field.animate([{filter:'brightness(1)'},{filter:'brightness(1.18)'},{filter:'brightness(1)'}],{duration:450});
+    window.setTimeout(() => {
+      if (!dressing) return;
+      dressing = false;
+      redraw();
+      requestAnimationFrame(() => $('action').focus({preventScroll:true}));
+    },450);
   }
 
   function stopPointer(commit = false) {
@@ -206,7 +254,8 @@ export async function mount() {
     if (id !== undefined && grip.hasPointerCapture(id)) grip.releasePointerCapture(id);
     if (commit && moved) {
       const feedback = release(state);
-      if (feedback) cue(feedback);
+      if (feedback === 'done') finishDressing();
+      else if (feedback) cue(feedback);
       else if(state.stage==='reduce' && aligned(state.pose,state.view)) cue('settle');
     } else cancel(state);
     redraw();
@@ -218,7 +267,15 @@ export async function mount() {
     const ready = () => state.stage === 'fix' ? Math.hypot(state.aim.x,state.aim.y) <= (state.expert ? .052 : .092)
       : state.stage === 'reduce' && aligned(state.pose,state.view);
     const before = ready();
-    move(state,...scene.modelDelta(x,y));
+    const gesture = control.guide;
+    const along = gesture ? x*gesture.x+y*gesture.y : 0;
+    const across = gesture ? Math.abs(x*gesture.y-y*gesture.x) : 0;
+    const guided = gesture && along > 0 && across <= along;
+    control.guideReady = Boolean(guided && along >= gesture.length-2);
+    if (guided) {
+      const progress = control.guideReady ? 1 : along/gesture.length;
+      move(state,gesture.next.dx*progress,gesture.next.dy*progress);
+    } else move(state,...scene.modelDelta(x,y));
     if (!before && ready()) cue('engaged');
     redraw();
   }
@@ -226,7 +283,7 @@ export async function mount() {
   grip.addEventListener('pointerdown', event => {
     if (event.button !== 0 || !event.isPrimary || !begin(state)) return;
     event.preventDefault();
-    pointer = {id:event.pointerId, x:event.clientX, y:event.clientY, touch:event.pointerType === 'touch', moved:false};
+    pointer = {id:event.pointerId, x:event.clientX, y:event.clientY, touch:event.pointerType === 'touch', moved:false, guide:nextGesture};
     grip.setPointerCapture(event.pointerId);
     cue('grab');
     redraw();
@@ -309,18 +366,8 @@ export async function mount() {
       if (!reduced.matches) field.animate([{opacity:.78},{opacity:1}],{duration:185});
     }
     else if (state.stage === 'review') restart();
-    else if (state.stage === 'dress' && dress(state)) {
-      stopClock();
-      cue('done');
-      if (!reduced.matches) {
-        field.animate([{filter:'brightness(1)'},{filter:'brightness(1.18)'},{filter:'brightness(1)'}],{duration:450});
-        dressing = true;
-        $('action').disabled = true;
-        window.setTimeout(() => { if (dressing) {dressing = false; redraw();} },450);
-        scene.draw(state);
-        return;
-      }
-    } else if (confirmImage(state)) cue('check');
+    else if (state.stage === 'dress' && dress(state)) finishDressing();
+    else if (confirmImage(state)) cue('check');
     redraw();
   };
   $('secondary').onclick = () => {
