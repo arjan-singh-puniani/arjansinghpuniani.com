@@ -1,7 +1,7 @@
 import * as T from '../vendor/build/three.module.js';
 import {GLTFLoader} from '../vendor/examples/jsm/loaders/GLTFLoader.js';
 import {corticalFinish, operativeTissue, theatreDetails} from './anatomy.mjs';
-import {fitClamp, gloveMesh, steelReflections} from './clamp.mjs';
+import {fitClamp, steelReflections} from './clamp.mjs';
 import {aligned, stations} from './model.mjs';
 
 const V = (x,y,z) => new T.Vector3(x,y,z);
@@ -37,7 +37,10 @@ function drape(parent, material) {
 }
 
 export async function makeScene(canvas) {
-  const {scene:atlas}=await new GLTFLoader().loadAsync(new URL('./assets/femur.glb',import.meta.url).href);
+  const loader=new GLTFLoader();
+  const [{scene:atlas},{scene:hand}]=await Promise.all(['femur','glove'].map(asset =>
+    loader.loadAsync(new URL('./assets/'+asset+'.glb',import.meta.url).href)
+  ));
   const renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
   renderer.setPixelRatio(Math.min(devicePixelRatio,matchMedia('(pointer:coarse)').matches?1.18:1.45));
   renderer.outputColorSpace=T.SRGBColorSpace;
@@ -86,12 +89,12 @@ export async function makeScene(canvas) {
   darkSteel.envMapIntensity=1.5;
   steel.side=darkSteel.side=T.DoubleSide;
   const tools=Object.fromEntries(['front','side'].map(view=>{
-    const result=fitClamp(atlasDistal.userData,view,steel,darkSteel);
+    const result=fitClamp(atlasDistal.userData,view,steel,darkSteel,hand);
     distal.add(result.tool);
     return [view,result];
   }));
   const props=theatreDetails(steel);
-  const supportGlove=gloveMesh();
+  const supportGlove=hand.clone();
   supportGlove.rotation.set(0,Math.PI,-.22);
   supportGlove.position.set(-.14,1.06,.98);
   const cuff=new T.Mesh(new T.CylinderGeometry(.12,.16,1.6,18),mat(0x17536d,.83));

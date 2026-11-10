@@ -165,10 +165,8 @@ try {
     await drive(-baseline.z/gain('z'),0);
     await click(button('Rotate'));
     await drive(-baseline.side/.48,0);
-    await click(action);
-    await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
-    await click(button('Front'));
     await screenshot('reduction-aligned');
+    assert.match(await p.locator('#reduction-progress').textContent(),/Front ✓/);
     await click(action);
     await waitStep('Advance the nail');
     await drive(0,.85);
@@ -219,6 +217,16 @@ try {
       await p.locator('#grip:not([data-active])').waitFor();
       assert.equal(await p.locator('#metrics').innerText(),initial);
     }
+    if(touch) {
+      const nudge = p.getByRole('button',{name:/^Nudge /});
+      for (const view of ['Front','Side']) {
+        await click(button(view));
+        for(let i=0; i<20 && await nudge.isVisible(); i++) await click(nudge);
+        assert.equal(await p.locator('#metrics [data-good]').count(),4);
+        await click(action);
+      }
+      await waitStep('Advance the nail');
+    }
     assert.deepEqual(errors,[]);
     report.runs.push({input:touch?'CDP touch, iPhone 13 profile':'mouse and keyboard',loadMs:Math.round(ready-loaded),
       firstInputMs:Math.round(firstInput-ready),caseMs:Math.round(elapsed-firstInput),frameSample:await measure});
@@ -227,10 +235,11 @@ try {
     if(video) {await video.saveAs(join(out,touch?'femur-touch.webm':'femur-case.webm')); await video.delete();}
     console.log('Completed',report.runs.at(-1));
   }
-  for(const failure of ['missing module','missing anatomy','WebGL disabled']) {
+  for(const failure of ['missing module','missing anatomy','missing glove','WebGL disabled']) {
     const page=await browser.newPage();
     if(failure==='missing module')await page.route('**/scene.mjs',route=>route.abort());
     else if(failure==='missing anatomy')await page.route('**/femur.glb',route=>route.abort());
+    else if(failure==='missing glove')await page.route('**/glove.glb',route=>route.abort());
     else await page.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;
       HTMLCanvasElement.prototype.getContext=function(type,...args){return type.startsWith('webgl')?null:original.call(this,type,...args);};});
     await page.goto(url);

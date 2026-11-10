@@ -1,11 +1,11 @@
-import {makeCase, openingSeed, challengeSeed, views, limits, aligned, error, changeView, startReduction, confirmImage, begin, move, cancel, release, returnToReduction, dress, score} from './model.mjs';
+import {makeCase, openingSeed, challengeSeed, views, limits, aligned, error, changeView, startReduction, confirmImage, begin, move, cancel, release, returnToReduction, dress, score, nextAdjustment, nudgeAlignment} from './model.mjs';
 import {makeScene} from './scene.mjs';
 
 const steps = {
-  inspect:['01 / Orientation','Find the break','Find the fracture in the thigh. Toggle Fluoro to compare front and side images.','Take the clamp'],
-  reduce:['02 / Fracture reduction','Line up the fragments','Press the clamp handles to close the jaws. Drag to move the fragment. In Rotate, drag sideways for tilt and vertically for twist.','Check this view'],
-  seat:['03 / Implant','Advance the nail','Drag the handle down in short strokes. Pull back or refine alignment if the nail stops.',''],
-  fix:['04 / Fixation','Match the locking target','Drag the crosshair into the ring, then release. The upper and lower targets each need a lock.',''],
+  inspect:['01 / Orientation','Find the break','Check alignment in Front and Side, seat and lock the nail, save both images, then apply the dressing to finish.','Take the clamp'],
+  reduce:['02 / Fracture reduction','Line up the fragments','Get four checkmarks in this view, then select Check this view. Hold and drag the clamp, or use Guided nudges.','Check this view'],
+  seat:['03 / Implant','Advance the nail','Drag the handle down and release. Repeat until the nail reaches 100%.',''],
+  fix:['04 / Fixation','Match the locking target','Drag the crosshair to the center of the ring. Release when the ring turns green. Repeat for the second lock.',''],
   image:['05 / Verification','Save the final images','Inspect the implant and both locks in each projection. Save both images.','Save this image'],
   dress:['06 / Dressing','Cover the site','Place the dressing to finish the case.','Place dressing'],
   review:['Case complete','Compare your result','Switch projections to compare the same framing before and after.','Replay same setup']
@@ -40,6 +40,8 @@ export async function mount() {
     metrics.append(box);
     cards[key] = {box,value};
   }
+  const metricNames = {offset:'offset', gap:'gap', tilt:'tilt', twist:'twist'};
+  const arrows = {left:'←', right:'→', up:'↑', down:'↓'};
   const stages = [...$('stages').children];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -121,11 +123,24 @@ export async function mount() {
       const checked = reducing ? state.checked[view] : stage === 'image' && state.reviewed[view];
       setText('action',checked ? (reducing ? 'View checked ✓' : 'Image saved ✓') : action);
       $('action').disabled = Boolean(checked || state.grip);
-      const alternate = reviewing
+      const next = reducing ? nextAdjustment(pose,view) : null;
+      const help = reducing && !state.expert && next && !fluoro;
+      const guide = $('reduction-progress');
+      guide.hidden = !reducing;
+      if (reducing) {
+        setText('reduction-progress',views.map(choice =>
+          (choice === 'front' ? 'Front' : 'Side') + (state.checked[choice] ? ' ✓' : ' to check')
+        ).join(' · '));
+      }
+      const alternate = help ? 'Nudge ' + metricNames[next.key] + ' ' + arrows[next.direction]
+        : reviewing
         ? (state.seed === openingSeed ? 'Try harder setup' : 'Try another setup')
         : stage === 'seat' ? 'Refine alignment' : '';
       setText('secondary',alternate);
       $('secondary').hidden = !alternate;
+      $('secondary').disabled = Boolean(held);
+      $('action').classList.toggle('primary',!help);
+      $('secondary').classList.toggle('primary',Boolean(help));
       $('restart').hidden = reviewing || stage === 'inspect';
       $('travel').hidden = stage !== 'seat';
       $('travel').value = state.nail;
@@ -138,10 +153,19 @@ export async function mount() {
       }
       const aimGood = Math.hypot(state.aim.x,state.aim.y) <= (state.expert ? .052 : .092);
       let notice = state.notice;
-      if (reducing && fluoro && !notice) notice = 'Orthographic view. Tap Fluoro again to return to the clamp.';
-      if (reducing && !notice) notice = held
-        ? (aligned(pose,view) ? 'Aligned in this view. Release to hold.' : 'Jaws engaged. Drag against the pull.')
-        : (aligned(pose,view) ? 'Alignment held. Check this view.' : 'Offset and gap are in game units. ✓ marks the game band.');
+      if (reducing) {
+        const other = view === 'front' ? 'Side' : 'Front';
+        if (checked) notice = 'This view is checked. Select ' + other + ' to continue.';
+        else if (fluoro) notice = 'Tap Fluoro again to return to the clamp.';
+        else if (!next) notice = held ? 'All four readings are in range. Release the clamp.'
+          : 'All four readings are in range. Select Check this view.';
+        else if (help) {
+          const modeName = next.mode === 'move' ? 'Move' : 'Rotate';
+          const instruction = (mode !== next.mode ? 'Select ' + modeName + ', then drag ' : 'Drag ')
+            + next.direction + ' to fix ' + metricNames[next.key] + '.';
+          notice = (notice ? notice + ' ' : '') + instruction;
+        } else if (!notice) notice = 'Use Move for offset and gap, and Rotate for tilt and twist.';
+      }
       if (stage === 'seat' && !notice) notice = state.grip ? 'Travel preview. Release to hold position.' : Math.round(state.nail * 100) + '% seated';
       if (fixing && !notice) notice = aimGood ? 'Target acquired. Release to confirm.' : (state.locks ? 'Lower locking target' : 'Upper locking target');
       if (reviewing) {
@@ -301,7 +325,11 @@ export async function mount() {
     redraw();
   };
   $('secondary').onclick = () => {
-    if (state.stage === 'review') restart(state.seed === openingSeed ? challengeSeed
+    if (state.stage === 'reduce') {
+      if (!fluoro && nudgeAlignment(state)) cue('settle');
+      redraw();
+    }
+    else if (state.stage === 'review') restart(state.seed === openingSeed ? challengeSeed
       : (Math.imul(state.seed,1664525)+1013904223) >>> 0);
     else {
       stopPointer();
