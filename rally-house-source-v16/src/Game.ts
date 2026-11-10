@@ -95,7 +95,7 @@ export class Game {
   everyday=new EverydayLife();private lifeRuns=new Map<string,{scene:LifeScene;id:string;beat:number;age:number;pause:number;interrupted?:string;matchId?:string;objectId?:string;why?:string;sawCourt?:boolean}>();private speechOwner:string|null=null;
   activities=new ActivitySystem();evidence=new CoachingEvidence();history=new ClubHistory();affordances=new ObjectAffordances();ambientSocial=new AmbientSocialPlanner();development={preparation:0,recovery:0};settings:{volume:number;visuals:'auto'|'detail';reducedMotion:boolean}={volume:.65,visuals:'auto',reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches};private queuedLesson:string|null=null;private movingPlacement:string|null=null;private decisionTimer=0;private observationStarted=false;
   private saveSystem=new SaveSystem<GameSave>();private buildType:Placement['type']|null=null;private buildRotation=0;private hoverGround:Vec3|null=null;
-  private frameSamples:number[]=[];private graphicsLost=false;private last=performance.now();private simAcc=0;private lessonUntil=-1;private lessonActive=false;private rallyWasRunning=false;private autosave=0;private lastDay=1;
+  private frameSamples:number[]=[];private fastFrameWindows=0;private graphicsLost=false;private last=performance.now();private simAcc=0;private lessonUntil=-1;private lessonActive=false;private rallyWasRunning=false;private autosave=0;private lastDay=1;
   private playerWatchingRally=false;private playerWatchActivityId:string|null=null;private playerWatchPeak=0;private playerWatchNextReaction=8;
   private pointers=new Map<number,{x:number;y:number}>();private pointerStart:{x:number;y:number}|null=null;private lastPointer:{x:number;y:number}|null=null;private dragged=false;private pinchDistance=0;
   private perf=new PerformanceMonitor(new URLSearchParams(location.search).has('debug'));private socialUntil=-1;private socialIds=new Set<string>();private activeSpeechId:string|null=null;private speechUntil=0;private weatherRedirectUntil=-1;private socialRallyWasRunning=false;private socialRallyUntil=-1;
@@ -216,7 +216,7 @@ export class Game {
     this.canvas.addEventListener('dblclick',e=>{if(this.championship.active||this.performanceLab.active||this.phoneCapture?.active)return;this.spatial.dismiss();const c=this.pickCharacter(e.clientX,e.clientY);if(c){this.camera.focus(c.position.x,c.position.z,17,1);this.ui.closeContext();}});
 
     document.addEventListener('visibilitychange',()=>{
-      this.last=performance.now();this.simAcc=0;
+      this.last=performance.now();this.simAcc=0;this.frameSamples=[];this.fastFrameWindows=0;
       this.matchInput.reset();this.championshipHud.resetTouch();
       if(document.hidden){this.phoneCapture?.cancel();this.setChampionshipPaused(true);this.audio.stopVoice();this.audio.stopAmbience();}
     });
@@ -1010,7 +1010,7 @@ export class Game {
   private openSettings(){
     this.ui.showContext('COMFORT','Make yourself comfortable','Your character, camera motion and sound are yours to adjust.',[],[
       {title:`Character: ${this.playerAvatar?this.player.spec.name:'choose your look'}`,subtitle:'Play as Taylor or Arjan',run:()=>this.openAvatarPicker()},
-      {title:`Visuals: ${this.settings.visuals==='auto'?'adaptive':'full detail'}`,subtitle:'Keep lighting and geometry; adapt pixel resolution on slower devices',run:()=>{this.settings.visuals=this.settings.visuals==='auto'?'detail':'auto';this.renderer.renderScale=1;this.frameSamples=[];this.openSettings();void this.save();}},
+      {title:`Visuals: ${this.settings.visuals==='auto'?'adaptive':'full detail'}`,subtitle:'Keep lighting and geometry; adapt pixel resolution on slower devices',run:()=>{this.settings.visuals=this.settings.visuals==='auto'?'detail':'auto';this.renderer.renderScale=1;this.frameSamples=[];this.fastFrameWindows=0;this.openSettings();void this.save();}},
       {title:this.settings.reducedMotion?'Motion: reduced':'Motion: full',subtitle:'Reduce camera and environmental motion',run:()=>{this.settings.reducedMotion=!this.settings.reducedMotion;this.openSettings();void this.save();}},
       {title:`Volume: ${Math.round(this.settings.volume*100)}%`,subtitle:'Cycle muted, quiet, medium, full',run:()=>{const levels=[0,.3,.65,1];this.settings.volume=levels[(levels.indexOf(this.settings.volume)+1)%4];this.audio.volume=this.settings.volume;this.openSettings();void this.save();}}
     ]);
@@ -1416,12 +1416,24 @@ export class Game {
 
   private previewMeshes(type:Placement['type'],x:number,z:number,valid:boolean):Mesh[]{return this.world.previewPlacement(type,x,z,this.buildRotation,valid)}
 
+  private adaptResolution(elapsed:number){
+    if(this.settings.visuals==='detail'){this.renderer.renderScale=1;this.frameSamples.length=0;this.fastFrameWindows=0;return;}
+    if(!Number.isFinite(elapsed)||elapsed<=0){this.frameSamples.length=0;this.fastFrameWindows=0;return;}
+    // Cap isolated stalls so they cannot outweigh the rest of a smooth window.
+    this.frameSamples.push(Math.min(.1,elapsed));if(this.frameSamples.length<60)return;
+    const mean=this.frameSamples.reduce((a,b)=>a+b,0)/this.frameSamples.length;this.frameSamples.length=0;
+    this.fastFrameWindows=mean<.018?this.fastFrameWindows+1:0;
+    // React before play becomes choppy; require six smooth windows before restoring detail.
+    if(mean>.026)this.renderer.renderScale=Math.max(.64,this.renderer.renderScale-.08);
+    else if(this.fastFrameWindows>=6){this.renderer.renderScale=Math.min(1,this.renderer.renderScale+.04);this.fastFrameWindows=0;}
+  }
+
   private loop=(now:number)=>{
     if(this.graphicsLost)return;
     if(document.hidden){this.last=now;this.simAcc=0;requestAnimationFrame(this.loop);return;}
     const elapsed=Math.max(0,(now-this.last)/1000),realDt=Math.min(2,elapsed);this.last=now;this.renderDt=Math.min(.05,realDt);
     this.audio.updateClubAmbience(realDt,this.clock.minutes,this.world.weather,this.championship.active);
-    if(this.settings.visuals==='auto'){this.frameSamples.push(elapsed);if(this.frameSamples.length>=12){const mean=this.frameSamples.reduce((a,b)=>a+b,0)/this.frameSamples.length;this.renderer.renderScale=clamp(this.renderer.renderScale+(mean>.055?-.12:mean<.024?.04:0),.64,1);this.frameSamples=[];}}else this.renderer.renderScale=1;
+    this.adaptResolution(elapsed);
     const step=1/60,maxSteps=this.championship.active?6:120;
     // Tennis must remain observable after a visible stall. Drop excess debt
     // rather than simulate an unseen return window; club catch-up stays intact.
