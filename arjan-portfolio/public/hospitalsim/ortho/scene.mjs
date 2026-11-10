@@ -147,7 +147,7 @@ export async function makeScene(canvas) {
   }
   function frame(view, close, operative) {
     const aspect=width/height;
-    span=Math.max(operative?4.2:close?3.28:5.86, (operative?4.7:close?2.76:2.88)/aspect);
+    span=Math.max(operative?4.2:close?3.28:5.86, (operative?5:close?2.76:2.88)/aspect);
     const half=span/2, center=operative?-.57:close?-.11:0;
     const yaw=(view==='front'?0:-Math.PI/2)+(operative?-.23:0);
     roll=operative?-.15:0;
@@ -155,7 +155,7 @@ export async function makeScene(canvas) {
     camera.position.set(10*Math.sin(yaw),center+(operative?.95:0),10*Math.cos(yaw));
     camera.up.set(Math.cos(yaw)*Math.sin(roll),Math.cos(roll),-Math.sin(yaw)*Math.sin(roll));
     camera.lookAt(0,center,0);
-    if(operative) camera.translateX(.42);
+    if(operative) camera.translateX(.49);
     camera.updateProjectionMatrix();
     camera.updateMatrixWorld();
     // Stage the illustrated tissue bed behind the working geometry without shifting its projection.
