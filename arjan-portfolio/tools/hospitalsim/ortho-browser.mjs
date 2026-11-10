@@ -73,7 +73,7 @@ try {
       await grip.scrollIntoViewIfNeeded();
       const g=await grip.boundingBox(), f=await field.boundingBox();
       const close = (await step.textContent()) === 'Line up the fragments';
-      const scale = Math.max(close?3.28:5.86,(close?2.76:2.88)/(f.width/f.height))/f.height;
+      const scale = Math.max(close?4.2:5.86,(close?4.7:2.88)/(f.width/f.height))/f.height;
       const x=g.x+g.width/2, y=g.y+g.height/2;
       if(close){
         const roll=-.15, c=Math.cos(roll), s=Math.sin(roll);
@@ -157,6 +157,13 @@ try {
     await click(action);
     await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
     await click(button('Side'));
+    const gripRect = await grip.boundingBox(), fieldRect = await field.boundingBox();
+    assert(gripRect.x > fieldRect.x + 2 && gripRect.x + gripRect.width < fieldRect.x + fieldRect.width - 2,
+      'Side-view grip follows the tool inside the field instead of sticking to a viewport edge');
+    assert(await p.locator('#secondary[data-nudge]').evaluate(element =>
+      parseFloat(getComputedStyle(element).fontSize) < parseFloat(getComputedStyle(document.querySelector('#action')).fontSize)
+    ));
+    await screenshot('side-displaced');
     if(!touch) {
       await click(action);
       await p.getByRole('status').filter({hasText:'outside the game band'}).waitFor();

@@ -3,7 +3,7 @@ import {makeScene} from './scene.mjs';
 
 const steps = {
   inspect:['01 / Orientation','Find the break','Check alignment in Front and Side, seat and lock the nail, save both images, then apply the dressing to finish.','Take the clamp'],
-  reduce:['02 / Fracture reduction','Line up the fragments','Get four checkmarks in this view, then select Check this view. Hold and drag the clamp, or use Guided nudges.','Check this view'],
+  reduce:['02 / Fracture reduction','Line up the fragments','Drag the clamp in Move for offset and gap, or Rotate for tilt and twist. Get four checkmarks, then verify this view.','Check this view'],
   seat:['03 / Implant','Advance the nail','Drag the handle down and release. Repeat until the nail reaches 100%.',''],
   fix:['04 / Fixation','Match the locking target','Drag the crosshair to the center of the ring. Release when the ring turns green. Repeat for the second lock.',''],
   image:['05 / Verification','Save the final images','Inspect the implant and both locks in each projection. Save both images.','Save this image'],
@@ -139,8 +139,7 @@ export async function mount() {
       setText('secondary',alternate);
       $('secondary').hidden = !alternate;
       $('secondary').disabled = Boolean(held);
-      $('action').classList.toggle('primary',!help);
-      $('secondary').classList.toggle('primary',Boolean(help));
+      $('secondary').toggleAttribute('data-nudge',Boolean(help));
       $('restart').hidden = reviewing || stage === 'inspect';
       $('travel').hidden = stage !== 'seat';
       $('travel').value = state.nail;
@@ -161,8 +160,8 @@ export async function mount() {
           : 'All four readings are in range. Select Check this view.';
         else if (help) {
           const modeName = next.mode === 'move' ? 'Move' : 'Rotate';
-          const instruction = (mode !== next.mode ? 'Select ' + modeName + ', then drag ' : 'Drag ')
-            + next.direction + ' to fix ' + metricNames[next.key] + '.';
+          const instruction = (mode !== next.mode ? 'Select ' + modeName + ', then drag' : 'Drag')
+            + ' the clamp ' + next.direction + ' in short strokes until ' + metricNames[next.key] + ' shows ✓.';
           notice = (notice ? notice + ' ' : '') + instruction;
         } else if (!notice) notice = 'Use Move for offset and gap, and Rotate for tilt and twist.';
       }

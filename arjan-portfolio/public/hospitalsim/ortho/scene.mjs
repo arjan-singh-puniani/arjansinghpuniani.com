@@ -139,6 +139,7 @@ export async function makeScene(canvas) {
   const background=new T.Color();
   scene.background=background;
 
+  const fieldDepth=new T.Vector3();
   let width=1,height=1, span=5.65, roll=0;
   function size(w,h) {
     width=Math.max(1,w);height=Math.max(1,h);
@@ -146,16 +147,20 @@ export async function makeScene(canvas) {
   }
   function frame(view, close, operative) {
     const aspect=width/height;
-    span=Math.max(close?3.28:5.86, (close?2.76:2.88)/aspect);
-    const half=span/2, center=close?-.11:0;
+    span=Math.max(operative?4.2:close?3.28:5.86, (operative?4.7:close?2.76:2.88)/aspect);
+    const half=span/2, center=operative?-.57:close?-.11:0;
     const yaw=(view==='front'?0:-Math.PI/2)+(operative?-.23:0);
     roll=operative?-.15:0;
     camera.left=-half*aspect;camera.right=half*aspect;camera.top=half;camera.bottom=-half;
     camera.position.set(10*Math.sin(yaw),center+(operative?.95:0),10*Math.cos(yaw));
     camera.up.set(Math.cos(yaw)*Math.sin(roll),Math.cos(roll),-Math.sin(yaw)*Math.sin(roll));
     camera.lookAt(0,center,0);
+    if(operative) camera.translateX(.42);
     camera.updateProjectionMatrix();
     camera.updateMatrixWorld();
+    // Stage the illustrated tissue bed behind the working geometry without shifting its projection.
+    if(operative) field.position.copy(camera.getWorldDirection(fieldDepth).multiplyScalar(2.8));
+    else field.position.set(0,0,0);
     field.rotation.y=view==='front'?0:-Math.PI/2;
     guides.rotation.y=field.rotation.y;
   }
