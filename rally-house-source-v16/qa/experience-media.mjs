@@ -17,7 +17,7 @@ try{
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'No horizontal overflow');await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(out,profile.name+'-hero.png')});await page.screenshot({path:path.join(out,profile.name+'-page.png'),fullPage:true});
   const row={...profile,boxes,deferredGame:true};
   if(profile.name==='desktop'){
-   await page.getByRole('button',{name:'Play Rally House ↗',exact:true}).focus();await page.keyboard.press('Enter');await page.locator('iframe').waitFor();await enterClub(page.frameLocator('iframe'),'Arjan');row.keyboardEntry=true;
+   await page.getByRole('link',{name:'Play Rally House ↗',exact:true}).focus();await page.keyboard.press('Enter');await page.locator('iframe').waitFor();await enterClub(page.frameLocator('iframe'),'Arjan');row.keyboardEntry=true;
    await page.evaluate(()=>{document.querySelector('iframe').parentElement.requestFullscreen=()=>Promise.reject(Error('Controlled QA rejection'));});await page.getByRole('button',{name:'Enter fullscreen ↗',exact:true}).click();assert(await page.getByRole('status').filter({hasText:'Fullscreen is unavailable'}).isVisible());row.fullscreenFallback=true;
    await page.screenshot({path:path.join(out,'live-entry.png')});
   }

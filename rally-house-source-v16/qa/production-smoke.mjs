@@ -23,7 +23,7 @@ try{
   assert.equal(await page.locator('iframe').count(),0);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await page.screenshot({path:path.join(out,'landing-'+width+'.png')});report.views.push({width,steps:4,overflow:false});
  }
- await page.setViewportSize({width:1440,height:960});await page.getByRole('button',{name:'Play Rally House ↗',exact:true}).click();
+ await page.setViewportSize({width:1440,height:960});await page.getByRole('link',{name:'Play Rally House ↗',exact:true}).click();
  const frame=await (await page.locator('iframe').elementHandle()).contentFrame();await frame.locator('#game').waitFor({state:'visible'});await frame.goto(base+'/rally-house/index.html?debug');await frame.waitForFunction(()=>window.__rh?.ready);await enterClub(frame,'Arjan');
  const headHash=JSON.parse(fs.readFileSync(path.join(root,'assets/characters/arjan/head-provenance.json'))).sha256;
  report.head=await frame.evaluate(hash=>{const g=window.__rh.game;g.autosave=-1e6;return {avatar:g.player.spec.avatar,parts:g.player.meshes().filter(m=>m.skin?.id.startsWith('asset-'+hash+'-')).length};},headHash);assert.equal(report.head.parts,6);assert.equal(report.head.avatar,'arjan');
