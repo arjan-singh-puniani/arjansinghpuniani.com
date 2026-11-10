@@ -60,12 +60,24 @@ export async function makeScene(canvas) {
   renderer.outputColorSpace=T.SRGBColorSpace;
   renderer.toneMapping=T.ACESFilmicToneMapping;
   renderer.toneMappingExposure=1.10;
+  renderer.shadowMap.enabled=true;
+  renderer.shadowMap.type=T.PCFShadowMap;
+  renderer.shadowMap.autoUpdate=false;
+  renderer.shadowMap.needsUpdate=true;
   const scene=new T.Scene(), camera=new T.OrthographicCamera(-2,2,2,-2,.1,50);
   const field=new T.Group(), proximal=new T.Group(), distal=new T.Group(), nail=new T.Group();
   scene.add(field,proximal,distal,nail);
   scene.add(new T.HemisphereLight(0xe5f6ff,0x381e29,1.67));
   const light=new T.DirectionalLight(0xffeddb,2.48);
   light.position.set(-4,5,7);
+  light.castShadow=true;
+  Object.assign(light.shadow.camera,{left:-3.1,right:3.1,top:3.4,bottom:-3.4,near:2,far:16});
+  light.shadow.camera.updateProjectionMatrix();
+  light.shadow.mapSize.set(1024,1024);
+  light.shadow.radius=5;
+  light.shadow.intensity=.72;
+  light.shadow.normalBias=.012;
+  light.shadow.bias=-.00035;
   const fill=new T.DirectionalLight(0x75b7db,1.48);
   fill.position.set(5,0,-4);
   scene.add(light,fill);
@@ -88,7 +100,13 @@ export async function makeScene(canvas) {
 
   const backdrop=drape(field,new T.MeshBasicMaterial({color:0x145a73}));
   const skin=bead(0,0,-.37,1.03,2.95,.40,mat(0xa86859,.81),field);
-  const {group:muscle,sides:tissueSides}=operativeTissue();
+  skin.receiveShadow=true;
+  const steel=mat(0xa6b4bc,.22,.78), darkSteel=mat(0x465b69,.33,.68), gripMat=mat(0x254957,.39,.25);
+  steel.envMap=darkSteel.envMap=steelReflections();
+  steel.envMapIntensity=1.5;
+  darkSteel.envMapIntensity=1.5;
+  steel.side=darkSteel.side=T.DoubleSide;
+  const {group:muscle,sides:tissueSides,blades}=operativeTissue(steel);
   field.add(muscle);
   const clothOpening=roundedRect(new T.Shape(),18,15,.2);
   clothOpening.holes.push(roundedRect(new T.Path(),1.04,1.72,.24));
@@ -104,17 +122,12 @@ export async function makeScene(canvas) {
   const seamMat=mat(0xd9dfd5,.95);
   for(let i=-6;i<=6;i++)curve([[-.245,i*.086,.125],[0,i*.086,.126],[.245,i*.086,.125]],.006,seamMat,cover,8);
 
-  const steel=mat(0xa6b4bc,.22,.78), darkSteel=mat(0x465b69,.33,.68), gripMat=mat(0x254957,.39,.25);
-  steel.envMap=darkSteel.envMap=steelReflections();
-  steel.envMapIntensity=1.5;
-  darkSteel.envMapIntensity=1.5;
-  steel.side=darkSteel.side=T.DoubleSide;
   const tools=Object.fromEntries(['front','side'].map(view=>{
     const result=fitClamp(atlasDistal.userData,view,steel,darkSteel);
     distal.add(result.tool);
     return [view,result];
   }));
-  const props=theatreDetails(steel);
+  const props=theatreDetails();
   field.add(props);
   const implant=mat(0x548ca0,.26,.62);
   const canal=atlasDistal.userData.canal;
@@ -176,6 +189,7 @@ export async function makeScene(canvas) {
 
   const fieldDepth=new T.Vector3();
   let width=1,height=1, span=5.65, roll=0;
+  let shadowView='', shadowTension=0;
   function size(w,h) {
     width=Math.max(1,w);height=Math.max(1,h);
     renderer.setSize(width,height,false);
@@ -231,6 +245,13 @@ export async function makeScene(canvas) {
       tissueSides[i].position.x=(i===0?-1:1)*tension*.052+(operative&&i===1?.075:0);
       tissueSides[i].scale.z=1-tension*.07;
       tissueSides[i].position.z=operative&&i===1?-.045:0;
+      blades[i].visible=operative;
+    }
+    // The blades only change their shadow when the projection or tissue position changes.
+    if(shadowView!==(operative?view:'')||shadowTension!==tension){
+      renderer.shadowMap.needsUpdate=true;
+      shadowView=operative?view:'';
+      shadowTension=tension;
     }
     props.visible=operative;
     cover.visible=s.stage==='dress'||s.stage==='review';
