@@ -63,7 +63,7 @@ function curvedJaw(profile, quarter, sign) {
   return g;
 }
 
-function gloveMesh() {
+export function gloveMesh() {
   const forms=[];
   const ellipsoid=(x,y,z,rx,ry,rz,roll)=>{
     const g=new T.SphereGeometry(1,20,12);

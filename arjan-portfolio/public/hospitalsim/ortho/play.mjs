@@ -98,10 +98,10 @@ export async function mount() {
       setText('stage-label',tag);
       setText('step',title);
       setText('directions',directions);
-      $('fluoro').hidden = stage !== 'inspect';
+      $('fluoro').hidden = stage !== 'inspect' && !reducing;
       $('fluoro').setAttribute('aria-pressed', fluoro);
       setText('view-label',stage === 'seat' || fixing ? 'EDUCATIONAL CUTAWAY'
-        : stage === 'image' || reviewing || (stage === 'inspect' && fluoro) ? 'SIMULATED FLUOROSCOPY' : 'OPERATIVE MODEL');
+        : stage === 'image' || reviewing || ((stage === 'inspect' || reducing) && fluoro) ? 'SIMULATED FLUOROSCOPY' : 'OPERATIVE FIELD');
       $('modes').hidden = !reducing;
       $('keyboard').hidden = !active;
       $('comparison').hidden = !reviewing;
@@ -138,6 +138,7 @@ export async function mount() {
       }
       const aimGood = Math.hypot(state.aim.x,state.aim.y) <= (state.expert ? .052 : .092);
       let notice = state.notice;
+      if (reducing && fluoro && !notice) notice = 'Orthographic view. Tap Fluoro again to return to the clamp.';
       if (reducing && !notice) notice = held
         ? (aligned(pose,view) ? 'Aligned in this view. Release to hold.' : 'Jaws engaged. Drag against the pull.')
         : (aligned(pose,view) ? 'Alignment held. Check this view.' : 'Offset and gap are in game units. ✓ marks the game band.');
@@ -160,7 +161,7 @@ export async function mount() {
           reviewView = view;
         }
       } else {
-        const points = scene.draw(state,{film:stage === 'inspect' && fluoro,closure});
+        const points = scene.draw(state,{film:(stage === 'inspect' || reducing) && fluoro,closure});
         place(grip, points.handle);
         place(target, reducing ? null : points.contact);
         grip.toggleAttribute('data-active', Boolean(state.grip));
@@ -194,8 +195,7 @@ export async function mount() {
     const ready = () => state.stage === 'fix' ? Math.hypot(state.aim.x,state.aim.y) <= (state.expert ? .052 : .092)
       : state.stage === 'reduce' && aligned(state.pose,state.view);
     const before = ready();
-    const scale = scene.worldPerPixel();
-    move(state, x * scale, y * scale);
+    move(state,...scene.modelDelta(x,y));
     if (!before && ready()) cue('engaged');
     redraw();
   }
@@ -238,7 +238,7 @@ export async function mount() {
       return;
     }
     const vector = {ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[event.key];
-    if (!vector || pointer) return;
+    if (!vector || pointer || (fluoro && state.stage==='reduce')) return;
     if (!keyboard && begin(state)) {
       keyboard = {x:0,y:0,moved:false};
       cue('grab');
@@ -251,7 +251,7 @@ export async function mount() {
     apply(keyboard.x, keyboard.y, keyboard);
   });
 
-  $('fluoro').onclick = () => {fluoro = !fluoro; redraw();};
+  $('fluoro').onclick = () => {stopPointer(); fluoro = !fluoro; redraw();};
   for (const choice of views) $(choice).onclick = () => {
     stopPointer();
     changeView(state,choice);
@@ -281,6 +281,7 @@ export async function mount() {
     if (dressing) return;
     if (state.stage === 'inspect') {
       startReduction(state);
+      fluoro = false;
       runningSince = performance.now();
       if (!reduced.matches) field.animate([{opacity:.78},{opacity:1}],{duration:185});
     }

@@ -62,12 +62,23 @@ try {
     await waitStep('Line up the fragments');
     const firstInput = now();
     const initial = await p.locator('#metrics').innerText();
+    if(!touch){
+      await click(button('Fluoro'));
+      await grip.waitFor({state:'hidden'});
+      assert.equal(await p.locator('#view-label').textContent(),'SIMULATED FLUOROSCOPY');
+      await click(button('Fluoro'));
+      await grip.waitFor();
+    }
     const drive = async (dx,dy,{finish=true,steps=12}={}) => {
       await grip.scrollIntoViewIfNeeded();
       const g=await grip.boundingBox(), f=await field.boundingBox();
       const close = (await step.textContent()) === 'Line up the fragments';
       const scale = Math.max(close?3.28:5.86,(close?2.76:2.88)/(f.width/f.height))/f.height;
       const x=g.x+g.width/2, y=g.y+g.height/2;
+      if(close){
+        const roll=-.15, c=Math.cos(roll), s=Math.sin(roll);
+        [dx,dy]=[c*dx+s*dy,-s*dx+c*dy];
+      }
       const send = (type,px,py)=>client.send('Input.dispatchTouchEvent',{type,touchPoints:px===undefined?[]:[{x:px,y:py,id:1}]});
       if(touch)await send('touchStart',x,y);
       else {await p.mouse.move(x,y); await p.mouse.down();}

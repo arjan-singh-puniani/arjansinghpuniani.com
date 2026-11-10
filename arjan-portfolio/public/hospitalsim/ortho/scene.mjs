@@ -1,7 +1,7 @@
 import * as T from '../vendor/build/three.module.js';
 import {GLTFLoader} from '../vendor/examples/jsm/loaders/GLTFLoader.js';
 import {corticalFinish, operativeTissue, theatreDetails} from './anatomy.mjs';
-import {fitClamp, steelReflections} from './clamp.mjs';
+import {fitClamp, gloveMesh, steelReflections} from './clamp.mjs';
 import {aligned, stations} from './model.mjs';
 
 const V = (x,y,z) => new T.Vector3(x,y,z);
@@ -91,6 +91,13 @@ export async function makeScene(canvas) {
     return [view,result];
   }));
   const props=theatreDetails(steel);
+  const supportGlove=gloveMesh();
+  supportGlove.rotation.set(0,Math.PI,-.22);
+  supportGlove.position.set(-.14,1.06,.98);
+  const cuff=new T.Mesh(new T.CylinderGeometry(.12,.16,1.6,18),mat(0x17536d,.83));
+  cuff.rotation.z=1.28;
+  cuff.position.set(-2.47,.90,.79);
+  props.add(supportGlove,cuff);
   field.add(props);
   const implant=mat(0x548ca0,.26,.62);
   const canal=atlasDistal.userData.canal;
@@ -129,19 +136,20 @@ export async function makeScene(canvas) {
   const background=new T.Color();
   scene.background=background;
 
-  let width=1,height=1, span=5.65;
+  let width=1,height=1, span=5.65, roll=0;
   function size(w,h) {
     width=Math.max(1,w);height=Math.max(1,h);
     renderer.setSize(width,height,false);
   }
-  function frame(view, close) {
+  function frame(view, close, operative) {
     const aspect=width/height;
     span=Math.max(close?3.28:5.86, (close?2.76:2.88)/aspect);
-    const half=span/2;
+    const half=span/2, center=close?-.11:0;
+    const yaw=(view==='front'?0:-Math.PI/2)+(operative?-.23:0);
+    roll=operative?-.15:0;
     camera.left=-half*aspect;camera.right=half*aspect;camera.top=half;camera.bottom=-half;
-    const center=close?-.11:0;
-    if(view==='front')camera.position.set(0,center,10);
-    else camera.position.set(-10,center,0);
+    camera.position.set(10*Math.sin(yaw),center+(operative?.95:0),10*Math.cos(yaw));
+    camera.up.set(Math.cos(yaw)*Math.sin(roll),Math.cos(roll),-Math.sin(yaw)*Math.sin(roll));
     camera.lookAt(0,center,0);
     camera.updateProjectionMatrix();
     camera.updateMatrixWorld();
@@ -156,8 +164,9 @@ export async function makeScene(canvas) {
     const pose=options.pose||s.pose, view=s.view;
     const film=options.film||s.stage==='image';
     const cutaway=['seat','fix'].includes(s.stage)&&!film;
-    const close=s.stage==='reduce'&&!film;
-    frame(view,close);
+    const close=s.stage==='reduce';
+    const operative=close&&!film;
+    frame(view,close,operative);
     distal.position.set(pose.x,-pose.gap,pose.z);
     distal.rotation.set(pose.side,pose.twist,-pose.front,'YXZ');
     field.visible=!film;
@@ -166,19 +175,19 @@ export async function makeScene(canvas) {
     skin.scale.z=s.stage==='inspect'?.34:.32;
     muscle.visible=s.stage!=='dress'&&s.stage!=='review';
     const axis=view==='front'?'x':'z';
-    const tension=close&&s.grip ? Math.min(1,Math.hypot(pose[axis]-s.grip.pose[axis],pose.gap-s.grip.pose.gap)*2.8) : 0;
+    const tension=operative&&s.grip ? Math.min(1,Math.hypot(pose[axis]-s.grip.pose[axis],pose.gap-s.grip.pose.gap)*2.8) : 0;
     for(let i=0;i<tissueSides.length;i++){
-      tissueSides[i].position.x=(i===0?-1:1)*tension*.052+(close&&i===1?.075:0);
+      tissueSides[i].position.x=(i===0?-1:1)*tension*.052+(operative&&i===1?.075:0);
       tissueSides[i].scale.z=1-tension*.07;
-      tissueSides[i].position.z=close&&i===1?-.045:0;
+      tissueSides[i].position.z=operative&&i===1?-.045:0;
     }
-    props.visible=close;
+    props.visible=operative;
     cover.visible=s.stage==='dress'||s.stage==='review';
     cover.scale.setScalar(s.stage==='review'?1:.76);
     for(const {part,original,orientation} of boneMeshes) part.material=film?xray:cutaway?cut:s.stage==='inspect'?orientation:original;
     xray.opacity=.72;
     proximal.visible=distal.visible=s.stage!=='dress'&&s.stage!=='review'||film;
-    for(const [name,result] of Object.entries(tools))result.tool.visible=close&&view===name;
+    for(const [name,result] of Object.entries(tools))result.tool.visible=operative&&view===name;
     const {tool,handle,setClosure}=tools[view];
     setClosure(options.closure ?? Number(Boolean(s.grip)));
     nail.visible=options.hardware!==undefined?options.hardware:['seat','fix','image'].includes(s.stage);
@@ -186,13 +195,13 @@ export async function makeScene(canvas) {
     seatTool.visible=s.stage==='seat'&&!film;
     for(const port of ports)port.visible=!film;
     locks.forEach((lock,i)=>{lock.visible=nail.visible&&i<s.locks});
-    movingMark.visible=guides.visible=close&&!s.expert;
+    movingMark.visible=guides.visible=operative&&!s.expert;
     const markColor=aligned(pose,view)?0x98e6ba:0x78d8e7;
     line.material.color.set(markColor);
     markMaterial.color.set(markColor);
     background.set(film?0x101d26:0x0b3e51);
     renderer.render(scene,camera);
-    if(close)return {handle:point(tool.localToWorld(handle.clone()))};
+    if(operative)return {handle:point(tool.localToWorld(handle.clone()))};
     if(s.stage==='seat')return {handle:point(V(.42,Math.min(2.5,2.36+nail.position.y),.04)),contact:point(V(0,Math.min(2.45,1.98+nail.position.y),.08))};
     if(s.stage==='fix'){
       const y=stations[s.locks], [x,,z]=center(y);
@@ -209,5 +218,11 @@ export async function makeScene(canvas) {
     capture.drawImage(canvas,Math.round((canvas.width-plate.width)/2),0,plate.width,plate.height,0,0,plate.width,plate.height);
     return plate.toDataURL('image/png');
   }
-  return {draw,size,snapshot,worldPerPixel:()=>span/height};
+  return {
+    draw,size,snapshot,
+    modelDelta(x,y) {
+      const scale=span/height, c=Math.cos(roll), s=Math.sin(roll);
+      return [(c*x-s*y)*scale,(s*x+c*y)*scale];
+    }
+  };
 }
