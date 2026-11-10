@@ -1,3 +1,5 @@
+Play the optional [Ortho Lab femur fracture case](https://arjansinghpuniani.com/hospitalsim/ortho/index.html). [Case model, references, local run and verification](docs/ORTHO_LAB.md).
+
 Current people/animation iteration: [runtime157 notes](docs/PEOPLE_PRESENCE.md), including executed Blender work and remaining reference gaps. Model1.0.0-rc9 is unchanged.
 
 # hospitalSIM — first-minute flow (RC9)

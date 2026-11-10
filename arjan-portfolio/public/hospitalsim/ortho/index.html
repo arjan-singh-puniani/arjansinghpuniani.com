@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ortho Lab · hospitalSIM</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+<script type="importmap">{"imports":{"three":"../vendor/build/three.module.js"}}</script>
+</head>
+<body>
+<header class="top">
+  <a href="../index.html">← hospitalSIM</a>
+  <span>ORTHO LAB <b>01</b></span>
+  <button id="sound" type="button" aria-label="Mute sound" aria-pressed="true">Sound off</button>
+</header>
+<main>
+  <div class="brief">
+    <div><p class="eyebrow">CASE 01 <span id="seed"></span></p><h1>Bring the femur back into line</h1></div>
+    <label>Assist <select id="difficulty"><option value="guided">Guided</option><option value="expert">Expert</option></select></label>
+  </div>
+  <ol id="stages" aria-label="Case progress"><li>Inspect</li><li>Reduce</li><li>Seat</li><li>Lock</li><li>Image</li><li>Dress</li></ol>
+  <div id="recovery" role="status"><p id="loading">Opening the 3D case…</p><button id="retry" hidden type="button">Reload case</button></div>
+  <section class="workbench" id="workbench" hidden aria-label="Orthopedic case">
+    <div class="viewer">
+      <div class="viewbar">
+        <div class="segments" role="group" aria-label="Projection"><button id="front" type="button">Front</button><button id="side" type="button">Side</button></div>
+        <button id="fluoro" type="button" aria-pressed="false">Fluoro</button><span id="view-label"></span>
+      </div>
+      <div class="segments" id="modes" role="group" aria-label="Clamp mode" hidden><button id="move" type="button">Move</button><button id="rotate" type="button">Rotate</button></div>
+      <div id="field" tabindex="0" aria-label="Operative field. Use arrow keys to adjust the selected tool, Enter to commit and Escape to cancel." aria-describedby="directions">
+        <canvas id="scene" aria-hidden="true"></canvas>
+        <span id="target" aria-hidden="true" hidden></span><span id="offset-reticle" aria-hidden="true" hidden></span>
+        <button id="grip" type="button" hidden aria-label="Grab tool"></button>
+        <span id="view-marker" aria-hidden="true">HIP ↑</span>
+      </div>
+      <section id="comparison" hidden aria-label="Matched baseline and final imaging">
+        <figure><img id="before" alt="Simulated fluoroscopy before reduction"><figcaption>01 · Baseline</figcaption></figure>
+        <figure><img id="after" alt="Simulated fluoroscopy after fixation"><figcaption>02 · Final fixation</figcaption></figure>
+      </section>
+    </div>
+    <aside class="controls">
+      <p class="eyebrow" id="stage-label"></p>
+      <h2 id="step"></h2>
+      <p id="directions"></p>
+      <dl id="metrics" hidden></dl>
+      <progress id="travel" aria-label="Implant travel" max="1" hidden></progress>
+      <p id="notice" role="status"></p>
+      <div class="actions"><button id="action" class="primary" type="button"></button><button id="secondary" type="button" hidden></button></div>
+      <p id="keyboard" hidden>Keyboard · Arrow keys adjust, Enter commits, Esc cancels.</p>
+      <button id="restart" class="quiet" type="button">Restart setup</button>
+    </aside>
+  </section>
+  <details class="case-note">
+    <summary>Case note and references</summary>
+    <p>This fictional case depicts a displaced midshaft femur fracture. The femoral head and neck connect the shaft to the hip. The paired distal condyles form part of the knee. <a href="https://openstax.org/books/anatomy-and-physiology-2e/pages/8-4-bones-of-the-lower-limb" target="_blank" rel="noopener">OpenStax · Bones of the Lower Limb</a></p>
+    <p>The treatment concepts are fracture reduction, an implant within the shaft canal, transverse locking above and below the fracture, and final imaging. Implant locking screws are distinct from skin staples used for surface closure. The last beat in this case shows a dressing. <a href="https://surgeryreference.aofoundation.org/orthopedic-trauma/adult-trauma/femoral-shaft/simple-oblique-middle-1-3-fractures/antegrade-nailing" target="_blank" rel="noopener">AO Surgery Reference · Antegrade nailing, sections 4 and 9–14</a></p>
+    <p>The broad cutaway is an educational view. The two fluoroscopy views are stylized orthographic projections of the same game model. Each hides depth along its viewing axis. The twist readout is a game aid. Gestures, resistance, model units, score bands and snap thresholds are fictional game rules.</p>
+  </details>
+  <noscript><p>Enable JavaScript to load the interactive case.</p></noscript>
+</main>
+<script type="module">
+import('./play.mjs').then(({mount}) => mount()).catch(error => {
+  console.warn('Ortho Lab initialization:', error.message);
+  document.querySelector('#loading').textContent = 'The 3D case could not load. Reload or try a browser with WebGL 2 enabled.';
+  document.querySelector('#retry').hidden = false;
+});
+document.querySelector('#retry').onclick = () => location.reload();
+</script>
+</body>
+</html>
