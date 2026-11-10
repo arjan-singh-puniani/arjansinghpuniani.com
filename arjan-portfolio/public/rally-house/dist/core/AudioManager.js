@@ -131,30 +131,14 @@ export class AudioManager {
     click() { this.tone(520, .055, .010); }
     paper() { this.noiseBurst(1250, .055, .005, 1.6); this.tone(610, .035, .004, 'sine'); }
     bounce() { this.tone(116 + Math.random() * 8, .034, .010, 'triangle'); this.noiseBurst(520 + Math.random() * 80, .030, .007); }
-    hit(quality = 'clean') {
-        if (quality === 'frame') {
-            this.tone(224, .040, .010, 'triangle', 240);
-            this.noiseBurst(1550, .030, .010, 1.4);
-            return;
-        }
+    hit(quality = 'clean', speed = 10) {
         if (quality === 'net') {
             this.net();
             return;
         }
-        this.tone(184 + Math.random() * 12, .054, .015, 'triangle');
-        this.tone(365 + Math.random() * 20, .036, .007, 'sine');
-        this.noiseBurst(1100 + Math.random() * 140, .044, .013, 1.05);
+        this.tennisImpact(quality, speed);
     }
-    /**
-     * Build a short, cached material model of a ball compressing into a string bed.
-     *
-     * The previous Championship sound layered a handful of pure oscillators. It
-     * communicated timing, but the ear could still read it as a synthesized UI
-     * effect. This buffer mixes a felt-like impact impulse, damped string modes,
-     * racket-body resonance and two tiny early reflections. The result is still
-     * generated locally with no sampled/copyrighted audio, but it behaves more
-     * like a physical object being struck.
-     */
+    /** Cache three material variations per contact quality; power only changes the playback mix. */
     tennisMaterialBuffer(quality, variant) {
         const key = `${quality}:${variant}`;
         const cached = this.tennisMaterialBuffers.get(key)?.[0];
@@ -168,27 +152,28 @@ export class AudioManager {
         return buffer;
     }
     /** Play the cached material strike at the authoritative racket-contact frame. */
-    tennisImpact(quality = 'clean') {
+    tennisImpact(quality = 'clean', speed = 10) {
         if (!this.enabled || this.volume <= 0)
             return;
         try {
             const c = this.ensure();
             const variant = this.tennisVariant++ % 3;
+            // Use the planned ball launch speed, so power changes the sound independently of timing quality.
+            const strength = Math.max(0, Math.min(1, ((Number.isFinite(speed) ? speed : 10) - 4) / 14));
             const source = c.createBufferSource();
             const body = c.createBiquadFilter();
             const presence = c.createBiquadFilter();
             const gain = c.createGain();
             source.buffer = this.tennisMaterialBuffer(quality, variant);
             body.type = 'peaking';
-            body.frequency.value = quality === 'frame' ? 190 : 155;
-            body.Q.value = .8;
-            body.gain.value = quality === 'perfect' ? 3.0 : quality === 'clean' ? 2.2 : 1.2;
-            presence.type = 'peaking';
-            presence.frequency.value = quality === 'frame' ? 1150 : 2250;
-            presence.Q.value = .72;
-            presence.gain.value = quality === 'perfect' ? 3.2 : quality === 'clean' ? 2.2 : quality === 'defensive' ? .8 : -1.0;
-            const level = quality === 'perfect' ? .078 : quality === 'clean' ? .067 : quality === 'defensive' ? .052 : .043;
-            gain.gain.setValueAtTime(level * this.volume, c.currentTime);
+            body.frequency.value = quality === 'frame' ? 260 : 185;
+            body.Q.value = .7;
+            body.gain.value = quality === 'frame' ? 0 : 1 + strength * 2.5;
+            presence.type = 'highshelf';
+            presence.frequency.value = 1800;
+            presence.gain.value = -2 + strength * 5;
+            const level = quality === 'perfect' ? .105 : quality === 'clean' ? .094 : quality === 'defensive' ? .074 : .057;
+            gain.gain.setValueAtTime(level * (.55 + strength * .70) * this.volume, c.currentTime);
             source.connect(body).connect(presence).connect(gain).connect(c.destination);
             source.onended = () => { source.disconnect(); body.disconnect(); presence.disconnect(); gain.disconnect(); };
             source.start();

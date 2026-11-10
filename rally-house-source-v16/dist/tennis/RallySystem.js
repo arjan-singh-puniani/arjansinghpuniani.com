@@ -1,6 +1,6 @@
 import { COURT_MIN_X, COURT_MAX_X } from './CourtGeometry.js';
 import { Vec3, clamp, smoothstep } from '../rendering/Math3D.js';
-import { BallPhysics } from './BallPhysics.js';
+import { BallPhysics, solveLaunch } from './BallPhysics.js';
 const fract = (v) => v - Math.floor(v);
 const hash = (n) => fract(Math.sin(n * 12.9898 + 78.233) * 43758.5453);
 export class RallySystem {
@@ -80,7 +80,7 @@ export class RallySystem {
                         this.lastOutcome = p.outcome;
                         this.waitingForReceiver = false;
                         // Sound and visual burst begin on the same authoritative contact event.
-                        this.callbacks.onHit?.(p.outcome === 'frame' ? 'frame' : p.outcome === 'net' ? 'net' : 'clean');
+                        this.callbacks.onHit?.(p.outcome === 'frame' ? 'frame' : 'clean', solveLaunch(frame.center, p.target, p.flight, this.ball.gravity).len());
                         if (p.state === 'serve')
                             this.releaseBall(p, frame.center);
                     }

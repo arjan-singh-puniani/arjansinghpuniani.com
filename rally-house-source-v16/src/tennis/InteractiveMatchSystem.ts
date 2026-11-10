@@ -2,7 +2,7 @@ import {COURT,COURT_MIN_X,COURT_MAX_X} from './CourtGeometry.js';
 import { Vec3, clamp, smoothstep } from '../rendering/Math3D.js';
 import type { Mesh } from '../rendering/Renderer.js';
 import type { Character } from '../entities/Character.js';
-import { BallPhysics } from './BallPhysics.js';
+import { BallPhysics, solveLaunch } from './BallPhysics.js';
 import { BallTrail } from './BallTrail.js';
 import type { ChampionshipOpponentProfile } from './ChampionshipController.js';
 import { CHAMPIONSHIP_TUNING, CHAMPIONSHIP_CONTACT_FEEL } from './ChampionshipTuning.js';
@@ -46,7 +46,7 @@ interface PendingContact {
 }
 
 export interface InteractiveMatchCallbacks {
-  onHit?: (quality: InteractiveShotQuality,side:Side,direction:number) => void;
+  onHit?: (quality: InteractiveShotQuality,side:Side,direction:number,speed:number) => void;
   onBounce?: () => void;
   onNet?: () => void;
   onRallyContact?: (side: Side, quality: InteractiveShotQuality) => void;
@@ -533,7 +533,7 @@ export class InteractiveMatchSystem {
             this.playerHitPraise=.42;
             this.lastPlayerQuality=pending.quality;
           }
-          this.callbacks.onHit?.(pending.quality,pending.side,clamp((pending.target.x-frame.center.x)/4,-1,1));
+          this.callbacks.onHit?.(pending.quality,pending.side,clamp((pending.target.x-frame.center.x)/4,-1,1),solveLaunch(frame.center,pending.target,pending.flightTime,this.ball.gravity).len());
           this.callbacks.onRallyContact?.(pending.side, pending.quality);
           if(pending.stroke==='serve')this.releaseBall(pending,frame.center);
         }

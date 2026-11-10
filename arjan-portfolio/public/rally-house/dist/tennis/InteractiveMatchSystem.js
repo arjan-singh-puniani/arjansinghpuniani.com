@@ -1,6 +1,6 @@
 import { COURT, COURT_MIN_X, COURT_MAX_X } from './CourtGeometry.js';
 import { Vec3, clamp, smoothstep } from '../rendering/Math3D.js';
-import { BallPhysics } from './BallPhysics.js';
+import { BallPhysics, solveLaunch } from './BallPhysics.js';
 import { BallTrail } from './BallTrail.js';
 import { CHAMPIONSHIP_TUNING, CHAMPIONSHIP_CONTACT_FEEL } from './ChampionshipTuning.js';
 const COURT_CENTER_X = COURT.centerX;
@@ -436,7 +436,7 @@ export class InteractiveMatchSystem {
                         this.playerHitPraise = .42;
                         this.lastPlayerQuality = pending.quality;
                     }
-                    this.callbacks.onHit?.(pending.quality, pending.side, clamp((pending.target.x - frame.center.x) / 4, -1, 1));
+                    this.callbacks.onHit?.(pending.quality, pending.side, clamp((pending.target.x - frame.center.x) / 4, -1, 1), solveLaunch(frame.center, pending.target, pending.flightTime, this.ball.gravity).len());
                     this.callbacks.onRallyContact?.(pending.side, pending.quality);
                     if (pending.stroke === 'serve')
                         this.releaseBall(pending, frame.center);

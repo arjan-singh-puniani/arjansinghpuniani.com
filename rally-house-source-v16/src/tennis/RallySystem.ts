@@ -2,7 +2,7 @@ import {COURT,COURT_MIN_X,COURT_MAX_X} from './CourtGeometry.js';
 import {Vec3,clamp,smoothstep} from '../rendering/Math3D.js';
 import type {Mesh} from '../rendering/Renderer.js';
 import type {Character} from '../entities/Character.js';
-import {BallPhysics} from './BallPhysics.js';
+import {BallPhysics,solveLaunch} from './BallPhysics.js';
 
 type Stroke='swingForehand'|'swingBackhand'|'serve'|'volley';
 export type ShotQuality='clean'|'frame'|'net';
@@ -11,7 +11,7 @@ interface PendingShot {
   hitter:Character;receiver:Character;state:Stroke;target:Vec3;flight:number;contactAt:number;duration:number;released:boolean;impactStarted:boolean;latchRemaining:number;outcome:ShotOutcome;
   evidence:import('../simulation/CoachingEvidence.js').ShotEvidence;incomingStart:Vec3|null;contactTarget:Vec3|null;
 }
-export interface RallyCallbacks {onShot?:(e:import('../simulation/CoachingEvidence.js').ShotEvidence)=>void;onPoint?:(winner:string,loser:string,kind:string)=>void;onHit?:((quality:ShotQuality)=>void);onBounce?:()=>void;onNet?:()=>void;onRally?:((count:number)=>void);onMiss?:((who:string,kind:ShotOutcome|'miss')=>void);}
+export interface RallyCallbacks {onShot?:(e:import('../simulation/CoachingEvidence.js').ShotEvidence)=>void;onPoint?:(winner:string,loser:string,kind:string)=>void;onHit?:((quality:ShotQuality,speed:number)=>void);onBounce?:()=>void;onNet?:()=>void;onRally?:((count:number)=>void);onMiss?:((who:string,kind:ShotOutcome|'miss')=>void);}
 
 const fract=(v:number)=>v-Math.floor(v);
 const hash=(n:number)=>fract(Math.sin(n*12.9898+78.233)*43758.5453);
@@ -50,7 +50,7 @@ export class RallySystem {
             p.hitter.notifyRacketImpact(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
             this.impactBurst=1;this.lastOutcome=p.outcome;this.waitingForReceiver=false;
             // Sound and visual burst begin on the same authoritative contact event.
-            this.callbacks.onHit?.(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
+            this.callbacks.onHit?.(p.outcome==='frame'?'frame':'clean',solveLaunch(frame.center,p.target,p.flight,this.ball.gravity).len());
             if(p.state==='serve')this.releaseBall(p,frame.center);
           }
         }else{
