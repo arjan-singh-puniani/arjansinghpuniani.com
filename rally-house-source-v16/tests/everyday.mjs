@@ -25,6 +25,21 @@ test('An everyday caption has no wall-clock expiry while the simulation is pause
  const elements=new Map();globalThis.document={getElementById:id=>{if(!elements.has(id))elements.set(id,{textContent:'',classList:{add(){},remove(){},toggle(){}}});return elements.get(id)}};globalThis.window={setTimeout:()=>{timers++;return 1}};
  try{HUD.prototype.showSpeech.call({},'Barbara','The tea can wait.',0);assert.equal(timers,0);assert.equal(elements.get('speechText').textContent,'The tea can wait.');HUD.prototype.showSpeech.call({},'Leo','A normal brief comment.',3500);assert.equal(timers,1);}finally{globalThis.window=oldWindow;globalThis.document=oldDocument;}
 });
+test('Unchanged HUD labels do not rewrite DOM text, while real changes still appear',()=>{
+ const previous=globalThis.document,elements=new Map();let writes=0;
+ const element=()=>{let content='';const attributes=new Map();return {get textContent(){return content},set textContent(value){content=value;writes++},getAttribute:key=>attributes.get(key),setAttribute:(key,value)=>attributes.set(key,value),classList:{toggle(){}}};};
+ globalThis.document={getElementById:id=>{if(!elements.has(id))elements.set(id,element());return elements.get(id)}};
+ document.getElementById('weatherChip').firstChild=element();
+ const hud={buildFunds:-1,build:{querySelectorAll:()=>[]}},stats={coins:100,stars:0,heart:1,clock:'17:20',weather:'clear',day:1};
+ try{
+  HUD.prototype.update.call(hud,stats,false,1);HUD.prototype.setObjective.call(hud,'Evening','Play a match');writes=0;
+  for(let i=0;i<120;i++){HUD.prototype.update.call(hud,stats,false,1);HUD.prototype.setObjective.call(hud,'Evening','Play a match');}
+  assert.equal(writes,0,'Stable frames must not replace text nodes');
+  HUD.prototype.update.call(hud,{...stats,coins:110,clock:'17:21',weather:'rain'},true,2);HUD.prototype.setObjective.call(hud,'Night','Match complete');
+  for(const [id,value]of [['coins','110'],['clock','17:21'],['weatherBtn','☂'],['playBtn','▶'],['speedBtn','2×'],['objectiveTitle','Night'],['objectiveText','Match complete']])assert.equal(document.getElementById(id).textContent,value);
+  assert.equal(document.getElementById('playBtn').getAttribute('aria-label'),'Resume');
+ }finally{globalThis.document=previous;}
+});
 test('Cafe-to-bonsai circulation does not cut through a reserved playing area',()=>{
  const w=new World();w.nav.courtReserved=()=>true;const start=destinations.cafe,path=w.nav.clubPath(start,destinations.bonsai);assert(path.length);let previous=start;
  for(const p of path){for(let t=0;t<=1;t+=.025){const v=Vec3.lerp(previous,p,t);assert(!(Math.abs(v.x-COURT.centerX)<COURT.doublesHalfWidth+.4&&Math.abs(v.z)<COURT.baselineDepth),'Crossed playing area');}previous=p;}

@@ -39,8 +39,11 @@ export function metric(f:MotionFrame,j:Joint):number|null{
 export const METRIC_NAMES:Record<Joint,string>={knee:'Right knee flexion',elbow:'Right elbow flexion',hip:'Right trunk–thigh angle',shoulder:'Right upper-arm elevation',ankle:'Right ankle height'};
 export function value(f:MotionFrame,j:Joint){return j==='ankle'?f.pose.footR.y:metric(f,j);}
 export function detachedBody(items:RenderItem[]):RenderItem[]{
+  // Body parts share a pose palette; detach it once per frame, never once per part.
+  const palettes=new Map<Float32Array,Float32Array>();
+  for(const m of items)if('skin' in m&&!palettes.has(m.boneMatrices))palettes.set(m.boneMatrices,m.boneMatrices.slice());
   return items.map(m=>'skin' in m
-    ?{...m,position:m.position.clone(),rotation:m.rotation?.clone(),boneMatrices:m.boneMatrices.slice(),scale:m.scale?.clone()}
+    ?{...m,position:m.position.clone(),rotation:m.rotation?.clone(),boneMatrices:palettes.get(m.boneMatrices)!,scale:m.scale?.clone()}
     :{...m,position:m.position.clone(),rotation:m.rotation?.clone(),scale:m.scale.clone()});
 }
 export function captureFrame(c:Character,time:number,ball:Vec3|null,contact=false,bounce=false):MotionFrame{

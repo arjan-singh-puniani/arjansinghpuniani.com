@@ -1,6 +1,9 @@
 import { touchForDecor } from '../simulation/ClubInteractions.js';
 import { DECOR_CATALOG } from '../content/DecorCatalog.js';
 const byId = (id) => document.getElementById(id);
+// Replacing unchanged labels every frame forces layout before the canvas can render.
+const text = (node, value) => { if (node.textContent !== value)
+    node.textContent = value; };
 export class HUD {
     onContextClose = () => { };
     onPanelOpen = () => { };
@@ -89,16 +92,19 @@ export class HUD {
             byId('fundsBtn').setAttribute('aria-label', `Open build catalog, ${this.buildFunds} club funds`);
             this.build.querySelectorAll('button[data-build]').forEach(b => { const cost = Number(b.dataset.cost); b.disabled = cost > stats.coins; b.querySelector('small').textContent = cost > stats.coins ? `${cost} funds · need ${cost - this.buildFunds} more` : `${cost} funds`; });
         }
-        byId('coins').textContent = String(Math.floor(stats.coins));
-        byId('clock').textContent = stats.clock;
-        byId('weatherChip').firstChild.textContent = stats.weather === 'rain' ? '☂ ' : stats.weather === 'cloudy' ? '☁ ' : '☀ ';
-        byId('weatherBtn').textContent = stats.weather === 'rain' ? '☂' : stats.weather === 'cloudy' ? '☁' : '☀';
-        byId('playBtn').textContent = paused ? '▶' : 'Ⅱ';
-        byId('playBtn').setAttribute('aria-label', paused ? 'Resume' : 'Pause');
-        byId('playBtn').classList.toggle('primary', !paused);
-        byId('speedBtn').textContent = `${speed}×`;
+        text(byId('coins'), String(Math.floor(stats.coins)));
+        text(byId('clock'), stats.clock);
+        text(byId('weatherChip').firstChild, stats.weather === 'rain' ? '☂ ' : stats.weather === 'cloudy' ? '☁ ' : '☀ ');
+        text(byId('weatherBtn'), stats.weather === 'rain' ? '☂' : stats.weather === 'cloudy' ? '☁' : '☀');
+        text(byId('playBtn'), paused ? '▶' : 'Ⅱ');
+        const play = byId('playBtn'), label = paused ? 'Resume' : 'Pause';
+        if (play.getAttribute('aria-label') !== label) {
+            play.setAttribute('aria-label', label);
+            play.classList.toggle('primary', !paused);
+        }
+        text(byId('speedBtn'), `${speed}×`);
     }
-    setObjective(title, text) { byId('objectiveTitle').textContent = title; byId('objectiveText').textContent = text; }
+    setObjective(title, description) { text(byId('objectiveTitle'), title); text(byId('objectiveText'), description); }
     setTennisQueued(queued) { const button = byId('tennisBtn'); button.textContent = queued ? 'Queued ×' : 'Play tennis ↗'; button.setAttribute('aria-label', queued ? 'Cancel queued tennis match' : 'Play tennis'); button.title = queued ? 'Your match starts when the court and an opponent are free. Tap to cancel.' : ''; }
     showContext(eyebrow, title, text, meta, actions) { this.context.classList.remove('arrival-card'); this.onPanelOpen(); byId('contextEyebrow').textContent = eyebrow.toUpperCase(); byId('contextTitle').textContent = title; byId('contextText').textContent = text; const mb = byId('contextMeta'); mb.innerHTML = ''; for (const x of meta) {
         const s = document.createElement('span');
