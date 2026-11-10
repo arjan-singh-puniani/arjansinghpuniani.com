@@ -2,11 +2,12 @@
 // Tilts are radians in their named projection. Twist is about the shaft.
 export const views = ['front', 'side'];
 export const stations = [1.55, -1.55];
+export const openingSeed = 431, challengeSeed = 439;
 const neutral = {x:0, z:0, gap:.055, front:0, side:0, twist:0};
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 export const limits = {offset:.085, gap:.10, tilt:.060, twist:.085};
 
-export function makeCase(seed = 431, expert = false) {
+export function makeCase(seed = openingSeed, expert = false) {
   seed >>>= 0;
   let random = seed;
   const roll = () => ((random = (Math.imul(random, 1664525) + 1013904223) >>> 0) / 4294967296);

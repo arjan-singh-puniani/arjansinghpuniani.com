@@ -23,8 +23,10 @@ try {
   await clinic.close();
 
   for (const touch of [false,true]) {
-    const context = await browser.newContext(touch ? devices['iPhone 13'] : {viewport:{width:1280,height:900},
-      ...(out && process.env.ORTHO_VIDEO ? {recordVideo:{dir:out,size:{width:1280,height:900}}} : {})});
+    const context = await browser.newContext({
+      ...(touch ? devices['iPhone 13'] : {viewport:{width:1280,height:900}}),
+      ...(out && process.env.ORTHO_VIDEO ? {recordVideo:{dir:out,size:touch?{width:390,height:664}:{width:1280,height:900}}} : {})
+    });
     const p = await context.newPage(), errors = [];
     const client = touch ? await context.newCDPSession(p) : null;
     p.on('pageerror',e=>errors.push(e.message));
@@ -160,6 +162,7 @@ try {
     await click(button('Front'));
     await p.waitForFunction(previous=>document.querySelector('#after').getAttribute('src')!==previous,sideImage);
     await screenshot('comparison');
+    assert.equal(await p.locator('#secondary').textContent(),'Try harder setup');
     const elapsed = now();
     for(let replay=0;replay<3;replay++) {
       await click(replay ? p.locator('#restart') : action);

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {aligned, begin, cancel, changeView, confirmImage, dress, makeCase, move, release, returnToReduction, score, startReduction} from '../dist/ortho/model.mjs';
+import {aligned, begin, cancel, challengeSeed, changeView, confirmImage, dress, error, limits, makeCase, move, release, returnToReduction, score, startReduction, views} from '../dist/ortho/model.mjs';
 
 const neutral = {x:0,z:0,gap:.055,front:0,side:0,twist:0};
 function drag(s,x,y) {
@@ -75,4 +75,10 @@ test('only Guided snaps inside the narrow game window', () => {
     drag(s,-.09/(.65+.35*.1/.4),0);
     assert(Math.abs(s.pose.x-(expert ? .01 : 0)) < 1e-8);
   }
+});
+
+test('the first replay challenge starts with a larger combined alignment error', () => {
+  const distance = s => views.flatMap(view=>Object.entries(error(s.baseline,view)))
+    .reduce((sum,[key,value])=>sum+value/limits[key],0);
+  assert(distance(makeCase(challengeSeed)) > distance(makeCase()));
 });

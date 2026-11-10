@@ -20,7 +20,7 @@ Open [the local case](http://127.0.0.1:8782/hospitalsim/ortho/index.html). Start
 - One authoritative, seeded fragment pose drives the front and side orthographic images. World Y runs along the shaft toward the hip, X reads horizontally from the front, and Z reads horizontally from the side. The two game angulations and axial twist are separate. A near match in one projection can hide angulation or translation that is obvious from the other.
 - Pointer and keyboard previews start from a transaction snapshot. Cancel, lost capture, view changes, viewport resizing and backgrounding restore it. Committed movement invalidates prior alignment checks. Verified alignment permits seating. Residual error near the edge of the reduction band can block nail travel until the player refines the alignment.
 - Guided can settle an affected translation coordinate inside 0.025 model units, or an affected rotation inside 0.018 radians. Expert uses the same underlying case and disables this snap. The locking reticle accepts an error radius of 0.092 model units in Guided and 0.052 in Expert.
-- A successful finish records both final images, the two spatial lock confirmations, and the dressing. The debrief separates alignment, fixation and corrections. Elapsed time does not affect scores.
+- A successful finish records both final images, the two spatial lock confirmations, and the dressing. The debrief separates alignment, fixation and corrections. Elapsed time does not affect scores. Same-setup replay is immediate, and the first alternate seed increases the combined starting error.
 - The case uses HospitalSIM’s bundled Three.js renderer and original procedural meshes, with no asset fetches for anatomy, tools or sound. Procedural drape and tissue keep the field readable on portrait screens. Muscle fibers share a merged mesh. Imaging is rendered from the live model with matched before/after framing. Substantial AI assistance covered implementation, visual geometry and verification.
 
 ## Clinical references and model limits
@@ -45,8 +45,8 @@ Mac14,2 with Apple M2. Chromium 153.0.8010.12 and WebKit 26.6. The browser check
 
 | Run | Viewport and input | Loaded to first action | Automated case | Median frame | 95th percentile |
 | --- | --- | ---: | ---: | ---: | ---: |
-| Chromium desktop | 1280 × 900, mouse | 0.56 s | 11.4 s | 16.7 ms | 33.4 ms |
-| Chromium iPhone 13 profile | 390 × 664, emulated touch | 0.25 s | 9.7 s | 16.7 ms | 16.7 ms |
+| Chromium desktop | 1280 × 900, mouse | 0.54 s | 11.2 s | 16.7 ms | 33.4 ms |
+| Chromium iPhone 13 profile | 390 × 664, emulated touch | 0.25 s | 9.6 s | 16.7 ms | 16.8 ms |
 
 Both completed the full case and compared matched final images. Checks covered a passing front view with an unresolved side error, cancellation, resize, changing projection during a drag, background interruption, three same-seed restarts, keyboard adjustment and rollback, missing modules and WebGL fallback. WebKit checked case entry, projection taps and portrait layout. Model checks covered blocked advance, prevention of duplicate locks, the narrow Guided snap and deterministic replay. Existing clinic checks passed for construction, map editing, navigation and continuing visits.
 

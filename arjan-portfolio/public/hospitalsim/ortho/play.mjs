@@ -1,4 +1,4 @@
-import {makeCase, views, limits, aligned, error, changeView, startReduction, confirmImage, begin, move, cancel, release, returnToReduction, dress, score} from './model.mjs';
+import {makeCase, openingSeed, challengeSeed, views, limits, aligned, error, changeView, startReduction, confirmImage, begin, move, cancel, release, returnToReduction, dress, score} from './model.mjs';
 import {makeScene} from './scene.mjs';
 
 const steps = {
@@ -18,7 +18,7 @@ export function mount() {
   const field = $('field'), grip = $('grip'), target = $('target');
   const scene = makeScene($('scene'));
   const requested = new URLSearchParams(location.search).get('seed');
-  let state = makeCase(requested && /^\d{1,10}$/.test(requested) ? Number(requested) : 431);
+  let state = makeCase(requested && /^\d{1,10}$/.test(requested) ? Number(requested) : openingSeed);
   let pointer, keyboard, frame = 0, audio, muted = true, reviewView = '', fluoro = false, dressing = false;
   let elapsed = 0, runningSince = null;
   const stopClock = () => {
@@ -103,7 +103,9 @@ export function mount() {
       const checked = reducing ? state.checked[view] : stage === 'image' && state.reviewed[view];
       $('action').textContent = checked ? (reducing ? 'View checked ✓' : 'Image saved ✓') : action;
       $('action').disabled = Boolean(checked || state.grip);
-      const alternate = reviewing ? 'Try another setup' : stage === 'seat' ? 'Refine alignment' : '';
+      const alternate = reviewing
+        ? (state.seed === openingSeed ? 'Try harder setup' : 'Try another setup')
+        : stage === 'seat' ? 'Refine alignment' : '';
       $('secondary').textContent = alternate;
       $('secondary').hidden = !alternate;
       $('restart').hidden = reviewing || stage === 'inspect';
@@ -275,7 +277,8 @@ export function mount() {
     redraw();
   };
   $('secondary').onclick = () => {
-    if (state.stage === 'review') restart((Math.imul(state.seed,1664525)+1013904223) >>> 0);
+    if (state.stage === 'review') restart(state.seed === openingSeed ? challengeSeed
+      : (Math.imul(state.seed,1664525)+1013904223) >>> 0);
     else {
       stopPointer();
       returnToReduction(state);
