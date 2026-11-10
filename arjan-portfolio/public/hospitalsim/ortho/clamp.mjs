@@ -11,23 +11,6 @@ export function contactRadius(radii, angle) {
   return T.MathUtils.lerp(radii[i],radii[(i+1)%n],index-i);
 }
 
-export function addGownSleeve(hand) {
-  const geometry=new T.CylinderGeometry(.27,.08,4.8,28,60,true);
-  const vertices=geometry.attributes.position;
-  for(let i=0;i<vertices.count;i++){
-    const along=vertices.getY(i)+2.4;
-    const angle=Math.atan2(vertices.getZ(i),vertices.getX(i));
-    const cuff=.012*Math.exp(-((along-.055)**2)/.001);
-    const folds=.012*Math.sin(angle*5+along*7)+.006*Math.sin(angle*9-along*18);
-    const fullness=.042*T.MathUtils.smoothstep(along,.10,.48);
-    const r=Math.hypot(vertices.getX(i),vertices.getZ(i))+cuff+fullness+folds*Math.min(1,along*4);
-    vertices.setXYZ(i,1.76+along,-.036-r*Math.cos(angle),.188+r*.77*Math.sin(angle)-along*.06);
-  }
-  geometry.computeVertexNormals();
-  const gown=new T.Mesh(geometry,new T.MeshStandardMaterial({color:0x216283,roughness:.87,side:T.DoubleSide}));
-  hand.add(gown);
-}
-
 function handleOutline(sign) {
   const s=new T.Shape();
   s.moveTo(-.07,sign*-.047);
@@ -80,7 +63,7 @@ function curvedJaw(profile, quarter, sign) {
   return g;
 }
 
-export function fitClamp(data, view, steel, darkSteel, hand) {
+export function fitClamp(data, view, steel, darkSteel) {
   const tool=new T.Group();
   tool.position.fromArray(data.gripCenter);
   const quarter=view==='side'?Math.PI/2:0;
@@ -113,16 +96,10 @@ export function fitClamp(data, view, steel, darkSteel, hand) {
   socket.rotateX(Math.PI/2);
   socket.position.copy(hinge).z+=.053;
   tool.add(socket);
-  const glove=hand.clone();
-  tool.add(glove);
-  addGownSleeve(glove);
   const handle=V(1.11,0,.745);
   return {
     tool,handle,
     setClosure(amount){
-      glove.visible=amount>.08;
-      glove.position.x=(1-amount)*.15;
-      glove.position.z=.63+(1-amount)*.12;
       for(const {jaw,sign} of jaws)jaw.quaternion.setFromAxisAngle(hingeAxis,sign*.40*(1-amount));
     }
   };

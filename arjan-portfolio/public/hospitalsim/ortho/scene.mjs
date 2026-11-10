@@ -1,8 +1,8 @@
 import * as T from '../vendor/build/three.module.js';
 import {GLTFLoader} from '../vendor/examples/jsm/loaders/GLTFLoader.js';
 import {corticalFinish, operativeTissue, theatreDetails} from './anatomy.mjs';
-import {addGownSleeve, fitClamp, steelReflections} from './clamp.mjs';
-import {aligned, stations} from './model.mjs';
+import {fitClamp, steelReflections} from './clamp.mjs';
+import {aligned, sealPath, stations} from './model.mjs';
 
 const V = (x,y,z) => new T.Vector3(x,y,z);
 const mat = (color, roughness=.55, metalness=0) => new T.MeshStandardMaterial({color, roughness, metalness});
@@ -54,9 +54,7 @@ function roundedRect(path, w, h, r) {
 
 export async function makeScene(canvas) {
   const loader=new GLTFLoader();
-  const [{scene:atlas},{scene:hand}]=await Promise.all(['femur','glove'].map(asset =>
-    loader.loadAsync(new URL('./assets/'+asset+'.glb',import.meta.url).href)
-  ));
+  const {scene:atlas}=await loader.loadAsync(new URL('./assets/femur.glb',import.meta.url).href);
   const renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
   renderer.setPixelRatio(Math.min(devicePixelRatio,matchMedia('(pointer:coarse)').matches?1.18:1.45));
   renderer.outputColorSpace=T.SRGBColorSpace;
@@ -112,20 +110,11 @@ export async function makeScene(canvas) {
   darkSteel.envMapIntensity=1.5;
   steel.side=darkSteel.side=T.DoubleSide;
   const tools=Object.fromEntries(['front','side'].map(view=>{
-    const result=fitClamp(atlasDistal.userData,view,steel,darkSteel,hand);
+    const result=fitClamp(atlasDistal.userData,view,steel,darkSteel);
     distal.add(result.tool);
     return [view,result];
   }));
   const props=theatreDetails(steel);
-  const supportGlove=hand.clone();
-  supportGlove.rotation.set(0,Math.PI,-.22);
-  supportGlove.position.set(-.14,1.06,.98);
-  addGownSleeve(supportGlove);
-  const oppositeGlove=hand.clone();
-  oppositeGlove.rotation.z=.27;
-  oppositeGlove.position.set(.20,.18,.55);
-  addGownSleeve(oppositeGlove);
-  props.add(supportGlove,oppositeGlove);
   field.add(props);
   const implant=mat(0x548ca0,.26,.62);
   const canal=atlasDistal.userData.canal;
@@ -191,17 +180,18 @@ export async function makeScene(canvas) {
     width=Math.max(1,w);height=Math.max(1,h);
     renderer.setSize(width,height,false);
   }
-  function frame(view, close, operative, seating, distalLevel) {
+  function frame(view, close, operative, seating, dressing, distalLevel) {
     const aspect=width/height;
-    span=Math.max(distalLevel!==undefined?2.5:seating?8.6:operative?4.2:close?3.28:5.86, (distalLevel!==undefined?2.4:operative?5:close?2.76:2.88)/aspect);
-    const half=span/2, center=distalLevel??(seating?1.15:operative?-.57:close?-.11:0);
-    const yaw=(view==='front'?0:-Math.PI/2)+(operative?-.23:0);
-    roll=operative?-.15:0;
+    span=Math.max(distalLevel!==undefined?2.5:seating?8.6:operative?3.5:dressing?3.08:close?3.28:5.86,
+      (distalLevel!==undefined?2.4:operative?4.25:close?2.76:2.88)/aspect);
+    const half=span/2, center=distalLevel??(seating?1.15:operative?-.43:close?-.11:0);
+    const yaw=(view==='front'?0:-Math.PI/2)+(operative?-.31:0);
+    roll=operative?-.23:0;
     camera.left=-half*aspect;camera.right=half*aspect;camera.top=half;camera.bottom=-half;
     camera.position.set(10*Math.sin(yaw),center+(operative?.95:0),10*Math.cos(yaw));
     camera.up.set(Math.cos(yaw)*Math.sin(roll),Math.cos(roll),-Math.sin(yaw)*Math.sin(roll));
     camera.lookAt(0,center,0);
-    if(operative) camera.translateX(.49);
+    if(operative) camera.translateX(.53);
     camera.updateProjectionMatrix();
     camera.updateMatrixWorld();
     field.rotation.y=view==='front'?0:-Math.PI/2;
@@ -220,17 +210,20 @@ export async function makeScene(canvas) {
     const close=s.stage==='reduce';
     const operative=close&&!film;
     const seating=s.stage==='seat';
+    const dressing=!film&&(s.stage==='dress'||s.stage==='review');
     backdrop.scale.set(seating?1.85:1,seating?1.5:1,1);
-    frame(view,close,operative,seating,distalTarget?target.y:undefined);
+    frame(view,close,operative,seating,dressing,distalTarget?target.y:undefined);
     // Recess the illustrative bed so it does not obscure the tools in an educational cutaway.
-    if(operative||cutaway) field.position.copy(camera.getWorldDirection(fieldDepth).multiplyScalar(2.8));
+    if(cutaway) field.position.copy(camera.getWorldDirection(fieldDepth).multiplyScalar(2.8));
+    else if(operative) field.position.copy(camera.getWorldDirection(fieldDepth).multiplyScalar(.36));
     else field.position.set(0,0,0);
     distal.position.set(pose.x,-pose.gap,pose.z);
     distal.rotation.set(pose.side,pose.twist,-pose.front,'YXZ');
     field.visible=!film;
-    skin.visible=s.stage==='inspect'||s.stage==='dress'||s.stage==='review';
-    skin.position.z=s.stage==='inspect'?-.25:.08;
-    skin.scale.z=s.stage==='inspect'?.34:.32;
+    skin.visible=operative||s.stage==='inspect'||s.stage==='dress'||s.stage==='review';
+    skin.position.z=operative?-.74:s.stage==='inspect'?-.25:.08;
+    skin.scale.set(operative?1.62:1.03,operative?3.23:2.95,operative?.29:s.stage==='inspect'?.34:.32);
+    fill.intensity=operative?.74:1.48;
     muscle.visible=s.stage!=='dress'&&s.stage!=='review';
     const axis=view==='front'?'x':'z';
     const tension=operative&&s.grip ? Math.min(1,Math.hypot(pose[axis]-s.grip.pose[axis],pose.gap-s.grip.pose.gap)*2.8) : 0;
@@ -242,7 +235,7 @@ export async function makeScene(canvas) {
     props.visible=operative;
     cover.visible=s.stage==='dress'||s.stage==='review';
     closureDrape.visible=cover.visible;
-    cover.scale.setScalar(.54);
+    cover.scale.setScalar(.85);
     cover.position.set(s.dressing.x,s.dressing.y-.15,.50);
     for(const {part,original,orientation} of boneMeshes) part.material=film?xray:cutaway?cut:s.stage==='inspect'?orientation:original;
     xray.opacity=.72;
@@ -264,7 +257,13 @@ export async function makeScene(canvas) {
     renderer.render(scene,camera);
     if(operative)return {handle:point(tool.localToWorld(handle.clone()))};
     if(seating)return {handle:point(V(.36,2.36+nail.position.y,tip[2]))};
-    if(s.stage==='dress')return {handle:point(cover.getWorldPosition(V())),contact:point(field.localToWorld(V(0,-.15,.50)))};
+    if(dressing) {
+      const project=({x,y})=>point(field.localToWorld(V(x,y-.15,.63)));
+      if(s.dressingPlaced)return {handle:project(s.smoother),trace:sealPath.map(project)};
+      const corner=project({x:.39,y:.70}), contact=project({x:0,y:0});
+      return {handle:point(cover.getWorldPosition(V())),contact,
+        patchWidth:2*(corner.x-contact.x),patchHeight:2*(contact.y-corner.y)};
+    }
     if(target){
       const {x,y,z}=target;
       const contact=distalTarget?V(x-.071,y,z):V(sleeveX,y,z);

@@ -69,26 +69,31 @@ try {
       await click(button('Fluoro'));
       await grip.waitFor();
     }
-    const drive = async (dx,dy,{finish=true,steps=12,pixels=false}={}) => {
+    const drive = async (dx,dy,{finish=true,steps=12,pixels=false,via=[]}={}) => {
       await grip.scrollIntoViewIfNeeded();
       const g=await grip.boundingBox(), f=await field.boundingBox();
       const title = await step.textContent();
       const close = title === 'Line up the fragments';
       const distal = title==='Match the locking target' && await button('Side').getAttribute('aria-pressed')==='true';
-      const scale = Math.max(distal?2.5:title==='Advance the nail'?8.6:close?4.2:5.86,
-        (distal?2.4:close?5:2.88)/(f.width/f.height))/f.height;
+      const scale = Math.max(distal?2.5:title==='Advance the nail'?8.6:close?3.5:title==='Cover the site'?3.08:5.86,
+        (distal?2.4:close?4.25:2.88)/(f.width/f.height))/f.height;
       const x=g.x+g.width/2, y=g.y+g.height/2;
       if(close&&!pixels){
-        const roll=-.15, c=Math.cos(roll), s=Math.sin(roll);
+        const roll=-.23, c=Math.cos(roll), s=Math.sin(roll);
         [dx,dy]=[c*dx+s*dy,-s*dx+c*dy];
       }
       const send = (type,px,py)=>client.send('Input.dispatchTouchEvent',{type,touchPoints:px===undefined?[]:[{x:px,y:py,id:1}]});
       if(touch)await send('touchStart',x,y);
       else {await p.mouse.move(x,y); await p.mouse.down();}
-      for(let i=1;i<=steps;i++) {
-        const px=x+dx*i/steps/(pixels?1:scale),py=y+dy*i/steps/(pixels?1:scale);
-        if(touch) await send('touchMove',px,py);
-        else await p.mouse.move(px,py);
+      let [lastX,lastY]=[x,y];
+      for(const [toX,toY] of [...via,[dx,dy]]) {
+        const destX=x+toX/(pixels?1:scale), destY=y+toY/(pixels?1:scale);
+        for(let i=1;i<=steps;i++) {
+          const px=lastX+(destX-lastX)*i/steps, py=lastY+(destY-lastY)*i/steps;
+          if(touch) await send('touchMove',px,py);
+          else await p.mouse.move(px,py);
+        }
+        [lastX,lastY]=[destX,destY];
       }
       if (finish) {
         if(touch)await send('touchEnd');
@@ -171,7 +176,11 @@ try {
     assert.equal(await p.locator('#metrics [data-good]').count(),4);
     await click(action);
     await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
-    await click(button('Side'));
+    assert(await action.isDisabled());
+    await screenshot('next-side');
+    await click(button('Next · Side'));
+    assert.equal(await button('Side').getAttribute('aria-pressed'),'true');
+    assert(await button('Side').evaluate(tab=>tab.getBoundingClientRect().top>=0));
     const gripRect = await grip.boundingBox(), fieldRect = await field.boundingBox();
     assert(gripRect.x > fieldRect.x + 2 && gripRect.x + gripRect.width < fieldRect.x + fieldRect.width - 2,
       'Side-view grip follows the tool inside the field instead of sticking to a viewport edge');
@@ -199,7 +208,7 @@ try {
     await click(action);
     await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
     assert.equal(await grip.isVisible(),false);
-    await click(button('Side')); await click(action);
+    await click(button('Next · Side')); await click(action);
     await waitStep('Match the locking target');
     assert.equal(await button('Side').getAttribute('aria-pressed'),'true');
     await screenshot('distal-lock');
@@ -212,7 +221,7 @@ try {
     await drive(-.37,.29);
     await waitStep('Save the final images');
     await screenshot('final-image');
-    await click(action); await click(button('Side')); await click(action);
+    await click(action); await click(button('Next · Side')); await click(action);
     await waitStep('Cover the site');
     await screenshot('dressing-tray');
     const dressing = await grip.boundingBox();
@@ -228,6 +237,17 @@ try {
     await cancelledDressing();
     await p.locator('#target:not([data-good])').waitFor();
     await drive(dx,dy,{pixels:true});
+    await waitStep('Smooth the dressing');
+    await screenshot('dressing-trace');
+    const [start,...corners] = (await p.locator('#seal-track').getAttribute('points')).split(' ').map(point=>point.split(',').map(Number));
+    const trace = corners.map(([x,y])=>[x-start[0],y-start[1]]);
+    const interruptedTrace = await drive(...trace[0],{pixels:true,finish:false});
+    await p.getByRole('status').filter({hasText:'1 of 4 edges'}).waitFor();
+    if(!touch) await grip.dispatchEvent('pointercancel',{pointerId:1});
+    await interruptedTrace();
+    await p.getByRole('status').filter({hasText:'0 of 4 edges'}).waitFor();
+    const via = trace.slice(0,-1).map(([x,y],i)=>touch ? [x+(i===2?8:-8),y+(i===0?8:-8)] : [x,y]);
+    await drive(...trace.at(-1),{pixels:true,via});
     await waitStep('Compare your result');
     assert.match(await p.locator('#notice').textContent(),/Alignment [45-6]\d\/60 · Fixation 30\/30/);
     const sideImage = await p.locator('#after').getAttribute('src');
@@ -283,11 +303,10 @@ try {
     if(video) {await video.saveAs(join(out,touch?'femur-touch.webm':'femur-case.webm')); await video.delete();}
     console.log('Completed',report.runs.at(-1));
   }
-  for(const failure of ['missing module','missing anatomy','missing glove','WebGL disabled']) {
+  for(const failure of ['missing module','missing anatomy','WebGL disabled']) {
     const page=await browser.newPage();
     if(failure==='missing module')await page.route('**/scene.mjs',route=>route.abort());
     else if(failure==='missing anatomy')await page.route('**/femur.glb',route=>route.abort());
-    else if(failure==='missing glove')await page.route('**/glove.glb',route=>route.abort());
     else await page.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;
       HTMLCanvasElement.prototype.getContext=function(type,...args){return type.startsWith('webgl')?null:original.call(this,type,...args);};});
     await page.goto(url);

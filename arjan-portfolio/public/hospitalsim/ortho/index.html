@@ -30,6 +30,7 @@
       <div class="segments" id="modes" role="group" aria-label="Clamp mode" hidden><button id="move" type="button">Move</button><button id="rotate" type="button">Rotate</button></div>
       <div id="field" tabindex="0" aria-label="Operative field. Use arrow keys to adjust the selected tool, Enter to commit and Escape to cancel." aria-describedby="directions">
         <canvas id="scene" aria-hidden="true"></canvas>
+        <svg id="seal" aria-hidden="true" hidden><polyline id="seal-track"></polyline><polyline id="seal-fill"></polyline><circle id="seal-next" r="10"></circle></svg>
         <span id="target" aria-hidden="true" hidden></span><span id="offset-reticle" aria-hidden="true" hidden></span>
         <span id="guide-track" aria-hidden="true" hidden></span><span id="guide-end" aria-hidden="true" hidden></span>
         <button id="grip" type="button" hidden aria-label="Grab tool"></button>

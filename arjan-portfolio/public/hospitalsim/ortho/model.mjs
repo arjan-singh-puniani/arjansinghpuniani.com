@@ -12,6 +12,10 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 export const limits = {offset:.085, gap:.10, tilt:.060, twist:.085};
 export const dressingTolerance = .27;
 const tray = {x:1.10,y:-.86};
+export const sealPath = [
+  {x:-.31,y:.60}, {x:.31,y:.60}, {x:.31,y:-.60}, {x:-.31,y:-.60}, {x:-.31,y:.60}
+];
+const traceWidth = .26;
 
 export function makeCase(seed = openingSeed, expert = false) {
   seed >>>= 0;
@@ -24,7 +28,8 @@ export function makeCase(seed = openingSeed, expert = false) {
   };
   return {
     seed, expert, stage:'inspect', view:'front', mode:'move', pose:{...baseline}, baseline,
-    checked:{}, prelock:{}, reviewed:{}, nail:0, locks:0, aim:initialAim(0), dressing:{...tray}, grip:null,
+    checked:{}, prelock:{}, reviewed:{}, nail:0, locks:0, aim:initialAim(0), dressing:{...tray},
+    dressingPlaced:false, edges:0, smoother:sealPath[0], grip:null,
     actions:[], corrections:0, misses:0, lockError:0, notice:''
   };
 }
@@ -136,7 +141,8 @@ export function confirmImage(s) {
 
 export function begin(s) {
   if (s.grip || !['reduce', 'seat', 'fix', 'dress'].includes(s.stage)) return false;
-  s.grip = {pose:{...s.pose}, aim:{...s.aim}, dressing:{...s.dressing}, nail:s.nail, blocked:false};
+  s.grip = {pose:{...s.pose}, aim:{...s.aim}, dressing:{...s.dressing}, edges:s.edges,
+    smoother:s.smoother, nail:s.nail, blocked:false};
   s.notice = '';
   return true;
 }
@@ -163,7 +169,22 @@ export function move(s, dx, dy) {
   } else if (s.stage === 'fix') {
     s.aim = {x:clamp(grip.aim.x + dx, -.8, .8), y:clamp(grip.aim.y - dy, -.68, .68)};
   } else if (s.stage === 'dress') {
-    s.dressing = {x:clamp(grip.dressing.x + dx, -1.35, 1.35), y:clamp(grip.dressing.y - dy, -1.45, 1.45)};
+    if (!s.dressingPlaced) {
+      s.dressing = {x:clamp(grip.dressing.x + dx, -1.35, 1.35), y:clamp(grip.dressing.y - dy, -1.45, 1.45)};
+    } else {
+      const start=sealPath[s.edges], next=sealPath[s.edges+1];
+      if (!next) return;
+      const vx=next.x-start.x, vy=next.y-start.y, length=Math.hypot(vx,vy);
+      const x=grip.smoother.x+dx-start.x, y=grip.smoother.y-dy-start.y;
+      if (Math.abs(x*vy-y*vx)/length > traceWidth) return;
+      const along=(x*vx+y*vy)/length;
+      if (along >= length-.17) {
+        s.edges++;
+        s.smoother=next;
+      } else if (along > Math.hypot(s.smoother.x-start.x,s.smoother.y-start.y)) {
+        s.smoother={x:start.x+vx*along/length,y:start.y+vy*along/length};
+      }
+    }
   }
 }
 
@@ -173,6 +194,8 @@ export function cancel(s) {
   s.nail = s.grip.nail;
   s.aim = s.grip.aim;
   s.dressing = s.grip.dressing;
+  s.edges = s.grip.edges;
+  s.smoother = s.grip.smoother;
   s.grip = null;
   s.notice = '';
 }
@@ -228,7 +251,10 @@ export function release(s) {
     log(s, 'lock-missed', {distance});
     s.notice = 'Target missed. Bring the two reticles together and release.';
   } else if (s.stage === 'dress') {
-    if (Math.hypot(s.dressing.x,s.dressing.y) <= dressingTolerance && dress(s)) return 'done';
+    if (s.dressingPlaced) {
+      return s.edges === sealPath.length-1 ? dress(s) : '';
+    }
+    if (Math.hypot(s.dressing.x,s.dressing.y) <= dressingTolerance) return dress(s);
     s.dressing = {...tray};
     s.notice = 'The dressing returned to its tray. Drag it onto the dashed outline and release.';
   }
@@ -248,12 +274,18 @@ export function returnToReduction(s) {
 }
 
 export function dress(s) {
-  if (s.stage !== 'dress' || s.grip) return false;
-  s.stage = 'review';
-  s.dressing = {x:0,y:0};
+  if (s.stage !== 'dress' || s.grip) return '';
   s.notice = '';
-  log(s, 'dressing-placed');
-  return true;
+  if (!s.dressingPlaced) {
+    s.dressingPlaced = true;
+    s.dressing = {x:0,y:0};
+    log(s, 'dressing-placed');
+    return 'applied';
+  }
+  s.stage = 'review';
+  s.edges = sealPath.length-1;
+  log(s, 'dressing-smoothed');
+  return 'done';
 }
 
 export function score(s) {
