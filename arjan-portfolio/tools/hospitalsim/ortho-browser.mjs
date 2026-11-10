@@ -7,10 +7,13 @@ import {makeCase} from '../../public/hospitalsim/ortho/model.mjs';
 const base = process.env.ORTHO_BASE || 'http://127.0.0.1:8782/hospitalsim';
 const out = process.env.ORTHO_OUT;
 const soft = process.env.ORTHO_SOFTWARE === '1';
+const metal = process.env.ORTHO_METAL === '1';
 const url = base + '/ortho/index.html';
 if (out) await mkdir(out,{recursive:true});
-const browser = await chromium.launch({args:soft ? ['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'] : []});
-const report = {chromium:browser.version(), software:soft, runs:[]};
+const browser = await chromium.launch({args:soft
+  ? ['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']
+  : metal ? ['--use-gl=angle','--use-angle=metal','--enable-gpu'] : []});
+const report = {chromium:browser.version(), runs:[]};
 const baseline = makeCase().baseline;
 
 try {
@@ -45,6 +48,11 @@ try {
     await p.goto(url);
     await waitStep('Find the break');
     const ready = now();
+    if (!report.renderer) report.renderer = await p.evaluate(() => {
+      const gl=document.querySelector('#scene').getContext('webgl2');
+      const info=gl.getExtension('WEBGL_debug_renderer_info');
+      return gl.getParameter(info ? info.UNMASKED_RENDERER_WEBGL : gl.RENDERER);
+    });
     if (!touch) {
       await click(button('Fluoro')); await click(button('Side'));
       assert.equal(await p.locator('#view-label').textContent(),'SIMULATED FLUOROSCOPY');
@@ -54,12 +62,23 @@ try {
     await waitStep('Line up the fragments');
     const firstInput = now();
     const initial = await p.locator('#metrics').innerText();
+    if(!touch){
+      await click(button('Fluoro'));
+      await grip.waitFor({state:'hidden'});
+      assert.equal(await p.locator('#view-label').textContent(),'SIMULATED FLUOROSCOPY');
+      await click(button('Fluoro'));
+      await grip.waitFor();
+    }
     const drive = async (dx,dy,{finish=true,steps=12}={}) => {
       await grip.scrollIntoViewIfNeeded();
       const g=await grip.boundingBox(), f=await field.boundingBox();
       const close = (await step.textContent()) === 'Line up the fragments';
       const scale = Math.max(close?3.28:5.86,(close?2.76:2.88)/(f.width/f.height))/f.height;
       const x=g.x+g.width/2, y=g.y+g.height/2;
+      if(close){
+        const roll=-.15, c=Math.cos(roll), s=Math.sin(roll);
+        [dx,dy]=[c*dx+s*dy,-s*dx+c*dy];
+      }
       const send = (type,px,py)=>client.send('Input.dispatchTouchEvent',{type,touchPoints:px===undefined?[]:[{x:px,y:py,id:1}]});
       if(touch)await send('touchStart',x,y);
       else {await p.mouse.move(x,y); await p.mouse.down();}
@@ -79,6 +98,14 @@ try {
       };
     };
 
+    const stationary = await drive(0,0,{finish:false,steps:1});
+    await p.locator('#grip-state[data-locked]').waitFor();
+    assert.equal(await p.locator('#metrics').innerText(),initial);
+    await screenshot('jaws-locked');
+    await stationary(touch?'touchEnd':undefined);
+    await p.getByText('Jaws open',{exact:true}).waitFor();
+    assert.equal(await p.locator('#metrics').innerText(),initial);
+    await screenshot('jaws-open');
     if (!touch) {
       await click(action);
       await p.getByRole('status').filter({hasText:'outside the game band'}).waitFor();
@@ -140,7 +167,9 @@ try {
     await drive(-baseline.side/.48,0);
     await click(action);
     await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
-    await click(button('Front')); await click(action);
+    await click(button('Front'));
+    await screenshot('reduction-aligned');
+    await click(action);
     await waitStep('Advance the nail');
     await drive(0,.85);
     assert(Number(await progress.getAttribute('value')) > .3);
@@ -198,9 +227,10 @@ try {
     if(video) {await video.saveAs(join(out,touch?'femur-touch.webm':'femur-case.webm')); await video.delete();}
     console.log('Completed',report.runs.at(-1));
   }
-  for(const failure of ['missing module','WebGL disabled']) {
+  for(const failure of ['missing module','missing anatomy','WebGL disabled']) {
     const page=await browser.newPage();
     if(failure==='missing module')await page.route('**/scene.mjs',route=>route.abort());
+    else if(failure==='missing anatomy')await page.route('**/femur.glb',route=>route.abort());
     else await page.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;
       HTMLCanvasElement.prototype.getContext=function(type,...args){return type.startsWith('webgl')?null:original.call(this,type,...args);};});
     await page.goto(url);

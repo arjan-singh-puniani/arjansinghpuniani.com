@@ -89,3 +89,12 @@ figcaption{padding:.55rem;text-align:center;color:var(--muted);font:700 .69rem/1
   .workbench[data-stage=inspect] #field{height:clamp(205px,32svh,300px)}
   figure img{height:clamp(210px,43svh,360px)}
 }
+
+.workbench[data-stage=reduce] #grip{background:transparent;border-color:transparent;box-shadow:none}
+.workbench[data-stage=reduce] #grip::before,.workbench[data-stage=reduce] #grip::after{width:26px;height:26px;border-radius:50%;background:transparent;border:1px solid #a0e0e3;box-shadow:0 0 0 2px #102731a0}
+.workbench[data-stage=reduce] #grip::after{width:4px;height:4px;border:0;background:#cbf3f0}
+.workbench[data-stage=reduce] #grip:hover::before,.workbench[data-stage=reduce] #grip[data-active]::before{border-color:#fff5d8;box-shadow:0 0 0 3px #abc7b746}
+#grip-state{position:absolute;top:.5rem;right:.53rem;background:#132e3bea;border:1px solid #597b86;color:#d8e6e7;border-radius:5px;padding:.36rem .45rem;font:700 .64rem/1 ui-monospace,monospace;pointer-events:none}
+#grip-state[data-locked]{background:#123d36;border-color:#7ec9aa;color:#c5ffdc}
+
+#grip,#target,#offset-reticle{left:0;top:0}

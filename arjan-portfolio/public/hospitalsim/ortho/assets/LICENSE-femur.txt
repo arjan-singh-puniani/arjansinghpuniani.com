@@ -1,0 +1,13 @@
+femur.glb — adapted from BodyParts3D, © The Database Center for Life Science,
+licensed under Creative Commons Attribution-Share Alike 2.1 Japan.
+
+Original structure: FMA24474, right femur.
+Pinned source conversion: Kevin-Mattheus-Moerman/BodyParts3D,
+f0eeb6e843380cfe6b83797cf8c3e1af74de5e61.
+https://github.com/Kevin-Mattheus-Moerman/BodyParts3D/blob/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24474.stl
+https://creativecommons.org/licenses/by-sa/2.1/jp/deed.en
+
+HospitalSIM adaptation: reoriented and rescaled into game coordinates, split
+along an authored oblique fracture, capped and assigned cortical/trabecular
+materials. Includes sampled game-model jaw fit and implant alignment.
+The adapted mesh and its editable .blend are distributed under the same license.
