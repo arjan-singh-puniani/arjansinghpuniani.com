@@ -45,3 +45,6 @@
 .frameShell:fullscreen { height: 100%; width: 100%; border: 0; }
 
 @media (max-width: 700px) { .active { height: var(--hospital-height, 1150px); } }
+
+.orthoEntry { margin: 0 0 12px; }
+.orthoEntry a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; }
