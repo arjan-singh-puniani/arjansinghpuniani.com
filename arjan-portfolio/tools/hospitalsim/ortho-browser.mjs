@@ -171,7 +171,10 @@ try {
     assert.equal(await p.locator('#metrics [data-good]').count(),4);
     await click(action);
     await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
-    await click(button('Side'));
+    assert(await action.isDisabled());
+    await screenshot('next-side');
+    await click(button('Next · Side'));
+    assert.equal(await button('Side').getAttribute('aria-pressed'),'true');
     const gripRect = await grip.boundingBox(), fieldRect = await field.boundingBox();
     assert(gripRect.x > fieldRect.x + 2 && gripRect.x + gripRect.width < fieldRect.x + fieldRect.width - 2,
       'Side-view grip follows the tool inside the field instead of sticking to a viewport edge');
@@ -199,7 +202,7 @@ try {
     await click(action);
     await p.getByRole('button',{name:'View checked ✓',exact:true}).waitFor();
     assert.equal(await grip.isVisible(),false);
-    await click(button('Side')); await click(action);
+    await click(button('Next · Side')); await click(action);
     await waitStep('Match the locking target');
     assert.equal(await button('Side').getAttribute('aria-pressed'),'true');
     await screenshot('distal-lock');
@@ -212,7 +215,7 @@ try {
     await drive(-.37,.29);
     await waitStep('Save the final images');
     await screenshot('final-image');
-    await click(action); await click(button('Side')); await click(action);
+    await click(action); await click(button('Next · Side')); await click(action);
     await waitStep('Cover the site');
     await screenshot('dressing-tray');
     const dressing = await grip.boundingBox();

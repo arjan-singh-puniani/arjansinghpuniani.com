@@ -13,7 +13,7 @@ npm run build
 npm run start -- --hostname 127.0.0.1 --port 8782
 ```
 
-Open [the local case](http://127.0.0.1:8782/hospitalsim/ortho/index.html). Start with **Take the clamp**. **Move** changes projected translation and gap. **Rotate** changes tilt and axial twist. Guided marks the endpoint of a single correction. Drag from the handle to the marker, release and repeat, switching modes when indicated. Review both projections. During seating, several shorter drags work. Confirm both seated-nail projections, then release over each locking target to record fixation. After both final images, drag the dressing onto the dashed outline or use **Place dressing**. Keyboard arrows move the selected tool, Shift makes finer adjustments, Enter commits and Escape rolls back the active gesture.
+Open [the local case](http://127.0.0.1:8782/hospitalsim/ortho/index.html). Start with **Take the clamp**. **Move** changes projected translation and gap. **Rotate** changes tilt and axial twist. Guided marks the endpoint of a single correction. Drag from the handle to the marker, release and repeat, switching modes when indicated. Once you check a projection, **Next** opens the other projection. During seating, several shorter drags work. Confirm both seated-nail projections, then release over each locking target to record fixation. After both final images, drag the dressing onto the dashed outline or use **Place dressing**. Keyboard arrows move the selected tool, Shift makes finer adjustments, Enter commits and Escape rolls back the active gesture.
 
 ## Implementation
 

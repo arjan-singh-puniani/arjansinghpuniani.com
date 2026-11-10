@@ -13,6 +13,9 @@ const steps = {
 };
 const timeline = Object.keys(steps).slice(0, -1);
 const degrees = n => (n * 180 / Math.PI).toFixed(1) + '°';
+const otherView = view => view === 'front' ? 'side' : 'front';
+const viewName = view => view === 'front' ? 'Front' : 'Side';
+const viewChecks = s => ({reduce:s.checked, prelock:s.prelock, image:s.reviewed})[s.stage];
 
 export async function mount() {
   const $ = id => document.getElementById(id);
@@ -117,6 +120,7 @@ export async function mount() {
       if (gripState.textContent !== gripStatus) gripState.textContent = gripStatus;
       gripState.toggleAttribute('data-locked',held&&closure===1);
       const previousAction = document.activeElement === $('action');
+      const previousNext = document.activeElement === $('secondary') && $('secondary').classList.contains('primary');
       const wasGrip = document.activeElement === grip;
       const [tag, title, directions, action] = steps[stage];
       setText('seed','SETUP ' + state.seed);
@@ -146,19 +150,20 @@ export async function mount() {
       }
       for (const choice of ['move','rotate']) $(choice).setAttribute('aria-pressed', choice === mode);
       $('action').hidden = !action;
-      const checked = reducing ? state.checked[view] : stage === 'prelock' ? state.prelock[view] : stage === 'image' && state.reviewed[view];
+      const checked = viewChecks(state)?.[view];
       setText('action',checked ? (reducing || stage === 'prelock' ? 'View checked ✓' : 'Image saved ✓') : action);
       $('action').disabled = Boolean(checked || state.grip);
       const next = reducing ? nextAdjustment(pose,view) : null;
-      const help = reducing && !state.expert && next && !fluoro;
+      const help = reducing && !checked && !state.expert && next && !fluoro;
       const guide = $('reduction-progress');
       guide.hidden = !reducing;
       if (reducing) {
         setText('reduction-progress',views.map(choice =>
-          (choice === 'front' ? 'Front' : 'Side') + (state.checked[choice] ? ' ✓' : ' to check')
+          viewName(choice) + (state.checked[choice] ? ' ✓' : ' to check')
         ).join(' · '));
       }
-      const alternate = help ? 'Nudge ' + metricNames[next.key] + ' ' + arrows[next.direction]
+      const alternate = checked ? 'Next · ' + viewName(otherView(view))
+        : help ? 'Nudge ' + metricNames[next.key] + ' ' + arrows[next.direction]
         : reviewing
         ? (state.seed === openingSeed ? 'Try harder setup' : 'Try another setup')
         : stage === 'seat' || stage === 'prelock' ? 'Refine alignment' : '';
@@ -166,6 +171,7 @@ export async function mount() {
       $('secondary').hidden = !alternate;
       $('secondary').disabled = Boolean(held);
       $('secondary').toggleAttribute('data-nudge',Boolean(help));
+      $('secondary').classList.toggle('primary',Boolean(checked));
       $('restart').hidden = reviewing || stage === 'inspect';
       $('travel').hidden = stage !== 'seat';
       $('travel').value = state.nail;
@@ -179,8 +185,7 @@ export async function mount() {
       const aimGood = Math.hypot(state.aim.x,state.aim.y) <= (state.expert ? .052 : .092);
       let notice = state.notice;
       if (reducing) {
-        const other = view === 'front' ? 'Side' : 'Front';
-        if (checked) notice = 'This view is checked. Select ' + other + ' to continue.';
+        if (checked) notice = 'This view is checked.';
         else if (fluoro) notice = 'Tap Fluoro again to return to the clamp.';
         else if (!next) notice = held ? 'All four readings are in range. Release the clamp.'
           : 'All four readings are in range. Select Check this view.';
@@ -224,6 +229,8 @@ export async function mount() {
         grip.setAttribute('aria-label', reducing ? 'Grab reduction clamp' : fixing ? 'Grab locking reticle' : placing ? 'Grab dressing' : 'Grab nail handle');
       }
       if ($('notice').textContent !== notice) $('notice').textContent = notice;
+      if (previousAction && checked) $('secondary').focus({preventScroll:true});
+      if (previousNext && !checked) (reducing ? grip : $('action')).focus({preventScroll:true});
       if (previousAction && active && $('action').hidden) grip.focus({preventScroll:true});
       if ((wasGrip || previousAction) && !active && !$('action').hidden) $('action').focus({preventScroll:true});
       if (reducing && closure !== Number(held)) redraw();
@@ -332,11 +339,12 @@ export async function mount() {
   });
 
   $('fluoro').onclick = () => {stopPointer(); fluoro = !fluoro; redraw();};
-  for (const choice of views) $(choice).onclick = () => {
+  function selectView(choice) {
     stopPointer();
     changeView(state,choice);
     redraw();
-  };
+  }
+  for (const choice of views) $(choice).onclick = () => selectView(choice);
   for (const choice of ['move','rotate']) $(choice).onclick = event => {
     stopPointer();
     state.mode = choice;
@@ -371,7 +379,10 @@ export async function mount() {
     redraw();
   };
   $('secondary').onclick = () => {
-    if (state.stage === 'reduce') {
+    if (viewChecks(state)?.[state.view]) {
+      fluoro = false;
+      selectView(otherView(state.view));
+    } else if (state.stage === 'reduce') {
       if (!fluoro && nudgeAlignment(state)) cue('settle');
       redraw();
     }
