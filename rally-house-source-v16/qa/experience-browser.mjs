@@ -23,8 +23,10 @@ try {
       await page.addStyleTag({content:'[class*="heroGrid"]{grid-template-columns:1fr!important;max-width:850px!important}[class*="heroCopy"]{text-align:center}[class*="deck"]{margin-left:auto;margin-right:auto}[class*="actions"]{justify-content:center}'});
       await page.screenshot({path:path.join(output,'portfolio-hero-B.png'),fullPage:true});
     }
-    await page.getByRole('button',{name:'Play Rally House ↗'}).click();
-    await page.locator('iframe').waitFor();await enterClub(page.frameLocator('iframe'),'Arjan');
+    await page.getByRole('link',{name:'Play Rally House ↗'}).click();
+    const touch=await page.evaluate(()=>matchMedia('(pointer: coarse)').matches);
+    if(!touch)await page.locator('iframe').waitFor();
+    await enterClub(touch?page:page.frameLocator('iframe'),'Arjan');
     await page.screenshot({path:path.join(output,`portfolio-playing-${width}.png`)});
     report.viewports.push({width,height,overflow:false,axeViolations:axe.violations.length,iframeOnIntent:true});await context.close();
   }

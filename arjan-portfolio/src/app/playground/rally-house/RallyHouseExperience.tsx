@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { type MouseEvent, useRef, useState } from "react";
 import guide from "./guide-screens.json";
 import styles from "./rally-house.module.css";
 
 const steps = [
   { title: "Play tennis immediately.", text: "Tap a club member, then choose Challenge to Match.", screen: guide.challenge, alt: "Isometric club view with Challenge to Match highlighted in a member’s menu" },
-  { title: "Championship mode.", text: "WASD or arrows to move. Space to swing.", screen: guide.championship, alt: "Championship court view with the movement and swing controls highlighted" },
+  { title: "Championship mode.", text: "Use the touch stick and Swing. On a keyboard: arrows and Space.", screen: guide.championship, alt: "Championship court view with the movement and swing controls highlighted" },
   { title: "Replay your last shot.", text: "After a point, choose Analyze last swing.", screen: guide.analyze, alt: "A completed point with the Analyze last swing button highlighted" },
   { title: "Analyze your swing like a pro.", text: "Pause, scrub and inspect your joints on the replay.", screen: guide.lab, alt: "The recorded shot in AnatomyMotion with a registered body rig and elbow analysis" },
 ] as const;
@@ -19,7 +19,10 @@ export default function RallyHouseExperience() {
   const [fullscreenMessage, setFullscreenMessage] = useState("");
   const player = useRef<HTMLDivElement>(null);
   const frame = useRef<HTMLIFrameElement>(null);
-  function enterClub() {
+  function enterClub(event: MouseEvent<HTMLAnchorElement>) {
+    // Touch play gets the whole viewport so rotation cannot scroll an active iframe offscreen.
+    if (window.matchMedia("(pointer: coarse)").matches || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
     setPlaying(true);
     player.current?.scrollIntoView({ block: "start", behavior: "instant" });
   }
@@ -40,7 +43,7 @@ export default function RallyHouseExperience() {
           <h1><span>The Sims meets</span>{" "}<em>Mario Tennis.</em></h1>
           <p className={styles.deck}>Build your club. Play a point. See your swing.</p>
           <div className={styles.actions}>
-            <button className={styles.primary} onClick={enterClub}>Play Rally House ↗</button>
+            <a className={styles.primary} href="/rally-house/index.html" onClick={enterClub}>Play Rally House ↗</a>
             <a className={styles.textLink} href="#how-to-play">See how it plays ↓</a>
           </div>
           <p className={styles.small}>Free browser play. Your club saves on this device.</p>
@@ -72,7 +75,7 @@ export default function RallyHouseExperience() {
       <div className="shell">
         <div className={styles.playHeading}><h2 id="play-title">Your court.</h2><a href="/rally-house/index.html" target="_blank" rel="noreferrer">Open in a new tab ↗</a></div>
         <div className={styles.frameShell} ref={player}>
-          {playing ? <><iframe ref={frame} className={styles.gameFrame} src="/rally-house/index.html" title="Play Rally House" allow="fullscreen" allowFullScreen aria-describedby="rally-house-controls" onLoad={() => { setLoaded(true); frame.current?.focus({ preventScroll: true }); }} />{!loaded && <p className={styles.loading} role="status">Opening the club…</p>}</> : <div className={styles.playPoster}><Image src={`/rally-house/media/${guide.championship.image}`} width={guide.championship.width} height={guide.championship.height} sizes="100vw" alt="The Rally House court, ready for Championship" /><button className={styles.posterButton} onClick={enterClub}>Enter the club <span>↗</span></button></div>}
+          {playing ? <><iframe ref={frame} className={styles.gameFrame} src="/rally-house/index.html" title="Play Rally House" allow="fullscreen" allowFullScreen aria-describedby="rally-house-controls" onLoad={() => { setLoaded(true); frame.current?.focus({ preventScroll: true }); }} />{!loaded && <p className={styles.loading} role="status">Opening the club…</p>}</> : <div className={styles.playPoster}><Image src={`/rally-house/media/${guide.championship.image}`} width={guide.championship.width} height={guide.championship.height} sizes="100vw" alt="The Rally House court, ready for Championship" /><a className={styles.posterButton} href="/rally-house/index.html" onClick={enterClub}>Enter the club <span>↗</span></a></div>}
         </div>
         <div className={styles.playerFooter}><span>{playing ? "Live game" : "Starts when you enter"}</span>{playing && <button onClick={fullscreen}>Enter fullscreen ↗</button>}</div>
         {fullscreenMessage && <p role="status">{fullscreenMessage}</p>}

@@ -14,7 +14,9 @@ try{
   await page.getByRole('button',{name:/Discover/}).click();await page.waitForFunction(()=>[...document.images].some(i=>i.alt.includes('clock separates')&&i.complete&&i.naturalWidth>0));
   const {default:AxeBuilder}=await import('../../arjan-portfolio/node_modules/@axe-core/playwright/dist/index.js');
   const axe=await new AxeBuilder({page}).analyze();assert.deepEqual(axe.violations,[]);
-  await page.getByRole('button',{name:'Play Rally House ↗'}).click();await page.frameLocator('iframe').getByText(avatar,{exact:true}).click();
+  await page.getByRole('link',{name:'Play Rally House ↗'}).click();
+  const touch=await page.evaluate(()=>matchMedia('(pointer: coarse)').matches);
+  await (touch?page:page.frameLocator('iframe')).getByText(avatar,{exact:true}).click();
   const frame=page.frames().find(f=>f.url().includes('/rally-house/index.html'));
   // Production deliberately has no debug hooks; inspect the shipped controls
   // through the real character card and challenge button.
