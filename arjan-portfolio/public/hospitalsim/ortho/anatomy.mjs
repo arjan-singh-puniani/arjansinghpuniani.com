@@ -50,13 +50,15 @@ export function corticalFinish(material, detail) {
 }
 
 function fiberTexture() {
-  const width=256,height=128, bytes=new Uint8Array(width*height*4);
+  const width=256,height=256, bytes=new Uint8Array(width*height*4);
   for(let j=0;j<height;j++)for(let i=0;i<width;i++){
     const u=i/width*2*Math.PI,v=j/height*2*Math.PI;
-    const striation=.49*Math.sin(67*u+1.9*Math.sin(2*v+5*u))
-      +.22*Math.sin(38*u+1.3*Math.sin(3*v+7*u))+.13*Math.sin(21*u+2*v);
-    const variation=.08*Math.sin(11*u+2*v)+.055*Math.cos(17*u-5*v);
-    const shade=Math.min(255,215+42*striation+88*variation);
+    const fiber=u+.025*Math.sin(v+3*u)+.013*Math.sin(3*v-9*u);
+    const bundles=Math.sin(18*fiber+.6*Math.sin(4*v+u));
+    const striation=.46*Math.sin(67*fiber)+.26*Math.sin(41*fiber+2*Math.cos(v-3*u))
+      +.13*Math.sin(88*fiber+3*v);
+    const relief=bundles*(.70+.30*Math.sin(2*v-11*u));
+    const shade=202+35*striation+19*relief+8*Math.sin(13*u+7*v)*Math.sin(23*u-11*v);
     const at=(j*width+i)*4;
     bytes[at]=bytes[at+1]=bytes[at+2]=shade;
     bytes[at+3]=255;
@@ -73,12 +75,13 @@ function fiberTexture() {
 function fascicle(path, width, thickness, shade) {
   const spline = new T.CatmullRomCurve3(path.map(p=>point(...p)));
   const base=new T.Color(shade), fascia=new T.Color(0xeab1a3), dark=new T.Color(0x431c22);
-  const verts=[],uv=[],colors=[],indices=[],sides=26,rows=34;
+  const verts=[],uv=[],colors=[],indices=[],sides=30,rows=52;
   for(let i=0;i<=rows;i++){
     const t=i/rows,c=spline.getPoint(t), cross=Math.pow(Math.sin(Math.PI*t),.73);
     for(let j=0;j<=sides;j++){
       const a=j/sides*2*Math.PI, envelope=Math.max(.015,cross);
-      const folds=1+.051*Math.sin(a*7+t*12)+.027*Math.cos(a*11-t*17);
+      const folds=1+.066*Math.sin(a*7+t*12)+.034*Math.cos(a*11-t*17)
+        +.027*Math.sin(a*4-t*8)*Math.sin(Math.PI*t);
       verts.push(c.x+Math.cos(a)*envelope*width*folds,c.y,c.z+Math.sin(a)*envelope*thickness*folds);
       uv.push(j/sides,t);
       const taper=Math.pow(Math.abs(t-.5)*2,5)*.68;
@@ -100,13 +103,35 @@ function fascicle(path, width, thickness, shade) {
   return geometry;
 }
 
-export function operativeTissue() {
-  const material=paint(0xffffff,.49);
+function retractorContact(bank, side) {
+  const x=side*.93,y=side<0?.46:.24;
+  const ray=new T.Raycaster(point(x,y,2),point(0,0,-1));
+  const z=ray.intersectObject(bank,false)[0]?.point.z ?? .48;
+  const {position,color}=bank.geometry.attributes;
+  for(let i=0;i<position.count;i++){
+    const depth=position.getZ(i);
+    const dx=(position.getX(i)-x)*side, dy=position.getY(i)-y;
+    const surface=T.MathUtils.smoothstep(depth,z-.35,z-.13);
+    if(!surface) continue;
+    const pit=Math.exp(-((dx/.14)**2+(dy/.15)**2)*1.55);
+    const ridge=Math.exp(-(((dx-.075)/.19)**2+((Math.abs(dy)-.16)/.058)**2)*1.4);
+    position.setZ(i,depth+surface*(.049*ridge-.104*pit));
+    const shade=1+surface*(.08*ridge-.29*pit);
+    color.setXYZ(i,color.getX(i)*shade,color.getY(i)*shade,color.getZ(i)*shade);
+  }
+  bank.geometry.computeVertexNormals();
+  return {x,y,z};
+}
+
+export function operativeTissue(steel) {
+  const material=paint(0xffffff,.54);
   material.vertexColors=true;
   material.side=T.DoubleSide;
   material.map=material.bumpMap=fiberTexture();
-  material.bumpScale=.026;
+  material.bumpScale=.045;
   const bed=new T.Mesh(fascicle([[-.18,3,-.63],[-.03,1.5,-.64],[.05,-1,-.70],[.10,-2.9,-.61]],1.18,.26,0x733c3a),material);
+  bed.receiveShadow=true;
+  const blades=[];
   const sides=[-1,1].map(side=>{
     const f=(x,y,z)=>[x*side,y,z];
     const layers=[
@@ -119,13 +144,22 @@ export function operativeTissue() {
       fascicle([f(1.17,2.37,.04),f(1.40,1.21,.29),f(1.49,-.25,.37),f(1.37,-1.43,.20),f(.94,-2.40,-.04)],.19,.21,0xa76c5c)
     ];
     const result=new T.Group();
-    result.add(new T.Mesh(mergeGeometries(layers),material));
+    const bank=new T.Mesh(mergeGeometries(layers),material);
+    bank.receiveShadow=true;
+    result.add(bank);
     for(const layer of layers)layer.dispose();
+    const {x,y,z}=retractorContact(bank,side);
+    const p=(dx,dy,dz)=>[x+dx*side,y+dy,z+dz], slope=side<0?.48:.19;
+    const blade=new T.Mesh(retractor([p(-.015,-.095,-.105),p(-.026,-.03,-.035),p(.035,.025,.075),
+      p(.30,slope*.39,.24),p(1.28,slope,.48),p(3.42,slope*2.5,.70)]),steel);
+    blade.castShadow=true;
+    result.add(blade);
+    blades.push(blade);
     return result;
   });
   const group=new T.Group();
   group.add(bed,...sides);
-  return {group,sides};
+  return {group,sides,blades};
 }
 
 function retractor(path) {
@@ -156,21 +190,19 @@ function retractor(path) {
   return mesh;
 }
 
-export function theatreDetails(steel) {
+export function theatreDetails() {
   const props=new T.Group();
-  for(const side of [-1,1]){
-    const s=(x,y,z)=>[x*side,y,z], y=side<0?.52:.28;
-    const slope=side<0?.48:.19;
-    const shape=retractor([s(.77,y-.15,.24),s(.79,y-.04,.43),s(.86,y+.04,.63),s(1.20,y+slope*.31,.78),s(2.20,y+slope,1.01),s(4.35,y+slope*2.5,1.24)]);
-    props.add(new T.Mesh(shape,steel));
-  }
   const structures=[
-    [0xa84f4c,.023,[[-.93,2.08,.38],[-.92,1.21,.51],[-.96,.47,.57],[-1.04,-.37,.57],[-.94,-1.48,.42]]],
-    [0xa84f4c,.012,[[-.96,.54,.57],[-1.09,.35,.55],[-1.23,.10,.58]]],
-    [0x365c7a,.028,[[.92,1.77,.39],[1.05,1.08,.57],[1.12,.43,.63],[1.09,-.22,.59],[1.03,-.79,.58],[.93,-1.47,.46]]],
-    [0x365c7a,.013,[[1.10,.28,.61],[1.25,.14,.58],[1.43,-.05,.55]]],
+    [0xa84f4c,.023,[[-.93,2.08,.38],[-.92,1.21,.51],[-.96,.47,.44],[-1.04,-.37,.57],[-.94,-1.48,.42]]],
+    [0xa84f4c,.012,[[-.96,.47,.44],[-1.09,.35,.48],[-1.23,.10,.58]]],
+    [0x365c7a,.028,[[.92,1.77,.39],[1.05,1.08,.57],[1.12,.47,.56],[1.11,.25,.45],[1.09,-.22,.59],[1.03,-.79,.58],[.93,-1.47,.46]]],
+    [0x365c7a,.013,[[1.11,.25,.45],[1.25,.14,.48],[1.43,-.05,.55]]],
     [0xb2874a,.015,[[.71,1.85,.30],[.72,1.12,.37],[.75,.55,.39],[.74,-.03,.36],[.62,-.72,.27]]],
   ];
-  for(const [color,radius,path] of structures)props.add(new T.Mesh(tube(path,radius,22),paint(color,.56)));
+  for(const [color,radius,path] of structures){
+    const structure=new T.Mesh(tube(path,radius,22),paint(color,.56));
+    structure.receiveShadow=true;
+    props.add(structure);
+  }
   return props;
 }
