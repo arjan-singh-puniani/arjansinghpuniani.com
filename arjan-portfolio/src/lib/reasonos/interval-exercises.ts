@@ -31,7 +31,7 @@ export const INTERVAL_EXERCISES: Readonly<Partial<Record<string, IntervalExercis
     title: "R–R · Compare consecutive beats",
     lead: "II", kind: "RR", start: 0, seconds: 2.5, gain: 20,
     pairs: [[99, 494], [494, 795]], tolerance: 10,
-    landmarks: ["Top of the first tall R peak.", "Top of the next tall R peak."],
+    landmarks: ["Top of the starting R peak. Begin the case at the first tall peak.", "Top of the next tall R peak."],
     interpretation: "The second gap is shorter than the first. This shows a change in ventricular beat spacing. Compare more beats and look for P waves in leads II and V1 to investigate the rhythm.",
   },
   "00011": {
