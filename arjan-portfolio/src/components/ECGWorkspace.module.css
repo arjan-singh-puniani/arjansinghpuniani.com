@@ -109,6 +109,7 @@
 .error { background:#f4e8df; color:#733e31; padding:15px 26px; font-size:12px; border-bottom:1px solid #d5b7a9; }
 .error button { margin-left:12px; font-size:11px; }
 .loading { padding:80px 20px; text-align:center; color:var(--muted); }
+.loadingCase { color:var(--muted); font-size:12px; }
 .pending { opacity:.45; pointer-events:none; }
 .srOnly { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 .fullScreen { position:fixed; inset:0; z-index:2000; border:0; border-radius:0; overflow:auto; height:100dvh; }
@@ -130,22 +131,25 @@
 @media(max-width:760px) { .workspace .viewTools { column-gap:8px; } .workspace .viewTools label { gap:4px; font-size:10px; } .workspace .viewTools select { padding:5px 3px; } }
 
 .masthead p { color:#d8e8dd; font-size:13px; margin-top:5px; }
-.lesson { display:flex; justify-content:space-between; align-items:center; gap:18px; padding:16px; margin:12px 0; background:#f7faf5; border:1px solid #a6bbb0; border-radius:6px; }
-.lesson strong { font-size:16px; font-weight:600; }
-.lesson p { color:var(--muted); font-size:13px; max-width:50ch; margin-top:4px; }
-.workspace .lesson button { color:white; background:#176256; border-color:#176256; flex-shrink:0; }
-.workspace .lesson button:hover { color:white; background:#0f4d43; }
-@media(max-width:760px) { .lesson { display:block; padding:12px; } .lesson button { margin-top:10px; } .strip { min-width:0; } .strip polyline { stroke-width:1.4; vector-effect:non-scaling-stroke; } }
+@media(max-width:760px) { .strip { min-width:0; } .strip polyline { stroke-width:1.4; vector-effect:non-scaling-stroke; } }
 
 .journal li[data-needs-review="true"] { background:#faf1df; border-left:3px solid #9a6424; }
-.practice { display:block; }
-.practice details { margin-top:8px; }
-.practice summary { cursor:pointer; padding:6px 0; }
+.practice { padding:12px 14px; background:#f7faf5; border:1px solid #a6bbb0; border-radius:6px; }
+.practice h3 { font-size:16px; font-weight:600; }
+.landmarks { display:grid; gap:4px; margin-top:6px; }
+.landmarks p { display:flex; gap:8px; align-items:baseline; color:var(--ink); font-size:13px; }
+.landmarks b { color:#005d69; }
+.practice summary { cursor:pointer; width:fit-content; padding:8px 0 2px; color:#005d69; font-size:13px; }
+.practice details p { color:var(--muted); font-size:12px; margin-top:6px; }
 .practice button { margin:8px 8px 0 0; }
+.practice + .stripHead { margin-top:10px; }
+.stripHead > span[role="status"] { color:#17564f; font-size:12px; font-weight:600; }
+.stripFrame svg { cursor:crosshair; }
 .traceActions { display:grid; gap:10px; padding:12px 0; }
 .traceButtons { display:flex; flex-wrap:wrap; gap:8px; }
 .workspace .traceButtons button { min-height:44px; }
 .workspace .traceButtons .primary { width:auto; margin:0; }
+.traceButtons .secondary { width:auto; margin:0; }
 .traceStatus { color:var(--muted); font-size:12px; }
 .traceActions > :empty { position:absolute; }
 .practiceResult { background:#e8f0e9; border-left:3px solid var(--accent); padding:12px; }

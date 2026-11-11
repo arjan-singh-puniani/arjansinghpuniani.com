@@ -37,7 +37,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   const [panel, setPanel] = useState<"measure" | "reason" | "review" | "source">("measure");
   const [placed, setPlaced] = useState<[boolean, boolean]>([false, false]), [imageLeadConfirmed, setImageLeadConfirmed] = useState(false);
   const inspector = useRef<HTMLElement>(null), stripFrame = useRef<HTMLDivElement>(null);
-  const traceActionGroup = useRef<HTMLDivElement>(null);
+  const traceAndActions = useRef<HTMLDivElement>(null);
   const [overlays, setOverlays] = useState(true), [zoom, setZoom] = useState(1), [gain, setGain] = useState(10);
   const [points, setPoints] = useState<PointPair>(() => pair(250, 350)), [grid, setGrid] = useState<PointPair>(() => pair(150, 350));
   const [tool, setTool] = useState<"measure" | "calibrate">("measure"), [nextPoint, setNextPoint] = useState<0 | 1>(0);
@@ -47,26 +47,30 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   const [overviewOpen, setOverviewOpen] = useState(false), [windowSeconds, setWindowSeconds] = useState(10);
   const [pageCount, setPageCount] = useState(0), [page, setPage] = useState(1);
   const pdf = useRef<PDFDocumentProxy | null>(null), pdfInfo = useRef<{ name: string; sha: string; local: boolean } | null>(null);
-  const fileInput = useRef<HTMLInputElement>(null), serial = useRef(0), drag = useRef<0 | 1 | null>(null);
+  const fileInput = useRef<HTMLInputElement>(null), casePicker = useRef<HTMLSelectElement>(null);
+  const serial = useRef(0), drag = useRef<0 | 1 | null>(null);
   const worksheets = useRef(new Map<string, Trace>());
   const states = useMemo(() => trace ? workspaceStates(trace) : [], [trace]);
   const saved = states.filter(st => st.role === "measurement" || st.role === "claim");
   const selectedState = saved.find(st => st.id === selected);
   const signal = source?.signal;
   const exercise = source?.referenceId ? INTERVAL_EXERCISES[source.referenceId] : undefined;
-  const exerciseMeasurements = exercise?.pairs.map(([first, last]) => saved.findLast(state => {
+  function matchesLandmarks(state: State, [first, last]: readonly [number, number]) {
     const indices = state.payload.sampleIndices;
-    return state.role === "measurement" && state.payload.lead === exercise.lead && state.payload.label === exercise.kind &&
+    return exercise && state.role === "measurement" && state.payload.lead === exercise.lead && state.payload.label === exercise.kind &&
       Array.isArray(indices) && typeof indices[0] === "number" && typeof indices[1] === "number" &&
-      Math.abs(indices[0] - first) <= exercise.tolerance && Math.abs(indices[1] - last) <= exercise.tolerance &&
-      !saved.some(revision => revision.payload.revisionOf === state.id);
-  }));
+      Math.abs(indices[0] - first) <= exercise.tolerance && Math.abs(indices[1] - last) <= exercise.tolerance;
+  }
+  const exerciseMeasurements = exercise?.pairs.map(pair => saved.findLast(state =>
+    matchesLandmarks(state, pair) && !saved.some(revision => revision.payload.revisionOf === state.id)));
   const nextInterval = exerciseMeasurements?.findIndex(state => !state) ?? -1;
   const previousEndpoints = exerciseMeasurements?.[nextInterval - 1]?.payload.sampleIndices;
   const sharedPeak = exercise && nextInterval > 0 &&
     exercise.pairs[nextInterval - 1][1] === exercise.pairs[nextInterval][0] &&
     Array.isArray(previousEndpoints) && typeof previousEndpoints[1] === "number" ? previousEndpoints[1] : null;
-  const traceActions = panel === "measure" && Boolean(exercise || source?.referenceId === "00010");
+  const traceActions = panel === "measure" && Boolean(exercise);
+  const latestUnmatched = exercise && selectedState?.role === "measurement" &&
+    !exercise.pairs.some(pair => matchesLandmarks(selectedState, pair)) ? selectedState : null;
   const activeLead = signal ? lead : imageLead;
   const duration = signal ? (signal.sampleCount - 1) / signal.sampleRate : 0;
   const span = Math.min(windowSeconds, duration);
@@ -241,18 +245,27 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   function goToPanel(next: typeof panel) {
     setPanel(next);
     if (window.innerWidth <= 760) inspector.current?.scrollIntoView({ block: "start", behavior: "instant" });
-    requestAnimationFrame(() => inspector.current?.querySelector("h3")?.focus({ preventScroll: true }));
+    requestAnimationFrame(() => {
+      const heading = inspector.current?.querySelector("h3");
+      heading?.focus({ preventScroll: true });
+      heading?.scrollIntoView({ block: "nearest" });
+    });
   }
   function movePoint(index: 0 | 1, point: ImagePoint) {
     const update = (old: PointPair): PointPair => old.map((p, i) => i === index ? point : p) as PointPair;
     if (tool === "calibrate") { setGrid(update); setConfirmed(false); } else { setPoints(update); setPlaced(old => old.map((v, i) => i === index ? true : v) as [boolean, boolean]); }
+  }
+  function clearCalipers() {
+    setPlaced([false, false]);
+    setNextPoint(0);
+    setEditing(null);
   }
   function svgPoint(e: React.PointerEvent<SVGSVGElement>) {
     const matrix = e.currentTarget.getScreenCTM(); if (!matrix) return;
     const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(matrix.inverse());
     return { x: Math.max(0, Math.min(coordWidth, p.x)), y: Math.max(0, Math.min(coordHeight, p.y)) };
   }
-  function placeCalipers(view: Pick<IntervalExercise, "lead" | "kind" | "start" | "seconds" | "gain">, [first, last]: readonly [number, number?]) {
+  function placeCalipers(view: IntervalExercise, endpoints?: readonly [number, number?]) {
     if (loading || !signal || editing) return;
     const values = signal.millivolts[signal.leads.indexOf(view.lead)];
     const point = (sample: number): ImagePoint => ({
@@ -260,8 +273,17 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
       y: 120 - values[sample] * view.gain * 4,
     });
     setLead(view.lead); setGain(view.gain); setWindowStart(view.start); setWindowSeconds(view.seconds);
-    setPoints([point(first), point(last ?? first)]); setPlaced([true, last !== undefined]); setKind(view.kind);
-    setTool("measure"); setOverlays(true); setPanel("measure"); setNextPoint(last === undefined ? 1 : 0);
+    if (endpoints) {
+      const [first, last] = endpoints;
+      setPoints([point(first), point(last ?? first)]);
+      setPlaced([true, last !== undefined]);
+      setNextPoint(last === undefined ? 1 : 0);
+    } else {
+      clearCalipers();
+    }
+    setKind(view.kind); setTool("measure"); setOverlays(true); setPanel("measure");
+    stripFrame.current?.focus({ preventScroll: true });
+    requestAnimationFrame(() => stripFrame.current?.scrollIntoView({ block: "nearest" }));
   }
   function saveMeasurement() {
     if (!source || !trace || !canSave || !measured) return;
@@ -273,7 +295,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
     setTrace(result.trace); worksheets.current.set(source.id, result.trace);
     if (result.transformation.accepted) { setSelected(result.transformation.outputStateId); setEditing(null); setMessage(editing ? "Revision saved. Check the linked note in Review." : exercise ? "Interval saved." : "Interval saved. Add a note about what it shows."); if (editing) goToPanel("review"); }
     else setMessage("Measurement rejected. Check endpoints and calibration.");
-    if (traceActions && !editing) requestAnimationFrame(() => traceActionGroup.current?.scrollIntoView({ block: "nearest" }));
+    if (traceActions && !editing) requestAnimationFrame(() => traceAndActions.current?.scrollIntoView({ block: "nearest" }));
   }
   function saveClaim() {
     if (!trace || !source || !selectedState || selectedState.role !== "measurement" || draft.trim().length < 3) return;
@@ -321,18 +343,36 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
     onPointerMove: (e: React.PointerEvent<SVGSVGElement>) => { if (drag.current !== null) { const p = svgPoint(e); if (p) movePoint(drag.current, p); } },
     onPointerUp: () => { drag.current = null; }, onPointerCancel: () => { drag.current = null; },
   };
-  const saveButton = <button className={s.primary} disabled={!canSave || loading} onClick={saveMeasurement}>{editing ? "Save revision" : "Save measurement"}</button>;
+  const lastSavedSamples = selectedState?.payload.sampleIndices;
+  const draftSamples = measured?.sampleIndices;
+  const alreadySaved = traceActions && !editing && selectedState?.role === "measurement" &&
+    selectedState.payload.label === kind && selectedState.payload.lead === activeLead &&
+    Array.isArray(lastSavedSamples) && Array.isArray(draftSamples) &&
+    draftSamples[0] === lastSavedSamples[0] && draftSamples[1] === lastSavedSamples[1];
+  const saveButton = <button className={s.primary} disabled={!canSave || loading || alreadySaved} onClick={saveMeasurement}>{editing ? "Save revision" : "Save measurement"}</button>;
+  const addNote = selectedState?.role === "measurement" && <button className={s.secondary} onClick={() => goToPanel("reason")}>Add a note →</button>;
+  const viewTools = <div className={s.viewTools}>
+    {signal ? <><label>Lead <select aria-label="Focused lead" value={lead} onChange={e => { setLead(e.target.value); clearCalipers(); }}>{signal.leads.map(name => <option key={name} value={name}>{leadLabel(name)}</option>)}</select></label>
+      <label>Gain <select aria-label="Display gain" value={gain} onChange={e => setGain(Number(e.target.value))}><option value="1">1 mm/mV</option><option value="5">5 mm/mV</option><option value="10">10 mm/mV</option><option value="20">20 mm/mV</option></select></label>
+      <label>Window <select aria-label="Focused time span" value={windowSeconds} onChange={e => { setWindowSeconds(Number(e.target.value)); setWindowStart(0); clearCalipers(); }}><option value="1">1 s</option><option value="2.5">2.5 s</option><option value="5">5 s</option><option value="10">10 s</option></select></label><span>Calibrated time & voltage axes</span></> : <><label>Zoom <select aria-label="Source image zoom" value={zoom} onChange={e => setZoom(Number(e.target.value))}><option value="1">Fit page</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select></label>
+        {pageCount > 0 && <label>Page <select aria-label="PDF page" value={page} disabled={loading} onChange={e => void changePage(Number(e.target.value))}>{Array.from({ length: pageCount }, (_, i) => <option key={i} value={i + 1}>{i + 1} / {pageCount}</option>)}</select></label>}
+        <span>{confirmed ? "User-calibrated image" : "Calibrate before measuring"}</span></>}
+  </div>;
+  let placementCue = `Click or tap to place ${nextPoint === 0 ? "A" : "B"}`;
+  if (!overlays) placementCue = "Turn on Overlays to place calipers.";
+  else if (placed.every(Boolean)) placementCue = measured?.ordered
+    ? `${round(measured.duration, 2)} ms selected`
+    : "Place A before B. Drag a caliper to adjust it.";
   return <section className={`${s.workspace} ${fullScreen ? s.fullScreen : ""}`} aria-labelledby="workspace-title" data-ecg-workspace data-ecg-fullscreen={fullScreen || undefined}>
     <header className={s.masthead}>
-      <div><h2 id="workspace-title">ECG workspace</h2><p>ReasonOS keeps each note tied to the interval you measured.</p></div>
+      <div><h2 id="workspace-title">ECG workspace</h2><p>Choose a case, mark two points, and check what the interval tells you.</p></div>
       {fullScreen ? <Link href="/work/vector-ekg-reasonos">← Case study</Link> : <Link href="/work/vector-ekg-reasonos/workspace">Open full screen ↗</Link>}
     </header>
     <div className={s.toolbar}>
-      <label>Practice case <select aria-label="Reference recording" value={source?.local ? "local" : source?.referenceId ?? caseId} disabled={loading} onChange={e => void reference(e.target.value)}>
+      <label>Practice case <select ref={casePicker} aria-label="Reference recording" value={source?.local ? "local" : source?.referenceId ?? caseId} disabled={loading} onChange={e => void reference(e.target.value)}>
         {source?.local && <option value="local">Local recording</option>}
-        <option value="00010">R–R · First measurement</option>
         {Object.entries(INTERVAL_EXERCISES).map(([id, lesson]) => <option key={id} value={id}>{lesson?.title}</option>)}
-        {REFERENCE_CASES.filter(item => item.id !== "00010" && !INTERVAL_EXERCISES[item.id]).map(item => <option key={item.id} value={item.id}>Free measurement · PTB-XL {item.id}</option>)}
+        {REFERENCE_CASES.filter(item => !INTERVAL_EXERCISES[item.id]).map(item => <option key={item.id} value={item.id}>Free measurement · PTB-XL {item.id}</option>)}
       </select></label>
       <button className={s.open} disabled={loading} onClick={() => fileInput.current?.click()}>Open local ECG <span>↑</span></button>
       <input ref={fileInput} className={s.file} type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.csv,.hea,.dat" aria-label="Open local ECG files" onChange={e => { void openFiles(Array.from(e.target.files ?? [])); e.target.value = ""; }} />
@@ -344,55 +384,63 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
         <div className={s.recordingHead}><div><strong>{source?.name ?? "Opening reference recording…"}</strong><span>{source?.local ? "PRIVATE IMPORT" : "RECORDED REFERENCE"} · {signal ? `${signal.sampleRate} Hz · ${signal.leads.length} leads · ${round(duration, 2)} s` : source ? `Original page pixels · ${source.width} × ${source.height}` : "Verifying source"}</span></div>
           <label><input type="checkbox" checked={overlays} onChange={e => setOverlays(e.target.checked)} /> Overlays</label>
         </div>
-        {loading && <p role="status" className={s.loading}>Opening and checking recording…</p>}
+        {loading && <p role="status" className={source ? s.loadingCase : s.loading}>Opening and checking recording…</p>}
         {source && <div className={loading ? s.pending : undefined} aria-busy={loading}>
-          <div className={s.viewTools}>
-            {signal ? <><label>Lead <select aria-label="Focused lead" value={lead} onChange={e => { setLead(e.target.value); setEditing(null); setPlaced([false, false]); }}>{signal.leads.map(name => <option key={name} value={name}>{leadLabel(name)}</option>)}</select></label>
-              <label>Gain <select aria-label="Display gain" value={gain} onChange={e => setGain(Number(e.target.value))}><option value="1">1 mm/mV</option><option value="5">5 mm/mV</option><option value="10">10 mm/mV</option><option value="20">20 mm/mV</option></select></label>
-              <label>Window <select aria-label="Focused time span" value={windowSeconds} onChange={e => { setWindowSeconds(Number(e.target.value)); setWindowStart(0); setEditing(null); setPlaced([false, false]); }}><option value="1">1 s</option><option value="2.5">2.5 s</option><option value="5">5 s</option><option value="10">10 s</option></select></label><span>Calibrated time & voltage axes</span></> : <><label>Zoom <select aria-label="Source image zoom" value={zoom} onChange={e => setZoom(Number(e.target.value))}><option value="1">Fit page</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select></label>
-                {pageCount > 0 && <label>Page <select aria-label="PDF page" value={page} disabled={loading} onChange={e => void changePage(Number(e.target.value))}>{Array.from({ length: pageCount }, (_, i) => <option key={i} value={i + 1}>{i + 1} / {pageCount}</option>)}</select></label>}
-                <span>{confirmed ? "User-calibrated image" : "Calibrate before measuring"}</span></>}
-          </div>
+          {!exercise && viewTools}
           {signal ? <>
             {clipped && <p className={s.clipping} role="status">Some recorded peaks exceed the vertical display range. Original values are retained. {gain > 1 && <button onClick={() => setGain(gain > 10 ? 10 : gain > 5 ? 5 : 1)}>Lower display gain</button>}</p>}
 
-            {source.referenceId === "00010" && !editing && !saved.length && <div className={s.lesson}><div><strong>Measure one beat interval</strong><p>Place A and B on two consecutive R peaks in lead II, or mark the example pair.</p></div><button onClick={() => placeCalipers({ lead: "II", kind: "RR", start: 0, seconds: 2.5, gain: 10 }, [433, 852])}>{placed.every(Boolean) ? "Reset example peaks" : "Mark two example peaks"}</button></div>}
-            {exercise && <div className={`${s.lesson} ${s.practice}`}>
-              <strong>{exercise.title}</strong><p>Lead {exercise.lead}. {exercise.prompt}</p>
+            {exercise && <div className={s.practice}>
+              <h3>{exercise.title}</h3>
+              <div className={s.landmarks}>
+                {exercise.landmarks.map((landmark, index) => <p key={landmark}><b>{index === 0 ? "A" : "B"}</b>{index === 0 && sharedPeak !== null ? "Use the middle R peak for interval two." : landmark}</p>)}
+              </div>
+              {!editing && (lead !== exercise.lead || kind !== exercise.kind || windowStart !== exercise.start || windowSeconds !== exercise.seconds) &&
+                <button onClick={() => placeCalipers(exercise)}>Return to exercise view in lead {exercise.lead}</button>}
               {!editing && <details key={source.referenceId}><summary>Show worked landmarks</summary>
                 <p>These landmarks were marked by hand. The exercise compares each saved endpoint within {exercise.tolerance * 2} ms of its example mark.</p>
                 {exercise.pairs.map((indices, i) => <button key={indices[0]} onClick={() => placeCalipers(exercise, indices)}>
-                  Mark example {exercise.pairs.length > 1 ? `interval ${i + 1}` : exercise.kind === "RR" ? "peaks" : "endpoints"}
+                  {source.referenceId === "00010" ? "Mark two example peaks" : `Mark example ${exercise.pairs.length > 1 ? `interval ${i + 1}` : exercise.kind === "RR" ? "peaks" : "endpoints"}`}
                 </button>)}
               </details>}
             </div>}
-            <div className={s.stripHead}><strong>Lead {leadLabel(lead)} <span>· {round(windowStart, 2)}–{round(windowStart + span, 2)} s</span></strong><span>{placed.every(Boolean) && measured?.ordered ? `${round(measured.duration, 2)} ms selected` : placed[0] && !placed[1] ? "Place B on the trace" : "Click or tap the trace to place A, then B"}</span></div>
-            <div ref={stripFrame} className={s.stripFrame} tabIndex={0} role="region" aria-label="Focused trace; scroll horizontally on narrow screens"><svg viewBox={`0 0 ${stripWidth} ${stripHeight}`} className={s.strip} preserveAspectRatio="none" role="group" aria-label="Focused recorded ECG with movable calipers; exact endpoints are editable in the measurement panel" {...pointerProps}>
-              <defs><pattern id="ws-strip-minor" width={stripWidth / span / 25} height="4" patternUnits="userSpaceOnUse"><path d={`M${stripWidth / span / 25} 0H0V4`} fill="none" stroke="#d3dfd8" strokeWidth=".4" /></pattern><pattern id="ws-strip-major" width={stripWidth / span / 5} height="20" patternUnits="userSpaceOnUse"><rect width={stripWidth / span / 5} height="20" fill="url(#ws-strip-minor)"/><path d={`M${stripWidth / span / 5} 0H0V20`} fill="none" stroke="#b8cdc3" strokeWidth=".5" /></pattern></defs>
-              <rect width={stripWidth} height={stripHeight} fill="#fcfcf8"/><rect width={stripWidth} height={stripHeight} fill="url(#ws-strip-major)"/>
-              <polyline points={stripPath} fill="none" stroke="#233b35" strokeWidth="1.3"/>{overlay}
-            </svg></div>
-            {traceActions && <div ref={traceActionGroup} className={s.traceActions} role="group" aria-label="Trace actions">
-              <div className={s.traceButtons}>
-                {saveButton}
-                {exercise && sharedPeak !== null && !editing && <button disabled={loading} onClick={() => {
-                  placeCalipers(exercise, [sharedPeak]);
-                  setMessage("The last R peak is now A. Place B on the next R peak.");
-                  stripFrame.current?.focus({ preventScroll: true });
-                  stripFrame.current?.scrollIntoView({ block: "nearest" });
-                }}>Measure next interval</button>}
-              </div>
-              <div className={s.traceStatus} role="status">{message}</div>
-              <div role="status">{exercise && exerciseMeasurements && saved.some(state => state.role === "measurement") && <div className={s.practiceResult}>
-                <strong>What the evidence supports</strong>
-                {nextInterval < 0 ? <>
-                  <p>{exerciseMeasurements.map(state => `${round(Number(state?.payload.durationMs), 2)} ms`).join(" and ")}{exerciseMeasurements.length > 1 && ` · ${round(Math.abs(Number(exerciseMeasurements[0]?.payload.durationMs) - Number(exerciseMeasurements[1]?.payload.durationMs)), 2)} ms apart`}.</p>
-                  <p>{exercise.interpretation}</p>
-                </> : <p>{exerciseMeasurements.filter(Boolean).length} of {exercise.pairs.length} exercise intervals matched. Compare your endpoint positions with the worked landmarks in lead {exercise.lead}.</p>}
-                {sharedPeak === null && <a href="https://doi.org/10.1016/j.jacc.2007.01.024">ECG measurement reference</a>}
-              </div>}</div>
-            </div>}
-            <label className={s.timeline}>Time window <input type="range" aria-label="Recording time window" min="0" max={Math.max(0, duration - span)} step={1 / signal.sampleRate} value={windowStart} disabled={duration <= span} onChange={e => { setWindowStart(Number(e.target.value)); setEditing(null); setPlaced([false, false]); }}/><output>{round(windowStart, 2)} s</output></label>
+            <div className={s.stripHead}><strong>Lead {leadLabel(lead)} <span>· {round(windowStart, 2)}–{round(windowStart + span, 2)} s</span></strong><span role="status">{placementCue}</span></div>
+            <div ref={traceAndActions}>
+              <div ref={stripFrame} className={s.stripFrame} tabIndex={0} role="region" aria-label="Focused trace; scroll horizontally on narrow screens"><svg viewBox={`0 0 ${stripWidth} ${stripHeight}`} className={s.strip} preserveAspectRatio="none" role="group" aria-label="Focused recorded ECG with movable calipers; exact endpoints are editable in the measurement panel" {...pointerProps}>
+                <defs><pattern id="ws-strip-minor" width={stripWidth / span / 25} height="4" patternUnits="userSpaceOnUse"><path d={`M${stripWidth / span / 25} 0H0V4`} fill="none" stroke="#d3dfd8" strokeWidth=".4" /></pattern><pattern id="ws-strip-major" width={stripWidth / span / 5} height="20" patternUnits="userSpaceOnUse"><rect width={stripWidth / span / 5} height="20" fill="url(#ws-strip-minor)"/><path d={`M${stripWidth / span / 5} 0H0V20`} fill="none" stroke="#b8cdc3" strokeWidth=".5" /></pattern></defs>
+                <rect width={stripWidth} height={stripHeight} fill="#fcfcf8"/><rect width={stripWidth} height={stripHeight} fill="url(#ws-strip-major)"/>
+                <polyline points={stripPath} fill="none" stroke="#233b35" strokeWidth="1.3"/>{overlay}
+              </svg></div>
+              {traceActions && <div className={s.traceActions} role="group" aria-label="Trace actions">
+                <div className={s.traceButtons}>
+                  {saveButton}
+                  {exercise && sharedPeak !== null && !editing && <button className={alreadySaved && !latestUnmatched ? s.primary : undefined} disabled={loading} onClick={() => {
+                    placeCalipers(exercise, [sharedPeak]);
+                    setMessage("The last R peak is now A. Place B on the next R peak.");
+                  }}>Measure next interval</button>}
+                </div>
+                <div className={s.traceStatus} role="status">{message}</div>
+                <div role="status">{exercise && exerciseMeasurements && saved.some(state => state.role === "measurement") && <div className={s.practiceResult}>
+                  <strong>{nextInterval < 0 && !latestUnmatched ? "What the evidence supports" : "Check your measurement"}</strong>
+                  {latestUnmatched && <p>{round(Number(latestUnmatched.payload.durationMs), 2)} ms saved. {latestUnmatched.payload.lead !== exercise.lead || latestUnmatched.payload.label !== exercise.kind
+                    ? `Use the ${exercise.title.split(" · ")[0]} interval in lead ${exercise.lead}. Select Return to exercise view to reset the trace.`
+                    : "The endpoints differ from the worked landmarks. Drag A or B to adjust, or open Show worked landmarks to compare."}</p>}
+                  {nextInterval < 0 && !latestUnmatched && <>
+                    <p>{exerciseMeasurements.map(state => `${round(Number(state?.payload.durationMs), 2)} ms`).join(" and ")}{exerciseMeasurements.length > 1 && ` · ${round(Math.abs(Number(exerciseMeasurements[0]?.payload.durationMs) - Number(exerciseMeasurements[1]?.payload.durationMs)), 2)} ms apart`}.</p>
+                    {exercise.kind === "RR" && exerciseMeasurements.length === 1 && <p><b>{round(60000 / Number(exerciseMeasurements[0]?.payload.durationMs), 1)} bpm</b> for this pair of beats (60,000 ÷ R–R in milliseconds).</p>}
+                    <p>{exercise.interpretation}</p>
+                  </>}
+                  {nextInterval >= 0 && <p>{exerciseMeasurements.filter(Boolean).length} of {exercise.pairs.length} exercise intervals matched. {sharedPeak !== null && "Use Measure next interval to carry the middle peak forward."}</p>}
+                  {sharedPeak === null && <a href="https://doi.org/10.1016/j.jacc.2007.01.024">ECG measurement reference</a>}
+                </div>}</div>
+                {nextInterval < 0 && <div className={s.traceButtons}>
+                  {addNote}
+                  <button className={alreadySaved && !latestUnmatched ? s.primary : undefined} onClick={() => casePicker.current?.focus()}>Choose another case</button>
+                </div>}
+              </div>}
+            </div>
+            {exercise && viewTools}
+            <label className={s.timeline}>Time window <input type="range" aria-label="Recording time window" min="0" max={Math.max(0, duration - span)} step={1 / signal.sampleRate} value={windowStart} disabled={duration <= span} onChange={e => { setWindowStart(Number(e.target.value)); clearCalipers(); }}/><output>{round(windowStart, 2)} s</output></label>
             <details className={s.overview} open={overviewOpen} onToggle={e => setOverviewOpen(e.currentTarget.open)}><summary>{signal.leads.length}-lead overview <span>Recorded signals · select a lead to focus</span></summary><div className={s.paperFrame} role="region" tabIndex={0} aria-label="Recorded ECG lead overview; select a lead below to inspect it">
               <svg viewBox={`0 0 1200 ${Math.ceil(signal.leads.length / 4) * 180 + 80}`} className={s.paper} role="group" aria-label={`Overview rendered directly from recorded digital samples; all panels show the same ${round(panelSpan, 3)}-second window`}>
                 <defs><pattern id="ws-grid" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M4 0H0V4" fill="none" stroke="#d4deda" strokeWidth=".35" /></pattern><pattern id="ws-major" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="url(#ws-grid)"/><path d="M20 0H0V20" fill="none" stroke="#b8c9c2" strokeWidth=".45"/></pattern>
@@ -405,7 +453,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
                   const row = fullStandard ? standard.findIndex(r => r.includes(name)) : Math.floor(i / 4);
                   const col = fullStandard ? standard[row].indexOf(name) : i % 4;
                   const path = overviewPaths[i];
-                  return <g key={name} role="button" tabIndex={0} aria-label={`Focus lead ${leadLabel(name)}`} onClick={() => { setLead(name); setPlaced([false, false]); }} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setLead(name); setPlaced([false, false]); } }} transform={`translate(${28 + col * 295} ${145 + row * 180})`}>
+                  return <g key={name} role="button" tabIndex={0} aria-label={`Focus lead ${leadLabel(name)}`} onClick={() => { setLead(name); clearCalipers(); }} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setLead(name); clearCalipers(); } }} transform={`translate(${28 + col * 295} ${145 + row * 180})`}>
                     <rect width="250" height="150" y="-75" fill="url(#ws-major)" stroke={lead === name ? "#087e87" : "#d6ded8"} strokeWidth={lead === name ? 1.5 : .5}/>
                     <text x="6" y="-58" fill="#314f47" fontSize="13">{leadLabel(name)}</text>
                     <g clipPath="url(#ws-cell)"><polyline points={path} fill="none" stroke="#233b35" strokeWidth="1" /></g>
@@ -436,7 +484,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
           <div className={s.readout}><span>{!placed.every(Boolean) ? "Preview" : kind === "Other" ? "Selected" : kind} interval</span><strong>{canSave && measured?.ordered ? round(measured.duration, 2) : "—"}<small> ms</small></strong><p>{canSave && measured?.ordered ? `±${round(measured.uncertainty, 2)} ms · ${signal ? "sample rounding only" : "pixel placement only"}` : "Select both endpoints to measure."}</p>{canSave && measured?.ordered && kind === "RR" && measured.duration > 0 && <p><b>{round(60000 / measured.duration, 1)} bpm</b> from this interval (60,000 ÷ {round(measured.duration, 2)} ms). One interval does not establish a regular rhythm.</p>}</div>
           <small className={s.limit}>{signal ? "Manual landmark selection and acquisition uncertainty are additional." : "Bound uses your pixel-placement estimate. Perspective, paper distortion and ambiguous feature boundaries are additional."}</small>
           {!traceActions && saveButton}
-          {selectedState?.role === "measurement" && <button className={s.secondary} onClick={() => goToPanel("reason")}>Add a note →</button>}
+          {(!traceActions || nextInterval >= 0) && addNote}
         </div>}
         {panel === "reason" && <div className={s.panel}><h3 tabIndex={-1}>Write an observation</h3><p>Choose the saved interval your note depends on.</p>
           <label>Supporting measurement<select aria-label="Supporting measurement" value={selectedState?.role === "measurement" ? selectedState.id : ""} onChange={e => { const st = saved.find(v => v.id === e.target.value); if (st) inspect(st); }}><option value="">Select saved evidence</option>{saved.filter(st => st.role === "measurement").map(st => <option key={st.id} value={st.id}>{st.payload.label as string} · {st.payload.lead as string} · {round(Number(st.payload.durationMs))} ms · {st.id}</option>)}</select></label>

@@ -38,11 +38,22 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     const root = page.locator("[data-ecg-workspace]");
     await root.getByText("PTB-XL · 00010", { exact: true }).waitFor();
     await page.screenshot({ path: `${out}/${name}-guided-opening.png` });
+    const openingTrace = root.getByRole("region", { name: /^Focused trace/ }).locator("svg");
+    const openingWidth = (await openingTrace.boundingBox()).width;
+    assert.equal(await root.getByLabel("Interval type").inputValue(), "RR");
+    await openingTrace.click({ position: { x: openingWidth * 1.704 / 2.5, y: 40 } });
+    await root.getByText("Click or tap to place B", { exact: true }).waitFor();
+    await openingTrace.click({ position: { x: openingWidth * 0.866 / 2.5, y: 40 } });
+    await root.getByText("Place A before B. Drag a caliper to adjust it.", { exact: true }).waitFor();
+    assert.equal(await root.getByRole("button", { name: "Save measurement", exact: true }).isDisabled(), true);
+    await root.getByText("Show worked landmarks", { exact: true }).click();
     await root.getByRole("button", { name: "Mark two example peaks" }).click();
     await root.getByText("838 ms selected", { exact: true }).waitFor();
     await root.getByText("71.6 bpm", { exact: true }).waitFor();
     await page.screenshot({ path: `${out}/${name}-guided-measurement.png` });
     await root.getByRole("button", { name: "Save measurement", exact: true }).click();
+    await root.getByRole("group", { name: "Trace actions" }).getByText("71.6 bpm", { exact: true }).waitFor();
+    assert.equal(await root.getByRole("button", { name: "Save measurement", exact: true }).isDisabled(), true);
     await root.getByRole("button", { name: "Add a note →", exact: true }).click();
     await root.getByRole("button", { name: "Use the interval in my note" }).click();
     assert.match(await root.getByLabel("Observation and reasoning").inputValue(), /838 ms apart/);
@@ -66,8 +77,15 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await selectPractice("00012");
     await saveInterval("1.12", "2.364");
     await root.getByText(/0 of 1 exercise intervals matched/).waitFor();
+    await root.getByText(/The endpoints differ from the worked landmarks/).waitFor();
     await saveInterval("1.184", "2.428");
     await root.getByText(/This is a rate estimate from one pair of beats/).waitFor();
+    await saveInterval("1.12", "2.364");
+    await root.getByText(/The endpoints differ from the worked landmarks/).waitFor();
+    assert.equal(await root.getByText(/This is a rate estimate from one pair of beats/).count(), 0);
+    await root.getByLabel("Focused lead").selectOption("V1");
+    await root.getByRole("button", { name: "Return to exercise view in lead II" }).click();
+    assert.equal(await root.getByLabel("Focused lead").inputValue(), "II");
 
     await selectPractice("08215");
     const traceActions = root.getByRole("group", { name: "Trace actions", exact: true });
@@ -80,10 +98,11 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await traceActions.getByText(/1 of 2 exercise intervals matched/).waitFor();
     const stripFrame = root.getByRole("region", { name: /^Focused trace/ });
     assert.equal(await traceActions.evaluate(el => el.previousElementSibling?.getAttribute("aria-label")?.startsWith("Focused trace")), true);
-    for (const element of [stripFrame, traceActions]) {
-      const bounds = await element.boundingBox();
-      assert.ok(bounds && bounds.y >= 0 && bounds.y + bounds.height <= 844, "trace and actions must share the phone viewport after saving");
-    }
+    await page.waitForFunction(() => {
+      const actions = document.querySelector('[aria-label="Trace actions"]');
+      const trace = actions?.previousElementSibling;
+      return trace && trace.getBoundingClientRect().top >= 0 && actions.getBoundingClientRect().bottom <= innerHeight;
+    });
     await page.screenshot({ path: `${out}/${name}-rr-phone-next.png` });
     await measureNext.focus();
     await page.keyboard.press("Enter");
