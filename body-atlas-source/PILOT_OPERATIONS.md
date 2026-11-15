@@ -29,6 +29,14 @@ After the qualification call, replace the brackets and confirm the customer’s 
 
 First prospect to screen is Magnetic Tides’ CEO or R&D lead. Confirm that a source comparison is coming up for its external stimulation program, then use the personalized draft in the business plan for founder review. Keep the quote marked unissued until that qualification and approval.
 
+### Magnetic Tides source sample
+
+A single demonstration row for review. Magnetic Tides describes a noninvasive stroke-recovery program. This row shows how Atlas would trace a finding from a related intervention to its study and define the limits of its use. Confirm the buyer’s actual comparison before expanding the brief. [Magnetic Tides program description](https://www.magnetictides.com/science)
+
+| Study and comparison | Primary outcome | Finding and boundaries |
+|---|---|---|
+| E-FIT, a randomized trial of navigated 1 Hz repetitive transcranial magnetic stimulation before motor rehabilitation versus sham stimulation before the same rehabilitation. E-FIT randomized 60 participants. | At least five points of improvement on the upper-extremity Fugl–Meyer scale at six months. | The authors’ combined Bayesian analysis of E-FIT and NICHE did not establish superiority of active stimulation over sham. Posterior mean odds ratio 1.94 with a 96% credible interval of 0.61–4.80. This is evidence for the studied rTMS protocol, and the study did not test Magnetic Tides’ kTMP. Trial registration and publication are separate from any FDA authorization. [Edwards et al., 2023, Abstract: Methods and Results](https://pubmed.ncbi.nlm.nih.gov/37577801/) · [E-FIT registration NCT03010462](https://clinicaltrials.gov/study/NCT03010462) |
+
 ### Source-log template and example
 
 | Claim | Application | Dated source | Locator and review | Scope and limit |

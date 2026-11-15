@@ -52,13 +52,15 @@ This list contains prospects to research, with no evidence of contact, budget, p
 
 ### Draft for Magnetic Tides
 
-Subject: A research brief for your stimulation landscape
+Subject: A source check for your stroke stimulation research
 
 Dear Dr. Labruna,
 
 I read about Magnetic Tides’ work on noninvasive stimulation for stroke recovery. My background is in experimental neural engineering, and I built BODY//ATLAS to make device comparisons easier to check against original FDA and study records.
 
-Is there a comparison with another noninvasive stimulation approach that your team needs to verify for an upcoming research or design review? If so, I’d be interested in a 15-minute call to hear what the team needs to decide. I can share a short cited comparison so you can see the format.
+I pulled one example from the E-FIT trial of 1 Hz rTMS alongside rehabilitation. The authors’ combined analysis with NICHE did not establish superiority over sham on the six-month upper-limb endpoint. [E-FIT study](https://pubmed.ncbi.nlm.nih.gov/37577801/)
+
+Is there a stimulation comparison your team needs to verify before its next research or design review? If there is, I’d welcome a 15-minute call to hear what decision the evidence needs to support.
 
 Best,
 
@@ -82,7 +84,7 @@ Start with an introduction to one founder or R&D lead with a U.S. device decisio
 | 2 | Axoft. CEO Paul Le Floch. The company describes an implantable neural interface and technical roles spanning quality and preclinical research. [Company and team](https://axoft.us/about) | How do two public implant examples differ in their tissue interface and recording function, and which findings are documented in original records? |
 | 3 | Theta Neurotech. CEO Truman Pierson. The company describes an investigational wearable seizure prediction system. [Company and team](https://www.thetaneurotech.com/team) | Which claims in the public evidence for two agreed monitoring applications concern recording, detection, or prediction, and what evidence belongs to each? |
 
-**Days 1–2 after founder authorization.** Request one warm introduction and approve the Magnetic Tides message as the fallback. Spend up to 90 minutes on these three accounts. Prepare the free comparison and the unissued two-application quote in [the worksheet](PILOT_OPERATIONS.md). Confirm an approved invoice method and qualified reviewer before making delivery promises.
+**Days 1–2 after founder authorization.** Request one warm introduction and approve the Magnetic Tides message as the fallback. Spend up to 90 minutes on these three accounts. Use the [stroke stimulation source row](PILOT_OPERATIONS.md#magnetic-tides-source-sample) for Magnetic Tides and prepare the unissued two-application quote in [the worksheet](PILOT_OPERATIONS.md). Confirm an approved invoice method and qualified reviewer before making delivery promises.
 
 **Days 3–5.** Aim for two 15-minute conversations. Qualify on a dated decision, a specific source question, a budget owner, and a plausible payment date. If one qualifies, issue the $1,500 quote after approval. Ask for the proposed $750 kickoff deposit against the signed scope. Verify settlement against the invoice. If there is no qualified call from this batch, seek a second warm introduction and verify the research trigger before expanding the list.
 
