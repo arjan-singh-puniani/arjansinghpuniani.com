@@ -21,6 +21,14 @@ Copy to a private folder or restricted CRM. Keep actual names, quotes, invoice d
 - **Delivered → repeat or closed.** Thirty-day use check, any open correction, refund or net collection, follow-on question or date to close. Write opt-outs into a suppression list.
 - **Stage controls.** No move to qualified without a named budget owner and matching deliverable. No invoice or delivery promise before scope approval. No move to “paid” based on checkout intent, invoice issue or test events. Deduplicate by organization and scoped opportunity. Record rejected, canceled, unpaid, partially collected and refunded explicitly.
 
+### Draft paid pilot quote for founder approval
+
+After the qualification call, replace the brackets and confirm the customer’s intended decision, exact application IDs and acceptable source cutoff. Obtain founder approval of commercial terms before issuing the quote.
+
+> For [team], BODY//ATLAS will answer [one public-source U.S. neurodevice question] by comparing [up to three agreed devices/applications]. You will receive a cited research brief, a source log with dates and open evidence gaps, and a walkthrough. We will cover the original decisions and separately identify relevant later changes within the agreed scope. We will confirm the research cutoff and delivery date at kickoff and include one round of factual corrections. The fee for this scope is $1,500 USD, subject to the written agreement. The work is for internal research and excludes clinical or regulatory advice, current labeling certification and exhaustive recall checks.
+
+First prospect to screen is Magnetic Tides’ CEO or R&D lead. Confirm that a source comparison is coming up for its external stimulation program, then use the personalized draft in the business plan for founder review. Keep the quote marked unissued until that qualification and approval.
+
 ### Source-log template and example
 
 | Claim | Application | Dated source | Locator and review | Scope and limit |

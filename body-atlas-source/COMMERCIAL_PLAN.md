@@ -89,7 +89,8 @@ The pilot adds no browser tracking. A draft is generated in memory and the custo
 
 | Classification | Current evidence |
 |---|---|
-| Verified customer behavior | None documented for the paid offer. No observed inquiries, purchases, delivery costs or renewals in this work. |
+| Verified customer behavior | None documented for the paid offer. The project ledger has zero customer inquiries, qualified prospects, issued proposals, settled payments, paid-pilot delivery costs and renewals recorded to date. The five prospect leads are screening candidates. |
+| Internal test | One form-generated inquiry and one reply reached the pilot Gmail Inbox in the same thread in a same-mailbox test. Both are QA messages excluded from commercial counts. |
 | Published market evidence | FDA and trial databases, current vendor pages, listed MTI cohorts and dated consultant rate above. They demonstrate substitutes and a prospect pool, not demand. |
 | Verified product evidence | [Public validation record](https://arjansinghpuniani.com/documents/body-atlas-validation.json), source code, sample comparison and local QA. Snapshot date 2026-11-01 UTC. The record reports zero independently adjudicated mappings and retained failed jobs. |
 | Founder assumptions | Buyer fit, procurement friction, willingness to pay, addressable list size, review capacity and repeat triggers. |
