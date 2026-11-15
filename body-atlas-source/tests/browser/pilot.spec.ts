@@ -8,6 +8,7 @@ test("research pilot gives a cited result and prepares an unsent inquiry", async
   await page.goto(basePath + "/pilot");
   await expect(page.getByRole("heading", { name: "Compare devices. Trace the evidence." })).toBeVisible();
   await expect(page.getByText("Historical labeling", { exact: false })).toBeVisible();
+  await expect(page.locator("main")).not.toContainText(/\$1,500|10 business days/);
   await expect(page.getByRole("link", { name: /P960009.*1997-07-31/ })).toHaveAttribute("href", /^https:\/\/www\.accessdata\.fda\.gov\//);
   await expect(page.getByRole("link", { name: /P150038.*2016-07-11/ })).toBeVisible();
   await page.keyboard.press("Tab");
@@ -40,6 +41,7 @@ test("research pilot gives a cited result and prepares an unsent inquiry", async
   const destination = new URL((await page.getByRole("link", { name: "Open email draft" }).getAttribute("href"))!);
   expect(destination.pathname).toBe("arjan.singh.puniani.main@gmail.com");
   expect(destination.searchParams.get("body")).toContain("Example & Co");
+  expect(destination.searchParams.get("body")).not.toContain("$1,500");
   expect(destination.searchParams.get("body")).toContain("Within one month");
   expect(requests).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize()!.width);

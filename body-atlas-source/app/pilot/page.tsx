@@ -42,7 +42,7 @@ export default function PilotPage() {
             <p>For neurotechnology teams scoping a U.S. device landscape. Compare how devices interact with anatomy, trace claims back to FDA records, and see which questions still need research.</p>
             <div className="pilot-actions">
               <a className="pilot-button" href="#example">See the free example</a>
-              <a href="#offer">View the $1,500 pilot</a>
+              <a href="#offer">Discuss a research brief</a>
             </div>
           </div>
           <aside className="pilot-card" aria-labelledby="scope-title">
@@ -79,16 +79,14 @@ export default function PilotPage() {
 
         <section id="offer" className="pilot-section pilot-grid" aria-labelledby="offer-title">
           <div>
-            <p className="pilot-kicker">Founder-led research pilot</p>
+            <p className="pilot-kicker">Custom research</p>
             <h2 id="offer-title">A sourced brief for your review</h2>
-            <p className="pilot-price">$1,500 <span>USD · one-time pilot price</span></p>
             <p>Bring one U.S. neurodevice landscape question. Arjan Singh Puniani scopes the question with your team and researches up to three agreed devices or applications using public sources.</p>
             <ul>
               <li>A comparison brief with links, source dates, FDA decision history, and evidence gaps.</li>
-              <li>A source log and a 30-minute walkthrough for your team.</li>
-              <li>Delivery target of 10 business days from agreed scope and kickoff, with one factual correction round.</li>
+              <li>A source log and a walkthrough for your team.</li>
             </ul>
-            <p>Scope and invoicing are agreed by email. The pilot excludes regulatory strategy, current-label certification, exhaustive recall checks, and clinical recommendations. Future questions can be scoped as separate briefs.</p>
+            <p>Share your question to discuss scope, pricing, and timing. The pilot excludes regulatory strategy, current-label certification, exhaustive recall checks, and clinical recommendations. Future questions can be scoped as separate briefs.</p>
           </div>
           <Inquiry />
         </section>

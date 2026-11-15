@@ -18,7 +18,7 @@ export default function Inquiry() {
     const question = String(fields.get("question") ?? "").trim();
     const timing = String(fields.get("timing") ?? "");
     const draft = [
-      "I'm interested in the $1,500 BODY//ATLAS evidence brief pilot.",
+      "I'm interested in a BODY//ATLAS evidence brief.",
       "",
       `Organization: ${team}`,
       `Research question: ${question}`,

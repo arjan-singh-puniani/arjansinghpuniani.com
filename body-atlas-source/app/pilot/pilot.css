@@ -56,8 +56,6 @@
 
 .pilot-card h2, .pilot-card h3 { margin-block-end: .5rem; }
 .pilot-card p + a { display: inline-block; margin-block-start: .75rem; }
-.pilot-price { color: var(--text); font-size: 2rem; font-weight: 700; }
-.pilot-price span { color: var(--muted); font-size: .95rem; font-weight: 400; }
 .pilot li { margin-block-end: .45rem; }
 .pilot ul { padding-inline-start: 1.15rem; }
 
