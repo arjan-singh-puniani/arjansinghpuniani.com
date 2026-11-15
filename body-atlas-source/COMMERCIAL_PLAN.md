@@ -54,7 +54,15 @@ This list contains prospects to research, with no evidence of contact, budget, p
 
 Subject: A research brief for your stimulation landscape
 
-Hi [name], I read Magnetic Tides’ description of its external stimulation approach for stroke recovery. I’m building BODY//ATLAS to help small neurodevice teams trace comparison claims to their original sources. I’ve published a free example comparing two historical tremor approaches so you can see the format. How did your team pull together the evidence for its last modality comparison? If a similar review is coming up, I’d be interested in a 15-minute call. I’m testing a $1,500 fixed-scope brief for one public U.S. research question across up to three applications. — Arjan
+Dear Dr. Labruna,
+
+I read about Magnetic Tides’ work on noninvasive stimulation for stroke recovery. My background is in experimental neural engineering, and I built BODY//ATLAS to make device comparisons easier to check against original FDA and study records.
+
+Is there a comparison with another noninvasive stimulation approach that your team needs to verify for an upcoming research or design review? If so, I’d be interested in a 15-minute call to hear what the team needs to decide. I can share a short cited comparison so you can see the format.
+
+Best,
+
+Arjan Singh Puniani
 
 ### Draft for Axoft after confirming fit
 
@@ -63,6 +71,24 @@ Subject: Source tracing for an implant-interface comparison
 Hi [name], I saw Axoft in MedTech Innovator’s neurotech cohort. I work in neural engineering and built BODY//ATLAS to map the difference between an implant’s physical interface, recording site and intended target with links to the original sources. What evidence did your team need to verify when you last prepared an implant comparison? If you have another review coming up, I can show you the format in 15 minutes. I’m testing a $1,500 brief for a single, public-source U.S. question. — Arjan
 
 Send one follow-up after 5–7 business days if permitted. Use a 15-minute discovery call: “What did you have to decide last time?”, “Can you describe the steps and hours?”, “Which links or distinctions were hard to verify?”, “What did you buy or delegate?”, “Who signs off and when?”, “What would make an external brief unusable?” Ask to time the free example against an equivalent task after discovery. Demo outline: open historical tremor comparison, distinguish stimulation lead and ultrasound target, inspect PMA dates and limits, export, then scope one upcoming decision. Follow up within two business days with a draft scope and price, decision date and procurement owner. Stop after a clear no. Seek optional feedback at delivery and ask at 30 days whether a new question has arisen.
+
+### First sales sprint
+
+Start with an introduction to one founder or R&D lead with a U.S. device decision coming up in the next 60 days. A warm introduction wins over this ranking when the recipient has an active decision, a named budget owner, and authority to use an external brief. All names below are screening candidates. Their needs and budgets are unverified.
+
+| Order | Candidate and reason to screen | What a paid brief could answer |
+|---|---|---|
+| 1 | Magnetic Tides. Founder/CEO Ludovica Labruna. Research Director Christina Merrick is the likely end user. The company describes a noninvasive stimulation program in stroke recovery. Seek a warm introduction first. The company also lists a general inquiry form. [Team](https://www.magnetictides.com/team) · [Program](https://www.magnetictides.com/science) · [Contact](https://www.magnetictides.com/contact) | For an upcoming internal review, what do the original U.S. records say about two agreed external stimulation comparators and what evidence is still unresolved? |
+| 2 | Axoft. CEO Paul Le Floch. The company describes an implantable neural interface and technical roles spanning quality and preclinical research. [Company and team](https://axoft.us/about) | How do two public implant examples differ in their tissue interface and recording function, and which findings are documented in original records? |
+| 3 | Theta Neurotech. CEO Truman Pierson. The company describes an investigational wearable seizure prediction system. [Company and team](https://www.thetaneurotech.com/team) | Which claims in the public evidence for two agreed monitoring applications concern recording, detection, or prediction, and what evidence belongs to each? |
+
+**Days 1–2 after founder authorization.** Request one warm introduction and approve the Magnetic Tides message as the fallback. Spend up to 90 minutes on these three accounts. Prepare the free comparison and the unissued two-application quote in [the worksheet](PILOT_OPERATIONS.md). Confirm an approved invoice method and qualified reviewer before making delivery promises.
+
+**Days 3–5.** Aim for two 15-minute conversations. Qualify on a dated decision, a specific source question, a budget owner, and a plausible payment date. If one qualifies, issue the $1,500 quote after approval. Ask for the proposed $750 kickoff deposit against the signed scope. Verify settlement against the invoice. If there is no qualified call from this batch, seek a second warm introduction and verify the research trigger before expanding the list.
+
+**Price and cost gate.** For this sprint, keep the first quote at one question and two exact applications. Spend at most seven founder delivery hours, including handoff and correction, and budget $200 for two hours of qualified review. Budget $45 for fees and incidentals. Direct cost target is $770 at $75 per founder hour and modeled contribution is $730 before sales costs. Acquisition target is $250 per paid pilot, including no more than three founder hours and $25 cash. At two pilots per month and $130/month fixed operating cost, this yields a modeled $830/month operating surplus before tax and one-off costs. At nine delivery hours it falls to $530/month. The budgets are thresholds to measure. If credible estimates exceed them, narrow scope, raise the quote with approval, or decline before taking a deposit. Preserve source review even if it takes longer.
+
+**Decision gate.** One settled deposit validates the collection path. One accepted delivery validates initial usefulness. A second collected purchase for the same kind of brief is the first repeat-demand signal. If four qualified written offers generate no paid pilot, record price, trust, urgency and procurement objections before making further product changes. Compare acquisition and review time with collected revenue before expanding the channel.
 
 ## Fulfillment, privacy and quality
 
