@@ -114,7 +114,7 @@ class Boundary extends Component<
 function Body({
   portrait,
   adapted,
-  personalContour,
+  opaqueContour,
   cropContour,
   region,
   activeRegions,
@@ -125,7 +125,7 @@ function Body({
 }: {
   portrait: boolean;
   adapted: boolean;
-  personalContour: boolean;
+  opaqueContour: boolean;
   cropContour: boolean;
   region: string;
   activeRegions: string[];
@@ -147,7 +147,7 @@ function Body({
     root.position.sub(center);
     model.add(root);
     model.scale.setScalar(6 / size.y);
-    const opaque = portrait || personalContour;
+    const opaque = portrait || opaqueContour;
     const material = new ShaderMaterial({
       vertexShader: vertex,
       fragmentShader: fragment,
@@ -157,7 +157,7 @@ function Body({
       uniforms: {
         portrait: { value: portrait || cropContour ? 1 : 0 },
         opaque: { value: opaque ? 1 : 0 },
-        contourHead: { value: personalContour ? 1 : 0 },
+        contourHead: { value: adapted ? 1 : 0 },
         surface: { value: 0 },
         band: { value: 0 },
         centerY: { value: 0 },
@@ -170,7 +170,7 @@ function Body({
       if (o instanceof Mesh) o.material = material;
     });
     return { model, material, bounds: box };
-  }, [gltf.scene, reference.scene, personalContour, cropContour, portrait]);
+  }, [gltf.scene, reference.scene, adapted, opaqueContour, cropContour, portrait]);
   useEffect(() => {
     material.uniforms.surface.value = surface ? 1 : 0;
     const bandId=region==='all'?activeRegions.find(id=>humanRegionLocators[id]):region;
@@ -475,7 +475,7 @@ export default function HumanScene({
             <Body
               portrait={portrait}
               adapted={exterior==='adapted'}
-              personalContour={Boolean(contourView) && exterior === 'adapted'}
+              opaqueContour={exterior === 'adapted' && !showOrgans && surface}
               cropContour={Boolean(contourView && contourView.frame !== "full")}
               region={region}
               activeRegions={activeRegions}

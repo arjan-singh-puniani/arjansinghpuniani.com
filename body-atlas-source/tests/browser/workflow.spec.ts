@@ -565,9 +565,12 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
  expect(errors).toEqual([]);
 });
 
-test('body contour switches and rotates while evidence retains its source',async({page},testInfo)=>{
+test('main map loads the hologram and rotates while evidence retains its source',async({page},testInfo)=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
- await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');
+ await page.emulateMedia({reducedMotion:'reduce'});
+ const asset=page.waitForResponse(response=>new URL(response.url()).pathname.endsWith('/anatomy/hologram.glb'));
+ await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || '') + '/');
+ expect((await asset).ok()).toBe(true);
  const scene=page.getByTestId('human-reference');
  await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
  await expect(scene).toHaveAttribute('data-exterior','adapted');
@@ -577,7 +580,11 @@ test('body contour switches and rotates while evidence retains its source',async
  await page.getByRole('button',{name:'Toggle internal organs',exact:true}).click();
  await expect(scene).toHaveAttribute('data-internal-status','hidden');
  await expect(scene).toHaveAttribute('data-organs-status','hidden');
- await page.getByRole('button',{name:'Toggle body surface',exact:true}).click();
+ const surface=page.getByRole('button',{name:'Toggle body surface',exact:true});
+ await expect(surface).toHaveAttribute('aria-pressed','true');
+ await surface.click();
+ await expect(surface).toHaveAttribute('aria-pressed','false');
+ await surface.click();
  await expect(page.getByRole('button',{name:'Toggle body surface',exact:true})).toHaveAttribute('aria-pressed','true');
  await page.screenshot({path:`test-results/${testInfo.project.name}-surface-contours.png`});
  await page.getByRole('button',{name:'Toggle internal organs',exact:true}).click();
@@ -587,10 +594,6 @@ test('body contour switches and rotates while evidence retains its source',async
  await page.mouse.move(box.x+box.width*.5,box.y+box.height*.6);await page.mouse.down();
  await page.mouse.move(box.x+box.width*.7,box.y+box.height*.6,{steps:12});await page.mouse.up();
  await expect.poll(async()=>Buffer.compare(before,await page.locator('canvas').screenshot())).not.toBe(0);
- await page.getByRole('button',{name:'Show HRA reference exterior',exact:true}).click();
- await expect(scene).toHaveAttribute('data-exterior','reference');await expect(scene).toHaveAttribute('data-avatar-status','loaded');
- await page.getByRole('button',{name:'Show adapted body contour',exact:true}).click();
- await expect(scene).toHaveAttribute('data-exterior','adapted');await expect(scene).toHaveAttribute('data-avatar-status','loaded');
  await page.getByRole('button',{name:/Inspect NeuroPace RNS System/}).click();
  await expect(page.getByRole('link',{name:/FDA P100026/}).first()).toHaveAttribute('href',/accessdata.fda.gov/);
  await page.screenshot({path:`test-results/${testInfo.project.name}-personal-exterior.png`,fullPage:true});
@@ -598,7 +601,8 @@ test('body contour switches and rotates while evidence retains its source',async
 });
 
 test('unavailable body contour falls back to the original reference',async({page})=>{
- await page.route('**/anatomy/contour.glb*',route=>route.abort());await page.goto('/');
+ await page.route(/\/anatomy\/hologram\.glb(?:\?|$)/,route=>route.abort());
+ await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || '') + '/');
  await expect(page.getByText('Body contour unavailable · reference exterior shown')).toBeVisible({timeout:45000});
  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-exterior','reference');
  await expect(page.getByTestId('scene-status')).toContainText('Reference loaded',{timeout:45000});

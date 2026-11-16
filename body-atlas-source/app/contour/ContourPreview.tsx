@@ -54,7 +54,7 @@ export default function ContourPreview() {
       </div>
       <footer className={styles.status}>
         <p role="status">{status}</p>
-        <p>Exterior adapted from the <a href="https://doi.org/10.48539/HBM646.RKKC.257">Human Reference Atlas (CC BY 4.0)</a>. Device locations appear on <a href={atlasPath("/")}>the reference Atlas</a>.</p>
+        <p>Exterior adapted from the <a href="https://doi.org/10.48539/HBM646.RKKC.257">Human Reference Atlas (CC BY 4.0)</a>. Device locations appear on <a href={atlasPath("/")}>the main Atlas</a>.</p>
       </footer>
     </main>
   );
