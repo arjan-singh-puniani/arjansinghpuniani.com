@@ -25,7 +25,7 @@ try{
  const sample=async()=>{
   const row=await page.evaluate(()=>{
    const g=window.__rh.game,s=window.soak,stats=values=>{const a=values.sort((x,y)=>x-y);return {count:a.length,p50:a[Math.floor(a.length*.5)]??0,p95:a[Math.floor(a.length*.95)]??0,over50:a.filter(x=>x>50).length};};
-   const row={frame:stats(s.frames),simulation:stats(s.sim),render:stats(s.render),textMutations:s.textMutations,phase:g.championship.phase,lab:g.performanceLab.active,scale:g.renderer.renderScale,geometries:g.renderer.skinGeos.size,recordedFrames:g.motionRecorder.clip.frames.length,dom:document.querySelectorAll('*').length,contextsLost:s.contextsLost,glError:g.renderer.gl.getError(),perf:g.perf.snapshot()};
+   const row={frame:stats(s.frames),simulation:stats(s.sim),render:stats(s.render),textMutations:s.textMutations,phase:g.championship.phase,score:g.championship.score,rallyContacts:g.interactiveMatch?.rallyLength??0,lab:g.performanceLab.active,scale:g.renderer.renderScale,geometries:g.renderer.skinGeos.size,recordedFrames:g.motionRecorder.clip.frames.length,dom:document.querySelectorAll('*').length,contextsLost:s.contextsLost,glError:g.renderer.gl.getError(),perf:g.perf.snapshot()};
    s.frames=[];s.sim=[];s.render=[];s.textMutations=0;return row;
   });
   row.seconds=(Date.now()-start)/1000;
@@ -56,6 +56,6 @@ try{
  if(!profileDone){const {profile}=await cdp.send('Profiler.stop');fs.writeFileSync(out+'/cpu-profile.json',JSON.stringify(profile));}
  await sample();
  if(cdp){await cdp.send('HeapProfiler.collectGarbage');report.retainedHeap=await cdp.send('Runtime.getHeapUsage');report.retainedDOM=await cdp.send('Memory.getDOMCounters');}
- assert(report.swings>=3,'Soak did not exercise play');assert(report.rematches+report.reviews>=2,'Soak did not exercise repeated sessions');assert.deepEqual(report.errors,[]);
+ assert(report.samples.some(s=>s.score.player+s.score.opponent>0)||report.rematches>0,'Play must naturally advance the score');assert(report.swings>=3,'Soak did not exercise play');assert(report.rematches+report.reviews>=2,'Soak did not exercise repeated sessions');assert.deepEqual(report.errors,[]);
  await page.screenshot({path:out+'/final.png'});report.passed=true;console.log('Sustained play passed');
 }catch(error){report.failure=error.message;throw error;}finally{fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2));await browser.close();}

@@ -18,9 +18,9 @@ const movement={
   fast:{movementAcceleration:50,movementDeceleration:54,movementReverseSharpness:78,playerMaxCourtSpeedScale:2.7},
 };
 const feed={
-  generous:{swingBufferSeconds:1.3,assistOpponentFlightSeconds:1.28,assistOpponentServeFlightSeconds:1.35,playerReturnReach:3.05,assistOpponentSpread:.22},
-  current:{swingBufferSeconds:1.1,assistOpponentFlightSeconds:1.14,assistOpponentServeFlightSeconds:1.24,playerReturnReach:2.85,assistOpponentSpread:.28},
-  demanding:{swingBufferSeconds:.75,assistOpponentFlightSeconds:1.0,assistOpponentServeFlightSeconds:1.08,playerReturnReach:2.5,assistOpponentSpread:.45},
+  generous:{swingBufferSeconds:1.3,assistOpponentFlightSeconds:1.28,assistOpponentServeFlightSeconds:1.35,playerReturnReach:1.65,assistOpponentSpread:.22},
+  current:{swingBufferSeconds:1.1,assistOpponentFlightSeconds:1.14,assistOpponentServeFlightSeconds:1.24,playerReturnReach:baseline.playerReturnReach,assistOpponentSpread:.28},
+  demanding:{swingBufferSeconds:.75,assistOpponentFlightSeconds:1.0,assistOpponentServeFlightSeconds:1.08,playerReturnReach:1.25,assistOpponentSpread:.45},
 };
 const actor=(id,z)=>new Character({id,name:id,role:'member',shirt:'#888888',skin:'#bb825b',hair:'#202226',playStyle:'test',goal:'test'},new Vec3(1,0,z),new Navigation(),{});
 function setup(id){

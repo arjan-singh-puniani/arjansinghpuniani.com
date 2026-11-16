@@ -220,6 +220,11 @@ export class InteractiveMatchSystem {
         const plane = character.position.z - Math.sign(character.position.z) * .65;
         return (plane - this.ball.position.z) / this.ball.velocity.z;
     }
+    get playerReturnReach() {
+        // The opening exchange teaches timing; later returns also require court positioning.
+        return this.rallyLength < CHAMPIONSHIP_TUNING.assistContacts
+            ? CHAMPIONSHIP_TUNING.assistPlayerReturnReach : CHAMPIONSHIP_TUNING.playerReturnReach;
+    }
     /** An edge HUD cue shares the physical return window with the input consumer. */
     playerCue() {
         if (this.pending?.side === 'player' && this.pending.stroke === 'serve' && !this.pending.released)
@@ -231,7 +236,7 @@ export class InteractiveMatchSystem {
         if (!this.enabled || this.pending || !this.ball.active || this.receiver !== 'player')
             return 'none';
         const t = this.timeToStrikePlane(this.player);
-        return t > -CHAMPIONSHIP_TUNING.returnLateGraceSeconds && t < CHAMPIONSHIP_TUNING.returnCueLeadSeconds && Math.abs(this.ball.position.x - this.player.position.x) < CHAMPIONSHIP_TUNING.playerReturnReach ? 'swing' : 'none';
+        return t > -CHAMPIONSHIP_TUNING.returnLateGraceSeconds && t < CHAMPIONSHIP_TUNING.returnCueLeadSeconds && Math.abs(this.ball.position.x - this.player.position.x) < this.playerReturnReach ? 'swing' : 'none';
     }
     updateBall(dt) {
         this.player.setLook(this.ball.position);
@@ -311,7 +316,7 @@ export class InteractiveMatchSystem {
             inFront < .12)
             return;
         const lateralGap = Math.abs(this.ball.position.x - this.player.position.x);
-        if (lateralGap > CHAMPIONSHIP_TUNING.playerReturnReach)
+        if (lateralGap > this.playerReturnReach)
             return;
         const pressAge = this.input.bufferedSwingAge();
         const timingAtPress = timeToPlayer + pressAge;
@@ -554,6 +559,12 @@ export class InteractiveMatchSystem {
         if (assisted) {
             x = clamp(receiver.position.x + .20 + variation, SINGLES_MIN_X + .4, SINGLES_MAX_X - .4);
             depth = clamp(receiver.position.z - 2.3, 1.5, 3.1);
+        }
+        if (side === 'opponent' && !assisted && quality !== 'defensive') {
+            // After the opening exchange, attack the open half instead of feeding the stationary player.
+            const openSide = receiver.position.x > COURT_CENTER_X + .25 ? -1 : receiver.position.x < COURT_CENTER_X - .25 ? 1 : hash(seed + 31) < .5 ? -1 : 1;
+            const width = COURT.singlesHalfWidth * (.55 + this.opponentProfile.angleBias * .4);
+            x = clamp(COURT_CENTER_X + openSide * width + variation * .15, SINGLES_MIN_X + .35, SINGLES_MAX_X - .35);
         }
         if (side === 'player') {
             // Keep the opening serve forgiving; placed returns can use the open sideline.
