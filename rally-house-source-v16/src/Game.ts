@@ -76,7 +76,7 @@ export class Game {
   private championshipRound = 1;
   private championshipCompletedRound = 0;
   private championshipAudibleVolume = .65;
-  private reviewAfterChampionship = false;
+  private reviewingChampionship = false;
   private spatial!:SpatialInteractionSystem;
   private performanceLab!:PerformanceLab;private phoneCapture!:PhoneCapture;
   private motionRecorder=new MotionRecorder();
@@ -117,7 +117,7 @@ export class Game {
       onReturnToClub: () => this.requestChampionshipExit(),
       onAnalyze: () => {
         if(!this.motionRecorder.clip.frames.some(f=>f.contact))return;
-        this.reviewAfterChampionship=true;this.requestChampionshipExit();
+        this.openPerformanceLab(true);
       },
       onTogglePause: () => this.setChampionshipPaused(!this.clock.paused),
       onToggleSound: () => {
@@ -138,7 +138,15 @@ export class Game {
     this.performanceLab=new PerformanceLab(this.camera,this.canvas);this.phoneCapture=new PhoneCapture(this.camera,this.canvas);
     this.performanceLab.onRecord=()=>{this.performanceLab.close();const o=this.world.objects.find(o=>o.id==='performanceLab')!,action=this.world.identity.actions(o,this.absoluteMinute).find(a=>a.id==='capture')!;this.startClubTouch(o.id,o.label,o.position,action);};
     window.addEventListener('pagehide',e=>{if(e.persisted)this.phoneCapture.cancel();else this.phoneCapture.dispose();});
-    this.performanceLab.onReturn=()=>{this.pointers.clear();this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0;this.dragged=false;this.spatial.setHover(null);this.canvas.style.cursor='';};
+    this.performanceLab.onReturn=()=>{this.pointers.clear();this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0;this.dragged=false;this.spatial.setHover(null);this.canvas.style.cursor='';
+      if(this.reviewingChampionship){
+        this.reviewingChampionship=false;
+        // Return paused so the player can reorient before a live ball moves again.
+        this.clock.paused=this.championship.phase!=='matchResult';
+        this.simAcc=0;this.last=performance.now();
+        for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=true;
+      }
+    };
     window.addEventListener('pagehide',e=>{if(e.persisted)this.performanceLab.close();else this.performanceLab.dispose();});
 
     this.ui.onContextClose=()=>{
@@ -244,7 +252,7 @@ export class Game {
       if (this.championship.active) {
         if (e.key === 'Escape') {
           e.preventDefault();
-          this.requestChampionshipExit();
+          if(!e.repeat)this.setChampionshipPaused(!this.clock.paused);
           return;
         }
 
@@ -266,10 +274,10 @@ export class Game {
       if (this.championship.active) this.matchInput.handleKeyUp(e);
     });
 
-    this.canvas.addEventListener('wheel',e=>{e.preventDefault();if(this.championship.active||this.phoneCapture?.active)return;if(this.performanceLab.active){this.performanceLab.zoom(e.deltaY*.012);return;}this.camera.zoom(e.deltaY*.012)},{passive:false});
+    this.canvas.addEventListener('wheel',e=>{e.preventDefault();if((this.championship.active&&!this.performanceLab.active)||this.phoneCapture?.active)return;if(this.performanceLab.active){this.performanceLab.zoom(e.deltaY*.012);return;}this.camera.zoom(e.deltaY*.012)},{passive:false});
     this.canvas.addEventListener('contextmenu',e=>e.preventDefault());
-    this.canvas.addEventListener('pointerdown',e=>{if(this.championship.active)return;this.canvas.setPointerCapture(e.pointerId);this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.pointers.size===1){this.pointerStart={x:e.clientX,y:e.clientY};this.lastPointer={x:e.clientX,y:e.clientY};this.dragged=false}else if(this.pointers.size===2)this.pinchDistance=this.currentPinch()});
-    this.canvas.addEventListener('pointermove',e=>{const prev=this.pointers.get(e.pointerId);if(prev)this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.championship.active||this.phoneCapture?.active)return;if(!this.performanceLab.active)this.hoverGround=this.camera.groundPoint(e.clientX,e.clientY);if(!this.performanceLab.active&&!prev&&!this.buildType){const selected=this.pickWorld(e.clientX,e.clientY);const anchor=selected?.object?.selection?.centre??selected?.character?.position??(selected?.placement?new Vec3(selected.placement.x,.65,selected.placement.z):null);this.spatial.setHover(anchor,selected?.object?.label??selected?.character?.spec.name??(selected?.placement?DECOR_BY_ID[selected.placement.type].label:''));this.canvas.style.cursor=selected?'pointer':'';}if(this.pointers.size===2){const d=this.currentPinch();if(this.pinchDistance>0){const delta=(this.pinchDistance-d)*.035;if(this.performanceLab.active)this.performanceLab.zoom(delta);else this.camera.zoom(delta);}this.pinchDistance=d;this.dragged=true;return}if(prev&&this.lastPointer&&this.pointers.size===1){const dx=e.clientX-this.lastPointer.x,dy=e.clientY-this.lastPointer.y;if(this.pointerStart&&Math.hypot(e.clientX-this.pointerStart.x,e.clientY-this.pointerStart.y)>7)this.dragged=true;if(this.dragged){if(this.performanceLab?.active)this.camera.desiredAzimuth+=dx*.006;else if(e.shiftKey||e.buttons===2)this.camera.rotate(dx);else this.camera.pan(dx,dy);}this.lastPointer={x:e.clientX,y:e.clientY}}});
+    this.canvas.addEventListener('pointerdown',e=>{if(this.championship.active&&!this.performanceLab.active)return;this.canvas.setPointerCapture(e.pointerId);this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.pointers.size===1){this.pointerStart={x:e.clientX,y:e.clientY};this.lastPointer={x:e.clientX,y:e.clientY};this.dragged=false}else if(this.pointers.size===2)this.pinchDistance=this.currentPinch()});
+    this.canvas.addEventListener('pointermove',e=>{const prev=this.pointers.get(e.pointerId);if(prev)this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if((this.championship.active&&!this.performanceLab.active)||this.phoneCapture?.active)return;if(!this.performanceLab.active)this.hoverGround=this.camera.groundPoint(e.clientX,e.clientY);if(!this.performanceLab.active&&!prev&&!this.buildType){const selected=this.pickWorld(e.clientX,e.clientY);const anchor=selected?.object?.selection?.centre??selected?.character?.position??(selected?.placement?new Vec3(selected.placement.x,.65,selected.placement.z):null);this.spatial.setHover(anchor,selected?.object?.label??selected?.character?.spec.name??(selected?.placement?DECOR_BY_ID[selected.placement.type].label:''));this.canvas.style.cursor=selected?'pointer':'';}if(this.pointers.size===2){const d=this.currentPinch();if(this.pinchDistance>0){const delta=(this.pinchDistance-d)*.035;if(this.performanceLab.active)this.performanceLab.zoom(delta);else this.camera.zoom(delta);}this.pinchDistance=d;this.dragged=true;return}if(prev&&this.lastPointer&&this.pointers.size===1){const dx=e.clientX-this.lastPointer.x,dy=e.clientY-this.lastPointer.y;if(this.pointerStart&&Math.hypot(e.clientX-this.pointerStart.x,e.clientY-this.pointerStart.y)>7)this.dragged=true;if(this.dragged){if(this.performanceLab?.active)this.camera.desiredAzimuth+=dx*.006;else if(e.shiftKey||e.buttons===2)this.camera.rotate(dx);else this.camera.pan(dx,dy);}this.lastPointer={x:e.clientX,y:e.clientY}}});
     this.canvas.addEventListener('pointerleave',()=>{this.spatial.setHover(null);this.canvas.style.cursor='';});
     this.canvas.addEventListener('pointerup',e=>{if(!this.dragged&&this.pointers.size===1)this.handleTap(e.clientX,e.clientY);this.pointers.delete(e.pointerId);this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0;this.ui.hideHint()});
     this.canvas.addEventListener('pointercancel',e=>{this.pointers.delete(e.pointerId);this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0});
@@ -299,7 +307,7 @@ export class Game {
   private interact(c:Character,type:InteractionType,detail?:string){return this.relations.interact(c.spec.id,type,this.clock.day,detail)}
 
   private handleTap(x:number,y:number){
-    if (this.championship.active) return;
+    if (this.championship.active&&!this.performanceLab.active) return;
     if(this.phoneCapture?.active)return;
     if(this.performanceLab?.active){this.performanceLab.pickJoint(x,y,this.settings.reducedMotion);return;}
     this.audio.click();
@@ -517,12 +525,7 @@ export class Game {
     document.body.classList.remove('championship-active');
     for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=false;
     this.canvas.focus();
-    if(this.reviewAfterChampionship){
-      this.reviewAfterChampionship=false;
-      // Finish releasing the match reservation and participant roles before
-      // the existing Lab takes ownership of presentation and input.
-      queueMicrotask(()=>this.openPerformanceLab(true));
-    }
+    this.reviewingChampionship=false;
   }
 
   private updateChampionshipActivity(a:Activity,dt:number){
@@ -817,10 +820,19 @@ export class Game {
   }
 
   private openPerformanceLab(reviewMatch=false){
-    if(!this.performanceLab||this.championship?.active||this.performanceLab.active)return;
+    if(!this.performanceLab||this.performanceLab.active)return;
+    const inMatch=this.championship?.active??false;
+    if(inMatch&&(!reviewMatch||!['serving','rally','pointResult','matchResult'].includes(this.championship.phase)))return;
+    if(inMatch){
+      if(!this.motionRecorder.clip.frames.some(f=>f.contact))return;
+      // Analysis borrows presentation; the match keeps its score, ball and court reservation.
+      this.reviewingChampionship=true;this.clock.paused=true;
+      this.audio.stopVoice();this.matchInput.setEnabled(false);this.championshipHud.hide();
+      this.simAcc=0;
+    }
     this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.movingPlacement=null;
     this.spatial.dismiss();this.matchInput.reset();this.pointers.clear();this.pointerStart=null;this.lastPointer=null;
-    this.audio.click();this.performanceLab.open(this.player.spec,this.motionRecorder?.clip??null,this.phoneCapture?.last??null,reviewMatch?'championship':undefined);
+    this.audio.click();this.performanceLab.open(this.player.spec,this.motionRecorder?.clip??null,this.phoneCapture?.last??null,reviewMatch?'championship':undefined,inMatch);
   }
 
   private playObjectSound(effect:string,contact?:Vec3){
@@ -1369,7 +1381,7 @@ export class Game {
     this.sportFocus+=(focus-this.sportFocus)*(1-Math.exp(-this.renderDt*5));
     document.body.style.setProperty('--club-atmosphere',String(1-this.sportFocus*.85));
     document.body.classList.toggle('championship-transitioning',this.championship.phase==='intro');
-    if(this.championship.active&&this.championshipOpponentId){
+    if(this.championship.active&&this.championshipOpponentId&&!this.performanceLab.active){
       const opponent=this.byId(this.championshipOpponentId);
       if(opponent)this.championshipHud.render(this.championship.snapshot(),this.player.spec.name,opponent.spec.name,this.interactiveMatch?.playerCue(),this.settings.reducedMotion,this.clock.paused,!this.audio.enabled||this.audio.volume===0,this.motionRecorder.clip.frames.some(f=>f.contact));
     }else{
@@ -1378,7 +1390,7 @@ export class Game {
     const peek=document.getElementById('scenePeek')!,run=this.lifeRuns.values().next().value;const courtEvent=this.activities.active.find(a=>a.resource==='court');const title=run?.scene.title??courtEvent?.detail??'';if(peek.querySelector('strong')!.textContent!==title)peek.querySelector('strong')!.textContent=title;peek.hidden=(!run&&!courtEvent)||!!this.spatial.selectedId||!!document.querySelector('.context.open,.book.open,.build.open');
     const aspect=this.renderer.resize();this.camera.setAspect(aspect);
     this.performanceLab?.update(this.renderDt,this.settings.reducedMotion);this.phoneCapture?.frameCamera(this.settings.reducedMotion);
-    if(this.championship.active&&this.championshipOpponentId){
+    if(this.championship.active&&this.championshipOpponentId&&!this.performanceLab.active){
       const opponent=this.byId(this.championshipOpponentId);
       if(opponent){
         const ball=this.interactiveMatch?.ball.active?this.interactiveMatch.ball.position:null;
@@ -1409,7 +1421,8 @@ export class Game {
 
     if(this.buildType&&this.hoverGround){const x=Math.round(this.hoverGround.x*2)/2,z=Math.round(this.hoverGround.z*2)/2;meshes.push(...this.previewMeshes(this.buildType,x,z,this.placementClear(this.buildType,x,z,this.buildRotation)))}
     if(this.history.breakthrough||this.history.firstMikaWin)meshes.push({kind:'roundBox',position:new Vec3(4.25,2.12,-9.1),scale:new Vec3(.7,.12,.45),color:'#c58a5b',material:'wood'},{kind:'sphere',position:new Vec3(4.25,2.3,-9.1),scale:new Vec3(.24,.24,.24),color:'#e6c65f',material:'fabric'});
-    const contactView=this.championshipCamera.renderImpulse(this.settings.reducedMotion);
+    // Replay measurements use a steady camera, even when opened during an impact pulse.
+    const contactView=this.championshipCamera.renderImpulse(this.settings.reducedMotion||this.performanceLab.active);
     this.renderItems=meshes.length;this.renderer.render(meshes,this.camera.viewProjection(contactView),this.atmosphere.update(this.world.lighting(this.clock.minutes,0,this.camera.target),this.renderDt),this.camera.position);this.phoneCapture?.afterRender();
     if(this.activeSpeechId&&performance.now()<this.speechUntil){const c=this.activeSpeechId==='player'?this.player:this.byId(this.activeSpeechId);if(c){const p=this.camera.project(new Vec3(c.position.x,2.55,c.position.z),undefined,contactView);this.ui.positionSpeech(p.x,p.y)}}else this.activeSpeechId=null;
   }

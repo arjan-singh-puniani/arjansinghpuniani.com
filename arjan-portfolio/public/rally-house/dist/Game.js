@@ -84,7 +84,7 @@ export class Game {
     championshipRound = 1;
     championshipCompletedRound = 0;
     championshipAudibleVolume = .65;
-    reviewAfterChampionship = false;
+    reviewingChampionship = false;
     spatial;
     performanceLab;
     phoneCapture;
@@ -187,8 +187,7 @@ export class Game {
             onAnalyze: () => {
                 if (!this.motionRecorder.clip.frames.some(f => f.contact))
                     return;
-                this.reviewAfterChampionship = true;
-                this.requestChampionshipExit();
+                this.openPerformanceLab(true);
             },
             onTogglePause: () => this.setChampionshipPaused(!this.clock.paused),
             onToggleSound: () => {
@@ -214,7 +213,24 @@ export class Game {
             this.phoneCapture.cancel();
         else
             this.phoneCapture.dispose(); });
-        this.performanceLab.onReturn = () => { this.pointers.clear(); this.pointerStart = null; this.lastPointer = null; this.pinchDistance = 0; this.dragged = false; this.spatial.setHover(null); this.canvas.style.cursor = ''; };
+        this.performanceLab.onReturn = () => {
+            this.pointers.clear();
+            this.pointerStart = null;
+            this.lastPointer = null;
+            this.pinchDistance = 0;
+            this.dragged = false;
+            this.spatial.setHover(null);
+            this.canvas.style.cursor = '';
+            if (this.reviewingChampionship) {
+                this.reviewingChampionship = false;
+                // Return paused so the player can reorient before a live ball moves again.
+                this.clock.paused = this.championship.phase !== 'matchResult';
+                this.simAcc = 0;
+                this.last = performance.now();
+                for (const el of document.querySelectorAll('.topbar,.hud,.objective,#scenePeek'))
+                    el.inert = true;
+            }
+        };
         window.addEventListener('pagehide', e => { if (e.persisted)
             this.performanceLab.close();
         else
@@ -383,7 +399,8 @@ export class Game {
             if (this.championship.active) {
                 if (e.key === 'Escape') {
                     e.preventDefault();
-                    this.requestChampionshipExit();
+                    if (!e.repeat)
+                        this.setChampionshipPaused(!this.clock.paused);
                     return;
                 }
                 // Space belongs to a focused native button; it must never serve a ball
@@ -433,13 +450,13 @@ export class Game {
             if (this.championship.active)
                 this.matchInput.handleKeyUp(e);
         });
-        this.canvas.addEventListener('wheel', e => { e.preventDefault(); if (this.championship.active || this.phoneCapture?.active)
+        this.canvas.addEventListener('wheel', e => { e.preventDefault(); if ((this.championship.active && !this.performanceLab.active) || this.phoneCapture?.active)
             return; if (this.performanceLab.active) {
             this.performanceLab.zoom(e.deltaY * .012);
             return;
         } this.camera.zoom(e.deltaY * .012); }, { passive: false });
         this.canvas.addEventListener('contextmenu', e => e.preventDefault());
-        this.canvas.addEventListener('pointerdown', e => { if (this.championship.active)
+        this.canvas.addEventListener('pointerdown', e => { if (this.championship.active && !this.performanceLab.active)
             return; this.canvas.setPointerCapture(e.pointerId); this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); if (this.pointers.size === 1) {
             this.pointerStart = { x: e.clientX, y: e.clientY };
             this.lastPointer = { x: e.clientX, y: e.clientY };
@@ -448,7 +465,7 @@ export class Game {
         else if (this.pointers.size === 2)
             this.pinchDistance = this.currentPinch(); });
         this.canvas.addEventListener('pointermove', e => { const prev = this.pointers.get(e.pointerId); if (prev)
-            this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); if (this.championship.active || this.phoneCapture?.active)
+            this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); if ((this.championship.active && !this.performanceLab.active) || this.phoneCapture?.active)
             return; if (!this.performanceLab.active)
             this.hoverGround = this.camera.groundPoint(e.clientX, e.clientY); if (!this.performanceLab.active && !prev && !this.buildType) {
             const selected = this.pickWorld(e.clientX, e.clientY);
@@ -522,7 +539,7 @@ export class Game {
     }
     interact(c, type, detail) { return this.relations.interact(c.spec.id, type, this.clock.day, detail); }
     handleTap(x, y) {
-        if (this.championship.active)
+        if (this.championship.active && !this.performanceLab.active)
             return;
         if (this.phoneCapture?.active)
             return;
@@ -814,12 +831,7 @@ export class Game {
         for (const el of document.querySelectorAll('.topbar,.hud,.objective,#scenePeek'))
             el.inert = false;
         this.canvas.focus();
-        if (this.reviewAfterChampionship) {
-            this.reviewAfterChampionship = false;
-            // Finish releasing the match reservation and participant roles before
-            // the existing Lab takes ownership of presentation and input.
-            queueMicrotask(() => this.openPerformanceLab(true));
-        }
+        this.reviewingChampionship = false;
     }
     updateChampionshipActivity(a, dt) {
         if (this.championship.phase === 'exiting') {
@@ -1212,8 +1224,22 @@ export class Game {
         }
     }
     openPerformanceLab(reviewMatch = false) {
-        if (!this.performanceLab || this.championship?.active || this.performanceLab.active)
+        if (!this.performanceLab || this.performanceLab.active)
             return;
+        const inMatch = this.championship?.active ?? false;
+        if (inMatch && (!reviewMatch || !['serving', 'rally', 'pointResult', 'matchResult'].includes(this.championship.phase)))
+            return;
+        if (inMatch) {
+            if (!this.motionRecorder.clip.frames.some(f => f.contact))
+                return;
+            // Analysis borrows presentation; the match keeps its score, ball and court reservation.
+            this.reviewingChampionship = true;
+            this.clock.paused = true;
+            this.audio.stopVoice();
+            this.matchInput.setEnabled(false);
+            this.championshipHud.hide();
+            this.simAcc = 0;
+        }
         this.ui.closeContext();
         this.ui.closeBook();
         this.ui.toggleBuild(false);
@@ -1225,7 +1251,7 @@ export class Game {
         this.pointerStart = null;
         this.lastPointer = null;
         this.audio.click();
-        this.performanceLab.open(this.player.spec, this.motionRecorder?.clip ?? null, this.phoneCapture?.last ?? null, reviewMatch ? 'championship' : undefined);
+        this.performanceLab.open(this.player.spec, this.motionRecorder?.clip ?? null, this.phoneCapture?.last ?? null, reviewMatch ? 'championship' : undefined, inMatch);
     }
     playObjectSound(effect, contact) {
         if (['clock', 'stringing', 'bell'].includes(effect) && contact && this.canvas) {
@@ -2443,7 +2469,7 @@ export class Game {
         this.sportFocus += (focus - this.sportFocus) * (1 - Math.exp(-this.renderDt * 5));
         document.body.style.setProperty('--club-atmosphere', String(1 - this.sportFocus * .85));
         document.body.classList.toggle('championship-transitioning', this.championship.phase === 'intro');
-        if (this.championship.active && this.championshipOpponentId) {
+        if (this.championship.active && this.championshipOpponentId && !this.performanceLab.active) {
             const opponent = this.byId(this.championshipOpponentId);
             if (opponent)
                 this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue(), this.settings.reducedMotion, this.clock.paused, !this.audio.enabled || this.audio.volume === 0, this.motionRecorder.clip.frames.some(f => f.contact));
@@ -2461,7 +2487,7 @@ export class Game {
         this.camera.setAspect(aspect);
         this.performanceLab?.update(this.renderDt, this.settings.reducedMotion);
         this.phoneCapture?.frameCamera(this.settings.reducedMotion);
-        if (this.championship.active && this.championshipOpponentId) {
+        if (this.championship.active && this.championshipOpponentId && !this.performanceLab.active) {
             const opponent = this.byId(this.championshipOpponentId);
             if (opponent) {
                 const ball = this.interactiveMatch?.ball.active ? this.interactiveMatch.ball.position : null;
@@ -2505,7 +2531,8 @@ export class Game {
         }
         if (this.history.breakthrough || this.history.firstMikaWin)
             meshes.push({ kind: 'roundBox', position: new Vec3(4.25, 2.12, -9.1), scale: new Vec3(.7, .12, .45), color: '#c58a5b', material: 'wood' }, { kind: 'sphere', position: new Vec3(4.25, 2.3, -9.1), scale: new Vec3(.24, .24, .24), color: '#e6c65f', material: 'fabric' });
-        const contactView = this.championshipCamera.renderImpulse(this.settings.reducedMotion);
+        // Replay measurements use a steady camera, even when opened during an impact pulse.
+        const contactView = this.championshipCamera.renderImpulse(this.settings.reducedMotion || this.performanceLab.active);
         this.renderItems = meshes.length;
         this.renderer.render(meshes, this.camera.viewProjection(contactView), this.atmosphere.update(this.world.lighting(this.clock.minutes, 0, this.camera.target), this.renderDt), this.camera.position);
         this.phoneCapture?.afterRender();

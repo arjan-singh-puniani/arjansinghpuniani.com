@@ -35,7 +35,7 @@ try{
   if(elapsed<s.next)return;
   if(g.performanceLab.active){
    if(s.reviewStep<3){click('[data-serve-phase='+['load','contact','finish'][s.reviewStep]+']');s.reviewStep++;s.next=elapsed+500;}
-   else{click('[data-lab-action=close]');s.reviews++;s.lastReview=elapsed;click('#tennisBtn');}
+   else{click('[data-lab-action=close]');s.reviews++;s.lastReview=elapsed;click('.championshipPauseActions button');}
   }else if(elapsed-s.lastReview>90000&&['serving','rally','pointResult'].includes(phase)){
    click('.championshipPause');if(click('.championshipPausePanel .championshipReview'))s.reviewStep=0;
   }else if(phase==='matchResult'){if(click('.championshipResults .championshipPrimary'))s.rematches++;}

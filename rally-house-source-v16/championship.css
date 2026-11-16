@@ -312,3 +312,6 @@ button:focus-visible{outline:3px solid #d6a745;outline-offset:3px}
 }
 /* The home indicator remains reserved even with Safari's short landscape viewport. */
 @media(max-height:480px){.championshipTouchPad,.championshipSwing{bottom:max(14px,calc(env(safe-area-inset-bottom) + 8px))}}
+
+/* Keep the win condition readable without competing with the ball or touch controls. */
+.championshipScore small{display:block;font-size:10px;line-height:1.5;font-weight:650;letter-spacing:0;color:#46675a;white-space:nowrap}

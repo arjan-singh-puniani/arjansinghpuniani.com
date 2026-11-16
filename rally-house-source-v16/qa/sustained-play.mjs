@@ -45,7 +45,7 @@ try{
    await page.waitForFunction(()=>window.__rh.game.performanceLab.active);
    for(const phase of ['load','contact','finish']){const button=page.locator('[data-serve-phase='+phase+']');if(await button.isVisible())await button.tap();await page.waitForTimeout(500);}
    await page.locator('[data-lab-action=close]').tap();report.reviews++;lastReview=elapsed;
-   await page.locator('#tennisBtn').tap();
+   await page.getByRole('button',{name:'Resume match',exact:true}).tap();
   }else if(state.phase==='matchResult'){
    await page.getByRole('button',{name:'Rematch',exact:true}).tap();report.rematches++;
   }else if(elapsed-lastSwing>800&&((state.phase==='serving'&&state.server==='player'&&state.cue!=='serving')||state.cue==='swing')){
