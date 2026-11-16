@@ -187,7 +187,7 @@ export default function AtlasExperience() {
   const [copyState,setCopyState]=useState<"idle"|"copied"|"manual">("idle");
   const [shareUrl,setShareUrl]=useState("");
   const [showOrgans,setShowOrgans]=useState(true);
-  const adaptedContour = false;
+  const adaptedContour = portrait === false;
   const [showMechanism,setShowMechanism]=useState(true),[actionPlaying,setActionPlaying]=useState(false),[reducedMotion,setReducedMotion]=useState(false);
   const [actionStep,setActionStep]=useState(0);
   useEffect(()=>{const media=window.matchMedia('(prefers-reduced-motion: reduce)');const change=()=>{setReducedMotion(media.matches);setActionPlaying(false);};change();media.addEventListener('change',change);return()=>media.removeEventListener('change',change);},[]);
@@ -196,7 +196,7 @@ export default function AtlasExperience() {
   const [region, setRegion] = useState("all"),
     [selected, setSelected] = useState<string | null>(null),
     [mode, setMode] = useState<"human" | "brain">("human"),
-    [surface, setSurface] = useState(false),
+    [surface, setSurface] = useState(true),
     [isolated, setIsolated] = useState(false),
     [sceneKey, setSceneKey] = useState(0),
     [sceneStatus, setSceneStatus] = useState("Loading reference…"),
@@ -1535,9 +1535,9 @@ export default function AtlasExperience() {
           )}
           {dialog === "about" && (
             <div className="atlas-methods">
-              <h3>Portrait and reference anatomy</h3>
+              <h3>Hologram and reference anatomy</h3>
               <p><a href={atlasPath("/?view=portrait")}>Open photographic portrait <ArrowUpRight size={12}/></a></p>
-              <p>The portrait is a photograph of Arjan Singh Puniani. The anatomy viewer uses the generic Human Reference Atlas body, organs, nerves and intervention anchors. It is not a personal body scan or a representation of his physique.</p>
+              <p>The main view uses a photo-guided exterior silhouette adapted from the Human Reference Atlas. The organs, nerves and intervention markers use standardized reference anatomy. The exterior is an artistic approximation.</p>
               <h3>Reference anatomy</h3>
               <p>
                 Human surface, registered brain and spinal cord, and detailed
