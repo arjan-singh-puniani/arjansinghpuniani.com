@@ -87,7 +87,7 @@ console.log('Impact feel PASS: 12 physical contacts, live steering during pose h
 const {AudioManager}=await import('../dist/core/AudioManager.js');
 {
  const connected=new Set(),sources=[],gains=[];
- const node=()=>({connect(target){connected.add(this);return target;},disconnect(){connected.delete(this);},frequency:{value:0},Q:{value:0},gain:{value:0,setValueAtTime(v){this.value=v;}}});
+ const node=()=>({connect(target){connected.add(this);return target;},disconnect(){connected.delete(this);},frequency:{value:0},Q:{value:0},gain:{value:0,setValueAtTime(v){this.value=v;},cancelScheduledValues(){},setTargetAtTime(){}}});
  const context={state:'running',sampleRate:48000,currentTime:0,destination:{},close:async()=>{},
   createBuffer:(_channels,length)=>{const data=new Float32Array(length);return {getChannelData:()=>data};},
   createBufferSource:()=>{const n={...node(),start(){}};sources.push(n);return n;},
@@ -99,6 +99,11 @@ const {AudioManager}=await import('../dist/core/AudioManager.js');
  }
  assert.equal(a.tennisMaterialBuffers.size,12,'Continuous shot strength cannot create unbounded sample variants');
  a.tennisImpact('clean',NaN);assert(Number.isFinite(gains.at(-1).gain.value));sources.at(-1).onended();
+ // A blocked audio clock cannot retire queued nodes; old hits must never burst out on resume.
+ const beforeBlocked=sources.length;context.state='suspended';context.resume=()=>Promise.resolve();
+ for(let i=0;i<120;i++){a.tennisImpact('clean',18);a.shoe('court');a.noiseBurst();a.updateClubAmbience(1/60,720,'clear',true);}
+ assert.equal(sources.length,beforeBlocked,'Suspended audio must not accumulate stale hits or footsteps');
+ context.state='running';a.tennisImpact('perfect',18);assert.equal(sources.length,beforeBlocked+1,'Fresh impacts work after audio resumes');sources.at(-1).onended();
  const count=sources.length;a.volume=0;a.tennisImpact('perfect',18);assert.equal(sources.length,count,'Mute allocates no impact nodes');
  a.dispose();assert.equal(a.tennisMaterialBuffers.size,0);
 }
