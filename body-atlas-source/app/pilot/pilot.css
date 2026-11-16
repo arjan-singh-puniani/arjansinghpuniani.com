@@ -82,8 +82,8 @@
   min-inline-size: 0;
 }
 
-.pilot-inquiry label { display: grid; gap: .35rem; }
-.pilot-inquiry :is(input, select, textarea) {
+:is(.pilot-inquiry, .pilot-fields) label { display: grid; gap: .35rem; }
+:is(.pilot-inquiry, .pilot-fields) :is(input, select, textarea) {
   width: 100%;
   min-height: 44px;
   padding: .6rem .7rem;
@@ -97,6 +97,14 @@
 .pilot-inquiry textarea { resize: vertical; }
 .pilot-inquiry textarea:focus-visible, .pilot-draft h4:focus { outline: 2px solid var(--accent); outline-offset: 4px; }
 .pilot-draft { display: grid; gap: .65rem; margin-block: 1rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+
+.pilot-fields label { min-width: 0; }
+.pilot-question { grid-column: 1 / -1; }
+.pilot-builder-status { margin-block: 1rem; }
+.pilot-decision { margin-block: 1rem; }
+.pilot-decision summary { color: var(--text); font: inherit; }
+.pilot-decision p { margin-top: .55rem; }
+.pilot-card h4 { margin-top: .8rem; }
 
 @media (max-width: 700px) {
   .pilot-hero, .pilot-grid { grid-template-columns: minmax(0, 1fr); }

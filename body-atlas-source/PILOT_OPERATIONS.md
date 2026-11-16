@@ -4,7 +4,7 @@ Use this worksheet with the [commercial plan](COMMERCIAL_PLAN.md). The public pi
 
 ## Activation checklist
 
-1. Review a preview at `/atlas/pilot`. Start at the portfolio overview and follow Pilot → interactive comparison → export → inquiry. At narrow width, do the same with keyboard where applicable. Confirm the live Atlas remains the research entry point.
+1. Review a preview at `/atlas/pilot`. Start at the portfolio overview and follow Pilot → brief builder → select two original applications and export → inquiry. At narrow width, do the same with keyboard where applicable. Confirm the live Atlas remains the research entry point.
 2. Confirm the public pilot mailbox is monitored and has MFA. A founder-authorized Gmail self-send of the form-generated inquiry reached Inbox, and a reply arrived in the same thread. Delivery from an independent sender was outside that test. Use an independent sender to verify that path when available. No API keys are needed for the pilot. Change `recipient` in `app/pilot/Inquiry.tsx` and regenerate the export if the founder selects a dedicated address. Portfolio `/api/contact` is separate and only delivers if `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, and `CONTACT_TO_EMAIL` are configured on the portfolio host.
 3. Inspect the sample, rights and agreement. Confirm commercial permissions for the assets used in public sales, applicable terms and privacy, refund language, business/invoice details, secure payment destination, reviewer availability and escalation owner. The pilot page uses text and source links. The linked Atlas contains separately attributed HRA and MediaPipe artifacts described in [DATA_SOURCES.md](DATA_SOURCES.md) and [BODY_CONTOUR.md](BODY_CONTOUR.md). The pilot does not use the owner's portrait as a demonstration asset.
 4. Review and approve the branch. The export and source travel together. To rebuild from `body-atlas-source`: `npm ci --ignore-scripts`, `npm run verify`, `npm run test:browser`, `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`, and `node scripts/check-export.mjs`. From `arjan-portfolio`: `npm ci --ignore-scripts`, `npm run typecheck && npm test && npm run build`, then `npm start -- --hostname 127.0.0.1 --port 3217`. The host rewrites `/atlas/pilot` to the checked-in static HTML. Keep the static export and standalone API deployments separate, and verify host CSP, assets and FDA proxy. The route uses same-origin assets and the customer's email app.
@@ -51,6 +51,12 @@ First prospect to screen is Magnetic Tides’ CEO or R&D lead. Confirm that a so
 | Later Activa decision | P960009/S007 | [FDA supplement SSED](https://www.accessdata.fda.gov/cdrh_docs/pdf/p960009s007b.pdf), 2002-01-14, checked 2026-11-15 | General information and indication sections | Separate supplemental application. No conflation with the original indication. |
 | Original ExAblate decision | P150038 | [FDA PMA](https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038), 2016-07-11, checked 2026-11-15 | Approval order statement | Model 4000 Type 1.0 and time-of-approval indication. No finding about later models or comparative outcomes. |
 | Current label, comparative effectiveness and exhaustive recall status | Both | No complete review | Open | Excluded from the free example and unsupported by overlapping anatomy. |
+
+### Buyer trial before a paid quote
+
+Ask the buyer to choose two original applications from the worksheet’s reviewed subset and enter one public question. They should be able to open both decisions, locate a source behind one anatomy claim, identify a limitation that matters to their review, and save the worksheet without assistance. Test with a buyer’s own pair first. A lightweight observer target is five minutes from landing to export. Record time, where the buyer hesitated and what remains missing for their actual review.
+
+The worksheet assembles a dated record and evidence starting point. The quoted pilot adds agreed records beyond the visible set as needed, documented checking of gaps, and a reviewed decision memo. Do not count an export as purchase evidence.
 
 ### Dry run and acceptance
 

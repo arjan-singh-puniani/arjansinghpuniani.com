@@ -61,3 +61,37 @@ test("direct inquiry remains available without JavaScript", async ({ browser, ba
     await context.close();
   }
 });
+
+test("a buyer can export a worksheet about their own FDA applications", async ({ page }) => {
+  const basePath = process.env.ATLAS_BROWSER_BASE_PATH || "";
+  await page.goto(basePath + "/pilot");
+  await page.getByRole("link", { name: "Build a cited brief" }).click();
+  const builder = page.getByRole("region", { name: "Build a cited brief" });
+  const download = builder.getByRole("link", { name: "Download editable worksheet" });
+  await expect(download).toHaveCount(0);
+  await page.getByLabel("First FDA application").selectOption("P100026");
+  await expect(page.getByLabel("Second FDA application").locator('option[value="P100026"]')).toHaveJSProperty("disabled", true);
+  await expect(download).toHaveCount(0);
+  await page.getByLabel("Second FDA application").selectOption("P970003");
+  const requests: string[] = [];
+  page.on("request", request => requests.push(request.url()));
+  await builder.getByLabel("Decision or question (optional)").fill("Compare recording & stimulation for our review.");
+  await expect(builder.getByRole("link", { name: "Original FDA record P100026" })).toHaveAttribute("href", /^https:\/\/www\.accessdata\.fda\.gov\//);
+  await expect(builder.getByRole("link", { name: "Original FDA record P970003" })).toBeVisible();
+  await expect(builder.getByText(/retrieved/i)).toHaveCount(2);
+  await builder.getByText("FDA decision statement", { exact: true }).first().click();
+  await expect(builder.locator("details[open] p")).toContainText(/RNS/i);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize()!.width);
+  expect((await new AxeBuilder({ page }).include("#build").analyze()).violations).toEqual([]);
+
+  const file = page.waitForEvent("download");
+  await download.click();
+  const contents = await readFile((await (await file).path())!, "utf8");
+  for (const expected of ["P100026", "P970003", "2013-11-14", "1997-07-16", "Compare recording &amp; stimulation", "## Decision notes", "relevant supplements", "Regional relationships"]) {
+    expect(contents).toContain(expected);
+  }
+  expect(contents).not.toContain("P150038");
+  expect(requests).toEqual([]);
+  await page.getByLabel("Second FDA application").selectOption("");
+  await expect(download).toHaveCount(0);
+});

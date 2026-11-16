@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { briefDataUrl, coverage, recordById } from "@/lib/atlas";
+import { briefDataUrl, coverage, families, recordById, relationshipLabels } from "@/lib/atlas";
 import { atlasBasePath, atlasPath } from "@/lib/deployment";
+import { comparisonRelationships } from "@/lib/research-workflow";
+import BriefBuilder, { type BriefCase } from "./BriefBuilder";
 import Inquiry from "./Inquiry";
 import "./pilot.css";
 
@@ -22,6 +24,38 @@ const example = [
   },
 ];
 
+const decisionTypes = new Set(["PMA approval", "510(k) clearance", "De Novo authorization"]);
+const briefCases = families.flatMap((family): BriefCase[] => {
+  if (family.collection === "catalogue" || family.regulatoryIds.length !== 1) return [];
+  const record = recordById(family.regulatoryIds[0]);
+  if (!record?.application || record.supplement || !record.decisionDate || !record.status ||
+      !decisionTypes.has(record.status)) return [];
+  const relationships = (["placement", "measurement", "target"] as const).flatMap(group => {
+    const mapping = comparisonRelationships(family.id, group).find(item =>
+      (item.state === "Verified" || item.state === "Supported") && item.type !== "unlocalized",
+    );
+    return mapping ? [{
+      label: `${relationshipLabels[mapping.type]} · ${mapping.component}`,
+      assertion: mapping.assertion,
+      limits: mapping.limitations,
+      state: mapping.state,
+      locator: mapping.locator,
+      url: mapping.sourceUrl,
+    }] : [];
+  });
+  return [{
+    application: record.application,
+    name: family.name,
+    decisionDate: record.decisionDate,
+    retrievedAt: record.retrievedAt.slice(0, 10),
+    status: record.status,
+    url: record.url,
+    statement: record.statement?.trim() || "",
+    limits: family.limitations,
+    relationships,
+  }];
+}).sort((a, b) => a.name.localeCompare(b.name));
+
 export default function PilotPage() {
   return (
     <div className="pilot">
@@ -29,6 +63,7 @@ export default function PilotPage() {
       <header className="pilot-nav">
         <a className="pilot-brand" href={atlasPath("/")}>BODY<span>//</span>ATLAS</a>
         <nav aria-label="Pilot navigation">
+          <a href="#build">Brief builder</a>
           <a href="#example">Example</a>
           <a href="#offer">Pilot</a>
           <a href={atlasPath("/")}>Explore Atlas</a>
@@ -41,7 +76,7 @@ export default function PilotPage() {
             <h1 id="pilot-title">Compare devices. Trace the evidence.</h1>
             <p>For neurotechnology teams scoping a U.S. device landscape. Compare how devices interact with anatomy, trace claims back to FDA records, and see which questions still need research.</p>
             <div className="pilot-actions">
-              <a className="pilot-button" href="#example">See the free example</a>
+              <a className="pilot-button" href="#build">Build a cited brief</a>
               <a href="#offer">Discuss a research brief</a>
             </div>
           </div>
@@ -52,6 +87,8 @@ export default function PilotPage() {
             {atlasBasePath && <a href="/documents/body-atlas-validation.json">Read the public validation record</a>}
           </aside>
         </section>
+
+        <BriefBuilder cases={briefCases} snapshot={coverage.exportedAt.slice(0, 10)} />
 
         <section id="example" className="pilot-section" aria-labelledby="example-title">
           <p className="pilot-kicker">Free comparison</p>
