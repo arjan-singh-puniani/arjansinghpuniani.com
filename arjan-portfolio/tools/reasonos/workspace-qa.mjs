@@ -46,8 +46,10 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await openingTrace.click({ position: { x: openingWidth * 0.866 / 2.5, y: 40 } });
     await root.getByText("Place A before B. Drag a caliper to adjust it.", { exact: true }).waitFor();
     assert.equal(await root.getByRole("button", { name: "Save measurement", exact: true }).isDisabled(), true);
-    await root.getByText("Show worked landmarks", { exact: true }).click();
-    await root.getByRole("button", { name: "Mark two example peaks" }).click();
+    await root.getByLabel("Reference recording").selectOption("00012");
+    await root.getByText("PTB-XL · 00012", { exact: true }).waitFor();
+    await root.getByLabel("Reference recording").selectOption("00010");
+    await root.getByRole("button", { name: "Try the evidence demo", exact: true }).click();
     await root.getByText("838 ms selected", { exact: true }).waitFor();
     await root.getByText("71.6 bpm", { exact: true }).waitFor();
     await page.screenshot({ path: `${out}/${name}-guided-measurement.png` });
@@ -58,12 +60,27 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
     await root.getByRole("button", { name: "Use the interval in my note" }).click();
     assert.match(await root.getByLabel("Observation and reasoning").inputValue(), /838 ms apart/);
     await root.getByRole("button", { name: "Save note", exact: true }).click();
-    await root.getByRole("button", { name: "Revise endpoints", exact: true }).click();
+    const evidenceReview = root.getByRole("region", { name: "Evidence review", exact: true });
+    await evidenceReview.getByRole("heading", { name: "Observation linked to measurement" }).waitFor();
+    await page.setViewportSize({ width: 390, height: 844 });
+    await evidenceReview.getByRole("button", { name: "Revise this interval" }).click();
+    assert.equal(await root.getByRole("button", { name: "Move B", pressed: true }).count(), 1);
+    assert.equal(await root.getByRole("button", { name: "Save revision", exact: true }).isDisabled(), true);
     await root.getByLabel("Endpoint B seconds").fill("1.7");
     await root.getByRole("button", { name: "Save revision", exact: true }).click();
     await root.getByText("Needs review · supporting measurement revised", { exact: true }).waitFor();
-    await root.getByText("834 ms", { exact: true }).waitFor();
+    await evidenceReview.getByRole("heading", { name: "Observation needs review" }).waitFor();
+    await evidenceReview.getByText("834 ms", { exact: true }).waitFor();
+    await evidenceReview.getByText("838 ms", { exact: true }).waitFor();
+    await evidenceReview.getByText("4 ms shorter", { exact: true }).waitFor();
+    await evidenceReview.getByText(/The selected peaks are 838 ms apart/).waitFor();
+    await root.getByText("Original endpoints", { exact: true }).waitFor();
     await page.screenshot({ path: `${out}/${name}-guided-revision.png` });
+    const evidenceAxe = await new AxeBuilder({ page }).include('[aria-label="Evidence review"]').analyze();
+    assert.deepEqual(evidenceAxe.violations.map(v => v.id), []);
+    await evidenceReview.getByRole("button", { name: "Write a note on revised interval" }).click();
+    assert.match(await root.getByLabel("Supporting measurement").locator("option:checked").innerText(), /834 ms/);
+    await page.setViewportSize({ width: 1440, height: 1100 });
 
     const selectPractice = async id => {
       await root.getByLabel("Reference recording").selectOption(id);
