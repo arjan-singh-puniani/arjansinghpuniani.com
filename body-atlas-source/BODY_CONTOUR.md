@@ -33,7 +33,7 @@ MPLCONFIGDIR=data/private/mpl-cache .venv/bin/python scripts/prepare-contour-sur
   --python-exit-code 1 --python scripts/build-body-contour.py -- \
   --source public/anatomy/body.glb \
   --surface-fit data/private/face-surface.json \
-  --output public/anatomy/contour.glb
+  --output data/private/contour.glb
 ```
 
 Download the official model from `https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/latest/face_landmarker.task` and the canonical OBJ from the source above; review their license/model card. All image processing runs locally. The prep tool rejects missing or multiple faces. The builder rejects oversized/nonfinite/out-of-frame data and invalid topology. The self-test checks normalization and rejection behavior, not likeness accuracy. Omitting `--surface-fit` generates an authored generic face instead of reproducing the shipped fitted face.
@@ -43,3 +43,7 @@ Download the official model from `https://storage.googleapis.com/mediapipe-model
 `?view=portrait` opens a rotatable upper-body view with internal anatomy hidden. **Face / Upper body** changes framing; `?view=portrait&frame=face` opens the close-up directly. Copy link preserves that framing, removes unrelated query parameters/fragments and exposes a selectable link if clipboard access fails. No invitations/messages are sent.
 
 The portrait shader crops below reference y=0.14. This is presentation, not a privacy boundary for public geometry. Explore atlas restores anatomical exploration. History playback begins at 1999; earlier genuine evidence remains in device histories and exports without redating.
+
+### Personal laptop preview
+
+Run `npx next dev --webpack --hostname 127.0.0.1 --port 3224` from this directory and open `http://127.0.0.1:3224/contour`. Regenerate the neutral delivery asset with `node --import tsx scripts/bake-neutral-contour.mjs`. The hosted page loads the resulting `hologram.glb`. The fitted-face source lives under `data/contour-source.glb`, outside the static export. The face close-up shows the fitted head outline, jaw, chin, and profile with a neutral interior surface. The sculpt removes the facial detail attribute from its local geometry. Front, three-quarter and profile presets show the same surface at each framing. Upper body crops the display near the hips and full body shows the complete exterior. The hosted contour is at `/atlas/contour`. The hologram displays exterior geometry. The reference explorer provides the separate source-linked implant index.

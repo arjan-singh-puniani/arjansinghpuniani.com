@@ -14,11 +14,13 @@ export default function InterventionLabels({
   selected,
   onSelect,
   reserveCard = false,
+  implantsOnly = false,
 }: {
   entries: InterventionAnnotation[];
   projection: LabelProjection;
   selected: string | null;
-  onSelect: (id: string) => void;
+  onSelect: (id: string, mappingId?: string) => void;
+  implantsOnly?: boolean;
   reserveCard?: boolean;
 }) {
   const size = { width: projection.width, height: projection.height };
@@ -45,7 +47,7 @@ export default function InterventionLabels({
     () => available.slice(pageIndex * capacity, (pageIndex + 1) * capacity),
     [available, pageIndex, capacity],
   );
-  const signature = available.map((e) => e.familyId).join(",");
+  const signature = available.map((e) => e.mapping.id).join(",");
   useEffect(() => setPage(0), [signature]);
   useEffect(() => {
     const i = available.findIndex((e) => e.familyId === selected);
@@ -74,7 +76,7 @@ export default function InterventionLabels({
             x = right ? size.width - width - 9 : width + 9;
           return (
             <g
-              key={e.familyId}
+              key={e.mapping.id}
               className={selected === e.familyId ? "leader-selected" : ""}
             >
               <path
@@ -87,7 +89,7 @@ export default function InterventionLabels({
       </svg>
       {shown.map((entry, i) => (
         <div
-          key={entry.familyId}
+          key={entry.mapping.id}
           className={`intervention-annotation ${selected === entry.familyId ? "annotation-selected" : ""}`}
           style={{
             top: top + Math.floor(i / 2) * gap,
@@ -99,13 +101,13 @@ export default function InterventionLabels({
           data-anchor={anchorDescription(entry.mapping.structureId!)}
         >
           <button
-            aria-label={`Select ${entry.name} on anatomy`}
+            aria-label={implantsOnly ? `Select ${entry.mapping.component} at ${entry.regionName}` : `Select ${entry.name} on anatomy`}
             aria-pressed={selected === entry.familyId}
             title={`${entry.name} — ${entry.role}: ${entry.regionName} · ${anchorDescription(entry.mapping.structureId!)}`}
             onPointerDown={(e) => e.stopPropagation()}
-            onClick={() => onSelect(entry.familyId)}
+            onClick={() => onSelect(entry.familyId, entry.mapping.id)}
           >
-            <strong>{entry.title}</strong>
+            <strong>{implantsOnly ? entry.mapping.component : entry.title}</strong>
             <span>
               {entry.role} · {!referenceSurfaceAnchors[entry.mapping.structureId!]?'≈ ':''}{entry.regionName}
             </span>

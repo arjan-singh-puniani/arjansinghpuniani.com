@@ -178,6 +178,8 @@ export default function AtlasExperience() {
     [],
   );
   const [showInterventions, setShowInterventions] = useState(true);
+  const [implantsOnly, setImplantsOnly] = useState(false);
+  const [selectedImplant, setSelectedImplant] = useState<string | null>(null);
   const [densityMap,setDensityMap]=useState(true),[collection,setCollection]=useState('explained'),[resultsLimit,setResultsLimit]=useState(60),[libraryLimit,setLibraryLimit]=useState(100);
   const [portrait,setPortrait]=useState<boolean|null>(null);
   const [portraitFrame,setPortraitFrame]=useState<"upper"|"face">("upper");
@@ -331,12 +333,13 @@ export default function AtlasExperience() {
   const activeRegions = useMemo(
     () =>
       activeMappings
+        .filter(m => !implantsOnly || (m.type === "implantation_site" && ["Verified", "Supported"].includes(m.state)))
         .map((m) => m.structureId)
         .filter((id): id is string => !!id),
-    [activeMappings],
+    [activeMappings, implantsOnly],
   );
   const brainFocus =
-    mode === "brain" && f && region === "UBERON:0000955"
+    !implantsOnly && mode === "brain" && f && region === "UBERON:0000955"
       ? activeMappings.find(
           (m) =>
             m.structureId &&
@@ -353,15 +356,19 @@ export default function AtlasExperience() {
       interventionAnnotations(
         visible,
         region,
+        implantsOnly,
       ),
-    [visible, region],
+    [visible, region, implantsOnly],
   );
-  const onInnovation = useCallback((id: string) => {
+  const onInnovation = useCallback((id: string, mappingId?: string) => {
     setSelected(id);
+    setSelectedImplant(mappingId ?? null);
     setTab("components");
   }, []);
-  const selectedAnnotation = annotations.find((a) => a.familyId === selected);
-  const focusedRegion = selectedAnnotation && selectedAnnotation.mapping.structureId!==focus?.intendedRegion ? selectedAnnotation.mapping.structureId : focus?.region;
+  const selectedAnnotation = (implantsOnly && annotations.find(a => a.familyId === selected && a.mapping.id === selectedImplant)) ||
+    annotations.find(a => a.familyId === selected);
+  const focusedRegion = implantsOnly ? selectedAnnotation?.mapping.structureId :
+    selectedAnnotation && selectedAnnotation.mapping.structureId !== focus?.intendedRegion ? selectedAnnotation.mapping.structureId : focus?.region;
   const showDetail = !!f;
   async function copyPortraitLink(){
     const url=new URL(window.location.href);url.search="";url.hash="";url.searchParams.set("view","portrait");if(portraitFrame==="face")url.searchParams.set("frame","face");
@@ -435,6 +442,7 @@ export default function AtlasExperience() {
           </button>
           <button onClick={() => setDialog("questions")}>Questions</button>
           <a className="atlas-pilot-link" href={atlasPath("/pilot")}>Pilot</a>
+          <a className="atlas-pilot-link" href={atlasPath("/contour")}>Hologram</a>
           </>}
         </nav>
         <button
@@ -569,6 +577,8 @@ export default function AtlasExperience() {
               )}
             </div>
             <div className="map-view-controls">
+              <button aria-label="Show documented implant regions" aria-pressed={implantsOnly}
+                onClick={() => { setImplantsOnly(value => !value); setShowInterventions(true); }}>Implants</button>
               <button aria-label={densityMap?"Show intervention callouts":"Show dense intervention map"} aria-pressed={densityMap} onClick={()=>{setDensityMap(v=>!v);setShowInterventions(true);}}>{densityMap?'Map':'Labels'}</button>
               <button
                 aria-label={
@@ -602,6 +612,18 @@ export default function AtlasExperience() {
               </button>
             </div>
           </div>
+          {implantsOnly && <div className="implant-map-note">
+            <p role="status">{annotations.length ? "Documented implant regions · markers show reference anatomy." :
+              "No documented implant region in this selection."}</p>
+            {selectedAnnotation && <div className="implant-component-controls" role="group" aria-label="Documented regions for selected device">
+              {annotations.filter(item => item.familyId === selected).map(item => (
+                <button key={item.mapping.id} type="button" aria-pressed={item.mapping.id === selectedAnnotation.mapping.id}
+                  onClick={() => onInnovation(item.familyId, item.mapping.id)}>
+                  {item.mapping.component} · {item.regionName}
+                </button>
+              ))}
+            </div>}
+          </div>}
           <div className="atlas-figure" data-testid="atlas-figure">
             <div className="vitruvian-guides" aria-hidden="true">
               <div className="vitruvian-circle" />
@@ -617,8 +639,8 @@ export default function AtlasExperience() {
                   portraitFrame={portraitFrame}
                   adapted={adaptedContour}
                   focusRegion={focusedRegion || undefined}
-                  focusKey={selected || undefined}
-                  action={showMechanism ? action : undefined}
+                  focusKey={(implantsOnly && selectedAnnotation?.mapping.id) || selected || undefined}
+                  action={showMechanism && !implantsOnly ? action : undefined}
                   actionPlaying={actionPlaying && !reducedMotion}
                   actionStep={actionStep}
                   onProjection={projectHuman}
@@ -648,7 +670,7 @@ export default function AtlasExperience() {
                   onHover={setHovered}
                 />
               )}
-              {showInterventions && projection?.mode===mode && densityMap && <InterventionConstellation named={collection==='explained'} entries={f && showMechanism && action && mode==='human' ? annotations.filter(a=>a.familyId===f.id) : annotations} projection={projection} selected={selected} onSelect={onInnovation} onRegion={id=>chooseRegion(id)}/>}
+              {showInterventions && projection?.mode===mode && densityMap && <InterventionConstellation named={implantsOnly || collection==='explained'} implantsOnly={implantsOnly} entries={!implantsOnly && f && showMechanism && action && mode==='human' ? annotations.filter(a=>a.familyId===f.id) : annotations} projection={projection} selected={selected} onSelect={onInnovation} onRegion={id=>chooseRegion(id)}/>}
               {showInterventions && !densityMap && projection?.mode === mode && (
                 <InterventionLabels
                   entries={annotations}
@@ -656,6 +678,7 @@ export default function AtlasExperience() {
                   selected={selected}
                   onSelect={onInnovation}
                   reserveCard={anatomyExpanded && !!f}
+                  implantsOnly={implantsOnly}
                 />
               )}
             </div>
@@ -690,7 +713,7 @@ export default function AtlasExperience() {
                 <div>
                   <External
                     href={
-                      interventionSummaries[f.id]?.sourceUrl || selectedAnnotation?.mapping.sourceUrl ||
+                      (implantsOnly && selectedAnnotation?.mapping.sourceUrl) || interventionSummaries[f.id]?.sourceUrl || selectedAnnotation?.mapping.sourceUrl ||
                       familyMappings(f.id)[0]?.sourceUrl ||
                       primaryRecords(f)[0]?.url
                     }
@@ -1095,16 +1118,18 @@ export default function AtlasExperience() {
                 <section className="mechanism-panel" aria-label="Anatomy and mechanism">
                   <div className="mechanism-controls">
                     {focus && <button onClick={()=>{setMode('human');setShowOrgans(true);setSurface(false);setSceneKey(k=>k+1);}}>Locate on anatomy</button>}
-                    {focus && brainIds.includes(focus.intendedRegion) && <button onClick={()=>chooseRegion(focus.intendedRegion,true)}>{f.id==='neuralink'?'Inspect cortical recording region':'Inspect brain target'}</button>}
-                    {action && <button aria-pressed={showMechanism && mode==='human'} onClick={()=>{setShowMechanism(mode==='human'?!showMechanism:true);setMode('human');setShowOrgans(true);setSurface(false);setActionPlaying(false);}}>Mechanism overlay</button>}
-                    {action && showMechanism && mode==='human' && <button disabled={reducedMotion} aria-pressed={actionPlaying} onClick={()=>setActionPlaying(p=>!p)}>{actionPlaying?'Pause mechanism':'Play mechanism'}</button>}
+                    {!implantsOnly && focus && brainIds.includes(focus.intendedRegion) && <button onClick={()=>chooseRegion(focus.intendedRegion,true)}>{f.id==='neuralink'?'Inspect cortical recording region':'Inspect brain target'}</button>}
+                    {!implantsOnly && action && <button aria-pressed={showMechanism && mode==='human'} onClick={()=>{setShowMechanism(mode==='human'?!showMechanism:true);setMode('human');setShowOrgans(true);setSurface(false);setActionPlaying(false);}}>Mechanism overlay</button>}
+                    {!implantsOnly && action && showMechanism && mode==='human' && <button disabled={reducedMotion} aria-pressed={actionPlaying} onClick={()=>setActionPlaying(p=>!p)}>{actionPlaying?'Pause mechanism':'Play mechanism'}</button>}
                   </div>
-                  <p className="focus-precision">{focus ? `${titleFor(selectedAnnotation?.mapping.structureId || focus.intendedRegion)} · ${focusedRegion===focus.region&&focus.broaderReference ? 'broader reference anatomy' : anchorDescription(focusedRegion || focus.region).toLowerCase()}` : 'Location not established; no placement drawn.'}</p>
-                  {action ? <>
+                  <p className="focus-precision">{implantsOnly
+                    ? selectedAnnotation ? `${selectedAnnotation.mapping.component} · ${selectedAnnotation.regionName} · ${anchorDescription(selectedAnnotation.mapping.structureId!)}` : "No documented implant region in this selection."
+                    : focus ? `${titleFor(selectedAnnotation?.mapping.structureId || focus.intendedRegion)} · ${focusedRegion===focus.region&&focus.broaderReference ? 'broader reference anatomy' : anchorDescription(focusedRegion || focus.region).toLowerCase()}` : 'Location not established; no placement drawn.'}</p>
+                  {!implantsOnly && action ? <>
                     <ol className="mechanism-stages" aria-label="Mechanism stages">{action.steps.map((step,i)=><li key={step}><button aria-pressed={actionStep===i} onClick={()=>{setActionPlaying(false);setActionStep(i);}}>{step}</button></li>)}</ol>
                     <External href={action.sourceUrl}>Mechanism source</External><small>{action.locator}</small>
                     <p className="mechanism-limit">Enlarged schematic inset, not device shape or implant placement. {action.limit}{reducedMotion?' Animation disabled by reduced-motion preference.':''}</p>
-                  </> : <p className="mechanism-limit">A device action overlay has not been reviewed for this entry. The explanation and original evidence remain available.</p>}
+                  </> : !implantsOnly && <p className="mechanism-limit">A device action overlay has not been reviewed for this entry. The explanation and original evidence remain available.</p>}
                 </section>
                 {f.id==='neuralink'&&<NeuralinkEvidence onStudies={()=>{setTab('studies');requestAnimationFrame(()=>document.getElementById('device-studies')?.focus());}} onCompare={()=>{setComparison(['neuralink','braingate']);setDialog('compare');}}/>}
                 {explanation && <section className="intervention-relevance" aria-label="Why this region">

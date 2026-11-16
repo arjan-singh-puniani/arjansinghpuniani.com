@@ -4,6 +4,31 @@ import { deviceActions, anatomyFocus } from '../../lib/device-action';
 import { parseFDAUpdates } from '../../lib/fda-updates';
 import { readFileSync } from 'node:fs';
 
+test("implant map selects the actual documented component region", async ({ page }) => {
+  await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/");
+  const filter = page.getByRole("button", { name: "Show documented implant regions" });
+  await filter.click();
+  await expect(filter).toHaveAttribute("aria-pressed", "true");
+  const search = page.getByRole("textbox", { name: "Find an intervention" });
+  await search.fill("Activa");
+  const lead = page.getByRole("button", { name: "Select Model 3387 DBS lead at Thalamus" });
+  const generator = page.getByRole("button", { name: /Select Model 7424 pulse generator at Chest wall/ });
+  await expect(lead).toBeVisible();
+  await expect(generator).toBeVisible();
+  await generator.click();
+  const scene = page.getByTestId("human-reference");
+  await expect(scene).toHaveAttribute("data-focus-region", "BODY:chest-wall");
+  await page.getByRole("group", { name: "Documented regions for selected device" })
+    .getByRole("button", { name: "Model 3387 DBS lead · Thalamus" }).click();
+  await expect(scene).toHaveAttribute("data-focus-region", "UBERON:0001897");
+  await expect(scene).toHaveAttribute("data-action-kind", "none");
+  await page.reload();
+  await filter.click();
+  await search.fill("ExAblate");
+  await expect(page.getByRole("status").filter({ hasText: "No documented implant region in this selection." })).toBeVisible();
+  await expect(lead).toHaveCount(0);
+});
+
 test("body callout to anatomy, evidence, history, comparison, research and export", async ({
   page,
 }, testInfo) => {

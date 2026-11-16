@@ -1,6 +1,6 @@
 "use client";
 import { atlasPath } from "@/lib/deployment";
-import contourManifest from "@/public/anatomy/contour-manifest.json";
+import hologramManifest from "@/public/anatomy/hologram-manifest.json";
 import { Canvas, ThreeEvent, useThree } from "@react-three/fiber";
 import { Html, OrbitControls, useGLTF } from "@react-three/drei";
 import {
@@ -35,7 +35,7 @@ const vertex = `attribute vec3 _surface_detail; varying vec3 surfaceDetail; vary
 void main(){surfaceDetail=_surface_detail; p=position;  n=normalize(normalMatrix*normal); vec4 mv=modelViewMatrix*vec4(position,1.); eye=-mv.xyz; gl_Position=projectionMatrix*mv;}`;
 const fragment = `varying vec3 surfaceDetail; varying vec3 p; varying vec3 n; varying vec3 eye;
 uniform float surface; uniform float band; uniform float centerY; uniform float halfHeight;
-uniform vec4 regions; uniform float portrait;
+uniform vec4 regions; uniform float portrait; uniform float opaque; uniform float contourHead;
 void main(){
  if(portrait>.5 && p.y<.14) discard;
  vec3 cell=p*vec3(35.,38.,28.); vec3 d=max(fwidth(cell),vec3(.001));
@@ -44,6 +44,9 @@ void main(){
  float rim=pow(1.-abs(dot(normalize(n),normalize(eye))),2.);
  vec3 normal=gl_FrontFacing?normalize(n):-normalize(n);
  float light=.28+.72*max(dot(normal,normalize(vec3(-.8,.8,.65))),0.);
+ float head=contourHead*smoothstep(.64,.69,p.y);
+ float faceLight=.46+.48*max(dot(normal,normalize(vec3(-.60,.76,.80))),0.)+.06*rim;
+ light=mix(light,faceLight,head);
  float area=band*exp(-pow((p.y-centerY)/halfHeight,4.));
  area=max(area,regions.x*exp(-pow((p.y-.78)/.16,4.)));
  area=max(area,regions.y*exp(-pow((p.y-.60)/.10,4.)));
@@ -58,8 +61,8 @@ void main(){
  float alpha=.025+grid*.23+rim*.45+area*.12+light*.055;
  alpha=mix(alpha,min(.96,.40+light*.45+rim*.15+area*.07),surface);
  float face=smoothstep(.68,.75,p.y)*(1.-smoothstep(.86,.90,p.y))*smoothstep(.01,.07,p.z);
- float detailGrid=grid*(1.-portrait*.78*face);
- gl_FragColor=vec4(ink+portrait*detailGrid*.025,portrait>.5?1.:alpha);
+ float detailGrid=grid*(1.-portrait*.78*face)*(1.-head);
+ gl_FragColor=vec4(ink+portrait*detailGrid*.025,opaque>.5?1.:alpha);
 }`;
 const pins = [
   {
@@ -111,6 +114,8 @@ class Boundary extends Component<
 function Body({
   portrait,
   adapted,
+  personalContour,
+  cropContour,
   region,
   activeRegions,
   surface,
@@ -120,6 +125,8 @@ function Body({
 }: {
   portrait: boolean;
   adapted: boolean;
+  personalContour: boolean;
+  cropContour: boolean;
   region: string;
   activeRegions: string[];
   surface: boolean;
@@ -128,7 +135,8 @@ function Body({
   onReady: () => void;
 }) {
   const invalidate = useThree((state) => state.invalidate);
-  const gltf = useGLTF(atlasPath(adapted ? `/anatomy/contour.glb?v=${contourManifest.sha256.slice(0,12)}` : "/anatomy/body.glb"));
+  const asset = adapted ? `/anatomy/hologram.glb?v=${hologramManifest.sha256.slice(0, 12)}` : "/anatomy/body.glb";
+  const gltf = useGLTF(atlasPath(asset));
   const reference = useGLTF(atlasPath("/anatomy/body.glb"));
   const { model, material, bounds } = useMemo(() => {
     const model = new Group(),
@@ -139,14 +147,17 @@ function Body({
     root.position.sub(center);
     model.add(root);
     model.scale.setScalar(6 / size.y);
+    const opaque = portrait || personalContour;
     const material = new ShaderMaterial({
       vertexShader: vertex,
       fragmentShader: fragment,
       side: portrait ? DoubleSide : FrontSide,
-      transparent: !portrait,
-      depthWrite: portrait,
+      transparent: !opaque,
+      depthWrite: opaque,
       uniforms: {
-        portrait: { value: portrait ? 1 : 0 },
+        portrait: { value: portrait || cropContour ? 1 : 0 },
+        opaque: { value: opaque ? 1 : 0 },
+        contourHead: { value: personalContour ? 1 : 0 },
         surface: { value: 0 },
         band: { value: 0 },
         centerY: { value: 0 },
@@ -159,7 +170,7 @@ function Body({
       if (o instanceof Mesh) o.material = material;
     });
     return { model, material, bounds: box };
-  }, [gltf.scene, reference.scene, adapted, portrait]);
+  }, [gltf.scene, reference.scene, personalContour, cropContour, portrait]);
   useEffect(() => {
     material.uniforms.surface.value = surface ? 1 : 0;
     const bandId=region==='all'?activeRegions.find(id=>humanRegionLocators[id]):region;
@@ -316,9 +327,23 @@ function RegisteredAnatomy({
     />
   );
 }
-function FocusRegion({region,portrait,portraitFrame,focusKey}:{region:string;portrait:boolean;portraitFrame:"upper"|"face";focusKey?:string}){
+type ContourView = { angle: number; frame: "face" | "upper" | "full" };
+
+function FocusRegion({region,portrait,portraitFrame,focusKey,contourView}:{region:string;portrait:boolean;portraitFrame:"upper"|"face";focusKey?:string;contourView?:ContourView}){
  const camera=useThree(s=>s.camera),controls=useThree(s=>s.controls) as unknown as {target:Vector3;update:()=>void}|undefined,invalidate=useThree(s=>s.invalidate);
- useEffect(()=>{if(!controls)return;const p=region==='all'?null:humanRegionLocators[region];if(portrait){const face=portraitFrame==="face";camera.position.set(0,face?2.65:1.75,face?2.1:5.8);controls.target.set(0,face?2.65:1.75,0);}else if(region==='all'){camera.position.set(0,.1,10.8);controls.target.set(0,0,0);}else if(p){camera.position.set(p[0]+(focusKey ? .3 : 0),p[1],p[2]+3.4);controls.target.set(p[0]+(focusKey ? .3 : 0),p[1],p[2]);}else return;controls.update();invalidate();},[region,portrait,portraitFrame,focusKey,camera,controls,invalidate]);return null;
+ const angle = contourView?.angle;
+ const frame = contourView?.frame;
+ useEffect(() => {
+  if (!controls || angle === undefined) return;
+  const height = frame === "face" ? 2.64 : frame === "upper" ? 1.67 : .05;
+  const distance = frame === "face" ? 2.23 : frame === "upper" ? 5.8 : 10.8;
+  const depth = frame === "face" ? .14 : 0;
+  camera.position.set(distance * Math.sin(angle), height, depth + distance * Math.cos(angle));
+  controls.target.set(0, height, depth);
+  controls.update();
+  invalidate();
+ }, [angle, frame, camera, controls, invalidate]);
+ useEffect(()=>{if(!controls||angle!==undefined)return;const p=region==='all'?null:humanRegionLocators[region];if(portrait){const face=portraitFrame==="face";camera.position.set(0,face?2.65:1.75,face?2.1:5.8);controls.target.set(0,face?2.65:1.75,0);}else if(region==='all'){camera.position.set(0,.1,10.8);controls.target.set(0,0,0);}else if(p){camera.position.set(p[0]+(focusKey ? .3 : 0),p[1],p[2]+3.4);controls.target.set(p[0]+(focusKey ? .3 : 0),p[1],p[2]);}else return;controls.update();invalidate();},[region,portrait,portraitFrame,focusKey,angle,camera,controls,invalidate]);return null;
 }
 export default function HumanScene({
   focusRegion,
@@ -328,6 +353,7 @@ export default function HumanScene({
   actionStep = 0,
   portrait = false,
   portraitFrame = "upper",
+  contourView,
   adapted = true,
   onProjection,
   showLabels = false,
@@ -348,6 +374,7 @@ export default function HumanScene({
   actionStep?: number;
   portrait?: boolean;
   portraitFrame?: "upper"|"face";
+  contourView?: ContourView;
   adapted?: boolean;
   onProjection?: (projection: LabelProjection) => void;
   showLabels?: boolean;
@@ -419,7 +446,7 @@ export default function HumanScene({
           frameloop="demand"
           gl={{ alpha: true, antialias: true }}
           role="group"
-          aria-label="Interactive human atlas"
+          aria-label={contourView ? "Rotatable personal 3D contour" : "Interactive human atlas"}
           onCreated={({ gl }) =>
             gl.domElement.addEventListener(
               "webglcontextlost",
@@ -429,11 +456,11 @@ export default function HumanScene({
           }
         >
           {showOrgans&&<Boundary fail={()=>setOrgansFailed(true)}><Suspense fallback={null}><WholeBodyOrgans region={focusRegion || region} activeRegions={activeRegions} onSelect={onSelect} onHover={onHover} onReady={organsLoaded}/></Suspense></Boundary>}
-          <FocusRegion region={focusRegion || region} portrait={portrait} portraitFrame={portraitFrame} focusKey={focusKey}/>
+          <FocusRegion region={focusRegion || region} portrait={portrait} portraitFrame={portraitFrame} focusKey={focusKey} contourView={contourView}/>
           {!portrait && action && focusRegion && <DeviceActionOverlay action={action} focusRegion={focusRegion} playing={actionPlaying} step={actionStep}/>}
           <ambientLight intensity={1.7} />
           <directionalLight position={[3, 5, 6]} intensity={2.5} />
-          <group visible={showOrgans}><Boundary fail={() => setInternalFailed(true)}>
+          {!contourView && <group visible={showOrgans}><Boundary fail={() => setInternalFailed(true)}>
             <Suspense fallback={null}>
               <RegisteredAnatomy
                 region={focusRegion || region}
@@ -443,11 +470,13 @@ export default function HumanScene({
                 onReady={internalLoaded}
               />
             </Suspense>
-          </Boundary></group>
+          </Boundary></group>}
           <Boundary key={exterior} fail={()=>exterior==='adapted'?setAvatarFailed(true):setFailed(true)}><Suspense fallback={null}>
             <Body
               portrait={portrait}
               adapted={exterior==='adapted'}
+              personalContour={Boolean(contourView) && exterior === 'adapted'}
+              cropContour={Boolean(contourView && contourView.frame !== "full")}
               region={region}
               activeRegions={activeRegions}
               surface={surface}

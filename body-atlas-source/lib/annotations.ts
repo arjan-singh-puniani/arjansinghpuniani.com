@@ -55,10 +55,13 @@ const priority = [
 export function interventionAnnotations(
   families: Family[],
   region: string,
+  implantsOnly = false,
 ): InterventionAnnotation[] {
   return families.flatMap((f) => {
     const accepted = familyMappings(f.id).filter(
-      (m) => m.structureId && (["Verified", "Supported"].includes(m.state) || (m.type === "indication_context" && m.state === "Provisional")),
+      (m) => m.structureId && (implantsOnly
+        ? m.type === "implantation_site" && ["Verified", "Supported"].includes(m.state)
+        : ["Verified", "Supported"].includes(m.state) || (m.type === "indication_context" && m.state === "Provisional")),
     );
     const regional =
       region === "all"
@@ -68,12 +71,10 @@ export function interventionAnnotations(
               m.structureId === region ||
               descendants(region).includes(m.structureId!),
           );
-    const mapping = [...regional].sort(
+    const labels = implantsOnly ? regional : [...regional].sort(
       (a, b) => priority.indexOf(a.type) - priority.indexOf(b.type),
-    )[0];
-    if (!mapping) return [];
-    return [
-      {
+    ).slice(0, 1);
+    return labels.map(mapping => ({
         familyId: f.id,
         name: f.name,
         title: titles[f.id] || interventionNames[f.id] || f.name,
@@ -82,8 +83,7 @@ export function interventionAnnotations(
           structures.find((s) => s.id === mapping.structureId)?.name ||
           mapping.structureId!,
         role: roles[mapping.type],
-      },
-    ];
+    }));
   });
 }
 export const referenceSurfaceAnchors:Record<string,(typeof displayAnchors.anchors)['BODY:heart']> = displayAnchors.anchors;
