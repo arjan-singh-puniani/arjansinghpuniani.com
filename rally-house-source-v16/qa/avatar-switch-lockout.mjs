@@ -44,7 +44,7 @@ try{
  assert.deepEqual(errors,[]);
  fs.writeFileSync(out+'/normal-play-result.json',JSON.stringify({start,...result,errors},null,2));console.log('Normal gameplay contact verified');
  await page.screenshot({path:out+'/after/normal-gameplay.png'});
- await page.keyboard.press('Escape');console.log('Requested court exit',await page.evaluate(()=>({phase:window.__rh.game.championship.phase,paused:window.__rh.game.clock.paused})));await page.waitForFunction(()=>!window.__rh.game.championship.active,{},{timeout:10000});console.log('Club controls restored');
+ await page.locator('.championshipExit').click();console.log('Requested court exit',await page.evaluate(()=>({phase:window.__rh.game.championship.phase,paused:window.__rh.game.clock.paused})));await page.waitForFunction(()=>!window.__rh.game.championship.active,{},{timeout:10000});console.log('Club controls restored');
  assert.equal(await page.locator('#settingsBtn').evaluate(el=>el.inert||!!el.closest('[inert]')),false,'Court exit restores club controls');
  const video=page.video();console.log('Closing recording');await context.close();context=null;console.log('Saving recording');await video.saveAs(out+'/after/normal-speed-gameplay.webm');
  const sorted=[...result.deltas].sort((a,b)=>a-b),median=sorted[Math.floor(sorted.length/2)],p95=sorted[Math.floor(sorted.length*.95)];

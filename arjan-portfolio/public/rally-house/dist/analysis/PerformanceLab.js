@@ -220,7 +220,7 @@ export class PerformanceLab {
                 this.key(e); });
         document.getElementById('app').append(this.layer);
     }
-    open(spec, recording, phone = null, preferred) {
+    open(spec, recording, phone = null, preferred, returnToMatch = false) {
         if (this.active)
             return;
         this.restoreFocus = document.activeElement instanceof HTMLElement && document.activeElement !== document.body ? document.activeElement : this.canvas;
@@ -237,6 +237,9 @@ export class PerformanceLab {
         if (phone && phone.clip.frames.length > 2)
             this.clips.set('phone', phone.clip);
         this.source.replaceChildren(...[...this.clips].map(([key, clip]) => { const o = document.createElement('option'); o.value = key; o.textContent = clip.name; return o; }));
+        this.layer.querySelector('[data-lab-action=close]').textContent = returnToMatch ? 'Back to match' : 'Return to club ↗';
+        // Starting a new phone capture would replace the match being inspected.
+        this.layer.querySelector('.lab-record').hidden = returnToMatch;
         this.layer.hidden = false;
         document.body.classList.add('lab-active');
         for (const el of document.querySelectorAll('.topbar,.hud,.objective,#scenePeek'))

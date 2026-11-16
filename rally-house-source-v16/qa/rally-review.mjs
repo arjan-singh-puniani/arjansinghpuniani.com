@@ -36,7 +36,8 @@ try{
  report.review=await page.evaluate(()=>{const g=window.__rh.game,q=window.reviewWorld,t=g.performanceLab.timeline;return {sameWorld:g.world===q.world,samePlayer:g.player===q.player,sameCast:g.characters.every((c,i)=>c===q.cast[i]),sameObjects:g.world.objects.every((o,i)=>o===q.objects[i]),sameMeshes:JSON.stringify(g.world.meshes)===q.meshes,sameRecording:t.clip===window.reviewClip,source:t.clip.source,contact:t.frame.contact,time:t.time,playing:t.playing,speed:t.speed,input:g.matchInput.enabled,match:!!g.interactiveMatch,reserved:g.activities.reserved('court'),competitors:[g.player,...g.characters].some(c=>c.matchCompetitor),gl:g.renderer.gl.getError()};});
  for(const key of ['sameWorld','samePlayer','sameCast','sameObjects','sameMeshes','sameRecording','contact'])assert(report.review[key],key);
  assert.equal(report.review.time,report.contact.time);assert.equal(report.review.source,'game-recording');
- for(const key of ['playing','input','match','reserved','competitors'])assert.equal(report.review[key],false,key);
+ for(const key of ['playing','input'])assert.equal(report.review[key],false,key);
+ for(const key of ['match','reserved','competitors'])assert.equal(report.review[key],true,key);
  assert.equal(report.review.speed,.25);assert.equal(report.review.gl,0);
  assert.equal(await page.locator('.lab-transport select').inputValue(),'0.25');
  report.framing=await page.evaluate(()=>{const g=window.__rh.game,f=g.performanceLab.timeline.frame,p=f.pose,racket=f.body.find(m=>m.skin?.id==='adult-tennis-racket-slim-frame-v1');return {head:g.camera.project(p.head),racketTop:racket?g.camera.project(racket.position.clone().add(new g.player.position.constructor(0,.35,0))):null,feet:[g.camera.project(p.footL),g.camera.project(p.footR)],panel:document.querySelector('.lab-panel').getBoundingClientRect().toJSON()};});
@@ -49,7 +50,7 @@ try{
  await page.locator('[data-mode=court]').click();await page.waitForTimeout(250);await page.screenshot({path:`${out}/vector-court.png`});
  await page.locator('[data-lab-action=close]').click();
  report.returned=await page.evaluate(()=>{const g=window.__rh.game;return {lab:g.performanceLab.active,match:g.championship.active,world:g.world===window.reviewWorld.world,court:g.activities.reserved('court')};});
- assert.deepEqual(report.returned,{lab:false,match:false,world:true,court:false});
+ assert.deepEqual(report.returned,{lab:false,match:true,world:true,court:true});
  assert.deepEqual(report.errors,[]);assert.deepEqual(report.http,[]);report.passed=true;
 }catch(error){report.failure=error.message;await page.screenshot({path:`${out}/failure.png`}).catch(()=>{});throw error;}
 finally{fs.writeFileSync(`${out}/report.json`,JSON.stringify(report,null,2)+'\n');await browser.close();}

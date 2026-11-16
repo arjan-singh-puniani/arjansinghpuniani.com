@@ -28,6 +28,8 @@ export class ChampionshipHUD {
   private readonly root: HTMLDivElement;
   private readonly matchup: HTMLDivElement;
   private readonly score: HTMLDivElement;
+  private readonly scoreValue: HTMLDivElement;
+  private readonly scoreContext: HTMLElement;
   private readonly message: HTMLDivElement;
   private readonly results: HTMLDivElement;
   private readonly resultTitle: HTMLElement;
@@ -61,6 +63,9 @@ export class ChampionshipHUD {
 
     this.score = document.createElement('div');
     this.score.className = 'championshipScore glass';
+    this.score.setAttribute('aria-live','polite');
+    this.scoreValue=document.createElement('div');this.scoreContext=document.createElement('small');
+    this.score.append(this.scoreValue,this.scoreContext);
 
     this.message = document.createElement('div');
     this.message.className = 'championshipMessage';
@@ -122,7 +127,7 @@ export class ChampionshipHUD {
       const review=document.createElement('button');review.className='championshipReview';
       if(parent===this.root)review.classList.add('championshipQuickReview');
       review.textContent='Analyze last swing';review.hidden=true;
-      review.title='Leave the match and inspect your most recent racket contact';
+      review.title='Pause the match and inspect your most recent racket contact';
       review.onclick=()=>this.actions.onAnalyze();parent.append(review);this.reviewButtons.push(review);
     }
 
@@ -142,7 +147,7 @@ export class ChampionshipHUD {
 
     this.controlsHint = document.createElement('div');
     this.controlsHint.className = 'championshipControlsHint';
-    this.controlsHint.textContent = 'WASD / ARROWS move & aim  ·  SPACE swing';
+    this.controlsHint.textContent = 'WASD / ARROWS move & aim  ·  SPACE swing  ·  ESC pause';
 
     this.swingButton.addEventListener('click',event=>{if(event.detail===0)this.input.queueSwing();});
     this.bindTouchPad();
@@ -225,7 +230,11 @@ export class ChampionshipHUD {
     if(paused||!this.gameplayPhase(snapshot.phase)||!this.input.enabled)this.resetTouch();
 
     text(this.matchup,`${playerName.toUpperCase()}  vs  ${opponentName.toUpperCase()}`);
-    text(this.score,`${snapshot.score.player}  –  ${snapshot.score.opponent}`);
+    text(this.scoreValue,`${snapshot.score.player}  –  ${snapshot.score.opponent}`);
+    const {player,opponent}=snapshot.score,{pointsToWin,winBy}=CHAMPIONSHIP_TUNING;
+    const playerMatchPoint=player+1>=pointsToWin&&player+1-opponent>=winBy;
+    const opponentMatchPoint=opponent+1>=pointsToWin&&opponent+1-player>=winBy;
+    text(this.scoreContext,snapshot.phase==='matchResult'?'Match complete':playerMatchPoint?'Your match point':opponentMatchPoint?`${opponentName}’s match point`:`First to ${pointsToWin} · Win by ${winBy}`);
     const message=paused?'':this.messageFor(snapshot,cue,opponentName);
     if(this.message.textContent!==message)this.message.textContent=message;
 

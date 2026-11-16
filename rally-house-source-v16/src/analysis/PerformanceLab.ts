@@ -102,7 +102,7 @@ export class PerformanceLab {
     for(const event of ['pointerdown','pointerup','pointermove','wheel','dblclick','keydown','keyup'])this.layer.addEventListener(event,e=>{e.stopPropagation();if(event==='keydown')this.key(e as KeyboardEvent);});
     document.getElementById('app')!.append(this.layer);
   }
-  open(spec:CharacterSpec,recording:MotionClip|null,phone:PhoneRecording|null=null,preferred?:SampleKind){
+  open(spec:CharacterSpec,recording:MotionClip|null,phone:PhoneRecording|null=null,preferred?:SampleKind,returnToMatch=false){
     if(this.active)return;
     this.restoreFocus=document.activeElement instanceof HTMLElement&&document.activeElement!==document.body?document.activeElement:this.canvas;
     this.prior=this.camera.captureState();this.priorAspect=this.camera.aspect;this.active=true;this.separateRig=false;this.clips.clear();
@@ -110,6 +110,9 @@ export class PerformanceLab {
     if(recording&&recording.frames.length>2)this.clips.set('championship',recording);
     this.phone=phone;if(phone&&phone.clip.frames.length>2)this.clips.set('phone',phone.clip);
     this.source.replaceChildren(...[...this.clips].map(([key,clip])=>{const o=document.createElement('option');o.value=key;o.textContent=clip.name;return o;}));
+    this.layer.querySelector<HTMLButtonElement>('[data-lab-action=close]')!.textContent=returnToMatch?'Back to match':'Return to club ↗';
+    // Starting a new phone capture would replace the match being inspected.
+    this.layer.querySelector<HTMLButtonElement>('.lab-record')!.hidden=returnToMatch;
     this.layer.hidden=false;document.body.classList.add('lab-active');
     for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=true;
     this.load(preferred&&this.clips.has(preferred)?preferred:this.clips.has('phone')?'phone':this.clips.has('championship')?'championship':'forehand');

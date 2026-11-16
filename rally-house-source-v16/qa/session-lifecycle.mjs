@@ -79,10 +79,13 @@ try{
     return{sameRecording:t.clip===window.enduranceClip,contact:!!t.frame.contact,playing:t.playing,speed:t.speed,court:g.activities.reserved('court'),input:g.matchInput.enabled,match:!!g.interactiveMatch,gl:g.renderer.gl.getError()};
    });
    assert(review.sameRecording&&review.contact);assert.equal(review.speed,.25);
-   for(const key of ['playing','court','input','match'])assert.equal(review[key],false,key);
+   for(const key of ['playing','input'])assert.equal(review[key],false,key);
+   for(const key of ['court','match'])assert.equal(review[key],true,key);
    assert.equal(review.gl,0);
    await page.locator('[data-lab-action=close]').click();
    report.reviews.push({cycle:i+1,...review});
+   // Analysis retains the match; explicitly exit before checking full session cleanup.
+   await page.evaluate(()=>{const g=window.__rh.game;g.requestChampionshipExit();for(let n=0;n<180&&g.championship.active;n++)g.updateFixed(1/60);});
   }else{
    await page.evaluate(()=>{
     const g=window.__rh.game;
