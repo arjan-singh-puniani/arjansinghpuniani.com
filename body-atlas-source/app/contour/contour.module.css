@@ -1,0 +1,13 @@
+.page { min-height: 100svh; background: radial-gradient(ellipse at 50% 56%, #17313d, #09141f 70%); color: #e2eef1; display: flex; flex-direction: column; }
+.header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .9rem 1.6rem; padding: 1rem clamp(1rem, 4vw, 3rem); border-bottom: 1px solid #33515d; }
+.header h1 { font-size: clamp(1.45rem, 3vw, 2.2rem); }
+.header p, .status { color: #abc2cb; }
+.controls, .controls div { display: flex; flex-wrap: wrap; gap: .35rem; }
+.controls { gap: .6rem 1rem; }
+.controls button { min-height: 44px; padding: .35rem .7rem; border: 1px solid #50717d; border-radius: .2rem; }
+.controls button[aria-pressed="true"] { background: #b8e2eb; color: #09141f; }
+.controls button:focus-visible { outline: 2px solid #e9b78e; outline-offset: 2px; }
+.canvas { min-height: 540px; flex: 1; position: relative; }
+.canvas > div { position: absolute; inset: 0; width: 100%; height: 100%; }
+.status { padding: .5rem clamp(1rem, 4vw, 3rem); }
+@media (max-width: 600px) { .canvas { min-height: 460px; } }

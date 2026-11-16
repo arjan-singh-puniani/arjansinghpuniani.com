@@ -2715,3 +2715,8 @@
 .atlas-photo-portrait label { display: grid; gap: 8px; width: min(100%, 400px); }
 .atlas-photo-portrait input { width: 100%; padding: 12px; background: #152733; border: 1px solid #61747d; color: #e4edf0; }
 
+
+.implant-map-note { padding: .45rem .7rem; border-left: 2px solid var(--gold); color: var(--quiet); font-size: .8rem; }
+.implant-component-controls { display: flex; flex-wrap: wrap; gap: .35rem; margin-block-start: .35rem; }
+.implant-component-controls button { min-height: 44px; padding-inline: .45rem; border: 1px solid var(--rule); text-align: left; }
+.implant-component-controls button[aria-pressed="true"] { border-color: var(--gold); color: var(--ink); }

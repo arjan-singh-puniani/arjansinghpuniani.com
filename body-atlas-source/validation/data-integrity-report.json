@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T05:13:44.537Z",
+  "generatedAt": "2026-11-16T06:39:37.164Z",
   "snapshotExportedAt": "2026-11-01T04:51:06.187445+00:00",
   "recordCounts": {
     "de_novo": 37,
@@ -11,8 +11,8 @@
     "publication": 22
   },
   "curatedEntries": 11,
-  "curatedAssertions": 24,
-  "localizedAssertions": 23,
+  "curatedAssertions": 25,
+  "localizedAssertions": 24,
   "explicitAbstentions": 1,
   "sourceContextEntries": 652,
   "sourceContextAssertions": 711,

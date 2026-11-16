@@ -322,6 +322,7 @@ test("intervention summaries keep original evidence and anatomical roles inspect
   ]);
   assert.deepEqual(regionRoles(familyById("activa")!, "UBERON:0001897"), [
     "Tissue contact",
+    "Implant placement",
     "Intended target",
   ]);
   assert.match(interventionActions.cooling, /Investigational/);
@@ -351,6 +352,19 @@ test("model annotations require accepted localized evidence and preserve typed r
     ),
   );
 });
+test("implant map retains component-specific placement and excludes targets and external hardware", () => {
+  const implants = interventionAnnotations(families, "all", true);
+  assert.ok(implants.length > 0);
+  assert.ok(implants.every(annotation => annotation.mapping.type === "implantation_site" &&
+    ["Verified", "Supported"].includes(annotation.mapping.state) && annotation.mapping.precision === "region"));
+  const activa = implants.filter(annotation => annotation.familyId === "activa");
+  assert.deepEqual(activa.map(annotation => annotation.mapping.id), ["activa-lead-implant", "activa-generator"]);
+  assert.deepEqual(activa.map(annotation => annotation.mapping.structureId), ["UBERON:0001897", "BODY:chest-wall"]);
+  assert.ok(activa.every(annotation => annotation.mapping.sourceUrl.endsWith("/P960009B.pdf")));
+  assert.ok(!implants.some(annotation => annotation.familyId === "exablate" || annotation.familyId === "tms"));
+  assert.deepEqual(interventionAnnotations(families, "BODY:chest-wall", true).map(a => a.familyId), ["activa", "vns"]);
+});
+
 test("timeline-filtered collections do not acquire future or unlocalized model labels", () => {
   const early = searchFamilies("", "all", "all", "all", 1996).map(
     (r) => r.family,
@@ -473,8 +487,67 @@ test("disease origin, co-procedures and access routes cannot become the explaine
  assert.ok(!humanRegionLocators['BODY:uterus']);assert.ok(!humanRegionLocators['BODY:vagina']);
 });
 
+test("personal hologram preserves the body sculpt and shows the head without portrait detail", async () => {
+ const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
+ const { Mesh } = await import("three");
+ const { sculptPersonalContour, shapePersonalContour } = await import("../lib/personal-contour");
+ const raw = readFileSync("data/contour-source.glb");
+ const { scene } = await new GLTFLoader().parseAsync(new Uint8Array(raw).buffer, "");
+ const body = scene.getObjectByName("Body_Contour");
+ assert.ok(body instanceof Mesh);
+ const source = body.geometry.getAttribute("position");
+ const sculpt = sculptPersonalContour(body.geometry);
+ const result = sculpt.getAttribute("position");
+ assert.notEqual(result.array, source.array);
+ let chestGain = 0, abdominalGain = 0, pelvicGain = 0, jawTaper = 0, crownGain = 0, noseProfile = 0;
+ const mouthSource: number[] = [], mouthContour: number[] = [];
+ for (let i = 0; i < source.count; i++) {
+  const x = source.getX(i), y = source.getY(i), z = source.getZ(i);
+  const nextX = result.getX(i), nextY = result.getY(i), nextZ = result.getZ(i);
+  assert.ok([nextX, nextY, nextZ].every(Number.isFinite));
+  if (y <= .648) {
+   const [bodyX, bodyZ] = shapePersonalContour(x, y, z);
+   assert.deepEqual([nextX, nextY, nextZ], [Math.fround(bodyX), y, Math.fround(bodyZ)]);
+  } else {
+   assert.ok(Math.max(Math.abs(nextX - x), Math.abs(nextY - y), Math.abs(nextZ - z)) < .044);
+   assert.ok(nextX * x >= 0 || y > .85 || Math.abs(x) < .001, "Facial contours do not fold across the center");
+  }
+  if (y > .705 && y < .735 && z > .065 && Math.abs(x) > .05) jawTaper = Math.max(jawTaper, Math.abs(x) - Math.abs(nextX));
+  if (y > .91) crownGain = Math.max(crownGain, nextY - y);
+  if (y > .766 && y < .789 && Math.abs(x) < .007) noseProfile = Math.max(noseProfile, nextZ);
+  if (y > .737 && y < .739 && z > .10 && Math.abs(x) < .006) {
+   mouthSource.push(z);
+   mouthContour.push(nextZ);
+  }
+  if (y > .48 && y < .53 && z > .10) chestGain = Math.max(chestGain, nextZ - z);
+  if (y > .30 && y < .42 && z > .10) abdominalGain = Math.max(abdominalGain, nextZ - z);
+  if (Math.abs(y + .070) < .000001 && Math.abs(x - .004) < .000001) pelvicGain = Math.max(pelvicGain, nextZ - z);
+ }
+ assert.ok(chestGain > .014, "Pectoral fullness is actual geometry");
+ assert.ok(abdominalGain > .006, "Abdominal relief is actual geometry");
+ assert.ok(Math.abs(pelvicGain - .0185 * .22) < .0001, "The previous full-body contour is preserved");
+ assert.ok(jawTaper > .005, "Lower jaw silhouette is tapered in the mesh");
+ assert.ok(crownGain > .006, "The crown remains defined");
+ assert.ok(noseProfile > .136 && noseProfile < .143, "The front of the nose remains in the profile");
+ const depthRange = (values: number[]) => Math.max(...values) - Math.min(...values);
+ assert.ok(mouthSource.length > 3 && depthRange(mouthContour) < depthRange(mouthSource) / 4, "Mouth detail is reduced to a neutral surface");
+ assert.ok(body.geometry.getAttribute("_surface_detail"));
+ assert.equal(sculpt.getAttribute("_surface_detail"), undefined);
+ const baked = readFileSync("public/anatomy/hologram.glb");
+ const manifest = JSON.parse(readFileSync("public/anatomy/hologram-manifest.json", "utf8"));
+ assert.equal(createHash("sha256").update(baked).digest("hex"), manifest.sha256);
+ assert.equal(createHash("sha256").update(raw).digest("hex"), manifest.sourceSha256);
+ const output = await new GLTFLoader().parseAsync(new Uint8Array(baked).buffer, "");
+ const bakedMesh = output.scene.getObjectByName("Exterior_Hologram");
+ assert.ok(bakedMesh instanceof Mesh);
+ assert.equal(bakedMesh.geometry.getAttribute("_surface_detail"), undefined);
+ assert.deepEqual(bakedMesh.geometry.getAttribute("position").array, result.array);
+ sculpt.dispose();
+});
+
 test("body contour is a bounded 3D derivative without photograph payloads", async () => {
- const raw=readFileSync('public/anatomy/contour.glb');
+ const raw=readFileSync('data/contour-source.glb');
+ assert.throws(()=>readFileSync('public/anatomy/contour.glb'),{code:'ENOENT'});
  assert.throws(()=>readFileSync('public/anatomy/owner.glb'),{code:'ENOENT'});
  assert.throws(()=>readFileSync('public/anatomy/owner-manifest.json'),{code:'ENOENT'});
  const manifest=JSON.parse(readFileSync('public/anatomy/contour-manifest.json','utf8'));

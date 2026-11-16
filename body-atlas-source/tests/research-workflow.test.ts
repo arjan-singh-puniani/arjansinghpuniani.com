@@ -14,7 +14,7 @@ test('comparisons separate recording, physical placement, physiological action a
  assert.ok(comparisonRelationships('cochlear','placement').some(m=>m.state==='Unknown'));
 });
 test('independent-review packet preserves every explained assertion and leaves adjudication blank',()=>{
- const entries=families.filter(hasExplanation),rows=reviewRows();assert.equal(entries.length,92);assert.equal(rows.length,108);
+ const entries=families.filter(hasExplanation),rows=reviewRows();assert.equal(entries.length,92);assert.equal(rows.length,109);
  assert.equal(new Set(rows.map(r=>r.entry_id)).size,92);
  for(const row of rows){const m=familyMappings(row.entry_id).find(m=>m.id===row.mapping_id)!;assert.ok(m);
   assert.equal(row.recorded_state,m.state);assert.equal(row.assertion,m.assertion);assert.equal(row.source_url,m.sourceUrl);assert.equal(row.source_locator,m.locator);

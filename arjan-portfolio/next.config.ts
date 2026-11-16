@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/atlas", destination: "/atlas/index.html" },
       { source: "/atlas/pilot", destination: "/atlas/pilot/index.html" },
+      { source: "/atlas/contour", destination: "/atlas/contour/index.html" },
     ];
   },
 

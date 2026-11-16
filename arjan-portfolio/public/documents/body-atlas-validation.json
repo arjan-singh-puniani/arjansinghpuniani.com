@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T03:29:28.155142+00:00",
+  "generatedAt": "2026-11-16T06:39:37.164Z",
   "snapshotExportedAt": "2026-11-01T04:51:06.187445+00:00",
   "recordCounts": {
     "de_novo": 37,
@@ -11,8 +11,8 @@
     "publication": 22
   },
   "curatedEntries": 11,
-  "curatedAssertions": 24,
-  "localizedAssertions": 23,
+  "curatedAssertions": 25,
+  "localizedAssertions": 24,
   "explicitAbstentions": 1,
   "sourceContextEntries": 652,
   "sourceContextAssertions": 711,
@@ -154,7 +154,7 @@
     "representativeReferenceSurfaceAnchors": 23,
     "anatomyReviewPacket": {
       "entries": 92,
-      "assertions": 108,
+      "assertions": 109,
       "independentAdjudicationCompleted": false
     },
     "functionalVerification": {
@@ -197,6 +197,12 @@
       "staticExportSourceDigest": "matched",
       "exportDigestSelfCheck": "passed"
     },
-    "sourceSnapshotRefreshed": false
+    "sourceSnapshotRefreshed": false,
+    "implantIndex": {
+      "scope": "Source-backed placement regions, distinct from contacts, targets and external hardware.",
+      "referenceMarkersOnly": true,
+      "independentAdjudicationCompleted": false,
+      "example": "Activa P960009 lead and pulse-generator regions shown separately."
+    }
   }
 }
