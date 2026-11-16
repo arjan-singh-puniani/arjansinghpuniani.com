@@ -49,6 +49,24 @@ test("research pilot gives a cited result and prepares an unsent inquiry", async
   await expect(page.getByRole("link", { name: "Open email draft" })).toHaveCount(0);
 });
 
+test("a buyer can inspect the paid deliverable before asking for a quote", async ({ page }) => {
+  await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/pilot");
+  await page.getByRole("link", { name: "See a sample paid deliverable" }).click();
+  await expect(page).toHaveURL(/#decision-memo$/);
+  const memo = page.getByRole("region", { name: "Sample decision memo" });
+  await expect(memo.getByRole("heading", { name: "Open checks" })).toBeVisible();
+  await expect(memo.getByRole("link", { name: /FDA supplement safety.*pages 1–2/ })).toHaveAttribute("href", /p960009s007b\.pdf#page=2$/);
+  const file = page.waitForEvent("download");
+  await memo.getByRole("link", { name: "Download sample memo" }).click();
+  const exported = await readFile((await (await file).path())!, "utf8");
+  for (const line of ["P960009", "P150038", "P960009/S007", "2002-01-14", "Open checks", "Current labeling", "page 1"]) {
+    expect(exported).toContain(line);
+  }
+  await memo.getByRole("link", { name: "Discuss your review question" }).click();
+  await expect(page).toHaveURL(/#offer$/);
+  await expect(page.getByRole("heading", { name: "Request pilot scoping" })).toBeVisible();
+});
+
 test("direct inquiry remains available without JavaScript", async ({ browser, baseURL }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, baseURL });
   try {
@@ -57,6 +75,7 @@ test("direct inquiry remains available without JavaScript", async ({ browser, ba
     await expect(page.getByRole("button", { name: "Prepare inquiry" })).toBeDisabled();
     await expect(page.getByRole("link", { name: "arjan.singh.puniani.main@gmail.com" })).toHaveAttribute("href", /^mailto:/);
     await expect(page.getByRole("link", { name: "Download the cited example" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Download sample memo" })).toBeVisible();
   } finally {
     await context.close();
   }

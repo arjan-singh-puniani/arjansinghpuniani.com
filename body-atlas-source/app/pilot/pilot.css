@@ -55,6 +55,7 @@
 }
 
 .pilot-card h2, .pilot-card h3 { margin-block-end: .5rem; }
+.pilot-card p + h3 { margin-block-start: 1rem; }
 .pilot-card p + a { display: inline-block; margin-block-start: .75rem; }
 .pilot li { margin-block-end: .45rem; }
 .pilot ul { padding-inline-start: 1.15rem; }

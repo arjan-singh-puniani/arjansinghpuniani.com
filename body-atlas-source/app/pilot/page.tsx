@@ -4,6 +4,7 @@ import { atlasBasePath, atlasPath } from "@/lib/deployment";
 import { dossiers } from "@/lib/dossiers";
 import { comparisonRelationships } from "@/lib/research-workflow";
 import BriefBuilder, { type BriefCase } from "./BriefBuilder";
+import DecisionMemo from "./DecisionMemo";
 import Inquiry from "./Inquiry";
 import "./pilot.css";
 
@@ -96,7 +97,7 @@ export default function PilotPage() {
             <p>For neurotechnology teams scoping a U.S. device landscape. Compare how devices interact with anatomy, trace claims back to FDA records, and see which questions still need research.</p>
             <div className="pilot-actions">
               <a className="pilot-button" href="#build">Build a cited brief</a>
-              <a href="#offer">Discuss a research brief</a>
+              <a href="#decision-memo">See a sample paid deliverable</a>
             </div>
           </div>
           <aside className="pilot-card" aria-labelledby="scope-title">
@@ -133,16 +134,19 @@ export default function PilotPage() {
           </div>
         </section>
 
+        <DecisionMemo />
+
         <section id="offer" className="pilot-section pilot-grid" aria-labelledby="offer-title">
           <div>
             <p className="pilot-kicker">Custom research</p>
             <h2 id="offer-title">A sourced brief for your review</h2>
             <p>Bring one U.S. neurodevice landscape question. Arjan Singh Puniani scopes the question with your team and researches up to three agreed devices or applications using public sources.</p>
             <ul>
-              <li>A comparison brief with links, source dates, FDA decision history, and evidence gaps.</li>
-              <li>A source log and a walkthrough for your team.</li>
+              <li>A one-page decision memo, an editable device comparison and a source log with dates and exact locations for material findings.</li>
+              <li>An open-check list for your review and a walkthrough for your team.</li>
             </ul>
-            <p>Share your question to discuss scope, pricing, and timing. The pilot excludes regulatory strategy, current-label certification, exhaustive recall checks, and clinical recommendations. Future questions can be scoped as separate briefs.</p>
+            <p>Tell us which review the brief needs to support. We’ll agree on the scope, fixed fee and delivery date before work starts. The pilot excludes regulatory strategy, current-label certification, exhaustive recall checks, and clinical recommendations. Future questions can be scoped as separate briefs.</p>
+            <p><a href="#decision-memo">See the sample decision memo</a></p>
           </div>
           <Inquiry />
         </section>
