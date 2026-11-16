@@ -552,6 +552,7 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
   await map.locator('.node-reviewed').first().click();
   await expect(page.locator('.device-intro h2')).toContainText('Transcranial magnetic stimulation');
   await page.getByRole('button',{name:'Show region labels'}).click();
+  await page.locator('.map-breadcrumb').getByRole('button',{name:'Human',exact:true}).click();
  }else{
   await map.getByRole('button',{name:/Explore Heart —/}).tap();
   await expect(page.locator('.map-breadcrumb')).toContainText('Heart');
@@ -570,7 +571,8 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
  const md=await request.get('/api/brief?ids='+encodeURIComponent(id));expect(md.ok()).toBeTruthy();
  expect(await md.text()).toContain('FDA source context (unreviewed)');expect(await md.text()).toContain('Provisional');
  await page.screenshot({path:`test-results/${testInfo.project.name}-heart-evidence.png`});
- await page.getByRole('button',{name:'Show intervention labels'}).click();
+ await page.locator('.map-breadcrumb').getByRole('button',{name:'Human',exact:true}).click();
+ if (testInfo.project.name === 'desktop') await page.getByRole('button',{name:'Show intervention labels'}).click();
  await page.getByRole('combobox',{name:'Explore anatomical region'}).selectOption('BODY:knee');
  await expect(panel.locator('.catalogue-badge').first()).toBeVisible();
  await page.getByRole('combobox',{name:'Explore anatomical region'}).selectOption('BODY:uterus');
