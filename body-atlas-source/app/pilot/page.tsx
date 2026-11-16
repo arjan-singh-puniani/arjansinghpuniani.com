@@ -92,17 +92,21 @@ export default function PilotPage() {
       <main id="pilot-content">
         <section className="pilot-hero" aria-labelledby="pilot-title">
           <div>
-            <p className="pilot-kicker">U.S. neurodevice evidence</p>
+            <p className="pilot-kicker">U.S. neurodevice R&amp;D</p>
             <h1 id="pilot-title">Compare devices. Trace the evidence.</h1>
-            <p>For neurotechnology teams scoping a U.S. device landscape. Compare how devices interact with anatomy, trace claims back to FDA records, and see which questions still need research.</p>
+            <p>Prepare a device comparison for your next R&amp;D review. Check the original FDA decisions, flag what still needs verification, and export a cited worksheet.</p>
             <div className="pilot-actions">
               <a className="pilot-button" href="#build">Build a cited brief</a>
               <a href="#decision-memo">See a sample paid deliverable</a>
             </div>
           </div>
-          <aside className="pilot-card" aria-labelledby="scope-title">
-            <h2 id="scope-title">What Atlas covers</h2>
-            <p>Selected U.S. FDA decisions and related research records. The public snapshot was exported <time dateTime={coverage.exportedAt}>{coverage.exportedAt.slice(0, 10)}</time>. Individual sources have their own dates.</p>
+          <aside className="pilot-card pilot-preview" aria-labelledby="scope-title">
+            <h2 id="scope-title">Inside the example comparison</h2>
+            <dl>
+              <div><dt>Activa · P960009</dt><dd>Implanted electrical stimulation</dd></div>
+              <div><dt>ExAblate · P150038</dt><dd>Focused ultrasound ablation</dd></div>
+            </dl>
+            <p>Selected U.S. FDA records · snapshot <time dateTime={coverage.exportedAt}>{coverage.exportedAt.slice(0, 10)}</time></p>
             <p>Historical labeling, incomplete supplements and recalls, and regional anatomy references with no independent adjudication. For research and internal discussion only.</p>
             {atlasBasePath && <a href="/documents/body-atlas-validation.json">Read the public validation record</a>}
           </aside>
@@ -121,7 +125,7 @@ export default function PilotPage() {
                 <article className="pilot-card" key={source}>
                   <h3>{name}</h3>
                   <p>{summary}</p>
-                  {record ? <a href={record.url}>Original FDA PMA {record.application} · {record.decisionDate}</a> :
+                  {record ? <a href={record.url} target="_blank" rel="noopener noreferrer">Original FDA PMA {record.application} · {record.decisionDate}</a> :
                     <p>Original record is missing from this snapshot.</p>}
                 </article>
               );
@@ -146,6 +150,7 @@ export default function PilotPage() {
               <li>An open-check list for your review and a walkthrough for your team.</li>
             </ul>
             <p>Tell us which review the brief needs to support. We’ll agree on the scope, fixed fee and delivery date before work starts. The pilot excludes regulatory strategy, current-label certification, exhaustive recall checks, and clinical recommendations. Future questions can be scoped as separate briefs.</p>
+            <p>Start with a public-source question. Arjan reviews it by email and confirms fit, scope, and timing before sending a quote.</p>
             <p><a href="#decision-memo">See the sample decision memo</a></p>
           </div>
           <Inquiry />

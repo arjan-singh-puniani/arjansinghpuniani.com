@@ -49,6 +49,31 @@ test("research pilot gives a cited result and prepares an unsent inquiry", async
   await expect(page.getByRole("link", { name: "Open email draft" })).toHaveCount(0);
 });
 
+test("the example gives a first-time visitor a working comparison without WebGL", async ({ page }) => {
+  await page.addInitScript(() => {
+    const getContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, type, ...options) {
+      if (type.startsWith("webgl")) return null;
+      return Reflect.apply(getContext, this, [type, ...options]);
+    } as typeof getContext;
+  });
+  await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/pilot");
+  await page.getByRole("link", { name: "Build a cited brief" }).click();
+  await page.getByRole("button", { name: "Load Activa and ExAblate example" }).press("Enter");
+  await expect(page.getByRole("heading", { name: "Review the two FDA decisions" })).toBeFocused();
+  const builder = page.getByRole("region", { name: "Build a cited brief" });
+  await expect(builder.getByRole("link", { name: "Original FDA record P960009" })).toBeVisible();
+  await expect(builder.getByRole("link", { name: "Original FDA record P150038" })).toBeVisible();
+  await builder.getByRole("link", { name: "Jump to notes and export" }).click();
+  await expect(page).toHaveURL(/#worksheet-notes$/);
+  const file = page.waitForEvent("download");
+  await builder.getByRole("link", { name: "Download editable worksheet" }).click();
+  const exported = await readFile((await (await file).path())!, "utf8");
+  for (const value of ["P960009", "P150038", "P960009/S007", "Regional relationships do not specify implant coordinates"]) {
+    expect(exported).toContain(value);
+  }
+});
+
 test("a buyer can inspect the paid deliverable before asking for a quote", async ({ page }) => {
   await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/pilot");
   await page.getByRole("link", { name: "See a sample paid deliverable" }).click();
@@ -206,6 +231,10 @@ test("a buyer can add an exact cached supplement and a decision note to the work
   await page.getByLabel("Second FDA application").selectOption("P970003");
   await expect(builder.getByLabel("What do the sources support?")).toHaveValue("");
   await expect(builder.getByLabel("What still needs checking?")).toHaveValue("");
+  await builder.getByLabel("What still needs checking?").fill("Check another comparison.");
+  await page.getByLabel("Second FDA application").selectOption("P960009");
+  await expect(builder.getByLabel("What do the sources support?")).toHaveValue("S104 concerns a manufacturing process change.");
+  await expect(builder.getByLabel("What still needs checking?")).toHaveValue("Confirm the scope of the current label & model.");
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize()!.width);
 });
 

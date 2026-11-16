@@ -74,6 +74,28 @@
 }
 
 .pilot-button:hover { color: var(--bg); background: #efb38d; }
+.pilot-preview { border-block-start: 2px solid var(--accent); }
+.pilot-preview h2 { font-size: 1.25rem; }
+.pilot-preview dl { margin-block: .8rem 1rem; }
+.pilot-preview dl div { border-block-start: 1px solid var(--line); padding-block: .65rem; }
+.pilot-preview dt { color: var(--text); font-size: 1rem; font-weight: 700; margin: 0; }
+.pilot-preview dd { font-size: .95rem; margin: .15rem 0 0; }
+.pilot-outline {
+  min-height: 44px;
+  padding: .45rem .75rem;
+  margin-block-start: .65rem;
+  border: 1px solid #607b80;
+  border-radius: .25rem;
+}
+.pilot-comparison-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .45rem 1rem;
+}
+.pilot-comparison-heading h3:focus { outline: 2px solid var(--accent); outline-offset: 4px; }
+#worksheet-notes { margin-block-start: 1.25rem; }
 .pilot-inquiry fieldset {
   display: grid;
   gap: .85rem;

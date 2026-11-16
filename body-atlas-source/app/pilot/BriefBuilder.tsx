@@ -48,7 +48,7 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
   const [second, setSecond] = useState("");
   const [question, setQuestion] = useState("");
   const [selectedSupplements, setSelectedSupplements] = useState<Record<string, SelectedSupplement | undefined>>({});
-  const [notes, setNotes] = useState({ pair: "", finding: "", gap: "" });
+  const [notes, setNotes] = useState<Record<string, { finding: string; gap: string }>>({});
   const [index, setIndex] = useState<Record<string, BriefCase> | null>(null);
   const [added, setAdded] = useState<BriefCase[]>([]);
   const [search, setSearch] = useState("");
@@ -56,6 +56,7 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
   const match = lookup.match;
   const searchInput = useRef<HTMLInputElement>(null);
   const matchActions = useRef<HTMLDivElement>(null);
+  const comparisonHeading = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     if (match) matchActions.current?.querySelector<HTMLButtonElement>("button:enabled")?.focus();
   }, [match]);
@@ -63,9 +64,14 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
   const left = choices.find(item => item.application === first);
   const right = choices.find(item => item.application === second);
   const pair = left && right && left !== right ? [left, right] : [];
-  const pairKey = pair.map(item => item.application).join("/");
-  const finding = notes.pair === pairKey ? notes.finding : "";
-  const gap = notes.pair === pairKey ? notes.gap : "";
+  const pairKey = pair.map(item => item.application).sort().join("/");
+  const { finding, gap } = notes[pairKey] ?? { finding: "", gap: "" };
+
+  function loadExample() {
+    setFirst("P960009");
+    setSecond("P150038");
+    requestAnimationFrame(() => comparisonHeading.current?.focus());
+  }
 
   async function findApplication(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -172,7 +178,9 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
     <section id="build" className="pilot-section" aria-labelledby="build-title">
       <p className="pilot-kicker">Free evidence worksheet</p>
       <h2 id="build-title">Build a cited brief</h2>
-      <p>Search by device name or FDA application ID, or choose reviewed neurodevices below. Compare original decisions, check reviewed changes where available, and download an editable worksheet. Source links open in a new tab.</p>
+      <p>Try the example pair or find two original FDA applications by device name or ID. Source links in the worksheet open in a new tab.</p>
+      {cases.some(item => item.application === "P960009") && cases.some(item => item.application === "P150038") &&
+        <button type="button" className="pilot-outline" onClick={loadExample}>Load Activa and ExAblate example</button>}
       <noscript><p>Open the FDA links in the example below or download the cited example.</p></noscript>
       <form className="pilot-fields pilot-lookup" onSubmit={findApplication}>
         <label>Find an FDA application by device name or ID
@@ -222,12 +230,16 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
         <label className="pilot-question">Decision or question (optional)
           <input value={question} onChange={event => setQuestion(event.target.value)} maxLength={240} aria-describedby="pilot-question-hint" />
         </label>
-        <p id="pilot-question-hint" className="pilot-question">Your question and decision notes stay on this page and in your download.</p>
+        <p id="pilot-question-hint" className="pilot-question">Your question and notes stay in this tab until you reload or close it. Download a worksheet to keep a copy.</p>
       </div>
 
-      <p className="pilot-builder-status" role="status">{pair.length ? "Two applications ready to review." : "Choose two different applications to prepare the worksheet."}</p>
+      <p className="pilot-builder-status" role="status">{pair.length ? "Two applications ready to review." : left || right ? "Choose one more application to compare." : "Choose two different applications to prepare the worksheet."}</p>
       {pair.length > 0 && (
         <>
+          <div className="pilot-comparison-heading">
+            <h3 ref={comparisonHeading} tabIndex={-1}>Review the two FDA decisions</h3>
+            <a href="#worksheet-notes">Jump to notes and export</a>
+          </div>
           <div className="pilot-grid">
             {pair.map(item => (
               <article key={item.application} className="pilot-card">
@@ -276,14 +288,15 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
             ))}
           </div>
           <p>{scope}</p>
+          <h3 id="worksheet-notes" tabIndex={-1}>Notes and export</h3>
           <div className="pilot-fields pilot-grid">
             <label>What do the sources support?
               <textarea value={finding} rows={3} maxLength={800}
-                onChange={event => setNotes({ pair: pairKey, finding: event.target.value, gap })} />
+                onChange={event => setNotes({ ...notes, [pairKey]: { finding: event.target.value, gap } })} />
             </label>
             <label>What still needs checking?
               <textarea value={gap} rows={3} maxLength={800}
-                onChange={event => setNotes({ pair: pairKey, finding, gap: event.target.value })} />
+                onChange={event => setNotes({ ...notes, [pairKey]: { finding, gap: event.target.value } })} />
             </label>
           </div>
           <div className="pilot-actions">
