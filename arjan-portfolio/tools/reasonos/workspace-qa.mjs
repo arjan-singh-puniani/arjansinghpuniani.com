@@ -286,6 +286,37 @@ for (const [name, engine] of [["chromium", chromium], ["firefox", firefox], ["we
       assert.ok(response.ok(), "Public review fixture must load: " + file);
     }
     await page.screenshot({ path: `${out}/${name}-review-protocol.png` });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(base + "/work/vector-ekg-reasonos/demo");
+    const demo = root.getByRole("region", { name: "Evidence review", exact: true });
+    await demo.getByText("838 ms", { exact: true }).waitFor();
+    assert.equal(await root.getByLabel("Reference recording").count(), 0);
+    await page.screenshot({ path: `${out}/${name}-engineering-opening.png` });
+    await demo.getByRole("button", { name: "Apply example revision" }).click();
+    await demo.getByRole("heading", { name: "Observation needs review" }).waitFor();
+    await demo.getByText("778 ms", { exact: true }).waitFor();
+    await demo.getByText("60 ms shorter", { exact: true }).waitFor();
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    await page.screenshot({ path: `${out}/${name}-engineering-revised.png` });
+    const downloadEvent = page.waitForEvent("download");
+    await demo.getByRole("button", { name: "Download trace JSON" }).click();
+    const demoExport = JSON.parse(await readFile(await (await downloadEvent).path(), "utf8"));
+    const [original, note, revised] = demoExport.trace.entries
+      .filter(e => e.event.type === "transformation.attempted").map(e => e.event.outputState);
+    assert.equal(demoExport.rawRecordingIncluded, false);
+    assert.equal(note.payload.entryOrigin, "prepared-example");
+    assert.equal(note.provenance.actorId, "workspace-example");
+    assert.deepEqual(note.payload.measurementIds, [original.id]);
+    assert.equal(revised.payload.revisionOf, original.id);
+    assert.deepEqual(original.payload.sampleIndices, [433, 852]);
+    assert.deepEqual(revised.payload.sampleIndices, [433, 822]);
+    await root.getByText("Source and sample lineage", { exact: true }).click();
+    await root.getByText("433 → 822", { exact: true }).waitFor();
+    const engineeringAxe = await new AxeBuilder({ page }).include("[data-ecg-workspace]").analyze();
+    checks.push({ viewport: "engineering-demo", violations: engineeringAxe.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.length })) });
+    await demo.getByRole("button", { name: "Restart example" }).click();
+    await demo.getByRole("button", { name: "Apply example revision" }).waitFor();
+    assert.deepEqual(errors, []);
     await context.close();
   } finally { await browser.close(); }
 }

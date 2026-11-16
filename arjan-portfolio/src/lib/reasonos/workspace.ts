@@ -113,6 +113,7 @@ export function decodeWorkspaceCSV(text: string): DigitalECG {
 
 const kernel = new InMemoryTraceStore();
 const actor = "workspace-learner" as ActorId;
+const preparedActor = "workspace-example" as ActorId;
 const version = "1.1.0";
 function provenance(id: string, source: string, method: string, time: IsoTimestamp, revisionOf: ProvenanceId | null = null) {
   return {
@@ -170,16 +171,23 @@ export function createWorkspaceTrace(sourceId: string, metadata: JsonObject): Tr
   return trace;
 }
 
-export function appendWorkspaceState(trace: Trace, role: "measurement" | "claim", payload: JsonObject, inputIds: string[], revisionId?: string) {
+export function appendWorkspaceState(trace: Trace, role: "measurement" | "claim", payload: JsonObject, inputIds: string[], revisionId?: string, example = false) {
   const view = projectTrace(trace), time = new Date().toISOString() as IsoTimestamp;
+  const actorId = example ? preparedActor : actor;
+  if (example && !view.actors.has(preparedActor)) {
+    trace = kernel.registerActor(trace, { id: preparedActor, kind: "tool", label: "ReasonOS prepared example", version, authority: null });
+  }
   const id = `state-${trace.entries.length}`, old = revisionId ? view.states.get(revisionId as StateId) : undefined;
-  const p = provenance(`${id}-provenance`, String(payload.sourceId), role === "measurement" ? "User-positioned calipers; recorded calibration and endpoint bound" : "User-authored proposed interpretation", time, old?.provenance.id ?? null);
+  const method = example
+    ? role === "measurement" ? "Prepared example endpoints on a recorded ECG" : "Prepared example observation"
+    : role === "measurement" ? "User-positioned calipers; recorded calibration and endpoint bound" : "User-authored proposed interpretation";
+  const p = { ...provenance(`${id}-provenance`, String(payload.sourceId), method, time, old?.provenance.id ?? null), actorId };
   const state: State = { id: id as StateId, category: role === "measurement" ? "Perceptual" : "Epistemic", role,
     causalStage: role === "measurement" ? "measurement" : "inference", domainId: plugin.id, schemaVersion: version,
-    payload: { ...payload, revisionOf: revisionId ?? null }, provenance: p, createdAt: time };
+    payload: { ...payload, revisionOf: revisionId ?? null, ...(example ? { entryOrigin: "prepared-example" } : {}) }, provenance: p, createdAt: time };
   return kernel.append(trace, {
     id: `${id}-transformation` as TransformationId, operator: revisionId ? "Revise" : role === "measurement" ? "Measure" : "Hypothesize",
-    actorId: actor, inputStateIds: [...new Set([...inputIds, ...(revisionId ? [revisionId] : [])])] as StateId[],
+    actorId, inputStateIds: [...new Set([...inputIds, ...(revisionId ? [revisionId] : [])])] as StateId[],
     outputState: state, attemptedAt: time, provenance: { ...p, id: `${id}-attempt-provenance` as ProvenanceId },
     payload: { purpose: "Educational evidence workflow; no automatic diagnosis" }, expansionEvaluation: null,
   }, plugin);

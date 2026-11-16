@@ -180,4 +180,28 @@
 .overlayLegend { display:flex; gap:8px 14px; flex-wrap:wrap; font-size:12px; color:var(--ink); padding-top:6px; }
 .overlayLegend span::before { content:""; display:inline-block; width:14px; margin-right:6px; vertical-align:middle; border-top:2px solid #007a86; }
 .overlayLegend span:first-child::before { border-top:2px dashed #85662f; }
+.workspaceLinks { display:flex; gap:8px 20px; flex-wrap:wrap; justify-content:flex-end; }
+.workspaceLinks a { color:#e5f3eb; }
+.engineering { --ink:#142d39; --muted:#435f6d; --line:#ccdbe0; --accent:#0b5f70; background:#eff4f6; }
+.engineering .masthead { background:#102b36; padding:clamp(18px,3vw,36px) clamp(16px,4vw,56px); flex-wrap:wrap; align-items:center; }
+.engineering .masthead h2 { font-size:clamp(27px,4vw,49px); font-weight:550; line-height:1.04; letter-spacing:-.045em; margin:5px 0 9px; }
+.engineering .masthead p { color:#d1e5e9; max-width:52ch; font-size:14px; }
+.engineering .masthead a { color:#d1e5e9; font-size:12px; text-underline-offset:4px; }
+.productName { font-size:13px; font-weight:700; color:#b6dce1; }
+.engineering .recording { background:#e2ebee; }
+.engineering .recordingHead strong { font-size:15px; font-weight:700; }
+.engineering .layout { min-height:calc(100dvh - 144px); }
+.engineering .evidenceReview { background:#f8fbfc; border-color:#acc3cc; padding:clamp(14px,2vw,22px); }
+.engineering .evidenceReview[data-review-needed="true"] { border-left-color:#9a6424; }
+.engineering .revisionValues { background:#eaf2f5; }
+.engineering .revisionValues dd { font-size:clamp(28px,4vw,45px); }
+.engineering .revisionValues .revisionDelta { font-size:12px; }
+.engineering .primary { background:#10596a; border-color:#10596a; }
+.engineering .primary:hover:not(:disabled) { background:#0c4755; }
+.engineering .exampleAction { border-top:1px solid var(--line); padding-top:12px; }
+.stateReference { display:block; color:#345a68; font-size:11px; overflow-wrap:anywhere; margin-top:7px; }
+.sourceEvidence { margin-top:18px; padding:12px; border:1px solid var(--line); border-radius:4px; }
+.sourceEvidence summary { cursor:pointer; font-weight:600; }
+.sourceEvidence .metadata { margin:8px 0 12px; padding-top:0; }
+.sourceEvidence p { margin-bottom:0; }
 @media(max-width:760px) { .strip { height:148px; } .strip .overlay text { font-size:25px; } }

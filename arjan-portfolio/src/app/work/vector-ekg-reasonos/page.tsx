@@ -293,8 +293,9 @@ export default function VectorEkgReasonOSPage() {
       <header className="rosx-hero">
         <div className="shell">
           <p className="eyebrow">Vector EKG / ReasonOS</p>
-          <h1>Measure an ECG interval</h1>
-          <p className="vector-deck">Choose a practice case, mark the interval on a real recording, and see what your measurement supports.</p>
+          <h1>Trace an ECG observation to its source</h1>
+          <p className="vector-deck">ReasonOS links saved observations to specific measurements and marks them for review when their evidence changes.</p>
+          <div className="rosx-study-links"><Link href="/work/vector-ekg-reasonos/demo">Open the engineering demo ↗</Link></div>
         </div>
       </header>
       <section className="lab-embed rosx-lab" id="ecg-workspace" aria-label="ECG evidence workspace">
