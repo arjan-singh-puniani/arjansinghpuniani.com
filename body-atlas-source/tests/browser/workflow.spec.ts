@@ -654,7 +654,8 @@ test('overview names interventions on the body and opens their original evidence
  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
  await page.getByRole('button',{name:'Show intervention labels'}).click();
  await expect(map.locator('.constellation-intervention').first()).toBeVisible({timeout:45000});
- const labels=map.locator('.constellation-intervention');expect(await labels.count()).toBeGreaterThanOrEqual(testInfo.project.name==='desktop'?10:4);
+ const labels=map.locator('.constellation-intervention');
+ await expect.poll(() => labels.count()).toBeGreaterThanOrEqual(testInfo.project.name==='desktop'?10:4);
  await expect(map.getByRole('button',{name:'Select NeuroPace RNS System from body map',exact:true})).toBeVisible();
  expect(await map.locator('.record-node').count()).toBeGreaterThanOrEqual(10);
  await expect(map.locator('.region-orbit')).toHaveCount(0);
