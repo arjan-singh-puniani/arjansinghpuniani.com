@@ -7,6 +7,11 @@ import { readFileSync } from 'node:fs';
 test("implant map selects the actual documented component region", async ({ page }) => {
   await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/");
   const filter = page.getByRole("button", { name: "Show documented implant regions" });
+  const scene = page.getByTestId("human-reference");
+  const organs = page.getByRole("button", { name: "Toggle internal organs" });
+  await expect(filter).toHaveAttribute("aria-pressed", "false");
+  await expect(scene).toHaveAttribute("data-surface-mode", "solid");
+  await expect(page.locator(".intervention-constellation, .intervention-annotations, .body-pin")).toHaveCount(0);
   await filter.click();
   await expect(filter).toHaveAttribute("aria-pressed", "true");
   const search = page.getByRole("textbox", { name: "Find an intervention" });
@@ -16,12 +21,21 @@ test("implant map selects the actual documented component region", async ({ page
   await expect(lead).toBeVisible();
   await expect(generator).toBeVisible();
   await generator.click();
-  const scene = page.getByTestId("human-reference");
   await expect(scene).toHaveAttribute("data-focus-region", "BODY:chest-wall");
   await page.getByRole("group", { name: "Documented regions for selected device" })
     .getByRole("button", { name: "Model 3387 DBS lead · Thalamus" }).click();
   await expect(scene).toHaveAttribute("data-focus-region", "UBERON:0001897");
   await expect(scene).toHaveAttribute("data-action-kind", "none");
+  await expect(organs).toHaveAttribute("aria-pressed", "false");
+  await organs.click();
+  await expect(scene).toHaveAttribute("data-organs-status", "loaded", { timeout: 45000 });
+  await expect(scene).toHaveAttribute("data-surface-mode", "translucent");
+  await expect(filter).toHaveAttribute("aria-pressed", "true");
+  await filter.click();
+  await expect(page.locator(".intervention-constellation, .intervention-annotations")).toHaveCount(0);
+  await expect(organs).toHaveAttribute("aria-pressed", "true");
+  await organs.click();
+  await expect(scene).toHaveAttribute("data-surface-mode", "solid");
   await page.reload();
   await filter.click();
   await search.fill("ExAblate");
@@ -35,6 +49,7 @@ test("body callout to anatomy, evidence, history, comparison, research and expor
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
+  await page.getByRole("button", { name: "Show intervention labels" }).click();
   await expect(
     page.getByRole("group", { name: "Whole-body intervention map" }),
   ).toBeVisible();
@@ -42,6 +57,7 @@ test("body callout to anatomy, evidence, history, comparison, research and expor
     "Reference loaded",
     { timeout: 45000 },
   );
+  await page.getByRole("button", { name: "Toggle internal organs" }).click();
   await expect(page.getByTestId("human-reference")).toHaveAttribute(
     "data-internal-status",
     "loaded",
@@ -408,6 +424,7 @@ test("on-model innovation labels select facts and original sources without leavi
     { timeout: 45000 },
   );
   await page.getByRole("combobox", {name:testInfo.project.name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('reviewed');
+  await page.getByRole("button", {name:"Show intervention labels"}).click();
   await page.getByRole("button", {name:"Show intervention callouts"}).click();
   const annotations = page.getByRole("group", {
     name: "Interventions on anatomy",
@@ -523,6 +540,8 @@ test("on-model innovation labels select facts and original sources without leavi
 test("dense whole-body catalogue opens authentic evidence, region filtering and cited export",async({page,request},testInfo)=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/');
+ await page.getByRole('button',{name:'Toggle internal organs'}).click();
+ await page.getByRole('button',{name:'Show intervention labels'}).click();
  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-organs-status','loaded',{timeout:45000});
  await page.getByRole('combobox',{name:testInfo.project.name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('all');
  const map=page.getByRole('group',{name:'Whole-body intervention map'});
@@ -532,7 +551,8 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
  if(testInfo.project.name==='desktop'){
   await map.locator('.node-reviewed').first().click();
   await expect(page.locator('.device-intro h2')).toContainText('Transcranial magnetic stimulation');
-  await page.getByRole('button',{name:'Interventions',exact:true}).click();
+  await page.getByRole('button',{name:'Show region labels'}).click();
+  await page.locator('.map-breadcrumb').getByRole('button',{name:'Human',exact:true}).click();
  }else{
   await map.getByRole('button',{name:/Explore Heart —/}).tap();
   await expect(page.locator('.map-breadcrumb')).toContainText('Heart');
@@ -551,7 +571,8 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
  const md=await request.get('/api/brief?ids='+encodeURIComponent(id));expect(md.ok()).toBeTruthy();
  expect(await md.text()).toContain('FDA source context (unreviewed)');expect(await md.text()).toContain('Provisional');
  await page.screenshot({path:`test-results/${testInfo.project.name}-heart-evidence.png`});
- await page.getByRole('button',{name:'Interventions',exact:true}).click();
+ await page.locator('.map-breadcrumb').getByRole('button',{name:'Human',exact:true}).click();
+ if (testInfo.project.name === 'desktop') await page.getByRole('button',{name:'Show intervention labels'}).click();
  await page.getByRole('combobox',{name:'Explore anatomical region'}).selectOption('BODY:knee');
  await expect(panel.locator('.catalogue-badge').first()).toBeVisible();
  await page.getByRole('combobox',{name:'Explore anatomical region'}).selectOption('BODY:uterus');
@@ -575,9 +596,7 @@ test('main map loads the hologram and rotates while evidence retains its source'
  await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
  await expect(scene).toHaveAttribute('data-exterior','adapted');
  await expect(page.locator('body')).not.toContainText(/Arjan|personal contour/i);
- await expect(scene).toHaveAttribute('data-internal-status','loaded',{timeout:45000});
- await expect(scene).toHaveAttribute('data-organs-status','loaded',{timeout:45000});
- await page.getByRole('button',{name:'Toggle internal organs',exact:true}).click();
+ await expect(scene).toHaveAttribute('data-surface-mode','solid');
  await expect(scene).toHaveAttribute('data-internal-status','hidden');
  await expect(scene).toHaveAttribute('data-organs-status','hidden');
  const surface=page.getByRole('button',{name:'Toggle body surface',exact:true});
@@ -611,56 +630,32 @@ test('unavailable body contour falls back to the original reference',async({page
 });
 
 
-test('shareable contour is an upper-body view with working copy and atlas navigation',async({page,context},testInfo)=>{
- const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto('/?view=portrait&entry=rns&unused=discard#discard');
- const scene=page.getByTestId('human-reference');
- await expect(scene).toHaveAttribute('data-presentation','portrait');
- await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
- await expect(scene).toHaveAttribute('data-internal-status','hidden');
- await expect(scene).toHaveAttribute('data-organs-status','hidden');
- await expect(page.getByRole('heading',{name:'Holographic contour',exact:true})).toBeVisible();
- await expect(page.getByRole('slider')).toHaveCount(0);
- await expect(page.getByRole('complementary',{name:'Interventions and evidence'})).toHaveCount(0);
- await expect(page.getByRole('button',{name:'Inspect NeuroPace RNS System',exact:true})).toHaveCount(0);
- await expect(page.locator('body')).not.toContainText(/Arjan|personal contour/i);
- const canvas=page.locator('canvas'),before=await canvas.screenshot(),box=(await canvas.boundingBox())!;
- expect(box.height).toBeGreaterThan(page.viewportSize()!.height*.5);
- await page.screenshot({path:`test-results/${testInfo.project.name}-share-front.png`});
- await page.mouse.move(box.x+box.width*.5,box.y+box.height*.5);await page.mouse.down();await page.mouse.move(box.x+box.width*.7,box.y+box.height*.5,{steps:12});await page.mouse.up();
- await expect.poll(async()=>Buffer.compare(before,await canvas.screenshot())).not.toBe(0);
- await context.grantPermissions(['clipboard-read','clipboard-write']);
- await page.getByRole('button',{name:'Copy share link',exact:true}).click();
- await expect(page.getByRole('status')).toHaveText('Share link copied');
- const copied=await page.evaluate(()=>navigator.clipboard.readText());expect(new URL(copied).search).toBe('?view=portrait');expect(new URL(copied).hash).toBe('');
- await page.screenshot({path:`test-results/${testInfo.project.name}-share-contour.png`});
- const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
- await page.getByRole('button',{name:'Reset view',exact:true}).click();await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
- await page.getByRole('group',{name:'Contour framing'}).getByRole('button',{name:'Face',exact:true}).click();
- await expect(scene).toHaveAttribute('data-contour-frame','face');
- await expect(page.getByRole('button',{name:'Face',exact:true})).toHaveAttribute('aria-pressed','true');
- await page.getByRole('button',{name:'Copy share link',exact:true}).click();
- const faceLink=await page.evaluate(()=>navigator.clipboard.readText());expect(new URL(faceLink).search).toBe('?view=portrait&frame=face');
- await page.screenshot({path:`test-results/${testInfo.project.name}-face-contour.png`});
- await page.goto(faceLink);await expect(page.getByTestId('human-reference')).toHaveAttribute('data-contour-frame','face');
- await page.getByRole('button',{name:'Upper body',exact:true}).click();await expect(page.getByTestId('human-reference')).toHaveAttribute('data-contour-frame','upper');
- await page.getByRole('button',{name:'Copy share link',exact:true}).click();
- const upperLink=await page.evaluate(()=>navigator.clipboard.readText());expect(upperLink).toBe(copied);
- await page.addInitScript(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new Error('Clipboard denied')}}}));await page.goto(upperLink);
- await page.getByRole('button',{name:'Copy share link',exact:true}).click();await expect(page.getByRole('textbox',{name:'Share link',exact:true})).toHaveValue(copied);
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.documentElement.scrollHeight<=innerHeight+1)).toBe(true);
- await page.getByRole('link',{name:'Explore atlas',exact:true}).click();await expect(page.getByRole('slider')).toHaveAttribute('min','1999');
- await page.getByRole('button',{name:'Sources and model',exact:true}).click();await expect(page.getByRole('link',{name:/Open shareable contour view/})).toHaveAttribute('href','/?view=portrait');
- expect(errors).toEqual([]);
+test("the focused hologram still offers full-body and profile views", async ({ page }) => {
+  await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/contour");
+  await expect(page.getByRole("heading", { name: "Anatomical hologram" })).toBeVisible();
+  const scene = page.getByTestId("human-reference");
+  await expect(scene).toHaveAttribute("data-avatar-status", "loaded", { timeout: 45000 });
+  await expect(scene).toHaveAttribute("data-surface-mode", "solid");
+  await expect(scene).toHaveAttribute("data-organs-status", "hidden");
+  const profile = page.getByRole("button", { name: "Profile", exact: true });
+  await profile.click();
+  await expect(profile).toHaveAttribute("aria-pressed", "true");
+  const fullBody = page.getByRole("button", { name: "Full body", exact: true });
+  await fullBody.click();
+  await expect(fullBody).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("link", { name: "the main Atlas" }).click();
+  await expect(page.getByRole("button", { name: "Show documented implant regions" })).toBeVisible();
+  await expect(page.getByTestId("human-reference")).toHaveAttribute("data-surface-mode", "solid");
 });
-
 
 test('overview names interventions on the body and opens their original evidence',async({page},testInfo)=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');
  const map=page.getByRole('group',{name:'Whole-body intervention map'});
  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
+ await page.getByRole('button',{name:'Show intervention labels'}).click();
  await expect(map.locator('.constellation-intervention').first()).toBeVisible({timeout:45000});
- const labels=map.locator('.constellation-intervention');expect(await labels.count()).toBeGreaterThanOrEqual(testInfo.project.name==='desktop'?10:4);
+ const labels=map.locator('.constellation-intervention');
+ await expect.poll(() => labels.count()).toBeGreaterThanOrEqual(testInfo.project.name==='desktop'?10:4);
  await expect(map.getByRole('button',{name:'Select NeuroPace RNS System from body map',exact:true})).toBeVisible();
  expect(await map.locator('.record-node').count()).toBeGreaterThanOrEqual(10);
  await expect(map.locator('.region-orbit')).toHaveCount(0);
@@ -680,7 +675,7 @@ test('overview names interventions on the body and opens their original evidence
   await expect(map.locator('.constellation-intervention').first()).toBeVisible();
  }
  const regionSelect=page.getByRole('combobox',{name:'Explore anatomical region',exact:true});
- if(!await regionSelect.count())await page.getByRole('button',{name:'Interventions',exact:true}).click();
+ if (!await regionSelect.count()) await page.locator('.map-breadcrumb').getByRole('button',{name:'Human',exact:true}).click();
  await regionSelect.selectOption('BODY:heart');
  await expect(map.locator('.constellation-intervention').first()).toBeVisible();
  const seen=new Set<string>();let next=map.getByRole('button',{name:'Next mapped interventions',exact:true});

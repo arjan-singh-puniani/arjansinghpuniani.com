@@ -2720,3 +2720,16 @@
 .implant-component-controls { display: flex; flex-wrap: wrap; gap: .35rem; margin-block-start: .35rem; }
 .implant-component-controls button { min-height: 44px; padding-inline: .45rem; border: 1px solid var(--rule); text-align: left; }
 .implant-component-controls button[aria-pressed="true"] { border-color: var(--gold); color: var(--ink); }
+
+
+@media (max-width: 650px) {
+  .solid-overview:not(.anatomy-expanded) .body-map {
+    flex-basis: min(63%, 490px);
+  }
+  .solid-overview .figure-canvas {
+    inset: 35px 0 57px;
+  }
+  .solid-overview .figure-caption {
+    display: none;
+  }
+}
