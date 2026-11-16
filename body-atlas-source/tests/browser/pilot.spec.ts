@@ -154,6 +154,13 @@ test("a buyer can add an exact cached supplement and a decision note to the work
   await expect(rns.getByText("No matching supplements in this archive.")).toBeVisible();
   await filter.fill("P100026/S104");
   await expect(rns.getByRole("link", { name: "P100026/S104" })).toHaveAttribute("href", /P100026S104$/i);
+  await page.route("**/dossier-sources/*.json", route => route.fulfill({ json: { results: [] } }), { times: 1 });
+  await rns.getByRole("button", { name: "Verify in cached FDA record" }).click();
+  await expect(rns.getByRole("alert")).toContainText("Could not verify the archived FDA response");
+  await rns.getByRole("button", { name: "Retry cached FDA record" }).click();
+  await expect(rns.getByText("Archived FDA record P100026/S104", { exact: true })).toBeVisible();
+  await expect(rns.getByText(/Archive checksum verified/)).toBeVisible();
+  await expect(rns.getByRole("link", { name: "Open the cached FDA response" })).toHaveAttribute("href", /dossier-sources\/[a-f0-9]{64}\.json$/);
   await rns.getByRole("button", { name: "Include S104 in worksheet" }).click();
   await expect(rns.getByText("Included in export: P100026/S104.")).toBeVisible();
   const requests: string[] = [];

@@ -118,6 +118,8 @@
 .pilot-history label { margin-block: .6rem; }
 .pilot-history li { margin-block: .85rem; }
 .pilot-history li button { margin-block-start: .45rem; }
+.pilot-source-button { min-height: 44px; text-decoration: underline; text-underline-offset: .2em; margin-inline-end: .75rem; }
+.pilot-cached-source { border-inline-start: 2px solid var(--accent); padding-inline-start: .8rem; margin-block: .75rem; }
 .pilot-question { grid-column: 1 / -1; }
 .pilot-builder-status { margin-block: 1rem; }
 .pilot-decision { margin-block: 1rem; }

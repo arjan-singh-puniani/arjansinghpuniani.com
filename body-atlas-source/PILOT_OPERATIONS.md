@@ -54,7 +54,7 @@ First prospect to screen is Magnetic Tides’ CEO or R&D lead. Confirm that a so
 
 ### Buyer trial before a paid quote
 
-**At the booth:** Ask for the neurodevice R&D lead or contact responsible for an upcoming design, evidence or diligence review. If the booth contact sells to those teams, ask for an introduction. The test uses your laptop with the local preview already open. Connect to Wi-Fi or a hotspot to verify original FDA links. Bring a timer and a clean browser tab. Do not enter confidential, patient-specific or proprietary information.
+**At the booth:** Ask for the neurodevice R&D lead or contact responsible for an upcoming design, evidence or diligence review. If the booth contact sells to those teams, ask for an introduction. The test uses your laptop with the local preview already open. Connect to Wi-Fi or a hotspot for original FDA links. When a live supplement page is unavailable, the builder can verify the exact case against its cached, checksummed FDA response. Bring a timer and a clean browser tab. Do not enter confidential, patient-specific or proprietary information.
 
 **Exact ask:**
 
@@ -66,11 +66,17 @@ Start the clock when they take control. Don’t suggest devices, application IDs
 |---|---|
 | Pass | An R&D lead uses a real upcoming question. Within five minutes and without help, they choose the two intended FDA records, verify one consequential claim against its original FDA source, distinguish the original from any supplement they use, record one meaningfully unresolved check and download the worksheet. They identify a specific review or work product where they would use the export. |
 | Fail | An in-scope pair cannot be found or chosen, a record is misidentified, the buyer confuses an original decision with a supplement, the cited claim cannot be verified, they need help to export, or the output would not enter their review. Record the first blocker and their exact words. |
-| Inconclusive | The person has no real question yet, the task would expose confidential information, the necessary source site is unreachable, or the session is interrupted. A real application missing from the index is a coverage failure if the question was within the stated scope. |
+| Inconclusive | The person has no real question yet, the task would expose confidential information, neither the live FDA record nor a verifiable archived FDA response is available, or the session is interrupted. A real application missing from the index is a coverage failure if the question was within the stated scope. |
 
 Record elapsed time, the public application IDs, whether the five checks passed, the buyer’s intended use, and their first obstacle. Ask permission to keep non-sensitive notes. Repeat a failed step after fixing it with a different buyer question. Test success measures utility. Discuss a paid scope separately only if there is a gap the buyer wants help closing.
 
 The worksheet searches original PMA, 510(k) and De Novo decisions by device name or exact ID in the cached snapshot. Reviewed anatomy is available for a smaller group. The worksheet links 85 original PMAs to 6,420 cached supplement records. A user can filter a dossier’s FDA history and include one exact supplement per case in the export with its archive date and source. The workspace identifies reviewed summaries separately from selected archive records and keeps the buyer’s decision notes local. Keep production release pending until a buyer completes the workflow unassisted on a question they brought and confirms the export belongs in their review packet. The quoted pilot adds agreed records beyond the visible set as needed, documented checking of gaps, and a reviewed decision memo. Do not count an export as purchase evidence.
+
+### Cirtec laptop rehearsal
+
+The timed browser run searched by device name, selected InterStim P080025 and Precision P030017, and followed the exact InterStim supplement S353 to FDA. The live FDA site redirected that browser to an excessive-requests page. The worksheet now offers a local check of the original cached FDA response. It checks the archive SHA-256 and requires the original ID, supplement number and decision date to match before showing the entry.
+
+The repeated run confirmed the process-change reason against the preserved FDA response, then saved the worksheet with the exact source, decision note and follow-up gap. Scripted browser time after page load was about 0.6 seconds, with all decisions supplied by the rehearsal. It measures software interaction time only. The unassisted buyer task and usefulness question are still open. If someone needs a fresh check of the live FDA record and that page is inaccessible, record the result as inconclusive.
 
 ### Dry run and acceptance
 
