@@ -20,8 +20,14 @@ if (process.argv.includes('--self-test')) {
     console.log('Export digest determinism, server-route exclusion and stale-UI detection passed.');
   } finally { await rm(temporary, { recursive: true, force: true }); }
 } else {
-  const manifest = JSON.parse(await readFile(path.join(root, '../arjan-portfolio/public/atlas/body-atlas-export.json'), 'utf8'));
+  const destination = path.join(root, '../arjan-portfolio/public/atlas');
+  const manifest = JSON.parse(await readFile(path.join(destination, 'body-atlas-export.json'), 'utf8'));
   assert.equal(manifest.application, 'BODY//ATLAS');
   assert.equal(manifest.sourceDigest, await exportDigest(root), 'Atlas export is stale. Run node scripts/export-static.mjs ../arjan-portfolio/public/atlas from body-atlas-source.');
-  console.log('Checked-in atlas export matches its source digest.');
+  const head = (await readFile(path.join(destination, 'index.html'), 'utf8')).split('</head>', 1)[0];
+  const imageUrl = 'https://arjansinghpuniani.com/atlas/atlas-share-v1.jpg';
+  assert.ok(head.includes(`property="og:image" content="${imageUrl}"`), 'Main Atlas share image must be in the initial HTML head.');
+  assert.ok(head.includes('name="twitter:card" content="summary_large_image"'));
+  assert.deepEqual(await readFile(path.join(destination, 'atlas-share-v1.jpg')), await readFile(path.join(root, 'public/atlas-share-v1.jpg')));
+  console.log('Checked-in Atlas export and share card match the source.');
 }
