@@ -46,7 +46,8 @@ export const CHAMPIONSHIP_TUNING = {
     assistOpponentFlightSeconds: 1.14,
     assistOpponentServeFlightSeconds: 1.24,
     assistOpponentSpread: 0.28,
-    playerReturnReach: 2.85,
+    assistPlayerReturnReach: 2.85,
+    playerReturnReach: 1.45,
     returnEarlyLeadSeconds: 0.5,
     returnLateGraceSeconds: 0.065,
     /** Cue the buffered intention before the bounce; contact still waits for legality. */

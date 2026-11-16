@@ -8,9 +8,9 @@ import {MatchInput} from '../dist/tennis/MatchInput.js';
 import {CHAMPIONSHIP_OPPONENTS} from '../dist/tennis/ChampionshipOpponents.js';
 import {ChampionshipHUD} from '../dist/ui/ChampionshipHUD.js';
 const actor=(id,z)=>new Character({id,name:id,role:'member',shirt:'#888888',skin:'#c99977',hair:'#333333',playStyle:'test',goal:'test'},new Vec3(1,0,z),new Navigation(),{});
-function setup(){
- const p=actor('player',5),o=actor('leo',-5),input=new MatchInput(),hits=[];
- const match=new InteractiveMatchSystem(p,o,CHAMPIONSHIP_OPPONENTS.leo,input,{onRallyContact:(side,quality)=>hits.push({side,quality,gap:Vec3.sub(match.stagedBall(match.pending),match.pending.hitter.racketContactFrame().center).len()})});
+function setup(id='leo',depth=5){
+ const p=actor('player',depth),o=actor(id,-depth),input=new MatchInput(),hits=[];
+ const match=new InteractiveMatchSystem(p,o,CHAMPIONSHIP_OPPONENTS[id],input,{onRallyContact:(side,quality)=>hits.push({side,quality,gap:Vec3.sub(match.stagedBall(match.pending),match.pending.hitter.racketContactFrame().center).len()})});
  match.startPoint('player');input.setEnabled(true);
  return {p,o,input,match,hits,tick:dt=>{p.update(dt);o.update(dt);match.update(dt);}};
 }
@@ -63,3 +63,39 @@ for(const hz of [30,60,120])for(const aim of [-1,1]){
 console.log('Arcade movement, reversal, release, early/late contact at 3 rates, shot aiming and club restoration PASS',distances);
 
 assert.equal(ChampionshipHUD.prototype.messageFor({phase:'serving',server:'player'},'serving','Leo'),'SERVING','A consumed serve press acknowledges the ongoing motion');
+
+// Match outcomes use real ball/contact simulation; tracking only supplies normal stick/swing inputs.
+let stationaryContacts=0,trackingContacts=0;
+for(const hz of [30,60,120])for(const id of Object.keys(CHAMPIONSHIP_OPPONENTS)){
+ const contacts=[];
+ for(const tracking of [false,true]){
+  const {p,input,match,tick}=setup(id,COURT.baselineDepth);let result=null,cueAt=null;
+  match.callbacks.onPoint=(winner,reason)=>result={winner,reason};input.queueSwing();
+  for(let frame=0;frame<hz*45&&!result;frame++){
+   const time=frame/hz;
+   if(match.playerCue()==='swing'&&cueAt===null)cueAt=time;
+   if(cueAt!==null&&time-cueAt>=.25){input.queueSwing();cueAt=null;}
+   const gap=tracking&&match.receiver==='player'&&match.ball.active?match.ball.position.x-p.position.x:0;
+   input.setTouchMovement(Math.abs(gap)>.45?Math.sign(gap):0,0);tick(1/hz);
+  }
+  assert(match.rallyLength>=5,`${hz}Hz ${id}: opening exchange stays approachable`);
+  if(!tracking)assert(result,`${hz}Hz ${id}: stationary tapping cannot sustain an endless point`);
+  contacts.push(match.rallyLength);match.stop();
+ }
+ assert(contacts[1]>=contacts[0],`${hz}Hz ${id}: tracking must remain viable`);
+ stationaryContacts+=contacts[0];trackingContacts+=contacts[1];
+}
+assert(trackingContacts>stationaryContacts*1.5,'Court movement must materially extend playable rallies');
+for(const id of Object.keys(CHAMPIONSHIP_OPPONENTS)){
+ const {p,match}=setup(id);
+ for(const x of [COURT.centerX-1,COURT.centerX+1]){
+  p.position.x=x;match.rallyLength=8;
+  for(let seed=0;seed<20;seed++){
+   match.shotSequence=seed;const target=match.targetFor('opponent','clean');
+   assert((target.x-COURT.centerX)*(x-COURT.centerX)<0,'Attack the open half');
+   assert(target.x>COURT_MIN_X&&target.x<COURT_MAX_X,'Clean placement stays inside singles lines');
+  }
+ }
+ match.stop();
+}
+console.log('Rally pressure PASS: 24 simulated points, forgiving openings, open-court placement, tracking reward.',{stationaryContacts,trackingContacts});

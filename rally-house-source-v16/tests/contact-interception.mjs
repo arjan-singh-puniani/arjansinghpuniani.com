@@ -25,7 +25,12 @@ for(const hz of [30,60,120])for(const mode of ['club','match']){
   let frames=0,minFront=Infinity;
   for(let i=0;i<hz*45;i++){
     north.update(1/hz);south.update(1/hz);
-    if(mode==='match'&&rally.playerCue()==='swing')input.queueSwing();
+    if(mode==='match'){
+      // Sustained contact coverage now needs the same court tracking as normal play.
+      const gap=rally.receiver==='player'&&rally.ball.active?rally.ball.position.x-south.position.x:0;
+      input.setTouchMovement(Math.abs(gap)>.45?Math.sign(gap):0,0);
+      if(rally.playerCue()==='swing')input.queueSwing();
+    }
     rally.update(1/hz);
     const p=rally.pending;
     if(!p||p.released||(p.stroke??p.state)==='serve')continue;
