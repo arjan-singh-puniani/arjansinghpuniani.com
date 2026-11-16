@@ -11,9 +11,11 @@ export class AudioManager {
   private tennisMaterialBuffers=new Map<string,AudioBuffer[]>();private tennisVariant=0;
   private ambienceSource?:AudioBufferSourceNode;private ambienceGain?:GainNode;private ambienceFilter?:BiquadFilterNode;private ambienceTick=0;private ambienceTarget=-1;
   private ensure(){if(!this.ctx){this.ctx=new AudioContext();void this.prepareVoice(this.ctx,'doh');}if(this.ctx.state==='suspended')void this.ctx.resume().catch(()=>{});return this.ctx;}
+  // A suspended audio clock cannot finish queued sources; discard stale effects until playback resumes.
+  private playbackContext(){const c=this.ensure();return c.state==='running'?c:undefined;}
   private getNoise(){const c=this.ensure();if(this.noise)return this.noise;const b=c.createBuffer(1,Math.floor(c.sampleRate*.11),c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);this.noise=b;return b;}
-  tone(freq=440,duration=.08,gain=.018,type:OscillatorType='sine',detune=0){if(!this.enabled||this.volume<=0)return;try{const c=this.ensure(),o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,c.currentTime);o.detune.value=detune;g.gain.setValueAtTime(Math.max(.0001,gain*this.volume),c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);o.connect(g).connect(c.destination);o.onended=()=>{o.disconnect();g.disconnect();};o.start();o.stop(c.currentTime+duration+.02);}catch{}}
-  private noiseBurst(freq=900,duration=.045,gain=.018,q=.9){if(!this.enabled||this.volume<=0)return;try{const c=this.ensure(),src=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();src.buffer=this.getNoise();f.type='bandpass';f.frequency.value=freq;f.Q.value=q;g.gain.setValueAtTime(Math.max(.0001,gain*this.volume),c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);src.connect(f).connect(g).connect(c.destination);src.onended=()=>{src.disconnect();f.disconnect();g.disconnect();};src.start();src.stop(c.currentTime+duration+.01);}catch{}}
+  tone(freq=440,duration=.08,gain=.018,type:OscillatorType='sine',detune=0){if(!this.enabled||this.volume<=0)return;try{const c=this.playbackContext();if(!c)return;const o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,c.currentTime);o.detune.value=detune;g.gain.setValueAtTime(Math.max(.0001,gain*this.volume),c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);o.connect(g).connect(c.destination);o.onended=()=>{o.disconnect();g.disconnect();};o.start();o.stop(c.currentTime+duration+.02);}catch{}}
+  private noiseBurst(freq=900,duration=.045,gain=.018,q=.9){if(!this.enabled||this.volume<=0)return;try{const c=this.playbackContext();if(!c)return;const src=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();src.buffer=this.getNoise();f.type='bandpass';f.frequency.value=freq;f.Q.value=q;g.gain.setValueAtTime(Math.max(.0001,gain*this.volume),c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);src.connect(f).connect(g).connect(c.destination);src.onended=()=>{src.disconnect();f.disconnect();g.disconnect();};src.start();src.stop(c.currentTime+duration+.01);}catch{}}
 
   /**
    * Maintain a very quiet, procedural interior bed once the browser has already
@@ -23,7 +25,7 @@ export class AudioManager {
    */
   updateClubAmbience(dt:number,minutes:number,weather:string,championship=false){
     if(!this.ctx)return;
-    const c=this.ctx;
+    const c=this.ctx;if(c.state!=='running')return;
     if(!this.ambienceSource){
       const seconds=2.6,length=Math.max(1,Math.floor(c.sampleRate*seconds));
       const buffer=c.createBuffer(1,length,c.sampleRate),data=buffer.getChannelData(0);
@@ -87,7 +89,7 @@ export class AudioManager {
   tennisImpact(quality:'perfect'|'clean'|'defensive'|'frame'='clean',speed=10){
     if(!this.enabled||this.volume<=0)return;
     try{
-      const c=this.ensure();
+      const c=this.playbackContext();if(!c)return;
       const variant=this.tennisVariant++%3;
       // Use the planned ball launch speed, so power changes the sound independently of timing quality.
       const strength=Math.max(0,Math.min(1,((Number.isFinite(speed)?speed:10)-4)/14));
@@ -110,7 +112,7 @@ export class AudioManager {
   shoe(surface:'court'|'tile',scuff=false,pan=0,weight=1){
     if(!this.enabled||this.volume<=0)return;
     try{
-      const c=this.ensure(),variant=this.shoeVariant++%3,key=`${surface}:${scuff}:${variant}`;
+      const c=this.playbackContext();if(!c)return;const variant=this.shoeVariant++%3,key=`${surface}:${scuff}:${variant}`;
       let buffer=this.shoeBuffers.get(key);
       if(!buffer){const data=footstepSignal(surface,scuff,variant,c.sampleRate);buffer=c.createBuffer(1,data.length,c.sampleRate);buffer.getChannelData(0).set(data);this.shoeBuffers.set(key,buffer);}
       const source=c.createBufferSource(),gain=c.createGain(),position=c.createStereoPanner();source.buffer=buffer;
@@ -147,7 +149,7 @@ export class AudioManager {
   objectNote(kind:string,pan:number,variant=0){
     if(!this.enabled||this.volume<=0)return;
     try{
-      const c=this.ensure(),p=c.createStereoPanner();p.pan.value=pan;p.connect(c.destination);
+      const c=this.playbackContext();if(!c)return;const p=c.createStereoPanner();p.pan.value=pan;p.connect(c.destination);
       const notes=kind==='bell'?[1240,1860,930]:kind==='clock'?[380,510,290]:[850+Math.abs(variant%3)*75,1130];
       let remaining=notes.length;
       notes.forEach((freq,i)=>{const o=c.createOscillator(),g=c.createGain(),at=c.currentTime+i*(kind==='clock'?.11:.025),duration=kind==='bell'?.16:.10;

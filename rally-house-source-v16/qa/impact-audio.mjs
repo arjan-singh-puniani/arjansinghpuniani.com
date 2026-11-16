@@ -16,7 +16,8 @@ try{
   const {AudioManager}=await import(new URL('./dist/core/AudioManager.js',location.href).href),rows=[];
   for(const quality of ['defensive','clean','perfect','frame'])for(const speed of [4,11,18]){
    const rate=48000,context=new OfflineAudioContext(1,rate/4,rate),a=new AudioManager();
-   context.resume=()=>Promise.resolve();a.ctx=context;a.tennisImpact(quality,speed);
+   // Offline rendering deliberately schedules before its clock starts; bypass only the live-playback gate.
+   Object.defineProperty(context,'state',{get:()=> 'running'});context.resume=()=>Promise.resolve();a.ctx=context;a.tennisImpact(quality,speed);
    const data=(await context.startRendering()).getChannelData(0);a.ctx=undefined;a.dispose();
    let peak=0,energy=0,attack=0,tail=0;
    for(let i=0;i<data.length;i++){peak=Math.max(peak,Math.abs(data[i]));energy+=data[i]**2;if(i<rate*.01)attack+=data[i]**2;if(i>rate*.09)tail+=data[i]**2;}

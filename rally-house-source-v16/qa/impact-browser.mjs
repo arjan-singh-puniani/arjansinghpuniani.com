@@ -25,7 +25,8 @@ try{
   for(const q of ['perfect','clean','defensive','frame']){
    const rate=48000,offline=new OfflineAudioContext(1,Math.floor(rate*.25),rate),audio=new AudioManager();
    // Exercise the production node graph and gain, with an offline destination.
-   offline.resume=()=>Promise.resolve();audio.ctx=offline;audio.tennisImpact(q);
+   // Offline rendering deliberately schedules before its clock starts; bypass only the live-playback gate.
+   Object.defineProperty(offline,'state',{get:()=> 'running'});offline.resume=()=>Promise.resolve();audio.ctx=offline;audio.tennisImpact(q);
    const data=(await offline.startRendering()).getChannelData(0);audio.ctx=undefined;audio.dispose();
    let energy=0,attack=0,peak=0;for(let i=0;i<data.length;i++){energy+=data[i]*data[i];if(i<rate*.01)attack+=data[i]*data[i];peak=Math.max(peak,Math.abs(data[i]));}
    rows.push({q,rate,peak,attackFraction:attack/energy,rms:Math.sqrt(energy/data.length),samples:[...data]});
