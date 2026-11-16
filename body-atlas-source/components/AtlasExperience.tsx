@@ -177,8 +177,9 @@ export default function AtlasExperience() {
     (p: LabelProjection) => setProjection({ ...p, mode: "brain" }),
     [],
   );
-  const [showInterventions, setShowInterventions] = useState(true);
-  const [implantsOnly, setImplantsOnly] = useState(false);
+  const [mapLayer, setMapLayer] = useState<"none" | "regions" | "interventions" | "implants">("none");
+  const implantsOnly = mapLayer === "implants";
+  const showInterventions = mapLayer === "interventions" || implantsOnly;
   const [selectedImplant, setSelectedImplant] = useState<string | null>(null);
   const [densityMap,setDensityMap]=useState(true),[collection,setCollection]=useState('explained'),[resultsLimit,setResultsLimit]=useState(60),[libraryLimit,setLibraryLimit]=useState(100);
   const [portrait,setPortrait]=useState<boolean|null>(null);
@@ -186,7 +187,7 @@ export default function AtlasExperience() {
   const [comparisonQuery,setComparisonQuery]=useState("");
   const [copyState,setCopyState]=useState<"idle"|"copied"|"manual">("idle");
   const [shareUrl,setShareUrl]=useState("");
-  const [showOrgans,setShowOrgans]=useState(true);
+  const [showOrgans,setShowOrgans]=useState(false);
   const adaptedContour = portrait === false;
   const [showMechanism,setShowMechanism]=useState(true),[actionPlaying,setActionPlaying]=useState(false),[reducedMotion,setReducedMotion]=useState(false);
   const [actionStep,setActionStep]=useState(0);
@@ -215,10 +216,12 @@ export default function AtlasExperience() {
   useEffect(() => {
     const params=new URLSearchParams(window.location.search);
     const isPortrait=params.get("view")==="portrait";setPortrait(isPortrait);
-    if(isPortrait){setShowOrgans(false);setSurface(true);setShowInterventions(false);setPortraitFrame(params.get("frame")==="face"?"face":"upper");}
+    if (isPortrait) setPortraitFrame(params.get("frame") === "face" ? "face" : "upper");
     if (!isPortrait && params.get("demo") === "tremor") setDialog("compare");
     const entry = params.get("entry");
     if (!isPortrait && entry && dossiers[entry] && familyById(entry)) {
+      setMapLayer("interventions");
+      setShowOrgans(true);
       setSelected(entry);setRegion("all");setTab(params.get('panel')==='mechanism'?'components':'dossier');
     }
   }, []);
@@ -406,9 +409,11 @@ export default function AtlasExperience() {
       </main>
     </div>
   );
+  const solidOverview = !portrait && mode === "human" && region === "all" && !selected &&
+    !showOrgans && surface && mapLayer === "none";
   return (
     <div
-      className={`human-atlas ${portrait ? "portrait-view" : ""} ${anatomyExpanded ? "anatomy-expanded" : ""} ${showInterventions ? "with-intervention-labels" : ""} ${densityMap && showInterventions ? "with-density-map" : ""}`}
+      className={`human-atlas ${solidOverview ? "solid-overview" : ""} ${portrait ? "portrait-view" : ""} ${anatomyExpanded ? "anatomy-expanded" : ""} ${showInterventions ? "with-intervention-labels" : ""} ${densityMap && showInterventions ? "with-density-map" : ""}`}
     >
       <a className="skip-link" href="#body-map">
         Skip to body map
@@ -578,19 +583,19 @@ export default function AtlasExperience() {
             </div>
             <div className="map-view-controls">
               <button aria-label="Show documented implant regions" aria-pressed={implantsOnly}
-                onClick={() => { setImplantsOnly(value => !value); setShowInterventions(true); }}>Implants</button>
-              <button aria-label={densityMap?"Show intervention callouts":"Show dense intervention map"} aria-pressed={densityMap} onClick={()=>{setDensityMap(v=>!v);setShowInterventions(true);}}>{densityMap?'Map':'Labels'}</button>
+                onClick={() => setMapLayer(implantsOnly ? "none" : "implants")}>Implants</button>
               <button
-                aria-label={
-                  showInterventions
-                    ? "Show region labels"
-                    : "Show intervention labels"
-                }
-                aria-pressed={showInterventions}
-                onClick={() => setShowInterventions((v) => !v)}
-              >
-                {showInterventions ? "Interventions" : "Regions"}
-              </button>
+                aria-label={mapLayer === "interventions"
+                  ? densityMap ? "Show intervention callouts" : "Show dense intervention map"
+                  : "Show intervention labels"}
+                aria-pressed={mapLayer === "interventions"}
+                onClick={() => {
+                  setDensityMap(mapLayer !== "interventions" || !densityMap);
+                  setMapLayer("interventions");
+                }}
+              >{mapLayer === "interventions" && !densityMap ? "Labels" : "Map"}</button>
+              <button aria-label="Show region labels" aria-pressed={mapLayer === "regions"}
+                onClick={() => setMapLayer(mapLayer === "regions" ? "none" : "regions")}>Regions</button>
               <button
                 aria-label="Show whole human"
                 aria-pressed={mode === "human"}
@@ -644,7 +649,7 @@ export default function AtlasExperience() {
                   actionPlaying={actionPlaying && !reducedMotion}
                   actionStep={actionStep}
                   onProjection={projectHuman}
-                  showLabels={!!portrait || showInterventions}
+                  showLabels={mapLayer !== "regions"}
                   showOrgans={showOrgans}
                   region={region}
                   activeRegions={activeRegions}
@@ -937,7 +942,7 @@ export default function AtlasExperience() {
               {region==='all'&&!query&&collection==='explained'&&<details className="research-starts"><summary>Start with a research question</summary>
                 <button onClick={()=>{setComparison(['activa','exablate']);setComparisonQuery('');setYear(2026);setPlaying(false);setDialog('compare');}}>Same target: stimulation or ablation?</button>
                 <button onClick={()=>{setComparison(['neuralink','braingate']);setComparisonQuery('');setYear(2026);setPlaying(false);setDialog('compare');}}>How do investigational BCIs differ?</button>
-                <button onClick={()=>{chooseFamily('activa');setMode('human');setShowOrgans(true);setSurface(false);setYear(2026);setPlaying(false);}}>Where is an implant versus its target?</button>
+                <button onClick={()=>{chooseFamily('activa');setMode('human');setMapLayer("interventions");setShowOrgans(true);setSurface(false);setYear(2026);setPlaying(false);}}>Where is an implant versus its target?</button>
               </details>}
               <label className="atlas-search mobile-search">
                 <Search size={15} />

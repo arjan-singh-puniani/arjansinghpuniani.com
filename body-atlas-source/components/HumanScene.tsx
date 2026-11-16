@@ -391,6 +391,7 @@ export default function HumanScene({
   const [failed, setFailed] = useState(false);
   const [avatarFailed,setAvatarFailed]=useState(false),[loadedExterior,setLoadedExterior]=useState('');
   const exterior=adapted&&!avatarFailed?'adapted':'reference';
+  const opaqueContour = exterior === 'adapted' && !showOrgans && surface;
   const exteriorReady=useCallback(()=>{setLoadedExterior(exterior);onReady();},[exterior,onReady]);
   const [organsReady,setOrgansReady]=useState(false),[organsFailed,setOrgansFailed]=useState(false);
   const organsLoaded=useCallback(()=>setOrgansReady(true),[]);
@@ -418,6 +419,7 @@ export default function HumanScene({
       data-testid="human-reference"
       data-presentation={portrait?"portrait":"atlas"}
       data-exterior={exterior}
+      data-surface-mode={portrait || opaqueContour ? "solid" : "translucent"}
       data-focus-region={focusRegion || region}
       data-focus-anchor={anchorDescription(focusRegion || region)}
       data-focus-nodes={referenceSurfaceAnchors[focusRegion || region]?.nodes.join(',')||''}
@@ -475,7 +477,7 @@ export default function HumanScene({
             <Body
               portrait={portrait}
               adapted={exterior==='adapted'}
-              opaqueContour={exterior === 'adapted' && !showOrgans && surface}
+              opaqueContour={opaqueContour}
               cropContour={Boolean(contourView && contourView.frame !== "full")}
               region={region}
               activeRegions={activeRegions}
