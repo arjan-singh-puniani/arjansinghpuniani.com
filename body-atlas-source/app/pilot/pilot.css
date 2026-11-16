@@ -102,6 +102,12 @@
 .pilot-lookup label { width: min(100%, 18rem); }
 .pilot-lookup-result { margin-block: .75rem; }
 .pilot-fields label { min-width: 0; }
+.pilot-fields textarea { resize: vertical; }
+.pilot-fields textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.pilot-history { margin-block: .85rem; border-bottom: 1px solid var(--line); padding-bottom: .85rem; }
+.pilot-history label { margin-block: .6rem; }
+.pilot-history li { margin-block: .85rem; }
+.pilot-history li button { margin-block-start: .45rem; }
 .pilot-question { grid-column: 1 / -1; }
 .pilot-builder-status { margin-block: 1rem; }
 .pilot-decision { margin-block: 1rem; }

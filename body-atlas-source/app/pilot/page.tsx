@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { briefDataUrl, coverage, families, recordById, relationshipLabels } from "@/lib/atlas";
 import { atlasBasePath, atlasPath } from "@/lib/deployment";
+import { dossiers } from "@/lib/dossiers";
 import { comparisonRelationships } from "@/lib/research-workflow";
 import BriefBuilder, { type BriefCase } from "./BriefBuilder";
 import Inquiry from "./Inquiry";
@@ -68,6 +69,7 @@ const briefCases = families.flatMap((family): BriefCase[] => {
     statement: record.statement?.trim() || "",
     limits: family.limitations,
     supplement: reviewedSupplements[record.application],
+    dossierPath: record.application.startsWith("P") ? dossiers[family.id]?.path : undefined,
     relationships,
   }];
 }).sort((a, b) => a.name.localeCompare(b.name));

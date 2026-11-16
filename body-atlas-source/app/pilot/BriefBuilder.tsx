@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { atlasPath } from "@/lib/deployment";
+import SupplementHistory, { type SelectedSupplement } from "./SupplementHistory";
 
 export type BriefCase = {
   application: string;
@@ -11,6 +12,7 @@ export type BriefCase = {
   status: string;
   url: string;
   statement: string;
+  dossierPath?: string;
   supplement?: { id: string; date: string; change: string; url: string };
   limits: string;
   relationships: {
@@ -25,7 +27,7 @@ export type BriefCase = {
 
 const scope = "Historical U.S. evidence. Verify current labeling and relevant supplements before relying on these records. A device authorization or shared target cannot establish comparative outcomes. Regional relationships do not specify implant coordinates.";
 const missingStatement = "The indexed record does not provide a usable decision statement. Open the original FDA record.";
-const missingSupplement = "No later decision has been reviewed for this worksheet. Check the original record for related decisions and confirm the current label separately.";
+const missingSupplement = "No later decision has a reviewed summary in this worksheet. Check the original record for related decisions and confirm the current label separately.";
 const missingRelationships = "No specific placement, recording site, or target is established in this subset.";
 
 function markdownText(text: string) {
@@ -39,6 +41,8 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
   const [first, setFirst] = useState("");
   const [second, setSecond] = useState("");
   const [question, setQuestion] = useState("");
+  const [selectedSupplements, setSelectedSupplements] = useState<Record<string, SelectedSupplement | undefined>>({});
+  const [notes, setNotes] = useState({ pair: "", finding: "", gap: "" });
   const [index, setIndex] = useState<Record<string, BriefCase> | null>(null);
   const [added, setAdded] = useState<BriefCase[]>([]);
   const [application, setApplication] = useState("");
@@ -48,6 +52,9 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
   const left = choices.find(item => item.application === first);
   const right = choices.find(item => item.application === second);
   const pair = left && right && left !== right ? [left, right] : [];
+  const pairKey = pair.map(item => item.application).join("/");
+  const finding = notes.pair === pairKey ? notes.finding : "";
+  const gap = notes.pair === pairKey ? notes.gap : "";
 
   async function findApplication(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -94,26 +101,35 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
     `Research question: ${markdownText(question.trim()) || "Add the decision this comparison will inform."}`,
     `Snapshot exported ${snapshot} UTC.`,
     scope,
-    ...pair.flatMap(item => [
-      "",
-      `## ${markdownText(item.name)} · ${item.application}`,
-      `${item.status} · ${item.decisionDate}. [Original FDA record](${item.url}). Retrieved ${item.retrievedAt} UTC.`,
-      `FDA decision statement: ${markdownText(item.statement || missingStatement)}`,
-      ...(item.relationships.length ? item.relationships.map(relationship =>
-        `- ${relationship.label} (${relationship.state}): ${markdownText(relationship.assertion)} [Source](${relationship.url}) · ${markdownText(relationship.locator)}. Limits: ${markdownText(relationship.limits)}`,
-      ) : [missingRelationships]),
-      "",
-      "### Later FDA decisions",
-      item.supplement
-        ? `[${item.supplement.id}](${item.supplement.url}) · ${item.supplement.date}. ${markdownText(item.supplement.change)}`
-        : missingSupplement,
-      `Evidence limits: ${markdownText(item.limits)}`,
-    ]),
     "",
     "## Decision notes",
-    "- What these sources support:",
-    "- Open question or conflicting evidence:",
-    "- Next source to verify:",
+    `- What the sources support: ${markdownText(finding.trim()) || "Add a finding and the source that supports it."}`,
+    `- What still needs checking: ${markdownText(gap.trim()) || "Add the gap and the next source to verify."}`,
+    ...pair.flatMap(item => {
+      const selected = selectedSupplements[item.application];
+      return [
+        "",
+        `## ${markdownText(item.name)} · ${item.application}`,
+        `${item.status} · ${item.decisionDate}. [Original FDA record](${item.url}). Retrieved ${item.retrievedAt} UTC.`,
+        `FDA decision statement: ${markdownText(item.statement || missingStatement)}`,
+        ...(item.relationships.length ? item.relationships.map(relationship =>
+          `- ${relationship.label} (${relationship.state}): ${markdownText(relationship.assertion)} [Source](${relationship.url}) · ${markdownText(relationship.locator)}. Limits: ${markdownText(relationship.limits)}`,
+        ) : [missingRelationships]),
+        "",
+        "### Later FDA decisions",
+        item.supplement
+          ? `[${item.supplement.id}](${item.supplement.url}) · ${item.supplement.date}. ${markdownText(item.supplement.change)}`
+          : missingSupplement,
+        ...(selected ? [
+          `Selected cached supplement: [${selected.application}/${selected.supplement}](${selected.url}) · ${selected.date} · ${markdownText(selected.decision)}.`,
+          `Indexed change reason: ${markdownText(selected.reason || "Not available")}.`,
+          `FDA statement in the archive: ${markdownText(selected.statement || "Not available")}.`,
+          `Archive checked ${selected.archiveDate} UTC. Verify the original source for applicability.`,
+          ...(selected.sourceSha ? [`Archive source SHA-256: ${selected.sourceSha}.`] : []),
+        ] : []),
+        `Evidence limits: ${markdownText(item.limits)}`,
+      ];
+    }),
     "",
   ].join("\n");
 
@@ -159,7 +175,7 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
         <label className="pilot-question">Decision or question (optional)
           <input value={question} onChange={event => setQuestion(event.target.value)} maxLength={240} aria-describedby="pilot-question-hint" />
         </label>
-        <p id="pilot-question-hint" className="pilot-question">Your question stays on this page and in your download.</p>
+        <p id="pilot-question-hint" className="pilot-question">Your question and decision notes stay on this page and in your download.</p>
       </div>
 
       <p className="pilot-builder-status" role="status">{pair.length ? "Two applications ready to review." : "Choose two different applications to prepare the worksheet."}</p>
@@ -193,12 +209,34 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
                     <p>{item.supplement.change}</p>
                   </>
                 ) : <p>{missingSupplement}</p>}
+                {item.dossierPath && <SupplementHistory
+                  application={item.application}
+                  dossierPath={item.dossierPath}
+                  selected={selectedSupplements[item.application]}
+                  onSelect={decision => setSelectedSupplements(current => ({ ...current, [item.application]: decision }))}
+                />}
+                {selectedSupplements[item.application] && <div className="pilot-history">
+                  <p>Included in export: {item.application}/{selectedSupplements[item.application]?.supplement}.</p>
+                  <button type="button" onClick={() => setSelectedSupplements(current => ({ ...current, [item.application]: undefined }))}>
+                    Remove selected supplement
+                  </button>
+                </div>}
                 <h4>Evidence limits</h4>
                 <p>{item.limits}</p>
               </article>
             ))}
           </div>
           <p>{scope}</p>
+          <div className="pilot-fields pilot-grid">
+            <label>What do the sources support?
+              <textarea value={finding} rows={3} maxLength={800}
+                onChange={event => setNotes({ pair: pairKey, finding: event.target.value, gap })} />
+            </label>
+            <label>What still needs checking?
+              <textarea value={gap} rows={3} maxLength={800}
+                onChange={event => setNotes({ pair: pairKey, finding, gap: event.target.value })} />
+            </label>
+          </div>
           <div className="pilot-actions">
             <a className="pilot-button" download="body-atlas-evidence-worksheet.md" href={`data:text/markdown;charset=utf-8,${encodeURIComponent(brief.toWellFormed())}`}>Download editable worksheet</a>
             <a href="#offer">Get help checking a gap</a>
