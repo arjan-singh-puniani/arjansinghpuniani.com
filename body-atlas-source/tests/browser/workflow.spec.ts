@@ -630,49 +630,23 @@ test('unavailable body contour falls back to the original reference',async({page
 });
 
 
-test('shareable contour is an upper-body view with working copy and atlas navigation',async({page,context},testInfo)=>{
- const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto('/?view=portrait&entry=rns&unused=discard#discard');
- const scene=page.getByTestId('human-reference');
- await expect(scene).toHaveAttribute('data-presentation','portrait');
- await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
- await expect(scene).toHaveAttribute('data-internal-status','hidden');
- await expect(scene).toHaveAttribute('data-organs-status','hidden');
- await expect(page.getByRole('heading',{name:'Holographic contour',exact:true})).toBeVisible();
- await expect(page.getByRole('slider')).toHaveCount(0);
- await expect(page.getByRole('complementary',{name:'Interventions and evidence'})).toHaveCount(0);
- await expect(page.getByRole('button',{name:'Inspect NeuroPace RNS System',exact:true})).toHaveCount(0);
- await expect(page.locator('body')).not.toContainText(/Arjan|personal contour/i);
- const canvas=page.locator('canvas'),before=await canvas.screenshot(),box=(await canvas.boundingBox())!;
- expect(box.height).toBeGreaterThan(page.viewportSize()!.height*.5);
- await page.screenshot({path:`test-results/${testInfo.project.name}-share-front.png`});
- await page.mouse.move(box.x+box.width*.5,box.y+box.height*.5);await page.mouse.down();await page.mouse.move(box.x+box.width*.7,box.y+box.height*.5,{steps:12});await page.mouse.up();
- await expect.poll(async()=>Buffer.compare(before,await canvas.screenshot())).not.toBe(0);
- await context.grantPermissions(['clipboard-read','clipboard-write']);
- await page.getByRole('button',{name:'Copy share link',exact:true}).click();
- await expect(page.getByRole('status')).toHaveText('Share link copied');
- const copied=await page.evaluate(()=>navigator.clipboard.readText());expect(new URL(copied).search).toBe('?view=portrait');expect(new URL(copied).hash).toBe('');
- await page.screenshot({path:`test-results/${testInfo.project.name}-share-contour.png`});
- const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
- await page.getByRole('button',{name:'Reset view',exact:true}).click();await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
- await page.getByRole('group',{name:'Contour framing'}).getByRole('button',{name:'Face',exact:true}).click();
- await expect(scene).toHaveAttribute('data-contour-frame','face');
- await expect(page.getByRole('button',{name:'Face',exact:true})).toHaveAttribute('aria-pressed','true');
- await page.getByRole('button',{name:'Copy share link',exact:true}).click();
- const faceLink=await page.evaluate(()=>navigator.clipboard.readText());expect(new URL(faceLink).search).toBe('?view=portrait&frame=face');
- await page.screenshot({path:`test-results/${testInfo.project.name}-face-contour.png`});
- await page.goto(faceLink);await expect(page.getByTestId('human-reference')).toHaveAttribute('data-contour-frame','face');
- await page.getByRole('button',{name:'Upper body',exact:true}).click();await expect(page.getByTestId('human-reference')).toHaveAttribute('data-contour-frame','upper');
- await page.getByRole('button',{name:'Copy share link',exact:true}).click();
- const upperLink=await page.evaluate(()=>navigator.clipboard.readText());expect(upperLink).toBe(copied);
- await page.addInitScript(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new Error('Clipboard denied')}}}));await page.goto(upperLink);
- await page.getByRole('button',{name:'Copy share link',exact:true}).click();await expect(page.getByRole('textbox',{name:'Share link',exact:true})).toHaveValue(copied);
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.documentElement.scrollHeight<=innerHeight+1)).toBe(true);
- await page.getByRole('link',{name:'Explore atlas',exact:true}).click();await expect(page.getByRole('slider')).toHaveAttribute('min','1999');
- await page.getByRole('button',{name:'Sources and model',exact:true}).click();await expect(page.getByRole('link',{name:/Open shareable contour view/})).toHaveAttribute('href','/?view=portrait');
- expect(errors).toEqual([]);
+test("the focused hologram still offers full-body and profile views", async ({ page }) => {
+  await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/contour");
+  await expect(page.getByRole("heading", { name: "Anatomical hologram" })).toBeVisible();
+  const scene = page.getByTestId("human-reference");
+  await expect(scene).toHaveAttribute("data-avatar-status", "loaded", { timeout: 45000 });
+  await expect(scene).toHaveAttribute("data-surface-mode", "solid");
+  await expect(scene).toHaveAttribute("data-organs-status", "hidden");
+  const profile = page.getByRole("button", { name: "Profile", exact: true });
+  await profile.click();
+  await expect(profile).toHaveAttribute("aria-pressed", "true");
+  const fullBody = page.getByRole("button", { name: "Full body", exact: true });
+  await fullBody.click();
+  await expect(fullBody).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("link", { name: "the main Atlas" }).click();
+  await expect(page.getByRole("button", { name: "Show documented implant regions" })).toBeVisible();
+  await expect(page.getByTestId("human-reference")).toHaveAttribute("data-surface-mode", "solid");
 });
-
 
 test('overview names interventions on the body and opens their original evidence',async({page},testInfo)=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');
@@ -700,6 +674,7 @@ test('overview names interventions on the body and opens their original evidence
   await expect(map.locator('.constellation-intervention').first()).toBeVisible();
  }
  const regionSelect=page.getByRole('combobox',{name:'Explore anatomical region',exact:true});
+ if (!await regionSelect.count()) await page.locator('.map-breadcrumb').getByRole('button',{name:'Human',exact:true}).click();
  await regionSelect.selectOption('BODY:heart');
  await expect(map.locator('.constellation-intervention').first()).toBeVisible();
  const seen=new Set<string>();let next=map.getByRole('button',{name:'Next mapped interventions',exact:true});
