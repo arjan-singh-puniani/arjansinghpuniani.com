@@ -20,9 +20,24 @@ type Source = {
   signal?: DigitalECG; image?: string; width: number; height: number; page?: number;
 };
 type PointPair = [ImagePoint, ImagePoint];
+const DEMO_RECORD = "00010";
+const DEMO_ENDPOINTS = [433, 852] as const;
+const DEMO_REVISED_B = 822;
+const evidenceDemoPath = "/work/vector-ekg-reasonos/demo";
 const pair = (a: number, b: number, y = 110): PointPair => [{ x: a, y }, { x: b, y }];
 const round = (v: number, digits = 1) => Number(v.toFixed(digits));
 const leadLabel = (v: string) => v.replace(/^AV/, "aV");
+function samplePoint(signal: DigitalECG, view: Pick<IntervalExercise, "lead" | "start" | "seconds" | "gain">, sample: number): ImagePoint {
+  const values = signal.millivolts[signal.leads.indexOf(view.lead)];
+  return {
+    x: (sample / signal.sampleRate - view.start) / view.seconds * STRIP_WIDTH,
+    y: STRIP_HEIGHT / 2 - values[sample] * view.gain * 4,
+  };
+}
+function intervalPayload(basis: JsonObject, label: string, result: ReturnType<typeof calculateWorkspaceInterval>, endpointBasis: string): JsonObject {
+  return { ...basis, label, durationMs: result.duration, uncertaintyMs: result.uncertainty,
+    lowerMs: result.low, upperMs: result.high, sampleIndices: result.sampleIndices, endpointBasis };
+}
 const hash = async (bytes: BufferSource) => Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))).map(b => b.toString(16).padStart(2, "0")).join("");
 function download(name: string, content: string, type: string) {
   const url = URL.createObjectURL(new Blob([content], { type }));
@@ -30,7 +45,7 @@ function download(name: string, content: string, type: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
+export function ECGWorkspace({ fullScreen = false, engineeringDemo = false }: { fullScreen?: boolean; engineeringDemo?: boolean }) {
   const [source, setSource] = useState<Source | null>(null), [trace, setTrace] = useState<Trace | null>(null);
   const [loading, setLoading] = useState(true), [error, setError] = useState(""), [message, setMessage] = useState("");
   const [caseId, setCaseId] = useState("00010"), [lead, setLead] = useState("II"), [windowStart, setWindowStart] = useState(0);
@@ -76,7 +91,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   const showEvidenceReview = Boolean(signal && panel === "review" && reviewedMeasurement &&
     (reviewedNote || revisedMeasurement));
   const displayedEvidence = revisedMeasurement ?? reviewedMeasurement;
-  const exercise = source?.referenceId ? INTERVAL_EXERCISES[source.referenceId] : undefined;
+  const exercise = !engineeringDemo && source?.referenceId ? INTERVAL_EXERCISES[source.referenceId] : undefined;
   function matchesLandmarks(state: State, [first, last]: readonly [number, number]) {
     const indices = state.payload.sampleIndices;
     return exercise && state.role === "measurement" && state.payload.lead === exercise.lead && state.payload.label === exercise.kind &&
@@ -142,12 +157,32 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
     if (lesson) { setPanel("measure"); setOverlays(true); }
     setPoints(next.signal ? pair(250, 350) : pair(next.width * .25, next.width * .5, next.height * .65));
     setGrid(pair(next.width * .15, next.width * .35, next.height * .8));
-    const nextTrace = worksheets.current.get(next.id) ?? createWorkspaceTrace(next.id, {
+    const sourceMetadata: JsonObject = {
       format: next.signal ? "digital-waveform" : "source-image", sha256: next.sha, headerSha256: next.headerSha ?? null,
       localFile: next.local, page: next.page ?? null, width: next.width, height: next.height,
       sampleRateHz: next.signal?.sampleRate ?? null, sampleCount: next.signal?.sampleCount ?? null,
       leads: next.signal?.leads ?? [], sourceDescription: next.local ? "Local file; contents excluded from worksheet" : next.name,
-    });
+    };
+    let nextTrace = worksheets.current.get(next.id) ?? createWorkspaceTrace(next.id, sourceMetadata);
+    if (engineeringDemo && next.signal && lesson) {
+      const recorded = next.signal;
+      const endpoints: PointPair = [samplePoint(recorded, lesson, DEMO_ENDPOINTS[0]), samplePoint(recorded, lesson, DEMO_ENDPOINTS[1])];
+      const basis: JsonObject = { sourceId: next.id, lead: lesson.lead, points: endpoints.map(p => [p.x, p.y]),
+        calibrationKey: JSON.stringify({ source: next.id, sampleRate: recorded.sampleRate, units: "mV" }),
+        windowStart: lesson.start, span: lesson.seconds, windowSeconds: lesson.seconds, coordinateSystem: "focused-strip",
+        calibrationConfirmed: true, leadConfirmed: true, endpointsConfirmed: true, calibration: { sampleRateHz: recorded.sampleRate } };
+      const measured = calculateWorkspaceInterval(basis, { ...sourceMetadata, sourceId: next.id });
+      const measurement = appendWorkspaceState(nextTrace, "measurement", intervalPayload(basis, lesson.kind, measured, "Prepared sample endpoints"), ["source"], undefined, true);
+      const measurementId = measurement.transformation.outputStateId;
+      const note = measurementId && appendWorkspaceState(measurement.trace, "claim", {
+        sourceId: next.id, lead: lesson.lead, measurementIds: [measurementId], status: "proposed; not clinically validated",
+        text: `The selected lead II endpoints are ${round(measured.duration, 2)} ms apart.`,
+      }, [measurementId], undefined, true);
+      if (!measurement.transformation.accepted || !note || !note.transformation.accepted) throw new Error("The prepared trace could not be validated.");
+      nextTrace = note.trace;
+      setPoints(endpoints); setPlaced([true, true]);
+      setSelected(note.transformation.outputStateId); setPanel("review");
+    }
     worksheets.current.set(next.id, nextTrace); setTrace(nextTrace); setLoading(false);
   }
   async function closePDF() {
@@ -170,7 +205,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
     } catch (e) { if (serial.current === token) { setError(e instanceof Error ? e.message : "Unable to open recording."); setLoading(false); } }
   }
   useEffect(() => {
-    void reference("00010");
+    void reference(DEMO_RECORD);
     return () => {
       // Invalidate any import still running when this workspace unmounts.
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -297,15 +332,10 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   }
   function placeCalipers(view: IntervalExercise, endpoints?: readonly [number, number?]) {
     if (loading || !signal || editing) return;
-    const values = signal.millivolts[signal.leads.indexOf(view.lead)];
-    const point = (sample: number): ImagePoint => ({
-      x: (sample / signal.sampleRate - view.start) / view.seconds * stripWidth,
-      y: 120 - values[sample] * view.gain * 4,
-    });
     setLead(view.lead); setGain(view.gain); setWindowStart(view.start); setWindowSeconds(view.seconds);
     if (endpoints) {
       const [first, last] = endpoints;
-      setPoints([point(first), point(last ?? first)]);
+      setPoints([samplePoint(signal, view, first), samplePoint(signal, view, last ?? first)]);
       setPlaced([true, last !== undefined]);
       setNextPoint(last === undefined ? 1 : 0);
     } else {
@@ -317,9 +347,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   }
   function saveMeasurement() {
     if (!source || !trace || !canSave || !measured) return;
-    const payload: JsonObject = { ...measurementBasis, label: kind, durationMs: measured.duration,
-      uncertaintyMs: measured.uncertainty, lowerMs: measured.low, upperMs: measured.high,
-      sampleIndices: measured.sampleIndices, endpointBasis: signal ? "User-confirmed sample endpoints; ±1 sample quantization bound only" : "User-confirmed source pixels; scan distortion and landmark ambiguity excluded" };
+    const payload = intervalPayload(measurementBasis, kind, measured, signal ? "User-confirmed sample endpoints; ±1 sample quantization bound only" : "User-confirmed source pixels; scan distortion and landmark ambiguity excluded");
 
     const result = appendWorkspaceState(trace, "measurement", payload, ["source"], editing ?? undefined);
     setTrace(result.trace); worksheets.current.set(source.id, result.trace);
@@ -330,6 +358,28 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
     }
     else setMessage("Measurement rejected. Check endpoints and calibration.");
     if (traceActions && !editing) requestAnimationFrame(() => traceAndActions.current?.scrollIntoView({ block: "nearest" }));
+  }
+  function applyExampleRevision(original: State) {
+    const view = INTERVAL_EXERCISES[DEMO_RECORD];
+    const metadata = states.find(st => st.role === "source")?.payload;
+    if (!engineeringDemo || !view || !source || !signal || !trace || !metadata || loading ||
+      original.payload.entryOrigin !== "prepared-example" || original.payload.revisionOf !== null) return;
+    const endpoints: PointPair = [samplePoint(signal, view, DEMO_ENDPOINTS[0]), samplePoint(signal, view, DEMO_REVISED_B)];
+    const basis: JsonObject = { ...original.payload, points: endpoints.map(p => [p.x, p.y]) };
+    const measured = calculateWorkspaceInterval(basis, metadata);
+    const result = appendWorkspaceState(trace, "measurement", intervalPayload(basis, String(original.payload.label), measured, "Prepared endpoint revision"), ["source"], original.id, true);
+    if (!result.transformation.accepted) { setMessage("The example revision was rejected."); return; }
+    const revision = workspaceStates(result.trace).find(state => state.id === result.transformation.outputStateId);
+    if (!revision) return;
+    setTrace(result.trace); worksheets.current.set(source.id, result.trace);
+    inspect(revision);
+    setMessage("Revision saved. The original interval is still available.");
+    openEvidenceReview();
+  }
+
+  function resetExample() {
+    if (source) worksheets.current.delete(source.id);
+    void reference(DEMO_RECORD);
   }
   function saveClaim() {
     if (!trace || !source || !selectedState || selectedState.role !== "measurement" || draft.trim().length < 3) return;
@@ -431,12 +481,22 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
   else if (placed.every(Boolean)) placementCue = measured?.ordered
     ? `${round(measured.duration, 2)} ms selected`
     : "Place A before B. Drag a caliper to adjust it.";
-  return <section className={`${s.workspace} ${fullScreen ? s.fullScreen : ""}`} aria-labelledby="workspace-title" data-ecg-workspace data-ecg-fullscreen={fullScreen || undefined}>
+  const exampleReady = engineeringDemo && !revisedMeasurement && reviewedMeasurement?.payload.entryOrigin === "prepared-example";
+  const canRestartExample = engineeringDemo && Boolean(revisedMeasurement) && saved.every(state => state.payload.entryOrigin === "prepared-example");
+  return <section className={`${s.workspace} ${fullScreen ? s.fullScreen : ""} ${engineeringDemo ? s.engineering : ""}`} aria-labelledby="workspace-title" data-ecg-workspace data-ecg-fullscreen={fullScreen || undefined}>
     <header className={s.masthead}>
-      <div><h2 id="workspace-title">ECG workspace</h2><p>Choose a case, mark two points, and check what the interval tells you.</p></div>
-      {fullScreen ? <Link href="/work/vector-ekg-reasonos">← Case study</Link> : <Link href="/work/vector-ekg-reasonos/workspace">Open full screen ↗</Link>}
+      {engineeringDemo ? <>
+        <div><span className={s.productName}>ReasonOS</span><h2 id="workspace-title">Evidence change review</h2><p>Change one ECG sample endpoint and see which saved observation needs review.</p></div>
+        <Link href="/work/vector-ekg-reasonos/workspace">Open ECG workspace ↗</Link>
+      </> : <>
+        <div><h2 id="workspace-title">ECG workspace</h2><p>Choose a case, mark two points, and check what the interval tells you.</p></div>
+        <nav className={s.workspaceLinks} aria-label="Workspace links">
+          <Link href={evidenceDemoPath}>Engineering demo ↗</Link>
+          {fullScreen ? <Link href="/work/vector-ekg-reasonos">← Case study</Link> : <Link href="/work/vector-ekg-reasonos/workspace">Open full screen ↗</Link>}
+        </nav>
+      </>}
     </header>
-    <div className={s.toolbar}>
+    {!engineeringDemo && <div className={s.toolbar}>
       <label>Practice case <select ref={casePicker} aria-label="Reference recording" value={source?.local ? "local" : source?.referenceId ?? caseId} disabled={loading} onChange={e => void reference(e.target.value)}>
         {source?.local && <option value="local">Local recording</option>}
         {Object.entries(INTERVAL_EXERCISES).map(([id, lesson]) => <option key={id} value={id}>{lesson?.title}</option>)}
@@ -445,7 +505,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
       <button className={s.open} disabled={loading} onClick={() => fileInput.current?.click()}>Open local ECG <span>↑</span></button>
       <input ref={fileInput} className={s.file} type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.csv,.hea,.dat" aria-label="Open local ECG files" onChange={e => { void openFiles(Array.from(e.target.files ?? [])); e.target.value = ""; }} />
       <span className={s.private}>Local files stay in this browser tab</span>
-    </div>
+    </div>}
     {error && <div className={s.error} role="alert">{error} <button disabled={loading} onClick={() => void reference(caseId)}>Reload reference</button></div>}
     <div className={s.layout}>
       <div className={s.recording}>
@@ -454,7 +514,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
         </div>
         {loading && <p role="status" className={source ? s.loadingCase : s.loading}>Opening and checking recording…</p>}
         {source && <div className={loading ? s.pending : undefined} aria-busy={loading}>
-          {!exercise && viewTools}
+          {!exercise && !engineeringDemo && viewTools}
           {signal ? <>
             {clipped && <p className={s.clipping} role="status">Some recorded peaks exceed the vertical display range. Original values are retained. {gain > 1 && <button onClick={() => setGain(gain > 10 ? 10 : gain > 5 ? 5 : 1)}>Lower display gain</button>}</p>}
 
@@ -514,17 +574,23 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
                 </dl>
                 {reviewedNote && <blockquote><small>Saved observation</small>{String(reviewedNote.payload.text)}</blockquote>}
                 {noteNeedsReview && <p>The observation still cites the original measurement. Review it against the revised interval before relying on it.</p>}
+                {exampleReady && <p className={s.exampleAction}>Prepared example. Apply a 30-sample shift (60 ms earlier) to endpoint B. The ECG samples stay fixed.</p>}
                 <div className={s.traceButtons}>
+                  {exampleReady && <button className={s.primary} disabled={loading} onClick={() => applyExampleRevision(reviewedMeasurement)}>Apply example revision</button>}
                   {revisedMeasurement
                     ? <button className={s.primary} onClick={() => { inspect(revisedMeasurement); setMessage(""); goToPanel("reason"); }}>Write a note on revised interval</button>
-                    : <button className={s.primary} onClick={() => startRevision(reviewedMeasurement)}>Revise this interval</button>}
+                    : <button className={exampleReady ? undefined : s.primary} onClick={() => startRevision(reviewedMeasurement)}>{engineeringDemo ? "Move calipers manually" : "Revise this interval"}</button>}
                   {!evidenceInView && displayedEvidence && <button onClick={() => {
                     inspect(displayedEvidence);
                     setSelected(selected);
                     openEvidenceReview();
                   }}>Show saved interval</button>}
-                  <button onClick={() => goToPanel("review")}>View worksheet history</button>
+                  {engineeringDemo
+                    ? <button onClick={() => exportWorksheet("json")}>Download trace JSON</button>
+                    : <button onClick={() => goToPanel("review")}>View worksheet history</button>}
+                  {canRestartExample && <button disabled={loading} onClick={resetExample}>Restart example</button>}
                 </div>
+                {engineeringDemo && <p className={s.limit}>Engineering prototype. The review flag follows a recorded dependency.</p>}
               </section>}
               {traceActions && !editing && <div className={s.traceActions} role="group" aria-label="Trace actions">
                 <div className={s.traceButtons}>
@@ -557,6 +623,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
               </div>}
             </div>
             {exercise && viewTools}
+            {!engineeringDemo && <>
             <label className={s.timeline}>Time window <input type="range" aria-label="Recording time window" min="0" max={Math.max(0, duration - span)} step={1 / signal.sampleRate} value={windowStart} disabled={duration <= span} onChange={e => { setWindowStart(Number(e.target.value)); clearCalipers(); }}/><output>{round(windowStart, 2)} s</output></label>
             <details className={s.overview} open={overviewOpen} onToggle={e => setOverviewOpen(e.currentTarget.open)}><summary>{signal.leads.length}-lead overview <span>Recorded signals · select a lead to focus</span></summary><div className={s.paperFrame} role="region" tabIndex={0} aria-label="Recorded ECG lead overview; select a lead below to inspect it">
               <svg viewBox={`0 0 1200 ${Math.ceil(signal.leads.length / 4) * 180 + 80}`} className={s.paper} role="group" aria-label={`Overview rendered directly from recorded digital samples; all panels show the same ${round(panelSpan, 3)}-second window`}>
@@ -578,6 +645,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
                 })}
               </svg>
             </div></details>
+            </>}
           </> : <div className={s.imageFrame} role="region" tabIndex={0} aria-label="Original ECG page with overlays; scroll to inspect when zoomed">
             <svg viewBox={`0 0 ${source.width} ${source.height}`} style={{ width: `${zoom * 100}%` }} role="group" aria-label="Imported original ECG page pixels; no waveform reconstruction or automatic interpretation" className={s.sourceImage} {...pointerProps}>
               <image href={source.image} width={source.width} height={source.height} />{overlay}
@@ -609,7 +677,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
           {selectedState?.role === "measurement" && selectedState.payload.label === "RR" && <button className={s.secondary} onClick={() => { const ms = Number(selectedState.payload.durationMs); setDraft(`The selected peaks are ${round(ms, 2)} ms apart (${round(60000 / ms, 1)} bpm for this interval). One interval does not establish regularity.`); }}>Use the interval in my note</button>}
           <button className={s.primary} disabled={!selectedState || selectedState.role !== "measurement" || draft.trim().length < 3 || loading} onClick={saveClaim}>Save note</button>
         </div>}
-        {panel === "review" && <div className={s.panel}><h3 tabIndex={-1}>Review your work</h3><p>Revise a saved interval to see which notes need another look.</p>
+        {panel === "review" && <div className={s.panel}><h3 tabIndex={-1}>{engineeringDemo ? "Evidence history" : "Review your work"}</h3><p>{engineeringDemo ? "The observation stays linked to the exact measurement it cited." : "Revise a saved interval to see which notes need another look."}</p>
           {!saved.length && <div className={s.empty}>No saved evidence yet.<button onClick={() => setPanel("measure")}>Start with a measurement →</button></div>}
           <ol className={s.journal}>{saved.map(st => {
             const isNote = st.role === "claim";
@@ -621,10 +689,23 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
                 <span>{isNote ? `Note${evidence ? ` · based on ${round(Number(evidence.payload.durationMs), 2)} ms` : ""}` : `${st.payload.label} · lead ${st.payload.lead}`}</span>
                 <strong>{isNote ? String(st.payload.text) : `${round(Number(st.payload.durationMs), 2)} ms`}</strong>
                 <small>{isNote ? needsReview ? "Needs review · supporting measurement revised" : "Saved observation · not a diagnosis" : previous ? `Was ${round(Number(previous.payload.durationMs), 2)} ms · earlier version retained` : "Saved endpoints"}</small>
+                {engineeringDemo && <code className={s.stateReference}>{st.id}{isNote && evidence ? ` cites ${evidence.id}` : previous ? ` revises ${previous.id}` : " from source"}</code>}
               </button>
               {!isNote && <button className={s.revise} onClick={() => startRevision(st)}>Revise endpoints</button>}
             </li>;
           })}</ol>
+          {engineeringDemo && source && signal && <details className={s.sourceEvidence}>
+            <summary>Source and sample lineage</summary>
+            <dl className={s.metadata}>
+              <div><dt>Recording</dt><dd><a href="https://physionet.org/content/ptb-xl/1.0.3/">PTB-XL 1.0.3</a> · {source.referenceId} · {signal.sampleRate} Hz</dd></div>
+              <div><dt>Waveform SHA-256</dt><dd className={s.digest}>{source.sha}</dd></div>
+              <div><dt>WFDB header SHA-256</dt><dd className={s.digest}>{source.headerSha}</dd></div>
+              {saved.filter(st => st.role === "measurement" && Array.isArray(st.payload.sampleIndices)).map(st => <div key={st.id}>
+                <dt>{st.id} · endpoint samples</dt><dd className={s.digest}>{(st.payload.sampleIndices as number[]).join(" → ")}</dd>
+              </div>)}
+            </dl>
+            <p>Both file hashes match the bundled reference manifest. Duration is the sample difference divided by {signal.sampleRate} Hz. The ±{round(1000 / signal.sampleRate, 2)} ms sampling bound excludes landmark placement uncertainty.</p>
+          </details>}
           <div className={s.export}><button disabled={!trace} onClick={() => exportWorksheet("text")}>Export summary</button><button disabled={!trace} onClick={() => exportWorksheet("json")}>Export full trace</button></div><small className={s.limit}>Exports omit the recording. Your written notes are included. Worksheets last for this tab session; export before closing.</small>
         </div>}
         {panel === "source" && <div className={s.panel}><h3 tabIndex={-1}>{signal ? "Recorded digital signal" : "Original source page"}</h3><p>{signal ? "Voltage is decoded from original samples using the header gain and baseline. Time comes from the sample rate." : "The page remains an image. Calibrate a known paper-grid span before recording a time interval."}</p>
@@ -641,7 +722,7 @@ export function ECGWorkspace({ fullScreen = false }: { fullScreen?: boolean }) {
         <div className={s.feedback} role="status" aria-live="polite">{(!traceActions && message) || "Educational prototype · no automated diagnosis"}</div>
       </aside>
     </div>
-    {fullScreen && <SignalExplanation />}
+    {fullScreen && !engineeringDemo && <SignalExplanation />}
   </section>;
 }
 
