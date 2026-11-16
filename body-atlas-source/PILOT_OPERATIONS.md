@@ -15,7 +15,7 @@ Use this worksheet with the [commercial plan](COMMERCIAL_PLAN.md). The public pi
 Copy to a private folder or restricted CRM. Keep actual names, quotes, invoice details, and activity out of Git.
 
 - **Inquiry → qualified.** Lead ID, date, organization, source channel, time needed, research question, budget owner, public repositories needed, explicit exclusions and fit decision.
-- **Qualified → proposed.** Quoted one-time amount, one U.S. public research question, exact application/model IDs (maximum three), deliverable acceptance and exclusions, cutoff date, turnaround, who approves, quote expiry and signed scope. Template deliverable: two-to-four page research note, scope/date and decision summary, device comparison, evidence gaps, source log, one handoff.
+- **Qualified → proposed.** Quoted one-time amount, one U.S. public research question, exact application/model IDs (maximum three), deliverable acceptance and exclusions, cutoff date, turnaround, who approves, quote expiry and signed scope. First sprint deliverables are a one-page decision memo, an editable two-case evidence matrix and source log, a reviewer spot check, one handoff and one factual correction round.
 - **Proposed → booked.** Signed scope and confirmed invoice terms. Track invoice identifiers, issued date, due date, amount, payment fee, amount and settled date. If following split terms, only mark collected dollars as each transfer settles.
 - **Booked → delivered.** Research time, external reviewer time and cost, date, reviewed claim IDs, corrections, version and customer acceptance. Keep billing access separate from research files.
 - **Delivered → repeat or closed.** Thirty-day use check, any open correction, refund or net collection, follow-on question or date to close. Write opt-outs into a suppression list.
@@ -25,17 +25,23 @@ Copy to a private folder or restricted CRM. Keep actual names, quotes, invoice d
 
 After the qualification call, replace the brackets and confirm the customer’s intended decision, exact application IDs and acceptable source cutoff. Obtain founder approval of commercial terms before issuing the quote.
 
-> For [team], BODY//ATLAS will answer [one public-source U.S. neurodevice question] by comparing [two agreed devices/applications]. You will receive a cited research brief, a source log with dates and open evidence gaps, and a walkthrough. We will cover the original decisions and separately identify relevant later changes within the agreed scope. We will confirm the research cutoff and delivery date at kickoff and include one round of factual corrections. The fee for this scope is $1,500 USD, subject to the written agreement. The work is for internal research and excludes clinical or regulatory advice, current labeling certification and exhaustive recall checks.
+> For [team’s decision] on [review date], BODY//ATLAS will compare [two exact U.S. device applications] against [one agreed question] using public records through [source cutoff]. By [agreed delivery date], you will receive a one-page evidence memo, an editable two-case comparison, and a source log. Each material factual claim will include the dated original record and a page or section. The memo will identify gaps that remain open and distinguish original decisions from later records. We will include a qualified reviewer’s spot check, a walkthrough, and one factual correction round. The fixed fee is $1,500 USD, subject to the written agreement. The work is for internal research and excludes clinical or regulatory advice, current-label certification and exhaustive recall checks.
 
 First prospect to screen is Magnetic Tides’ CEO or R&D lead. Confirm that a source comparison is coming up for its external stimulation program, then use the personalized draft in the business plan for founder review. Keep the quote marked unissued until that qualification and approval.
 
 ### Magnetic Tides source sample
 
-A single demonstration row for review. Magnetic Tides describes a noninvasive stroke-recovery program. This row shows how Atlas would trace a finding from a related intervention to its study and define the limits of its use. Confirm the buyer’s actual comparison before expanding the brief. [Magnetic Tides program description](https://www.magnetictides.com/science)
+**Question for the review:** How should the team describe the six-month upper-limb evidence from NICHE and E-FIT without overstating the number of independent analyses?
 
-| Study and comparison | Primary outcome | Finding and boundaries |
-|---|---|---|
-| E-FIT, a randomized trial of navigated 1 Hz repetitive transcranial magnetic stimulation before motor rehabilitation versus sham stimulation before the same rehabilitation. E-FIT randomized 60 participants. | At least five points of improvement on the upper-extremity Fugl–Meyer scale at six months. | The authors’ combined Bayesian analysis of E-FIT and NICHE did not establish superiority of active stimulation over sham. Posterior mean odds ratio 1.94 with a 96% credible interval of 0.61–4.80. This is evidence for the studied rTMS protocol, and the study did not test Magnetic Tides’ kTMP. Trial registration and publication are separate from any FDA authorization. [Edwards et al., 2023, Abstract: Methods and Results](https://pubmed.ncbi.nlm.nih.gov/37577801/) · [E-FIT registration NCT03010462](https://clinicaltrials.gov/study/NCT03010462) |
+**Decision memo excerpt:** Both studies considered navigated 1 Hz repetitive transcranial magnetic stimulation (rTMS) before motor rehabilitation. E-FIT retained the stimulation protocol but used an alternative sham coil. Its reported combined analysis incorporated NICHE data. If the review deck already cites NICHE, label the E-FIT combined estimate as drawing on NICHE rather than tallying it as an independent corroboration. The two trials studied rTMS and did not evaluate Magnetic Tides’ kTMP. The sample demonstrates traceability for a related research question. [Magnetic Tides program description](https://www.magnetictides.com/science)
+
+| Case | Same endpoint | What the record supports | Original source and locator |
+|---|---|---|---|
+| NICHE (2018), navigated 1 Hz rTMS versus sham before motor therapy | At least five points of improvement on the upper-extremity Fugl–Meyer scale at six months. | 67% responded in the active group and 65% in the sham group (p = 0.76). These percentages describe the trial arms. | [Harvey et al., Abstract: Methods and Results](https://pubmed.ncbi.nlm.nih.gov/30354990/) · [Registration NCT02089464](https://clinicaltrials.gov/study/NCT02089464) |
+| E-FIT (2023), same stimulation protocol with a different sham coil | Same six-month threshold. | The combined analysis with NICHE did not establish superiority over sham. Posterior mean odds ratio 1.94 with a 96% credible interval of 0.61–4.80. The estimate describes the combined analysis. | [Edwards et al., Abstract: Methods and Results](https://pubmed.ncbi.nlm.nih.gov/37577801/) · [Registration NCT03010462](https://clinicaltrials.gov/study/NCT03010462) |
+
+**Open for the buyer:** Which population, timing after stroke, stimulation approach and outcome matter to the upcoming decision? The team should confirm those before Atlas scopes a paid comparison. Authorization status would require separate official records.
+
 
 ### Source-log template and example
 
