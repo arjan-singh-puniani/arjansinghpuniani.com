@@ -101,6 +101,16 @@
 .pilot-lookup { display: flex; gap: .75rem; align-items: end; flex-wrap: wrap; margin-block: 1.1rem .5rem; }
 .pilot-lookup label { width: min(100%, 18rem); }
 .pilot-lookup-result { margin-block: .75rem; }
+.pilot .pilot-lookup-matches { list-style: none; padding: 0; }
+.pilot-result-button {
+  display: block;
+  min-height: 44px;
+  padding: .6rem .75rem;
+  text-align: left;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
 .pilot-fields label { min-width: 0; }
 .pilot-fields textarea { resize: vertical; }
 .pilot-fields textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }

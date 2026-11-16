@@ -100,7 +100,7 @@ test("exact application lookup preserves original and later decision boundaries"
   const basePath = process.env.ATLAS_BROWSER_BASE_PATH || "";
   await page.goto(basePath + "/pilot#build");
   const builder = page.getByRole("region", { name: "Build a cited brief" });
-  const lookup = builder.getByRole("textbox", { name: "Find an FDA application by ID" });
+  const lookup = builder.getByRole("textbox", { name: "Find an FDA application by device name or ID" });
   const find = builder.getByRole("button", { name: "Find application" });
   await lookup.fill("P960009/S007");
   await find.click();
@@ -178,4 +178,37 @@ test("a buyer can add an exact cached supplement and a decision note to the work
   await expect(builder.getByLabel("What do the sources support?")).toHaveValue("");
   await expect(builder.getByLabel("What still needs checking?")).toHaveValue("");
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize()!.width);
+});
+
+test("a device name search shows distinct FDA applications so the buyer can choose the right case", async ({ page }) => {
+  const basePath = process.env.ATLAS_BROWSER_BASE_PATH || "";
+  await page.goto(basePath + "/pilot#build");
+  const builder = page.getByRole("region", { name: "Build a cited brief" });
+  const search = builder.getByRole("textbox", { name: "Find an FDA application by device name or ID" });
+  await search.fill("interstim");
+  const request = page.waitForRequest(req => new URL(req.url()).pathname === basePath + "/pilot/records.json");
+  await search.press("Enter");
+  expect(new URL((await request).url()).search).toBe("");
+  const results = builder.getByRole("list", { name: "Matching FDA applications" });
+  await expect(results.getByRole("button", { name: /P970004.*1997/ })).toBeVisible();
+  await results.getByRole("button", { name: /P080025.*INTERSTIM/ }).click();
+  await expect(builder.getByRole("button", { name: "Use as first" })).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(search).toBeFocused();
+  await expect(builder.getByLabel("First FDA application")).toHaveValue("P080025");
+  await search.fill("unknown model zxzz");
+  await search.press("Enter");
+  await expect(builder.getByText(/No matching names in this snapshot/)).toBeVisible();
+  await expect(builder.getByLabel("First FDA application")).toHaveValue("P080025");
+  await builder.getByLabel("Second FDA application").selectOption("P030017");
+  const source = builder.getByRole("link", { name: "Original FDA record P080025" });
+  const sourceUrl = (await source.getAttribute("href"))!;
+  await page.context().route(sourceUrl, route => route.fulfill({ body: "Source navigation test" }));
+  const popup = page.waitForEvent("popup");
+  await source.click();
+  const reference = await popup;
+  await reference.waitForURL(sourceUrl);
+  await expect(builder.getByRole("link", { name: "Download editable worksheet" })).toBeVisible();
+  await expect(builder.getByLabel("First FDA application")).toHaveValue("P080025");
+  await reference.close();
 });

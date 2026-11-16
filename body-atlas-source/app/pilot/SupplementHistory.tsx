@@ -63,7 +63,7 @@ export default function SupplementHistory({ application, dossierPath, selected, 
           <ul>
             {visible.slice(0, displayLimit).map(row => (
               <li key={row.supplement}>
-                <a href={row.url}>{row.application}/{row.supplement}</a> · <time dateTime={row.date}>{row.date}</time>
+                <a href={row.url} target="_blank" rel="noopener noreferrer">{row.application}/{row.supplement}</a> · <time dateTime={row.date}>{row.date}</time>
                 <p>{row.decision} · {row.reason || "Change reason unavailable"}</p>
                 {row.statement && <details><summary>Indexed FDA statement</summary><p>{row.statement}</p></details>}
                 <button className="pilot-button" type="button" disabled={selected?.supplement === row.supplement}

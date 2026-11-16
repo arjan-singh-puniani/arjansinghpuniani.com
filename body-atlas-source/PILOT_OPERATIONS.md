@@ -54,9 +54,23 @@ First prospect to screen is Magnetic Tides’ CEO or R&D lead. Confirm that a so
 
 ### Buyer trial before a paid quote
 
-Ask the buyer to look up their own FDA application IDs and enter one public question. They should be able to open both original decisions, trace a consequential statement to its original record, distinguish the original from a selected supplement, record the finding and the unresolved check, and save the worksheet without assistance. Test with a buyer’s own pair first. A lightweight observer target is five minutes from landing to export. Record time, where the buyer hesitated and what remains missing for their actual review.
+**At the booth:** Ask for the neurodevice R&D lead or contact responsible for an upcoming design, evidence or diligence review. If the booth contact sells to those teams, ask for an introduction. The test uses your laptop with the local preview already open. Connect to Wi-Fi or a hotspot to verify original FDA links. Bring a timer and a clean browser tab. Do not enter confidential, patient-specific or proprietary information.
 
-The worksheet searches original PMA, 510(k) and De Novo decisions in the cached snapshot. Reviewed anatomy is available for a smaller group. The worksheet links 85 original PMAs to 6,420 cached supplement records. A user can filter a dossier’s FDA history and include one exact supplement per case in the export with its archive date and source. The workspace identifies reviewed summaries separately from selected archive records and keeps the buyer’s decision notes local. Keep production release pending until a buyer completes the workflow unassisted on a question they brought and confirms the export belongs in their review packet. The quoted pilot adds agreed records beyond the visible set as needed, documented checking of gaps, and a reviewed decision memo. Do not count an export as purchase evidence.
+**Exact ask:**
+
+> I’m testing BODY//ATLAS, a tool for checking FDA evidence before a device review. Do you have five minutes to try it with a real question your team is working on, using only public device information? Pick two devices you actually need to compare. Find one claim you’d want to verify in the original source, write down what still needs checking, and save the worksheet. I’ll watch quietly. You can stop whenever you like.
+
+Start the clock when they take control. Don’t suggest devices, application IDs or controls. If they ask where to click, say “What would you try first?” Record any help you give. At five minutes, ask “How would you use what you just downloaded?” then “What would you still need to add before putting this into your review packet?”
+
+| Verdict | Observed evidence |
+|---|---|
+| Pass | An R&D lead uses a real upcoming question. Within five minutes and without help, they choose the two intended FDA records, verify one consequential claim against its original FDA source, distinguish the original from any supplement they use, record one meaningfully unresolved check and download the worksheet. They identify a specific review or work product where they would use the export. |
+| Fail | An in-scope pair cannot be found or chosen, a record is misidentified, the buyer confuses an original decision with a supplement, the cited claim cannot be verified, they need help to export, or the output would not enter their review. Record the first blocker and their exact words. |
+| Inconclusive | The person has no real question yet, the task would expose confidential information, the necessary source site is unreachable, or the session is interrupted. A real application missing from the index is a coverage failure if the question was within the stated scope. |
+
+Record elapsed time, the public application IDs, whether the five checks passed, the buyer’s intended use, and their first obstacle. Ask permission to keep non-sensitive notes. Repeat a failed step after fixing it with a different buyer question. Test success measures utility. Discuss a paid scope separately only if there is a gap the buyer wants help closing.
+
+The worksheet searches original PMA, 510(k) and De Novo decisions by device name or exact ID in the cached snapshot. Reviewed anatomy is available for a smaller group. The worksheet links 85 original PMAs to 6,420 cached supplement records. A user can filter a dossier’s FDA history and include one exact supplement per case in the export with its archive date and source. The workspace identifies reviewed summaries separately from selected archive records and keeps the buyer’s decision notes local. Keep production release pending until a buyer completes the workflow unassisted on a question they brought and confirms the export belongs in their review packet. The quoted pilot adds agreed records beyond the visible set as needed, documented checking of gaps, and a reviewed decision memo. Do not count an export as purchase evidence.
 
 ### Dry run and acceptance
 
