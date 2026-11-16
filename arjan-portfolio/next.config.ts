@@ -33,7 +33,10 @@ const nextConfig: NextConfig = {
   },
 
   async rewrites() {
-    return [{ source: "/atlas", destination: "/atlas/index.html" }];
+    return [
+      { source: "/atlas", destination: "/atlas/index.html" },
+      { source: "/atlas/pilot", destination: "/atlas/pilot/index.html" },
+    ];
   },
 
   async redirects() {

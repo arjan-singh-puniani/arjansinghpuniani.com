@@ -214,6 +214,7 @@ export default function AtlasExperience() {
     const params=new URLSearchParams(window.location.search);
     const isPortrait=params.get("view")==="portrait";setPortrait(isPortrait);
     if(isPortrait){setShowOrgans(false);setSurface(true);setShowInterventions(false);setPortraitFrame(params.get("frame")==="face"?"face":"upper");}
+    if (!isPortrait && params.get("demo") === "tremor") setDialog("compare");
     const entry = params.get("entry");
     if (!isPortrait && entry && dossiers[entry] && familyById(entry)) {
       setSelected(entry);setRegion("all");setTab(params.get('panel')==='mechanism'?'components':'dossier');
@@ -433,6 +434,7 @@ export default function AtlasExperience() {
             Compare <small>{comparison.length}</small>
           </button>
           <button onClick={() => setDialog("questions")}>Questions</button>
+          <a className="atlas-pilot-link" href={atlasPath("/pilot")}>Pilot</a>
           </>}
         </nav>
         <button
@@ -1412,6 +1414,7 @@ export default function AtlasExperience() {
                     <ArrowDownToLine size={14} />
                     Export comparison
                   </a>
+                  <p className="dialog-note"><a href={atlasPath("/pilot#offer")}><u>Request a sourced brief on your own question</u></a></p>
                 </>
               ) : (
                 <p>Select an intervention above.</p>

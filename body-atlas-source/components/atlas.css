@@ -117,6 +117,15 @@
   color: var(--quiet);
   white-space: nowrap;
 }
+.atlas-header nav .atlas-pilot-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--gold);
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .atlas-header nav .atlas-pilot-link { font-size: 11px; }
+}
 .atlas-header nav button.tool-active {
   color: var(--ink);
 }

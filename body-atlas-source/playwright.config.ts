@@ -1,4 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
+const preview = process.env.ATLAS_BROWSER_PREVIEW;
+
 export default defineConfig({
   testDir: "./tests/browser",
   fullyParallel: false,
@@ -10,7 +12,7 @@ export default defineConfig({
     ["json", { outputFile: "test-results/browser-results.json" }],
   ],
   use: {
-    baseURL: "http://127.0.0.1:3100",
+    baseURL: preview || "http://127.0.0.1:3100",
     channel: "chrome",
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
@@ -32,7 +34,7 @@ export default defineConfig({
       },
     },
   ],
-  webServer: {
+  webServer: preview ? undefined : {
     command: "npm run start",
     url: "http://127.0.0.1:3100",
     reuseExistingServer: !process.env.CI,

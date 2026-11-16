@@ -46,7 +46,7 @@ export const projects: Project[] = [
       alt: "BODY//ATLAS with reference thalamus highlighted, a deep brain stimulation explanation, and original FDA evidence",
       caption: "Actual research preview, November 2, 2026. Source-linked reference anatomy and a qualitative mechanism inset; no surgical placement is reconstructed. Anatomy adapted from Kristen Browne and Heidi Schlehlein, Human Reference Atlas united male v1.5, CC BY 4.0; facial topology adapted from Google MediaPipe under Apache-2.0. Contours, display and overlays modified."
     }],
-    links: [{ label: "Launch interactive atlas", href: "/atlas" }, { label: "Read the recorded scope and validation", href: "/documents/body-atlas-validation.json" }],
+    links: [{ label: "Launch interactive atlas", href: "/atlas" }, { label: "Explore the research pilot", href: "/atlas/pilot" }, { label: "Read the recorded scope and validation", href: "/documents/body-atlas-validation.json" }],
     evidence: [
       { label: "Application source, mapping rules, tests and reproducible export", url: "https://github.com/arjan-singh-puniani/arjansinghpuniani.com/tree/main/body-atlas-source", verified: true },
       { label: "Dataset scope, source checks and recorded review — November 2, 2026", url: "/documents/body-atlas-validation.json", verified: true },
