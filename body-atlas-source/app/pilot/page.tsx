@@ -24,6 +24,21 @@ const example = [
   },
 ];
 
+const reviewedSupplements: Record<string, NonNullable<BriefCase["supplement"]>> = {
+  P960009: {
+    id: "P960009/S007",
+    date: "2002-01-14",
+    change: "The supplement authorized a separate Parkinson’s configuration for bilateral GPi or STN stimulation in the population specified by FDA. The original decision concerned unilateral thalamic stimulation for tremor.",
+    url: "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960009S007",
+  },
+  P150038: {
+    id: "P150038/S037",
+    date: "2025-07-03",
+    change: "The supplement added specified pallidothalamic tractotomy uses for Parkinson’s disease, including staged treatment on the opposite side after at least six months. The original decision concerned unilateral thalamotomy for essential tremor.",
+    url: "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S037",
+  },
+};
+
 const decisionTypes = new Set(["PMA approval", "510(k) clearance", "De Novo authorization"]);
 const briefCases = families.flatMap((family): BriefCase[] => {
   if (family.collection === "catalogue" || family.regulatoryIds.length !== 1) return [];
@@ -52,6 +67,7 @@ const briefCases = families.flatMap((family): BriefCase[] => {
     url: record.url,
     statement: record.statement?.trim() || "",
     limits: family.limitations,
+    supplement: reviewedSupplements[record.application],
     relationships,
   }];
 }).sort((a, b) => a.name.localeCompare(b.name));

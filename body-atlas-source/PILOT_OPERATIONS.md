@@ -54,9 +54,9 @@ First prospect to screen is Magnetic Tides’ CEO or R&D lead. Confirm that a so
 
 ### Buyer trial before a paid quote
 
-Ask the buyer to choose two original applications from the worksheet’s reviewed subset and enter one public question. They should be able to open both decisions, locate a source behind one anatomy claim, identify a limitation that matters to their review, and save the worksheet without assistance. Test with a buyer’s own pair first. A lightweight observer target is five minutes from landing to export. Record time, where the buyer hesitated and what remains missing for their actual review.
+Ask the buyer to look up their own FDA application IDs and enter one public question. They should be able to open both original decisions, trace a consequential statement to its original record, distinguish any reviewed supplement from the original, identify a limitation that matters to their review, and save the worksheet without assistance. Test with a buyer’s own pair first. A lightweight observer target is five minutes from landing to export. Record time, where the buyer hesitated and what remains missing for their actual review.
 
-The worksheet assembles a dated record and evidence starting point. The quoted pilot adds agreed records beyond the visible set as needed, documented checking of gaps, and a reviewed decision memo. Do not count an export as purchase evidence.
+The worksheet searches original PMA, 510(k) and De Novo decisions in the cached snapshot. Reviewed anatomy is available for a smaller group, and supplement changes are documented for selected cases. A missing review is an explicit gap. Keep production release pending until a buyer completes the workflow unassisted on a question they brought and confirms the export belongs in their review packet. The quoted pilot adds agreed records beyond the visible set as needed, documented checking of gaps, and a reviewed decision memo. Do not count an export as purchase evidence.
 
 ### Dry run and acceptance
 

@@ -98,6 +98,9 @@
 .pilot-inquiry textarea:focus-visible, .pilot-draft h4:focus { outline: 2px solid var(--accent); outline-offset: 4px; }
 .pilot-draft { display: grid; gap: .65rem; margin-block: 1rem; border-top: 1px solid var(--line); padding-top: 1rem; }
 
+.pilot-lookup { display: flex; gap: .75rem; align-items: end; flex-wrap: wrap; margin-block: 1.1rem .5rem; }
+.pilot-lookup label { width: min(100%, 18rem); }
+.pilot-lookup-result { margin-block: .75rem; }
 .pilot-fields label { min-width: 0; }
 .pilot-question { grid-column: 1 / -1; }
 .pilot-builder-status { margin-block: 1rem; }
