@@ -120,7 +120,10 @@ test("exact application lookup preserves original and later decision boundaries"
   await lookup.fill("P960009");
   await find.click();
   await builder.getByRole("button", { name: "Use as second" }).click();
-  await expect(builder.getByRole("link", { name: "Original FDA record DEN160019" })).toBeVisible();
+  const deNovo = builder.getByRole("article").filter({ has: page.getByRole("link", { name: "Original FDA record DEN160019" }) });
+  await deNovo.getByRole("button", { name: "Verify original in cached FDA record" }).click();
+  await expect(deNovo.getByText("Archived FDA record DEN160019", { exact: true })).toBeVisible();
+  await expect(deNovo.getByText("FDA decision code DENG.")).toBeVisible();
   await expect(builder.getByRole("link", { name: "Original FDA record P960009" })).toBeVisible();
   await expect(builder.getByRole("link", { name: "P960009/S007" })).toHaveAttribute("href", /pma\.cfm\?id=P960009S007$/);
   await expect(builder.getByText("2002-01-14", { exact: true })).toBeVisible();
@@ -129,7 +132,7 @@ test("exact application lookup preserves original and later decision boundaries"
   const file = page.waitForEvent("download");
   await builder.getByRole("link", { name: "Download editable worksheet" }).click();
   const exported = await readFile((await (await file).path())!, "utf8");
-  expect(exported).toContain("DEN160019");
+  expect(exported).toMatch(/DEN160019[^]*?Original FDA archive SHA-256: [a-f0-9]{64}\./);
   expect(exported).toContain("P960009/S007");
   expect(exported).toContain("2002-01-14");
   expect(exported).toContain("No later decision has a reviewed summary");
@@ -218,4 +221,15 @@ test("a device name search shows distinct FDA applications so the buyer can choo
   await expect(builder.getByRole("link", { name: "Download editable worksheet" })).toBeVisible();
   await expect(builder.getByLabel("First FDA application")).toHaveValue("P080025");
   await reference.close();
+  const interStim = builder.getByRole("article").filter({ has: page.getByRole("link", { name: "Original FDA record P080025" }) });
+  const archivePath = basePath ? basePath + "/sources/" : "/api/source/";
+  await page.route(url => url.pathname.startsWith(archivePath), route => route.abort(), { times: 1 });
+  await interStim.getByRole("button", { name: "Verify original in cached FDA record" }).click();
+  await expect(interStim.getByRole("alert")).toContainText("Could not verify the archived FDA response");
+  await interStim.getByRole("button", { name: "Retry cached original" }).press("Enter");
+  const verified = interStim.getByRole("status").filter({ hasText: "Archived FDA record P080025" });
+  await expect(verified).toContainText("2011-03-14");
+  await expect(verified).toContainText("CHRONIC FECAL INCONTINENCE");
+  await expect(verified).toContainText("Archive checksum verified");
+  await expect(verified.getByRole("link", { name: "Open the cached FDA response" })).toBeFocused();
 });

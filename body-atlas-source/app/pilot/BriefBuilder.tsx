@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { atlasPath } from "@/lib/deployment";
+import CachedFdaRecord from "./CachedFdaRecord";
 import SupplementHistory, { type SelectedSupplement } from "./SupplementHistory";
 
 export type BriefCase = {
@@ -9,6 +10,7 @@ export type BriefCase = {
   name: string;
   decisionDate: string;
   retrievedAt: string;
+  sourceSha: string;
   status: string;
   url: string;
   statement: string;
@@ -143,6 +145,7 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
         "",
         `## ${markdownText(item.name)} · ${item.application}`,
         `${item.status} · ${item.decisionDate}. [Original FDA record](${item.url}). Retrieved ${item.retrievedAt} UTC.`,
+        ...(item.sourceSha ? [`Original FDA archive SHA-256: ${item.sourceSha}.`] : []),
         `FDA decision statement: ${markdownText(item.statement || missingStatement)}`,
         ...(item.relationships.length ? item.relationships.map(relationship =>
           `- ${relationship.label} (${relationship.state}): ${markdownText(relationship.assertion)} [Source](${relationship.url}) · ${markdownText(relationship.locator)}. Limits: ${markdownText(relationship.limits)}`,
@@ -236,6 +239,8 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
                   <summary>FDA decision statement</summary>
                   <p>{item.statement || missingStatement}</p>
                 </details>
+                {item.sourceSha && <CachedFdaRecord application={item.application} date={item.decisionDate}
+                  sourceSha={item.sourceSha} retrievedAt={item.retrievedAt} />}
                 <h4>Anatomy evidence</h4>
                 {item.relationships.length ? <ul>
                   {item.relationships.map(relationship => (

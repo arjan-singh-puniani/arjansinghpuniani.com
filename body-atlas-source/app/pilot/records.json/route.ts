@@ -25,6 +25,7 @@ export function GET() {
       name: record.title,
       decisionDate: record.decisionDate,
       retrievedAt: record.retrievedAt.slice(0, 10),
+      sourceSha: record.sourceSha,
       status: record.status,
       url: record.url,
       statement: record.statement?.trim() || "",
