@@ -177,7 +177,7 @@ export default function AtlasExperience() {
     (p: LabelProjection) => setProjection({ ...p, mode: "brain" }),
     [],
   );
-  const [mapLayer, setMapLayer] = useState<"none" | "regions" | "interventions" | "implants">("none");
+  const [mapLayer, setMapLayer] = useState<"none" | "regions" | "interventions" | "implants">("interventions");
   const implantsOnly = mapLayer === "implants";
   const showInterventions = mapLayer === "interventions" || implantsOnly;
   const [selectedImplant, setSelectedImplant] = useState<string | null>(null);
@@ -191,6 +191,8 @@ export default function AtlasExperience() {
   const adaptedContour = portrait === false;
   const [showMechanism,setShowMechanism]=useState(true),[actionPlaying,setActionPlaying]=useState(false),[reducedMotion,setReducedMotion]=useState(false);
   const [actionStep,setActionStep]=useState(0);
+  const [rotateOverview, setRotateOverview] = useState(true);
+  const stopRotation = useCallback(() => setRotateOverview(false), []);
   useEffect(()=>{const media=window.matchMedia('(prefers-reduced-motion: reduce)');const change=()=>{setReducedMotion(media.matches);setActionPlaying(false);};change();media.addEventListener('change',change);return()=>media.removeEventListener('change',change);},[]);
   const [anatomyExpanded, setAnatomyExpanded] = useState(false);
   const resultsRef = useRef<HTMLElement>(null);
@@ -216,7 +218,10 @@ export default function AtlasExperience() {
   useEffect(() => {
     const params=new URLSearchParams(window.location.search);
     const isPortrait=params.get("view")==="portrait";setPortrait(isPortrait);
-    if (isPortrait) setPortraitFrame(params.get("frame") === "face" ? "face" : "upper");
+    if (isPortrait) {
+      setMapLayer("none");
+      setPortraitFrame(params.get("frame") === "face" ? "face" : "upper");
+    }
     if (!isPortrait && params.get("demo") === "tremor") setDialog("compare");
     const entry = params.get("entry");
     if (!isPortrait && entry && dossiers[entry] && familyById(entry)) {
@@ -409,8 +414,9 @@ export default function AtlasExperience() {
       </main>
     </div>
   );
+  const canRotateOverview = portrait === false && mode === "human" && region === "all" && !selected && !reducedMotion;
   const solidOverview = !portrait && mode === "human" && region === "all" && !selected &&
-    !showOrgans && surface && mapLayer === "none";
+    !showOrgans && surface && (mapLayer === "none" || (mapLayer === "interventions" && densityMap));
   return (
     <div
       className={`human-atlas ${solidOverview ? "solid-overview" : ""} ${portrait ? "portrait-view" : ""} ${anatomyExpanded ? "anatomy-expanded" : ""} ${showInterventions ? "with-intervention-labels" : ""} ${densityMap && showInterventions ? "with-density-map" : ""}`}
@@ -649,6 +655,8 @@ export default function AtlasExperience() {
                   actionPlaying={actionPlaying && !reducedMotion}
                   actionStep={actionStep}
                   onProjection={projectHuman}
+                  rotateOverview={canRotateOverview && rotateOverview && !dialog}
+                  onManualOrbit={stopRotation}
                   showLabels={mapLayer !== "regions"}
                   showOrgans={showOrgans}
                   region={region}
@@ -773,6 +781,10 @@ export default function AtlasExperience() {
               </button>
             </div>
             <div className="figure-actions">
+              {canRotateOverview && <button
+                aria-label={rotateOverview ? "Pause rotation" : "Resume rotation"}
+                onClick={() => setRotateOverview(value => !value)}
+              >{rotateOverview ? "Pause" : "Rotate"}</button>}
               {mode==='human'&&<button aria-label="Toggle internal organs" aria-pressed={showOrgans} onClick={()=>setShowOrgans(v=>!v)}>Organs</button>}
               <button
                 aria-label={
@@ -831,6 +843,24 @@ export default function AtlasExperience() {
               </button>
             </div>
           </div>
+          {portrait === false && mode === "human" && (
+            <div className="anatomical-axes" role="group" aria-label="Anatomical axes">
+              <strong>Axes</strong>
+              {projection?.mode === "human" && projection.anatomicalAxes && (
+                <svg viewBox="0 0 38 38" width="30" height="30" aria-hidden="true">
+                  {projection.anatomicalAxes.map(([x, y], index) => (
+                    <g key={index} className={`anatomical-axis axis-${index}`}>
+                      <line x1="19" y1="19" x2={19 + x} y2={19 + y} stroke="currentColor" strokeWidth="2" />
+                      <circle cx={19 + x} cy={19 + y} r="2.5" fill="currentColor" />
+                    </g>
+                  ))}
+                </svg>
+              )}
+              <span className="axis-1" title="Longitudinal axis">Superior–inferior</span>
+              <span className="axis-0" title="Transverse axis">Left–right</span>
+              <span className="axis-2" title="Sagittal axis">Anterior–posterior</span>
+            </div>
+          )}
           {portrait&&<div className="portrait-caption"><h1>Holographic contour</h1><p>Drag to rotate · Scroll or pinch to zoom</p><div className="portrait-framing" role="group" aria-label="Contour framing"><button aria-pressed={portraitFrame==="upper"} onClick={()=>{setPortraitFrame("upper");setCopyState("idle");}}>Upper body</button><button aria-pressed={portraitFrame==="face"} onClick={()=>{setPortraitFrame("face");setCopyState("idle");}}>Face</button></div><button onClick={()=>setSceneKey(k=>k+1)}>Reset view</button><span role="status">{copyState==="copied"?"Share link copied":""}</span>{copyState==="manual"&&<label>Copy this link<input aria-label="Share link" readOnly value={shareUrl} onFocus={e=>e.currentTarget.select()}/></label>}</div>}
           <section className="atlas-time" aria-label="Intervention history">
             <div className="time-top">

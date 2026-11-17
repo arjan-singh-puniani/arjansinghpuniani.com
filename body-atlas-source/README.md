@@ -117,7 +117,7 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 
 ## Body contour
 
-The main Atlas uses the same neutral, photo-guided silhouette as the focused `/atlas/contour` view. The main view starts with the solid exterior and map overlays hidden. Select **Organs** for translucent reference anatomy or **Implants** for documented placement regions. The original HRA surface is the fallback if the contour fails to load. Organs and intervention anchors retain their HRA frame. Proportions are artistic approximations. Original photos remain private. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
+The main Atlas uses the same neutral, photo-guided silhouette as the focused `/atlas/contour` view. The main view starts with the solid exterior and mapped interventions. A slow rotation pauses on manual interaction or with the Pause control and stays off with reduced motion. Select **Organs** for translucent reference anatomy or **Implants** for documented placement regions. The original HRA surface is the fallback if the contour fails to load. Organs and intervention anchors retain their HRA frame. Proportions are artistic approximations. Original photos remain private. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
 
 ## On-body intervention discovery
 

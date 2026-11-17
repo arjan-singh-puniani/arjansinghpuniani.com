@@ -117,6 +117,7 @@ for(const [child,parent] of [['UBERON:0000956','UBERON:0000955'],['BODY:retina',
 }
 
 export interface LabelProjection {
+  anatomicalAxes?: [number, number][];
   width: number;
   height: number;
   regions: string[];
