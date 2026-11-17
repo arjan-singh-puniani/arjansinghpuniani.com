@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { siteUrl } from "@/lib/site";
+import OrthoShowcase, { orthoPreview } from "./OrthoShowcase";
 import styles from "./playground.module.css";
 
 export const metadata: Metadata = {
@@ -13,13 +14,13 @@ export const metadata: Metadata = {
     url: `${siteUrl}/playground`,
     title: "Playground | Arjan Singh Puniani",
     description: "Small interactive experiments in hospital systems, anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
-    images: ["/images/playground/anatomy-learner.webp"],
+    images: [orthoPreview],
   },
   twitter: {
     card: "summary_large_image",
     title: "Playground | Arjan Singh Puniani",
     description: "Small interactive experiments in hospital systems, anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
-    images: ["/images/playground/anatomy-learner.webp"],
+    images: [orthoPreview],
   },
 };
 
@@ -34,7 +35,6 @@ const cards = [
     alt: "Rally House clubhouse beside the tennis court",
     tone: "light",
   },
-  {eyebrow:"People · Queues · Care",title:"hospitalSIM",description:"Build a miniature hospital and discover where the bottleneck moves. Includes a REPLISOME science workstation.",href:"/playground/hospitalsim",button:"Play hospitalSIM",image:"/hospitalsim/preview.webp",alt:"Actual hospitalSIM game with medical equipment, miniature clinicians and blue platforms",tone:"light"},
   {
     eyebrow: "HoloAnatomy",
     title: "Anatomy Learner",
@@ -81,14 +81,13 @@ export default function Playground() {
   return <>
     <header className={`page-hero ${styles.hero}`}>
       <div className="shell">
-        <p className="eyebrow">Playground</p>
-        <h1>Playground.</h1>
-        <p>I built these small browser experiments in hospital systems, anatomy, DNA replication, tennis, mechanical systems, and cardiovascular flow. They are prototypes and educational models.</p>
+        <h1>Playground</h1>
       </div>
     </header>
 
     <section className={styles.stack}>
       <div className="shell">
+        <OrthoShowcase clinicHref="/playground/hospitalsim#clinic" />
         {cards.map((card) => (
           <article className={`${styles.card} ${card.tone === "light" ? styles.light : styles.dark}`} key={card.href}>
             <div className={styles.copy}>

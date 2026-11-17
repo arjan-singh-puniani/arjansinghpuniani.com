@@ -1,21 +1,86 @@
 .hero {
-  padding-top: 72px;
-  padding-bottom: 42px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  border-bottom: 0;
 }
 
 .hero h1 {
-  margin: 18px 0 12px;
-  font-size: clamp(58px, 8vw, 108px);
-  line-height: .88;
-}
-
-.hero p:last-child {
   margin: 0;
-  font-size: 18px;
+  font-size: clamp(36px, 5vw, 60px);
 }
 
 .stack {
-  padding: 42px 0 96px;
+  padding: 0 0 96px;
+}
+
+.showcase {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  background: #0b1a23;
+  color: #ebf4f4;
+  margin-bottom: 34px;
+}
+
+.showcaseCopy {
+  align-self: center;
+  padding: clamp(26px, 4vw, 54px);
+}
+
+.showcaseLabel {
+  margin: 0 0 16px;
+  color: #aadce2;
+  font: 700 .74rem/1.5 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.showcaseCopy h2 {
+  font-size: clamp(46px, 6vw, 84px);
+}
+
+.showcaseCopy > p:not(.showcaseLabel) {
+  max-width: 33ch;
+  margin: 16px 0 24px;
+  color: #c9dcdf;
+  font-size: clamp(1rem, 1.5vw, 1.16rem);
+}
+
+.showcaseActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.showcaseActions .orthoAction {
+  gap: 10px;
+  background: #a8f0d4;
+  color: #0b292a;
+  border-color: #a8f0d4;
+}
+
+.showcaseActions .orthoAction:hover {
+  background: #ccfae8;
+}
+
+.clinicAction {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #e0eff0;
+  text-underline-offset: 4px;
+}
+
+.showcaseImage {
+  position: relative;
+  min-height: 400px;
+  margin: 0;
+  background: #06425a;
+}
+
+.showcaseImage img {
+  object-fit: cover;
+  object-position: 46% 55%;
 }
 
 .card {
@@ -100,17 +165,33 @@
 
 @media (max-width: 800px) {
   .hero {
-    padding-top: 56px;
-    padding-bottom: 32px;
-  }
-
-  .hero h1 {
-    font-size: 58px;
+    padding: 22px 0 14px;
   }
 
   .stack {
-    padding-top: 24px;
     padding-bottom: 64px;
+  }
+
+  .showcase {
+    grid-template-columns: 1fr;
+    margin-bottom: 20px;
+  }
+
+  .showcaseCopy {
+    padding: 22px;
+  }
+
+  .showcaseLabel {
+    margin-bottom: 10px;
+  }
+
+  .showcaseCopy > p:not(.showcaseLabel) {
+    margin: 12px 0 15px;
+  }
+
+  .showcaseImage {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
   }
 
   .card {
