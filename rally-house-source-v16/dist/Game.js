@@ -369,7 +369,13 @@ export class Game {
                 e.target.closest('button,a,input,textarea,select,[contenteditable]'))
                 this.matchInput.reset();
         });
-        window.addEventListener('pagehide', () => this.audio.dispose(), { once: true });
+        // Cached pages retain this Game instance; only a permanent departure should dispose its audio.
+        window.addEventListener('pagehide', e => { if (e.persisted) {
+            this.audio.stopVoice();
+            this.audio.stopAmbience();
+        }
+        else
+            this.audio.dispose(); });
         this.canvas.tabIndex = 0;
         this.canvas.addEventListener('webglcontextlost', e => {
             e.preventDefault();
