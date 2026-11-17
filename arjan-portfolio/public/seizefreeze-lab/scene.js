@@ -16,7 +16,6 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   canvas.setAttribute("role", "img");
   canvas.setAttribute("aria-label", "Human Reference Atlas brain and head with an illustrative left superior temporal target, compact proposed device and peelable access layers. Use the layer slider and camera buttons for keyboard alternatives.");
   Object.assign(canvas.style, { position: "absolute", inset: "0", width: "100%", height: "100%", display: "block", touchAction: "pan-y", cursor: "grab" });
-  host.append(canvas);
   const gl = renderer.getContext(), ext = gl.getExtension("WEBGL_debug_renderer_info");
   const adapter = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : "unavailable";
   const softwareRenderer = /SwiftShader|llvmpipe|Software Rasterizer/i.test(adapter);
@@ -79,16 +78,26 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     tissue: material(0x9b7f85, 0, 0.86, { vertexColors: true, side: T.DoubleSide }),
     contact: material(0xc3d4d3, 0.1, 0.52, { transparent: true, opacity: 0.85 }),
   };
-  const anatomy = await createAnatomy(T, { simplifySurroundings: softwareRenderer, onProgress: fraction => {
-    const loading = host.querySelector('#scene-loading');
-    if (loading) loading.textContent = `Loading reference anatomy… ${Math.round(fraction * 100)}%`;
-  }});
+  let anatomy;
+  try {
+    anatomy = await createAnatomy(T, { simplifySurroundings: softwareRenderer, onProgress: fraction => {
+      const loading = host.querySelector('#scene-loading');
+      if (loading) loading.textContent = fraction > 0 ? `Loading reference anatomy… ${Math.round(fraction * 100)}%` : 'Loading reference anatomy…';
+    }});
+  } catch (error) {
+    environment?.dispose();
+    grain.dispose();
+    for (const material of Object.values(mats)) material.dispose();
+    renderer.dispose();
+    throw error;
+  }
   scene.add(anatomy.group);
   const fit = fitDevice(anatomy.cortexMeshes.map(mesh => ({ positions: mesh.geometry.attributes.position.array, indices: mesh.geometry.index?.array })), {
     target: anatomy.target.toArray(), normal: anatomy.normal.toArray(), u: anatomy.u.toArray(), v: anatomy.v.toArray(),
     span: deviceSpec.fit.span, minRigidY: deviceSpec.body.bottom, clearance: deviceSpec.fit.minimumRigidClearance,
   });
   const device = createDevice(T, mats, fit), { root, groups } = device;
+  host.append(canvas);
   scene.add(root);
   const ids = componentIds, allPickable = device.pickable, highlights = [];
   const inspectionStage = new T.Group(); scene.add(inspectionStage);

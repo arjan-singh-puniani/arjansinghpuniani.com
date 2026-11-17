@@ -1,7 +1,15 @@
 import { defaults, scenarios } from './model.js';
 
 const $ = id => document.getElementById(id);
-if (window.self !== window.top) document.body.classList.add('embedded');
+if (window.self !== window.top) {
+ document.body.classList.add('embedded');
+ const footer = document.querySelector('footer');
+ const resize = new ResizeObserver(() => {
+  window.parent.postMessage({seizeFreezeHeight: footer.getBoundingClientRect().bottom + scrollY}, location.origin);
+ });
+ resize.observe(document.querySelector('main'));
+ resize.observe(footer);
+}
 const parts = [
   {id:'interface',name:'Contact',title:'The cortical interface',flow:'Heat, through a finite contact resistance.',why:'A conforming contact would connect the irregular cortical surface to a heat spreader. In the solver, contact resistance is a separate boundary term.',constraint:'Contact pressure, fluid layers, shape, electrical isolation and tissue response remain unresolved.',failure:'Poor contact can reduce extraction even when the cold plate is cold.',evidence:'Hypothetical contact envelope fitted to reference atlas triangles for display; this does not specify a material that fills cortical folds. Contact pressure, fluid gaps and thermal properties have not been established.',source:'./DEVICE.md'},
   {id:'coldplate',name:'Spreader',title:'Cold plate and thermal storage',flow:'Heat enters from the tissue and leaves through the thermoelectric element.',why:'A spreader could distribute extraction across the contact. Its finite heat capacity means plate temperature cannot change instantly.',constraint:'Conductivity, mass, surface area and encapsulation trade off against package size.',failure:'Temperature gradients and sensor placement could hide local extremes.',evidence:'Proposed component. The model assumes a single, uniform cold-plate temperature.',source:'./MODEL.md'},
@@ -100,7 +108,7 @@ function sceneCaption(){
  $('scene-caption').textContent=staticView?'Static reference render. Layer controls update descriptions; numerical readouts remain interactive.':chapter==='lab'?'Depth-only temperature model at the assumed contact; no lateral field or patient-specific prediction.':view==='system'?(focusView?(['interface','sensing'].includes(parts[selected].id)?'Reference cortex retained. Contact envelope and sensor locations remain assumptions.':'Isolated component. Other parts hidden for inspection; dimensions assumed.'):'Device inspection. Anatomy hidden; dimensions assumed and exploded spacing exaggerated.'):closeup?'Cranial coverings hidden for inspection. Exploded spacing exaggerated; device dimensions assumed.':scene?.stats().softwareRenderer&&view==='region'?'Software graphics: reduced head overlays. Numerical model unchanged.':view==='head'||guidedPeel&&peelProgress<.12?'Reference head. Cranial window and layer separations are schematic.':!guidedPeel&&view==='region'?'Reference atlas. Cranial coverings hidden in this overview; Explore layers to reveal them.':'Reference brain and skin. Surrounding tissues translucent; skull and meninges simplified.';
 }
 function showStatic(value){staticView=value;scene?.setActive(!value);sceneCaption();$('poster').hidden=!value;const c=$('scene').querySelector('canvas');if(c)c.hidden=value;$('scene').querySelectorAll('[data-sf-overlay]').forEach(el=>el.hidden=value);for(const id of ['overview','head-view','region-view','interface-view','rotate-left','rotate-right','focus-component'])$(id).disabled=value;$('static-view').setAttribute('aria-pressed',String(value));$('static-view').textContent=value?(scene?.stats().softwareRenderer?'Try reduced 3D (slow)':'Use 3D view'):'Use static view';if(!value){if(chapter==='lab'&&result)scene?.update(result.frames[index]);else scene?.render();}}
-$('static-view').addEventListener('click',()=>{if(scene)showStatic(!staticView);else $('scene-caption').textContent=`3D is unavailable. The static diagram, component controls and numerical model remain usable. ${sceneError}`;});
+$('static-view').addEventListener('click',()=>{if(scene)showStatic(!staticView);else void loadScene(true);});
 $('scene').addEventListener('seizefreeze-context-lost',()=>{pause();showStatic(true);$('scene-caption').textContent='Graphics context lost. Static assembly and numerical results remain available.';});
 
 function setChapter(value){
@@ -115,6 +123,10 @@ function setChapter(value){
  for(const mode of ['placement','assembly','lab'])$(mode+'-tab').setAttribute('aria-pressed',String(mode===value));
  $('view-label').textContent=placement?'ANATOMICAL PLACEMENT':assembly?'PROPOSED DEVICE ASSEMBLY':'CORTICAL INTERFACE / SIMULATED';
  sceneCaption();
+ syncScene();
+}
+function syncScene(){
+ const assembly=chapter==='assembly', placement=chapter==='placement';
  scene?.cutaway(assembly&&sectionView);scene?.circuit(assembly&&circuitView);scene?.dimensions(assembly&&dimensionView);
  if(placement){
   scene?.select(null);scene?.explode(false);scene?.peel(peelProgress);scene?.update();cameraView('region');
@@ -196,11 +208,51 @@ $('download-sensitivity').addEventListener('click',()=>{
  for(const run of sensitivityResult.runs)for(const f of run.frames)rows.push(['simulated_assumptions',sensitivityAxis,run.parameter,f.t,f.tissue[0],f.Tc,f.Th,f.current,f.power,f.energy,f.residual,run.params.scenario,run.params.currentLimit,run.params.initialTemperature,run.params.duration,run.params.dt,run.params.dz,sensitivityAxis==='contactResistance'?run.inputValue:options.contactResistance,sensitivityAxis==='rejectionResistance'?run.inputValue:options.rejectionResistance].join(','));
  const url=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download=`seizefreeze-${sensitivityAxis}-simulated.csv`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
-function renderMath(){if(!window.katex)return;document.querySelectorAll('[data-latex]').forEach(el=>window.katex.render(el.dataset.latex,el,{throwOnError:false,displayMode:true,output:'htmlAndMathml',strict:'error'}));}
+let mathScript;
+function renderMath(){
+ const equations=document.querySelectorAll('[data-latex]');
+ if(window.katex){
+  equations.forEach(el=>window.katex.render(el.dataset.latex,el,{throwOnError:false,displayMode:true,output:'htmlAndMathml',strict:'error'}));
+  return;
+ }
+ equations.forEach(el=>{el.textContent=el.dataset.latex;});
+ if(mathScript)return;
+ const styles=document.createElement('link');
+ styles.rel='stylesheet';styles.href=new URL('./vendor/katex.min.css',import.meta.url);
+ mathScript=document.createElement('script');mathScript.src=new URL('./vendor/katex.min.js',import.meta.url);
+ mathScript.addEventListener('load',renderMath,{once:true});
+ document.head.append(styles,mathScript);
+}
 document.querySelectorAll('[data-depth]').forEach(b=>b.addEventListener('click',()=>showDepth(b.dataset.depth)));
-selectPart(0,false);showDepth('idea');
+selectPart(0,false);showDepth('idea');showStatic(true);setChapter(chapter);
 try{worker=new Worker('./worker.js',{type:'module'});worker.addEventListener('message',e=>e.data.kind==='sensitivity'?receiveSensitivity(e.data):receive(e.data));worker.addEventListener('error',()=>solverFailure('Worker failed to load or execute.'));compute();}catch(e){solverFailure(e.message);}
-try{const {createScene}=await import('./scene.js');scene=await createScene($('scene'),id=>{const j=parts.findIndex(p=>p.id===id);if(j>=0){if(chapter!=='assembly')setChapter('assembly');selectPart(j);}},value=>setPeel(value,false));$('scene-loading').remove();const fit=scene.stats().device;$('contact-fit-note').textContent=`Sampled datum-to-cortex gap: ${fit.contactThicknessRangeMm.map(v=>v.toFixed(1)).join('–')} mm. Rigid parts clear the raw reference cortex by at least ${fit.rigidClearanceMm.toFixed(1)} mm for display; this is not a permissible implant gap or tissue-pressure specification.`;setChapter(chapter);if(scene.stats().softwareRenderer)showStatic(true);}catch(e){sceneError=e.message;$('scene-loading').remove();showStatic(true);$('scene-caption').textContent='3D is unavailable in this browser. The static assembly, labeled component explorer and numerical model remain available.';}
+async function loadScene(requested=false){
+ const button=$('static-view'), loading=$('scene-loading');
+ if(button.disabled)return;
+ button.disabled=true;button.textContent='Loading 3D…';loading.hidden=false;
+ loading.textContent='Loading reference anatomy…';
+ try {
+  const {createScene}=await import('./scene.js');
+  const ready=await createScene($('scene'),id=>{
+   const j=parts.findIndex(p=>p.id===id);
+   if(j>=0){if(chapter!=='assembly')setChapter('assembly');selectPart(j);}
+  },value=>setPeel(value,false));
+  if(disposed){ready.dispose();return;}
+  scene=ready;sceneError='';
+  const {device:fit,softwareRenderer}=scene.stats();
+  $('contact-fit-note').textContent=`Sampled datum-to-cortex gap: ${fit.contactThicknessRangeMm.map(v=>v.toFixed(1)).join('–')} mm. Rigid parts clear the raw reference cortex by at least ${fit.rigidClearanceMm.toFixed(1)} mm for display; this is not a permissible implant gap or tissue-pressure specification.`;
+  syncScene();
+  showStatic(softwareRenderer&&!requested);
+ } catch(error){
+  sceneError=error.message;
+  showStatic(true);
+  button.textContent='Retry 3D';
+  $('scene-caption').textContent='3D could not load. The static diagram, component descriptions and numerical lab are available.';
+ } finally {
+  loading.hidden=true;button.disabled=false;
+ }
+}
 window.seizefreeze={sensitivity:()=>sensitivityResult,snapshot:()=>({chapter,selected:parts[selected].id,installed:[...installed],index,playing,staticView,sceneError,modelError,scenario:options.scenario,frame:result?.frames[index],params:result?.params,summary:result?.summary,peel:peelProgress,stats:scene?.stats()}),goTo:t=>{pause();if(result){index=Math.max(0,Math.min(result.frames.length-1,Math.round(t*20)));drawFrame();}}};
 window.addEventListener('pagehide',event=>{pause();if(event.persisted)return;disposed=true;worker?.terminate();scene?.dispose();});
 window.addEventListener('pageshow',event=>{if(event.persisted)scene?.render();});
+if(!navigator.connection?.saveData)void loadScene();

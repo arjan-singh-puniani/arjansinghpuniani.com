@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium, firefox, webkit } from 'playwright';
 
 const base = process.env.SEIZEFREEZE_BASE_URL || 'http://127.0.0.1:3212';
-const output = new URL('../../Documentation/Validation/SeizeFreeze/', import.meta.url);
+const output = new URL(process.env.SEIZEFREEZE_QA_OUT || '../../Documentation/Validation/SeizeFreeze/', import.meta.url);
 await mkdir(output, { recursive: true });
 const results = [];
 const engines = process.argv.includes('--smoke') ? [['chromium', chromium]] : [['chromium', chromium], ['firefox', firefox], ['webkit', webkit]];
@@ -28,6 +28,8 @@ for (const [name, type] of engines) {
     await page.goto(`${base}/seizefreeze-lab/index.html`);
     await page.waitForFunction(()=>window.seizefreeze?.snapshot().summary);
     const interactiveMs=Date.now()-start;
+    await page.waitForFunction(()=>window.seizefreeze?.snapshot().stats?.frames, null, {timeout:60000});
+    if(await page.locator('#poster').isVisible())await page.locator('#static-view').click();
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'assembly overflow');
     await page.screenshot({path:fileURLToPath(new URL(`pass3-${name}-${width}-opening.png`,output))});
     await page.locator('#scene').screenshot({path:fileURLToPath(new URL(`pass3-${name}-${width}-device.png`,output))});
@@ -54,6 +56,7 @@ for (const [name, type] of engines) {
     assert.equal(await page.locator('#hot-value').innerText(),`${frame.Th.toFixed(2)} °C`);
     assert.ok(Math.abs(frame.qh-frame.qc-frame.power)<1e-12);
     await page.locator('[data-depth=model]').click();
+    await page.locator('.katex-mathml').last().waitFor({state:'attached'});
     assert.equal(await page.locator('.katex-mathml').count(),6,'accessible local equations');
     assert.equal(await page.locator('.katex-error').count(),0);
     await page.screenshot({path:fileURLToPath(new URL(`pass3-${name}-${width}-laboratory.png`,output)),fullPage:true});

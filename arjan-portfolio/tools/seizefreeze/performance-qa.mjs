@@ -17,7 +17,7 @@ for(const mode of nativeOnly?['native-requested']:['software','native-requested'
     await page.waitForFunction(()=>window.seizefreeze?.snapshot().summary,null,{timeout:120000});
     const modelReadyMs=Date.now()-start,staticByDefault=await page.evaluate(()=>window.seizefreeze.snapshot().staticView);
     if(staticByDefault){await page.waitForFunction(()=>document.getElementById('poster').complete);await page.locator('#static-view').click();}
-    await page.waitForFunction(()=>window.seizefreeze.snapshot().stats.frames>0,null,{timeout:120000});
+    await page.waitForFunction(()=>window.seizefreeze.snapshot().stats?.frames>0,null,{timeout:120000});
     const first3DReadyMs=Date.now()-start;
     for(const workload of ['placement-peel','lab-scrub','device-rotate']) {
       if(workload==='lab-scrub'){await page.locator('#lab-tab').click();await page.evaluate(()=>window.seizefreeze.goTo(30));}

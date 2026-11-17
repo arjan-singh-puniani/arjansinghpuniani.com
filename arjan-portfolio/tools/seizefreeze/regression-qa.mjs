@@ -5,7 +5,7 @@ const base=process.env.SEIZEFREEZE_BASE_URL||'http://127.0.0.1:3212';
 const browser=await chromium.launch({headless:true,channel:'chromium',args:['--use-angle=metal']});
 const page=await browser.newPage({viewport:{width:1440,height:1000}});
 await page.goto(`${base}/seizefreeze-lab/index.html`);
-await page.waitForFunction(()=>window.seizefreeze?.snapshot().summary);
+await page.waitForFunction(()=>window.seizefreeze?.snapshot().summary && window.seizefreeze.snapshot().stats?.frames);
 await page.locator('#lab-tab').click();
 await page.evaluate(()=>window.seizefreeze.goTo(45));
 const hash=async()=>createHash('sha256').update(await page.locator('#scene canvas').screenshot()).digest('hex');
