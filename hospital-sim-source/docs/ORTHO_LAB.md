@@ -50,6 +50,12 @@ node tools/hospitalsim/ortho-browser.mjs
 
 The browser check defaults to the local production server at port 8782. Set `ORTHO_OUT` to a capture directory and `ORTHO_VIDEO=1` to record. Set `ORTHO_METAL=1` to select ANGLE Metal on the test Mac. Headless Chromium uses CDP touch for the iPhone 13 profile. The WebKit smoke check uses the same portrait profile and engine-level taps. These modes run on desktop hardware.
 
+### First-time playtest
+
+Open a fresh Guided case on the participant’s own browser. Ask them to get from the opening screen to the before-and-after images. Observe without coaching until they ask for help. Record time to the first committed clamp move, where they stop or ask for help, and whether they reach the final images. Record the device and browser with each run.
+
+Once they reach the images, ask what the second projection showed that the first could hide. Give them a new setup and ask which control they would use for a fragment shifted sideways and which they would use for a fragment angled off-axis. Capture their explanation before giving feedback. This is a formative usability check for one spatial concept. Independent learner sessions and clinician review of the game are still pending.
+
 ### Anatomy and grip verification
 
 The browser suite now checks that stationary mouse and touch holds reach the locked-jaw state with no pose change, then reopen on release. It covers interrupted drags, both views, fixation, replay and missing anatomy recovery. On the Apple M2 Metal backend in Chromium 153, the 1.25-second clamp sample had a 16.7 ms median and 16.7 ms 95th-percentile frame interval in the desktop and emulated iPhone 13 runs. The separate SwiftShader fallback run showed slower desktop frame pacing. These desktop measurements do not establish physical iPhone performance. In a hands-on Safari check of the pre-art candidate, Arjan confirmed that the grip locked, followed his finger and released smoothly.

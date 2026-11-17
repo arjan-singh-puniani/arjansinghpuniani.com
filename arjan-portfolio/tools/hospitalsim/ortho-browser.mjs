@@ -60,6 +60,11 @@ try {
     }
     await click(action);
     await waitStep('Line up the fragments');
+    assert.match(await p.locator('#clamp-tip').textContent(),/Drag the clamp/);
+    if (touch) assert(await grip.evaluate(handle => {
+      const bounds = handle.getBoundingClientRect();
+      return bounds.top >= 0 && bounds.bottom <= innerHeight;
+    }));
     const firstInput = now();
     const initial = await p.locator('#metrics').innerText();
     if(!touch){
@@ -250,10 +255,16 @@ try {
     await drive(...trace.at(-1),{pixels:true,via});
     await waitStep('Compare your result');
     assert.match(await p.locator('#notice').textContent(),/Alignment [45-6]\d\/60 · Fixation 30\/30/);
+    assert.match(await p.locator('#image-note').textContent(),/^Side projection/);
+    const sideOffset=await p.locator('#image-offset').textContent();
+    const [beforeSide,afterSide]=sideOffset.split(' → ').map(Number);
+    assert(beforeSide>afterSide);
     const sideImage = await p.locator('#after').getAttribute('src');
     await screenshot('comparison-side');
     await click(button('Front'));
     await p.waitForFunction(previous=>document.querySelector('#after').getAttribute('src')!==previous,sideImage);
+    assert.match(await p.locator('#image-note').textContent(),/^Front projection/);
+    assert.notEqual(await p.locator('#image-offset').textContent(),sideOffset);
     await screenshot('comparison');
     assert.equal(await p.locator('#secondary').textContent(),'Try harder setup');
     const elapsed = now();

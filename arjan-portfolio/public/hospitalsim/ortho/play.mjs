@@ -2,7 +2,7 @@ import {makeCase, openingSeed, challengeSeed, views, stations, limits, dressingT
 import {makeScene} from './scene.mjs';
 
 const steps = {
-  inspect:['01 / Orientation','Find the break','Follow a simplified antegrade nailing case for a simple oblique midshaft fracture. Check both views before and after locking.','Take the clamp'],
+  inspect:['01 / Orientation','Find the break','The lower fragment has shifted. Take the clamp to bring it back into line, then check your work from the front and side.','Take the clamp'],
   reduce:['02 / Fracture reduction','Line up the fragments','Drag the clamp in Move for offset and gap, or Rotate for tilt and twist. Get four checkmarks, then verify this view.','Check this view'],
   seat:['03 / Implant','Advance the nail','Entry, guidewire passage and canal preparation are represented as already complete. Drag the virtual handle down in short strokes to seat the nail.',''],
   prelock:['04 / Before locking','Review the seated nail','Compare nail position and shaft alignment in Front and Side. Rotation assessment in the real procedure requires anatomical references beyond this model.','Confirm this view'],
@@ -177,6 +177,15 @@ export async function mount() {
       $('action').disabled = Boolean(checked || state.grip);
       const next = reducing ? nextAdjustment(pose,view) : null;
       const help = reducing && !checked && !state.expert && next && !fluoro;
+      const needed = help && mode !== next.mode ? next.mode : '';
+      for (const choice of ['move','rotate']) $(choice).toggleAttribute('data-needed',choice === needed);
+      const dragDirection = pointer?.guide?.next.direction || (help ? next.direction : '');
+      setText('clamp-tip',fluoro ? 'Tap Fluoro to return to the clamp'
+        : checked ? 'View checked. Continue below.'
+        : pointer?.guideReady ? 'Release to keep this correction'
+        : needed ? 'Select ' + (needed === 'move' ? 'Move' : 'Rotate')
+        : dragDirection ? 'Drag the clamp ' + arrows[dragDirection]
+        : !next ? 'Ready to check this view' : 'Drag the clamp to adjust the fragment');
       const guide = $('reduction-progress');
       guide.hidden = !reducing;
       if (reducing) {
@@ -240,6 +249,12 @@ export async function mount() {
         if (reviewView !== view) {
           $('before').src = scene.snapshot(state, state.baseline, false);
           $('after').src = scene.snapshot(state, pose, true);
+          const initial = error(state.baseline,view), final = error(pose,view);
+          setText('image-note',viewName(view) + ' projection · ' + (view === 'front'
+            ? 'Compare the side-to-side shift. Switch to Side to see the depth this view hides.'
+            : 'Compare the shift in depth. Switch to Front to see the side-to-side shift.'));
+          setText('image-offset',initial.offset.toFixed(2) + ' → ' + final.offset.toFixed(2));
+          setText('image-tilt',degrees(initial.tilt) + ' → ' + degrees(final.tilt));
           reviewView = view;
         }
       } else {
@@ -401,6 +416,13 @@ export async function mount() {
       fluoro = false;
       runningSince = performance.now();
       if (!reduced.matches) field.animate([{opacity:.78},{opacity:1}],{duration:185});
+      if (matchMedia('(max-width: 700px)').matches) {
+        redraw();
+        requestAnimationFrame(() => {
+          const handle = grip.getBoundingClientRect();
+          if (handle.top < 0 || handle.bottom > innerHeight) $('modes').scrollIntoView({block:'start'});
+        });
+      }
     }
     else if (state.stage === 'review') restart();
     else if (state.stage === 'dress') {
