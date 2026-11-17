@@ -15,9 +15,13 @@
 .sf-case .sf-launch{display:inline-flex;align-items:center;min-height:44px;border:1px solid #aedbdc;border-radius:4px;padding:11px 16px;font-size:13px;font-weight:650;background:#bce9e8;color:#102933;text-decoration:none;cursor:pointer}
 .sf-case .sf-launch:hover{background:#e1f7f4}
 .sf-interactive{background:#0d1921;color:#edf1ed;padding-top:26px}
-.sf-lab-controls{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:15px}
+.sf-lab-controls{padding-bottom:15px}
 .sf-lab-controls h2{font-size:clamp(24px,3vw,36px);margin:0 0 8px}
 .sf-lab-controls p{font-size:14px;max-width:58ch}
+.sf-lab-disclosure summary{list-style:none;cursor:pointer;margin-bottom:9px}
+.sf-lab-disclosure summary::-webkit-details-marker{display:none}
+.sf-lab-disclosure summary .sf-launch>span:last-child,.sf-lab-disclosure[open] summary .sf-launch>span:first-child{display:none}
+.sf-lab-disclosure[open] summary .sf-launch>span:last-child{display:inline}
 .sf-interactive iframe{display:block;width:100%;height:950px;border:0;background:#070d12}
 .sf-embed-note{font-size:12px;line-height:1.8;color:#b6cbd0;padding-top:10px;padding-bottom:22px}
 .sf-embed-note a{color:#b5e4e6;text-decoration:underline;text-underline-offset:3px}

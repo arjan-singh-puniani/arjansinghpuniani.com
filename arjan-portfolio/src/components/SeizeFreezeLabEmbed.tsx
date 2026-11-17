@@ -5,7 +5,12 @@ import { useEffect, useRef, useState } from "react";
 export function SeizeFreezeLabEmbed() {
   const [open, setOpen] = useState(false);
   const frame = useRef<HTMLIFrameElement>(null);
-  const heading = useRef<HTMLHeadingElement>(null);
+  const disclosure = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    // The native disclosure may have been opened before React attached its handlers.
+    if (disclosure.current?.open) setOpen(true);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -23,18 +28,17 @@ export function SeizeFreezeLabEmbed() {
   return (
     <section className="sf-interactive" aria-labelledby="sf-lab-title">
       <div className="shell sf-lab-controls">
-        <div>
-          <h2 id="sf-lab-title" ref={heading} tabIndex={-1}>Interactive laboratory</h2>
-          <p>Explore the proposed device on reference anatomy and follow a synthetic signal through the thermal model.</p>
+        <h2 id="sf-lab-title">Interactive laboratory</h2>
+        <p>Explore the proposed device on reference anatomy and follow a synthetic signal through the thermal model.</p>
+      </div>
+      <details className="sf-lab-disclosure" ref={disclosure} suppressHydrationWarning onToggle={event => setOpen(event.currentTarget.open)}>
+        <summary className="shell"><span className="sf-launch"><span>Load lab here</span><span>Close embedded lab</span></span></summary>
+        <div id="sf-inline-lab">
+          {open
+            ? <iframe ref={frame} src="/seizefreeze-lab/index.html?embed=1" title="Explore the proposed SeizeFreeze assembly and synthetic signal-to-thermal-control laboratory" />
+            : <p className="shell sf-embed-note"><a href="/seizefreeze-lab/index.html">Open the lab in full screen ↗</a></p>}
         </div>
-        <button type="button" className="sf-launch" aria-expanded={open} aria-controls="sf-inline-lab" onClick={() => {
-          setOpen(!open);
-          if (open) heading.current?.focus();
-        }}>{open ? "Close embedded lab" : "Load lab here"}</button>
-      </div>
-      <div id="sf-inline-lab" hidden={!open}>
-        {open && <iframe ref={frame} src="/seizefreeze-lab/index.html?embed=1" title="Explore the proposed SeizeFreeze assembly and synthetic signal-to-thermal-control laboratory" />}
-      </div>
+      </details>
       <p className="shell sf-embed-note"><a href="/seizefreeze-lab/index.html">Open full-screen ↗</a> · <a href="/seizefreeze-lab/MODEL.md">Read the numerical model ↗</a> · <a href="/seizefreeze-lab/research.html">Open the research workbench ↗</a></p>
     </section>
   );
