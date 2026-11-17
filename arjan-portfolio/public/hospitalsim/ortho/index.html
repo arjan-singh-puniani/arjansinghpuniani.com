@@ -27,7 +27,10 @@
         <div class="segments" role="group" aria-label="Projection"><button id="front" type="button">Front</button><button id="side" type="button">Side</button></div>
         <button id="fluoro" type="button" aria-pressed="false">Fluoro</button><span id="view-label"></span>
       </div>
-      <div class="segments" id="modes" role="group" aria-label="Clamp mode" hidden><button id="move" type="button">Move</button><button id="rotate" type="button">Rotate</button></div>
+      <div id="modes" hidden>
+        <div class="segments" role="group" aria-label="Clamp mode"><button id="move" type="button">Move</button><button id="rotate" type="button">Rotate</button></div>
+        <p id="clamp-tip" aria-hidden="true"></p>
+      </div>
       <div id="field" tabindex="0" aria-label="Operative field. Use arrow keys to adjust the selected tool, Enter to commit and Escape to cancel." aria-describedby="directions">
         <canvas id="scene" aria-hidden="true"></canvas>
         <svg id="seal" aria-hidden="true" hidden><polyline id="seal-track"></polyline><polyline id="seal-fill"></polyline><circle id="seal-next" r="10"></circle></svg>
@@ -38,8 +41,15 @@
         <span id="grip-state" aria-hidden="true" hidden></span>
       </div>
       <section id="comparison" hidden aria-label="Matched baseline and final imaging">
-        <figure><img id="before" alt="Simulated fluoroscopy before reduction"><figcaption>01 · Baseline</figcaption></figure>
-        <figure><img id="after" alt="Simulated fluoroscopy after fixation"><figcaption>02 · Final fixation</figcaption></figure>
+        <figure><img id="before" alt="Simulated fluoroscopy before reduction"><figcaption>Before reduction</figcaption></figure>
+        <figure><img id="after" alt="Simulated fluoroscopy after fixation"><figcaption>After fixation</figcaption></figure>
+        <div class="image-readout">
+          <p id="image-note"></p>
+          <dl aria-label="Simulated alignment before and after">
+            <div><dt>Offset · game units</dt><dd id="image-offset"></dd></div>
+            <div><dt>Tilt · degrees</dt><dd id="image-tilt"></dd></div>
+          </dl>
+        </div>
       </section>
     </div>
     <aside class="controls">
