@@ -10,7 +10,7 @@ try{
  for(const [width,height] of [[1440,1000],[390,844]]){
   const context=await browser.newContext({viewport:{width,height},reducedMotion:'reduce'}),page=await context.newPage();
   await page.goto(`${base}/seizefreeze-lab/index.html`);
-  await page.waitForFunction(()=>window.seizefreeze?.snapshot().stats.frames>0);
+  await page.waitForFunction(()=>window.seizefreeze?.snapshot().stats?.frames>0);
   assert.equal(await page.locator('#poster').isVisible(),false);
   assert.equal(await page.locator('#device-lens').isVisible(),true);
   await page.screenshot({path:new URL(`studio-final-${width}.png`,output).pathname});
