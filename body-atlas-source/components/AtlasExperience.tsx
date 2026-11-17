@@ -683,7 +683,7 @@ export default function AtlasExperience() {
                   onHover={setHovered}
                 />
               )}
-              {showInterventions && projection?.mode===mode && densityMap && <InterventionConstellation named={implantsOnly || collection==='explained'} implantsOnly={implantsOnly} entries={!implantsOnly && f && showMechanism && action && mode==='human' ? annotations.filter(a=>a.familyId===f.id) : annotations} projection={projection} selected={selected} onSelect={onInnovation} onRegion={id=>chooseRegion(id)}/>}
+              {showInterventions && projection?.mode===mode && densityMap && <InterventionConstellation compactBottom={solidOverview ? 48 : undefined} named={implantsOnly || collection==='explained'} implantsOnly={implantsOnly} entries={!implantsOnly && f && showMechanism && action && mode==='human' ? annotations.filter(a=>a.familyId===f.id) : annotations} projection={projection} selected={selected} onSelect={onInnovation} onRegion={id=>chooseRegion(id)}/>}
               {showInterventions && !densityMap && projection?.mode === mode && (
                 <InterventionLabels
                   entries={annotations}

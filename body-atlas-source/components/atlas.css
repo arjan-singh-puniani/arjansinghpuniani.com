@@ -2738,7 +2738,7 @@
   display: flex;
   flex: none;
   flex-wrap: wrap;
-  gap: 4px 14px;
+  gap: 4px 8px;
   align-items: center;
   padding: 2px 12px;
   border-top: 1px solid var(--rule);
