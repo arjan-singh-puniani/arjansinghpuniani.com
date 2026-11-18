@@ -1,6 +1,6 @@
 # Narration draft
 
-Target runtime: approximately 105 seconds at a measured delivery pace of 130–140 words per minute, with pauses. This script is written but not recorded or synchronized to picture.
+Target runtime: approximately 105 seconds at an estimated 122 words per minute, including pauses. This is a script estimate; it has not been timed against a recorded read or synchronized to picture.
 
 ## 00:00–00:08 · The long shadow
 

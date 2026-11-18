@@ -2,7 +2,7 @@
 
 Review date: 2026-11-18. Review target: encoded H.264 1080p silent review cut, plus representative Blender Cycles renders. Evidence: `artifacts/agent-orange/encoded-contact-sheet-1080p.png`, `artifacts/agent-orange/encoded-contact-sheet.png`, and decoded full-size samples from the atlas, neuron, mitochondrion, and final chart shots.
 
-The current full cut is encoded at 1920×1080, 24 fps, 105 seconds. The full decode and black-frame scan passed. The atlas caption was moved below the surfaces after a contact-sheet review, then that shot was rerendered and the complete film re-encoded. The render cache is outside the repository at `/Users/arjan/.codex/visualizations/2026/11/18/01a1edbe-04d2-7a00-94ad-7e11f9376d15/agent-orange-film-frames-1080p/`.
+The current full cut is encoded at 1920×1080, 24 fps, 105 seconds. The full decode and black-frame scan passed. The atlas caption was moved below the surfaces after a contact-sheet review, and the cell interval was rerendered after removing an erroneous static-frame fallback. The final neuron pose is held for one frame at its boundary to avoid a black flash. The render cache is outside the repository at `/Users/arjan/.codex/visualizations/2026/11/18/01a1edbe-04d2-7a00-94ad-7e11f9376d15/agent-orange-film-frames-1080p/`.
 
 | Dimension | Score | Evidence and remaining defect |
 | --- | ---: | --- |
@@ -23,13 +23,13 @@ The current full cut is encoded at 1920×1080, 24 fps, 105 seconds. The full dec
 - Enlarged and opened the mitochondrial model to show simplified inner-membrane folds; removed most decorative candidate markers.
 - Rerendered frames 1081–1800, re-encoded the complete film, inspected the updated encoded samples, and confirmed no black intervals.
 - Rerendered frames 721–1080 after moving the CIT168 caption clear of the atlas, re-encoded all 2,520 frames, and inspected the updated contact sheet and encoded frame samples.
-- Replaced one black 10-second interval in the cell shot with a held rendered view to keep the encoded sequence complete; this is a visible static hold and remains a motion defect.
+- Replaced the erroneous 10-second static cell fallback with the actual camera-animated Blender frames; held the last valid neuron pose for one boundary frame after confirming Blender rendered the exact endpoint black.
 
 ## Remaining visual defects
 
 - The historical aircraft and terrain are illustrative low-detail models.
 - The neuron and mitochondrion are schematic and do not meet medical-illustration fidelity.
-- On-frame text remains small, the cell shot contains a 10-second static hold, and the film has no audio; it is a review cut, not a delivery master.
+- On-frame text remains small, the pathway/evidence shots have limited motion, and the film has no audio; it is a review cut, not a delivery master.
 - A final creative pass would need rebuilt hero assets, richer shot-specific lighting/composition, full-size typography review, narration, and sound mastering.
 
 The work is not an 11/10 result and is not production-ready. These scores describe inspected evidence, not a prediction of future quality.

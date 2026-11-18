@@ -72,6 +72,20 @@
       "review": "verified against EPA and PubChem records"
     },
     {
+      "id": "HIST-01",
+      "wording": "Operation Ranch Hand used modified C-123 aircraft to spray Agent Orange; the opening visual is an illustrative C-123 Provider-inspired schematic, not a specific aircraft or mission reconstruction.",
+      "source": "National Museum of the United States Air Force, Down in the Weeds: Ranch Hand",
+      "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/195955/down-in-the-weeds-ranch-hand/",
+      "classification": "historical aircraft record plus illustrative reconstruction",
+      "limitations": [
+        "Procedural aircraft is a schematic, not a specific tail number",
+        "No specific spraying mission, location, or route is depicted",
+        "Terrain and spray plume are illustrative"
+      ],
+      "visual": "Opening historical exposure shot",
+      "review": "aircraft type and Ranch Hand use verified against the National Museum of the US Air Force exhibit record; visual remains explicitly schematic"
+    },
+    {
       "id": "ANAT-01",
       "wording": "Interactive putamen, caudate, and substantia nigra pars compacta surfaces are derived from the CIT168 1 mm MNI template label map; the overview brain and pathway remain schematic.",
       "source": "Pauli WM, Nili AN, Tyszka JM. Scientific Data. 2018. doi:10.1038/sdata.2018.63; OSF items 2qswg and 6qrcb",

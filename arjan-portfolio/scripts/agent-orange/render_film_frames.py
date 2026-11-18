@@ -29,16 +29,10 @@ OUT.mkdir(parents=True, exist_ok=True)
 scene = bpy.context.scene
 assert scene.frame_end >= end >= start >= scene.frame_start
 for frame in range(start, end + 1):
-    scene.frame_set(frame)
+    # Blender renders the final neuron frame black at its exact shot endpoint.
+    scene.frame_set(frame - 1 if frame == 1440 else frame)
     output = OUT / f"frame-{frame:04d}.png"
     hold_frame = OUT / "frame-2161.png"
-    cell_hold_frame = OUT / "frame-1200.png"
-    if 1201 <= frame <= 1440 and cell_hold_frame.exists():
-        # The cell scene has no animation in this interval; reuse its verified static view.
-        shutil.copyfile(cell_hold_frame, output)
-        if frame == end or frame % scene.render.fps == 0:
-            print(f"FILM_PROGRESS {frame}/{end}", flush=True)
-        continue
     if frame > 2161 and hold_frame.exists():
         # The closing evidence chart is a deliberate static hold; copy its valid rendered frame.
         shutil.copyfile(hold_frame, output)
