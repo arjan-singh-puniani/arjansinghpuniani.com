@@ -10,7 +10,7 @@ PubChem 3D SDF records supply the atom coordinates and bond orders for 2,4-D, 2,
 
 ## Engineering decisions and limits
 
-The chemical models retain separate identities and source records. The atlas is a smoothed display surface derived from a group template, not an individual brain or veteran scan. The source repository has an MIT license, but rights for redistribution of the specific OSF NIfTI file and derivative meshes still need confirmation. The neuron, mitochondrion, pathway, and exposure scenes are educational schematics; candidate mechanisms are labeled as hypotheses. The current film render is 720×405 because no Metal device was detected for Cycles. Narration and sound have not been recorded, and the SRT timings remain drafts.
+The chemical models retain separate identities and source records. The atlas is a smoothed display surface derived from a group template, not an individual brain or veteran scan. The CIT168 paper is CC BY 4.0 and published atlas manifests classify the dataset the same way, but the exact OSF NIfTI item's terms still need confirmation before redistribution. The neuron, mitochondrion, pathway, and exposure scenes are educational schematics; candidate mechanisms are labeled as hypotheses. The silent H.264 review is 105 seconds at 718×404, encoded from 720×405 Cycles CPU frames because no Metal device was detected. Narration and sound have not been recorded, and the SRT timings remain drafts.
 
 ## Authorship note
 

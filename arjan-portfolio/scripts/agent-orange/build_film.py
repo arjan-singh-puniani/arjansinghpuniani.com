@@ -75,7 +75,7 @@ def window(obj, start, end):
 def set_shot_visibility(frame):
     for obj in bpy.context.scene.objects:
         if "shot_start" in obj:
-            obj.hide_render = not (obj["shot_start"] <= frame < obj["shot_end"])
+            obj.hide_render = not (obj["shot_start"] <= frame <= obj["shot_end"])
 
 
 def import_group(slug, offset=(0, 0, 0), scale=1.0, start=1, end=END):
@@ -202,31 +202,66 @@ def main():
 
     # Shot 4: educational cell illustration, not an observed exposure pathway.
     shot4a, shot4b = 3 * SHOT + 1, 4 * SHOT
-    soma = sphere("Dopaminergic neuron soma", (0, 0, 0), (1.15, 0.9, 0.8), palette["tissue"])
-    wire = soma.modifiers.new("Soma cutaway lattice", "WIREFRAME")
-    wire.thickness = 0.045
-    wire.offset = 0
+    soma = sphere("Dopaminergic neuron soma", (0, 0, 0), (1.15, 0.9, 0.8), palette["tissue"], 48)
+    bpy.ops.mesh.primitive_cube_add(size=1, location=(0, -0.72, 0))
+    soma_cutter = bpy.context.object
+    soma_cutter.dimensions = (1.55, 0.9, 1.25)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    soma_window = soma_cutter.modifiers.new("Rounded cell-body window", "BEVEL")
+    soma_window.width = 0.18
+    soma_window.segments = 5
+    bpy.context.view_layer.objects.active = soma_cutter
+    bpy.ops.object.modifier_apply(modifier=soma_window.name)
+    soma_boolean = soma.modifiers.new("Open soma section", "BOOLEAN")
+    soma_boolean.operation = "DIFFERENCE"
+    soma_boolean.object = soma_cutter
+    bpy.context.view_layer.objects.active = soma
+    bpy.ops.object.modifier_apply(modifier=soma_boolean.name)
+    bpy.data.objects.remove(soma_cutter, do_unlink=True)
+    soma_rim = soma.modifiers.new("Soft section rim", "BEVEL")
+    soma_rim.width = 0.035
+    soma_rim.segments = 3
+    soma_shell = soma.modifiers.new("Cell membrane thickness", "SOLIDIFY")
+    soma_shell.thickness = 0.09
     nucleus = sphere("Nucleus", (0.12, 0.05, 0.16), (0.43, 0.38, 0.32), palette["blue"])
     neuron = [soma, nucleus]
-    neuron += [curve("Dendrite", [(0, 0.2, 0.3), (-1.5, 1.1, 0.5), (-2.8, 1.7, 0.5)], palette["tissue"], 0.12),
-               curve("Dendrite", [(-0.3, 0.1, 0.3), (-1.7, -0.7, 0.4), (-2.6, -1.5, 0.2)], palette["tissue"], 0.1),
+    neuron += [curve("Dendrite · primary superior", [(0, 0.2, 0.3), (-1.5, 1.1, 0.5), (-2.8, 1.7, 0.5)], palette["tissue"], 0.12),
+               curve("Dendrite · superior branch A", [(-1.25, 1.0, 0.48), (-1.8, 1.75, 0.5), (-2.25, 2.4, 0.35)], palette["tissue"], 0.065),
+               curve("Dendrite · superior branch B", [(-1.65, 1.2, 0.5), (-2.2, 1.2, 0.42), (-2.8, 1.0, 0.32)], palette["tissue"], 0.05),
+               curve("Dendrite · primary lateral", [(-0.3, 0.1, 0.3), (-1.7, -0.7, 0.4), (-2.6, -1.5, 0.2)], palette["tissue"], 0.1),
+               curve("Dendrite · lateral branch A", [(-1.3, -0.45, 0.37), (-1.55, -1.1, 0.3), (-1.9, -1.9, 0.15)], palette["tissue"], 0.06),
+               curve("Dendrite · lateral branch B", [(-1.75, -0.7, 0.4), (-2.25, -0.45, 0.3), (-2.8, -0.35, 0.18)], palette["tissue"], 0.05),
+               curve("Dendrite · basal", [(0, -0.35, 0.1), (0.5, -1.3, 0.25), (1.3, -2.2, 0.25)], palette["tissue"], 0.085),
                curve("Axon", [(0.85, 0, -0.1), (2.1, 0, -0.2), (3.4, 0.15, -0.35), (4.4, 0.1, -0.35)], palette["amber"], 0.07)]
-    neuron.append(curve("Dendrite", [(0, -0.35, 0.1), (0.5, -1.3, 0.25), (1.3, -2.2, 0.25)], palette["tissue"], 0.085))
+    for index in range(5):
+        x = 1.35 + index * 0.5
+        myelin = sphere(f"Myelin segment {index+1}", (x, 0.02, -0.18 - index * 0.025), (0.24, 0.13, 0.13), palette["cyan"], 20)
+        neuron.append(myelin)
     neuron.extend([sphere("Intracellular mitochondrion A", (-0.35, 0.08, 0.22), (0.25, 0.14, 0.13), palette["membrane"], 20), sphere("Intracellular mitochondrion B", (0.25, -0.2, 0.35), (0.18, 0.12, 0.1), palette["gold"], 20)])
     for index, pos in enumerate(((4.2, 0.55, -0.35), (4.5, -0.35, -0.35), (4.7, 0.15, 0.05))):
         neuron.append(sphere(f"Axon terminal {index+1}", pos, (0.2, 0.18, 0.17), palette["amber"], 20))
+        for vesicle in range(7):
+            vx = pos[0] + 0.105 * ((vesicle % 3) - 1)
+            vy = pos[1] + 0.09 * (1 if vesicle % 2 else -1)
+            vz = pos[2] + 0.09 * ((vesicle % 3) - 1)
+            neuron.append(sphere(f"Synaptic vesicle {index+1}-{vesicle+1}", (vx, vy, vz), (0.05, 0.05, 0.05), palette["gold"], 12))
     for obj in neuron:
         window(obj, shot4a, shot4b)
 
     # Shot 5: mitochondrial structure and a clearly qualified candidate mechanism.
     shot5a, shot5b = 4 * SHOT + 1, 5 * SHOT
-    mito = sphere("Mitochondrial outer membrane", (0, 0, 0), (2.2, 1.05, 0.48), palette["membrane"])
+    mito = sphere("Mitochondrial outer membrane", (0, 0, 0), (2.2, 1.05, 0.88), palette["membrane"], 56)
     mitochondria = [mito]
-    bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 2))
+    bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 1.0))
     cutter = bpy.context.object
     cutter.name = "Temporary cutaway tool"
-    cutter.dimensions = (10, 10, 4)
+    cutter.dimensions = (3.1, 1.55, 2.0)
     bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    cutter_bevel = cutter.modifiers.new("Rounded membrane window", "BEVEL")
+    cutter_bevel.width = 0.2
+    cutter_bevel.segments = 5
+    bpy.context.view_layer.objects.active = cutter
+    bpy.ops.object.modifier_apply(modifier=cutter_bevel.name)
     boolean = mito.modifiers.new("Open membrane cutaway", "BOOLEAN")
     boolean.operation = "DIFFERENCE"
     boolean.object = cutter
@@ -235,14 +270,30 @@ def main():
     bpy.data.objects.remove(cutter, do_unlink=True)
     shell = mito.modifiers.new("Membrane thickness", "SOLIDIFY")
     shell.thickness = 0.07
+    matrix = sphere("Mitochondrial matrix · cutaway", (0, 0, 0), (1.98, 0.88, 0.72), palette["tissue"], 48)
+    bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0.8))
+    matrix_cutter = bpy.context.object
+    matrix_cutter.dimensions = (2.7, 1.15, 1.6)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    matrix_bevel = matrix_cutter.modifiers.new("Rounded matrix window", "BEVEL")
+    matrix_bevel.width = 0.18
+    matrix_bevel.segments = 5
+    bpy.context.view_layer.objects.active = matrix_cutter
+    bpy.ops.object.modifier_apply(modifier=matrix_bevel.name)
+    matrix_boolean = matrix.modifiers.new("Matrix section", "BOOLEAN")
+    matrix_boolean.operation = "DIFFERENCE"
+    matrix_boolean.object = matrix_cutter
+    bpy.context.view_layer.objects.active = matrix
+    bpy.ops.object.modifier_apply(modifier=matrix_boolean.name)
+    bpy.data.objects.remove(matrix_cutter, do_unlink=True)
+    mitochondria.append(matrix)
     for i in range(6):
         y = -0.72 + i * 0.29
-        mitochondria.append(curve(f"Mitochondrial crista {i+1}", [(-1.75, y, 0.12), (-1.05, y + 0.12, 0.23), (-0.45, y, 0.24), (0.1, y + 0.12, 0.24), (0.72, y, 0.2), (1.65, y + 0.08, 0.12)], palette["gold"], 0.045))
-    for i in range(24):
-        x = ((i * 37) % 100) / 33 - 1.5
-        y = ((i * 19) % 90) / 40 - 1.1
-        z = ((i * 11) % 20) / 22
-        mitochondria.append(sphere(f"Candidate stress marker {i+1:02d}", (x, y, z), (0.045, 0.045, 0.045), palette["red"], 12))
+        mitochondria.append(curve(f"Mitochondrial crista {i+1}", [(-1.7, y, 0.08), (-1.25, y + 0.1, 0.42), (-0.8, y, 0.2), (-0.35, y + 0.1, 0.49), (0.1, y, 0.2), (0.55, y + 0.1, 0.46), (1.0, y, 0.18), (1.45, y + 0.08, 0.38), (1.7, y, 0.08)], palette["gold"], 0.055))
+    for i in range(8):
+        x = ((i * 37) % 50) / 35 - 0.7
+        y = ((i * 19) % 40) / 45 - 0.4
+        mitochondria.append(sphere(f"Candidate stress marker {i+1:02d}", (x, y, 0.24), (0.035, 0.035, 0.035), palette["red"], 12))
     for obj in mitochondria:
         window(obj, shot5a, shot5b)
 

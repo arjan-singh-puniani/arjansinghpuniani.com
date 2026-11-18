@@ -86,15 +86,30 @@ export function Scene({ region, reducedMotion }: { region: Region; reducedMotion
     const sceneMeshes = { Brain: [brainLeft, brainRight], "Substantia nigra": [nigra], Striatum: [striatum], "Dopamine pathway": [pathway] };
     const base = new Map<THREE.Object3D, number>();
     for (const meshes of Object.values(sceneMeshes)) for (const mesh of meshes) base.set(mesh, (mesh.material as THREE.MeshStandardMaterial).color.getHex());
+    renderer.domElement.tabIndex = 0;
+    renderer.domElement.setAttribute("aria-label", "Rotate this 3D model with the arrow keys or pointer drag.");
     let down = false;
     let lastX = 0;
     let lastY = 0;
+    const rotateActive = (dx: number, dy: number) => {
+      const active = molecules.get(selected.current) ?? (atlas.visible ? atlas : group);
+      active.rotation.y += dx * 0.006;
+      active.rotation.x += dy * 0.004;
+    };
     const onDown = (event: PointerEvent) => { down = true; lastX = event.clientX; lastY = event.clientY; renderer.domElement.setPointerCapture(event.pointerId); };
-    const onMove = (event: PointerEvent) => { if (!down) return; group.rotation.y += (event.clientX - lastX) * 0.006; group.rotation.x += (event.clientY - lastY) * 0.004; lastX = event.clientX; lastY = event.clientY; };
+    const onMove = (event: PointerEvent) => { if (!down) return; rotateActive(event.clientX - lastX, event.clientY - lastY); lastX = event.clientX; lastY = event.clientY; };
     const onUp = () => { down = false; };
+    const onKeyDown = (event: KeyboardEvent) => {
+      const directions: Record<string, [number, number]> = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, -20], ArrowDown: [0, 20] };
+      const direction = directions[event.key];
+      if (!direction) return;
+      event.preventDefault();
+      rotateActive(...direction);
+    };
     renderer.domElement.addEventListener("pointerdown", onDown);
     renderer.domElement.addEventListener("pointermove", onMove);
     renderer.domElement.addEventListener("pointerup", onUp);
+    renderer.domElement.addEventListener("keydown", onKeyDown);
     const resize = new ResizeObserver(() => { if (!root.clientWidth) return; camera.aspect = root.clientWidth / root.clientHeight; camera.updateProjectionMatrix(); renderer.setSize(root.clientWidth, root.clientHeight); });
     resize.observe(root);
     let raf = 0;
@@ -103,7 +118,6 @@ export function Scene({ region, reducedMotion }: { region: Region; reducedMotion
       const showingMolecule = molecules.has(selected.current);
       for (const [label, model] of molecules) model.visible = selected.current === label;
       atlas.visible = ["Substantia nigra", "Striatum", "Subcortical atlas"].includes(selected.current);
-      atlas.rotation.y = group.rotation.y;
       atlas.traverse(object => {
         if (!(object instanceof THREE.Mesh)) return;
         const name = object.name.toLowerCase();
@@ -112,15 +126,16 @@ export function Scene({ region, reducedMotion }: { region: Region; reducedMotion
         material.opacity = matches ? 0.92 : 0.16;
       });
       group.visible = !showingMolecule && !atlas.visible;
-      if (!motion.current && !down && !showingMolecule) { group.rotation.y += 0.0008; atlas.rotation.y += 0.0008; }
+      const active = molecules.get(selected.current) ?? (atlas.visible ? atlas : group);
+      if (!motion.current && !down) active.rotation.y += 0.0008;
       renderer.render(scene, camera);
       raf = requestAnimationFrame(render);
     };
     render();
-    return () => { cancelAnimationFrame(raf); resize.disconnect(); renderer.domElement.removeEventListener("pointerdown", onDown); renderer.domElement.removeEventListener("pointermove", onMove); renderer.domElement.removeEventListener("pointerup", onUp); scene.traverse(object => { if (object instanceof THREE.Mesh) { object.geometry.dispose(); const materials = Array.isArray(object.material) ? object.material : [object.material]; materials.forEach(item => item.dispose()); } }); renderer.dispose(); renderer.domElement.remove(); };
+    return () => { cancelAnimationFrame(raf); resize.disconnect(); renderer.domElement.removeEventListener("pointerdown", onDown); renderer.domElement.removeEventListener("pointermove", onMove); renderer.domElement.removeEventListener("pointerup", onUp); renderer.domElement.removeEventListener("keydown", onKeyDown); scene.traverse(object => { if (object instanceof THREE.Mesh) { object.geometry.dispose(); const materials = Array.isArray(object.material) ? object.material : [object.material]; materials.forEach(item => item.dispose()); } }); renderer.dispose(); renderer.domElement.remove(); };
   }, []);
 
-  return <div className="ao-scene" ref={host} role="img" aria-label={`Interactive 3D viewer. Selected: ${region}. Drag to rotate.`}><p className="ao-scene-note">{region.endsWith("molecule") ? "PUBCHEM 3D CONFORMER · DRAG TO ROTATE" : ["Substantia nigra", "Striatum", "Subcortical atlas"].includes(region) ? "CIT168 ATLAS · MNI TEMPLATE · DRAG TO ROTATE" : "SCHEMATIC OVERVIEW · DRAG TO ROTATE"}</p><p className="ao-webgl-fallback">3D rendering is unavailable in this browser. Continue with the evidence and anatomy notes below.</p><p className="ao-glb-fallback">A 3D asset could not load.</p></div>;
+  return <div className="ao-scene" ref={host} role="group" aria-label={`Interactive 3D viewer. Selected: ${region}. Drag or use the arrow keys to rotate.`}><p className="ao-scene-note">{region.endsWith("molecule") ? "PUBCHEM 3D CONFORMER · DRAG TO ROTATE" : ["Substantia nigra", "Striatum", "Subcortical atlas"].includes(region) ? "CIT168 ATLAS · MNI TEMPLATE · DRAG TO ROTATE" : "SCHEMATIC OVERVIEW · DRAG TO ROTATE"}</p><p className="ao-webgl-fallback">3D rendering is unavailable in this browser. Continue with the evidence and anatomy notes below.</p><p className="ao-glb-fallback">A 3D asset could not load.</p></div>;
 }
 
 export { regions };

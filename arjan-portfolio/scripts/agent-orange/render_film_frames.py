@@ -25,7 +25,8 @@ for frame in range(start, end + 1):
         continue
     for obj in scene.objects:
         if "shot_start" in obj:
-            obj.hide_render = not (obj["shot_start"] <= frame < obj["shot_end"])
+            # shot_end is the final included frame; following shots start on end + 1.
+            obj.hide_render = not (obj["shot_start"] <= frame <= obj["shot_end"])
     bpy.context.view_layer.update()
     scene.render.filepath = str(output)
     bpy.ops.render.render(write_still=True)

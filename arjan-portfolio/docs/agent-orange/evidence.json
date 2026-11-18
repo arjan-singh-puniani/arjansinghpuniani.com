@@ -8,8 +8,18 @@
       "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
       "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
       "classification": "observational cohort description",
-      "limitations": ["Electronic health record cohort", "Exposure classified by self-report"],
+      "limitations": ["Electronic health record cohort", "Exposure classified by self-report", "Records span January 1, 1999, to December 30, 2022", "Mean follow-up 12.5 years (SD 7.0)", "1,035,210 participants (23.2%) reported exposure; 7,600 were classified as direct or occupational exposure"],
       "visual": "Cohort description in the evidence section",
+      "review": "verified against article abstract"
+    },
+    {
+      "id": "STUDY-04",
+      "wording": "The EHR cohort included records from 1999–2022, with mean follow-up of 12.5 years; 23.2% reported Agent Orange exposure and 7,600 participants were classified as direct or occupationally exposed.",
+      "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
+      "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
+      "classification": "observational cohort description",
+      "limitations": ["Exposure was self-reported", "The abstract does not report absolute Parkinson disease event counts"],
+      "visual": "Study methods and cohort context in the evidence section",
       "review": "verified against article abstract"
     },
     {
