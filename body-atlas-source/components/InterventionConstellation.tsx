@@ -70,6 +70,5 @@ export default function InterventionConstellation({entries,projection,selected,o
  })}</div>
  {named&&pages>1&&<div className="constellation-pages"><button aria-label="Previous mapped interventions" disabled={pageIndex===0} onClick={()=>setPage(p=>Math.max(0,p-1))}><ChevronLeft size={13}/></button><span>{pageIndex+1} / {pages}</span><button aria-label="Next mapped interventions" disabled={pageIndex===pages-1} onClick={()=>setPage(p=>Math.min(pages-1,p+1))}><ChevronRight size={13}/></button></div>}
  {hover&&<div className="constellation-hover"><strong>{hover.name}</strong><span>{hover.mapping.type==='indication_context'?'Unreviewed FDA text context':`${hover.role} · ${hover.regionName}`}</span></div>}
- <div className="constellation-legend"><span><i/>{implantsOnly ? "Documented implant regions" : "Reviewed relationships"}</span>{!implantsOnly && <span><i/>FDA text context · unreviewed</span>}<small>{named?(compact?'Select a name · ≈ approximate region':'Lines meet reference anatomy · ≈ approximate region · marks group entries.'):'Dots are indexed records, not implant sites.'}</small></div>
  </div>;
 }

@@ -117,7 +117,7 @@
     "revision": null,
     "models": [
       "PRIME sponsor brochure (revision not established): 64 threads / 1,024 electrodes",
-      "UCLH GB-PRIME description (31 July 2025): 128 threads / 1,024 electrodes",
+      "UCLH GB-PRIME description (31 July 2025): over 1,000 electrodes; thread count unspecified",
       "R1 surgical insertion robot (not implanted)",
       "2019 platform prototype (not equivalent to current clinical N1)"
     ],
@@ -138,9 +138,9 @@
         "locator": "PDF p. 1; devices and study purpose"
       },
       {
-        "text": "UCLH reports 128 threads with eight electrodes each in its 2025 GB-PRIME description. The thread count differs from the sponsor brochure, despite the same total electrode count.",
+        "text": "The linked UCLH GB-PRIME description reports over 1,000 electrodes across thin threads. The page does not specify the thread count.",
         "sourceUrl": "https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology",
-        "locator": "31 July 2025; device-description Q&A"
+        "locator": "31 July 2025; opening device-description paragraphs"
       },
       {
         "text": "The sponsor reported thread retraction and fewer effective electrodes in an early participant. This is a manufacturer report, not an FDA recall determination or a cohort-wide event rate.",
@@ -178,9 +178,9 @@
       {
         "url": "https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology",
         "title": "UCLH GB-PRIME study description",
-        "locator": "31 July 2025; device-description Q&A",
-        "accessedAt": "2026-10-31",
-        "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+        "locator": "31 July 2025; opening device-description paragraphs",
+        "accessedAt": "2026-11-18",
+        "method": "Clinical-site page rechecked. The current linked text gives a lower bound for electrode count and no thread count."
       },
       {
         "url": "https://neuralink.com/updates/prime-study-progress-update-user-experience/",
@@ -200,7 +200,7 @@
     "limitations": [
       "The six indexed Neuralink-sponsored trial records have no posted results in the retrieved snapshot; this does not establish the absence of other research or publications.",
       "No complete consent/risk packet, commercial labeling, patient-specific thread layout, hemisphere or dose/field model is established here.",
-      "Thread-count descriptions differ across sources; no universal patient configuration or revision crosswalk is established.",
+      "The public sources do not establish a universal patient configuration or revision crosswalk.",
       "Sponsor reports are separate from adjudicated clinical outcomes and FDA safety/recall findings."
     ]
   },
@@ -626,9 +626,8 @@
     "next": [
       "The six indexed Neuralink-sponsored trial records have no posted results in the retrieved snapshot; this does not establish the absence of other research or publications.",
       "No complete consent/risk packet, commercial labeling, patient-specific thread layout, hemisphere or dose/field model is established here.",
-      "Thread-count descriptions differ across sources; no universal patient configuration or revision crosswalk is established.",
-      "Sponsor reports are separate from adjudicated clinical outcomes and FDA safety/recall findings.",
-      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
+      "The public sources do not establish a universal patient configuration or revision crosswalk.",
+      "Sponsor reports are separate from adjudicated clinical outcomes and FDA safety/recall findings."
     ]
   }
 }

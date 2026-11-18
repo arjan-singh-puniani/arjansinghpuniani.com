@@ -30,17 +30,18 @@ test('six registry records preserve sponsor, dates, estimated enrollment and abs
  const r=recordById('NCT06429735')!;assert.equal(r.firstPosted,'2024-05-28');assert.equal(r.studyStart!.date,'2024-01-09');assert.equal(r.enrollment!.type,'ESTIMATED');
  assert.ok(timeline(['neuralink']).some(e=>e.recordId==='NCT06429735'&&e.date==='2024-05-28'&&e.kind==='Study first posted'));
 });
-test('configuration differences and sponsor reports are retained without FDA recall or IFU claims',()=>{
+test('source-specific hardware details and sponsor reports omit unsupported configuration counts',()=>{
  const d=JSON.parse(readFileSync('public/dossiers/neuralink.json','utf8'));
  assert.deepEqual(d.applications,[]);assert.equal(d.regulatory.state,'not-established');assert.equal(d.safety.state,'not-established');assert.equal(d.labeling.state,'not-applicable');assert.deepEqual(d.safety.rows,[]);
  const text=d.labelReview.findings.map((x:any)=>x.text).join(' ');
- assert.match(text,/64 threads/);assert.match(text,/128 threads/);assert.match(text,/undated/);assert.match(text,/not an FDA recall/);
+ assert.match(text,/64 threads/);assert.match(text,/over 1,000 electrodes/);assert.doesNotMatch(text,/128 threads/);assert.match(text,/undated/);assert.match(text,/not an FDA recall/);
+ assert.doesNotMatch(d.review.next.join(' '),/before clinical use/);
  assert.equal(dossiers.neuralink.currentLabelReview,'investigational');
 });
 test('briefs retain source-linked uncertainty and distinguish the earlier platform paper from human outcomes',()=>{
  const text=brief(['neuralink']);assert.match(text,/NCT06429735/);assert.match(text,/NCT07224256/);assert.match(text,/31642810/);
  assert.match(text,/2019.*not.*clinical results/);assert.match(text,/revision crosswalk/);assert.match(text,/thread retraction/);
- assert.match(text,/Investigational \/ research/);assert.match(text,/64 threads/);assert.match(text,/128 threads/);
+ assert.match(text,/Investigational \/ research/);assert.match(text,/64 threads/);assert.match(text,/over 1,000 electrodes/);assert.doesNotMatch(text,/128 threads/);
  for(const url of ['https://neuralink.com/pdfs/PRIME-Study-Brochure.pdf','https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology'])assert.ok(isSourceUrl(url));
  assert.equal(isSourceUrl('https://neuralink.com.evil.test/source'),false);
 });

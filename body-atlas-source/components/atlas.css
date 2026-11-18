@@ -2552,7 +2552,7 @@
 .constellation-region span { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
 .constellation-region strong { font:10px var(--mono); color:var(--gold); }
 .constellation-region:hover, .constellation-region:focus-visible { background:#243d4d; }
-.constellation-legend { position:absolute; left:12px; top:7px; display:flex; flex-wrap:wrap; column-gap:12px; row-gap:3px; max-width:calc(100% - 24px); color:#bacbd2; font:9px var(--mono); }
+.constellation-legend { display:flex; flex:none; flex-wrap:wrap; column-gap:12px; row-gap:3px; padding:4px 12px; color:#bacbd2; font:9px var(--mono); }
 .constellation-legend span { display:flex; align-items:center; gap:4px; }
 .constellation-legend i { width:4px; height:4px; background:#a8e0e6; border-radius:50%; }
 .constellation-legend span:nth-child(2) i { background:#e8b681; }
@@ -2592,8 +2592,6 @@
 
 @media (max-width:650px) { .anatomy-expanded .on-model-inspector { bottom:105px; } }
 
-.constellation-legend { top:27px; }
-@media (max-width:650px) { .constellation-legend { top:10px; } }
 
 .atlas-header .preview-status { display:block; font-size:10px; color:var(--quiet); }
 
@@ -2727,7 +2725,7 @@
     flex-basis: min(63%, 490px);
   }
   .solid-overview .figure-canvas {
-    inset: 35px 0 57px;
+    inset: 12px 0 57px;
   }
   .solid-overview .figure-caption {
     display: none;

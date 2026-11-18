@@ -264,7 +264,7 @@ export const families: Family[] = [
     studyIds:['NCT06429735','NCT06710626','NCT06700304','NCT06992596','NCT07127172','NCT07224256'],
     publicationIds:['PMID:31642810'],
     topics:['Neuralink','N1','R1','Telepathy','BCI','brain computer interface','intracortical recording','neural decoding','PRIME','CONVOY','VOICE','paralysis','assistive communication'],
-    limitations:'Investigational, not FDA marketing approved. A sponsor-reported IDE permits research, not commercial sale. The 2019 platform paper predates human N1 studies and is not their clinical results. Trial goals, estimated enrollment and registration do not establish benefit. Hardware descriptions differ between sources; no universal thread layout, hemisphere, patient-specific placement or clinical performance is assigned.',
+    limitations:'Investigational, not FDA marketing approved. A sponsor-reported IDE permits research, not commercial sale. The 2019 platform paper predates human N1 studies and is not their clinical results. Trial goals, estimated enrollment and registration do not establish benefit. The linked hardware sources do not establish a revision crosswalk, universal thread layout, hemisphere, patient-specific placement or clinical performance.',
   },
 ];
 

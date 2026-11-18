@@ -11,6 +11,10 @@ test("the default intervention map rotates its axes and can be paused", async ({
   await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/");
   const map = page.getByRole("group", { name: "Whole-body intervention map" });
   await expect(map.locator(".constellation-intervention").first()).toBeVisible();
+  const legend = await page.getByRole("group", { name: "Intervention map legend" }).boundingBox();
+  const canvas = await page.getByTestId("human-reference").locator("canvas").boundingBox();
+  expect(legend!.y + legend!.height).toBeLessThanOrEqual(canvas!.y);
+  expect(await map.locator(".constellation-intervention").count()).toBeGreaterThanOrEqual(4);
   const axes = page.getByRole("group", { name: "Anatomical axes" });
   await expect(axes).toContainText("Superior–inferior");
   const anterior = axes.locator(".axis-2 line");
@@ -572,7 +576,7 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
  await page.getByRole('combobox',{name:testInfo.project.name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('all');
  const map=page.getByRole('group',{name:'Whole-body intervention map'});
  await expect(map).toBeVisible();expect(await map.locator('.record-node').count()).toBeGreaterThan(500);
- await expect(map.getByText('Dots are indexed records, not implant sites.')).toBeVisible();
+ await expect(page.getByRole('group',{name:'Intervention map legend'})).toContainText('Dots show indexed records by region. Use Implants for documented implant regions.');
  await page.screenshot({path:`test-results/${testInfo.project.name}-whole-body.png`});
  if(testInfo.project.name==='desktop'){
   await map.locator('.node-reviewed').first().click();
@@ -768,8 +772,9 @@ test('Neuralink connects regional recording, six authentic trials, hardware unce
  const stages=page.getByRole('list',{name:'Mechanism stages'}).getByRole('button');
  await stages.nth(1).click();await expect(scene).toHaveAttribute('data-action-step','1');
  await stages.nth(2).click();await expect(scene).toHaveAttribute('data-action-step','2');
- await facts.getByText('Hardware specifications differ across sources',{exact:true}).click();
- await expect(facts).toContainText('64 threads');await expect(facts).toContainText('128 threads');
+ await facts.getByText('Hardware specifications and source limits',{exact:true}).click();
+ await expect(facts).toContainText('64 threads');await expect(facts).toContainText('over 1,000 electrodes');
+ await expect(facts).not.toContainText('128 threads');
  await expect(facts.getByRole('link',{name:'Original brochure',exact:true})).toHaveAttribute('href','https://neuralink.com/pdfs/PRIME-Study-Brochure.pdf');
  await facts.getByText('Reported limitation: thread retention',{exact:true}).click();
  await expect(facts).toContainText('does not establish a cohort-wide risk rate or an FDA recall');

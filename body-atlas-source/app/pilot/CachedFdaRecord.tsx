@@ -14,16 +14,24 @@ type FdaDecision = {
   ao_statement?: string;
 };
 
-export default function CachedFdaRecord({ application, supplement, date, sourceSha, retrievedAt, sourcePath }: {
+export type ArchiveVerification = FdaDecision | "failed";
+
+export function archiveKey(application: string, date: string, sha: string, supplement = "") {
+  return [application, supplement, date, sha].join("/");
+}
+
+export default function CachedFdaRecord({ application, supplement, date, sourceSha, retrievedAt, sourcePath, verification, onVerify }: {
   application: string;
   supplement?: string;
   date: string;
   sourceSha: string;
   retrievedAt?: string;
   sourcePath?: string;
+  verification?: ArchiveVerification;
+  onVerify: (key: string, outcome: ArchiveVerification) => void;
 }) {
-  const [record, setRecord] = useState<FdaDecision | null>(null);
-  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
+  const record = verification === "failed" ? undefined : verification;
+  const [loading, setLoading] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
   const archiveLink = useRef<HTMLAnchorElement>(null);
   const moveFocus = useRef(false);
@@ -34,8 +42,9 @@ export default function CachedFdaRecord({ application, supplement, date, sourceS
   if (!/^[a-f0-9]{64}$/.test(sourceSha)) return null;
 
   async function verify() {
-    if (status === "loading") return;
-    setStatus("loading");
+    if (loading) return;
+    const key = archiveKey(application, date, sourceSha, supplement);
+    setLoading(true);
     try {
       const response = await fetch(archivePath);
       if (!response.ok) throw new Error("Cached FDA response unavailable");
@@ -52,10 +61,11 @@ export default function CachedFdaRecord({ application, supplement, date, sourceS
       });
       if (!match) throw new Error("Exact decision missing in FDA response");
       moveFocus.current = document.activeElement === button.current;
-      setRecord(match);
-      setStatus("idle");
+      onVerify(key, match);
     } catch {
-      setStatus("error");
+      onVerify(key, "failed");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -74,11 +84,11 @@ export default function CachedFdaRecord({ application, supplement, date, sourceS
   const retryLabel = supplement ? "Retry cached FDA record" : "Retry cached original";
   return (
     <>
-      <button ref={button} type="button" className="pilot-source-button" onClick={verify} aria-disabled={status === "loading"}>
-        {status === "error" ? retryLabel : verifyLabel}
+      <button ref={button} type="button" className="pilot-source-button" onClick={verify} aria-disabled={loading}>
+        {verification === "failed" ? retryLabel : verifyLabel}
       </button>
-      {status === "loading" && <p role="status">Verifying the archived FDA response…</p>}
-      {status === "error" && <p role="alert">Could not verify the archived FDA response. Use the original link if available.</p>}
+      {loading && <p role="status">Verifying the archived FDA response…</p>}
+      {!loading && verification === "failed" && <p role="alert">Could not verify the archived FDA response. Use the original link if available.</p>}
     </>
   );
 }

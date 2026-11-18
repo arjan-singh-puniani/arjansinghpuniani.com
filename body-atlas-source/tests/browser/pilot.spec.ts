@@ -197,25 +197,46 @@ test("a buyer can add an exact cached supplement and a decision note to the work
   await rns.getByRole("button", { name: "Retry supplement history" }).click();
   expect(new URL((await loaded).url()).search).toBe("");
   const filter = rns.getByRole("textbox", { name: "Filter supplements for P100026" });
-  await filter.fill("P960009/S007");
-  await expect(rns.getByText("No matching supplements in this archive.")).toBeVisible();
+  const citation = rns.getByRole("link", { name: "P100026/S104", exact: true });
+  for (const value of ["P100026/S104", "P100026 / S104", " P100026 / S104 ", "p100026/s104"]) {
+    await filter.fill(value);
+    await expect(citation).toHaveAttribute("href", /P100026S104$/i);
+    await expect(rns.getByRole("link", { name: /^P100026\/S\d+$/ })).toHaveCount(1);
+  }
+  await filter.fill("P100026");
+  await expect.poll(() => rns.getByRole("link", { name: /^P100026\/S\d+$/ }).count()).toBeGreaterThan(1);
+  for (const value of ["P100026/S9999", "P960009/S104", "P10002/S104", "P10 0026 // S104"]) {
+    await filter.fill(value);
+    await expect(rns.getByText("No matching supplements in this archive.")).toBeVisible();
+  }
   await filter.fill(" P100026 / S104 ");
-  await expect(rns.getByRole("link", { name: "P100026/S104" })).toHaveAttribute("href", /P100026S104$/i);
+  await rns.getByRole("button", { name: "Include S104 in worksheet" }).click();
+  await expect(rns.getByText("Included in export: P100026/S104.")).toBeVisible();
+  const download = builder.getByRole("link", { name: "Download editable worksheet" });
+  const worksheet = async () => decodeURIComponent((await download.getAttribute("href"))!);
+  expect(await worksheet()).toContain("Supplement source status: Indexed match.");
+  await rns.getByRole("button", { name: "Verify original in cached FDA record" }).click();
+  await expect(rns.getByText("Archived FDA record P100026", { exact: true })).toBeVisible();
+  expect(await worksheet()).toContain("Original source status: Exact cached decision verified");
   await page.route("**/dossier-sources/*.json", route => route.fulfill({ json: { results: [] } }), { times: 1 });
   await rns.getByRole("button", { name: "Verify in cached FDA record" }).click();
   await expect(rns.getByRole("alert")).toContainText("Could not verify the archived FDA response");
+  expect(await worksheet()).toContain("Supplement source status: Verification failed in this session. Source unresolved.");
   await rns.getByRole("button", { name: "Retry cached FDA record" }).click();
+  const verifiedSupplement = rns.locator(".pilot-cached-source").filter({
+    has: page.getByText("Archived FDA record P100026/S104", { exact: true }),
+  });
+  await expect(verifiedSupplement.getByText(/Archive checksum verified/)).toBeVisible();
+  await expect(verifiedSupplement.getByRole("link", { name: "Open the cached FDA response" })).toHaveAttribute("href", /dossier-sources\/[a-f0-9]{64}\.json$/);
+  await filter.fill("S9999");
+  await filter.fill("P100026/S104");
   await expect(rns.getByText("Archived FDA record P100026/S104", { exact: true })).toBeVisible();
-  await expect(rns.getByText(/Archive checksum verified/)).toBeVisible();
-  await expect(rns.getByRole("link", { name: "Open the cached FDA response" })).toHaveAttribute("href", /dossier-sources\/[a-f0-9]{64}\.json$/);
-  await rns.getByRole("button", { name: "Include S104 in worksheet" }).click();
-  await expect(rns.getByText("Included in export: P100026/S104.")).toBeVisible();
   const requests: string[] = [];
   page.on("request", request => requests.push(request.url()));
   await builder.getByLabel("What do the sources support?").fill("S104 concerns a manufacturing process change.");
   await builder.getByLabel("What still needs checking?").fill("Confirm the scope of the current label & model.");
   const file = page.waitForEvent("download");
-  await builder.getByRole("link", { name: "Download editable worksheet" }).click();
+  await download.click();
   const exported = await readFile((await (await file).path())!, "utf8");
   for (const expected of [
     "S104 concerns a manufacturing process change.",
@@ -224,6 +245,8 @@ test("a buyer can add an exact cached supplement and a decision note to the work
     "FDA decision code OK30",
     "Archive source SHA-256:",
     "Inclusion records an indexed match.",
+    "Supplement source status: Exact cached decision verified",
+    "Archived FDA response retrieved",
     "P960009/S007",
   ]) expect(exported).toContain(expected);
   expect(requests).toEqual([]);

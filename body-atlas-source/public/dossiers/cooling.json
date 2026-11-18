@@ -343,8 +343,7 @@
   "review": {
     "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "No commercial labeling or established marketing application is assigned. The registered mechanistic study and the older publication are separate evidence, not presumed results of one trial.",
-      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
+      "No commercial labeling or established marketing application is assigned. The registered mechanistic study and the older publication are separate evidence, not presumed results of one trial."
     ]
   }
 }
