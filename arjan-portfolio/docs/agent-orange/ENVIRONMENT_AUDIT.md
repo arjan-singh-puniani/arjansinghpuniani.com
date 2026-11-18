@@ -13,7 +13,7 @@ Audit date: 2026-11-18
 ## Local tools
 
 - Blender 4.0.2 is installed at `/Applications/Blender.app/Contents/MacOS/Blender`.
-- Blender 4.0.2 version query succeeds, but background factory startup crashes with signal 11 before Python executes. This build is not used for generation.
+- Blender 4.0.2 version query succeeds, but background factory startup crashes with signal 11 before Python executes. The user-supplied translated crash report confirms a SIGSEGV in the `IlmThread` thread-pool wait path; this identifies the failing stack, not a root cause. This build is not used for generation.
 - Blender 5.3.0 Apple Silicon was downloaded from Blender Foundation's mirror, verified against its published SHA-256, installed alongside 4.0.2 at `/Applications/Blender 5.3.app`, and passed a background Python startup check. The background environment reports no Metal render device; verified Cycles jobs use CPU.
 - `scripts/agent-orange/build_molecule.py` parsed the PubChem CID 1486 3D SDF, checked its 19 atoms, 19 bonds, and formula, saved a `.blend`, exported a 42-mesh GLB, and rendered a Cycles PNG preview. The actual frame was inspected. The user thumbnail write emitted a permission error, but the scene and render outputs were saved successfully.
 - FFmpeg 9.0.2 was installed with Homebrew after the initial audit and is available at `/opt/homebrew/bin/ffmpeg`; it includes libx264. The full frame sequence was encoded and verified as a silent H.264 MP4. The first AVFoundation writer and `avconvert` paths failed, so they were not used for delivery.
@@ -23,6 +23,7 @@ Audit date: 2026-11-18
 - Production-build Chrome checks verified the route, WebGL anatomy selection and provenance update, molecule selection, keyboard and touch controls, reduced motion, MP4 metadata/playback, mobile emulation without horizontal overflow, and no console or request errors. The current desktop review also confirmed the selected substantia nigra surface appears. Real iOS/Safari/Firefox, screen-reader review, measured performance, memory, and broader portfolio route regression remain incomplete.
 - `npm audit --omit=dev` found 0 vulnerabilities. Full `npm audit` reports 20 high-severity development-tree findings through Picomatch (`GHSA-fc5q-39xc-vjpf`); npm offers only a forced breaking downgrade path and the advisory has no fixed version. No production dependency advisory was reported.
 - No Metal render device was detected for Blender. Available GPU memory and deployment credentials were not verified.
+- The current pushed commit has a failing Vercel status check. Its Vercel dashboard target did not expose build diagnostics through the available public tools, so the preview failure cause remains unknown. The connected GitHub account is read-only and the local `gh` credentials are invalid; a pull request could not be opened. No production deployment was performed.
 
 ## Verified source findings
 
