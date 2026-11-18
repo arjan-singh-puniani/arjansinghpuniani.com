@@ -1,4 +1,4 @@
 :HL["/atlas/_next/static/css/21fa24f33656e4d8.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"sFW0VdMq4dPG0HjR0tGaJ","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"0E2IJea5bKeMfzPK2yZyG","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

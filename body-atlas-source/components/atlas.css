@@ -2553,6 +2553,12 @@
 .constellation-region strong { font:10px var(--mono); color:var(--gold); }
 .constellation-region:hover, .constellation-region:focus-visible { background:#243d4d; }
 .constellation-legend { display:flex; flex:none; flex-wrap:wrap; column-gap:12px; row-gap:3px; padding:4px 12px; color:#bacbd2; font:9px var(--mono); }
+.body-map:has(> .constellation-legend) .map-heading {
+  position: relative;
+  inset: auto;
+  flex: none;
+  padding: 8px 12px 4px;
+}
 .constellation-legend span { display:flex; align-items:center; gap:4px; }
 .constellation-legend i { width:4px; height:4px; background:#a8e0e6; border-radius:50%; }
 .constellation-legend span:nth-child(2) i { background:#e8b681; }
@@ -2723,6 +2729,9 @@
 @media (max-width: 650px) {
   .solid-overview:not(.anatomy-expanded) .body-map {
     flex-basis: min(63%, 490px);
+  }
+  .solid-overview:not(.anatomy-expanded) .body-map:has(> .constellation-legend) {
+    flex-basis: min(calc(63% + 32px), 522px);
   }
   .solid-overview .figure-canvas {
     inset: 12px 0 57px;

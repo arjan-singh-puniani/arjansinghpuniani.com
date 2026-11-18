@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("research pilot gives a cited result and prepares an unsent inquiry", async ({ page }) => {
+test("research pilot gives a cited result and prepares an unsent inquiry", async ({ page, browserName }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   const basePath = process.env.ATLAS_BROWSER_BASE_PATH || "";
   await page.goto(basePath + "/pilot");
@@ -11,7 +11,7 @@ test("research pilot gives a cited result and prepares an unsent inquiry", async
   await expect(page.locator("main")).not.toContainText(/\$1,500|10 business days/);
   await expect(page.getByRole("link", { name: /P960009.*1997-07-31/ })).toHaveAttribute("href", /^https:\/\/www\.accessdata\.fda\.gov\//);
   await expect(page.getByRole("link", { name: /P150038.*2016-07-11/ })).toBeVisible();
-  await page.keyboard.press("Tab");
+  await page.keyboard.press(browserName === "webkit" ? "Alt+Tab" : "Tab");
   await expect(page.getByRole("link", { name: "Skip to content" })).toBeFocused();
   const accessibility = await new AxeBuilder({ page }).analyze();
   expect(accessibility.violations).toEqual([]);
