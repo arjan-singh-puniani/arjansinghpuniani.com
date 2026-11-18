@@ -126,9 +126,11 @@ test("a buyer can export a worksheet about their own FDA applications", async ({
   await expect(page.getByLabel("Second FDA application").locator('option[value="P100026"]')).toHaveJSProperty("disabled", true);
   await expect(download).toHaveCount(0);
   await page.getByLabel("Second FDA application").selectOption("P970003");
-  const mark = builder.locator('.company-mark img[src$="/livanova.svg"]');
-  await mark.scrollIntoViewIfNeeded();
-  await expect.poll(() => mark.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  for (const id of ["neuropace", "livanova"]) {
+    const mark = builder.locator(`.company-mark img[src$="/${id}.svg"]`);
+    await mark.scrollIntoViewIfNeeded();
+    await expect.poll(() => mark.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  }
   const requests: string[] = [];
   page.on("request", request => requests.push(request.url()));
   await builder.getByLabel("Decision or question (optional)").fill("Compare recording & stimulation for our review.");

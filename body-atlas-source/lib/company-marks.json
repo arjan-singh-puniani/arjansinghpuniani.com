@@ -24,6 +24,33 @@
     ]
   },
   {
+    "id": "abiomed",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/ABMD_BIG-a0d30042.svg",
+    "names": [
+      "Abiomed, Inc."
+    ],
+    "reference": "https://www.abiomed.com/"
+  },
+  {
+    "id": "advanced-bionics",
+    "tone": "light",
+    "source": "https://www.advancedbionics.com/content/dam/advancedbionics/logos/advanced-bionics-logo-horizontal-blue.svg",
+    "names": [
+      "Advanced Bionics"
+    ]
+  },
+  {
+    "id": "agilent",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/A_BIG-cc2ee224.svg",
+    "names": [
+      "Agilent Technologies Singapore (International) Pte , Ltd.",
+      "Agilent Technologies, Inc."
+    ],
+    "reference": "https://www.agilent.com/"
+  },
+  {
     "id": "alcon",
     "tone": "dark",
     "source": "https://www.alcon.com/sites/g/files/rbvwei4411/files/alcon_assets/alcon-logo.svg",
@@ -37,6 +64,65 @@
     ]
   },
   {
+    "id": "align",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/ALGN_BIG-4906084a.svg",
+    "names": [
+      "Align Technology , Ltd.",
+      "Align Technology, Inc."
+    ],
+    "reference": "https://www.aligntech.com/"
+  },
+  {
+    "id": "ambu",
+    "tone": "dark",
+    "source": "https://d1jhm577bx9zey.cloudfront.net/Files/Templates/Designs/ambu/assets/img/logo-no-tagline.svg",
+    "names": [
+      "Ambu A/S"
+    ]
+  },
+  {
+    "id": "arthrex",
+    "tone": "light",
+    "source": "https://www.arthrex.com/",
+    "names": [
+      "Arthrex, Inc."
+    ]
+  },
+  {
+    "id": "atricure",
+    "tone": "dark",
+    "source": "https://www.atricure.com/themes/custom/atritheme/logo.svg",
+    "names": [
+      "AtriCure, Inc."
+    ]
+  },
+  {
+    "id": "bausch-lomb",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/BLCO_BIG-ce8ddd33.svg",
+    "names": [
+      "Bausch & Lomb",
+      "Bausch & Lomb, Inc.",
+      "Bausch & Lomb, Incorporated",
+      "Bausch + Lomb Ireland Limited",
+      "Bausch and Lomb",
+      "Bausch and Lomb, Inc.,",
+      "Bausch and Lomb, Incorporated"
+    ],
+    "reference": "https://www.bausch.com/"
+  },
+  {
+    "id": "baxter",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/BAX_BIG-5e6ba45d.svg",
+    "names": [
+      "Baxter Healthcare Corp",
+      "Baxter Healthcare Corporation"
+    ],
+    "reference": "https://www.baxter.com/"
+  },
+  {
     "id": "bd",
     "tone": "light",
     "source": "https://commons.wikimedia.org/wiki/File:Becton_Dickinson_logo.svg",
@@ -45,6 +131,25 @@
       "Becton Dickinson Infusion Therapy Systems, Inc.",
       "Becton, Dickinson and Company",
       "Becton, Dickinson and Company (BD)"
+    ]
+  },
+  {
+    "id": "beckman-coulter",
+    "tone": "light",
+    "source": "https://media.beckmancoulter.com/-/media/diagnostics/corporate/logos/beckman-logo-svg.svg",
+    "names": [
+      "Beckman Coulter Laboratory Systems (Suzhou) Co., Ltd.",
+      "Beckman Coulter, Inc."
+    ]
+  },
+  {
+    "id": "biotronik",
+    "tone": "light",
+    "source": "https://www.biotronik.com/themes/custom/biotronik/logo.svg",
+    "names": [
+      "Biotronik AG",
+      "Biotronik Nro, Inc.",
+      "Biotronik, Inc."
     ]
   },
   {
@@ -60,11 +165,56 @@
     ]
   },
   {
+    "id": "cirtec",
+    "tone": "light",
+    "source": "https://cirtecmed.com/",
+    "names": [
+      "Cirtec Medical Corporation"
+    ]
+  },
+  {
     "id": "cochlear",
     "tone": "light",
     "source": "https://assets.cochlear.com/api/public/content/85ed5fe549814d91abddf0a975162644?v=771b1a7d",
     "names": [
       "Cochlear Americas"
+    ]
+  },
+  {
+    "id": "coloplast",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/COLO-B.CO_BIG-c0e67276.svg",
+    "names": [
+      "Coloplast A.S.",
+      "Coloplast Corp."
+    ]
+  },
+  {
+    "id": "convatec",
+    "tone": "dark",
+    "source": "https://www.convatec.com/globalassets/global-assets/logos/logo-white-on-purple.svg",
+    "names": [
+      "Convatec"
+    ]
+  },
+  {
+    "id": "cook-medical",
+    "tone": "light",
+    "source": "https://www.cookmedical.com/wp-content/themes/cookmedical/img/svg/grc-logo.svg?cb=10062022",
+    "names": [
+      "Cook Incorporated",
+      "Cook Ireland, Ltd.",
+      "Cook Medical Incorporated",
+      "Cook, Inc."
+    ]
+  },
+  {
+    "id": "cordis",
+    "tone": "light",
+    "source": "https://cordis.com/uploads/productResources/na/Endovascular-Catalog-2023-FINAL.pdf",
+    "names": [
+      "Cordis US Corp",
+      "Cordis US Corporation"
     ]
   },
   {
@@ -76,6 +226,16 @@
     ]
   },
   {
+    "id": "diasorin",
+    "tone": "light",
+    "source": "https://int.diasorin.com/themes/custom/diasorin_theme/images/diasorin-logo.svg",
+    "names": [
+      "DiaSorin, Inc.",
+      "Diasorin",
+      "Diasorin Molecular, LLC"
+    ]
+  },
+  {
     "id": "edwards",
     "tone": "light",
     "source": "https://assets-us-01.kc-usercontent.com/6239a81e-8f0f-0040-a1df-b4932a10f6ae/261e0bb6-68dd-4f07-8798-cce9b0c42cc3/logo.svg",
@@ -84,12 +244,83 @@
     ]
   },
   {
+    "id": "elekta",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/EKTA-B.ST_BIG-a405d4a4.svg",
+    "names": [
+      "Elekta Solutions AB"
+    ],
+    "reference": "https://www.elekta.com/"
+  },
+  {
+    "id": "fisher-paykel",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/FPH.NZ_BIG-c993f0c7.svg",
+    "names": [
+      "Fisher & Paykel Healthcare, Ltd.",
+      "Fisher and Paykel Healthcare Limited"
+    ],
+    "reference": "https://www.fphcare.com/us/"
+  },
+  {
     "id": "fujifilm",
     "tone": "light",
     "source": "https://www.fujifilm.com/us/themes/custom/fujifilm_com_g2/common/img/fujifilm_corporate_logo.svg",
     "names": [
       "Fujifilm Corporation",
       "Fujifilm Medical Systems U.S.A, Inc."
+    ]
+  },
+  {
+    "id": "glaukos",
+    "tone": "light",
+    "source": "https://www.glaukos.com/wp-content/themes/pint-glaukos/assets/images/glaukos-logo-green.svg",
+    "names": [
+      "Glaukos Corporation"
+    ]
+  },
+  {
+    "id": "gore",
+    "tone": "light",
+    "source": "https://www.gore.com/themes/custom/gore_com/logo.svg",
+    "names": [
+      "W. L. Gore & Associates, Inc.",
+      "W. L. Gore and Associates, Inc."
+    ]
+  },
+  {
+    "id": "hamamatsu",
+    "tone": "light",
+    "source": "https://www.hamamatsu.com/content/dam/hamamatsu-photonics/system/images/logo.svg",
+    "names": [
+      "Hamamatsu Photonics K.K."
+    ]
+  },
+  {
+    "id": "heidelberg",
+    "tone": "light",
+    "source": "https://commons.wikimedia.org/wiki/File:Heidelberg_Engineering_Logo.svg",
+    "names": [
+      "Heidelberg Engineering GmbH"
+    ],
+    "reference": "https://www.heidelbergengineering.com/"
+  },
+  {
+    "id": "hologic",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/HOLX_BIG-d000c46a.svg",
+    "names": [
+      "Hologic, Inc."
+    ],
+    "reference": "https://www.hologic.com/"
+  },
+  {
+    "id": "icu-medical",
+    "tone": "light",
+    "source": "https://www.icumed.com/assets/svg/symbols.svg#logo",
+    "names": [
+      "ICU Medical",
+      "Icu Medical, Inc."
     ]
   },
   {
@@ -102,12 +333,75 @@
     ]
   },
   {
+    "id": "inspire",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/INSP_BIG-d3598598.svg",
+    "names": [
+      "Inspire Medical Systems"
+    ],
+    "reference": "https://www.inspiresleep.com/"
+  },
+  {
+    "id": "insulet",
+    "tone": "dark",
+    "source": "https://www.insulet.com/themes/custom/insulet/logo.svg",
+    "names": [
+      "Insulet Corporation"
+    ]
+  },
+  {
+    "id": "intuitive",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/ISRG_BIG-94a000a2.svg",
+    "names": [
+      "Intuitive Surgical, Inc."
+    ],
+    "reference": "https://www.intuitive.com/en-us"
+  },
+  {
+    "id": "karl-storz",
+    "tone": "dark",
+    "source": "https://www.karlstorz.com/static_2x/static/file_img/logo-ks-white-revamp_small%20(1)%20(1).svg",
+    "names": [
+      "KARL STORZ Endoscopy-America, Inc.",
+      "KARL STORZ SE & CO. KG",
+      "Karl Storz SE & CO. KG"
+    ]
+  },
+  {
+    "id": "leica-biosystems",
+    "tone": "light",
+    "source": "https://www.leicabiosystems.com/themes/contrib/lbs-drupal-theme/logo.svg",
+    "names": [
+      "Leica Biosystems",
+      "Leica Biosystems Imaging, Inc.",
+      "Leica Biosystems Newcastle, Ltd."
+    ]
+  },
+  {
     "id": "livanova",
     "tone": "light",
     "source": "https://www.livanova.com/en-us",
     "names": [
       "LivaNova USA, Inc."
     ]
+  },
+  {
+    "id": "mainstay",
+    "tone": "dark",
+    "source": "https://mainstaymedical.com/wp-content/uploads/2025/09/990102-001_ReActiv8-System-Implant-and-Programming-Manual-CE-English_Rev-B-04-29-2025.pdf",
+    "names": [
+      "Mainstay Medical Limited"
+    ]
+  },
+  {
+    "id": "masimo",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/MASI_BIG-a3bc089b.svg",
+    "names": [
+      "Masimo Corporation"
+    ],
+    "reference": "https://www.masimo.com/"
   },
   {
     "id": "medel",
@@ -139,11 +433,62 @@
     ]
   },
   {
+    "id": "merit",
+    "tone": "light",
+    "source": "https://www.merit.com/wp-content/uploads/2023/10/merit-medical-header-logo.dk_.svg",
+    "names": [
+      "Merit Medical Systems, Inc."
+    ]
+  },
+  {
+    "id": "microport",
+    "tone": "dark",
+    "source": "https://microport.com/front/build/img/logo.svg",
+    "names": [
+      "MicroPort NeuroTech (Shanghai) Co., Ltd."
+    ]
+  },
+  {
+    "id": "minimed",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/MMED_BIG-ebba156b.svg",
+    "names": [
+      "Medtronic MiniMed",
+      "Medtronic Minimed",
+      "Medtronic Minimed, Inc."
+    ]
+  },
+  {
     "id": "neuralink",
     "tone": "light",
     "source": "https://neuralink.com/",
     "names": [
       "Neuralink Corp"
+    ]
+  },
+  {
+    "id": "neuropace",
+    "tone": "light",
+    "source": "https://www.neuropace.com/wp-content/uploads/2021/02/neuropace-rns-system-post-op-guide.pdf",
+    "names": [
+      "NeuroPace",
+      "NeuroPace, Inc."
+    ]
+  },
+  {
+    "id": "nevro",
+    "tone": "light",
+    "source": "https://www.nevro.com/app/uploads/2025/01/nevro-logo-header.svg",
+    "names": [
+      "Nevro Corporation"
+    ]
+  },
+  {
+    "id": "novocure",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/NVCR_BIG-e1868d49.svg",
+    "names": [
+      "Novocure, GmbH"
     ]
   },
   {
@@ -170,6 +515,28 @@
     ]
   },
   {
+    "id": "qiagen",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/QGEN-fdcbca77.svg",
+    "names": [
+      "QIAGEN GmbH",
+      "Qiagen",
+      "Qiagen Gaithersburg, Inc.",
+      "Qiagen, Inc."
+    ],
+    "reference": "https://www.qiagen.com/us"
+  },
+  {
+    "id": "resmed",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/RMD_BIG-ef49429e.svg",
+    "names": [
+      "Resmed Corp",
+      "Resmed Pty , Ltd."
+    ],
+    "reference": "https://www.resmed.com/"
+  },
+  {
     "id": "roche",
     "tone": "light",
     "source": "https://www.roche.com/logo.svg",
@@ -182,6 +549,41 @@
       "Roche Molecular Systems, Inc.",
       "Ventana Medical Systems, Inc. (Roche Tissue Diagnostics)"
     ]
+  },
+  {
+    "id": "siemens-healthineers",
+    "tone": "light",
+    "source": "https://commons.wikimedia.org/wiki/File:Siemens_Healthineers_logo.svg",
+    "names": [
+      "Siemens Healthcare Diagnostic Products GmbH",
+      "Siemens Healthcare Diagnostics",
+      "Siemens Healthcare Diagnostics Products GmbH",
+      "Siemens Healthcare Diagnostics Products, Ltd.",
+      "Siemens Healthcare Diagnostics, Inc.",
+      "Siemens Healthineers AG",
+      "Siemens Medical Solutions Diagnostics Limited",
+      "Siemens Medical Solutions USA, Inc.",
+      "Siemens Shenzhen Magnetic Resonance , Ltd."
+    ],
+    "reference": "https://www.siemens-healthineers.com/"
+  },
+  {
+    "id": "smith-nephew",
+    "tone": "light",
+    "source": "https://mc-73988c49-e7e5-4c1f-b417-533961-cdn-endpoint.azureedge.net/-/media/project/smithandnephew/sitesettings/logo.svg",
+    "names": [
+      "Smith & Nephew, Inc."
+    ]
+  },
+  {
+    "id": "straumann",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/STMN.SW_BIG-aaae1968.svg",
+    "names": [
+      "Institut Straumann AG",
+      "The Straumann Company"
+    ],
+    "reference": "https://www.straumann.com/"
   },
   {
     "id": "stryker",
@@ -198,5 +600,59 @@
       "Stryker Neurovscular",
       "Stryker Spine"
     ]
+  },
+  {
+    "id": "sysmex",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/6869.T_BIG-d6cbf089.svg",
+    "names": [
+      "Sysmex America, Inc."
+    ],
+    "reference": "https://www.sysmex.com/en-us/"
+  },
+  {
+    "id": "tandem-diabetes",
+    "tone": "light",
+    "source": "https://images.ctfassets.net/k5s5iz8jouwn/2x7Ne2BTjfcnOYQTRfWyME/c86811f17a31dbfdab08d63a544ce845/tandem-logo-horizontal-rgb-2x.svg",
+    "names": [
+      "Tandem Diabetes Care, Inc."
+    ]
+  },
+  {
+    "id": "teleflex",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/TFX_BIG-e48e3802.svg",
+    "names": [
+      "Teleflex Medical",
+      "Teleflex Medical Sdn. Bhd.",
+      "Teleflex Medical, LLC"
+    ],
+    "reference": "https://www.teleflex.com/usa/en/"
+  },
+  {
+    "id": "terumo",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/4543.T_BIG-6f4c4708.svg",
+    "names": [
+      "Terumo Medical Corporation"
+    ],
+    "reference": "https://www.terumo.com/"
+  },
+  {
+    "id": "xstim",
+    "tone": "dark",
+    "source": "https://www.xstimmed.com/s/Xstim-Patient-Brochure_Email-RGB_web-kgf9.pdf",
+    "names": [
+      "Xstim, Inc."
+    ]
+  },
+  {
+    "id": "zimmer-biomet",
+    "tone": "light",
+    "source": "https://companieslogo.com/img/orig/ZBH_BIG-217f3c21.svg",
+    "names": [
+      "Zimmer Biomet"
+    ],
+    "reference": "https://www.zimmerbiomet.com/en"
   }
 ]
