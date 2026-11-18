@@ -19,8 +19,8 @@ Status as of 2026-11-18: **BLOCKED — production release criteria are not met**
 | Build and existing tests | PASS | Final `npm run typecheck`, `npm run lint`, `npm test`, and `npm run build` passed after the film page and report updates; 7 tests passed. `/agent-orange` first-load JS is 265 kB. Build warns that a parent lockfile causes Next.js to infer `/Users/arjan` as the workspace root. |
 | Dependency security review | PARTIAL | `npm audit --omit=dev`: 0 vulnerabilities. Full audit: 20 high-severity findings in development dependencies through Picomatch, with no patched version listed; npm's offered forced fix downgrades Vitest across a breaking major. |
 | Existing portfolio regression | PARTIAL | Production build completed; existing routes were not comprehensively browser-tested |
-| Deployment preview | FAIL / UNAVAILABLE | GitHub reports the Vercel status check failed for commit `e244032`; no preview URL was returned. The Vercel dashboard target requires login, so the failure cause could not be inspected. |
-| Pull request | BLOCKED | The connected GitHub API rejected PR creation with `must be a collaborator`; local `gh` credentials are invalid. Branch commit `e244032` is pushed to `codex/agent-orange-long-shadow`. |
+| Deployment preview | FAIL / UNAVAILABLE | The completed Vercel check for commit `0a41341` failed; the dashboard target requires login, so the failure cause could not be inspected. The check for `85ae3ca` was still pending at the time of this audit; no preview URL was returned. |
+| Pull request | BLOCKED | The connected GitHub API rejected PR creation with `must be a collaborator`; local `gh` credentials are invalid. The latest pushed branch commit at this audit is `85ae3ca` on `codex/agent-orange-long-shadow`. |
 | Production deployment | NOT DEPLOYED | No production deployment made. Release gates remain blocked. |
 
 ## Render and review record
