@@ -2,6 +2,8 @@
 
 Review date: 2026-11-18. Review target: encoded H.264 silent review cut, plus representative Blender Cycles renders. Evidence: `artifacts/agent-orange/encoded-contact-sheet.png` and decoded full-size samples from the neuron and mitochondrion shots.
 
+Source revision note: after this review, the opening was rebuilt as a low-angle procedural C-123 Provider-inspired 3D schematic over a joined broadleaf canopy mesh, with procedural volumetric spray. The new opening keyframe was inspected; it improves aircraft silhouette and spatial depth but remains visibly stylized. A current-revision 1080p render is in progress in `artifacts/agent-orange/film-frames-1080p/`. The H.264 cut and scores below describe the prior scene revision and must not be treated as review of the new full film.
+
 | Dimension | Score | Evidence and remaining defect |
 | --- | ---: | --- |
 | Scientific accuracy | 7/10 | Chemical identities are separated; the study chart shows adjusted hazard ratios and uncertainty; observational limits and schematic anatomy are labeled. Primary-paper verification remains abstract-level, and no independent expert review occurred. |

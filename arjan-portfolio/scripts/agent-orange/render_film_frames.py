@@ -1,4 +1,4 @@
-"""Render every frame with explicit shot visibility, avoiding animated hide flags."""
+"""Render frames with explicit shot visibility: start end width height output_dir samples."""
 
 from pathlib import Path
 import shutil
@@ -10,6 +10,21 @@ OUT = ROOT / "artifacts/agent-orange/film-frames"
 args = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
 start = int(args[0]) if args else 1
 end = int(args[1]) if len(args) > 1 else bpy.context.scene.frame_end
+assert len(args) <= 6
+if len(args) > 2:
+    assert len(args) >= 4
+    width, height = int(args[2]), int(args[3])
+    assert width > 0 and height > 0
+    bpy.context.scene.render.resolution_x = width
+    bpy.context.scene.render.resolution_y = height
+    bpy.context.scene.render.resolution_percentage = 100
+if len(args) > 5:
+    samples = int(args[5])
+    assert samples > 0
+    bpy.context.scene.cycles.samples = samples
+OUT = Path(args[4]) if len(args) > 4 else OUT
+if not OUT.is_absolute():
+    OUT = ROOT / OUT
 OUT.mkdir(parents=True, exist_ok=True)
 scene = bpy.context.scene
 assert scene.frame_end >= end >= start >= scene.frame_start
