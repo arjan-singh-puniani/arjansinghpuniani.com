@@ -3,20 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { SeizeFreezeHomeFeature } from "@/components/SeizeFreezeHomeFeature";
 import { links } from "@/content/links";
+import { profile } from "@/content/profile";
 import { siteUrl } from "@/lib/site";
 import styles from "./home.module.css";
 
 export const metadata: Metadata = {
   title: { absolute: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine" },
-  description:
-    "Arjan Singh Puniani is a neural engineer pursuing medicine. Explore his brain-computer interface work, clinical research, research software, and medical-device concepts.",
+  description: profile.intro,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: siteUrl,
     title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
-    description:
-      "Neural engineer pursuing medicine. Brain-computer interface research, clinical research, research software, and early medical-device development.",
+    description: profile.intro,
     images: [
       {
         url: "/images/hero/arjan-headshot.webp",
@@ -29,8 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
-    description:
-      "Neural engineer pursuing medicine. Brain-computer interface research, clinical research, research software, and early medical-device development.",
+    description: profile.intro,
     images: ["/images/hero/arjan-headshot.webp"],
   },
 };
@@ -46,7 +44,7 @@ export default function Home() {
             </p>
             <h1 className={styles.heroTitle}>Arjan Singh Puniani</h1>
             <p className={styles.heroFocus}>
-              I am a neural engineer pursuing medicine. I have worked on human brain-computer interfaces, clinical research, and research software.
+              I am a neural engineer pursuing medicine. My background includes implanted brain-computer interface research at Pitt, clinical research at UCSF, and work in emergency departments. I build interactive tools for medical education.
             </p>
             <nav className={styles.resourceLinks} aria-label="Explore research resources">
               <Link href="/work/vector-ekg-reasonos/workspace">

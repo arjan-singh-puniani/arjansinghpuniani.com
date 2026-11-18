@@ -9,15 +9,13 @@ import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "About Arjan Singh Puniani",
-  description:
-    "Biography of Arjan Singh Puniani, a neural engineer pursuing medicine. BCI research at Pitt RNEL, clinical research at UCSF, independent research software, and personal interests.",
+  description: profile.intro,
   alternates: { canonical: "/about" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/about`,
     title: "About Arjan Singh Puniani",
-    description:
-      "Neural engineer pursuing medicine, with BCI research at Pitt RNEL, clinical research at UCSF, and independent research software.",
+    description: profile.intro,
     images: [
       {
         url: "/images/hero/arjan-portrait-2026.jpg",
@@ -30,8 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "About Arjan Singh Puniani",
-    description:
-      "Neural engineer pursuing medicine, with BCI research at Pitt RNEL, clinical research at UCSF, and independent research software.",
+    description: profile.intro,
     images: ["/images/hero/arjan-portrait-2026.jpg"],
   },
 };
@@ -63,7 +60,7 @@ export default function About() {
       image: `${siteUrl}/images/hero/arjan-headshot.webp`,
       alternateName: ["Arjan Puniani", "Arjan Singh Puniani"],
       url: siteUrl,
-      description: profile.descriptor,
+      description: profile.intro,
       sameAs: [links.github, links.physicsWorldAuthor],
       alumniOf: [
         { "@type": "CollegeOrUniversity", name: "University of Pittsburgh" },
@@ -81,6 +78,7 @@ export default function About() {
             <p className="eyebrow">About</p>
             <h1>Arjan Singh Puniani</h1>
             <p>{profile.headline}</p>
+            <p>{profile.location}</p>
           </div>
           <figure className={styles.introPortrait}>
             <Image
@@ -95,6 +93,16 @@ export default function About() {
           </figure>
         </div>
       </header>
+
+      <section className="section">
+        <div className="shell bio-grid">
+          <h2>Background</h2>
+          <div>
+            {profile.biography.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            <Link className="text-link" href="/cv">View my CV →</Link>
+          </div>
+        </div>
+      </section>
 
       <section className="section">
         <div className="shell">

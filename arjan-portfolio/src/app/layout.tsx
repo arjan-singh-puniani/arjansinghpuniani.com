@@ -10,6 +10,7 @@ import { Footer } from "@/components/Footer";
 import { SiteAnalytics } from "@/components/SiteAnalytics";
 import { siteUrl } from "@/lib/site";
 import { links } from "@/content/links";
+import { profile } from "@/content/profile";
 
 const personId = `${siteUrl}/#arjan-singh-puniani`;
 
@@ -20,8 +21,7 @@ export const metadata: Metadata = {
     default: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
     template: "%s | Arjan Singh Puniani",
   },
-  description:
-    "Arjan Singh Puniani is a neural engineer pursuing medicine. His portfolio includes brain-computer interface research, clinical research, research software, and neurotechnology concepts.",
+  description: profile.intro,
   authors: [{ name: "Arjan Singh Puniani", url: siteUrl }],
   creator: "Arjan Singh Puniani",
   publisher: "Arjan Singh Puniani",
@@ -30,8 +30,7 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
-    description:
-      "Neural engineer pursuing medicine, with brain-computer interface research, clinical research, research software, and proposed medical devices.",
+    description: profile.intro,
     siteName: "Arjan Singh Puniani",
     images: [
       {
@@ -45,8 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
-    description:
-      "Neural engineer pursuing medicine, with brain-computer interface research, clinical research, research software, and proposed medical devices.",
+    description: profile.intro,
     images: ["/images/hero/arjan-headshot.webp"],
   },
   robots: {
@@ -83,8 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       url: siteUrl,
       image: `${siteUrl}/images/hero/arjan-headshot.webp`,
       jobTitle: "Neural engineer",
-      description:
-        "Arjan Singh Puniani is a neural engineer pursuing medicine with experience in brain-computer interface research, clinical research, and research software.",
+      description: profile.intro,
       sameAs: [links.github, links.physicsWorldAuthor],
       alumniOf: [
         { "@type": "CollegeOrUniversity", name: "University of Pittsburgh" },
