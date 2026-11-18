@@ -1,0 +1,202 @@
+[
+  {
+    "id": "abbott",
+    "tone": "light",
+    "source": "https://commons.wikimedia.org/wiki/File:Abbott_A_Promise_For_Life_Logo.svg",
+    "names": [
+      "Abbott",
+      "Abbott Diabetes Care",
+      "Abbott Diabetes Care, Inc.",
+      "Abbott Diagnostics Scarborough, Inc.",
+      "Abbott Diagnostics Technologies AS",
+      "Abbott Ireland",
+      "Abbott Laboratories",
+      "Abbott Medical",
+      "ABBOTT MEDICAL",
+      "Abbott Molecular",
+      "Abbott Molecular, Inc.",
+      "Abbott Point of Care",
+      "Abbott Point of Care, Inc.",
+      "Abbott Vascular",
+      "Abbott Vascular Devices",
+      "Abbott Vascular, Inc.",
+      "Abbott Vascular-Cardiac Therapies"
+    ]
+  },
+  {
+    "id": "alcon",
+    "tone": "dark",
+    "source": "https://www.alcon.com/sites/g/files/rbvwei4411/files/alcon_assets/alcon-logo.svg",
+    "names": [
+      "Alcon",
+      "Alcon Laboratories",
+      "Alcon Laboratories, Inc.",
+      "Alcon Laboratories, LLC",
+      "Alcon Research, LLC",
+      "Alcon Research, Ltd."
+    ]
+  },
+  {
+    "id": "bd",
+    "tone": "light",
+    "source": "https://commons.wikimedia.org/wiki/File:Becton_Dickinson_logo.svg",
+    "names": [
+      "Becton Dickinson and Company",
+      "Becton Dickinson Infusion Therapy Systems, Inc.",
+      "Becton, Dickinson and Company",
+      "Becton, Dickinson and Company (BD)"
+    ]
+  },
+  {
+    "id": "boston-scientific",
+    "tone": "light",
+    "source": "https://commons.wikimedia.org/wiki/File:Boston_Scientific_Logo.svg",
+    "names": [
+      "Boston Scientific",
+      "Boston Scientific Corp",
+      "Boston Scientific Corporation",
+      "Boston Scientific Neuromodulation",
+      "Boston Scientific Scimed, Inc."
+    ]
+  },
+  {
+    "id": "cochlear",
+    "tone": "light",
+    "source": "https://assets.cochlear.com/api/public/content/85ed5fe549814d91abddf0a975162644?v=771b1a7d",
+    "names": [
+      "Cochlear Americas"
+    ]
+  },
+  {
+    "id": "dexcom",
+    "tone": "light",
+    "source": "https://commons.wikimedia.org/wiki/File:Dexcom_logo.svg",
+    "names": [
+      "Dexcom, Inc."
+    ]
+  },
+  {
+    "id": "edwards",
+    "tone": "light",
+    "source": "https://assets-us-01.kc-usercontent.com/6239a81e-8f0f-0040-a1df-b4932a10f6ae/261e0bb6-68dd-4f07-8798-cce9b0c42cc3/logo.svg",
+    "names": [
+      "Edwards Lifesciences, LLC"
+    ]
+  },
+  {
+    "id": "fujifilm",
+    "tone": "light",
+    "source": "https://www.fujifilm.com/us/themes/custom/fujifilm_com_g2/common/img/fujifilm_corporate_logo.svg",
+    "names": [
+      "Fujifilm Corporation",
+      "Fujifilm Medical Systems U.S.A, Inc."
+    ]
+  },
+  {
+    "id": "insightec",
+    "tone": "light",
+    "source": "https://insightec.com/wp-content/uploads/2021/07/logo-svg.svg",
+    "names": [
+      "Insightec",
+      "Insightec, Ltd."
+    ]
+  },
+  {
+    "id": "livanova",
+    "tone": "light",
+    "source": "https://www.livanova.com/en-us",
+    "names": [
+      "LivaNova USA, Inc."
+    ]
+  },
+  {
+    "id": "medel",
+    "tone": "dark",
+    "source": "https://www.medel.com/ResourcePackages/Bootstrap/assets/icons/medel-logo.svg",
+    "names": [
+      "Med-El Corp.",
+      "Med-El Elektromedizinische Gerate GmbH",
+      "MED-EL Elektromedizinische Geräte GmbH"
+    ]
+  },
+  {
+    "id": "medtronic",
+    "tone": "light",
+    "source": "https://commons.wikimedia.org/wiki/File:Medtronic_logo.svg",
+    "names": [
+      "Medtronic",
+      "Medtronic Ats Medical, Inc.",
+      "Medtronic Cardiac Rhythm Disease Management",
+      "Medtronic Cryocath, LP",
+      "Medtronic Heart Valves",
+      "Medtronic Ireland",
+      "Medtronic Neuromodulation",
+      "Medtronic Sofamor Danek USA, Inc.",
+      "Medtronic Vascular",
+      "Medtronic Vascular, Inc.",
+      "Medtronic Xomed, Inc.",
+      "Medtronic, Inc."
+    ]
+  },
+  {
+    "id": "neuralink",
+    "tone": "light",
+    "source": "https://neuralink.com/",
+    "names": [
+      "Neuralink Corp"
+    ]
+  },
+  {
+    "id": "olympus",
+    "tone": "light",
+    "source": "https://commons.wikimedia.org/wiki/File:Olympus_Corporation_logo.svg",
+    "names": [
+      "Olympus Medical Systems Corp.",
+      "Olympus Medical Systems Corporation"
+    ]
+  },
+  {
+    "id": "philips",
+    "tone": "light",
+    "source": "https://www.usa.philips.com/",
+    "names": [
+      "Philips Consumer Lifestyle B.V.",
+      "Philips Electronics Nederland B.V.",
+      "Philips Image Guided Therapy Corporation",
+      "Philips Medical Systems",
+      "Philips Medical Systems Nederland B.V.",
+      "Philips Medical Systems, Inc.",
+      "Philips Ultrasound, LLC"
+    ]
+  },
+  {
+    "id": "roche",
+    "tone": "light",
+    "source": "https://www.roche.com/logo.svg",
+    "names": [
+      "Roche",
+      "Roche Diagnostics",
+      "Roche Diagnostics Corp.",
+      "Roche Diagnostics GmbH",
+      "Roche Diagnostics Operations",
+      "Roche Molecular Systems, Inc.",
+      "Ventana Medical Systems, Inc. (Roche Tissue Diagnostics)"
+    ]
+  },
+  {
+    "id": "stryker",
+    "tone": "light",
+    "source": "https://commons.wikimedia.org/wiki/File:Stryker_Corporation_logo.svg",
+    "names": [
+      "Howmedica Osteonics Corp. dba Stryker Orthopaedics",
+      "Stryker Corporation",
+      "Stryker Endoscopy",
+      "Stryker Instruments",
+      "Stryker Leibinger GmbH & Co KG",
+      "Stryker Leibinger, GmbH & Co KG",
+      "Stryker Neurovascular",
+      "Stryker Neurovscular",
+      "Stryker Spine"
+    ]
+  }
+]

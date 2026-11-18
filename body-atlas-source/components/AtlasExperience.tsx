@@ -62,6 +62,7 @@ import {
 import { frontier } from "@/lib/curation";
 import {comparisonRelationships,reviewCsv} from "@/lib/research-workflow";
 import { External, SourceRecord, State } from "./Evidence";
+import CompanyMark from "./CompanyMark";
 import BriefPreview from "./BriefPreview";
 import { dossiers, dossierCoverage, reviewLabels } from "@/lib/dossiers";
 import { anatomyFocus, deviceActions } from '@/lib/device-action';
@@ -73,6 +74,18 @@ import "./atlas.css";
 
 const Human = dynamic(() => import("./HumanScene"), { ssr: false });
 const Brain = dynamic(() => import("./AnatomyScene"), { ssr: false });
+
+function InterventionCompanies({ family }: { family: Family }) {
+  const organizations = new Set(primaryRecords(family).flatMap(record => {
+    const organization = family.regulatoryIds.length ? record.applicant : record.sponsor;
+    return organization ? [organization] : [];
+  }));
+  return [...organizations].map(organization => (
+    <CompanyMark key={organization} organization={organization}
+      role={family.regulatoryIds.length ? "FDA applicant" : "Study sponsor"} />
+  ));
+}
+
 type Dialog = "records" | "compare" | "brief" | "questions" | "about" | "history" | null;
 const brainIds = [
   "UBERON:0000955",
@@ -1115,6 +1128,7 @@ export default function AtlasExperience() {
                 </label>
                 <h2>{interventionNames[f.id] || f.name}</h2>
                 <p className="device-product">{productName(f)}</p>
+                <InterventionCompanies family={f} />
 
                 <p className="device-action" aria-label="What this intervention does">
                   {interventionActions[f.id] || f.description}
@@ -1447,9 +1461,10 @@ export default function AtlasExperience() {
                       <thead>
                         <tr>
                           <th>Interaction</th>
-                          {comparison.map((id) => (
-                            <th key={id}>{productName(familyById(id)!)}</th>
-                          ))}
+                          {comparison.map((id) => {
+                            const family = familyById(id)!;
+                            return <th key={id}>{productName(family)}<InterventionCompanies family={family} /></th>;
+                          })}
                         </tr>
                       </thead>
                       <tbody>

@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { atlasPath } from "@/lib/deployment";
+import CompanyMark from "@/components/CompanyMark";
 import CachedFdaRecord, { archiveKey, type ArchiveVerification } from "./CachedFdaRecord";
 import SupplementHistory, { type SelectedSupplement } from "./SupplementHistory";
 
 export type BriefCase = {
   application: string;
   name: string;
+  applicant?: string;
   decisionDate: string;
   retrievedAt: string;
   sourceSha: string;
@@ -263,6 +265,7 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
             {pair.map(item => (
               <article key={item.application} className="pilot-card">
                 <h3>{item.name}</h3>
+                {item.applicant && <CompanyMark organization={item.applicant} role="FDA applicant" />}
                 <p>{item.status} · <time dateTime={item.decisionDate}>{item.decisionDate}</time></p>
                 <a href={item.url} target="_blank" rel="noopener noreferrer">Original FDA record {item.application}</a>
                 <p>Decision index · Retrieved <time dateTime={item.retrievedAt}>{item.retrievedAt}</time> UTC</p>

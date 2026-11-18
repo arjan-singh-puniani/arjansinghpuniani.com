@@ -63,6 +63,7 @@ const briefCases = families.flatMap((family): BriefCase[] => {
   return [{
     application: record.application,
     name: family.name,
+    applicant: record.applicant,
     decisionDate: record.decisionDate,
     retrievedAt: record.retrievedAt.slice(0, 10),
     sourceSha: record.sourceSha,

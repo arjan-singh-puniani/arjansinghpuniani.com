@@ -67,6 +67,12 @@ test("the example gives a first-time visitor a working comparison without WebGL"
   const builder = page.getByRole("region", { name: "Build a cited brief" });
   await expect(builder.getByRole("link", { name: "Original FDA record P960009" })).toBeVisible();
   await expect(builder.getByRole("link", { name: "Original FDA record P150038" })).toBeVisible();
+  for (const [name, mark] of [["Medtronic, Inc.", "medtronic"], ["Insightec", "insightec"]]) {
+    const company = builder.locator(".company-mark").filter({ hasText: name });
+    await expect(company).toContainText("FDA applicant");
+    await expect(company.locator("img")).toHaveAttribute("src", new RegExp(`/company-marks/${mark}\\.svg$`));
+    await expect.poll(() => company.locator("img").evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  }
   await builder.getByRole("link", { name: "Jump to notes and export" }).click();
   await expect(page).toHaveURL(/#worksheet-notes$/);
   const file = page.waitForEvent("download");
@@ -168,6 +174,9 @@ test("exact application lookup preserves original and later decision boundaries"
   await find.click();
   await builder.getByRole("button", { name: "Use as second" }).click();
   const deNovo = builder.getByRole("article").filter({ has: page.getByRole("link", { name: "Original FDA record DEN160019" }) });
+  const applicant = deNovo.locator(".company-mark");
+  await expect(applicant).toContainText("Ventana Medical Systems, Inc.");
+  await expect(applicant.locator("img")).toHaveCount(0);
   await deNovo.getByRole("button", { name: "Verify original in cached FDA record" }).click();
   await expect(deNovo.getByText("Archived FDA record DEN160019", { exact: true })).toBeVisible();
   await expect(deNovo.getByText("FDA decision code DENG.")).toBeVisible();

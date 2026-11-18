@@ -4,6 +4,7 @@ import { atlasBasePath, atlasPath } from "@/lib/deployment";
 import { recordById } from "@/lib/atlas";
 import type { AtlasRecord, EvidenceState } from "@/lib/types";
 import { isSourceUrl } from "@/lib/source-url";
+import CompanyMark from "./CompanyMark";
 export function External({
   href,
   children,
@@ -55,7 +56,7 @@ export function SourceRecord({ record: r }: { record: AtlasRecord }) {
       {(r.decisionDate || r.firstPosted) && (
         <p>{r.kind==='trial'?'Study first posted':'Decision date'}: {r.decisionDate || r.firstPosted}</p>
       )}
-      {r.applicant && <p>Applicant in snapshot: {r.applicant}</p>}
+      {r.applicant && <CompanyMark organization={r.applicant} role="FDA applicant" />}
       {r.productCode && (
         <p>
           FDA product code:{" "}
@@ -79,7 +80,7 @@ export function SourceRecord({ record: r }: { record: AtlasRecord }) {
           establish authorization.
         </p>
       )}
-      {r.sponsor && <p>Registry sponsor: {r.sponsor}</p>}
+      {r.sponsor && <CompanyMark organization={r.sponsor} role="Study sponsor" />}
       {r.kind==='trial' && <>
         {r.studyStart?.date&&<p>Study start: {r.studyStart.date} ({r.studyStart.type==='ACTUAL'?'actual':'estimated in registry'})</p>}
         {r.lastUpdatePosted&&<p>Registry last updated: {r.lastUpdatePosted}</p>}

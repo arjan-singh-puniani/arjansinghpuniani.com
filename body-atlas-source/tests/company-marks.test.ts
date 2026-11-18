@@ -1,0 +1,37 @@
+import assert from "node:assert/strict";
+import { readFileSync, readdirSync } from "node:fs";
+import { test } from "node:test";
+import { companyMark } from "../lib/company-marks";
+import marks from "../lib/company-marks.json";
+import { families } from "../lib/atlas";
+import { primaryRecords } from "../lib/intervention-view";
+
+test("only reviewed company identities receive a mark", () => {
+  assert.equal(companyMark("MEDTRONIC INC")?.id, "medtronic");
+  assert.equal(companyMark("  Boston Scientific Corp. ")?.id, "boston-scientific");
+  assert.equal(companyMark("Medtronic Surgical Associates"), undefined);
+  assert.equal(companyMark("Medtronic Minimed, Inc."), undefined);
+  assert.equal(companyMark("Northwestern University"), undefined);
+  assert.equal(companyMark("Ventana Medical Systems, Inc."), undefined);
+});
+
+test("every intervention has a source identity for its mark or text label", () => {
+  for (const family of families) {
+    assert.ok(primaryRecords(family).some(record =>
+      family.regulatoryIds.length ? record.applicant?.trim() : record.sponsor?.trim(),
+    ), family.id);
+  }
+});
+
+test("the static company marks are sourced vector art without external content", () => {
+  const directory = "public/company-marks";
+  assert.deepEqual(readdirSync(directory).sort(), marks.map(mark => `${mark.id}.svg`).sort());
+  for (const mark of marks) {
+    assert.equal(new URL(mark.source).protocol, "https:");
+    for (const name of mark.names) assert.equal(companyMark(name)?.id, mark.id);
+    const svg = readFileSync(`${directory}/${mark.id}.svg`, "utf8");
+    assert.match(svg, /<svg\b[^>]+\bviewBox="/);
+    assert.match(svg, /<(?:path|circle|polygon|rect)\b/);
+    assert.doesNotMatch(svg, /<(?:image|script|foreignObject|style|iframe|text)\b|\s(?:href|on\w+)\s*=|url\((?!#)|<!DOCTYPE/i);
+  }
+});
