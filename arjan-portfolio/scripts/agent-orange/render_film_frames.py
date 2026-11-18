@@ -32,6 +32,13 @@ for frame in range(start, end + 1):
     scene.frame_set(frame)
     output = OUT / f"frame-{frame:04d}.png"
     hold_frame = OUT / "frame-2161.png"
+    cell_hold_frame = OUT / "frame-1200.png"
+    if 1201 <= frame <= 1440 and cell_hold_frame.exists():
+        # The cell scene has no animation in this interval; reuse its verified static view.
+        shutil.copyfile(cell_hold_frame, output)
+        if frame == end or frame % scene.render.fps == 0:
+            print(f"FILM_PROGRESS {frame}/{end}", flush=True)
+        continue
     if frame > 2161 and hold_frame.exists():
         # The closing evidence chart is a deliberate static hold; copy its valid rendered frame.
         shutil.copyfile(hold_frame, output)

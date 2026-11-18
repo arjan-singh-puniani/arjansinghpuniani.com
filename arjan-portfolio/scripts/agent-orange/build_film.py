@@ -100,7 +100,7 @@ def caption(camera, body, start, end, color=(0.92, 0.88, 0.79)):
     obj = bpy.data.objects.new(f"Caption {start}", data)
     bpy.context.collection.objects.link(obj)
     obj.parent = camera
-    obj.location = (-2.8, -1.1, -8.5)
+    obj.location = (-2.8, -1.7 if start == 2 * SHOT + 1 else -1.1, -8.5)
     obj.data.materials.append(mat(f"Caption {start} material", color, emission=0.25))
     window(obj, start, end)
     return obj
