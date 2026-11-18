@@ -1,28 +1,32 @@
 # Agent Orange release report
 
-Status as of 2026-11-18: **BLOCKED**
+Status as of 2026-11-18: **BLOCKED — production release criteria are not met**
 
 | Gate | Status | Evidence |
 | --- | --- | --- |
-| Evidence-backed claim set | PASS, limited scope | `evidence.json`; article abstract, EPA, and PubChem linked in route |
-| Historical and chemical distinctions | PASS, limited scope | Agent Orange ingredients and TCDD contaminant are described separately |
-| Genuine 3D rendering | PASS, partial | Three.js WebGL schematic brain and PubChem conformer GLB are present; Blender scene and rendered frame inspected |
-| Atlas-based neuroanatomy and provenance | BLOCKED | Current brain shapes are explicitly schematic; no licensed atlas mesh integrated |
-| Molecular geometry | PASS, 2,4-D conformer | PubChem CID 1486 SDF atom positions and bond orders checked; Blender parser verified 19 atoms, 19 bonds, and C8H6Cl2O3; GLB container integrity verified |
-| Blender source scene and reproducible render | PASS, molecular asset only | Blender 5.3.0 is installed beside 4.0.2 at `/Applications/Blender 5.3.app`; Python smoke test passed; `build_molecule.py` generated an editable scene and Cycles preview from PubChem SDF; 4.0.2 remains broken |
-| 90–120 second cinematic film | BLOCKED | No rendered film, production master, captions, or contact sheet |
-| Narration and synchronized sound | BLOCKED | Not recorded or synthesized; no audio track exists |
-| Desktop browser route | PASS | Local production build route opened in browser; substantia nigra selection changed correctly; no console errors or warnings observed |
-| Mobile, touch, keyboard, reduced motion | PARTIAL | Responsive styling and controls implemented; dedicated mobile viewport and input checks remain |
-| Production build | PASS | `npm run build` completed, `/agent-orange` prerendered |
-| TypeScript | PASS | `npm run typecheck` completed |
-| Existing automated tests | PASS | 7 tests passed |
-| Production audit and performance measurements | BLOCKED | Dependency install reported 33 advisories (8 moderate, 23 high, 2 critical), but audit endpoint failed DNS so individual findings could not be reviewed; no frame-time or memory measurements captured |
-| Existing portfolio routes | NOT REGRESSION-TESTED | Build includes existing routes; route-by-route browser regression remains |
-| Production deployment | BLOCKED | Release gates above remain incomplete; no deployment was made |
+| Evidence-backed claims | PASS, limited scope | `evidence.json`; primary JAMA article and EPA/PubChem/NINDS sources linked in route |
+| Chemical identity and distinctions | PASS | Three individual PubChem SDFs; asserted formulas, atom and bond counts; separate 2,4-D, 2,4,5-T, and TCDD labels |
+| Epidemiological estimate and caveats | PASS, abstract-level verification | Cohort 4,468,509; HR 1.44 (95% CI 1.37–1.52); direct/occupational subgroup HR 1.99 (1.71–2.32); association, not causation or absolute risk |
+| Neuroanatomy provenance | PASS, limited atlas scope | CIT168 1 mm MNI template label map; bilateral putamen, caudate, and SNc labels decoded through NIfTI affine and exported as smoothed display surfaces; not individual or veteran anatomy |
+| Third-party asset licensing | BLOCKED | PubChem records and project sources are recorded; the CIT168 source repository has an MIT license, but the OSF NIfTI asset-level license was not confirmed. Clear redistribution rights for the atlas and derived surfaces before deployment |
+| Interactive route | PASS, partial | Three.js route at `/agent-orange`; brain schematic plus atlas and molecule GLBs; desktop selection controls inspected in browser |
+| Editable Blender assets | PASS, partial | Three molecular `.blend` files, CIT168-derived `.blend`, and `agent-orange-film.blend`; generated with Blender 5.3.0 |
+| Genuine 3D animation | PASS, preview only | Seven camera-animated 3D shots in Blender; representative Cycles keyframes rendered and inspected; real scene objects move across time |
+| 90–120 second film file | BLOCKED | `artifacts/agent-orange/film-frames/` contains 2,520 rendered frames. `public/agent-orange/film-visual-review.webp` is a verified 105.898-second, 720×405 silent motion review assembled from those frames. MP4 delivery is unavailable: this Blender build exposes no movie file format, the Motion JPEG writer failed, and macOS `avconvert` cannot read animated WebP. The WebP is a review preview, not the requested film master. |
+| Production master / 4K | BLOCKED | No verified GPU device; current render is 720×405 CPU. No 4K master rendered |
+| Narration and synchronized audio | BLOCKED | Timed narration draft exists in `narration.md`; no approved voice recording/service, sound stems, or audio mix. Captions in `public/agent-orange/captions.srt` are draft timings and are not voice-synchronized |
+| Browser/mobile/accessibility checks | PARTIAL | Desktop route and selection controls inspected. Dedicated mobile/touch, complete keyboard, reduced-motion, browser compatibility, performance and memory checks remain |
+| Build and existing tests | PASS | `npm run build`, `npm run typecheck`, `npm run lint`, and `npm test` passed; 7 tests passed |
+| Dependency security review | BLOCKED | Install reported 33 advisories (8 moderate, 23 high, 2 critical); advisory endpoint DNS failed, so findings could not be individually reviewed |
+| Existing portfolio regression | PARTIAL | Production build completed; existing routes were not comprehensively browser-tested |
+| Deployment | NOT DEPLOYED | No production deployment made; preview deployment was not produced |
 
-The current work is an evidence-led interactive prototype on branch `codex/agent-orange-long-shadow`. It is not a finished film or production release. Blender 5.3.0 works from a verified read-only temporary mount. The installed Blender 4.0.2 app remains unchanged and still has a Metal backend detection crash.
+## Render and review record
 
-## Current prototype quality review
+- `public/agent-orange/renders/film-preview/` contains eight rendered representative keyframes from the actual Blender scene. The aircraft shot is explicitly an illustrative reconstruction; chemical identities are separate; CIT168 surfaces are labeled as a group template; candidate mechanisms are labeled as hypotheses; the final chart uses adjusted hazard-ratio points and confidence intervals with HR 1.0 reference.
+- The preview shows useful 3D depth and motion, but the assets are still stylized, text is small at phone size, and several scientific structures are simplified. This is an engineering prototype, not studio-finished cinema.
+- The 2,520-frame render is complete under `artifacts/agent-orange/film-frames/`. The final 15-second chart scene is held on a single accurate confidence-interval frame as a deliberate evidence pause. The animated WebP review was verified at 720×405 and 105.898 seconds; it has no audio. An MP4 master and final encoded-video inspection remain blocked by unavailable encoders.
 
-Scores apply only to the built prototype, not the unproduced film. Scientific claim handling: 7/10, with the cohort estimates cited and qualified. Anatomical fidelity: 2/10, because the visible geometry is schematic. Camera direction and animation: 2/10, because there is drag rotation and subtle ambient movement but no guided tour. Lighting and materials: 4/10, based on the inspected browser render. Narrative clarity: 6/10, based on the route's visible order and claim register. Sound: not scored, because no audio exists. Accessibility: 4/10, based on keyboard-operable controls and reduced-motion control, with mobile and full keyboard review still pending. Technical reliability: 6/10, based on the passing production build, tests, and a successful desktop browser interaction. Originality: 4/10, because the current experience is a focused prototype and does not yet include original atlas-based or film assets.
+## Release decision
+
+Do not describe this work as production-ready or deploy it. Remaining release blockers include completing and inspecting the encoded film, voice recording and sound mix, matching captions to final narration, CIT168 asset-license confirmation, mobile and accessibility checks, measured performance, full route regression, and individual dependency advisory review. No independent scientific or clinical expert review has occurred.

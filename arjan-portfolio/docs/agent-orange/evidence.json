@@ -44,13 +44,13 @@
     },
     {
       "id": "ANAT-01",
-      "wording": "The 3D brain and pathway are schematic orientation aids.",
-      "source": "No atlas mesh has been integrated",
-      "url": null,
-      "classification": "schematic illustration",
-      "limitations": ["Not a validated brain atlas", "No exposure-specific pathology is depicted"],
-      "visual": "Interactive Three.js scene",
-      "review": "status disclosed in interface"
+      "wording": "Interactive putamen, caudate, and substantia nigra pars compacta surfaces are derived from the CIT168 1 mm MNI template label map; the overview brain and pathway remain schematic.",
+      "source": "Pauli WM, Nili AN, Tyszka JM. Scientific Data. 2018. doi:10.1038/sdata.2018.63; OSF items 2qswg and 6qrcb",
+      "url": "https://doi.org/10.1038/sdata.2018.63",
+      "classification": "atlas-derived group template plus schematic illustration",
+      "limitations": ["Not an individual scan or histology", "1 mm discrete label map", "Surfaces smoothed for display", "No exposure-specific pathology is depicted", "Most atlas regions and the cortex are omitted"],
+      "visual": "Interactive Three.js atlas surfaces and schematic overview",
+      "review": "source mapping and affine checked; derived Blender and GLB assets generated; browser route and region-selection controls visually inspected; displayed atlas surfaces inspected; display smoothing and atlas scope documented"
     },
     {
       "id": "SCREENSHOT-01",

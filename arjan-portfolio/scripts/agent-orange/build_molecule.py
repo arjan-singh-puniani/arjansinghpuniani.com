@@ -2,16 +2,21 @@
 
 from pathlib import Path
 import math
+import sys
 import bpy
 from mathutils import Vector
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SDF = ROOT / "public/agent-orange/source/2-4-d-pubchem-cid-1486.sdf"
 OUTPUT = ROOT / "public/agent-orange"
+COMPOUNDS = {
+    "2-4-d": ("2,4-D", 1486, {"C": 8, "H": 6, "Cl": 2, "O": 3}),
+    "2-4-5-t": ("2,4,5-T", 1480, {"C": 8, "H": 5, "Cl": 3, "O": 3}),
+    "tcdd": ("TCDD", 15625, {"C": 12, "H": 4, "Cl": 4, "O": 2}),
+}
 
 
-def read_v2000(path):
+def read_v2000(path, expected_formula):
     lines = path.read_text().splitlines()
     atom_count, bond_count = map(int, lines[3][:6].split())
     atoms = []
@@ -22,10 +27,8 @@ def read_v2000(path):
     for line in lines[bond_start : bond_start + bond_count]:
         first, second, order = map(int, line[:9].split())
         bonds.append((first - 1, second - 1, order))
-    assert len(atoms) == atom_count == 19
-    assert len(bonds) == bond_count == 19
-    assert {element for _, element in atoms} == {"C", "H", "O", "Cl"}
-    assert {element: sum(atom[1] == element for atom in atoms) for element in {"C", "H", "O", "Cl"}} == {"C": 8, "H": 6, "O": 3, "Cl": 2}
+    assert len(atoms) == atom_count and len(bonds) == bond_count
+    assert {element: sum(atom[1] == element for atom in atoms) for element in expected_formula} == expected_formula
     assert all(first != second and order in (1, 2, 3) for first, second, order in bonds)
     return atoms, bonds
 
@@ -64,8 +67,10 @@ def cylinder_between(name, start, end, radius, mat):
     return obj
 
 
-def main():
-    atoms, bonds = read_v2000(SDF)
+def main(slug):
+    name, cid, formula = COMPOUNDS[slug]
+    sdf = ROOT / f"public/agent-orange/source/{slug}-pubchem-cid-{cid}.sdf"
+    atoms, bonds = read_v2000(sdf, formula)
     bpy.ops.object.select_all(action="SELECT")
     bpy.ops.object.delete(use_global=False)
     for block in bpy.data.materials:
@@ -109,9 +114,10 @@ def main():
         obj.data.materials.append(mat)
         return obj
 
-    text("2,4-D", (-4.4, 1.25, 0), 0.72, title_mat, "Title · 2,4-D")
-    text("PUBCHEM CID 1486   /   CONFORMER 000005CE00000001", (-4.35, 0.66, 0), 0.13, sub_mat, "Source · PubChem")
-    text("C₈H₆Cl₂O₃", (-4.35, -0.85, 0), 0.24, title_mat, "Formula · C8H6Cl2O3")
+    text(name, (-4.4, 1.25, 0), 0.72, title_mat, f"Title · {name}")
+    text(f"PUBCHEM CID {cid}   /   3D CONFORMER", (-4.35, 0.66, 0), 0.13, sub_mat, f"Source · PubChem {cid}")
+    formula_text = "".join(f"{element}{count if count > 1 else ''}" for element, count in formula.items())
+    text(formula_text, (-4.35, -0.85, 0), 0.24, title_mat, f"Formula · {formula_text}")
     text("Atom coordinates and bond orders from PubChem 3D SDF", (-4.35, -1.26, 0), 0.115, sub_mat, "Provenance note")
 
     world = bpy.data.worlds.new("Charcoal studio")
@@ -162,24 +168,24 @@ def main():
     scene.view_settings.view_transform = "AgX"
     scene.frame_start = 1
     scene.frame_end = 72
-    scene.render.filepath = str(OUTPUT / "renders/2-4-d-preview.png")
+    scene.render.filepath = str(OUTPUT / f"renders/{slug}-preview.png")
     scene.frame_set(36)
     scene.render.threads_mode = "FIXED"
     scene.render.threads = 8
     OUTPUT.mkdir(parents=True, exist_ok=True)
     (OUTPUT / "renders").mkdir(exist_ok=True)
-    bpy.ops.wm.save_as_mainfile(filepath=str(OUTPUT / "2-4-d-pubchem.blend"))
+    bpy.ops.wm.save_as_mainfile(filepath=str(OUTPUT / f"{slug}-pubchem.blend"))
     bpy.ops.object.select_all(action="DESELECT")
     molecule = [obj for obj in scene.objects if obj.name.startswith(("Atom ", "Bond "))]
     for obj in molecule:
         obj.select_set(True)
     bpy.context.view_layer.objects.active = molecule[0]
-    bpy.ops.export_scene.gltf(filepath=str(OUTPUT / "2-4-d-pubchem.glb"), export_format="GLB", use_selection=True)
+    bpy.ops.export_scene.gltf(filepath=str(OUTPUT / f"{slug}-pubchem.glb"), export_format="GLB", use_selection=True)
     bpy.ops.render.render(write_still=True)
-    print(f"PUBCHEM_SDF_OK atoms={len(atoms)} bonds={len(bonds)} formula=C8H6Cl2O3")
-    print(f"BLEND={OUTPUT / '2-4-d-pubchem.blend'}")
-    print(f"GLB={OUTPUT / '2-4-d-pubchem.glb'}")
-    print(f"RENDER={OUTPUT / 'renders/2-4-d-preview.png'}")
+    print(f"PUBCHEM_SDF_OK name={name} atoms={len(atoms)} bonds={len(bonds)} formula={formula_text}")
+    print(f"BLEND={OUTPUT / f'{slug}-pubchem.blend'}")
+    print(f"GLB={OUTPUT / f'{slug}-pubchem.glb'}")
+    print(f"RENDER={OUTPUT / f'renders/{slug}-preview.png'}")
 
 
-main()
+main(sys.argv[-1] if len(sys.argv) > 1 and sys.argv[-1] in COMPOUNDS else "2-4-d")

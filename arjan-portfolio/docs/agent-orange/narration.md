@@ -8,11 +8,11 @@ A war ends on a calendar. Exposure can leave a longer question behind.
 
 ## 00:08–00:20 · What was sprayed
 
-Agent Orange was a wartime formulation of two herbicides, 2,4-D and 2,4,5-T. TCDD was a contaminant associated with the manufacture of 2,4,5-T. These chemicals are related by history, but they are not interchangeable exposures.
+Agent Orange contained two herbicides: 2,4-D and 2,4,5-T. TCDD was a contaminant formed during 2,4,5-T manufacture. These are different exposures.
 
 ## 00:20–00:35 · The brain
 
-Parkinson disease involves degeneration of dopamine-producing neurons in the substantia nigra and changes in the connected nigrostriatal system. This anatomical model is schematic. It does not show tissue from the veterans in the study.
+Parkinson disease involves loss of dopamine-producing neurons in the substantia nigra and changes in the connected nigrostriatal system. This schematic is not tissue from the veterans in the study.
 
 ## 00:35–00:52 · The cell
 
@@ -28,8 +28,8 @@ When dopamine-producing neurons are lost, signaling through the nigrostriatal pa
 
 ## 01:25–01:45 · The study
 
-In a cohort of more than 4.4 million US veterans, reported Agent Orange exposure was associated with a higher rate of Parkinson disease diagnosis. The adjusted hazard ratio was 1.44. A direct or occupational exposure subgroup estimate was 1.99. These are relative hazard estimates, not personal probabilities. The study does not isolate 2,4-D, and an observational association cannot prove causation. The war ended. The evidence continues to be examined.
+Among 4,468,509 US veterans, reported Agent Orange exposure was associated with higher Parkinson disease diagnosis rates: adjusted hazard ratio 1.44. The direct or occupational subgroup estimate was 1.99. These are relative estimates, not personal probabilities. The study did not isolate 2,4-D or prove causation.
 
 ## Source and recording status
 
-Study estimates and qualifications: Scott et al., *JAMA Neurology*, 2026, doi:10.1001/jamaneurol.2026.4219. Chemical formulation: US EPA, 2,4-D overview. Parkinson disease anatomy: NINDS overview. Voice recording, timing against final animation, captions, and audio mix remain unproduced.
+Study estimates and qualifications: Scott et al., *JAMA Neurology*, 2026, doi:10.1001/jamaneurol.2026.4219. Chemical formulation: US EPA, 2,4-D overview. Parkinson disease anatomy: NINDS overview. A draft SRT exists, but voice recording, synchronization against final animation, and audio mix remain unproduced.

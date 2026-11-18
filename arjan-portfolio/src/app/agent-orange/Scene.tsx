@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-const regions = ["Brain", "Substantia nigra", "Striatum", "Dopamine pathway", "2,4-D molecule"] as const;
+const regions = ["Brain", "Substantia nigra", "Striatum", "Dopamine pathway", "Subcortical atlas", "2,4-D molecule", "2,4,5-T molecule", "TCDD molecule"] as const;
 type Region = (typeof regions)[number];
 
 export function Scene({ region, reducedMotion }: { region: Region; reducedMotion: boolean }) {
@@ -31,10 +31,32 @@ export function Scene({ region, reducedMotion }: { region: Region; reducedMotion
     camera.position.set(0, 0, 8);
     const group = new THREE.Group();
     scene.add(group);
-    const molecule = new THREE.Group();
-    molecule.visible = false;
-    scene.add(molecule);
-    new GLTFLoader().load("/agent-orange/2-4-d-pubchem.glb", gltf => { molecule.add(gltf.scene); }, undefined, () => { root.dataset.molecule = "unavailable"; });
+    const moleculeAssets: [Region, string][] = [["2,4-D molecule", "2-4-d"], ["2,4,5-T molecule", "2-4-5-t"], ["TCDD molecule", "tcdd"]];
+    const molecules = new Map<Region, THREE.Group>();
+    for (const [label, slug] of moleculeAssets) {
+      const model = new THREE.Group();
+      model.visible = false;
+      molecules.set(label, model);
+      scene.add(model);
+      new GLTFLoader().load(`/agent-orange/${slug}-pubchem.glb`, gltf => { model.add(gltf.scene); }, undefined, () => { root.dataset.molecule = "unavailable"; });
+    }
+    const atlas = new THREE.Group();
+    atlas.visible = false;
+    scene.add(atlas);
+    new GLTFLoader().load("/agent-orange/cit168-subcortical.glb", gltf => {
+      const bounds = new THREE.Box3().setFromObject(gltf.scene);
+      const center = bounds.getCenter(new THREE.Vector3());
+      const scale = 4.5 / bounds.getSize(new THREE.Vector3()).length();
+      gltf.scene.scale.setScalar(scale);
+      gltf.scene.position.copy(center).multiplyScalar(-scale);
+      gltf.scene.traverse(object => {
+        if (!(object instanceof THREE.Mesh)) return;
+        const name = object.name.toLowerCase();
+        const color = name.includes("substantia nigra") ? 0xffbd62 : name.includes("putamen") ? 0x5eb7b3 : 0x8299c8;
+        object.material = new THREE.MeshStandardMaterial({ color, roughness: 0.55, metalness: 0.02, transparent: true, opacity: 0.82 });
+      });
+      atlas.add(gltf.scene);
+    }, undefined, () => { root.dataset.atlas = "unavailable"; });
     scene.add(new THREE.HemisphereLight(0xc8d8e7, 0x171419, 2));
     const key = new THREE.DirectionalLight(0xffd7a0, 3.2);
     key.position.set(-3, 4, 5);
@@ -78,9 +100,19 @@ export function Scene({ region, reducedMotion }: { region: Region; reducedMotion
     let raf = 0;
     const render = () => {
       for (const [name, meshes] of Object.entries(sceneMeshes)) for (const mesh of meshes) (mesh.material as THREE.MeshStandardMaterial).color.setHex(name === selected.current ? 0xffc35e : base.get(mesh)!);
-      molecule.visible = selected.current === "2,4-D molecule";
-      group.visible = !molecule.visible;
-      if (!motion.current && !down && !molecule.visible) group.rotation.y += 0.0008;
+      const showingMolecule = molecules.has(selected.current);
+      for (const [label, model] of molecules) model.visible = selected.current === label;
+      atlas.visible = ["Substantia nigra", "Striatum", "Subcortical atlas"].includes(selected.current);
+      atlas.rotation.y = group.rotation.y;
+      atlas.traverse(object => {
+        if (!(object instanceof THREE.Mesh)) return;
+        const name = object.name.toLowerCase();
+        const matches = selected.current === "Subcortical atlas" || (selected.current === "Substantia nigra" ? name.includes("substantia nigra") : name.includes("putamen") || name.includes("caudate"));
+        const material = object.material as THREE.MeshStandardMaterial;
+        material.opacity = matches ? 0.92 : 0.16;
+      });
+      group.visible = !showingMolecule && !atlas.visible;
+      if (!motion.current && !down && !showingMolecule) { group.rotation.y += 0.0008; atlas.rotation.y += 0.0008; }
       renderer.render(scene, camera);
       raf = requestAnimationFrame(render);
     };
@@ -88,7 +120,7 @@ export function Scene({ region, reducedMotion }: { region: Region; reducedMotion
     return () => { cancelAnimationFrame(raf); resize.disconnect(); renderer.domElement.removeEventListener("pointerdown", onDown); renderer.domElement.removeEventListener("pointermove", onMove); renderer.domElement.removeEventListener("pointerup", onUp); scene.traverse(object => { if (object instanceof THREE.Mesh) { object.geometry.dispose(); const materials = Array.isArray(object.material) ? object.material : [object.material]; materials.forEach(item => item.dispose()); } }); renderer.dispose(); renderer.domElement.remove(); };
   }, []);
 
-  return <div className="ao-scene" ref={host} role="img" aria-label={`Interactive 3D viewer. Selected: ${region}. Drag to rotate.`}><p className="ao-scene-note">{region === "2,4-D molecule" ? "PUBCHEM 3D CONFORMER · DRAG TO ROTATE" : "SCHEMATIC ANATOMY · DRAG TO ROTATE"}</p><p className="ao-webgl-fallback">3D rendering is unavailable in this browser. Continue with the evidence and anatomy notes below.</p><p className="ao-glb-fallback">The molecular asset could not load.</p></div>;
+  return <div className="ao-scene" ref={host} role="img" aria-label={`Interactive 3D viewer. Selected: ${region}. Drag to rotate.`}><p className="ao-scene-note">{region.endsWith("molecule") ? "PUBCHEM 3D CONFORMER · DRAG TO ROTATE" : ["Substantia nigra", "Striatum", "Subcortical atlas"].includes(region) ? "CIT168 ATLAS · MNI TEMPLATE · DRAG TO ROTATE" : "SCHEMATIC OVERVIEW · DRAG TO ROTATE"}</p><p className="ao-webgl-fallback">3D rendering is unavailable in this browser. Continue with the evidence and anatomy notes below.</p><p className="ao-glb-fallback">A 3D asset could not load.</p></div>;
 }
 
 export { regions };

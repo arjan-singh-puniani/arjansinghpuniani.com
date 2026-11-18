@@ -1,0 +1,40 @@
+1
+00:00:00,000 --> 00:00:08,000
+A war ends on a calendar. Exposure can leave a longer question behind.
+
+2
+00:00:08,000 --> 00:00:20,000
+Agent Orange contained two herbicides: 2,4-D and 2,4,5-T.
+TCDD was a contaminant formed during 2,4,5-T manufacture.
+These are different exposures.
+
+3
+00:00:20,000 --> 00:00:35,000
+Parkinson disease involves loss of dopamine-producing neurons in the substantia nigra
+and changes in the connected nigrostriatal system. This schematic is not tissue
+from the veterans in the study.
+
+4
+00:00:35,000 --> 00:00:52,000
+A neuron carries signals through a cell body, branching dendrites, an axon, and terminals.
+Cellular detail can help us see what researchers study. It cannot, by itself,
+identify what caused disease in a person.
+
+5
+00:00:52,000 --> 00:01:10,000
+Environmental exposures are studied through many kinds of evidence. Laboratory mechanisms
+can suggest questions. They do not establish that a specific pathway occurred in this cohort.
+Association, mechanism, and causation require different evidence.
+
+6
+00:01:10,000 --> 00:01:25,000
+When dopamine-producing neurons are lost, signaling through the nigrostriatal pathway changes.
+Parkinson disease affects movement in complex ways. A population study of diagnoses
+does not directly measure this biology in each participant.
+
+7
+00:01:25,000 --> 00:01:45,000
+Among 4,468,509 US veterans, reported Agent Orange exposure was associated with higher
+Parkinson disease diagnosis rates: adjusted hazard ratio 1.44. The direct or occupational
+subgroup estimate was 1.99. These are relative estimates, not personal probabilities.
+The study did not isolate 2,4-D or prove causation.
