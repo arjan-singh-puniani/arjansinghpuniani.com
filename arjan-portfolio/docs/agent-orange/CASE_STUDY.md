@@ -6,7 +6,7 @@ This project turns a 2026 observational study of Parkinson disease diagnoses in 
 
 ## Blender-to-browser pipeline
 
-PubChem 3D SDF records supply atom coordinates and bond orders for 2,4-D, 2,4,5-T, and TCDD. The licensed Human Reference Atlas brain GLB provides a whole-brain reference, while the CIT168 1 mm MNI group-template label map supplies display surfaces for the putamen, caudate, and substantia nigra pars compacta. The separate atlases are not registered together. Blender Python scripts generate editable `.blend` scenes and portable GLB assets. A Next.js route loads the assets in Three.js. The cinematic Blender scene reuses the chemical and CIT168 assets across a seven-shot, 105-second camera timeline.
+PubChem 3D SDF records supply atom coordinates and bond orders for 2,4-D, 2,4,5-T, and TCDD. The licensed Human Reference Atlas brain GLB provides a whole-brain reference, while the CIT168 1 mm MNI group-template label map supplies display surfaces for the putamen, caudate, and substantia nigra pars compacta. The separate atlases are not registered together. Blender Python scripts generate editable `.blend` scenes and portable GLB assets. For the browser, the preserved NIH source GLB is decimated per named mesh at ratio 0.5, reducing the brain transfer asset by about 47% while retaining 283 named meshes. A Next.js route loads the assets in Three.js. The cinematic Blender scene reuses the chemical and CIT168 assets across a seven-shot, 105-second camera timeline.
 
 ## Engineering decisions and limits
 
