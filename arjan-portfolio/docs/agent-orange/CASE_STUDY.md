@@ -6,11 +6,11 @@ This project turns a 2026 observational study of Parkinson disease diagnoses in 
 
 ## Blender-to-browser pipeline
 
-PubChem 3D SDF records supply the atom coordinates and bond orders for 2,4-D, 2,4,5-T, and TCDD. The CIT168 1 mm MNI group-template label map supplies display surfaces for the putamen, caudate, and substantia nigra pars compacta. Blender Python scripts generate editable `.blend` scenes and portable GLB assets. A Next.js route loads those GLBs in Three.js and presents them alongside a separately labeled schematic brain overview. The cinematic Blender scene reuses the chemical and atlas assets across a seven-shot, 105-second camera timeline.
+PubChem 3D SDF records supply atom coordinates and bond orders for 2,4-D, 2,4,5-T, and TCDD. The licensed Human Reference Atlas brain GLB provides a whole-brain reference, while the CIT168 1 mm MNI group-template label map supplies display surfaces for the putamen, caudate, and substantia nigra pars compacta. The separate atlases are not registered together. Blender Python scripts generate editable `.blend` scenes and portable GLB assets. A Next.js route loads the assets in Three.js. The cinematic Blender scene reuses the chemical and CIT168 assets across a seven-shot, 105-second camera timeline.
 
 ## Engineering decisions and limits
 
-The chemical models retain separate identities and source records. The atlas is a smoothed display surface derived from a group template, not an individual brain or veteran scan. The CIT168 paper and OSF project node declare CC BY 4.0; the source files and modifications are documented in `ASSET_PROVENANCE.md`. The neuron, mitochondrion, pathway, and exposure scenes are educational schematics; candidate mechanisms are labeled as hypotheses. The current silent H.264 review is 105 seconds at 1920×1080 and 24 fps, rendered with Blender Cycles on CPU because no Metal render device was detected. The cut has no narration or sound, and the SRT timings remain drafts.
+The chemical models retain separate identities and source records. The HRA brain is a generic mirrored reference model, not a veteran or patient scan. The CIT168 surfaces are smoothed display surfaces from a group template, also not individual or exposure-specific anatomy. Both are CC BY 4.0 with source records and modifications documented in `ASSET_PROVENANCE.md`. The neuron, mitochondrion, pathway, and exposure scenes are educational schematics; candidate mechanisms are labeled as hypotheses. The current silent H.264 review is 105 seconds at 1920×1080 and 24 fps, rendered with Blender Cycles on CPU because no Metal render device was detected. The cut has no narration or sound, and the SRT timings remain drafts.
 
 ## Authorship note
 

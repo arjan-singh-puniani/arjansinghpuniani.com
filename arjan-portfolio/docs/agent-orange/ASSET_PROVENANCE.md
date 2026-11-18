@@ -9,6 +9,13 @@
 
 Blender 5.3.0 is the verified generator version. The downloaded official Apple Silicon disk image matched SHA-256 `2d802b54766741e612cead50b03ebbc8eb64dadc71eda932573d256b8a784720`. The existing Blender 4.0.2 app was not replaced.
 
+## Whole-brain reference model
+
+- Source: Human Reference Atlas, [Brain, Male v1.3](https://3d.nih.gov/entries/20960?version=1), NIH 3D entry 3DPX-020960; source file is also hosted on the [HRA CDN](https://cdn.humanatlas.io/digital-objects/ref-organ/brain-male/v1.3/assets/3d-vh-m-allen-brain.glb).
+- The entry describes a model based on the Allen Human Reference Atlas 3D (2020): one hemisphere was mirrored to form a whole brain and resized to fit the Visible Human bodies. NIH 3D lists the model under CC BY 4.0. The site links to the entry and license.
+- The checked GLB is 11,977,312 bytes (SHA-256 `2b9ad5b53e40e9f0936da74f7be38d2eed15604e26358c3870a0ea13499b9a35`), with 283 named meshes and 656,268 triangles. It is served without geometry edits; the browser centers and uniformly scales it for viewing.
+- This is a generic reference model, not an individual scan, veteran scan, or Agent Orange finding. It is kept separate from CIT168 surfaces because their coordinate systems and registrations were not verified against each other.
+
 ## CIT168 subcortical atlas surfaces
 
 - Source publication: Pauli WM, Nili AN, Tyszka JM. *A high-resolution probabilistic in vivo atlas of human subcortical brain nuclei*. Scientific Data (2018), [doi:10.1038/sdata.2018.63](https://doi.org/10.1038/sdata.2018.63).

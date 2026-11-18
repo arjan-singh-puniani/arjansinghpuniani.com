@@ -87,19 +87,34 @@
     },
     {
       "id": "ANAT-01",
-      "wording": "Interactive putamen, caudate, and substantia nigra pars compacta surfaces are derived from the CIT168 1 mm MNI template label map; the overview brain and pathway remain schematic.",
+      "wording": "Interactive putamen, caudate, and substantia nigra pars compacta surfaces are derived from the CIT168 1 mm MNI template label map; the dopamine pathway remains schematic.",
       "source": "Pauli WM, Nili AN, Tyszka JM. Scientific Data. 2018. doi:10.1038/sdata.2018.63; OSF items 2qswg and 6qrcb",
       "url": "https://doi.org/10.1038/sdata.2018.63",
-      "classification": "atlas-derived group template plus schematic illustration",
+      "classification": "atlas-derived group template",
       "limitations": [
         "Not an individual scan or histology",
         "1 mm discrete label map",
         "Surfaces smoothed for display",
         "No exposure-specific pathology is depicted",
-        "Most atlas regions and the cortex are omitted"
+        "Most atlas regions are omitted"
       ],
-      "visual": "Interactive Three.js atlas surfaces and schematic overview",
+      "visual": "Interactive Three.js subcortical atlas surfaces",
       "review": "source mapping and affine checked; derived Blender and GLB assets generated; browser route and region-selection controls visually inspected; displayed atlas surfaces inspected; display smoothing and atlas scope documented"
+    },
+    {
+      "id": "ANAT-02",
+      "wording": "The interactive whole-brain reference uses the Allen Human Reference Atlas 3D brain model, mirrored to form a whole brain and resized for the Visible Human body.",
+      "source": "Human Reference Atlas, Brain Male v1.3, NIH 3D entry 3DPX-020960",
+      "url": "https://3d.nih.gov/entries/20960?version=1",
+      "classification": "licensed anatomical reference model",
+      "limitations": [
+        "Generic reference anatomy, not a veteran or patient scan",
+        "Not an Agent Orange finding or exposure-specific pathology",
+        "Mirrored hemisphere; resized for the Visible Human body",
+        "Kept separate from CIT168 because cross-atlas registration was not verified"
+      ],
+      "visual": "Interactive whole-brain GLB selection",
+      "review": "NIH entry and CC BY 4.0 license checked; GLB signature, node names, mesh count, triangle count, checksum, Blender import, browser rendering, and selection switching verified"
     },
     {
       "id": "SCREENSHOT-01",
