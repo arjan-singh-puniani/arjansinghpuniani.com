@@ -165,7 +165,7 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
           `Selected cached supplement: [${selected.application}/${selected.supplement}](${selected.url}) · ${selected.date} · ${markdownText(selected.decision)}.`,
           `Indexed change reason: ${markdownText(selected.reason || "Not available")}.`,
           `FDA statement in the archive: ${markdownText(selected.statement || "Not available")}.`,
-          `Archive checked ${selected.archiveDate} UTC. Verify the original source for applicability.`,
+          `Dossier dated ${selected.archiveDate} UTC. Inclusion records an indexed match. Verify the FDA source and applicability before citing this row.`,
           ...(selected.sourceSha ? [`Archive source SHA-256: ${selected.sourceSha}.`] : []),
         ] : []),
         `Evidence limits: ${markdownText(item.limits)}`,

@@ -48,16 +48,17 @@ export default function SupplementHistory({ application, dossierPath, selected, 
     .map(source => [source.sha, source]));
   const rows = archive.regulatory.rows.filter(row => row.application === application && /^S\d{3,4}$/.test(row.supplement));
   const changeIds = new Set(archive.labeling.changeIds);
-  const term = query.trim().toLowerCase().replace("/", "");
+  const term = query.trim().toLowerCase();
+  const supplementalId = term.replace(/[\s/]+/g, "");
   const results = term ? rows.filter(row =>
-    [row.application + row.supplement, row.reason, row.tradeName, row.date, row.statement]
-      .some(value => value?.toLowerCase().includes(term)),
+    (supplementalId && (row.application + row.supplement).toLowerCase().includes(supplementalId)) ||
+    [row.reason, row.tradeName, row.date, row.statement].some(value => value?.toLowerCase().includes(term)),
   ) : rows.filter(row => changeIds.has(row.application + row.supplement));
   const visible = term || results.length ? results : rows;
 
   return (
     <div className="pilot-history pilot-fields">
-      <p>Cached FDA history · {rows.length} supplements for {application} · archive checked {archive.reviewedAt.slice(0, 10)} UTC. Records shown here still require source review.</p>
+      <p>Cached FDA history · {rows.length} supplements for {application} · dossier dated {archive.reviewedAt.slice(0, 10)} UTC. Verify the exact source before citing an indexed row.</p>
       {!!rows.length && (
         <>
           <label>Filter supplements for {application}

@@ -199,7 +199,7 @@ test("a buyer can add an exact cached supplement and a decision note to the work
   const filter = rns.getByRole("textbox", { name: "Filter supplements for P100026" });
   await filter.fill("P960009/S007");
   await expect(rns.getByText("No matching supplements in this archive.")).toBeVisible();
-  await filter.fill("P100026/S104");
+  await filter.fill(" P100026 / S104 ");
   await expect(rns.getByRole("link", { name: "P100026/S104" })).toHaveAttribute("href", /P100026S104$/i);
   await page.route("**/dossier-sources/*.json", route => route.fulfill({ json: { results: [] } }), { times: 1 });
   await rns.getByRole("button", { name: "Verify in cached FDA record" }).click();
@@ -223,6 +223,7 @@ test("a buyer can add an exact cached supplement and a decision note to the work
     "Selected cached supplement: [P100026/S104]",
     "FDA decision code OK30",
     "Archive source SHA-256:",
+    "Inclusion records an indexed match.",
     "P960009/S007",
   ]) expect(exported).toContain(expected);
   expect(requests).toEqual([]);
