@@ -1,7 +1,7 @@
 "use client";
 import { atlasPath } from "@/lib/deployment";
 import hologramManifest from "@/public/anatomy/hologram-manifest.json";
-import { Canvas, ThreeEvent, useThree } from "@react-three/fiber";
+import { Canvas, ThreeEvent, useFrame, useThree } from "@react-three/fiber";
 import { Html, OrbitControls, useGLTF } from "@react-three/drei";
 import {
   Box3,
@@ -21,6 +21,7 @@ import {
   Suspense,
   useEffect,
   useMemo,
+  useRef,
   useState,
   useCallback,
 } from "react";
@@ -345,6 +346,24 @@ function FocusRegion({region,portrait,portraitFrame,focusKey,contourView}:{regio
  }, [angle, frame, camera, controls, invalidate]);
  useEffect(()=>{if(!controls||angle!==undefined)return;const p=region==='all'?null:humanRegionLocators[region];if(portrait){const face=portraitFrame==="face";camera.position.set(0,face?2.65:1.75,face?2.1:5.8);controls.target.set(0,face?2.65:1.75,0);}else if(region==='all'){camera.position.set(0,.1,10.8);controls.target.set(0,0,0);}else if(p){camera.position.set(p[0]+(focusKey ? .3 : 0),p[1],p[2]+3.4);controls.target.set(p[0]+(focusKey ? .3 : 0),p[1],p[2]);}else return;controls.update();invalidate();},[region,portrait,portraitFrame,focusKey,angle,camera,controls,invalidate]);return null;
 }
+const superiorAxis = new Vector3(0, 1, 0);
+
+function OverviewRotation({ enabled }: { enabled: boolean }) {
+  const { camera, controls } = useThree();
+  const elapsed = useRef(0);
+  useFrame((_, delta) => {
+    if (!enabled || !controls || !("target" in controls) || !(controls.target instanceof Vector3)) return;
+    const previous = elapsed.current;
+    elapsed.current += Math.min(delta, 0.05);
+    const angle = Math.PI / 15 * (Math.sin(elapsed.current / 4) - Math.sin(previous / 4));
+    const target = controls.target;
+    camera.position.sub(target).applyAxisAngle(superiorAxis, angle).add(target);
+    camera.lookAt(target);
+    camera.updateMatrixWorld();
+  }, -0.5);
+  return null;
+}
+
 export default function HumanScene({
   focusRegion,
   focusKey,
@@ -356,6 +375,8 @@ export default function HumanScene({
   contourView,
   adapted = true,
   onProjection,
+  rotateOverview = false,
+  onManualOrbit,
   showLabels = false,
   showOrgans = true,
   region,
@@ -377,6 +398,8 @@ export default function HumanScene({
   contourView?: ContourView;
   adapted?: boolean;
   onProjection?: (projection: LabelProjection) => void;
+  rotateOverview?: boolean;
+  onManualOrbit?: () => void;
   showLabels?: boolean;
   showOrgans?: boolean;
   region: string;
@@ -391,6 +414,7 @@ export default function HumanScene({
   const [failed, setFailed] = useState(false);
   const [avatarFailed,setAvatarFailed]=useState(false),[loadedExterior,setLoadedExterior]=useState('');
   const exterior=adapted&&!avatarFailed?'adapted':'reference';
+  const rotating = rotateOverview && loadedExterior === exterior;
   const opaqueContour = exterior === 'adapted' && !showOrgans && surface;
   const exteriorReady=useCallback(()=>{setLoadedExterior(exterior);onReady();},[exterior,onReady]);
   const [organsReady,setOrgansReady]=useState(false),[organsFailed,setOrgansFailed]=useState(false);
@@ -445,7 +469,7 @@ export default function HumanScene({
         <Canvas
           camera={{ position: [0, 0.1, 10.8], fov: 34 }}
           dpr={[1, 1.5]}
-          frameloop="demand"
+          frameloop={rotating ? "always" : "demand"}
           gl={{ alpha: true, antialias: true }}
           role="group"
           aria-label={contourView ? "Rotatable personal 3D contour" : "Interactive human atlas"}
@@ -515,10 +539,13 @@ export default function HumanScene({
           </Suspense></Boundary>
           <AnnotationProjection
             anchors={humanRegionLocators}
+            showAnatomicalAxes
             onProjection={onProjection}
           />
+          <OverviewRotation enabled={rotating} />
           <OrbitControls
             makeDefault
+            onStart={onManualOrbit}
             enablePan={false}
             enableZoom
             minDistance={portrait?(portraitFrame==="face"?1.1:2.8):1.2}

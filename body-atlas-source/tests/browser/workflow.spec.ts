@@ -4,6 +4,34 @@ import { deviceActions, anatomyFocus } from '../../lib/device-action';
 import { parseFDAUpdates } from '../../lib/fda-updates';
 import { readFileSync } from 'node:fs';
 
+test.use({ reducedMotion: "reduce" });
+
+test("the default intervention map rotates its axes and can be paused", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/");
+  const map = page.getByRole("group", { name: "Whole-body intervention map" });
+  await expect(map.locator(".constellation-intervention").first()).toBeVisible();
+  const axes = page.getByRole("group", { name: "Anatomical axes" });
+  await expect(axes).toContainText("Superior–inferior");
+  const anterior = axes.locator(".axis-2 line");
+  await expect(anterior).toHaveCount(1);
+  const initial = await anterior.getAttribute("x2");
+  await expect.poll(() => anterior.getAttribute("x2")).not.toBe(initial);
+  await page.getByRole("button", { name: "Pause rotation" }).click();
+  await expect(page.getByRole("button", { name: "Resume rotation" })).toBeVisible();
+  const paused = await anterior.getAttribute("x2");
+  await page.waitForFunction(() => new Promise(resolve => setTimeout(() => resolve(true), 1200)));
+  await expect(anterior).toHaveAttribute("x2", paused!);
+  await page.getByRole("button", { name: "Resume rotation" }).click();
+  await expect.poll(() => anterior.getAttribute("x2")).not.toBe(paused);
+  await page.getByTestId("human-reference").locator("canvas").dispatchEvent("wheel", { deltaY: 15 });
+  await expect(page.getByRole("button", { name: "Resume rotation" })).toBeVisible();
+  await page.getByRole("button", { name: "Resume rotation" }).click();
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.getByRole("button", { name: "Pause rotation" })).toHaveCount(0);
+  await expect(map.locator(".constellation-intervention").first()).toBeVisible();
+});
+
 test("implant map selects the actual documented component region", async ({ page }) => {
   await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/");
   const filter = page.getByRole("button", { name: "Show documented implant regions" });
@@ -11,7 +39,8 @@ test("implant map selects the actual documented component region", async ({ page
   const organs = page.getByRole("button", { name: "Toggle internal organs" });
   await expect(filter).toHaveAttribute("aria-pressed", "false");
   await expect(scene).toHaveAttribute("data-surface-mode", "solid");
-  await expect(page.locator(".intervention-constellation, .intervention-annotations, .body-pin")).toHaveCount(0);
+  await expect(page.getByRole("group", { name: "Whole-body intervention map" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Pause rotation" })).toHaveCount(0);
   await filter.click();
   await expect(filter).toHaveAttribute("aria-pressed", "true");
   const search = page.getByRole("textbox", { name: "Find an intervention" });
@@ -49,7 +78,6 @@ test("body callout to anatomy, evidence, history, comparison, research and expor
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
-  await page.getByRole("button", { name: "Show intervention labels" }).click();
   await expect(
     page.getByRole("group", { name: "Whole-body intervention map" }),
   ).toBeVisible();
@@ -424,7 +452,6 @@ test("on-model innovation labels select facts and original sources without leavi
     { timeout: 45000 },
   );
   await page.getByRole("combobox", {name:testInfo.project.name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('reviewed');
-  await page.getByRole("button", {name:"Show intervention labels"}).click();
   await page.getByRole("button", {name:"Show intervention callouts"}).click();
   const annotations = page.getByRole("group", {
     name: "Interventions on anatomy",
@@ -541,7 +568,6 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/');
  await page.getByRole('button',{name:'Toggle internal organs'}).click();
- await page.getByRole('button',{name:'Show intervention labels'}).click();
  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-organs-status','loaded',{timeout:45000});
  await page.getByRole('combobox',{name:testInfo.project.name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('all');
  const map=page.getByRole('group',{name:'Whole-body intervention map'});
@@ -652,7 +678,6 @@ test('overview names interventions on the body and opens their original evidence
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');
  const map=page.getByRole('group',{name:'Whole-body intervention map'});
  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
- await page.getByRole('button',{name:'Show intervention labels'}).click();
  await expect(map.locator('.constellation-intervention').first()).toBeVisible({timeout:45000});
  const labels=map.locator('.constellation-intervention');
  await expect.poll(() => labels.count()).toBeGreaterThanOrEqual(testInfo.project.name==='desktop'?10:4);
@@ -690,6 +715,7 @@ test('overview names interventions on the body and opens their original evidence
 });
 
 test('selected intervention focuses reference anatomy with source-grounded mechanism and honest FDA refresh',async({page},testInfo)=>{
+ await page.emulateMedia({ reducedMotion: 'no-preference' });
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/?entry=rns&panel=mechanism');
  const scene=page.getByTestId('human-reference'),panel=page.getByRole('region',{name:'Anatomy and mechanism'});

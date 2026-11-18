@@ -10,7 +10,7 @@ const displayParent:Record<string,string>={
  'BODY:coronary':'BODY:heart','BODY:heart-valves':'BODY:heart','BODY:cornea':'BODY:eye','BODY:retina':'BODY:eye','BODY:lens':'BODY:eye',
 };
 const GOLDEN=2.399963229728653;
-export default function InterventionConstellation({entries,projection,selected,onSelect,onRegion,named=false,implantsOnly=false}:{entries:InterventionAnnotation[];projection:LabelProjection;selected:string|null;onSelect:(id:string,mappingId?:string)=>void;onRegion:(id:string)=>void;named?:boolean;implantsOnly?:boolean}){
+export default function InterventionConstellation({entries,projection,selected,onSelect,onRegion,named=false,implantsOnly=false,compactBottom=105}:{entries:InterventionAnnotation[];projection:LabelProjection;selected:string|null;onSelect:(id:string,mappingId?:string)=>void;onRegion:(id:string)=>void;named?:boolean;implantsOnly?:boolean;compactBottom?:number}){
  const [hover,setHover]=useState<InterventionAnnotation|null>(null),[page,setPage]=useState(0);
  const groups=useMemo(()=>{
   const index=new Map<string,InterventionAnnotation[]>();
@@ -19,7 +19,7 @@ export default function InterventionConstellation({entries,projection,selected,o
  },[entries,projection.regions.join(',')]);
  const compact=projection.width<650,width=named?(compact?132:210):(compact?112:148);
  const glyphScale=Math.max(.3,Math.min(1,projection.height/650));
- const rowHeight=named?(compact?36:42):24,top=named?(compact?45:68):52,bottom=named?(compact?105:150):90;
+ const rowHeight=named?(compact?36:42):24,top=named?(compact?45:68):52,bottom=named?(compact?compactBottom:150):90;
  const limit=Math.max(2,Math.floor((projection.height-top-bottom)/rowHeight)*2);
  const priorities=['BODY:heart','BODY:eye','UBERON:0000955','BODY:lung','BODY:knee','BODY:hip','BODY:kidney','BODY:foot'];
  const positioned=groups.filter(g=>projection.points[g.id]).map(g=>({...g,point:projection.points[g.id]})).sort((a,b)=>Number(a.items.some(e=>e.mapping.type!=='indication_context'))-Number(b.items.some(e=>e.mapping.type!=='indication_context')));

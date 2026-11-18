@@ -2733,3 +2733,19 @@
     display: none;
   }
 }
+
+.anatomical-axes {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: center;
+  padding: 2px 12px;
+  border-top: 1px solid var(--rule);
+  color: var(--quiet);
+  font: 10px var(--mono);
+}
+.anatomical-axes strong { color: var(--ink); }
+.anatomical-axes .axis-0 { color: #e8b681; }
+.anatomical-axes .axis-1 { color: #a4dbe1; }
+.anatomical-axes .axis-2 { color: #c1b7f1; }
