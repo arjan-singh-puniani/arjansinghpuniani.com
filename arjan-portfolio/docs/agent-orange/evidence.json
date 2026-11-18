@@ -103,7 +103,7 @@
     },
     {
       "id": "ANAT-02",
-      "wording": "The interactive whole-brain reference uses the Allen Human Reference Atlas 3D brain model, mirrored to form a whole brain and resized for the Visible Human body.",
+      "wording": "The interactive whole-brain reference uses the Allen Human Reference Atlas 3D brain model, mirrored to form a whole brain, resized for the Visible Human body, and simplified for browser display.",
       "source": "Human Reference Atlas, Brain Male v1.3, NIH 3D entry 3DPX-020960",
       "url": "https://3d.nih.gov/entries/20960?version=1",
       "classification": "licensed anatomical reference model",
@@ -111,10 +111,11 @@
         "Generic reference anatomy, not a veteran or patient scan",
         "Not an Agent Orange finding or exposure-specific pathology",
         "Mirrored hemisphere; resized for the Visible Human body",
+        "Each of 283 named meshes was display-simplified with Blender Decimate ratio 0.5; not for diagnostic use",
         "Kept separate from CIT168 because cross-atlas registration was not verified"
       ],
       "visual": "Interactive whole-brain GLB selection",
-      "review": "NIH entry and CC BY 4.0 license checked; GLB signature, node names, mesh count, triangle count, checksum, Blender import, browser rendering, and selection switching verified"
+      "review": "NIH entry and CC BY 4.0 license checked; optimized GLB signature, 283 mesh objects, 326452 Blender triangle equivalents, checksum, Blender import, browser rendering, and selection switching verified"
     },
     {
       "id": "SCREENSHOT-01",
