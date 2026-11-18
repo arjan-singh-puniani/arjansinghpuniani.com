@@ -1,0 +1,66 @@
+{
+  "project": "Agent Orange: The Long Shadow",
+  "updated": "2026-11-18",
+  "claims": [
+    {
+      "id": "STUDY-01",
+      "wording": "The cohort included 4,468,509 US veterans who served during the Vietnam War era.",
+      "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
+      "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
+      "classification": "observational cohort description",
+      "limitations": ["Electronic health record cohort", "Exposure classified by self-report"],
+      "visual": "Cohort description in the evidence section",
+      "review": "verified against article abstract"
+    },
+    {
+      "id": "STUDY-02",
+      "wording": "Self-reported Agent Orange exposure was associated with Parkinson disease diagnosis (adjusted HR 1.44, 95% CI 1.37-1.52).",
+      "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
+      "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
+      "classification": "adjusted observational association",
+      "limitations": ["Not an absolute risk", "Does not establish causation", "Does not isolate 2,4-D"],
+      "visual": "Adjusted hazard ratio with confidence interval",
+      "review": "verified against article abstract"
+    },
+    {
+      "id": "STUDY-03",
+      "wording": "Direct or occupational exposure subgroup adjusted HR 1.99 (95% CI 1.71-2.32).",
+      "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
+      "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
+      "classification": "subgroup observational association",
+      "limitations": ["Subgroup estimate", "Not an absolute risk", "Does not establish causation"],
+      "visual": "Separate subgroup estimate with confidence interval",
+      "review": "verified against article abstract"
+    },
+    {
+      "id": "CHEM-01",
+      "wording": "Agent Orange was a formulation of 2,4-D and 2,4,5-T. TCDD was a contaminant associated with 2,4,5-T manufacture.",
+      "source": "US Environmental Protection Agency; PubChem CID 1486, 1480, 15625",
+      "url": "https://www.epa.gov/ingredients-used-pesticide-products/24-d",
+      "classification": "chemical formulation history",
+      "limitations": ["TCDD is distinguished from the herbicide ingredients"],
+      "visual": "Three separately identified chemical entries",
+      "review": "verified against EPA and PubChem records"
+    },
+    {
+      "id": "ANAT-01",
+      "wording": "The 3D brain and pathway are schematic orientation aids.",
+      "source": "No atlas mesh has been integrated",
+      "url": null,
+      "classification": "schematic illustration",
+      "limitations": ["Not a validated brain atlas", "No exposure-specific pathology is depicted"],
+      "visual": "Interactive Three.js scene",
+      "review": "status disclosed in interface"
+    },
+    {
+      "id": "SCREENSHOT-01",
+      "wording": "44 million pounds of 2,4-D are applied annually in the United States and this is four times paraquat use.",
+      "source": null,
+      "url": null,
+      "classification": "unverified screenshot claim",
+      "limitations": ["Source year, use categories, and underlying dataset not established"],
+      "visual": "Excluded from public claims",
+      "review": "unverified"
+    }
+  ]
+}

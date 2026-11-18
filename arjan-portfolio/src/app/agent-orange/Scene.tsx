@@ -1,0 +1,89 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+
+const regions = ["Brain", "Substantia nigra", "Striatum", "Dopamine pathway"] as const;
+type Region = (typeof regions)[number];
+
+export function Scene({ region, reducedMotion }: { region: Region; reducedMotion: boolean }) {
+  const host = useRef<HTMLDivElement>(null);
+  const selected = useRef<Region>(region);
+  const motion = useRef(reducedMotion);
+
+  useEffect(() => { selected.current = region; }, [region]);
+  useEffect(() => { motion.current = reducedMotion; }, [reducedMotion]);
+
+  useEffect(() => {
+    const root = host.current;
+    if (!root) return;
+    let renderer: THREE.WebGLRenderer;
+    try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); }
+    catch { root.dataset.webgl = "unavailable"; return; }
+    root.dataset.webgl = "ready";
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+    renderer.setSize(root.clientWidth, root.clientHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    root.appendChild(renderer.domElement);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(34, root.clientWidth / root.clientHeight, 0.1, 50);
+    camera.position.set(0, 0, 8);
+    const group = new THREE.Group();
+    scene.add(group);
+    scene.add(new THREE.HemisphereLight(0xc8d8e7, 0x171419, 2));
+    const key = new THREE.DirectionalLight(0xffd7a0, 3.2);
+    key.position.set(-3, 4, 5);
+    scene.add(key);
+    const material = (color: number, roughness = 0.48) => new THREE.MeshStandardMaterial({ color, roughness, metalness: 0.04 });
+    const brainMaterial = material(0x8d7376);
+    const brainLeft = new THREE.Mesh(new THREE.SphereGeometry(1.45, 56, 40), brainMaterial);
+    brainLeft.scale.set(0.82, 1, 0.72);
+    brainLeft.position.x = -0.73;
+    const brainRight = brainLeft.clone();
+    brainRight.position.x = 0.73;
+    group.add(brainLeft, brainRight);
+    const midbrain = new THREE.Mesh(new THREE.SphereGeometry(0.38, 32, 24), material(0x5e687b));
+    midbrain.position.set(0, -1.02, 0.4);
+    group.add(midbrain);
+    const nigra = new THREE.Mesh(new THREE.SphereGeometry(0.16, 28, 20), material(0xd69a46, 0.3));
+    nigra.scale.set(1.5, 0.6, 0.7);
+    nigra.position.set(0, -0.99, 0.72);
+    group.add(nigra);
+    const striatum = new THREE.Mesh(new THREE.SphereGeometry(0.34, 32, 24), material(0x62b7b1, 0.32));
+    striatum.scale.set(1.2, 0.8, 0.7);
+    striatum.position.set(0, -0.05, 0.84);
+    group.add(striatum);
+    const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(0, -0.91, 0.8), new THREE.Vector3(0.1, -0.54, 0.92), new THREE.Vector3(0, -0.15, 0.92)]);
+    const pathway = new THREE.Mesh(new THREE.TubeGeometry(curve, 40, 0.025, 8, false), material(0xffc35e, 0.26));
+    group.add(pathway);
+    const sceneMeshes = { Brain: [brainLeft, brainRight], "Substantia nigra": [nigra], Striatum: [striatum], "Dopamine pathway": [pathway] };
+    const base = new Map<THREE.Object3D, number>();
+    for (const meshes of Object.values(sceneMeshes)) for (const mesh of meshes) base.set(mesh, (mesh.material as THREE.MeshStandardMaterial).color.getHex());
+    let down = false;
+    let lastX = 0;
+    let lastY = 0;
+    const onDown = (event: PointerEvent) => { down = true; lastX = event.clientX; lastY = event.clientY; renderer.domElement.setPointerCapture(event.pointerId); };
+    const onMove = (event: PointerEvent) => { if (!down) return; group.rotation.y += (event.clientX - lastX) * 0.006; group.rotation.x += (event.clientY - lastY) * 0.004; lastX = event.clientX; lastY = event.clientY; };
+    const onUp = () => { down = false; };
+    renderer.domElement.addEventListener("pointerdown", onDown);
+    renderer.domElement.addEventListener("pointermove", onMove);
+    renderer.domElement.addEventListener("pointerup", onUp);
+    const resize = new ResizeObserver(() => { if (!root.clientWidth) return; camera.aspect = root.clientWidth / root.clientHeight; camera.updateProjectionMatrix(); renderer.setSize(root.clientWidth, root.clientHeight); });
+    resize.observe(root);
+    let frame = 0;
+    let raf = 0;
+    const render = () => {
+      for (const [name, meshes] of Object.entries(sceneMeshes)) for (const mesh of meshes) (mesh.material as THREE.MeshStandardMaterial).color.setHex(name === selected.current ? 0xffc35e : base.get(mesh)!);
+      if (!motion.current && !down) group.rotation.y += 0.0008;
+      renderer.render(scene, camera);
+      frame = renderer.info.render.frame;
+      raf = requestAnimationFrame(render);
+    };
+    render();
+    return () => { cancelAnimationFrame(raf); resize.disconnect(); renderer.domElement.removeEventListener("pointerdown", onDown); renderer.domElement.removeEventListener("pointermove", onMove); renderer.domElement.removeEventListener("pointerup", onUp); scene.traverse(object => { if (object instanceof THREE.Mesh) { object.geometry.dispose(); const materials = Array.isArray(object.material) ? object.material : [object.material]; materials.forEach(item => item.dispose()); } }); renderer.dispose(); renderer.domElement.remove(); void frame; };
+  }, []);
+
+  return <div className="ao-scene" ref={host} role="img" aria-label={`Interactive schematic 3D brain model. Selected region: ${region}. Drag to rotate.`}><p className="ao-scene-note">SCHEMATIC ANATOMY · DRAG TO ROTATE</p><p className="ao-webgl-fallback">3D rendering is unavailable in this browser. Continue with the evidence and anatomy notes below.</p></div>;
+}
+
+export { regions };
