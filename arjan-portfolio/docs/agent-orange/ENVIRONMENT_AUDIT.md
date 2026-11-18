@@ -24,7 +24,7 @@ Audit date: 2026-11-18
 - Production-build Chrome checks verified HRA whole-brain, CIT168 subcortical, and PubChem molecule rendering and selection; keyboard rotation, pause motion, MP4 metadata/playback, 390 px mobile layout without horizontal overflow, and no console warnings/errors. The viewer defers loading until near the viewport and loads the selected GLB. The HRA model is 11.4 MB and has 656,268 triangles; frame time and memory have not been measured. Real iOS/Safari/Firefox, screen-reader review, and broader portfolio route regression remain incomplete.
 - `npm audit --omit=dev` found 0 vulnerabilities. Full `npm audit` reports 20 high-severity development-tree findings through Picomatch (`GHSA-fc5q-39xc-vjpf`); npm offers only a forced breaking downgrade path and the advisory has no fixed version. No production dependency advisory was reported.
 - No Metal render device was detected for Blender. Available GPU memory and deployment credentials were not verified.
-- GitHub reported the Vercel status for pushed commit `c125e01` as pending; its dashboard target requires login, so no preview URL or diagnostics were available. Draft PR creation returned `must be a collaborator`, and the available GitHub browser had no signed-in session. No PR or production deployment was created.
+- GitHub reported the Vercel status for pushed commit `0a57731` as pending; its dashboard target requires login, so no preview URL or diagnostics were available. Draft PR creation returned `must be a collaborator`, and the available GitHub browser had no signed-in session. No PR or production deployment was created.
 
 ## Verified source findings
 
