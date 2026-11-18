@@ -19,7 +19,7 @@ Status as of 2026-11-18: **BLOCKED — production release criteria are not met**
 | Build and existing tests | PASS | Reran `npm run typecheck`, `npm run lint`, `npm test` (7 tests), and `npm run build` on the current worktree after rebuilding the Blender scene. `build_film.py` also passed Python compilation and a full Blender 5.3.0 scene build. `/agent-orange` first-load JS is 265 kB. Build warns that a parent lockfile causes Next.js to infer `/Users/arjan` as the workspace root. |
 | Dependency security review | PARTIAL | `npm audit --omit=dev`: 0 vulnerabilities. Full audit: 20 high-severity findings in development dependencies through Picomatch, with no patched version listed; npm's offered forced fix downgrades Vitest across a breaking major. |
 | Existing portfolio regression | PARTIAL | Production build completed and direct GET checks returned 200 for `/`, `/about`, `/work`, `/contact`, and `/agent-orange`; visual browser regression across all routes remains incomplete. |
-| Deployment preview | FAIL / UNAVAILABLE | Vercel reports failure for latest pushed commit `e66edd2` and prior commits `327a613`, `50f7952`, and `ec216be`. The Vercel dashboard target is inaccessible without login, so build diagnostics and a preview URL could not be retrieved. Direct route smoke checks and local browser review do not diagnose this hosted build failure. |
+| Deployment preview | BLOCKED / UNAVAILABLE | Vercel status for latest pushed commit `06bb44a` is pending; prior commits `e66edd2`, `327a613`, `50f7952`, and `ec216be` failed. The Vercel CLI is not installed, and the dashboard requires an unavailable login, so build diagnostics and a preview URL could not be retrieved. Direct route smoke checks and local browser review do not diagnose the hosted build failure. |
 | Pull request | BLOCKED | Draft PR creation through the connected GitHub API returned `must be a collaborator`; the GitHub browser was signed out. Branch `codex/agent-orange-long-shadow` is pushed; no PR exists. |
 | Production deployment | NOT DEPLOYED | No production deployment made. Release gates remain blocked. |
 
@@ -30,7 +30,7 @@ Status as of 2026-11-18: **BLOCKED — production release criteria are not met**
 
 ## Release decision
 
-Do not describe this work as production-ready or deploy it. Remaining release blockers include recording narration, producing a sound mix, synchronizing captions, rendering an appropriate production master, diagnosing the failed Vercel check, opening a pull request with an authorized GitHub account, real-device/accessibility checks, measured performance, full route regression, and individual dependency advisory review. No independent scientific or clinical expert review has occurred. The full JAMA article methods and limitations were not verified beyond the primary abstract.
+Do not describe this work as production-ready or deploy it. Remaining release blockers include recording narration, producing a sound mix, synchronizing captions, rendering an appropriate production master, diagnosing the Vercel check, opening a pull request with an authorized GitHub account, real-device/accessibility checks, measured performance, full route regression, and individual dependency advisory review. No independent scientific or clinical expert review has occurred. The official JAMA abstract was rechecked; attempts to open its full-text and PDF paths returned the abstract/security gate, so the full article methods and limitations remain unverified.
 
 ## Active render
 
