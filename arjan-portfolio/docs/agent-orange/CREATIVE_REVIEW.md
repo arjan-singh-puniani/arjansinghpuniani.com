@@ -19,7 +19,7 @@ The current full cut is encoded at 1920×1080, 24 fps, 105 seconds. The full dec
 
 ## Revisions completed
 
-- Full-resolution inspection found the opening's last title line touching the bottom edge. The Blender source now uses a smaller title and moves the block upward; frame 85 at 3840 × 2160 was rerendered and inspected with all three lines inside the frame. The side-by-side before/after is `artifacts/agent-orange/opening-title-before-after-4k.png`. The corrected 4K sequence is in progress; this correction is not yet in the published 1080p review MP4.
+- Full-resolution inspection found the opening's last title line touching the bottom edge. The Blender source now uses a smaller title and moves the block upward; frame 85 at 3840 × 2160 was rerendered and inspected with all three lines inside the frame. The side-by-side before/after is `artifacts/agent-orange/opening-title-before-after-4k.png` (old render on the left, corrected render on the right). The corrected 4K sequence is in progress; this correction is not yet in the published 1080p review MP4.
 - Replaced the neuron wireframe with a cutaway soma, branched dendrites, segmented myelin, and terminal vesicles.
 - Enlarged and opened the mitochondrial model to show simplified inner-membrane folds; removed most decorative candidate markers.
 - Rerendered frames 1081–1800, re-encoded the complete film, inspected the updated encoded samples, and confirmed no black intervals.
