@@ -9,6 +9,9 @@ test("research pilot gives a cited result and prepares an unsent inquiry", async
   await expect(page.getByRole("heading", { name: "Compare devices. Trace the evidence." })).toBeVisible();
   await expect(page.getByText("Historical labeling", { exact: false })).toBeVisible();
   await expect(page.locator("main")).not.toContainText(/\$1,500|10 business days/);
+  const offer = page.getByRole("region", { name: "A sourced brief for your review" });
+  await expect(offer).toContainText("two agreed FDA applications");
+  await expect(offer).toContainText("qualified reviewer spot check");
   await expect(page.getByRole("link", { name: /P960009.*1997-07-31/ })).toHaveAttribute("href", /^https:\/\/www\.accessdata\.fda\.gov\//);
   await expect(page.getByRole("link", { name: /P150038.*2016-07-11/ })).toBeVisible();
   await page.keyboard.press(browserName === "webkit" ? "Alt+Tab" : "Tab");

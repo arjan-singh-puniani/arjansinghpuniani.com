@@ -13,9 +13,7 @@ test("the default intervention map rotates its axes and can be paused", async ({
   await expect(map.locator(".constellation-intervention").first()).toBeVisible();
   const legend = await page.getByRole("group", { name: "Intervention map legend" }).boundingBox();
   const canvas = await page.getByTestId("human-reference").locator("canvas").boundingBox();
-  const controls = await page.getByRole("button", { name: "Show documented implant regions" }).boundingBox();
-  expect(controls!.y + controls!.height).toBeLessThanOrEqual(legend!.y);
-  expect(legend!.y + legend!.height).toBeLessThanOrEqual(canvas!.y);
+  expect(canvas!.y + canvas!.height).toBeLessThanOrEqual(legend!.y);
   expect(await map.locator(".constellation-intervention").count()).toBeGreaterThanOrEqual(4);
   const axes = page.getByRole("group", { name: "Anatomical axes" });
   await expect(axes).toContainText("Superior–inferior");

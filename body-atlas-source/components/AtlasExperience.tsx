@@ -635,11 +635,6 @@ export default function AtlasExperience() {
               ))}
             </div>}
           </div>}
-          {showInterventions && densityMap && <div className="constellation-legend" role="group" aria-label="Intervention map legend">
-            <span><i />{implantsOnly ? "Documented implant regions" : "Reviewed relationships"}</span>
-            {!implantsOnly && <span><i />FDA text context · unreviewed</span>}
-            <small>{implantsOnly || collection === "explained" ? "≈ approximate region · marks can group entries" : "Dots show indexed records by region. Use Implants for documented implant regions."}</small>
-          </div>}
           <div className="atlas-figure" data-testid="atlas-figure">
             <div className="vitruvian-guides" aria-hidden="true">
               <div className="vitruvian-circle" />
@@ -848,6 +843,11 @@ export default function AtlasExperience() {
               </button>
             </div>
           </div>
+          {showInterventions && densityMap && !implantsOnly && <div className="constellation-legend" role="group" aria-label="Intervention map legend">
+            <span><i />Reviewed relationships</span>
+            <span><i />FDA text context · unreviewed</span>
+            <small>{collection === "explained" ? "≈ approximate region · marks can group entries" : "Dots show indexed records by region. Use Implants for documented implant regions."}</small>
+          </div>}
           {portrait === false && mode === "human" && (
             <div className="anatomical-axes" role="group" aria-label="Anatomical axes">
               <strong>Axes</strong>
