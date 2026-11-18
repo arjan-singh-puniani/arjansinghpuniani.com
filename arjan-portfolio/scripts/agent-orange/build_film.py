@@ -94,13 +94,14 @@ def import_group(slug, offset=(0, 0, 0), scale=1.0, start=1, end=END):
 def caption(camera, body, start, end, color=(0.92, 0.88, 0.79)):
     data = bpy.data.curves.new("Shot caption", "FONT")
     data.body = body
-    data.size = 0.19 if start == 1 else 0.13
+    data.size = 0.17 if start == 1 else 0.13
     data.extrude = 0
     data.align_x = "LEFT"
     obj = bpy.data.objects.new(f"Caption {start}", data)
     bpy.context.collection.objects.link(obj)
     obj.parent = camera
-    obj.location = (-2.8, -1.7 if start == 2 * SHOT + 1 else -1.1, -8.5)
+    caption_y = -1.7 if start == 2 * SHOT + 1 else -0.78 if start == 1 else -1.1
+    obj.location = (-2.8, caption_y, -8.5)
     obj.data.materials.append(mat(f"Caption {start} material", color, emission=0.25))
     window(obj, start, end)
     return obj

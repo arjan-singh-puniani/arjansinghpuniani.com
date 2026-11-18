@@ -1,6 +1,6 @@
 # Cinematic quality review
 
-Review date: 2026-11-18. Review target: encoded H.264 1080p silent review cut, plus representative Blender Cycles renders. Evidence: `artifacts/agent-orange/encoded-contact-sheet-1080p.png`, `artifacts/agent-orange/encoded-contact-sheet.png`, and decoded full-size samples from the atlas, neuron, mitochondrion, and final chart shots.
+Review date: 2026-11-18. Review target: encoded H.264 1080p silent review cut, plus representative Blender Cycles renders. Evidence: `artifacts/agent-orange/encoded-contact-sheet-1080p.png`, `artifacts/agent-orange/encoded-contact-sheet.png`, and decoded full-size samples from the atlas, neuron, mitochondrion, and final chart shots. A separate 4K opening-title review is recorded below.
 
 The current full cut is encoded at 1920×1080, 24 fps, 105 seconds. The full decode and black-frame scan passed. The atlas caption was moved below the surfaces after a contact-sheet review, and the cell interval was rerendered after removing an erroneous static-frame fallback. The final neuron pose is held for one frame at its boundary to avoid a black flash. The render cache is outside the repository at `/Users/arjan/.codex/visualizations/2026/11/18/01a1edbe-04d2-7a00-94ad-7e11f9376d15/agent-orange-film-frames-1080p/`.
 
@@ -19,6 +19,7 @@ The current full cut is encoded at 1920×1080, 24 fps, 105 seconds. The full dec
 
 ## Revisions completed
 
+- Full-resolution inspection found the opening's last title line touching the bottom edge. The Blender source now uses a smaller title and moves the block upward; frame 85 at 3840 × 2160 was rerendered and inspected with all three lines inside the frame. The side-by-side before/after is `artifacts/agent-orange/opening-title-before-after-4k.png`. The corrected 4K sequence is in progress; this correction is not yet in the published 1080p review MP4.
 - Replaced the neuron wireframe with a cutaway soma, branched dendrites, segmented myelin, and terminal vesicles.
 - Enlarged and opened the mitochondrial model to show simplified inner-membrane folds; removed most decorative candidate markers.
 - Rerendered frames 1081–1800, re-encoded the complete film, inspected the updated encoded samples, and confirmed no black intervals.
