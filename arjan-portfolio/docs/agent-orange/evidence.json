@@ -8,19 +8,28 @@
       "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
       "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
       "classification": "observational cohort description",
-      "limitations": ["Electronic health record cohort", "Exposure classified by self-report", "Records span January 1, 1999, to December 30, 2022", "Mean follow-up 12.5 years (SD 7.0)", "1,035,210 participants (23.2%) reported exposure; 7,600 were classified as direct or occupational exposure"],
+      "limitations": [
+        "Electronic health record cohort, not a randomized or exposure-measured trial",
+        "Exposure classified by self-report",
+        "Records span January 1, 1999, to December 30, 2022; mean follow-up 12.5 years (SD 7.0)",
+        "Cohort was 98% male; mean age 60.6 years",
+        "1,035,210 participants (23.2%) reported exposure; 7,600 were classified as direct or occupationally exposed"
+      ],
       "visual": "Cohort description in the evidence section",
       "review": "verified against article abstract"
     },
     {
       "id": "STUDY-04",
-      "wording": "The EHR cohort included records from 1999–2022, with mean follow-up of 12.5 years; 23.2% reported Agent Orange exposure and 7,600 participants were classified as direct or occupationally exposed.",
+      "wording": "The abstract says cumulative-incidence analyses accounted for competing risk of death, age, traumatic brain injury, and frailty; listed baseline characteristics were balanced between exposure groups.",
       "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
       "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
       "classification": "observational cohort description",
-      "limitations": ["Exposure was self-reported", "The abstract does not report absolute Parkinson disease event counts"],
-      "visual": "Study methods and cohort context in the evidence section",
-      "review": "verified against article abstract"
+      "limitations": [
+        "The abstract does not enumerate model diagnostics or provide enough detail to reproduce the adjusted model",
+        "Full-text methods were not accessed"
+      ],
+      "visual": "Cohort methods and limitations in the evidence section",
+      "review": "verified against the primary article abstract only"
     },
     {
       "id": "STUDY-02",
@@ -28,7 +37,11 @@
       "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
       "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
       "classification": "adjusted observational association",
-      "limitations": ["Not an absolute risk", "Does not establish causation", "Does not isolate 2,4-D"],
+      "limitations": [
+        "Not an absolute risk",
+        "Does not establish causation",
+        "Does not isolate 2,4-D"
+      ],
       "visual": "Adjusted hazard ratio with confidence interval",
       "review": "verified against article abstract"
     },
@@ -38,7 +51,11 @@
       "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
       "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
       "classification": "subgroup observational association",
-      "limitations": ["Subgroup estimate", "Not an absolute risk", "Does not establish causation"],
+      "limitations": [
+        "Subgroup estimate",
+        "Not an absolute risk",
+        "Does not establish causation"
+      ],
       "visual": "Separate subgroup estimate with confidence interval",
       "review": "verified against article abstract"
     },
@@ -48,7 +65,9 @@
       "source": "US Environmental Protection Agency; PubChem CID 1486, 1480, 15625",
       "url": "https://www.epa.gov/ingredients-used-pesticide-products/24-d",
       "classification": "chemical formulation history",
-      "limitations": ["TCDD is distinguished from the herbicide ingredients"],
+      "limitations": [
+        "TCDD is distinguished from the herbicide ingredients"
+      ],
       "visual": "Three separately identified chemical entries",
       "review": "verified against EPA and PubChem records"
     },
@@ -58,7 +77,13 @@
       "source": "Pauli WM, Nili AN, Tyszka JM. Scientific Data. 2018. doi:10.1038/sdata.2018.63; OSF items 2qswg and 6qrcb",
       "url": "https://doi.org/10.1038/sdata.2018.63",
       "classification": "atlas-derived group template plus schematic illustration",
-      "limitations": ["Not an individual scan or histology", "1 mm discrete label map", "Surfaces smoothed for display", "No exposure-specific pathology is depicted", "Most atlas regions and the cortex are omitted"],
+      "limitations": [
+        "Not an individual scan or histology",
+        "1 mm discrete label map",
+        "Surfaces smoothed for display",
+        "No exposure-specific pathology is depicted",
+        "Most atlas regions and the cortex are omitted"
+      ],
       "visual": "Interactive Three.js atlas surfaces and schematic overview",
       "review": "source mapping and affine checked; derived Blender and GLB assets generated; browser route and region-selection controls visually inspected; displayed atlas surfaces inspected; display smoothing and atlas scope documented"
     },
@@ -68,9 +93,61 @@
       "source": null,
       "url": null,
       "classification": "unverified screenshot claim",
-      "limitations": ["Source year, use categories, and underlying dataset not established"],
+      "limitations": [
+        "Source year, use categories, and underlying dataset not established"
+      ],
       "visual": "Excluded from public claims",
       "review": "unverified"
+    },
+    {
+      "id": "STUDY-05",
+      "wording": "Self-reported Agent Orange exposure was associated with REM sleep behavior disorder (HR 1.78, 95% CI 1.68-1.89).",
+      "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
+      "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
+      "classification": "adjusted observational association",
+      "limitations": [
+        "Separate outcome from Parkinson disease",
+        "Not an absolute risk",
+        "Abstract-level verification only"
+      ],
+      "visual": "Secondary-outcome note in the evidence section",
+      "review": "verified against the primary article abstract only"
+    },
+    {
+      "id": "STUDY-06",
+      "wording": "Self-reported Agent Orange exposure was associated with dementia with Lewy bodies (HR 1.66, 95% CI 1.32-2.09).",
+      "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
+      "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
+      "classification": "adjusted observational association",
+      "limitations": [
+        "Separate outcome from Parkinson disease",
+        "Not an absolute risk",
+        "Abstract-level verification only"
+      ],
+      "visual": "Secondary-outcome note in the evidence section",
+      "review": "verified against the primary article abstract only"
+    },
+    {
+      "id": "STUDY-07",
+      "wording": "The direct or occupational exposure subgroup had an RBD hazard ratio of 2.25 (95% CI 1.87-2.70).",
+      "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
+      "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
+      "classification": "subgroup observational association",
+      "limitations": [
+        "Separate outcome from Parkinson disease",
+        "Subgroup estimate, not an absolute risk",
+        "Abstract-level verification only"
+      ],
+      "visual": "Not presented as a Parkinson disease estimate",
+      "review": "verified against the primary article abstract only"
     }
-  ]
+  ],
+  "primary_study_audit": {
+    "source": "JAMA Neurology article abstract, DOI 10.1001/jamaneurol.2026.4219",
+    "abstract_reviewed": true,
+    "full_text_accessed": false,
+    "absolute_pd_event_counts_in_abstract": false,
+    "independent_scientific_review": false,
+    "status": "Abstract-level verification only; full-text methods, detailed limitations, and sensitivity analyses remain outstanding"
+  }
 }

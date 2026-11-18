@@ -4,7 +4,7 @@ Audit date: 2026-11-18
 
 ## Repository
 
-- Repository: `arjansinghpuniani.com`, Next.js 15.5.7, React 19.1.1, TypeScript 5.9.3.
+- Repository: `arjansinghpuniani.com`, Next.js 15.5.29, React 19.1.1, TypeScript 5.9.3.
 - Baseline inventory before the project branch contained no Agent Orange implementation.
 - Three.js was added for the interactive route. React Three Fiber and browser Playwright are not installed.
 - `package-lock.json` and `node_modules` are present. No `.vercel` deployment directory is present.
@@ -19,15 +19,15 @@ Audit date: 2026-11-18
 - FFmpeg 9.0.2 was installed with Homebrew after the initial audit and is available at `/opt/homebrew/bin/ffmpeg`; it includes libx264. The full frame sequence was encoded and verified as a silent H.264 MP4. The first AVFoundation writer and `avconvert` paths failed, so they were not used for delivery.
 - A Python `playwright` command exists at `/opt/miniconda3/bin/playwright`; its browser installation and usable capture workflow have not been verified.
 - Google Chrome is installed and available to the computer-use browser. A local production build was opened and inspected there.
-- `npm run build` completed with type/lint checks; `npm test` passed all 7 existing tests. The route is statically prerendered. Latest build output reported 269 kB first-load JS for `/agent-orange` before the final native video-player update; run a fresh build for the current route measurement.
-- Earlier in-app browser inspection showed no console errors or warnings, and selecting the substantia nigra, atlas, and molecule controls updated the scene. The latest video-player update has not been runtime-tested in a browser. Mobile viewport, measured performance, and memory checks remain incomplete.
-- Dependency installation reported 33 audit advisories (8 moderate, 23 high, 2 critical) across the resolved dependency tree. The advisory endpoint could not be reached for details, so newly introduced and pre-existing findings could not be separated.
+- Latest clean-install `npm run build`, `npm run lint`, `npm run typecheck`, and `npm test` completed successfully; all 7 existing tests passed. The route is statically prerendered. Current build output reports 265 kB first-load JS for `/agent-orange`. Build warns that `/Users/arjan/package-lock.json` is inferred as the workspace root because another lockfile exists above the repository.
+- Production-build Chrome checks verified the route, WebGL anatomy selection and provenance update, molecule selection, keyboard and touch controls, reduced motion, MP4 metadata/playback, mobile emulation without horizontal overflow, and no console or request errors. The current desktop review also confirmed the selected substantia nigra surface appears. Real iOS/Safari/Firefox, screen-reader review, measured performance, memory, and broader portfolio route regression remain incomplete.
+- `npm audit --omit=dev` found 0 vulnerabilities. Full `npm audit` reports 20 high-severity development-tree findings through Picomatch (`GHSA-fc5q-39xc-vjpf`); npm offers only a forced breaking downgrade path and the advisory has no fixed version. No production dependency advisory was reported.
 - No Metal render device was detected for Blender. Available GPU memory and deployment credentials were not verified.
 
 ## Verified source findings
 
 - Scott et al., JAMA Neurology, published online 2026-11-16, DOI `10.1001/jamaneurol.2026.4219`: retrospective electronic-health-record cohort, 4,468,509 veterans included. Agent Orange exposure was self-reported. Adjusted Parkinson disease hazard ratio 1.44 (95% CI 1.37–1.52). Direct or occupational exposure subgroup hazard ratio 1.99 (95% CI 1.71–2.32). These are associations, not proof of causation, and are not estimates for 2,4-D alone.
-- The JAMA abstract reports 4,917,272 screened, 4,468,509 included, mean follow-up 12.5 years (SD 7.0), 1,035,210 (23.2%) self-reported exposure, and 7,600 direct or occupational exposure. Full article methods, absolute counts, and complete sensitivity analyses have not been independently checked beyond the accessible article abstract.
+- The JAMA abstract reports 4,917,272 screened, 4,468,509 included, mean follow-up 12.5 years (SD 7.0), 98% men, mean age 60.6, 1,035,210 (23.2%) self-reported exposure, and 7,600 direct or occupational exposure. It also reports associations for REM sleep behavior disorder and dementia with Lewy bodies. Full article methods, absolute Parkinson disease counts, and complete sensitivity analyses have not been independently checked beyond the accessible article abstract.
 - EPA identifies Agent Orange as a mixture of 2,4-D and 2,4,5-T. TCDD is a manufacturing contaminant associated with 2,4,5-T, not a third herbicide ingredient.
 - PubChem identifiers checked: 2,4-D CID 1486, 2,4,5-T CID 1480, TCDD CID 15625.
 - Teardown was reviewed at its upstream README and frame-capture script. It is an MIT-licensed Claude Code skill with a standalone simulator/capture workflow rather than an installed runtime package. This project reuses the relevant ideas—shared GLB science assets, a timed 3D camera sequence, and actual preview-frame review—without copying its code or adding a dependency. REA was not used because no reverse-engineering task was needed. No upstream commit is pinned because neither repository's code is included.
