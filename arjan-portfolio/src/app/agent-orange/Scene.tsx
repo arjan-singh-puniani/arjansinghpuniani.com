@@ -2,8 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-const regions = ["Brain", "Substantia nigra", "Striatum", "Dopamine pathway"] as const;
+const regions = ["Brain", "Substantia nigra", "Striatum", "Dopamine pathway", "2,4-D molecule"] as const;
 type Region = (typeof regions)[number];
 
 export function Scene({ region, reducedMotion }: { region: Region; reducedMotion: boolean }) {
@@ -30,6 +31,10 @@ export function Scene({ region, reducedMotion }: { region: Region; reducedMotion
     camera.position.set(0, 0, 8);
     const group = new THREE.Group();
     scene.add(group);
+    const molecule = new THREE.Group();
+    molecule.visible = false;
+    scene.add(molecule);
+    new GLTFLoader().load("/agent-orange/2-4-d-pubchem.glb", gltf => { molecule.add(gltf.scene); }, undefined, () => { root.dataset.molecule = "unavailable"; });
     scene.add(new THREE.HemisphereLight(0xc8d8e7, 0x171419, 2));
     const key = new THREE.DirectionalLight(0xffd7a0, 3.2);
     key.position.set(-3, 4, 5);
@@ -70,20 +75,20 @@ export function Scene({ region, reducedMotion }: { region: Region; reducedMotion
     renderer.domElement.addEventListener("pointerup", onUp);
     const resize = new ResizeObserver(() => { if (!root.clientWidth) return; camera.aspect = root.clientWidth / root.clientHeight; camera.updateProjectionMatrix(); renderer.setSize(root.clientWidth, root.clientHeight); });
     resize.observe(root);
-    let frame = 0;
     let raf = 0;
     const render = () => {
       for (const [name, meshes] of Object.entries(sceneMeshes)) for (const mesh of meshes) (mesh.material as THREE.MeshStandardMaterial).color.setHex(name === selected.current ? 0xffc35e : base.get(mesh)!);
-      if (!motion.current && !down) group.rotation.y += 0.0008;
+      molecule.visible = selected.current === "2,4-D molecule";
+      group.visible = !molecule.visible;
+      if (!motion.current && !down && !molecule.visible) group.rotation.y += 0.0008;
       renderer.render(scene, camera);
-      frame = renderer.info.render.frame;
       raf = requestAnimationFrame(render);
     };
     render();
-    return () => { cancelAnimationFrame(raf); resize.disconnect(); renderer.domElement.removeEventListener("pointerdown", onDown); renderer.domElement.removeEventListener("pointermove", onMove); renderer.domElement.removeEventListener("pointerup", onUp); scene.traverse(object => { if (object instanceof THREE.Mesh) { object.geometry.dispose(); const materials = Array.isArray(object.material) ? object.material : [object.material]; materials.forEach(item => item.dispose()); } }); renderer.dispose(); renderer.domElement.remove(); void frame; };
+    return () => { cancelAnimationFrame(raf); resize.disconnect(); renderer.domElement.removeEventListener("pointerdown", onDown); renderer.domElement.removeEventListener("pointermove", onMove); renderer.domElement.removeEventListener("pointerup", onUp); scene.traverse(object => { if (object instanceof THREE.Mesh) { object.geometry.dispose(); const materials = Array.isArray(object.material) ? object.material : [object.material]; materials.forEach(item => item.dispose()); } }); renderer.dispose(); renderer.domElement.remove(); };
   }, []);
 
-  return <div className="ao-scene" ref={host} role="img" aria-label={`Interactive schematic 3D brain model. Selected region: ${region}. Drag to rotate.`}><p className="ao-scene-note">SCHEMATIC ANATOMY · DRAG TO ROTATE</p><p className="ao-webgl-fallback">3D rendering is unavailable in this browser. Continue with the evidence and anatomy notes below.</p></div>;
+  return <div className="ao-scene" ref={host} role="img" aria-label={`Interactive 3D viewer. Selected: ${region}. Drag to rotate.`}><p className="ao-scene-note">{region === "2,4-D molecule" ? "PUBCHEM 3D CONFORMER · DRAG TO ROTATE" : "SCHEMATIC ANATOMY · DRAG TO ROTATE"}</p><p className="ao-webgl-fallback">3D rendering is unavailable in this browser. Continue with the evidence and anatomy notes below.</p><p className="ao-glb-fallback">The molecular asset could not load.</p></div>;
 }
 
 export { regions };

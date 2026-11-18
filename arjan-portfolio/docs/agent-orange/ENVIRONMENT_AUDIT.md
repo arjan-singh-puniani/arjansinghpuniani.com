@@ -14,6 +14,8 @@ Audit date: 2026-11-18
 
 - Blender 4.0.2 is installed at `/Applications/Blender.app/Contents/MacOS/Blender`.
 - Blender version query succeeds. A background factory-startup Python smoke test crashed with signal 11 before executing its expression. Python scene generation and rendering are therefore unverified.
+- Blender 5.3.0 Apple Silicon was downloaded from Blender Foundation's mirror, verified against its published SHA-256, installed alongside 4.0.2 at `/Applications/Blender 5.3.app`, and passed a background Python startup check.
+- `scripts/agent-orange/build_molecule.py` parsed the PubChem CID 1486 3D SDF, checked its 19 atoms, 19 bonds, and formula, saved a `.blend`, exported a 42-mesh GLB, and rendered a Cycles PNG preview. The actual frame was inspected. The user thumbnail write emitted a permission error, but the scene and render outputs were saved successfully.
 - `ffmpeg`, Chromium, and Google Chrome were not found on `PATH`.
 - A Python `playwright` command exists at `/opt/miniconda3/bin/playwright`; its browser installation and usable capture workflow have not been verified.
 - Google Chrome is installed and available to the computer-use browser. A local production build was opened and inspected there.
@@ -41,4 +43,4 @@ Audit date: 2026-11-18
 
 ## Release state
 
-An evidence-led interactive route, schematic Three.js anatomy, evidence manifest, and narration draft now exist. No licensed atlas mesh, Blender scene, film, recorded narration, captions, or synchronized audio was produced. Blender's background crash blocks the Blender production stage. FFmpeg and a verified capture workflow are not available. Production deployment remains blocked by the missing film, provenance-validated anatomy, audio, and mobile/performance review.
+An evidence-led interactive route, schematic Three.js anatomy, PubChem molecule asset, evidence manifest, and narration draft now exist. No licensed atlas mesh, complete Blender film, recorded narration, captions, or synchronized audio was produced. The 4.0.2 background crash is avoided by using the verified 5.3.0 side-by-side installation. FFmpeg and a verified capture workflow are not available. Production deployment remains blocked by the missing film, provenance-validated neuroanatomy, audio, and mobile/performance review.

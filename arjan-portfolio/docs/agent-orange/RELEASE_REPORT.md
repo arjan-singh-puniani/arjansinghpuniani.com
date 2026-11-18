@@ -6,9 +6,10 @@ Status as of 2026-11-18: **BLOCKED**
 | --- | --- | --- |
 | Evidence-backed claim set | PASS, limited scope | `evidence.json`; article abstract, EPA, and PubChem linked in route |
 | Historical and chemical distinctions | PASS, limited scope | Agent Orange ingredients and TCDD contaminant are described separately |
-| Genuine 3D rendering | PASS, schematic only | Three.js WebGL scene is visible in local browser; region selection works |
+| Genuine 3D rendering | PASS, partial | Three.js WebGL schematic brain and PubChem conformer GLB are present; Blender scene and rendered frame inspected |
 | Atlas-based neuroanatomy and provenance | BLOCKED | Current brain shapes are explicitly schematic; no licensed atlas mesh integrated |
-| Blender source scene and reproducible render | BLOCKED | Installed Blender 4.0.2 crashes in `metal_is_supported` before Python startup |
+| Molecular geometry | PASS, 2,4-D conformer | PubChem CID 1486 SDF atom positions and bond orders checked; Blender parser verified 19 atoms, 19 bonds, and C8H6Cl2O3; GLB container integrity verified |
+| Blender source scene and reproducible render | PASS, molecular asset only | Blender 5.3.0 is installed beside 4.0.2 at `/Applications/Blender 5.3.app`; Python smoke test passed; `build_molecule.py` generated an editable scene and Cycles preview from PubChem SDF; 4.0.2 remains broken |
 | 90–120 second cinematic film | BLOCKED | No rendered film, production master, captions, or contact sheet |
 | Narration and synchronized sound | BLOCKED | Not recorded or synthesized; no audio track exists |
 | Desktop browser route | PASS | Local production build route opened in browser; substantia nigra selection changed correctly; no console errors or warnings observed |
@@ -20,7 +21,7 @@ Status as of 2026-11-18: **BLOCKED**
 | Existing portfolio routes | NOT REGRESSION-TESTED | Build includes existing routes; route-by-route browser regression remains |
 | Production deployment | BLOCKED | Release gates above remain incomplete; no deployment was made |
 
-The current work is an evidence-led interactive prototype on branch `codex/agent-orange-long-shadow`. It is not a finished film or production release. The installed Blender crash report identifies a segmentation fault in Blender 4.0.2's Metal backend detection on this M2 system. Do not use this binary for scene generation until replaced or repaired.
+The current work is an evidence-led interactive prototype on branch `codex/agent-orange-long-shadow`. It is not a finished film or production release. Blender 5.3.0 works from a verified read-only temporary mount. The installed Blender 4.0.2 app remains unchanged and still has a Metal backend detection crash.
 
 ## Current prototype quality review
 
