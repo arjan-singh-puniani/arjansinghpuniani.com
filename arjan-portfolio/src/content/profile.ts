@@ -1,16 +1,15 @@
 export const profile = {
   name: "Arjan Singh Puniani",
   descriptor: "Neural engineer pursuing medicine.",
-  headline: "BCI research, clinical research, and research software.",
-  intro: "Arjan Singh Puniani is a neural engineer pursuing medicine. He worked on brain-computer interfaces at Pitt RNEL and clinical research at UCSF, and builds independent research software.",
-  location: "California, United States",
+  headline: "Neural engineering, clinical experience, and medical education.",
+  intro: "Arjan Singh Puniani is a neural engineer pursuing medicine, with experience in implanted brain-computer interfaces, emergency department service, clinical research, and medical education.",
+  location: "American Canyon, California",
   email: "arjan.singh.puniani.main@gmail.com",
   domain: "https://arjansinghpuniani.com",
   linkedin: "",
   biography: [
-    "From 2022 to 2024, I worked as an R&D neural engineer at the University of Pittsburgh’s Rehab Neural Engineering Labs. My work included BCI psychophysics, experimental software, and calibration analysis across more than 940 sessions. This count covers my broader RNEL work, not just the three-participant gamification study.",
-    "Before that, I coordinated clinical research at UCSF. I have also worked in early-stage technology operations and on independent projects in focal cortical cooling, ECG education, anatomy visualization, and sports computer vision.",
-    "I earned an M.S. in Bioengineering from the University of Pittsburgh after studying chemical engineering at the University of California, Berkeley.",
-    "During RNEL work, a participant told me they wanted to play video games again. I also served in an emergency department, where I observed physicians making decisions with incomplete information. Those experiences helped shape my decision to pursue medicine while continuing engineering and research work."
-  ]
+    "I earned my M.S. in Bioengineering at the University of Pittsburgh after studying chemical engineering at UC Berkeley. At Pitt’s Rehab Neural Engineering Labs, I worked with implanted brain-computer interface participants and redesigned a repeated tactile detection task as a game while preserving the two-choice measurement. At Wellesley, I co-authored two peer-reviewed reviews on active inference and neural computation.",
+    "I worked as an emergency department scribe at Saint Agnes Medical Center and volunteered in the Fresno VA emergency department. At UCSF, I translated study protocols and consent materials into workflows participants could use. In 2025, I shadowed interventional cardiology at UPMC Presbyterian and VA Pittsburgh and completed DO and public health coursework at Touro University California as a Mosaic Scholar.",
+    "I co-founded a nonprofit for low-income premedical students and taught and mentored MCAT students at Altius. I now build interactive tools for medical education, including VECTOR ECG for clinical reasoning and Ortho Lab for practicing fracture reduction. I also developed a trackside neurotrauma handoff framework and revised it after review by physicians and motorsport safety professionals.",
+  ],
 } as const;
