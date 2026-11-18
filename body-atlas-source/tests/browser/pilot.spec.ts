@@ -181,7 +181,9 @@ test("exact application lookup preserves original and later decision boundaries"
   const deNovo = builder.getByRole("article").filter({ has: page.getByRole("link", { name: "Original FDA record DEN160019" }) });
   const applicant = deNovo.locator(".company-mark");
   await expect(applicant).toContainText("Ventana Medical Systems, Inc.");
-  await expect(applicant.locator("img")).toHaveCount(0);
+  const logo = applicant.locator('img[src$="/ventana.svg"]');
+  await logo.scrollIntoViewIfNeeded();
+  await expect.poll(() => logo.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
   await deNovo.getByRole("button", { name: "Verify original in cached FDA record" }).click();
   await expect(deNovo.getByText("Archived FDA record DEN160019", { exact: true })).toBeVisible();
   await expect(deNovo.getByText("FDA decision code DENG.")).toBeVisible();

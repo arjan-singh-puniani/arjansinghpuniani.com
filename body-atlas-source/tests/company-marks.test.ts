@@ -12,10 +12,12 @@ test("only reviewed company identities receive a mark", () => {
   assert.equal(companyMark("Medtronic Surgical Associates"), undefined);
   assert.equal(companyMark("Medtronic Minimed, Inc.")?.id, "minimed");
   assert.equal(companyMark("NeuroPace, Inc.")?.id, "neuropace");
+  assert.equal(companyMark("Neuronetics")?.id, "neuronetics");
+  assert.equal(companyMark("Nuvectra Corporation")?.id, "nuvectra");
   assert.equal(companyMark("Advanced Bionics")?.id, "advanced-bionics");
   assert.equal(companyMark("Biotronik Nro, Inc.")?.id, "biotronik");
   assert.equal(companyMark("Northwestern University"), undefined);
-  assert.equal(companyMark("Ventana Medical Systems, Inc."), undefined);
+  assert.equal(companyMark("Ventana Medical Systems, Inc.")?.id, "ventana");
 });
 
 test("every intervention has a source identity for its mark or text label", () => {
