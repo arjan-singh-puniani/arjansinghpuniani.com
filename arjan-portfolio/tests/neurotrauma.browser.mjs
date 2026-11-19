@@ -19,11 +19,12 @@ try {
     assert.equal(response.status(), 200);
     assert.match(await page.title(), /From Impact to Informed Care/);
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"), `https://arjansinghpuniani.com${route}`);
+    await page.locator("[data-hero-illustration] img").evaluate(img => img.decode());
     if (width < 500) {
       const action = await page.getByRole("link", { name: "Explore the incident", exact: true }).boundingBox();
-      const car = await page.locator("main header svg").boundingBox();
+      const car = await page.locator("[data-hero-illustration]").boundingBox();
       assert.ok(action.y + action.height <= height, `Incident action below the first screen at ${width}`);
-      assert.ok(car.y + car.height <= height, `Car below the first screen at ${width}`);
+      assert.ok(car.y + car.height <= height, `Opening illustration below the first screen at ${width}`);
       assert.ok(action.y < 430, `Mobile opening grew too tall at ${width}`);
     }
     await page.screenshot({ path: `${out}/${width}-opening.png` });
@@ -55,11 +56,15 @@ try {
     for (const id of ["protection", "information", "contribution", "methods"]) {
       if (width === 1440 || width === 390) {
         await page.locator(`#${id}`).evaluate(el => el.scrollIntoView({ block: "start", behavior: "instant" }));
+        for (const img of await page.locator(`#${id} figure img`).all()) {
+          await img.evaluate(el => el.decode());
+          assert.ok(await img.evaluate(el => el.naturalWidth > 0));
+        }
         await page.screenshot({ path: `${out}/${width}-${id}.png` });
       }
     }
     const sources = page.locator('[id^="source-"]');
-    assert.equal(await sources.count(), 14);
+    assert.equal(await sources.count(), 16);
     for (const detail of await sources.all()) {
       await detail.locator("summary").click();
       assert.ok(await detail.getAttribute("open") !== null);
@@ -101,6 +106,16 @@ try {
   assert.equal(await page.locator("#handoff details").first().getAttribute("open"), "");
   results.push({ browser: "chromium", javaScript: false, textWalkthrough: true, fieldRationale: true });
   await noJS.close();
+  const noImages = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
+  await noImages.route("**/_next/image**", route => route.abort());
+  const withoutImages = await noImages.newPage();
+  await withoutImages.goto(`${base}${route}`, { waitUntil: "networkidle" });
+  assert.match(await withoutImages.locator("#information").innerText(), /Corpus callosum/);
+  assert.match(await withoutImages.locator("#protection").innerText(), /FHR yoke/);
+  await withoutImages.getByRole("button", { name: /First report/ }).click();
+  assert.match(await withoutImages.locator("#incident-view").innerText(), /head hurts/);
+  results.push({ browser: "chromium", imagesBlocked: true, textKeys: true, incidentInteraction: true });
+  await noImages.close();
 } finally { await browser.close(); }
 
 const safari = await webkit.launch();
