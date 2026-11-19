@@ -82,7 +82,16 @@
 .incidentView { display: grid; grid-template-columns: 1.15fr 1fr; }
 .incidentGraphic { padding: 34px 30px; display: flex; flex-direction: column; border-right: 1px solid #405663; }
 .incidentGraphic .figureTop { color: #b7ccd6; }
-.incidentGraphic > svg { margin: 25px auto 8px; }
+.incidentCar { margin: 22px 0 8px; background: #f2f6f5; color: #173342; }
+.carImage { position: relative; aspect-ratio: 3 / 2; }
+.carImage img { display: block; width: 100%; height: auto; }
+.carKey { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 12px 24px; margin: 0 18px 16px 38px; font-size: 13px; line-height: 1.5; }
+.carKey li { list-style: decimal; }
+.carKey li::marker { font-weight: 700; }
+.carKey li:last-child::marker { color: #985234; }
+.incidentCar figcaption { margin: 0 18px; font: 14px/1.6 var(--font-sans); color: #405b68; }
+.carLink { display: inline-flex; align-items: center; min-height: 44px; margin: 4px 18px 8px; font-size: 13px; color: #245f64; }
+.incidentCar a:focus-visible { outline-color: #a15730; }
 .graphicNote { font-size: clamp(17px, 2vw, 22px); text-align: center; color: var(--nt-peach); letter-spacing: -.02em; }
 .recordPath { display: grid; grid-template-columns: 1fr 1fr; margin-top: auto; border-top: 1px solid #405663; padding-top: 24px; gap: 10px; font: 12px/1.65 var(--font-mono); }
 .recordPath span { color: #99aebb; }
@@ -259,9 +268,9 @@
   .stageControls button > span:first-child { flex-basis: 100%; font-size: 12px; }
   .stageIndicator { display: none; }
   .incidentView { grid-template-columns: 1fr; }
-  .incidentGraphic { order: 2; border-right: 0; border-top: 1px solid #405663; padding: 22px; }
-  .incidentGraphic > svg { max-width: 600px; margin: -10px auto -25px; }
-  .incidentCopy { order: 1; min-height: 650px; padding: 26px; }
+  .incidentGraphic { order: 1; border-right: 0; border-bottom: 1px solid #405663; padding: 22px; }
+  .incidentCar { width: 100%; max-width: 600px; align-self: center; }
+  .incidentCopy { order: 2; min-height: 650px; padding: 26px; }
   .recordPath { padding-top: 18px; margin-top: 14px; }
   .graphicNote { margin: 20px 0 4px; }
   .transcript > div { grid-template-columns: 1fr; }
@@ -307,6 +316,8 @@
   .incidentCopy { min-height: 740px; padding: 24px 20px; }
   .incidentCopy h3 { font-size: 25px; }
   .recordPath { font-size: 12px; gap: 10px 6px; }
+  .carKey { grid-template-columns: 1fr 1fr; }
+  .carKey li:last-child { grid-column: 1 / -1; }
   .protectionNotes { grid-template-columns: 1fr; }
   .occupant { padding: 18px; margin-inline: -5px; }
   .occupant figcaption { font-size: 14px; }

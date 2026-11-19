@@ -9,6 +9,9 @@ describe("educational neurotrauma handoff", () => {
   it("reveals each authored stage, keeps unknowns visible, and allows revisiting the incident", () => {
     render(<IncidentExplorer/>);
     const view = document.getElementById("incident-view")!;
+    expect(screen.getByRole("img", { name: /overhead illustration of a generic open-wheel car/ })).toHaveAttribute("src", expect.stringContaining("incident-car-plate.webp"));
+    expect(view).toHaveTextContent("Suggested front-left contact");
+    expect(view).toHaveTextContent("not a force vector or damage estimate");
     for (const stage of stages) {
       const control = screen.getByRole("button", { name: new RegExp(stage.name) });
       fireEvent.click(control);

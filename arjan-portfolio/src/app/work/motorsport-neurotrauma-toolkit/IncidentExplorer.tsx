@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { stages } from "@/content/neurotrauma";
-import { CarDrawing } from "./Drawings";
+import { IncidentCar } from "./IncidentCar";
 import { Cite } from "./Cite";
 import styles from "./neurotrauma.module.css";
 
@@ -17,8 +17,8 @@ export function IncidentExplorer() {
     </div>
     <div id="incident-view" className={styles.incidentView}>
       <div className={styles.incidentGraphic}>
-        <div className={styles.figureTop}><span>{stage.label}</span><span>Plan view · schematic</span></div>
-        <CarDrawing emphasis={selected === 0 ? "car" : "driver"}/>
+        <div className={styles.figureTop}><span>{stage.label}</span><span>Plan view · front →</span></div>
+        <IncidentCar emphasis={selected === 0 ? "car" : "driver"}/>
         <p className={styles.graphicNote}>{selected === 0 ? "Contact location ≠ head loading" : selected === 1 ? "Driver report ≠ clinical finding" : selected === 2 ? "Assessment requested ≠ assessment complete" : "Handoff prepared ≠ handoff acknowledged"}</p>
         <div className={styles.recordPath} aria-label="Information available at this stage">{["Incident context", "Driver + responder", "Medical request", "Handoff record"].map((label,i)=><span key={label} data-available={i<=selected}>{i<=selected ? "✓" : "—"} {label}</span>)}</div>
       </div>

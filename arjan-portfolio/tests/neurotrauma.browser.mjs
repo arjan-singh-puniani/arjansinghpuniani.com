@@ -37,9 +37,18 @@ try {
       assert.equal(await button.getAttribute("aria-pressed"), "true");
       assert.equal(await page.locator('[aria-pressed="true"]').count(), 1);
       assert.ok(await page.getByRole("heading", { name: "Still unknown", exact: true }).isVisible());
+      assert.equal(await page.locator("[data-incident-car]").getAttribute("data-emphasis"), name === "Impact" ? "car" : "driver");
     }
     assert.match(await page.locator("#incident-view").innerText(), /acknowledgement has not been confirmed/);
     await page.getByRole("button", { name: /Impact/ }).click();
+    await page.locator("[data-incident-car]").evaluate(el => el.scrollIntoView({ block: "center", behavior: "instant" }));
+    await page.locator("[data-incident-car] img").evaluate(el => el.decode());
+    assert.ok(await page.locator("[data-incident-car] img").evaluate(el => el.naturalWidth > 0));
+    if (width < 500) {
+      const car = await page.locator("[data-incident-car]").boundingBox();
+      const copy = await page.locator("#incident-view h3").boundingBox();
+      assert.ok(car.y < copy.y, "The mobile incident illustration should precede the stage explanation");
+    }
     await page.locator("#incident").evaluate(el => el.scrollIntoView({ block: "start", behavior: "instant" }));
     await page.screenshot({ path: `${out}/${width}-incident.png` });
     await page.getByRole("button", { name: /Handoff/ }).click();
@@ -112,6 +121,8 @@ try {
   await withoutImages.goto(`${base}${route}`, { waitUntil: "networkidle" });
   assert.match(await withoutImages.locator("#information").innerText(), /Corpus callosum/);
   assert.match(await withoutImages.locator("#protection").innerText(), /FHR yoke/);
+  assert.match(await withoutImages.locator("[data-incident-car]").innerText(), /Suggested front-left contact/);
+  assert.match(await withoutImages.locator("[data-incident-car]").innerText(), /not a force vector/);
   await withoutImages.getByRole("button", { name: /First report/ }).click();
   assert.match(await withoutImages.locator("#incident-view").innerText(), /head hurts/);
   results.push({ browser: "chromium", imagesBlocked: true, textKeys: true, incidentInteraction: true });

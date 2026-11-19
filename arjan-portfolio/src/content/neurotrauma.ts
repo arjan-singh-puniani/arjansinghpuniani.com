@@ -104,7 +104,7 @@ export const sources = {
     locator: "Accident scenarios and cockpit-protection development",
     claim: "The halo adds a protective structure around the exposed cockpit.",
     supports: "Explains development against car-to-car, car-to-environment and external-object scenarios.",
-    limits: "Historical design rationale, not a promise against every impact or neurological injury. The artwork is original and schematic.", where: "Halo annotation; protection explanation",
+    limits: "Historical design rationale, not a promise against every impact or neurological injury. AI-assisted vehicle and cockpit plates are generic illustrations; exact geometry and performance are not validated.", where: "Incident vehicle key; halo annotation; protection explanation",
   },
   helmet: {
     label: "Helmet / FHR", kind: "FIA equipment guidance", title: "FIA Standard Guidelines · Helmets", date: "Undated public guide · accessed 19 November 2026",
