@@ -16,17 +16,16 @@ export default function MotorsportNeurotraumaToolkit() {
   return <div className={styles.page}>
     <header className={styles.hero}>
       <div className={styles.wrap}>
-        <div className={styles.projectMasthead}><Link href="/work">Arjan Singh Puniani / Selected work</Link><span>Independent prototype / F1 research focus</span></div>
+        <div className={styles.projectMasthead}><Link href="/work">Selected work</Link><span>Independent · F1 research</span></div>
         <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
             <p className={styles.overline}>Mechanism-to-Medical Center</p>
-            <h1>From impact<br/>to <em>informed</em><br/>care.</h1>
-            <p className={styles.heroIntro}>The car tells one part of the story.<br/>The driver tells another.</p>
-            <p className={styles.heroDescription}>An independent, F1-focused exploration of how crash information can support a neurological handoff—and where clinical judgment must take over.</p>
+            <h1>From impact<br/>to <em>informed</em><span className={styles.titleEnd}> care.</span></h1>
+            <p className={styles.heroDescription}>An independent F1-focused study of incident evidence and neurological handoff.</p>
             <div className={styles.actions}><a className={styles.primaryButton} href="#incident">Explore the incident <span aria-hidden="true">＋</span></a><a className={styles.heroSourceLink} href="#methods">Methods & sources</a></div>
           </div>
           <figure className={styles.heroFigure}>
-            <div className={styles.figureTop}><span>Occupant / Environment / Information</span><span>Original schematic</span></div>
+            <div className={styles.figureTop}><span>Vehicle & occupant</span><span>Not to scale</span></div>
             <div className={styles.heroCar}><CarDrawing/></div>
             <div className={styles.heroCallout}><span className={styles.crosshair} aria-hidden="true">＋</span><div><strong>Protected cockpit.<br/>Unresolved clinical picture.</strong><p>A safety system manages a hazard.<br/>It does not examine a person.</p></div></div>
             <figcaption>Illustrative open-wheel geometry. Not a race reconstruction, validated simulation or measured impact.</figcaption>
@@ -56,7 +55,7 @@ export default function MotorsportNeurotraumaToolkit() {
       <div className={styles.wrap}>
         <div className={styles.sectionHeading}><div><p className={styles.overline}>Protection & mechanism</p><h2 id="protection-heading">Layers of protection.<br/>Different jobs.</h2></div><p>Protection acts on specific hazards and loading paths. Its presence cannot establish the driver’s neurological state.</p></div>
         <div className={styles.protectionGrid}>
-          <figure className={styles.occupant}><div className={styles.figureTop}><span>Occupant protection</span><span>Side view · schematic</span></div><OccupantDrawing/><figcaption>Relationships, not dimensions. Driver position, equipment and structures are simplified; no deformation or tissue loading is calculated.</figcaption></figure>
+          <figure className={styles.occupant}><div className={styles.figureTop}><span>Occupant protection</span><span>Side view · schematic</span></div><OccupantDrawing/><figcaption>Lateral cutaway; front is to the right. Helmet, FHR, tether and harness are shown separately to clarify their relationship. Posture and dimensions are illustrative. No load or deformation is calculated.</figcaption></figure>
           <div className={styles.protectionNotes}>
             <article><h3>Halo</h3><p>Adds a structure around the exposed cockpit to address external-object and collision scenarios. It is not a neurological shield. <Cite id="halo"/></p></article>
             <article><h3>Helmet & frontal head restraint</h3><p>The helmet addresses impact, penetration and flame hazards. In frontal or angled-frontal crashes, the FHR links helmet forces to the harness and limits head excursion. Neither proves concussion is absent. <Cite id="helmet"/></p></article>
@@ -72,7 +71,7 @@ export default function MotorsportNeurotraumaToolkit() {
         <div className={styles.sectionHeading}><div><p className={styles.overline}>The clinical information gap</p><h2 id="information-heading">A signal is only useful<br/>with its context.</h2></div><p>My neural-engineering lens: preserve the measurement, its origin and its limits before interpreting it.</p></div>
         <div className={styles.measurementChain} aria-label="Distinct quantities, not an automatic diagnostic pipeline"><span>Vehicle motion</span><b aria-hidden="true">≠</b><span>Head motion</span><b aria-hidden="true">≠</b><span>Tissue response</span><b aria-hidden="true">≠</b><span>Clinical diagnosis</span></div>
         <div className={styles.motionGrid}>
-          <div><MotionDrawing/><p className={styles.small}>Conceptual motion only. No magnitudes, injury thresholds or predicted tissue response.</p></div>
+          <figure className={styles.neuralFigure}><MotionDrawing/><figcaption>Schematic sagittal section; sulcal patterns are illustrative. Arrows describe whole-head translation and illustrative pitch, not tissue displacement, measured acceleration or injury location. Real incidents can involve multiple axes. <Cite id="neuroanatomy"/></figcaption></figure>
           <div><h3>Why there is no “concussion g-value” here</h3><p>A peak without its sensor location, coordinate frame, direction, duration and measurement quality is incomplete. Translation and rotation describe different motion; vehicle acceleration is not a direct measure of brain loading. <Cite id="biomechanics"/></p><p>This is an engineering interpretation of the measurement problem. The page performs no injury-risk calculation.</p></div>
         </div>
         <div className={styles.streams}>

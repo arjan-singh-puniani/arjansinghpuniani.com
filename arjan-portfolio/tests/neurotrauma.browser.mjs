@@ -19,6 +19,13 @@ try {
     assert.equal(response.status(), 200);
     assert.match(await page.title(), /From Impact to Informed Care/);
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"), `https://arjansinghpuniani.com${route}`);
+    if (width < 500) {
+      const action = await page.getByRole("link", { name: "Explore the incident", exact: true }).boundingBox();
+      const car = await page.locator("main header svg").boundingBox();
+      assert.ok(action.y + action.height <= height, `Incident action below the first screen at ${width}`);
+      assert.ok(car.y + car.height <= height, `Car below the first screen at ${width}`);
+      assert.ok(action.y < 430, `Mobile opening grew too tall at ${width}`);
+    }
     await page.screenshot({ path: `${out}/${width}-opening.png` });
     await page.getByRole("link", { name: "Explore the incident", exact: true }).click();
     const names = ["Impact", "First report", "Medical review", "Handoff"];
@@ -52,7 +59,7 @@ try {
       }
     }
     const sources = page.locator('[id^="source-"]');
-    assert.equal(await sources.count(), 13);
+    assert.equal(await sources.count(), 14);
     for (const detail of await sources.all()) {
       await detail.locator("summary").click();
       assert.ok(await detail.getAttribute("open") !== null);
