@@ -2,6 +2,14 @@
 export const evidenceReviewed = "19 November 2026";
 
 export const sources = {
+  neuroanatomy: {
+    label: "NIH anatomy", kind: "NIH anatomy reference", title: "NCI Dictionary · Brain", date: "Undated reference · accessed 19 November 2026",
+    url: "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/brain",
+    locator: "Brain definition; cerebrum, cerebellum, brainstem and cranium",
+    claim: "The anatomical illustration distinguishes brain tissue from the skull around it.",
+    supports: "Identifies the cerebrum, cerebellum and brainstem, the protective cranium, and continuity between the brainstem and spinal cord.",
+    limits: "General anatomy, not a trauma atlas or a prediction of injury. Original contours and sulcal patterns are schematic; colour identifies structures, not pathology or calculated strain.", where: "Anatomical context and whole-head motion figure",
+  },
   sporting: {
     label: "F1 sporting", kind: "F1 regulation", title: "2026 F1 Regulations · Section B", date: "Issue 09 · 1 October 2026",
     url: "https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_09_-_2026-10-01.pdf",

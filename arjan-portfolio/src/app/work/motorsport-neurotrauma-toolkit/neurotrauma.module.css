@@ -33,9 +33,9 @@
 .heroCopy { position: relative; z-index: 1; }
 .heroCopy > .overline { color: var(--nt-peach); }
 .hero h1 { font-size: clamp(64px, 6.8vw, 102px); line-height: .98; font-weight: 500; letter-spacing: -.065em; max-width: none; }
+.titleEnd { display: block; }
 .hero h1 em { color: var(--nt-mint); font-style: normal; }
-.hero p.heroIntro { font-size: 23px; line-height: 1.4; letter-spacing: -.025em; margin: 30px 0 17px; }
-.heroDescription { color: #b8cbd5; max-width: 440px; }
+.heroDescription { color: #b8cbd5; max-width: 440px; font-size: 18px; }
 .actions { display: flex; align-items: center; gap: 24px; margin-top: 28px; flex-wrap: wrap; }
 .primaryButton, .secondaryButton { display: inline-flex; justify-content: space-between; align-items: center; gap: 28px; padding: 14px 20px; min-height: 50px; font-size: 14px; line-height: 1.5; font-weight: 700; text-decoration: none; border: 1px solid var(--nt-ink); cursor: pointer; }
 .primaryButton { color: var(--nt-dark); background: var(--nt-mint); border-color: var(--nt-mint); }
@@ -122,7 +122,11 @@
 .measurementChain span { font-size: clamp(16px, 2vw, 24px); letter-spacing: -.03em; }
 .measurementChain b { color: var(--nt-peach); font-size: 30px; font-weight: 400; }
 .motionGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 48px 0 40px; }
-.motionGrid svg { max-width: 530px; }
+.motionGrid svg { max-width: 600px; }
+.neuralFigure { margin: 0; background: #edf3f3; color: #173342; padding: 24px; border-top: 3px solid #a4dfd6; }
+.neuralFigure figcaption { margin-top: 18px; color: #405b68; font: 12px/1.65 var(--font-sans); }
+.information .neuralFigure .citation { color: #245f64; }
+.motionGrid .neuralFigure { align-self: start; }
 .motionGrid h3 { font-size: 26px; }
 .motionGrid p { color: #bfd0d9; font-size: 16px; }
 .page p.small { font: 12px/1.65 var(--font-mono); color: #a4bdca; max-width: 460px; }
@@ -216,15 +220,20 @@
 @media (max-width: 800px) {
   .wrap { width: calc(100% - 40px); }
   .section { padding: 72px 0; scroll-margin-top: 76px; }
-  .projectMasthead { font-size: 12px; gap: 18px; padding-block: 22px; }
-  .projectMasthead > span { text-align: right; max-width: 150px; }
-  .heroGrid { grid-template-columns: 1fr; padding: 42px 0 36px; gap: 48px; }
-  .hero h1 { font-size: clamp(60px, 11.8vw, 92px); }
-  .heroDescription { max-width: 540px; }
+  .projectMasthead { font-size: 12px; gap: 12px; padding-block: 14px; }
+  .projectMasthead > span { text-align: right; max-width: 210px; }
+  .heroGrid { grid-template-columns: 1fr; padding: 24px 0 28px; gap: 22px; }
+  .hero h1 { font-size: clamp(36px, 10.6vw, 72px); line-height: 1.04; }
+  .titleEnd { display: inline; }
+  .page .heroCopy > .overline { margin-bottom: 12px; }
+  .heroCopy .actions { margin-top: 18px; gap: 14px; }
+  .heroCopy .primaryButton { padding-inline: 12px; }
+  .heroCopy .primaryButton > span { display: none; }
+  .heroDescription { max-width: 540px; font-size: 16px; margin: 14px 0 0; }
   .heroFigure { max-width: 660px; }
-  .heroCar { width: 110%; margin: -5px -5% -20px; }
+  .heroCar { width: 106%; margin: -6px -3% -10px; }
   .heroCallout { margin-left: 0; }
-  .heroFigure figcaption { margin: 20px 0 0; max-width: none; }
+  .heroFigure figcaption { margin: 14px 0 0; max-width: none; }
   .heroFooter { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
   .heroFooter span:nth-child(2) { grid-column: 1 / -1; grid-row: 2; }
   .heroFooter span:last-child { text-align: right; }
@@ -269,14 +278,15 @@
   .section { padding-block: 60px; }
   .page h2 { font-size: 39px; }
   .hero .overline { font-size: 12px; }
-  .hero p.heroIntro { font-size: 21px; }
   .heroDescription { font-size: 16px; }
   .actions { gap: 20px; }
   .primaryButton { padding-inline: 15px; font-size: 13px; gap: 16px; }
   .heroSourceLink { font-size: 13px; }
   .heroFigure .figureTop { font-size: 12px; }
   .figureTop { font-size: 12px; }
-  .heroCallout strong { font-size: 21px; }
+  .heroCallout strong { font-size: 19px; }
+  .heroCallout { gap: 14px; }
+  .heroCallout p { margin-top: 8px; }
   .heroFigure figcaption { font-size: 12px; }
   .scenarioLabel { flex-direction: column; gap: 4px; }
   .stageControls { grid-template-columns: 1fr 1fr; }
