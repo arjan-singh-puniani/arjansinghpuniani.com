@@ -9,7 +9,7 @@ describe("educational neurotrauma handoff", () => {
   it("reveals each authored stage, keeps unknowns visible, and allows revisiting the incident", () => {
     render(<IncidentExplorer/>);
     const view = document.getElementById("incident-view")!;
-    expect(screen.getByRole("img", { name: /Redgrund’s Red Bull RB19 model/ })).toHaveAttribute("src", expect.stringContaining("rb19-poster.webp"));
+    expect(screen.getByRole("img", { name: /Redgrund’s Red Bull RB19 model/ })).toHaveAttribute("src", expect.stringContaining("rb19-stage.webp"));
     for (const stage of stages) {
       const control = screen.getByRole("button", { name: new RegExp(stage.name) });
       fireEvent.click(control);

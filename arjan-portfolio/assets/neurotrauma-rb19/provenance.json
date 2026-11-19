@@ -15,12 +15,12 @@
     "slug": "by"
   },
   "delivery": "Interactive model hosted by Sketchfab, loaded only after visitor requests 3D; official Viewer API 1.12.1.",
-  "poster_source": "https://media.sketchfab.com/models/e4afe46f3aab4b23a418da06fc163821/thumbnails/bc90275decbb4148a04facb0039f3c60/e7a6a81994c44777a50e14920a687e33.jpeg",
-  "poster_changes": "Creator preview converted from JPEG to WebP at quality 92; responsive Next Image derivatives. No generated vehicle artwork in the active opening or explorer.",
-  "poster_file": "public/images/neurotrauma/rb19-poster.webp",
-  "bytes": 138466,
-  "sha256": "c4532fd9bc861f04677b71f7ab216f9634abfd7a745bfaa752d3e93a309cd35e",
-  "scope": "Artist reconstruction of a 2023 car, not official team CAD or a 2026 hardware model. Brand marks remain their owners\u2019 marks. No affiliation or endorsement.",
+  "poster_source": "Sketchfab Viewer API getScreenShot(1920, 1080, image/png) of the credited model",
+  "poster_changes": "Model rendered in Chrome with the official Viewer API; navy background #101f2a and camera [2.5,-2.23,1.55] aimed at [0,-0.53,0.2]. PNG converted to WebP at quality 92. No generated vehicle artwork. Original creator-thumbnail preview retained as rb19-poster.webp.",
+  "poster_file": "public/images/neurotrauma/rb19-stage.webp",
+  "bytes": 111184,
+  "sha256": "34fd1c7f942f19148c88b42691bfbe48ba94115735e7db5b84a6d5129b592cb7",
+  "scope": "Artist reconstruction of a 2023 car, not official team CAD or a 2026 hardware model. Brand marks remain their owners’ marks. No affiliation or endorsement.",
   "viewer_options": {
     "camera": 0,
     "dnt": 1,
@@ -28,5 +28,8 @@
     "animation_autoplay": 0,
     "max_texture_size": 2048
   },
-  "viewer_documentation": "https://sketchfab.com/developers/viewer/initialization"
+  "viewer_documentation": "https://sketchfab.com/developers/viewer/initialization",
+  "previous_poster_source": "https://media.sketchfab.com/models/e4afe46f3aab4b23a418da06fc163821/thumbnails/bc90275decbb4148a04facb0039f3c60/e7a6a81994c44777a50e14920a687e33.jpeg",
+  "viewer_background": "#101f2a",
+  "render_documentation": "https://sketchfab.com/developers/viewer/functions#api-section-general"
 }

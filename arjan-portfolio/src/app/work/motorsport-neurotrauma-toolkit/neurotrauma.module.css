@@ -47,7 +47,7 @@
 .heroFigure { margin: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; position: relative; }
 .figureTop { display: flex; justify-content: space-between; gap: 20px; font: 12px/1.6 var(--font-mono); text-transform: uppercase; letter-spacing: .07em; position: relative; }
 .heroFigure .figureTop { color: #bdd1dc; border-bottom: 1px solid #38505d; padding-bottom: 14px; }
-.heroCar { position: relative; width: 100%; margin: 20px 0; aspect-ratio: 16 / 9; background: #dedede; }
+.heroCar { position: relative; width: 100%; margin: 20px 0; aspect-ratio: 16 / 9; background: var(--nt-dark); }
 .heroCar img { width: 100%; height: auto; display: block; }
 .heroCallout { display: flex; align-items: start; gap: 22px; position: relative; margin-left: 0; }
 .crosshair { font-size: 32px; line-height: 1; color: var(--nt-peach); }
@@ -80,11 +80,11 @@
 .stageControls button[aria-pressed="true"] > span:first-child { color: #365a61; }
 .stageControls button:hover:not([aria-pressed="true"]) { background: #294553; }
 .stageIndicator { margin-left: auto; font-size: 16px; }
-.incidentView { display: grid; grid-template-columns: 1.15fr 1fr; }
+.incidentView { display: grid; grid-template-columns: 1.3fr 1fr; }
 .incidentGraphic { padding: 34px 30px; display: flex; flex-direction: column; border-right: 1px solid #405663; }
 .incidentGraphic .figureTop { color: #b7ccd6; }
-.incidentCar { margin: 18px 0 8px; background: #dce0e3; color: #173342; }
-.carImage { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #dedede; }
+.incidentCar { margin: 18px 0 8px; color: #d1eee9; border-block: 1px solid #508f8a; }
+.carImage { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--nt-dark); }
 .carImage img { display: block; width: 100%; height: auto; }
 .carImage > img { height: 100%; object-fit: contain; }
 .modelFrame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; opacity: 0; pointer-events: none; }
@@ -93,14 +93,15 @@
 .viewerLaunch button, .viewerLaunch > span { display: flex; align-items: center; gap: 32px; min-height: 48px; padding: 10px 18px; background: #f3d15d; color: #172733; border: 0; font: 700 14px var(--font-sans); }
 .viewerLaunch button { cursor: pointer; }
 .viewerLaunch p { background: #edf3f3; color: #173342; font-size: 13px; padding: 10px; margin: 0; }
-.modelTools { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px 0; align-items: center; }
-.modelTools button { min-height: 44px; padding: 8px 12px; border: 1px solid #6a7d86; color: #173342; background: transparent; cursor: pointer; font-size: 13px; }
-.modelTools button:disabled { color: #526772; cursor: default; }
-.modelTools span { flex-basis: 100%; font-size: 12px; color: #405b68; padding-block: 4px; }
-.incidentCar figcaption { margin: 0; padding: 10px 16px 16px; font: 12px/1.65 var(--font-sans); color: #405b68; }
-.incidentCar figcaption a { color: #245f64; text-underline-offset: 3px; }
-.incidentCar a:focus-visible { outline-color: #a15730; }
-.page .incidentCar :is(button, iframe):focus-visible { outline: 3px solid #985234; outline-offset: -4px; }
+.modelTools { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 0 0; align-items: center; border-top: 1px solid #315b61; background: linear-gradient(90deg, #a4dfd60a 1px, transparent 1px) 0 0 / 32px 100%; }
+.modelTools button { min-height: 44px; padding: 8px 12px; border: 1px solid #508f8a; color: var(--nt-mint); background: #152b39; cursor: pointer; font-size: 13px; }
+.modelTools button:hover:not(:disabled) { background: #23414b; border-color: var(--nt-mint); }
+.modelTools button:disabled { color: #94aab6; border-color: #405663; cursor: default; }
+.modelTools span { flex-basis: 100%; font-size: 12px; color: #b7ccd6; padding-block: 4px; }
+.incidentCar figcaption { margin: 0; padding: 10px 0 16px; font: 12px/1.65 var(--font-sans); color: #b7ccd6; }
+.incidentCar figcaption a { color: var(--nt-mint); text-underline-offset: 3px; }
+.incidentCar a:focus-visible { outline-color: var(--nt-peach); }
+.page .incidentCar :is(button, iframe):focus-visible { outline: 3px solid var(--nt-peach); outline-offset: -4px; }
 .directionControls { padding: 0; margin: 0; border: 0; scroll-margin-top: 200px; }
 .directionControls legend { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
 .directionChoices { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; }
@@ -340,6 +341,7 @@
   .stageControls button > span:first-child { flex-basis: auto; }
   .stageControls button:nth-child(2) { border-right: 0; }
   .incidentGraphic { padding-inline: 18px; }
+  .carImage { margin-inline: -18px; }
   .incidentCopy { min-height: 740px; padding: 24px 20px; }
   .incidentCopy h3 { font-size: 25px; }
   .recordPath { font-size: 12px; gap: 10px 6px; }

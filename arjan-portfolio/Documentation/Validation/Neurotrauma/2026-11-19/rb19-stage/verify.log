@@ -1,0 +1,252 @@
+
+> arjan-singh-puniani-portfolio@1.0.0 verify
+> npm run lint && npm run typecheck && npm run test:coverage && npm run build
+
+
+> arjan-singh-puniani-portfolio@1.0.0 lint
+> eslint . --ignore-pattern 'playwright-report/**' --ignore-pattern 'test-results/**' --ignore-pattern 'public/hemodynamic-observatory/**'
+
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/holoanatomy/src/engine/renderer.js
+  2:32  warning  'bboxInclude' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/hospitalsim/app.mjs
+  5:9    warning  'deskPost' is defined but never used       @typescript-eslint/no-unused-vars
+  5:18   warning  'deskAvailable' is defined but never used  @typescript-eslint/no-unused-vars
+  7:162  warning  'buildCost' is defined but never used      @typescript-eslint/no-unused-vars
+  7:451  warning  'dropPlacement' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/hospitalsim/extras.mjs
+   1:9   warning  'initial' is defined but never used      @typescript-eslint/no-unused-vars
+   1:26  warning  'report' is defined but never used       @typescript-eslint/no-unused-vars
+   1:51  warning  'fingerprint' is defined but never used  @typescript-eslint/no-unused-vars
+  27:9   warning  's' is assigned a value but never used   @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/hospitalsim/game.js
+  60:140  warning  'aa' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/hospitalsim/legacy/game.js
+  60:140  warning  'aa' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/hospitalsim/operations.mjs
+  2:43  warning  'STAFF_ROLES' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/hospitalsim/renderer.mjs
+    5:40   warning  'staffTask' is defined but never used          @typescript-eslint/no-unused-vars
+   10:33   warning  'WALK_SPEED' is defined but never used         @typescript-eslint/no-unused-vars
+   15:103  warning  'dropPlacement' is defined but never used      @typescript-eslint/no-unused-vars
+   15:129  warning  'queueFor' is defined but never used           @typescript-eslint/no-unused-vars
+  259:467  warning  'rate' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  359:454  warning  'walkRate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  376:102  warning  'walkRate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/hospitalsim/simulation.mjs
+    4:74   warning  'say' is defined but never used             @typescript-eslint/no-unused-vars
+    4:170  warning  'deskAvailable' is defined but never used   @typescript-eslint/no-unused-vars
+    4:184  warning  'deskPost' is defined but never used        @typescript-eslint/no-unused-vars
+    4:205  warning  'deskBay' is defined but never used         @typescript-eslint/no-unused-vars
+    9:77   warning  'STEP' is defined but never used            @typescript-eslint/no-unused-vars
+  162:405  warning  'route' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  162:411  warning  'state' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/rally-house/dist/Game.js
+  739:37  warning  'quality' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/rally-house/dist/animation/ActingState.js
+  7:77  warning  'social' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/rally-house/dist/entities/Character.js
+   718:15   warning  'gaitCounter' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  1273:131  warning  'racketHandleTop' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  1275:15   warning  'ready' is assigned a value but never used            @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/rally-house/dist/simulation/EverydayLife.js
+  74:13  warning  'scene' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/rally-house/dist/tennis/ChampionshipCameraRig.js
+  180:21  warning  '_reducedMotion' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/rally-house/dist/tennis/InteractiveMatchSystem.js
+  329:23  warning  'dt' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/rally-house/dist/ui/HUD.js
+  13:15  warning  'tab' is defined but never used        @typescript-eslint/no-unused-vars
+  19:22  warning  'type' is defined but never used       @typescript-eslint/no-unused-vars
+  20:22  warning  'direction' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/public/rally-house/dist/world/World.js
+   93:30  warning  '_a' is assigned a value but never used                  @typescript-eslint/no-unused-vars
+  465:23  warning  '_presentationFocus' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  520:63  warning  '_presentationFocus' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio/tools/hospitalsim/ortho-browser.mjs
+  17:7  warning  'baseline' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 41 problems (0 errors, 41 warnings)
+
+
+> arjan-singh-puniani-portfolio@1.0.0 typecheck
+> tsc --noEmit
+
+
+> arjan-singh-puniani-portfolio@1.0.0 test:coverage
+> vitest run tests --coverage
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:6:41). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /private/tmp/motorsport-neurotrauma-20261119/arjan-portfolio
+      Coverage enabled with v8
+
+
+ Test Files  36 passed (36)
+      Tests  308 passed (308)
+   Start at  15:21:48
+   Duration  19.14s (transform 1.45s, setup 2.20s, import 3.44s, tests 10.88s, environment 12.70s)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   16.51 |    19.24 |   25.59 |   15.32 |                   
+ ...c/pit-stop-lab |   94.68 |    91.08 |   97.48 |   95.92 |                   
+  challenge.js     |    92.8 |    82.44 |     100 |     100 | ...59,63-64,66-68 
+  cinema.js        |   95.77 |    85.71 |   96.29 |     100 | ...57,60-61,63,74 
+  experience.js    |    92.3 |    91.66 |     100 |     100 | 7                 
+  hero-car.js      |   16.21 |       20 |   33.33 |   27.77 | 8-22              
+  intelligence.js  |   96.73 |    93.88 |     100 |   94.79 | ...54,60-61,79-80 
+  pit-wall.js      |     100 |    96.73 |     100 |     100 | 35,85-90          
+  render-scale.js  |     100 |    88.88 |     100 |     100 | 4                 
+  simulation.js    |   97.83 |    95.81 |   95.83 |   97.72 | ...68,286,294,297 
+ ...top-lab/vendor |    5.47 |     1.38 |    5.94 |    5.76 |                   
+  ...metryUtils.js |       0 |        0 |       0 |       0 | 40-1417           
+  GLTFLoader.js    |    0.92 |        0 |       0 |       1 | ...2615,2627-4869 
+  three.core.js    |    7.22 |     2.82 |    8.21 |    7.63 | ...04,59712,59722 
+  three.module.js  |    2.98 |        0 |    0.36 |     3.2 | ...39,15981-19546 
+ ...m-computer-lab |   95.62 |    88.48 |   93.89 |   96.08 |                   
+  diagnostics.js   |   76.31 |    81.25 |   57.89 |   77.14 | ...40,160,180,200 
+  exact.js         |   97.24 |    82.05 |     100 |   97.43 | 120-122           
+  simulator.js     |   97.54 |       95 |     100 |   98.54 | 142,349-351       
+  teaching.js      |   96.66 |       75 |     100 |      96 | 33                
+ ...nd/hospitalsim |      75 |    81.48 |   71.42 |   76.74 |                   
+  ...talPlayer.tsx |   72.91 |    81.48 |   66.66 |   74.35 | 36-37,47-58       
+ ...nd/rally-house |   96.15 |    95.65 |     100 |   95.65 |                   
+  ...xperience.tsx |   95.23 |    95.65 |     100 |   94.44 | 32                
+ ...pp/work/[slug] |   25.58 |    10.25 |   26.66 |   24.32 |                   
+  page.tsx         |   25.58 |    10.25 |   26.66 |   24.32 | 64-134            
+ ...trauma-toolkit |   45.12 |    53.84 |   54.83 |   53.96 |                   
+  IncidentCar.tsx  |   25.86 |     30.3 |      20 |   33.33 | 34-65,73-75,88-91 
+  ...tExplorer.tsx |   90.47 |      100 |   85.71 |   94.44 | 51                
+  ...clePoster.tsx |     100 |    66.66 |     100 |     100 | 5                 
+ src/components    |   13.04 |     9.65 |   21.83 |   13.58 |                   
+  ...CaseStudy.tsx |      40 |      100 |       0 |      40 | 23-194            
+  ...ectFilter.tsx |     100 |     87.5 |     100 |     100 | 91                
+  MobileNav.tsx    |    62.5 |       40 |   33.33 |   68.42 | 18,20-22,31-36    
+  ...ectFilter.tsx |     100 |    91.66 |     100 |     100 | 17                
+  ...gureAtlas.tsx |   10.52 |        0 |       0 |   11.76 | 15-72             
+  ...CaseStudy.tsx |   10.25 |        0 |       0 |   11.11 | 103-549           
+  ...CaseStudy.tsx |   33.33 |      100 |       0 |   33.33 | 27-133            
+  ...CaseStudy.tsx |      25 |      100 |       0 |   33.33 | 24-50             
+  ...eLabEmbed.tsx |       5 |        0 |       0 |    6.25 | 6-34              
+  ...TennisLab.tsx |    5.87 |     4.84 |   12.69 |    6.31 | ...74,689-708,725 
+ src/lib           |    78.4 |    72.85 |      80 |   84.54 |                   
+  site.ts          |   66.66 |        0 |       0 |     100 | 2                 
+  vector-tennis.ts |   78.51 |    73.38 |   85.71 |   84.11 | 107-126,191-192   
+ src/lib/reasonos  |   86.16 |     81.4 |   87.93 |   87.01 |                   
+  connections.ts   |   97.14 |    95.65 |     100 |     100 | 117               
+  digital-ecg.ts   |   71.42 |    47.16 |    87.5 |   69.23 | ...68,183,187-189 
+  kernel.ts        |   94.77 |    95.27 |     100 |   94.65 | ...46,265-266,582 
+  model.ts         |   93.47 |    66.66 |    92.3 |   92.85 | 144-146           
+  ...ecg-plugin.ts |   53.47 |    40.51 |      62 |   55.46 | ...73,405-434,439 
+  reference-ecg.ts |   97.95 |    93.93 |     100 |     100 | 101,135           
+  workspace.ts     |   96.29 |    91.91 |     100 |   99.12 | 178               
+ .../reasonos/core |   71.29 |       50 |   66.66 |   78.57 |                   
+  canonical.ts     |    98.7 |     92.3 |     100 |     100 | 4                 
+  constraints.ts   |   72.91 |    45.37 |   51.35 |   78.94 | ...12,117,146,175 
+  projector.ts     |     100 |    85.71 |     100 |     100 | 21                
+  replay.ts        |       0 |        0 |       0 |       0 | 4-13              
+  runtime.ts       |   54.83 |    53.84 |   72.72 |   63.63 | 13-16,33-36       
+  store.ts         |   79.43 |     67.6 |     100 |   94.87 | 47,59,62,118      
+  validation.ts    |   46.15 |    31.81 |   72.72 |   46.15 | 4,45-73           
+ src/lib/tennis    |   90.74 |    80.11 |   93.68 |   93.11 |                   
+  audio.ts         |   85.77 |     68.1 |   89.65 |   87.56 | ...59-262,279-285 
+  contact-cue.ts   |   98.43 |    75.71 |     100 |   98.33 | 129               
+  contact.ts       |     100 |    98.43 |     100 |     100 | 55                
+  ...lly-driver.ts |   97.14 |    76.19 |     100 |   98.36 | 55                
+  ...ly-machine.ts |   67.85 |    62.35 |   83.33 |    73.8 | ...05-112,160-162 
+  persistence.ts   |   93.93 |    80.76 |     100 |     100 | 25,39-43,88       
+  ...ct-physics.ts |   87.71 |    88.31 |     100 |      96 | 98,104            
+  ...-generator.ts |   99.09 |    98.73 |   94.44 |   98.95 | 109               
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 16.51% ( 4830/29241 )
+Branches     : 19.24% ( 2668/13866 )
+Functions    : 25.59% ( 939/3669 )
+Lines        : 15.32% ( 3947/25753 )
+================================================================================
+
+> arjan-singh-puniani-portfolio@1.0.0 build
+> next build
+
+   ▲ Next.js 15.5.28
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 14.0s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/39) ...
+   Generating static pages (9/39) 
+   Generating static pages (19/39) 
+   Generating static pages (29/39) 
+ ✓ Generating static pages (39/39)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                  Size  First Load JS
+┌ ○ /                                                       764 B         113 kB
+├ ○ /_not-found                                             159 B         104 kB
+├ ○ /about                                                  417 B         112 kB
+├ ƒ /api/atlas/fda                                          159 B         104 kB
+├ ƒ /api/contact                                            159 B         104 kB
+├ ○ /contact                                                988 B         104 kB
+├ ○ /cv                                                     174 B         107 kB
+├ ○ /icon.svg                                                 0 B            0 B
+├ ○ /manifest.webmanifest                                   159 B         104 kB
+├ ○ /notes                                                  174 B         107 kB
+├ ○ /playground                                             455 B         112 kB
+├ ○ /playground/hemodynamic-observatory                     523 B         107 kB
+├ ○ /playground/holoanatomy                                 313 B         107 kB
+├ ○ /playground/hospitalsim                               2.79 kB         115 kB
+├ ○ /playground/pit-stop                                    274 B         107 kB
+├ ○ /playground/rally-house                               3.29 kB         115 kB
+├ ○ /playground/replisome                                 2.12 kB         114 kB
+├ ○ /playground/vector-tennis                             23.6 kB         130 kB
+├ ○ /privacy                                                159 B         104 kB
+├ ○ /research                                               403 B         107 kB
+├ ○ /robots.txt                                             159 B         104 kB
+├ ○ /sitemap.xml                                            159 B         104 kB
+├ ○ /work                                                   10 kB         117 kB
+├ ● /work/[slug]                                          4.32 kB         116 kB
+├   ├ /work/hospitalsim
+├   ├ /work/body-atlas
+├   ├ /work/seizefreeze
+├   └ [+5 more paths]
+├ ○ /work/belmont-motorsport-systems                        174 B         107 kB
+├ ○ /work/motorsport-neurotrauma-toolkit                  11.8 kB         124 kB
+├ ○ /work/motorsport-neurotrauma-toolkit/opengraph-image    159 B         104 kB
+├ ○ /work/vector-ekg-reasonos                             59.5 kB         223 kB
+├ ○ /work/vector-ekg-reasonos/demo                        1.23 kB         138 kB
+├ ○ /work/vector-ekg-reasonos/signal                      13.5 kB         149 kB
+└ ○ /work/vector-ekg-reasonos/workspace                   1.23 kB         138 kB
++ First Load JS shared by all                              103 kB
+  ├ chunks/1255-dc3ddf72a1dc71a7.js                       46.6 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js                   54.2 kB
+  └ other shared chunks (total)                           2.62 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
