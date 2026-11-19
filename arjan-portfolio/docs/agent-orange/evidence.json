@@ -1,6 +1,6 @@
 {
   "project": "Agent Orange: The Long Shadow",
-  "updated": "2026-11-18",
+  "updated": "2026-11-19",
   "claims": [
     {
       "id": "STUDY-01",
@@ -12,8 +12,9 @@
         "Electronic health record cohort, not a randomized or exposure-measured trial",
         "Exposure classified by self-report",
         "Records span January 1, 1999, to December 30, 2022; mean follow-up 12.5 years (SD 7.0)",
+        "Excluded incomplete demographic data and prevalent synucleinopathy diagnoses before or within 6 months of follow-up",
         "Cohort was 98% male; mean age 60.6 years",
-        "1,035,210 participants (23.2%) reported exposure; 7,600 were classified as direct or occupationally exposed"
+        "1,035,210 participants (23.2%) reported exposure; 7,600 were classified as direct or occupationally exposed based on Operation Ranch Hand or Army Chemical Corps involvement and/or direct handling or spraying"
       ],
       "visual": "Cohort description in the evidence section",
       "review": "verified against article abstract"
@@ -54,7 +55,8 @@
       "limitations": [
         "Subgroup estimate",
         "Not an absolute risk",
-        "Does not establish causation"
+        "Does not establish causation",
+        "The abstract defines the direct or occupational subgroup by Operation Ranch Hand or Army Chemical Corps involvement and/or direct handling or spraying"
       ],
       "visual": "Separate subgroup estimate with confidence interval",
       "review": "verified against article abstract"

@@ -1,12 +1,12 @@
 # Scientific claim audit
 
-Audit date: 2026-11-18. Status reflects the exact claim wording and its use in the project. This is an editorial source check, not independent expert review. The JAMA study was checked against its accessible primary abstract; full-text methods and limitations were not accessible.
+Audit date: 2026-11-19. Status reflects the exact claim wording and its use in the project. This is an editorial source check, not independent expert review. The JAMA study was checked against its accessible primary abstract; full-text methods and limitations were not accessible.
 
 Primary study: Scott GD, Lim MM, Elliott JE, Neilson LE. “Agent Orange Exposure and Diagnosis of Parkinson Disease and Related Disorders Among US Veterans.” *JAMA Neurology*, published online November 16, 2026. [DOI: 10.1001/jamaneurol.2026.4219](https://doi.org/10.1001/jamaneurol.2026.4219) · [Article abstract](https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723).
 
 | Claim ID | Status | Claim and evidence | Qualification or disposition |
 | --- | --- | --- | --- |
-| STUDY-01 | VERIFIED | The cohort included 4,468,509 US veterans who served during the Vietnam War era. | The abstract describes a VA electronic-health-record cohort; exposure was self-reported. It reports 4,917,272 screened, mean follow-up of 12.5 years, and a cohort that was 98% male. |
+| STUDY-01 | VERIFIED | The cohort included 4,468,509 US veterans who served during the Vietnam War era. | The abstract describes a VA electronic-health-record cohort using records from January 1, 1999, through December 30, 2022, with 12.5 (SD 7.0) years mean follow-up. Veterans with incomplete demographic data or a prior synucleinopathy before or within 6 months of follow-up were excluded. Exposure was self-reported; 4,917,272 were screened and the included cohort was 98% male. |
 | STUDY-04 | QUALIFIED | The abstract says cumulative-incidence analyses accounted for competing risk of death, age, traumatic brain injury, and frailty, and lists baseline characteristics balanced across exposure groups. | The exact wording attributes these details to the abstract. Full-text methods, model diagnostics, and limitations remain unchecked. |
 | STUDY-02 | QUALIFIED | Self-reported Agent Orange exposure was associated with Parkinson disease diagnosis (adjusted HR 1.44, 95% CI 1.37–1.52). | Association in an observational cohort; not an absolute probability and not proof of causation. The study does not isolate 2,4-D. |
 | STUDY-03 | QUALIFIED | The direct or occupational exposure subgroup had an adjusted Parkinson disease HR of 1.99 (95% CI 1.71–2.32). | Subgroup association, not an absolute probability or proof of causation. The abstract defines this group by Operation Ranch Hand, Army Chemical Corps, and/or direct handling or spraying. |
