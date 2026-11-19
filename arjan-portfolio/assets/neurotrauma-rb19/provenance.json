@@ -1,0 +1,32 @@
+{
+  "title": "Oracle Red Bull F1 Car RB19 2023",
+  "creator": "Redgrund",
+  "creator_url": "https://sketchfab.com/redgrund",
+  "source": "https://sketchfab.com/3d-models/oracle-red-bull-f1-car-rb19-2023-e4afe46f3aab4b23a418da06fc163821",
+  "metadata_source": "https://api.sketchfab.com/v3/models/e4afe46f3aab4b23a418da06fc163821",
+  "published_at": "2024-02-21T11:34:31.137400",
+  "checked": "2026-11-19",
+  "license": {
+    "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+    "label": "CC Attribution",
+    "fullName": "Creative Commons Attribution",
+    "requirements": "Author must be credited. Commercial use is allowed.",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "slug": "by"
+  },
+  "delivery": "Interactive model hosted by Sketchfab, loaded only after visitor requests 3D; official Viewer API 1.12.1.",
+  "poster_source": "https://media.sketchfab.com/models/e4afe46f3aab4b23a418da06fc163821/thumbnails/bc90275decbb4148a04facb0039f3c60/e7a6a81994c44777a50e14920a687e33.jpeg",
+  "poster_changes": "Creator preview converted from JPEG to WebP at quality 92; responsive Next Image derivatives. No generated vehicle artwork in the active opening or explorer.",
+  "poster_file": "public/images/neurotrauma/rb19-poster.webp",
+  "bytes": 138466,
+  "sha256": "c4532fd9bc861f04677b71f7ab216f9634abfd7a745bfaa752d3e93a309cd35e",
+  "scope": "Artist reconstruction of a 2023 car, not official team CAD or a 2026 hardware model. Brand marks remain their owners\u2019 marks. No affiliation or endorsement.",
+  "viewer_options": {
+    "camera": 0,
+    "dnt": 1,
+    "preload": 0,
+    "animation_autoplay": 0,
+    "max_texture_size": 2048
+  },
+  "viewer_documentation": "https://sketchfab.com/developers/viewer/initialization"
+}

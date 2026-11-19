@@ -47,13 +47,14 @@
 .heroFigure { margin: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; position: relative; }
 .figureTop { display: flex; justify-content: space-between; gap: 20px; font: 12px/1.6 var(--font-mono); text-transform: uppercase; letter-spacing: .07em; position: relative; }
 .heroFigure .figureTop { color: #bdd1dc; border-bottom: 1px solid #38505d; padding-bottom: 14px; }
-.heroCar { position: relative; width: 100%; margin: 20px 0; aspect-ratio: 3 / 2; background: #f2f6f5; }
+.heroCar { position: relative; width: 100%; margin: 20px 0; aspect-ratio: 16 / 9; background: #dedede; }
 .heroCar img { width: 100%; height: auto; display: block; }
 .heroCallout { display: flex; align-items: start; gap: 22px; position: relative; margin-left: 0; }
 .crosshair { font-size: 32px; line-height: 1; color: var(--nt-peach); }
 .heroCallout strong { font-size: 22px; line-height: 1.25; font-weight: 400; letter-spacing: -.02em; }
 .heroCallout p { font-size: 14px; color: #b8cbd5; margin: 14px 0 0; }
 .heroFigure figcaption { font: 12px/1.65 var(--font-mono); max-width: none; margin: 18px 0 0; color: #a7becb; position: relative; }
+.heroFigure .citation { color: var(--nt-mint); }
 .heroFooter { display: flex; justify-content: space-between; gap: 28px; border-top: 1px solid #38505d; padding: 20px 0 24px; color: #b8cbd5; font: 12px/1.6 var(--font-mono); }
 .heroFooter span:first-child { color: var(--nt-mint); }
 .sectionNav { border-bottom: 1px solid var(--nt-line); background: #e7eef0; }
@@ -82,16 +83,43 @@
 .incidentView { display: grid; grid-template-columns: 1.15fr 1fr; }
 .incidentGraphic { padding: 34px 30px; display: flex; flex-direction: column; border-right: 1px solid #405663; }
 .incidentGraphic .figureTop { color: #b7ccd6; }
-.incidentCar { margin: 22px 0 8px; background: #f2f6f5; color: #173342; }
-.carImage { position: relative; aspect-ratio: 3 / 2; }
+.incidentCar { margin: 18px 0 8px; background: #dce0e3; color: #173342; }
+.carImage { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #dedede; }
 .carImage img { display: block; width: 100%; height: auto; }
-.carKey { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 12px 24px; margin: 0 18px 16px 38px; font-size: 13px; line-height: 1.5; }
-.carKey li { list-style: decimal; }
-.carKey li::marker { font-weight: 700; }
-.carKey li:last-child::marker { color: #985234; }
-.incidentCar figcaption { margin: 0 18px; font: 14px/1.6 var(--font-sans); color: #405b68; }
-.carLink { display: inline-flex; align-items: center; min-height: 44px; margin: 4px 18px 8px; font-size: 13px; color: #245f64; }
+.carImage > img { height: 100%; object-fit: contain; }
+.modelFrame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; opacity: 0; pointer-events: none; }
+.modelFrame[data-ready="true"] { opacity: 1; pointer-events: auto; }
+.viewerLaunch { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: end; padding: 24px; gap: 10px; background: linear-gradient(transparent 55%, #10182070); }
+.viewerLaunch button, .viewerLaunch > span { display: flex; align-items: center; gap: 32px; min-height: 48px; padding: 10px 18px; background: #f3d15d; color: #172733; border: 0; font: 700 14px var(--font-sans); }
+.viewerLaunch button { cursor: pointer; }
+.viewerLaunch p { background: #edf3f3; color: #173342; font-size: 13px; padding: 10px; margin: 0; }
+.modelTools { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px 0; align-items: center; }
+.modelTools button { min-height: 44px; padding: 8px 12px; border: 1px solid #6a7d86; color: #173342; background: transparent; cursor: pointer; font-size: 13px; }
+.modelTools button:disabled { color: #526772; cursor: default; }
+.modelTools span { flex-basis: 100%; font-size: 12px; color: #405b68; padding-block: 4px; }
+.incidentCar figcaption { margin: 0; padding: 10px 16px 16px; font: 12px/1.65 var(--font-sans); color: #405b68; }
+.incidentCar figcaption a { color: #245f64; text-underline-offset: 3px; }
 .incidentCar a:focus-visible { outline-color: #a15730; }
+.page .incidentCar :is(button, iframe):focus-visible { outline: 3px solid #985234; outline-offset: -4px; }
+.directionControls { padding: 0; margin: 0; border: 0; scroll-margin-top: 200px; }
+.directionControls legend { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+.directionChoices { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; }
+.directionChoices label { min-height: 44px; padding: 8px; display: flex; align-items: center; gap: 8px; cursor: pointer; border: 1px solid #627a87; background: #182d39; color: #d1dee4; font-size: 14px; }
+.directionChoices label[data-selected="true"] { background: #c1e9e0; color: #132b37; border-color: #c1e9e0; }
+.directionChoices input { accent-color: #173342; width: 16px; height: 16px; flex: 0 0 auto; margin: 0; }
+.directionChoices label:has(input:focus-visible) { outline: 3px solid var(--nt-peach); outline-offset: 3px; }
+.directionHint { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.page .directionHint p { font-size: 12px; color: #b7ccd6; margin: 8px 0 0; }
+.directionHint a { min-height: 44px; display: inline-flex; flex-shrink: 0; align-items: center; color: var(--nt-mint); font-size: 12px; white-space: nowrap; }
+.directionInformation { border-block: 1px solid #405663; padding-block: 20px; margin-block: 22px; scroll-margin-top: 200px; }
+.directionInformation h4 { color: var(--nt-mint); }
+.directionInformation li { padding-left: 20px; position: relative; }
+.directionInformation li::before { content: "↳"; position: absolute; left: 0; color: var(--nt-mint); }
+.page .directionInformation p { font-size: 12px; color: #b7ccd6; margin: 14px 0 0; }
+.directionInformation p a:last-child { display: inline-flex; min-height: 44px; align-items: center; color: var(--nt-mint); margin-left: 8px; }
+.page p.fixedExample { font-size: 13px; color: #bfd0d9; }
+.directionTranscript section { border-top: 1px solid #405663; padding-top: 24px; }
+.page .directionTextBoundary { margin: 0; padding: 0 30px 24px; font-size: 13px; color: #b7ccd6; }
 .graphicNote { font-size: clamp(17px, 2vw, 22px); text-align: center; color: var(--nt-peach); letter-spacing: -.02em; }
 .recordPath { display: grid; grid-template-columns: 1fr 1fr; margin-top: auto; border-top: 1px solid #405663; padding-top: 24px; gap: 10px; font: 12px/1.65 var(--font-mono); }
 .recordPath span { color: #99aebb; }
@@ -312,12 +340,10 @@
   .stageControls button > span:first-child { flex-basis: auto; }
   .stageControls button:nth-child(2) { border-right: 0; }
   .incidentGraphic { padding-inline: 18px; }
-  .incidentGraphic > svg { margin: 2px auto -12px; }
   .incidentCopy { min-height: 740px; padding: 24px 20px; }
   .incidentCopy h3 { font-size: 25px; }
   .recordPath { font-size: 12px; gap: 10px 6px; }
-  .carKey { grid-template-columns: 1fr 1fr; }
-  .carKey li:last-child { grid-column: 1 / -1; }
+  .directionChoices { grid-template-columns: 1fr 1fr; }
   .protectionNotes { grid-template-columns: 1fr; }
   .occupant { padding: 18px; margin-inline: -5px; }
   .occupant figcaption { font-size: 14px; }
