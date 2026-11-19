@@ -3,19 +3,20 @@ import Link from "next/link";
 import { CitationButton } from "@/components/CitationButton";
 import { publications, researchProjects, scienceWriting } from "@/content/publications";
 import { links } from "@/content/links";
+import { experience } from "@/content/experience";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Research in Neural Engineering & Active Inference",
+  title: "Research in Neural Engineering, Active Inference & Clinical Trials",
   description:
-    "Research by Arjan Singh Puniani across brain-computer interfaces, neural engineering, active inference, neurotechnology, and selected science writing.",
+    "Research by Arjan Singh Puniani at Wellesley, Pitt, and UCSF, spanning active inference, implanted brain-computer interfaces, neurophysiology, and clinical trials.",
   alternates: { canonical: "/research" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/research`,
-    title: "Research in Neural Engineering & Active Inference | Arjan Singh Puniani",
+    title: "Research in Neural Engineering, Active Inference & Clinical Trials | Arjan Singh Puniani",
     description:
-      "Peer-reviewed publications, brain-computer-interface research, active-inference theory, neurotechnology work, and science writing.",
+      "Research experience at Wellesley, Pitt, and UCSF, two peer-reviewed theoretical reviews, a first-author BCI manuscript, and science writing.",
     images: [
       {
         url: "/images/research/rnel-gamified-bci-task.jpg",
@@ -25,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Research in Neural Engineering & Active Inference | Arjan Singh Puniani",
+    title: "Research in Neural Engineering, Active Inference & Clinical Trials | Arjan Singh Puniani",
     description:
-      "Peer-reviewed publications, brain-computer-interface research, active-inference theory, neurotechnology work, and science writing.",
+      "Research experience at Wellesley, Pitt, and UCSF, two peer-reviewed theoretical reviews, a first-author BCI manuscript, and science writing.",
     images: ["/images/research/rnel-gamified-bci-task.jpg"],
   },
 };
@@ -88,7 +89,38 @@ export default function Research() {
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(publicationSchema) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(scienceWritingSchema) }} />
-    <header className="page-hero"><div className="shell"><p className="eyebrow">Research record</p><h1>Research by Arjan Singh Puniani</h1><p>Two theoretical reviews co-authored with Michael C. Wiest, a collaborative BCI calibration manuscript, and science reporting for Physics World.</p></div></header>
+    <header className="page-hero">
+      <div className="shell">
+        <p className="eyebrow">Research record</p>
+        <h1>Research by Arjan Singh Puniani</h1>
+        <p>My research spans theoretical neuroscience at Wellesley, implanted brain-computer interfaces and neural data analysis at Pitt, and digital clinical trials at UCSF. I co-authored two peer-reviewed theoretical reviews, submitted a first-author BCI calibration manuscript, and wrote about neuroscience for Physics World.</p>
+        <div className="cv-actions">
+          <Link className="button" href="/cv">View CV</Link>
+          <a className="button-secondary" href={links.resume} download data-analytics-event="download_resume">Download résumé (PDF)</a>
+        </div>
+      </div>
+    </header>
+
+    {experience.filter(({ title }) => title === "Research experience").map(({ title, entries }) => (
+      <section className="section" key={title}>
+        <div className="shell">
+          <div className="section-head"><h2>{title}</h2></div>
+          <div className="timeline">
+            {entries.map(({ organization, role, dates, summary, project }) => (
+              <article key={organization}>
+                <time>{dates}</time>
+                <div>
+                  <h3>{role}</h3>
+                  <p><strong>{organization}</strong></p>
+                  <p>{summary}</p>
+                  {project && <Link className="text-link" href={project.href}>{project.label} →</Link>}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))}
 
     <section className="section"><div className="shell"><div className="section-head"><div><p className="eyebrow">Publications</p><h2>Peer-reviewed work and manuscripts</h2></div></div>{publications.map((publication) => {
       const citation = `${publication.authors} (${publication.year}). ${publication.title}. ${publication.venue}.`;

@@ -18,10 +18,10 @@ export const experience: { title: string; entries: Experience[] }[] = [
   {
     title: "Research experience",
     entries: [
-      { organization: "Wellesley College Neuroscience Department", role: "Theoretical Neuroscience Researcher", dates: "2025", summary: "Co-authored two peer-reviewed companion articles on active inference and neural computation.", project: { href: "/work/quantum-active-inference", label: "Read the research overview" } },
+      { organization: "Wellesley College Neuroscience Department", role: "Theoretical Neuroscience Researcher", dates: "2025", summary: "Contributed investigation, visualization, and manuscript review to two peer-reviewed companion articles on active inference and neural computation.", project: { href: "/work/quantum-active-inference", label: "Read the research overview" } },
       { organization: "Rehab Neural Engineering Labs, University of Pittsburgh", role: "Brain-Computer Interface Researcher", dates: "Jan 2022–May 2024", summary: "Completed 3,024 hours of research. Redesigned a repeated stimulation-detection task for implanted BCI participants, studied engagement and detection thresholds, and submitted a first-author manuscript.", project: { href: "/work/bci-calibration", label: "Read the BCI case study" } },
       { organization: "Sensorimotor Integration Laboratory, University of Pittsburgh", role: "Neurophysiology Data Analyst", dates: "Aug 2021–Jul 2022", summary: "Developed a MATLAB microsaccade detector and applied hidden Markov modeling to laminar neural recordings." },
-      { organization: "UCSF Eureka Digital Clinical Trials", role: "Clinical Research Coordinator", dates: "Jan–Jul 2021", summary: "Translated protocols and consent materials into participant-facing workflows, wrote training materials, and supported usability." },
+      { organization: "UCSF Eureka Digital Clinical Trials", role: "Clinical Research Coordinator", dates: "Jan–Jul 2021", summary: "Completed approximately 960 hours of clinical research. Translated protocols and consent materials into participant-facing workflows with engineers, wrote training materials, and supported usability." },
     ],
   },
   {

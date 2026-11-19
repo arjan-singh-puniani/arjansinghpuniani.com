@@ -74,6 +74,9 @@ export const scienceWriting: ScienceArticle[] = [
 ];
 
 export const researchProjects = [
+  "Active inference and neural computation",
+  "Microsaccade detection and modeling of laminar neural recordings",
+  "Participant-facing workflows for digital clinical trials",
   "Psychophysical calibration for intracortical brain-computer interfaces",
   "Signal degradation and possible electrode-interface biofouling",
   "Intracortical microstimulation and sensorimotor integration",
