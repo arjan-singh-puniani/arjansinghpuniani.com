@@ -3,26 +3,31 @@ import Link from "next/link";
 import styles from "./SeizeFreezeHomeFeature.module.css";
 
 export function SeizeFreezeHomeFeature() {
-  return <article className={`v2-feature v2-feature-dark ${styles.feature}`}>
-    <div className={`v2-feature-image v2-device ${styles.visual}`}>
-      <Image
-        src="/images/neurotechnology/seizefreeze-homepage-hero-v2.webp"
-        alt="Concept visualization of the proposed SeizeFreeze implant, thermoelectric assembly, and localized cortical cooling"
-        fill
-        sizes="(max-width: 900px) calc(100vw - 24px), 52vw"
-      />
-    </div>
-    <div className="v2-feature-copy">
-      <p>01 / Neurotechnology</p>
-      <h3>SeizeFreeze</h3>
-      <p className="v2-feature-lead">A focal cortical-cooling concept for drug-resistant epilepsy.</p>
-      <dl>
-        <div><dt>Role</dt><dd>Founder + device lead</dd></div>
-        <div><dt>State</dt><dd>Concept + prototype planning</dd></div>
-        <div><dt>Output</dt><dd>Architecture diagrams + thermal models</dd></div>
+  return (
+    <article className={styles.feature} aria-labelledby="seizefreeze-home-title">
+      <div className={styles.copy}>
+        <div className={styles.brand} aria-label="Cyberpunk Reality">
+          <Image className={styles.brandMark} src="/images/home/cyberpunk-reality-mark.webp" alt="" width={142} height={160} unoptimized />
+          <span>Cyberpunk<br />Reality</span>
+        </div>
+        <p className={styles.eyebrow}>Neurotechnology · Device concept</p>
+        <h3 id="seizefreeze-home-title"><Link href="/work/seizefreeze">SeizeFreeze</Link></h3>
+        <p className={styles.lead}>Exploring focal cortical cooling for drug-resistant epilepsy.</p>
+        <p className={styles.description}>I developed the proposed thermoelectric architecture and thermal models. The interactive lab lets you inspect the assembly, explore its placement, and change the model’s assumptions.</p>
+        <nav className={styles.actions} aria-label="Explore SeizeFreeze">
+          <a href="/seizefreeze-lab/index.html" data-analytics-event="view_project">Explore the interactive lab</a>
+          <Link href="/work/seizefreeze">Read the project record</Link>
+        </nav>
+      </div>
+      <figure className={styles.visual}>
+        <Image src="/images/home/cyberpunk-reality-team.webp" alt="The Cyberpunk Reality team with the Kuzneski Innovation Cup" width={1600} height={1200} unoptimized />
+        <figcaption>Cyberpunk Reality team<br /><span>Kuzneski Innovation Cup</span></figcaption>
+      </figure>
+      <dl className={styles.facts}>
+        <div><dt>My role</dt><dd>Founder &amp; device lead</dd></div>
+        <div><dt>Stage</dt><dd>Concept &amp; prototype planning</dd></div>
+        <div><dt>Scope</dt><dd>Not clinically validated</dd></div>
       </dl>
-      <Link href="/work/seizefreeze">Open case study <span>↗</span></Link>
-      <a className={styles.labLink} href="/seizefreeze-lab/index.html">Explore the device + thermal laboratory <span>↗</span></a>
-    </div>
-  </article>;
+    </article>
+  );
 }
