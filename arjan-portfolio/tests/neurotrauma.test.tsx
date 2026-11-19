@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import { IncidentExplorer } from "@/app/work/motorsport-neurotrauma-toolkit/IncidentExplorer";
-import { handoffFields, sources, stages } from "@/content/neurotrauma";
+import { handoffFields, impactDirections, sources, stages } from "@/content/neurotrauma";
 
 afterEach(cleanup);
 
@@ -9,9 +9,7 @@ describe("educational neurotrauma handoff", () => {
   it("reveals each authored stage, keeps unknowns visible, and allows revisiting the incident", () => {
     render(<IncidentExplorer/>);
     const view = document.getElementById("incident-view")!;
-    expect(screen.getByRole("img", { name: /overhead illustration of a generic open-wheel car/ })).toHaveAttribute("src", expect.stringContaining("incident-car-plate.webp"));
-    expect(view).toHaveTextContent("Suggested front-left contact");
-    expect(view).toHaveTextContent("not a force vector or damage estimate");
+    expect(screen.getByRole("img", { name: /Redgrund’s Red Bull RB19 model/ })).toHaveAttribute("src", expect.stringContaining("rb19-poster.webp"));
     for (const stage of stages) {
       const control = screen.getByRole("button", { name: new RegExp(stage.name) });
       fireEvent.click(control);
@@ -26,11 +24,35 @@ describe("educational neurotrauma handoff", () => {
     expect(screen.queryByRole("link", { name: "Inspect the fictional handoff" })).not.toBeInTheDocument();
   });
 
+  it("changes questions and physical unknowns across all directions without generating a clinical result", () => {
+    render(<IncidentExplorer/>);
+    const view = document.getElementById("incident-view")!;
+    for (const stage of stages) {
+      fireEvent.click(screen.getByRole("button", { name: new RegExp(stage.name) }));
+      for (const direction of impactDirections) {
+        fireEvent.click(screen.getByRole("radio", { name: direction.name }));
+        expect(document.querySelector("[data-incident-car]")).toHaveAttribute("data-direction", direction.id);
+        for (const question of direction.questions) expect(view).toHaveTextContent(question);
+        expect(view).toHaveTextContent(direction.unknown);
+        for (const unknown of stage.unknown) expect(view).toHaveTextContent(unknown);
+        if (stage.name === "First report") expect(view).toHaveTextContent("the driver says their head hurts");
+      }
+    }
+    expect(view).toHaveTextContent("Direction controls do not rewrite that record");
+    expect(document.querySelectorAll('input:checked')).toHaveLength(1);
+    expect(handoffFields[0].value).toContain("front-left");
+  });
+
   it("keeps all stages available as a native text walkthrough without running an assessment", () => {
     render(<IncidentExplorer/>);
     const transcript = document.getElementById("incident-transcript")!;
     for (const stage of stages) expect(transcript).toHaveTextContent(stage.description);
-    expect(document.querySelectorAll("input, textarea, canvas, iframe")).toHaveLength(0);
+    expect(document.querySelectorAll('input:not([type="radio"]), textarea, canvas, iframe')).toHaveLength(0);
+    const directions = document.getElementById("direction-transcript")!;
+    for (const direction of impactDirections) {
+      for (const question of direction.questions) expect(directions).toHaveTextContent(question);
+      expect(directions).toHaveTextContent(direction.unknown);
+    }
   });
 
   it("connects every handoff rationale and incident stage to a complete source record", () => {

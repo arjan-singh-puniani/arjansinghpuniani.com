@@ -46,7 +46,7 @@ export function BrainPlate() {
   return <>
     <div className={styles.plateImage}>
       <Image src="/images/neurotrauma/brain-sagittal-plate.webp" width={1536} height={1024}
-        alt="AI-assisted educational midsagittal head illustration facing right: cortical folds, corpus callosum, deep midline structures, cerebellar folia and branching white matter, pons, medulla, upper spinal cord and cranial cut edge. No lesion, patient imaging or measured tissue response is depicted."
+        alt="Educational midsagittal head illustration facing right: cortical folds, corpus callosum, deep midline structures, cerebellar folia and branching white matter, pons, medulla, upper spinal cord and cranial cut edge. No lesion, patient imaging or measured tissue response is depicted."
         sizes="(max-width: 800px) 90vw, 760px"/>
       <PlateMarkers items={brainKey}/>
     </div>

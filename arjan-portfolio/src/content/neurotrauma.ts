@@ -2,6 +2,14 @@
 export const evidenceReviewed = "19 November 2026";
 
 export const sources = {
+  rb19: {
+    label: "RB19 model", kind: "3D asset & license", title: "Oracle Red Bull F1 Car RB19 2023 · Redgrund", date: "Published 21 February 2024 · license checked 19 November 2026",
+    url: "https://sketchfab.com/3d-models/oracle-red-bull-f1-car-rb19-2023-e4afe46f3aab4b23a418da06fc163821",
+    locator: "Creator model page and public Sketchfab API license metadata; CC BY 4.0",
+    claim: "The vehicle study uses Redgrund’s attributed RB19 reconstruction and creator preview.",
+    supports: "The creator shares this model under Creative Commons Attribution 4.0, allowing reuse with attribution. The interactive model remains hosted on Sketchfab; its preview is resized and compressed locally.",
+    limits: "An artist’s 2023 car reconstruction, not official team CAD or a representation of 2026 hardware. No engineering compliance, loading or injury conclusion follows from this model. Livery marks remain their owners’ marks; no team, FIA or F1 endorsement is implied. Sketchfab is an external service loaded only when 3D is requested.", where: "Opening; interactive vehicle study; model credits and fallback preview",
+  },
   neuroanatomy: {
     label: "NIH anatomy", kind: "NIH anatomy reference", title: "NCI Dictionary · Brain", date: "Undated reference · accessed 19 November 2026",
     url: "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/brain",
@@ -96,7 +104,7 @@ export const sources = {
     locator: "Technical challenges; future directions",
     claim: "Vehicle motion, head motion and brain response are different quantities.",
     supports: "Discusses measurement location, in-ear sensing, linear and rotational motion, and limitations of motorsport concussion evidence.",
-    limits: "Historical review, not a description of current hardware performance. The page’s measurement checklist is an engineering interpretation, not a diagnostic algorithm.", where: "Measurement chain; no single-g-value explanation",
+    limits: "Historical review, not a description of current hardware performance. Measurement and direction-comparison prompts are authored engineering interpretations, not a validated investigation protocol or diagnostic algorithm. Direction does not generate a load or injury estimate.", where: "Direction comparison; measurement chain; no single-g-value explanation",
   },
   halo: {
     label: "Halo research", kind: "FIA engineering explanation", title: "F1 · Why Halo is the best solution", date: "July 2017 · introduction for the 2018 season",
@@ -104,7 +112,7 @@ export const sources = {
     locator: "Accident scenarios and cockpit-protection development",
     claim: "The halo adds a protective structure around the exposed cockpit.",
     supports: "Explains development against car-to-car, car-to-environment and external-object scenarios.",
-    limits: "Historical design rationale, not a promise against every impact or neurological injury. AI-assisted vehicle and cockpit plates are generic illustrations; exact geometry and performance are not validated.", where: "Incident vehicle key; halo annotation; protection explanation",
+    limits: "Historical design rationale, not a promise against every impact or neurological injury. The cockpit cutaway and RB19 reconstruction do not validate equipment geometry or protective performance.", where: "Interactive vehicle study; halo annotation; protection explanation",
   },
   helmet: {
     label: "Helmet / FHR", kind: "FIA equipment guidance", title: "FIA Standard Guidelines · Helmets", date: "Undated public guide · accessed 19 November 2026",
@@ -134,11 +142,40 @@ export const sources = {
 
 export type SourceId = keyof typeof sources;
 
+export const impactDirections = [
+  {
+    id: "front-left", name: "Front-left", context: "Front-left approach selected.",
+    camera: [3.2,-2.7,1.9],
+    questions: ["Which surfaces contacted first, and in what sequence?", "Is there a view of vehicle rotation or any subsequent contact?", "What did the driver or responder report, and was head contact witnessed?"],
+    unknown: "The actual approach angle, order of contacts and any subsequent rotation.",
+  },
+  {
+    id: "front", name: "Front", context: "An approach from ahead of the car is selected.",
+    camera: [1.5,-3.5,1.45],
+    questions: ["Which front structures and barrier surfaces were involved?", "If vehicle data exist, where was the sensor and what are its axes, timing and quality?", "What did the driver or responder report, with what source and observation time?"],
+    unknown: "Whether the occupant or helmet contacted another surface.",
+  },
+  {
+    id: "left-side", name: "Left side", context: "An approach from the driver’s left is selected.",
+    camera: [4.1,-.5,1.8],
+    questions: ["Which left-side area was contacted, and did another contact follow?", "Are there views of the cockpit context or an equipment inspection?", "Was head contact witnessed, reported later or simply not observed?"],
+    unknown: "Whether there was cockpit intrusion or helmet contact; the model establishes neither.",
+  },
+  {
+    id: "rear", name: "Rear", context: "An approach from behind the car is selected.",
+    camera: [2.4,3.1,1.5],
+    questions: ["Where was rear contact, and what happened in the complete incident sequence?", "If vehicle data exist, what are their source, axes, timing and measurement quality?", "What did the driver or responder report, and did symptoms change over time?"],
+    unknown: "Whether rotation, rebound or a second contact followed.",
+  },
+] as const;
+
+export type ImpactDirection = typeof impactDirections[number];
+
 export const stages = [
   {
     name: "Impact", label: "The mechanism", title: "The car has stopped. The clinical picture hasn’t formed.",
-    description: "A fictional open-wheel car makes angled contact with a barrier. A video view suggests front-left contact; the complete sequence is not visible.",
-    known: ["Angled barrier contact is visible in one video view.", "The car comes to rest. No impact recording is supplied."],
+    description: "Compare how contact context changes the questions, while head motion and clinical findings remain unknown.",
+    known: ["Direction chosen by the visitor; no incident recording supplied.", "Fictional driver report held constant across all four directions."],
     unknown: ["Head motion, tissue loading and injury status.", "Sensor recordings, barrier response and full impact sequence."],
     lesson: "Mechanism starts a question. It does not answer whether a driver is injured.",
     source: "biomechanics" as SourceId,

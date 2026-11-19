@@ -1,0 +1,36 @@
+{
+  "base": "http://127.0.0.1:3225",
+  "checkedAt": "2026-11-19T15:53:02.007Z",
+  "results": [
+    {
+      "browser": "Chrome with hardware rendering",
+      "width": 1440,
+      "height": 1000,
+      "reducedMotion": true,
+      "fourCameraViews": true,
+      "orbitDrag": true,
+      "presets": true,
+      "externalRequestsAfterActivation": 61
+    },
+    {
+      "browser": "Chrome with hardware rendering",
+      "width": 390,
+      "height": 844,
+      "reducedMotion": true,
+      "fourCameraViews": true,
+      "orbitDrag": true,
+      "presets": true,
+      "externalRequestsAfterActivation": 61
+    },
+    {
+      "browser": "Chrome with hardware rendering",
+      "width": 320,
+      "height": 740,
+      "reducedMotion": true,
+      "fourCameraViews": true,
+      "orbitDrag": true,
+      "presets": true,
+      "externalRequestsAfterActivation": 61
+    }
+  ]
+}

@@ -30,6 +30,12 @@ try {
     await page.screenshot({ path: `${out}/${width}-opening.png` });
     await page.getByRole("link", { name: "Explore the incident", exact: true }).click();
     const names = ["Impact", "First report", "Medical review", "Handoff"];
+    const directions = [
+      { name: "Front-left", id: "front-left", question: /Which surfaces contacted first/, unknown: /actual approach angle/ },
+      { name: "Front", id: "front", question: /Which front structures/, unknown: /occupant or helmet contacted/ },
+      { name: "Left side", id: "left-side", question: /Which left-side area/, unknown: /cockpit intrusion or helmet contact/ },
+      { name: "Rear", id: "rear", question: /Where was rear contact/, unknown: /rotation, rebound or a second contact/ },
+    ];
     for (const name of names) {
       const button = page.getByRole("button", { name: new RegExp(name) });
       if (width < 500) await button.tap();
@@ -37,7 +43,17 @@ try {
       assert.equal(await button.getAttribute("aria-pressed"), "true");
       assert.equal(await page.locator('[aria-pressed="true"]').count(), 1);
       assert.ok(await page.getByRole("heading", { name: "Still unknown", exact: true }).isVisible());
-      assert.equal(await page.locator("[data-incident-car]").getAttribute("data-emphasis"), name === "Impact" ? "car" : "driver");
+      for (const direction of directions) {
+        const radio = page.getByRole("radio", { name: direction.name, exact: true });
+        if (width < 500) await radio.tap();
+        else { await radio.focus(); await page.keyboard.press("Space"); }
+        assert.equal(await radio.isChecked(), true);
+        assert.equal(await page.locator("[data-incident-car]").getAttribute("data-direction"), direction.id);
+        assert.match(await page.locator("#direction-information").innerText(), direction.question);
+        assert.match(await page.locator("#incident-view").innerText(), direction.unknown);
+        assert.equal(await page.locator('input[name="impact-direction"]:checked').count(), 1);
+        if (name === "First report") assert.match(await page.locator("#incident-view").innerText(), /the driver says their head hurts/);
+      }
     }
     assert.match(await page.locator("#incident-view").innerText(), /acknowledgement has not been confirmed/);
     await page.getByRole("button", { name: /Impact/ }).click();
@@ -73,7 +89,7 @@ try {
       }
     }
     const sources = page.locator('[id^="source-"]');
-    assert.equal(await sources.count(), 16);
+    assert.equal(await sources.count(), 17);
     for (const detail of await sources.all()) {
       await detail.locator("summary").click();
       assert.ok(await detail.getAttribute("open") !== null);
@@ -111,6 +127,10 @@ try {
   assert.equal(await page.locator("#incident-transcript").getAttribute("open"), "");
   assert.match(await page.locator("#incident-transcript").innerText(), /receiving clinician has accepted/);
   assert.equal(await page.locator("#incident-transcript article").count(), 4);
+  for (const radio of await page.getByRole("radio").all()) assert.equal(await radio.isDisabled(), true);
+  await page.locator("#direction-transcript summary").click();
+  assert.equal(await page.locator("#direction-transcript section").count(), 4);
+  assert.match(await page.locator("#direction-transcript").innerText(), /rotation, rebound or a second contact/);
   await page.locator("#handoff details summary").first().click();
   assert.equal(await page.locator("#handoff details").first().getAttribute("open"), "");
   results.push({ browser: "chromium", javaScript: false, textWalkthrough: true, fieldRationale: true });
@@ -121,12 +141,29 @@ try {
   await withoutImages.goto(`${base}${route}`, { waitUntil: "networkidle" });
   assert.match(await withoutImages.locator("#information").innerText(), /Corpus callosum/);
   assert.match(await withoutImages.locator("#protection").innerText(), /FHR yoke/);
-  assert.match(await withoutImages.locator("[data-incident-car]").innerText(), /Suggested front-left contact/);
-  assert.match(await withoutImages.locator("[data-incident-car]").innerText(), /not a force vector/);
+  await withoutImages.getByRole("radio", { name: "Rear", exact: true }).check();
+  assert.match(await withoutImages.locator("#direction-information").innerText(), /Where was rear contact/);
   await withoutImages.getByRole("button", { name: /First report/ }).click();
   assert.match(await withoutImages.locator("#incident-view").innerText(), /head hurts/);
   results.push({ browser: "chromium", imagesBlocked: true, textKeys: true, incidentInteraction: true });
   await noImages.close();
+  const blockedViewer = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  await blockedViewer.route("https://static.sketchfab.com/**", route => route.abort());
+  const blocked = await blockedViewer.newPage();
+  await blocked.goto(`${base}${route}`, { waitUntil: "networkidle" });
+  await blocked.getByRole("button", { name: /Explore in 3D/ }).click();
+  await blocked.waitForFunction(() => document.querySelector("[data-incident-car]")?.getAttribute("data-viewer-state") === "error");
+  await blocked.getByRole("radio", { name: "Rear", exact: true }).check();
+  assert.match(await blocked.locator("#direction-information").innerText(), /Where was rear contact/);
+  assert.ok(await blocked.getByRole("button", { name: "Retry 3D view" }).isVisible());
+  let retried = false;
+  await blockedViewer.unroute("https://static.sketchfab.com/**");
+  await blockedViewer.route("https://static.sketchfab.com/**", route => { retried = true; return route.abort(); });
+  await blocked.getByRole("button", { name: "Retry 3D view" }).click();
+  await blocked.waitForFunction(() => document.querySelector("[data-incident-car]")?.getAttribute("data-viewer-state") === "error");
+  assert.equal(retried, true, "Retry must make a fresh request after the SDK failed to load");
+  results.push({ browser: "chromium", viewerBlocked: true, fallback: true, directions: true });
+  await blockedViewer.close();
 } finally { await browser.close(); }
 
 const safari = await webkit.launch();
