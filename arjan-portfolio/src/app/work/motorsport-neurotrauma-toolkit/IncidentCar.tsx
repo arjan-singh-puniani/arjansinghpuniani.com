@@ -19,7 +19,7 @@ declare global {
 }
 
 const modelId = "e4afe46f3aab4b23a418da06fc163821";
-const target = [0, -.53, .2];
+const target = [0, -.53, .1];
 const cameraDuration = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : .6;
 
 export function IncidentCar({ direction, interactive }: { direction: ImpactDirection; interactive: boolean }) {
@@ -47,7 +47,7 @@ export function IncidentCar({ direction, interactive }: { direction: ImpactDirec
           viewer.addEventListener("viewerready", () => {
             if (cancelled) return;
             window.clearTimeout(timeout);
-            viewer.setBackground({ color: [.86,.88,.89] });
+            viewer.setBackground({ color: [16 / 255,31 / 255,42 / 255] });
             setStatus("ready");
           });
         },
@@ -66,7 +66,7 @@ export function IncidentCar({ direction, interactive }: { direction: ImpactDirec
   }, [requested, attempt]);
 
   useEffect(() => {
-    if (status === "ready") api.current?.setCameraLookAt(direction.camera, target, cameraDuration());
+    if (status === "ready") api.current?.setCameraLookAt(direction.camera, direction.cameraTarget, cameraDuration());
   }, [direction, status]);
 
   function loadViewer() {
@@ -85,8 +85,8 @@ export function IncidentCar({ direction, interactive }: { direction: ImpactDirec
       </div>}
     </div>
     <div className={styles.modelTools} role="group" aria-label="3D camera views">
-      <button type="button" disabled={status !== "ready"} onClick={()=>api.current?.setCameraLookAt(direction.camera,target,cameraDuration())}>Reset view</button>
-      <button type="button" disabled={status !== "ready"} onClick={()=>api.current?.setCameraLookAt([0,-.55,6],target,cameraDuration())}>Top view</button>
+      <button type="button" disabled={status !== "ready"} onClick={()=>api.current?.setCameraLookAt(direction.camera,direction.cameraTarget,cameraDuration())}>Reset view</button>
+      <button type="button" disabled={status !== "ready"} onClick={()=>api.current?.setCameraLookAt([0,-.55,6.1],target,cameraDuration())}>Top view</button>
       <button type="button" disabled={status !== "ready"} onClick={()=>api.current?.setCameraLookAt([1.35,-1.6,1.65],[0,-.6,.45],cameraDuration())}>Cockpit view</button>
       {requested && <button type="button" onClick={()=>{setRequested(false);setStatus("idle");}}>Close 3D</button>}
       <span>Drag to orbit · pinch or scroll to zoom</span>
