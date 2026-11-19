@@ -170,6 +170,19 @@
       ],
       "visual": "Not presented as a Parkinson disease estimate",
       "review": "verified against the primary article abstract only"
+    },
+    {
+      "id": "STUDY-08",
+      "wording": "The authors report that results were robust to additional adjustment and multiple imputation; sensitivity analyses indicated that substantial unmeasured confounding would be required to explain the observed associations.",
+      "source": "Scott GD, Lim MM, Elliott JE, Neilson LE. JAMA Neurology. 2026. doi:10.1001/jamaneurol.2026.4219",
+      "url": "https://jamanetwork.com/journals/jamaneurology/article-abstract/2856723",
+      "classification": "author-reported abstract sensitivity analysis",
+      "limitations": [
+        "Abstract-level summary only; detailed methods, sensitivity-analysis assumptions, and diagnostics not reviewed",
+        "Sensitivity analyses do not rule out residual confounding"
+      ],
+      "visual": "Qualified note in the evidence section and claim register",
+      "review": "verified against the primary article abstract only"
     }
   ],
   "primary_study_audit": {
@@ -178,6 +191,6 @@
     "full_text_accessed": false,
     "absolute_pd_event_counts_in_abstract": false,
     "independent_scientific_review": false,
-    "status": "Abstract-level verification only; full-text methods, detailed limitations, and sensitivity analyses remain outstanding"
+    "status": "Abstract-level verification only; full-text methods, detailed limitations, and sensitivity-analysis methods remain outstanding"
   }
 }
