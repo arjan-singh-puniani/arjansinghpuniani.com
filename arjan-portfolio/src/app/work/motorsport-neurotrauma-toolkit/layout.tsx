@@ -7,17 +7,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "article",
     url,
-    title: "Motorsport Neurotrauma Toolkit | Arjan Singh Puniani",
+    title: "From Impact to Informed Care | Arjan Singh Puniani",
     description:
-      "A Version 0.2 pilot intake card and disposition algorithm drafted by Arjan Singh Puniani for motorsport medical handoff. Not clinically validated.",
-    images: [{ url: "/og.png", alt: "Motorsport Neurotrauma Toolkit — Arjan Singh Puniani" }],
+      "An independent, F1-focused educational overview of crash information, protection systems and neurological handoff. Designed and built by Arjan Singh Puniani. Not clinically validated.",
+    images: [{ url: "/work/motorsport-neurotrauma-toolkit/opengraph-image", alt: "From impact to informed care — Arjan Singh Puniani" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Motorsport Neurotrauma Toolkit | Arjan Singh Puniani",
+    title: "From Impact to Informed Care | Arjan Singh Puniani",
     description:
-      "A Version 0.2 pilot intake card and disposition algorithm drafted by Arjan Singh Puniani for motorsport medical handoff. Not clinically validated.",
-    images: ["/og.png"],
+      "An independent, F1-focused educational overview of crash information, protection systems and neurological handoff. Designed and built by Arjan Singh Puniani. Not clinically validated.",
+    images: ["/work/motorsport-neurotrauma-toolkit/opengraph-image"],
   },
 };
 
@@ -29,7 +29,7 @@ export default function MotorsportNeurotraumaLayout({ children }: { children: Re
       "@id": `${url}#work`,
       name: "Motorsport Neurotrauma Toolkit",
       description:
-        "A Version 0.2 pilot intake card and disposition algorithm drafted by Arjan Singh Puniani for motorsport medical handoff. Not clinically validated.",
+        "An independent, F1-focused educational overview of crash information, protection systems and neurological handoff. Designed and built by Arjan Singh Puniani. Not clinically validated.",
       url,
       author: { "@type": "Person", "@id": `${siteUrl}/#arjan-singh-puniani`, name: "Arjan Singh Puniani" },
       isAccessibleForFree: true,

@@ -118,7 +118,7 @@ export const projects: Project[] = [
     evidence: [{ label: "Portfolio résumé", sourceFile: "ArjanSinghPuniani_2026.pdf", verified: true }]
   },
   {
-    slug: "motorsport-neurotrauma-toolkit", title: "Mechanism-to-Medical Center", shortDescription: "A Version 0.2 pilot intake card and disposition algorithm for recording crash mechanics and acute neurologic observations.",
+    slug: "motorsport-neurotrauma-toolkit", title: "Mechanism-to-Medical Center", shortDescription: "An F1-focused incident explorer and annotated handoff demonstration, extending an independent pilot documentation toolkit.",
     category: ["Motorsport Medicine", "Education"], status: "Exploratory", yearStart: 2026, yearEnd: "Present", role: "Designer and technical writer",
     problem: "Concussion tools document symptoms and medical warning signs, while motorsport safety records document the crash and occupant-protection system. Those records often remain disconnected during the handoff from trackside response to medical care.",
     approach: ["Designed a four-domain intake structure covering crash mechanism, occupant protection, acute neurological observations, and initial disposition.", "Built a companion pilot disposition algorithm for four-wheeled racing, separating clinical decisions from Race Control authority.", "Mapped fields and terminology against cited concussion and motorsport-safety references while preserving local-protocol constraints.", "Sought criticism from motorsport physicians and safety professionals, then recorded unresolved questions about terminology, users, observation reliability, workflow location, and series rules."],
