@@ -1,0 +1,106 @@
+{
+  "base": "http://127.0.0.1:3193",
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "axeViolations": 0,
+      "images": 6
+    },
+    {
+      "name": "tablet",
+      "width": 820,
+      "height": 1180,
+      "axeViolations": 0,
+      "images": 6
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "axeViolations": 0,
+      "images": 6
+    },
+    {
+      "name": "small-mobile",
+      "width": 320,
+      "height": 760,
+      "axeViolations": 0,
+      "images": 6
+    }
+  ],
+  "errors": [],
+  "failedResponses": [],
+  "links": [
+    {
+      "href": "/",
+      "status": 200
+    },
+    {
+      "href": "/work",
+      "status": 200
+    },
+    {
+      "href": "/research",
+      "status": 200
+    },
+    {
+      "href": "/notes",
+      "status": 200
+    },
+    {
+      "href": "/playground",
+      "status": 200
+    },
+    {
+      "href": "/about",
+      "status": 200
+    },
+    {
+      "href": "/cv",
+      "status": 200
+    },
+    {
+      "href": "/contact",
+      "status": 200
+    },
+    {
+      "href": "/work/seizefreeze",
+      "status": 200
+    },
+    {
+      "href": "/seizefreeze-lab/index.html",
+      "status": 200
+    },
+    {
+      "href": "/hospitalsim/ortho/index.html",
+      "status": 200
+    },
+    {
+      "href": "/atlas",
+      "status": 200
+    },
+    {
+      "href": "/work/bci-calibration",
+      "status": 200
+    },
+    {
+      "href": "/documents/arjan-singh-puniani-resume.pdf",
+      "status": 200
+    },
+    {
+      "href": "/privacy",
+      "status": 200
+    },
+    {
+      "href": "/work/quantum-active-inference",
+      "status": 200
+    },
+    {
+      "href": "/work/vector-ekg-reasonos",
+      "status": 200
+    }
+  ],
+  "status": "PASS"
+}

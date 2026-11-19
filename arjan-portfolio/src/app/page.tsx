@@ -35,230 +35,83 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <>
-      <section className={`v2-hero ${styles.heroScope}`}>
-        <div className="shell v2-hero-grid">
-          <div className="v2-hero-copy">
-            <p className="v2-label">
-              Neural engineering · California
-            </p>
-            <h1 className={styles.heroTitle}>Arjan Singh Puniani</h1>
-            <p className={styles.heroFocus}>
-              I am a neural engineer pursuing medicine. My background includes implanted brain-computer interface research at Pitt, clinical research at UCSF, and work in emergency departments. I build interactive tools for medical education.
-            </p>
-            <nav className={styles.resourceLinks} aria-label="Explore research resources">
-              <Link href="/work/vector-ekg-reasonos/workspace">
-                <strong>Measure an ECG interval</strong>
-                <span>Work through a real recording in ReasonOS</span>
-              </Link>
-              <a href="/atlas">
-                <strong>Inspect a medical intervention</strong>
-                <span>Explore anatomy and original sources in BODY//ATLAS</span>
-              </a>
-              <Link href="/research">
-                <strong>Read my research</strong>
-                <span>Publications and research experience</span>
-              </Link>
+    <div className={styles.home}>
+      <section className={`${styles.wrap} ${styles.intro}`} aria-labelledby="intro-title">
+        <p className={styles.eyebrow}>Neural engineering · California</p>
+        <div className={styles.introGrid}>
+          <div>
+            <h1 id="intro-title">Arjan Singh<br />Puniani<span>.</span></h1>
+            <p className={styles.introLead}>I’m a neural engineer pursuing medicine.</p>
+            <p className={styles.introBody}>My background includes implanted brain–computer interface research at Pitt, clinical research at UCSF, and work in emergency departments. I build research software and interactive tools for medical education, and develop neurotechnology concepts.</p>
+            <nav className={styles.introLinks} aria-label="Introduction">
+              <a className={styles.primaryLink} href="#selected-work" data-analytics-event="hero_project_click">Explore the work</a>
+              <Link href="/research">Research &amp; publications</Link>
             </nav>
-            <div className="v2-actions">
-              <Link href="#selected-work" data-analytics-event="hero_project_click">
-                Selected work <b>↗</b>
-              </Link>
-              <Link href="/cv">CV</Link>
-            </div>
           </div>
-          <figure className={styles.heroPortrait}>
-            <Image
-              src="/images/hero/arjan-headshot.webp"
-              alt="Arjan Singh Puniani smiling in a black quarter-zip"
-              width={1059}
-              height={1485}
-              priority
-              sizes="(max-width: 480px) calc(100vw - 48px), 400px"
-            />
-            <figcaption>
-              <span>Arjan Singh Puniani</span>
-              <Link href="/about">About me ↗</Link>
-            </figcaption>
+          <figure className={styles.portrait}>
+            <Image src="/images/hero/arjan-headshot.webp" alt="Arjan Singh Puniani" width={1059} height={1485} priority sizes="(max-width: 600px) 92px, (max-width: 1000px) 240px, 280px" />
+            <figcaption><span>American Canyon, CA</span><Link href="/about">About me</Link></figcaption>
           </figure>
         </div>
       </section>
 
-      <section className="v2-work" id="selected-work">
-        <div className="shell v2-work-head">
-          <p className="v2-section-number">[ 01 — Selected work ]</p>
-          <h2>Selected projects.</h2>
-          <Link href="/work">View all projects ↗</Link>
-        </div>
+      <section className={`${styles.wrap} ${styles.work}`} id="selected-work" aria-labelledby="work-heading">
+        <header className={styles.sectionHead}>
+          <div><p className={styles.eyebrow}>Projects &amp; research</p><h2 id="work-heading">Selected work</h2></div>
+          <Link href="/work">All projects</Link>
+        </header>
 
         <SeizeFreezeHomeFeature />
 
-        <article className="v2-feature" aria-labelledby="body-atlas-home-title">
-          <div className={`v2-feature-image ${styles.projectPreviewFrame} ${styles.darkPreviewFrame}`}>
-            <Image
-              src="/images/home/body-atlas-neuralink-preview.webp"
-              alt="BODY//ATLAS research preview: Neuralink recording mechanism and source-linked anatomy"
-              fill
-              className={styles.projectPreviewImage}
-              sizes="(max-width: 800px) 100vw, 56vw"
-            />
-          </div>
-          <div className="v2-feature-copy">
-            <p>02 / Research software · Biomedical evidence</p>
-            <h3 id="body-atlas-home-title"><Link href="/work/body-atlas">BODY//ATLAS</Link></h3>
-            <p className="v2-feature-lead">
-              Explore medical interventions through human anatomy, original FDA records, and linked research.
-            </p>
-            <dl>
-              <div><dt>Role</dt><dd>Independent designer + developer</dd></div>
-              <div><dt>State</dt><dd>Working research prototype</dd></div>
-              <div><dt>Coverage</dt><dd>92 explained entries · dated original sources</dd></div>
-            </dl>
-            <a href="/atlas">Launch BODY//ATLAS <span aria-hidden="true">↗</span></a>
+        <article className={styles.ortho} aria-labelledby="ortho-home-title">
+          <header className={styles.projectHeading}>
+            <div><p className={styles.eyebrow}>hospitalSIM · Interactive medical education</p><h3 id="ortho-home-title"><a href="/hospitalsim/ortho/index.html">ORTHO Lab</a></h3></div>
+            <a className={styles.primaryLink} href="/hospitalsim/ortho/index.html" data-analytics-event="view_project">Try the fracture case</a>
+          </header>
+          <figure className={styles.orthoImage}>
+            <a href="/hospitalsim/ortho/index.html" aria-label="Open ORTHO Lab’s interactive fracture case">
+              <Image src="/images/home/ortho-lab-capture.webp" alt="Actual ORTHO Lab interface: a clamp at a displaced femur fracture, with front and side views and alignment controls" width={2440} height={1618} unoptimized />
+            </a>
+            <figcaption>Gameplay capture · Fracture reduction in the operative view</figcaption>
+          </figure>
+          <div className={styles.projectDetails}>
+            <p className={styles.projectSummary}>An interactive 3D case for exploring fracture alignment, fixation, and imaging in two views.</p>
+            <div><p>I built the case around a displaced femur fracture. Move and rotate the clamp, compare projections, seat the nail, and review the result.</p><p className={styles.scopeNote}>Educational simulation. Gestures and thresholds are game rules, not operative guidance.</p></div>
+            <dl className={styles.facts}><div><dt>My work</dt><dd>Design &amp; development</dd></div><div><dt>Stage</dt><dd>Playable prototype</dd></div></dl>
           </div>
         </article>
 
-        <article className="v2-feature v2-feature-light">
-          <div className={`v2-feature-image ${styles.projectPreviewFrame} ${styles.lightPreviewFrame}`}>
-            <Image
-              src="/images/home/quantum-active-inference-preview.png"
-              alt="Conceptual illustration of conscious active inference, Orch OR, and a microtubule-based quantum computation motif"
-              fill
-              className={styles.projectPreviewImage}
-              sizes="(max-width: 800px) 100vw, 56vw"
-            />
-          </div>
-          <div className="v2-feature-copy">
-            <p>03 / Active inference · Orch OR</p>
-            <h3>Conscious active inference</h3>
-            <p className="v2-feature-lead">
-              Two peer-reviewed theoretical reviews, co-authored with Michael C. Wiest in 2025, on quantum dynamics as a possible implementation of active inference.
-            </p>
-            <dl>
-              <div>
-                <dt>Role</dt>
-                <dd>Co-author</dd>
-              </div>
-              <div>
-                <dt>State</dt>
-                <dd>Published</dd>
-              </div>
-              <div>
-                <dt>Year</dt>
-                <dd>2025</dd>
-              </div>
-            </dl>
-            <Link href="/work/quantum-active-inference">Open the case study <span>↗</span></Link>
-          </div>
-        </article>
-
-        <article className="v2-feature reasonos-home-feature">
-          <div className={`v2-feature-image ${styles.projectPreviewFrame} ${styles.lightPreviewFrame}`}>
-            <Image
-              src="/images/home/reasonos-interval-review.webp"
-              alt="A recorded ECG with two calipers and a note flagged for review after the interval was revised"
-              fill
-              className={styles.projectPreviewImage}
-              sizes="(max-width: 800px) 100vw, 56vw"
-            />
-          </div>
-          <div className="v2-feature-copy">
-            <p>04 / Research software · ECG education</p>
-            <h3>Vector EKG + ReasonOS</h3>
-            <p className="v2-feature-lead">
-              Measure the gap between two beats and save a note. Change the measurement to see which note needs review.
-            </p>
-            <dl>
-              <div>
-                <dt>Role</dt>
-                <dd>Independent designer + developer</dd>
-              </div>
-              <div>
-                <dt>State</dt>
-                <dd>Tested educational prototype</dd>
-              </div>
-              <div>
-                <dt>Recording source</dt>
-                <dd><a href="https://physionet.org/content/ptb-xl/1.0.3/">PTB-XL v1.0.3 on PhysioNet</a> · Wagner et al. · CC BY 4.0</dd>
-              </div>
-            </dl>
-            <div className={styles.ecgActions}>
-              <Link href="/work/vector-ekg-reasonos/workspace">Try the ECG workspace <span aria-hidden="true">↗</span></Link>
-              <Link href="/work/vector-ekg-reasonos" data-analytics-event="view_project">Read the case study</Link>
-            </div>
-          </div>
-        </article>
-
-        <article className="v2-feature v2-feature-light">
-          <div className="v2-feature-copy">
-            <p>05 / Brain-computer interfaces</p>
-            <h3>Gamified BCI calibration</h3>
-            <p className="v2-feature-lead">
-              A game-like calibration task for repeated BCI psychophysics sessions at Pitt RNEL.
-            </p>
-            <dl>
-              <div>
-                <dt>Role</dt>
-                <dd>R&amp;D neural engineer</dd>
-              </div>
-              <div>
-                <dt>State</dt>
-                <dd>Completed research</dd>
-              </div>
-            </dl>
-            <Link href="/work/bci-calibration">Open case study <span>↗</span></Link>
-          </div>
-          <div className="v2-feature-image">
-            <Image
-              src="/images/research/rnel-gamified-bci-task.jpg"
-              alt="Gamified brain-computer interface calibration task in a research laboratory"
-              fill
-              sizes="(max-width: 800px) 100vw, 56vw"
-            />
-          </div>
-        </article>
-        <article className="v2-feature" aria-labelledby="rally-house-home-title">
-          <div className={`v2-feature-image ${styles.projectPreviewFrame}`}>
-            <Image
-              src="/rally-house/media/guide-club.webp"
-              alt="Rally House clubhouse beside the tennis court"
-              fill
-              className={styles.projectPreviewImage}
-              sizes="(max-width: 800px) 100vw, 56vw"
-            />
-          </div>
-          <div className="v2-feature-copy">
-            <p>06 / Browser game</p>
-            <h3 id="rally-house-home-title"><Link href="/playground/rally-house">Rally House</Link></h3>
-            <p className="v2-feature-lead">
-              A browser tennis game with a clubhouse and a swing analysis view.
-            </p>
-            <dl>
-              <div><dt>Role</dt><dd>Independent designer + developer</dd></div>
-              <div><dt>State</dt><dd>Playable prototype</dd></div>
-            </dl>
-            <Link href="/playground/rally-house">Play Rally House <span aria-hidden="true">↗</span></Link>
-          </div>
-        </article>
+        <div className={styles.supportingGrid}>
+          <article className={styles.supporting} aria-labelledby="atlas-home-title">
+            <a className={styles.supportingImage} href="/atlas" aria-label="Open BODY//ATLAS">
+              <Image src="/images/home/body-atlas-current.webp" alt="Current BODY//ATLAS interface showing the anatomical body surface, intervention locations, and original-source records" width={1600} height={1100} unoptimized />
+            </a>
+            <p className={styles.eyebrow}>Research software · Design &amp; development</p>
+            <h3 id="atlas-home-title"><a href="/atlas">BODY//ATLAS</a></h3>
+            <p>Explore medical interventions through anatomy, original FDA records, and linked research. Open an entry to inspect its evidence and limitations.</p>
+            <a className={styles.textLink} href="/atlas">Explore the atlas</a>
+          </article>
+          <article className={styles.supporting} aria-labelledby="bci-home-title">
+            <Link className={styles.supportingImage} href="/work/bci-calibration" aria-label="Read about gamified BCI calibration">
+              <Image src="/images/home/bci-calibration.webp" alt="The real brain–computer interface calibration task running on a monitor in the Pitt research laboratory" width={1200} height={676} unoptimized />
+            </Link>
+            <p className={styles.eyebrow}>Pitt RNEL · R&amp;D neural engineer</p>
+            <h3 id="bci-home-title"><Link href="/work/bci-calibration">Gamified BCI calibration</Link></h3>
+            <p>A repeated tactile-detection task redesigned as a game for implanted BCI research. The two-choice measurement stayed intact.</p>
+            <Link className={styles.textLink} href="/work/bci-calibration">Read the project record</Link>
+          </article>
+        </div>
+        <nav className={styles.moreWork} aria-label="More of my work">
+          <p>More to explore</p><Link href="/research">Publications &amp; research</Link><Link href="/playground">Games &amp; experiments</Link><Link href="/cv">Curriculum vitae</Link>
+        </nav>
       </section>
 
       <section className={styles.contact} aria-labelledby="contact-heading">
-        <div className={`shell ${styles.contactGrid}`}>
-          <div>
-            <p className="v2-section-number">[ 02 — Contact ]</p>
-            <h2 id="contact-heading">Contact.</h2>
-          </div>
-          <div className={styles.contactActions}>
-            <Link href="/contact">
-              Get in touch <span aria-hidden="true">↗</span>
-            </Link>
-            <a href={links.email}>Email directly</a>
-            <a href={links.resume} download>
-              Download CV
-            </a>
-          </div>
+        <div className={`${styles.wrap} ${styles.contactGrid}`}>
+          <div><p className={styles.eyebrow}>Contact</p><h2 id="contact-heading">Get in touch.</h2><p>For questions about a project, research, or working together.</p></div>
+          <div className={styles.contactLinks}><a href={links.email}>arjan.singh.puniani.main@gmail.com</a><Link href="/contact">Contact form</Link><a href={links.resume} download>Download CV</a></div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
