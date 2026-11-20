@@ -13,7 +13,7 @@ export function SeizeFreezeHomeFeature() {
         <p className={styles.eyebrow}>Neurotechnology · Device concept</p>
         <h3 id="seizefreeze-home-title"><Link href="/work/seizefreeze">SeizeFreeze</Link></h3>
         <p className={styles.lead}>Exploring focal cortical cooling for drug-resistant epilepsy.</p>
-        <p className={styles.description}>I developed the proposed thermoelectric architecture and thermal models. The interactive lab lets you inspect the assembly, explore its placement, and change the model’s assumptions.</p>
+        <p className={styles.description}>I developed the proposed thermoelectric architecture and thermal models, built early prototypes, and filed a provisional patent. The interactive lab lets you inspect the assembly, explore its placement, and change the model’s assumptions.</p>
         <nav className={styles.actions} aria-label="Explore SeizeFreeze">
           <a href="/seizefreeze-lab/index.html" data-analytics-event="view_project">Explore the interactive lab</a>
           <Link href="/work/seizefreeze">Read the project record</Link>
@@ -25,7 +25,7 @@ export function SeizeFreezeHomeFeature() {
       </figure>
       <dl className={styles.facts}>
         <div><dt>My role</dt><dd>Founder &amp; device lead</dd></div>
-        <div><dt>Stage</dt><dd>Concept &amp; prototype planning</dd></div>
+        <div><dt>Stage</dt><dd>Early prototypes</dd></div>
         <div><dt>Scope</dt><dd>Not clinically validated</dd></div>
       </dl>
     </article>

@@ -1,14 +1,14 @@
 # SeizeFreeze · evidence and development path
 
-Reviewed 30 October 2026. This is an educational exploration of Cyberpunk Reality's proposed closed-loop focal cortical-cooling concept. The interactive model is new project-specific software, not device telemetry or a reproduction of an experimental SeizeFreeze device.
+Scientific sources reviewed 30 October 2026. Project history updated 19 November 2026 from the current résumé. This is an educational exploration of Cyberpunk Reality's proposed closed-loop focal cortical-cooling concept. The interactive model is new project-specific software, not device telemetry or a reproduction of an experimental SeizeFreeze device.
 
 ## What the record supports
 
-The portfolio identifies Arjan Singh Puniani as founder and device lead, with the project dating from 2022. The available project artifacts establish a proposed architecture, concept illustrations, an early pitch film, and prototype-planning requirements. No device-specific bench dataset, calibrated device model, animal experiment, human testing record, or clinical validation was found in the inspected project record. Development status therefore remains **concept and prototype planning**.
+The portfolio identifies Arjan Singh Puniani as founder and device lead, with the project dating from 2022. The current [résumé](/documents/arjan-singh-puniani-resume.pdf) records thermal modeling, early prototype construction, and a provisional patent filing. The [prototype inventory](PROTOTYPE_EVIDENCE.md) describes the reported early bench assembly. Project artifacts also include a proposed architecture, concept illustrations, and an early pitch film. No device-specific bench dataset, calibrated device model, animal experiment, human testing record, or clinical validation was found in the inspected project record. The project has reached **early prototypes**. The interactive lab remains an educational model with assumed parameters.
 
 The [University of Pittsburgh's 2023 Randall winners record, page 2](https://www.bigidea.pitt.edu/wp-content/uploads/2023/04/Meet-the-Randall-2023-Winners-PDF.pdf) names Arjan Singh Puniani, Alex Ezerins, Wendi Yin, and Jack Ketchum for Cyberpunk Reality. The portfolio records a third-place $5,000 Randall award and a $7,500 Kuzneski Innovation Cup award. These are team competition recognitions, not technical validation. The [Pitt Research 2022–23 annual report, printed page 61](https://www.research.pitt.edu/sites/default/files/pitt-research-annual-report-2022-23.pdf) independently lists CyberPunk Reality among winners of both competitions; its extracted text does not allocate the Kuzneski prize amount to individual teams. The existing winner graphic is the amount-specific project source. The supplied record does not establish a detailed allocation of engineering contributions among collaborators.
 
-The founder reports a provisional patent filing. The filing date, application number and current legal status have not been independently verified; the header labels the filing as reported. Prior source audits contained conflicting IP wording. No granted-patent or regulatory-clearance claim is made.
+The current résumé records a provisional patent filing. The filing date, application number and current legal status have not been independently verified. Prior source audits contained conflicting IP wording. No granted-patent or regulatory-clearance claim is made.
 
 ## Claim-to-source map
 

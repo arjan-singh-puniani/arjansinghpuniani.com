@@ -538,7 +538,7 @@ export function QuantumActiveInferenceCaseStudy() {
     </section>
 
     <aside className="qai-coda" aria-label="Research position">
-      <div className="shell"><span>Research position</span><p>These reviews propose a mechanism; they do not demonstrate it in neurons. The anesthesia and MRI studies discussed here were conducted by other researchers. My contribution beyond co-authorship is not separately specified in the public record.</p></div>
+      <div className="shell"><span>Research position</span><p>These reviews propose a mechanism; they do not demonstrate it in neurons. The anesthesia and MRI studies discussed here were conducted by other researchers. At Wellesley College in 2025, I contributed investigation, visualization, and manuscript review to both articles.</p></div>
     </aside>
 
     <section className="qai-section qai-references" aria-labelledby="qai-references-title">
