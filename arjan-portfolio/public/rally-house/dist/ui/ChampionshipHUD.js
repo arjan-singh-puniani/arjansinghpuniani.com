@@ -10,9 +10,8 @@ export class ChampionshipHUD {
     input;
     actions;
     root;
-    matchup;
     score;
-    scoreValue;
+    scoreRows = [];
     scoreContext;
     message;
     results;
@@ -38,14 +37,27 @@ export class ChampionshipHUD {
         this.root = document.createElement('div');
         this.root.className = 'championshipHud';
         this.root.hidden = true;
-        this.matchup = document.createElement('div');
-        this.matchup.className = 'championshipMatchup glass';
         this.score = document.createElement('div');
         this.score.className = 'championshipScore glass';
         this.score.setAttribute('aria-live', 'polite');
-        this.scoreValue = document.createElement('div');
+        // Keep names, points and the serving marker together so the score reads at a glance.
+        for (let i = 0; i < 2; i++) {
+            const row = document.createElement('div');
+            row.className = 'championshipScoreRow';
+            const server = document.createElement('span');
+            server.className = 'championshipServer';
+            server.setAttribute('role', 'img');
+            server.setAttribute('aria-label', 'Serving');
+            server.title = 'Serving';
+            const name = document.createElement('span');
+            name.className = 'championshipPlayerName';
+            const points = document.createElement('strong');
+            row.append(server, name, points);
+            this.score.append(row);
+            this.scoreRows.push({ name, points, server });
+        }
         this.scoreContext = document.createElement('small');
-        this.score.append(this.scoreValue, this.scoreContext);
+        this.score.append(this.scoreContext);
         this.message = document.createElement('div');
         this.message.className = 'championshipMessage';
         this.message.setAttribute('aria-live', 'polite');
@@ -134,7 +146,7 @@ export class ChampionshipHUD {
         this.swingButton.addEventListener('click', event => { if (event.detail === 0)
             this.input.queueSwing(); });
         this.bindTouchPad();
-        this.root.append(this.matchup, this.score, this.message, this.results, this.touchPad, this.swingButton, this.controlsHint, this.pauseButton, this.pausePanel);
+        this.root.append(this.score, this.message, this.results, this.touchPad, this.swingButton, this.controlsHint, this.pauseButton, this.pausePanel);
         document.getElementById('app')?.append(this.root);
     }
     show() {
@@ -179,7 +191,7 @@ export class ChampionshipHUD {
         this.pauseButton.hidden = paused || snapshot.phase === 'exiting' || snapshot.phase === 'matchResult';
         this.pausePanel.hidden = !paused;
         for (const button of this.reviewButtons)
-            button.hidden = !canReview || (button.classList.contains('championshipQuickReview') && (paused || !['pointResult', 'serving', 'matchResult'].includes(snapshot.phase)));
+            button.hidden = !canReview || (button.classList.contains('championshipQuickReview') && (paused || !['pointResult', 'serving'].includes(snapshot.phase)));
         text(this.soundButton, muted ? 'Sound: off' : 'Sound: on');
         this.soundButton.setAttribute('aria-pressed', String(!muted));
         this.motionButton.setAttribute('aria-pressed', String(reducedMotion));
@@ -188,8 +200,13 @@ export class ChampionshipHUD {
         this.paused = paused;
         if (paused || !this.gameplayPhase(snapshot.phase) || !this.input.enabled)
             this.resetTouch();
-        text(this.matchup, `${playerName.toUpperCase()}  vs  ${opponentName.toUpperCase()}`);
-        text(this.scoreValue, `${snapshot.score.player}  –  ${snapshot.score.opponent}`);
+        for (let i = 0; i < 2; i++) {
+            const side = i === 0 ? 'player' : 'opponent', row = this.scoreRows[i], name = i === 0 ? playerName : opponentName;
+            text(row.name, name);
+            row.name.title = name;
+            text(row.points, String(snapshot.score[side]));
+            row.server.hidden = snapshot.server !== side || snapshot.phase === 'matchResult';
+        }
         const { player, opponent } = snapshot.score, { pointsToWin, winBy } = CHAMPIONSHIP_TUNING;
         const playerMatchPoint = player + 1 >= pointsToWin && player + 1 - opponent >= winBy;
         const opponentMatchPoint = opponent + 1 >= pointsToWin && opponent + 1 - player >= winBy;

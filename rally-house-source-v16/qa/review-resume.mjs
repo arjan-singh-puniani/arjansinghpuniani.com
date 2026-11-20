@@ -14,6 +14,20 @@ try{
  await page.locator('#loading').waitFor({state:'hidden'});
  await page.getByText('Arjan',{exact:true}).tap();await page.locator('.arrival-play').tap();
  await page.locator('.championshipHud[data-phase=serving]').waitFor({timeout:20000});
+ const rows=page.locator('.championshipScoreRow');
+ assert.deepEqual(await rows.locator('.championshipPlayerName').allTextContents(),['Arjan','Leo']);
+ assert.deepEqual(await rows.locator('strong').allTextContents(),['0','0']);
+ assert.equal(await rows.nth(0).getByRole('img',{name:'Serving'}).count(),1);
+ for(const [width,height] of [[320,568],[402,681],[756,352],[440,763],[838,390],[1440,900]]){
+  await page.setViewportSize({width,height});await page.waitForTimeout(150);
+  const score=await page.locator('.championshipScore').boundingBox(),pause=await page.locator('.championshipPause').boundingBox();
+  assert(score.x>=0&&score.y>=0&&score.x+score.width<=width&&score.y+score.height<=height);
+  assert(score.x+score.width<pause.x,'Scorecard and pause do not overlap');
+  const cue=await page.locator('.championshipMessage').boundingBox();
+  assert(cue.y>=score.y+score.height||cue.x>=score.x+score.width,'Serve guidance clears the scorecard');
+  await page.screenshot({path:out+'/scorecard-'+width+'.png'});
+ }
+ await page.setViewportSize({width:440,height:763});
  await page.getByRole('button',{name:'Swing racket'}).tap();
  await page.waitForFunction(()=>window.__rh.game.motionRecorder.clip.frames.some(f=>f.contact));
  await page.locator('.championshipPause').tap();
@@ -30,6 +44,8 @@ try{
    const g=window.__rh.game;
    return {match:g.championship.active,sameMatch:g.interactiveMatch===window.reviewMatch,sameClip:g.performanceLab.timeline.clip===window.reviewRecording,reserved:g.activities.reserved('court'),input:g.matchInput.enabled,paused:g.clock.paused,hudHidden:document.querySelector('.championshipHud').hidden};
   });
+  const speed=page.getByRole('combobox',{name:'Replay speed'});
+  assert(await speed.evaluate(e=>{const s=getComputedStyle(e),text=document.createElement('canvas').getContext('2d');text.font=s.font;return e.clientWidth-parseFloat(s.paddingLeft)-parseFloat(s.paddingRight)>=text.measureText(e.selectedOptions[0].textContent).width;}),'Replay speed leaves room for its chevron');
   await page.screenshot({path:out+'/review-'+i+'.png'});
   assert.deepEqual(state,{match:true,sameMatch:true,sameClip:true,reserved:true,input:false,paused:true,hudHidden:true});
   assert.equal(await page.locator('.lab-record').isVisible(),false);
@@ -58,7 +74,13 @@ try{
  // Boundary score fixtures verify deuce and match point without manufacturing gameplay evidence.
  for(const [player,opponent,expected] of [[0,0,'First to 7 · Win by 2'],[6,5,'Your match point'],[6,6,'First to 7 · Win by 2'],[6,7,'Leo’s match point'],[9,8,'Your match point']]){
   await page.evaluate(({player,opponent})=>{window.__rh.game.championship.scoreValue={player,opponent};},{player,opponent});
-  await page.waitForFunction(expected=>document.querySelector('.championshipScore small').textContent===expected,expected);
+  await page.waitForFunction(({expected,player,opponent})=>document.querySelector('.championshipScore small').textContent===expected&&[...document.querySelectorAll('.championshipScoreRow strong')].map(e=>e.textContent).join(',')===`${player},${opponent}`,{expected,player,opponent});
+  assert.deepEqual(await rows.locator('strong').allTextContents(),[String(player),String(opponent)]);
+ }
+ for(const server of ['opponent','player']){
+  await page.evaluate(server=>{window.__rh.game.championship.serverValue=server;},server);
+  await page.waitForFunction(server=>[...document.querySelectorAll('.championshipServer')].findIndex(e=>!e.hidden)===(server==='player'?0:1),server);
+  assert.equal(await page.getByRole('img',{name:'Serving'}).count(),1);
  }
  for(const [width,height] of [[440,763],[402,580],[756,352],[1440,900]]){
   await page.setViewportSize({width,height});
@@ -68,6 +90,9 @@ try{
  }
  await page.evaluate(()=>{const g=window.__rh.game;g.championship.phaseValue='serving';g.championship.resolvePoint({winner:'player',reason:'winner',rallyLength:1});g.clock.paused=false;});
  await page.locator('.championshipResults').waitFor();
+ assert.equal(await page.getByRole('button',{name:'Analyze last swing',exact:true}).count(),1,'Results offer one review action');
+ assert.equal(await page.getByRole('img',{name:'Serving'}).count(),0,'A completed match has no server');
+ await page.screenshot({path:out+'/results.png'});
  const funds=await page.evaluate(()=>window.__rh.game.coins);
  await page.locator('.championshipResults .championshipReview').click();
  await page.getByRole('button',{name:'Back to match',exact:true}).click();
