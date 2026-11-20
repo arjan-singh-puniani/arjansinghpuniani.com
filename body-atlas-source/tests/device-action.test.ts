@@ -5,6 +5,33 @@ import { familyById, familyMappings, recordById } from '../lib/atlas';
 import { hasExplanation } from '../lib/intervention-view';
 import { interventionSummaries } from '../lib/intervention-summaries';
 import { humanRegionLocators } from '../lib/annotations';
+import { deviceIllustrations } from '../lib/device-illustrations';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import DeviceMechanism from '../components/DeviceMechanism';
+
+test('device illustrations render substantive vectors and abstain for an unsupported device',()=>{
+  for(const [id,action] of Object.entries(deviceActions)){
+    const html=renderToStaticMarkup(createElement(DeviceMechanism,{id,action,step:0,playing:false}),{identifierPrefix:id});
+    assert.ok((html.match(/<(?:path|ellipse|circle|rect)\b/g)||[]).length>6,id);
+    assert.match(html,/not to scale/);
+    assert.doesNotMatch(html,/<(?:image|script|foreignObject)\b/);
+  }
+  assert.equal(renderToStaticMarkup(createElement(DeviceMechanism,{id:'unreviewed-device',action:deviceActions.rns,step:0,playing:false})), '');
+});
+
+test('every reviewed mechanism has a device-specific illustration with component evidence',()=>{
+  assert.deepEqual(Object.keys(deviceIllustrations).sort(),Object.keys(deviceActions).sort());
+  for(const [id,illustration] of Object.entries(deviceIllustrations)){
+    assert.equal(illustration.parts.length,3,id);
+    assert.equal(new Set(illustration.parts).size,3,id);
+    assert.equal(new URL(illustration.sourceUrl).protocol,'https:');
+    assert.ok(illustration.title&&illustration.locator,id);
+  }
+  assert.notEqual(deviceIllustrations['source-fda-p140031'].title,deviceIllustrations['source-fda-p180002'].title);
+  assert.match(deviceIllustrations['source-fda-p180002'].parts.join(' '),/Duckbill/);
+  assert.match(deviceIllustrations['source-fda-p040033'].parts.join(' '),/Retained femoral neck/);
+});
 
 test('mechanisms resolve named entries, original evidence and contextual reference anatomy',()=>{
   assert.equal(Object.keys(deviceActions).length,12);

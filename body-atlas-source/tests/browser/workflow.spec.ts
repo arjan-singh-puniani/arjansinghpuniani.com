@@ -721,11 +721,13 @@ test('overview names interventions on the body and opens their original evidence
 test('selected intervention focuses reference anatomy with source-grounded mechanism and honest FDA refresh',async({page},testInfo)=>{
  await page.emulateMedia({ reducedMotion: 'no-preference' });
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto('/?entry=rns&panel=mechanism');
+ await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || '')+'/?entry=rns&panel=mechanism');
  const scene=page.getByTestId('human-reference'),panel=page.getByRole('region',{name:'Anatomy and mechanism'});
  await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
  await expect(scene).toHaveAttribute('data-focus-region','UBERON:0000955');
  await expect(scene).toHaveAttribute('data-action-kind','recording');
+ await expect(page.locator('.mechanism-caption')).toHaveCount(0);
+ await expect(scene.locator('svg[aria-label*="component illustration"]')).toHaveCount(0);
  await expect(panel).toContainText('Sense brain electrical activity');
  await expect(panel.getByRole('link',{name:'Mechanism source',exact:true})).toHaveAttribute('href',/P100026B.pdf/);
  await panel.getByRole('button',{name:'Play mechanism',exact:true}).click();
@@ -733,7 +735,7 @@ test('selected intervention focuses reference anatomy with source-grounded mecha
  await panel.getByRole('button',{name:'Pause mechanism',exact:true}).click();
  await page.screenshot({path:`test-results/${testInfo.project.name}-rns-mechanism.png`});
  const source=parseFDAUpdates('P100026',readFileSync('tests/fixtures/fda-p100026-20261027.json','utf8'),'2026-10-27T23:00:00Z');let calls=0;
- await page.route('**/api/fda?application=P100026',route=>{calls++;return calls===1?route.fulfill({json:source}):route.fulfill({status:503,json:{error:'Provider unavailable'}});});
+ await page.route(/\/api\/(?:atlas\/)?fda\?application=P100026$/,route=>{calls++;return calls===1?route.fulfill({json:source}):route.fulfill({status:503,json:{error:'Provider unavailable'}});});
  const updates=page.getByRole('region',{name:'Latest public FDA decisions'});
  await updates.getByRole('button',{name:'Check FDA updates',exact:true}).click();
  await expect(updates.getByRole('link',{name:/P100026S104/})).toHaveAttribute('href',/id=P100026S104$/);
@@ -747,20 +749,51 @@ test('selected intervention focuses reference anatomy with source-grounded mecha
    await expect(scene).toHaveAttribute('data-action-kind',action.kind);
    await expect(panel).toContainText(action.steps[0]);
    await expect(panel).toContainText('not device shape or implant placement');
+   const figure=panel.locator('.device-mechanism');
+   await expect(figure).toHaveAttribute('data-device',id);
+   await expect(figure.getByRole('img')).toBeVisible();
+   await expect(figure.getByRole('list',{name:'Illustrated components'}).getByRole('listitem')).toHaveCount(3);
+   await expect(figure.getByRole('link',{name:/Component reference/})).toHaveAttribute('href',/^https:\/\//);
+   await expect(figure).toContainText('not to scale');
+   await figure.scrollIntoViewIfNeeded();
+   await figure.screenshot({path:`test-results/${testInfo.project.name}-${id}-illustration.png`});
    await expect(panel.getByRole('link',{name:'Mechanism source',exact:true})).toHaveAttribute('href',action.sourceUrl);
  }
  await page.screenshot({path:`test-results/${testInfo.project.name}-hip-mechanism.png`});
  await page.emulateMedia({reducedMotion:'reduce'});
  await expect(panel.getByRole('button',{name:'Play mechanism',exact:true})).toBeDisabled();
- await panel.getByRole('button',{name:'Mechanism overlay',exact:true}).click();
+ const organState=await scene.getAttribute('data-organs-status');
+ await panel.getByRole('button',{name:'Mechanism diagram',exact:true}).click();
+ await expect(panel.locator('.device-mechanism')).toHaveCount(0);
+ await expect(scene).toHaveAttribute('data-organs-status',organState!);
  await expect(scene).toHaveAttribute('data-action-kind','none');
  const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(errors).toEqual([]);
 });
 
+test('device illustration stays readable and keyboard operable without WebGL',async({page})=>{
+ await page.addInitScript(()=>{
+   const getContext=HTMLCanvasElement.prototype.getContext;
+   HTMLCanvasElement.prototype.getContext=function(this:HTMLCanvasElement,type,...options){
+     if(type.startsWith('webgl'))return null;
+     return Reflect.apply(getContext,this,[type,...options]);
+   } as typeof getContext;
+ });
+ await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || '')+'/?entry=rns&panel=mechanism');
+ const panel=page.getByRole('region',{name:'Anatomy and mechanism'}),figure=panel.locator('.device-mechanism');
+ await expect(page.getByText('3D unavailable. Select a region:',{exact:true})).toBeVisible();
+ await expect(figure.getByRole('img')).toBeVisible();
+ await panel.getByRole('list',{name:'Mechanism stages'}).getByRole('button').nth(2).press('Enter');
+ await expect(figure).toHaveAttribute('data-step','2');
+ await expect(figure).toContainText('Deliver responsive stimulation');
+ await expect(panel.getByRole('button',{name:'Play mechanism',exact:true})).toBeDisabled();
+ await expect(figure.getByRole('link',{name:/Component reference/})).toHaveAttribute('target','_blank');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
+
 test('Neuralink connects regional recording, six authentic trials, hardware uncertainty and sourced history',async({page},testInfo)=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto('/?entry=neuralink&panel=mechanism');
+ await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || '')+'/?entry=neuralink&panel=mechanism');
  const scene=page.getByTestId('human-reference'),facts=page.getByRole('region',{name:'Neuralink evidence at a glance'});
  await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
  await expect(scene).toHaveAttribute('data-action-kind','bci');
