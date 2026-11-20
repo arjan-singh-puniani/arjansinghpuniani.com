@@ -4,7 +4,7 @@ import styles from "./SeizeFreezeHomeFeature.module.css";
 
 export function SeizeFreezeHomeFeature() {
   return (
-    <article className={styles.feature} aria-labelledby="seizefreeze-home-title">
+    <article className={`${styles.feature} project-tile`} aria-labelledby="seizefreeze-home-title">
       <div className={styles.copy}>
         <div className={styles.brand} aria-label="Cyberpunk Reality">
           <Image className={styles.brandMark} src="/images/home/cyberpunk-reality-mark.webp" alt="" width={142} height={160} unoptimized />

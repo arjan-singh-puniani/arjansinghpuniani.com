@@ -6,7 +6,7 @@ export const orthoPreview = "/hospitalsim/ortho/showcase.webp";
 
 export default function OrthoShowcase({ clinicHref }: { clinicHref: string }) {
   return (
-    <section className={styles.showcase} aria-labelledby="ortho-title">
+    <section className={`${styles.showcase} project-tile`} aria-labelledby="ortho-title">
       <div className={styles.showcaseCopy}>
         <p className={styles.showcaseLabel}>hospitalSIM / Orthopedic simulation</p>
         <h2 id="ortho-title">Ortho Lab</h2>

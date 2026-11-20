@@ -72,3 +72,24 @@ main#main:focus {
   .v2-ticker{width:100%;animation:none;transform:none;overflow:hidden}
 }
 /* === PORTFOLIO CONFIDENCE PASS v2 END === */
+
+a[href],
+button:enabled {
+  cursor: pointer;
+}
+
+.project-tile {
+  outline: 1px solid transparent;
+  outline-offset: 3px;
+}
+
+.project-tile:focus-within,
+.project-tile:active {
+  outline-color: #000;
+}
+
+@media (hover: hover) {
+  .project-tile:hover {
+    outline-color: #000;
+  }
+}

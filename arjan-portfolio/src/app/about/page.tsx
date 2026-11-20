@@ -114,19 +114,19 @@ export default function About() {
             <p>Some of my independent projects grew out of tennis and motorsport.</p>
           </div>
           <div className="directions">
-            <article className="direction">
+            <article className="direction project-tile">
               <span>01 / Tennis</span>
               <h3>Tennis</h3>
               <p>I play and teach tennis. I also built a small arcade tennis game.</p>
               <p><Link href="/playground/vector-tennis">Open Vector Tennis →</Link></p>
             </article>
-            <article className="direction">
+            <article className="direction project-tile">
               <span>02 / Motorsport</span>
               <h3>Motorsport</h3>
               <p>I follow motorsport closely. That led to work on crash mechanics, neurological assessment, emergency operations, and medical handoff.</p>
               <p><Link href="/work/motorsport-neurotrauma-toolkit">Open the neurotrauma work →</Link></p>
             </article>
-            <article className="direction">
+            <article className="direction project-tile">
               <span>03 / Interactive models</span>
               <h3>Interactive models</h3>
               <p>The Playground uses interactive models for anatomy, physiology, mechanical systems, and games.</p>
