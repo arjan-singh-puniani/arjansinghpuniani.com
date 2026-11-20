@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Motorcycle Mechanism Lab · Arjan Singh Puniani</title>
+  <meta name="description" content="A hands-on motorcycle assembly study by Arjan Singh Puniani. Rotate a detailed Honda CRF450 reconstruction, pull components apart, sculpt dents and inspect the action record.">
+  <meta name="theme-color" content="#08131b">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://arjansinghpuniani.com/motorcycle-mechanism-lab/index.html">
+  <meta property="og:title" content="Motorcycle Mechanism Lab · Arjan Singh Puniani">
+  <meta property="og:description" content="Pull. Deform. Separate. A hands-on component study for Mechanism-to-Medical Center.">
+  <meta property="og:type" content="website"><meta property="og:image" content="https://arjansinghpuniani.com/motorcycle-mechanism-lab/preview.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">{"imports":{"three":"/hospitalsim/vendor/build/three.module.js","three/addons/":"/hospitalsim/vendor/examples/jsm/"}}</script>
+</head>
+<body>
+  <a class="skip" href="#controls">Skip to assembly controls</a>
+  <header class="masthead">
+    <a class="wordmark" href="/"><span>ASP</span><strong>Arjan Singh Puniani</strong></a>
+    <a class="back" href="/work/motorsport-neurotrauma-toolkit">Mechanism-to-Medical Center <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <div class="titlebar"><div><p class="eyebrow">Mechanism lab / 01</p><h1>Take the machine apart.</h1></div><p class="vehicle">Honda CRF450 <span>2022 artist reconstruction · illustrative mechanics</span></p></div>
+    <div class="dashboard">
+      <section class="viewer" aria-label="Interactive motorcycle assembly">
+        <div class="scene" id="scene" data-ready="false">
+          <img class="poster" src="./preview.webp" width="1110" height="730" alt="Detailed red Honda CRF450 reconstruction with exposed frame, engine, suspension and spoked wheels on a dark grid.">
+          <div class="scene-heading"><span id="scene-mode">01 / Orbit</span><span id="asset-stat">Local model preview</span></div>
+          <div class="mode-tools" role="group" aria-label="Interaction mode">
+            <button type="button" data-mode="orbit" aria-pressed="true" disabled><span aria-hidden="true">◎</span>Orbit</button>
+            <button type="button" data-mode="pull" aria-pressed="false" disabled><span aria-hidden="true">↗</span>Pull apart</button>
+            <button type="button" data-mode="dent" aria-pressed="false" disabled><span aria-hidden="true">⌁</span>Dent</button>
+          </div>
+          <div class="scene-bottom"><p id="gesture-help">Drag to orbit. Pinch or scroll to inspect.</p><div class="views" role="group" aria-label="Camera views"><button type="button" data-view="three-quarter" disabled>3/4</button><button type="button" data-view="side" disabled>Side</button><button type="button" data-view="cockpit" disabled>Controls</button><button type="button" id="fit-view" disabled>Fit all</button></div></div>
+          <p class="load-status" id="load-status" role="status" hidden>Loading the motorcycle…</p>
+          <noscript><p class="no-script">The assembly view needs JavaScript and WebGL. The model preview, source and methods below remain available.</p></noscript>
+        </div>
+        <div class="separation"><label for="explode"><span>Assembly separation</span><output aria-hidden="true" id="explode-value" for="explode">0%</output></label><input type="range" id="explode" min="0" max="100" value="0" disabled><div class="range-ends"><span>Assembled</span><span>Exploded study</span></div></div>
+        <p class="scene-boundary">Gesture travel controls model edits. It does not measure physical force or a real component’s failure load.</p>
+      </section>
+      <aside class="inspector" id="controls" aria-labelledby="inspector-title" tabindex="-1">
+        <div class="inspector-heading"><p class="eyebrow">Component inspector</p><span class="indicator" aria-hidden="true"></span></div>
+        <h2 id="inspector-title">Choose a connection.</h2>
+        <p class="intro">Pick an assembly on the bike or use the selector. The smaller pieces travel with their parent until released.</p>
+        <label class="field-label" for="part-select">Selected assembly</label><select id="part-select" disabled><option>Loading assemblies…</option></select>
+        <div class="state-row"><span>Connection</span><strong id="connection-state">Waiting</strong></div>
+        <div class="state-row"><span>Edited surfaces</span><strong id="edited-count">0</strong></div>
+        <p class="part-description" id="part-description">Named surfaces are grouped for this interaction; this is not a service disassembly procedure.</p>
+        <div class="edit-control"><label for="pull"><span>Pull selected assembly</span><output aria-hidden="true" id="pull-value" for="pull">0%</output></label><input type="range" id="pull" min="0" max="100" value="0" disabled><p>Keyboard alternative to grabbing. At the end of the travel, the visual connection releases.</p></div>
+        <div class="edit-control"><label for="dent"><span>Local deformation</span><output aria-hidden="true" id="dent-value" for="dent">0%</output></label><input type="range" id="dent" min="0" max="100" value="0" disabled><p>Use the slider for a centered dent, or choose Dent and drag directly on a surface.</p></div>
+        <div class="part-actions"><button type="button" id="detach" disabled>Release connection <span aria-hidden="true">↗</span></button><button type="button" id="repair" disabled>Restore assembly</button></div>
+        <p class="interaction-status" id="interaction-status" role="status" aria-live="polite">Load the model to begin.</p>
+        <details class="record"><summary>Action record <span id="record-count">0</span></summary><ol id="action-log"><li>No edits recorded.</li></ol><button type="button" id="export-record" disabled>Download scene record ↓</button><p>The latest 100 model-edit actions stay in this tab. Nothing is transmitted or saved to a server.</p></details>
+        <button type="button" class="reset" id="reset" disabled>↺ Reassemble & reset all</button>
+      </aside>
+    </div>
+    <section class="method" aria-labelledby="method-title">
+      <div><p class="eyebrow">From mechanism to information</p><h2 id="method-title">Capture what happened.<br>Keep the unknowns.</h2></div>
+      <div><p>The action record preserves the selected assembly, contact point when available, edit type, sequence and time. Those are the information-design questions behind <a href="/work/motorsport-neurotrauma-toolkit#handoff">Mechanism-to-Medical Center</a>: what was observed, by whom, when, and what still needs establishing?</p><p>This first study concerns the machine. The deformations and release distances are authored visual behavior. There is no material solver, rider model, calibrated force sensor, injury prediction, medical imaging result or recovery estimate.</p></div>
+    </section>
+    <footer class="credits"><p>Model based on <a href="https://sketchfab.com/3d-models/free-honda-crf-450-c80f0e732e844580af412958c9d67315">“(FREE) Honda CRF 450”</a> by <a href="https://sketchfab.com/Jacobdesigns">Jacobdesigns</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Textures optimized; pose captured for component editing. Artist reconstruction, not official Honda CAD. No affiliation or endorsement.</p><a href="./MODEL.md">Model, sources & limitations ↗</a></footer>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

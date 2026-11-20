@@ -1,0 +1,105 @@
+{
+  "base": "http://127.0.0.1:3225",
+  "checkedAt": "2026-11-20T03:35:02.353Z",
+  "results": [
+    {
+      "browser": "Chrome hardware WebGL",
+      "width": 1440,
+      "height": 1000,
+      "touch": false,
+      "reducedMotion": false,
+      "triangles": 179747,
+      "assemblies": 15,
+      "editableSurfaces": 83,
+      "meshDeformation": true,
+      "independentBodywork": true,
+      "childConnections": true,
+      "releaseAndSettle": true,
+      "gestureRelease": true,
+      "pointerAndCancellation": true,
+      "resetGeometryAndNormals": true,
+      "axeViolations": 0
+    },
+    {
+      "browser": "Chrome hardware WebGL",
+      "width": 1024,
+      "height": 768,
+      "touch": false,
+      "reducedMotion": false,
+      "triangles": 179747,
+      "assemblies": 15,
+      "editableSurfaces": 83,
+      "meshDeformation": true,
+      "independentBodywork": true,
+      "childConnections": true,
+      "releaseAndSettle": true,
+      "gestureRelease": true,
+      "pointerAndCancellation": true,
+      "resetGeometryAndNormals": true,
+      "axeViolations": 0
+    },
+    {
+      "browser": "Chrome hardware WebGL",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "reducedMotion": true,
+      "triangles": 179747,
+      "assemblies": 15,
+      "editableSurfaces": 83,
+      "meshDeformation": true,
+      "independentBodywork": true,
+      "childConnections": true,
+      "releaseAndSettle": true,
+      "gestureRelease": true,
+      "pointerAndCancellation": true,
+      "resetGeometryAndNormals": true,
+      "axeViolations": 0
+    },
+    {
+      "browser": "Chrome hardware WebGL",
+      "width": 320,
+      "height": 740,
+      "touch": true,
+      "reducedMotion": true,
+      "triangles": 179747,
+      "assemblies": 15,
+      "editableSurfaces": 83,
+      "meshDeformation": true,
+      "independentBodywork": true,
+      "childConnections": true,
+      "releaseAndSettle": true,
+      "gestureRelease": true,
+      "pointerAndCancellation": true,
+      "resetGeometryAndNormals": true,
+      "axeViolations": 0
+    },
+    {
+      "scenario": "no-javascript",
+      "poster": true,
+      "disabledEnhancedControls": true,
+      "sources": true
+    },
+    {
+      "scenario": "model-blocked",
+      "poster": true,
+      "disabledEnhancedControls": true,
+      "sources": true
+    },
+    {
+      "scenario": "webgl-disabled",
+      "poster": true,
+      "disabledEnhancedControls": true,
+      "sources": true
+    },
+    {
+      "browser": "WebKit",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "reducedMotion": true,
+      "rendered": true,
+      "usableFallback": false
+    }
+  ]
+}
