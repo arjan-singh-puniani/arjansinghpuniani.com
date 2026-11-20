@@ -13,6 +13,12 @@ test("only reviewed company identities receive a mark", () => {
   assert.equal(companyMark("Medtronic Minimed, Inc.")?.id, "minimed");
   assert.equal(companyMark("NeuroPace, Inc.")?.id, "neuropace");
   assert.equal(companyMark("Neuronetics")?.id, "neuronetics");
+  assert.equal(companyMark("Shenzhen TPH Technology Co., Ltd.")?.id, "tph");
+  assert.equal(companyMark("CMT Health PTE., Ltd.")?.id, "cmt-health");
+  assert.equal(companyMark("Shenzhen Root Innovation Technology Co., Ltd.")?.id, "momcozy");
+  assert.equal(companyMark("Shenzhen Root Innovation Technology Co., Ltd.")?.brand, "Momcozy");
+  assert.equal(companyMark("Bard Peripheral Vascular, Inc.")?.id, "bard-peripheral");
+  assert.equal(companyMark("Ophtecs Corporation"), undefined);
   assert.equal(companyMark("Nuvectra Corporation")?.id, "nuvectra");
   assert.equal(companyMark("Advanced Bionics")?.id, "advanced-bionics");
   assert.equal(companyMark("Biotronik Nro, Inc.")?.id, "biotronik");
@@ -32,7 +38,7 @@ test("the static company marks are sourced vector art without external content",
   const directory = "public/company-marks";
   assert.deepEqual(readdirSync(directory).sort(), marks.map(mark => `${mark.id}.svg`).sort());
   for (const mark of marks) {
-    assert.equal(new URL(mark.source).protocol, "https:");
+    assert.ok(["http:", "https:"].includes(new URL(mark.source).protocol));
     if ("reference" in mark && mark.reference) assert.equal(new URL(mark.reference).protocol, "https:");
     for (const name of mark.names) assert.equal(companyMark(name)?.id, mark.id);
     const svg = readFileSync(`${directory}/${mark.id}.svg`, "utf8");

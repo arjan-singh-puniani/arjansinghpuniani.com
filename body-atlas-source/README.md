@@ -1,5 +1,8 @@
 # BODY//ATLAS
 
+Company artwork sources, coverage, identity rules and remaining limits:
+[Company marks](COMPANY_MARKS.md).
+
 ## Current release — 2026-10-31
 
 The current export has **2,497 authentic records, 92 explained entries and dossiers, and 12 schematic mechanisms**. Neuralink now has six exact sponsor-verified trial records, the earlier 2019 platform publication, separate skull/cortical relationships, a recording → decoding → control schematic, and an evidence comparison with BrainGate. It remains **investigational**; no FDA marketing authorization is inferred. The six retrieved registry records have no posted results; this is not a claim about all research worldwide. Conflicting source-specific thread counts and the manufacturer-reported thread-retention limitation are visible, source linked, and retained in exported briefs.

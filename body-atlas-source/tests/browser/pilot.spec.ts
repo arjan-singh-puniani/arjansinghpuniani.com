@@ -2,6 +2,32 @@ import { readFile } from "node:fs/promises";
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+test("catalog logo lookup preserves the exact applicant and distinguishes a product brand", async ({ page }) => {
+  await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/pilot#build");
+  const builder = page.getByRole("region", { name: "Build a cited brief" });
+  const pairs = [
+    [["K252420", "Shenzhen TPH Technology Co., Ltd.", "tph"], ["K252814", "CMT Health PTE., Ltd.", "cmt-health"]],
+    [["K253283", "Shenzhen Root Innovation Technology Co., Ltd.", "momcozy"], ["P070014", "Bard Peripheral Vascular, Inc.", "bard-peripheral"]],
+  ];
+  for (const pair of pairs) {
+    for (const [slot, [application]] of pair.entries()) {
+      await builder.getByRole("textbox", { name: "Find an FDA application by device name or ID" }).fill(application);
+      await builder.getByRole("button", { name: "Find application", exact: true }).click();
+      await builder.getByRole("button", { name: slot ? "Use as second" : "Use as first", exact: true }).click();
+    }
+    for (const [application, applicant, mark] of pair) {
+      const card = builder.getByRole("article").filter({ has: page.getByRole("link", { name: `Original FDA record ${application}`, exact: true }) });
+      await expect(card.locator(".company-mark")).toContainText(applicant);
+      const image = card.locator(".company-mark img");
+      await expect(image).toHaveAttribute("src", new RegExp(`/company-marks/${mark}\\.svg$`));
+      await image.scrollIntoViewIfNeeded();
+      await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.naturalWidth)).toBeGreaterThan(0);
+      if (mark === "momcozy") await expect(image).toHaveAttribute("alt", "Momcozy brand logo");
+    }
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize()!.width);
+});
+
 test("research pilot gives a cited result and prepares an unsent inquiry", async ({ page, browserName }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   const basePath = process.env.ATLAS_BROWSER_BASE_PATH || "";

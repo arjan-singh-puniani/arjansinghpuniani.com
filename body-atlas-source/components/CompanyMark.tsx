@@ -13,7 +13,7 @@ export default function CompanyMark({ organization, role }: {
       {mark && (
         <span className="company-mark-art" data-tone={mark.tone}>
           <Image unoptimized src={atlasPath(`/company-marks/${mark.id}.svg`)}
-            alt="" width={96} height={25} />
+            alt={"brand" in mark ? `${mark.brand} brand logo` : ""} width={96} height={25} />
         </span>
       )}
       <span className="company-mark-identity"><small>{role}</small>{organization}</span>
