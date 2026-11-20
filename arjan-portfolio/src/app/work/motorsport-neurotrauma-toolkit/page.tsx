@@ -42,7 +42,7 @@ export default function MotorsportNeurotraumaToolkit() {
     <section className={`${styles.section} ${styles.introduction}`} aria-labelledby="project-question">
       <div className={`${styles.wrap} ${styles.introGrid}`}>
         <div><p className={styles.overline}>The design question</p><h2 id="project-question">What survives<br/>the handoff?</h2></div>
-        <div><p className={styles.lead}>Between an impact and a receiving medical team, information changes hands. Its source, timing and uncertainty need to travel with it.</p><p>I designed a pilot intake card and draft disposition flow for grassroots and regional four-wheeled motorsport. This interactive overview extends that documentation question into an F1 research context, for medical teams, safety engineers and potential collaborators.</p><p className={styles.boundary}>Educational communication design. Not a diagnostic instrument, approved event form or tool for determining fitness to race.</p></div>
+        <div><p className={styles.lead}>Between an impact and a receiving medical team, information changes hands. Its source, timing and uncertainty need to travel with it.</p><p>I designed a pilot intake card and draft disposition flow for grassroots and regional four-wheeled motorsport. This interactive overview extends that documentation question into an F1 research context, for medical teams, safety engineers and potential collaborators.</p><p className={styles.boundary}>Educational communication design. Not a diagnostic instrument, approved event form or tool for determining fitness to race.</p><a className={styles.secondaryButton} href="/motorcycle-mechanism-lab/index.html">Open the motorcycle mechanism lab <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 

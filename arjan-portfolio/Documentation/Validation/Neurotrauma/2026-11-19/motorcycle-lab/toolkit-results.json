@@ -1,0 +1,66 @@
+[
+  {
+    "browser": "chromium",
+    "width": 1440,
+    "height": 1000,
+    "touch": false,
+    "reducedMotion": false,
+    "violations": 0
+  },
+  {
+    "browser": "chromium",
+    "width": 1024,
+    "height": 768,
+    "touch": false,
+    "reducedMotion": true,
+    "violations": 0
+  },
+  {
+    "browser": "chromium",
+    "width": 768,
+    "height": 1024,
+    "touch": false,
+    "reducedMotion": true,
+    "violations": 0
+  },
+  {
+    "browser": "chromium",
+    "width": 390,
+    "height": 844,
+    "touch": true,
+    "reducedMotion": true,
+    "violations": 0
+  },
+  {
+    "browser": "chromium",
+    "width": 320,
+    "height": 740,
+    "touch": true,
+    "reducedMotion": true,
+    "violations": 0
+  },
+  {
+    "browser": "chromium",
+    "javaScript": false,
+    "textWalkthrough": true,
+    "fieldRationale": true
+  },
+  {
+    "browser": "chromium",
+    "imagesBlocked": true,
+    "textKeys": true,
+    "incidentInteraction": true
+  },
+  {
+    "browser": "chromium",
+    "viewerBlocked": true,
+    "fallback": true,
+    "directions": true
+  },
+  {
+    "browser": "webkit",
+    "width": 390,
+    "height": 844,
+    "touch": true
+  }
+]
