@@ -62,7 +62,7 @@
  .lab-transport{bottom:max(12px,env(safe-area-inset-bottom));gap:8px;width:calc(100% - 24px);padding:8px}
  .lab-transport output{min-width:80px;font-size:10px}
  .lab-transport button{min-width:52px;font-size:12px;padding:8px}
- .lab-transport select{font-size:12px;padding:8px 4px}
+ .lab-transport select{flex-shrink:0;min-width:70px;font-size:12px;padding:8px 24px 8px 8px}
 }
 @media(max-height:540px){
  .lab-panel{top:82px;bottom:86px;left:auto;right:12px;width:280px;max-height:none;display:block;padding:14px}
