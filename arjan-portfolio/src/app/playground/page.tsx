@@ -89,7 +89,7 @@ export default function Playground() {
       <div className="shell">
         <OrthoShowcase clinicHref="/playground/hospitalsim#clinic" />
         {cards.map((card) => (
-          <article className={`${styles.card} ${card.tone === "light" ? styles.light : styles.dark}`} key={card.href}>
+          <article className={`project-tile ${styles.card} ${card.tone === "light" ? styles.light : styles.dark}`} key={card.href}>
             <div className={styles.copy}>
               <p className="eyebrow">{card.eyebrow}</p>
               <h2>{card.title}</h2>
