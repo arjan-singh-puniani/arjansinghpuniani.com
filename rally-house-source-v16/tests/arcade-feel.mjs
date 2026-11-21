@@ -99,3 +99,24 @@ for(const id of Object.keys(CHAMPIONSHIP_OPPONENTS)){
  match.stop();
 }
 console.log('Rally pressure PASS: 24 simulated points, forgiving openings, open-court placement, tracking reward.',{stationaryContacts,trackingContacts});
+
+// Preview the exact chosen serve, including a buffered press released before the next tick.
+for(const aim of [-1,0,1])for(const reduced of [false,true]){
+ const {input,match,tick}=setup();input.setTouchMovement(aim,0);
+ const cue=()=>match.meshes(reduced).find(m=>m.id==='serve-aim');
+ const preview=cue();assert(preview,'A ready player serve shows its placement');
+ const target=match.targetFor('player','clean');
+ assert.equal(preview.position.x,target.x);assert.equal(preview.position.z,target.z);
+ assert(preview.position.x>=COURT_MIN_X&&preview.position.x<=COURT_MAX_X);
+ input.queueSwing();input.setTouchMovement(-aim,0);
+ assert.equal(cue().position.x,target.x,'Preview keeps the aim captured by the press');
+ tick(1/60);assert.equal(match.pending.target.x,target.x);
+ assert.equal(cue().position.x,target.x,'Toss keeps the chosen placement');
+ for(let i=0;i<300&&!match.pending?.released;i++)tick(1/120);
+ assert(match.pending?.released,'Serve reaches string-bed release');assert.equal(cue(),undefined,'Placement cue leaves at contact');
+ match.resolvePoint('player','winner');assert.equal(cue(),undefined,'No stale marker between points');
+ match.startPoint('opponent');assert.equal(cue(),undefined,'Do not reveal the opponent serve');
+ match.startPoint('player');input.setEnabled(false);assert.equal(cue(),undefined,'Paused input does not show a false neutral aim');
+ input.setEnabled(true);match.stop();assert.equal(cue(),undefined,'Leaving the court clears placement');
+}
+console.log('Serve placement preview, buffered aim, toss lock, release and lifecycle cleanup PASS');

@@ -267,7 +267,7 @@ export class ChampionshipHUD {
     if (phase === 'ready') return 'Ready';
     if (phase === 'serving') {
       if(cue==='serving')return 'SERVING';
-      return snapshot.server === 'player' ? (matchMedia('(pointer:coarse)').matches?'Aim with the stick · Tap Serve':'SPACE TO SERVE') : 'WATCH THE BALL';
+      return snapshot.server === 'player' ? (matchMedia('(pointer:coarse)').matches?'Place the marker · Tap Serve':'A / D TO AIM · SPACE TO SERVE') : 'WATCH THE BALL';
     }
     if (phase === 'rally') {
       if (cue === 'queued') return 'READY TO RETURN';
