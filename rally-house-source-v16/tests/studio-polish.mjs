@@ -191,6 +191,7 @@ console.log('Ball feel passes: springier bounce, face-aligned compression, strin
   for(let i=0;i<240;i++){rig.update('behindPlayer',new Vec3(1,0,COURT.baselineDepth),new Vec3(1,0,-COURT.baselineDepth),null,width/height,1/60);camera.update(1/60);}
   const corners=[[-1,-1],[1,-1],[-1,1],[1,1]].map(([x,z])=>camera.project(new Vec3(1+x*COURT.doublesHalfWidth,0,z*COURT.halfLength)));
   for(const p of corners)assert(p.x>=10&&p.x<=width-10&&p.y>=110&&p.y<=height-20,`Court clipped at ${width}x${height}: ${JSON.stringify(p)}`);
+  if(width>=height)assert(corners[3].x-corners[2].x>=height*.65,`Landscape court is too distant at ${width}x${height}`);
   if(width<height){
    assert(corners[3].x-corners[2].x>=width*.58,`Portrait court is too small at ${width}x${height}`);
    assert(corners[3].y<height-130,`Baseline falls under thumb controls at ${width}x${height}`);

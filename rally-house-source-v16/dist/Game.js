@@ -862,7 +862,9 @@ export class Game {
         if (a.phase === 'traveling') {
             const arrived = people.every((character, index) => Vec3.sub(character.position, targets[index]).len() < .55 &&
                 character.pathIndex >= character.path.length);
-            if (arrived) {
+            // Let spectators finish leaving before presenting a playable first serve.
+            const clear = this.characters.every(c => a.participants.includes(c.id) || !this.world.nav.onCourt(c.position));
+            if (arrived && clear) {
                 this.restoreChampionshipApproach();
                 this.activities.transition(a, 'starting');
                 people.forEach(character => {
@@ -1682,6 +1684,9 @@ export class Game {
     routes = new Map();
     waitingForPlace = new Map();
     startActivity(kind, ids, resource, targets, detail = '') {
+        // A fresh social routine must not reverse a nonparticipant's court-exit route.
+        if (this.activities.reserved('court') && ids.some(id => this.waitingForPlace.has(id) && this.world.nav.onCourt(this.actor(id).position)))
+            return null;
         if (ids.includes('player'))
             this.stopPlayerWatching(false);
         if (targets.some(p => this.world.nav.isBlocked(p.x, p.z)))
