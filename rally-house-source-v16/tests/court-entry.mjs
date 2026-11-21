@@ -6,6 +6,20 @@ import {COURT} from '../dist/tennis/CourtGeometry.js';
 import {destinations} from '../dist/content/content.js';
 import {Navigation} from '../dist/world/Navigation.js';
 
+// A spectator finishes leaving before another routine can turn them across the server.
+{
+ const g=simulation(),mika=g.actor('mika'),targets=[new Vec3(1,0,COURT.baselineDepth),new Vec3(1,0,-COURT.baselineDepth)];
+ for(const c of g.characters)c.position.set(6.9,0,3.7);
+ g.player.position=targets[0].clone();g.actor('leo').position=targets[1].clone();
+ const a=g.startActivity('championship',['player','leo'],'court',targets);assert(a);
+ g.player.path=[];g.actor('leo').path=[];mika.position.set(3.9,0,-6.1);g.waitingForPlace.set('mika',a.id);
+ assert.equal(g.startActivity('everyday',['mika'],'place-warmup',[destinations.warmup]),null,'A new routine cannot reverse a court exit');
+ let accepted=0;g.championship={phase:'approaching',acceptChallenge(){accepted++;}};g.restoreChampionshipApproach=()=>{};
+ g.updateChampionshipActivity(a,1/60);assert.equal(accepted,0,'Match waits for spectators to clear');
+ mika.position.set(6.9,0,3.7);g.updateChampionshipActivity(a,1/60);assert.equal(accepted,1,'Clear court starts immediately');
+ assert(g.startActivity('everyday',['mika'],'place-warmup',[destinations.warmup]),'Cleared spectator resumes normal life');
+}
+
 // A passing pedestrian must not turn into the reserved court to avoid a crowd.
 {
  const g=simulation(),c=g.player,blocker=g.characters[0],nav=new Navigation();nav.courtReserved=()=>true;
@@ -19,6 +33,18 @@ import {Navigation} from '../dist/world/Navigation.js';
 }
 
 const world=new World(),nav=world.nav;nav.courtReserved=()=>true;
+for(const end of [destinations.equipmentTrolley,destinations.clubBoard]){
+ const start=new Vec3(6.5,0,3.5),route=nav.clubPath(start,end);assert(route.length);
+ let prior=start;
+ for(const point of route){
+  assert(nav.clearSegment(prior,point));
+  for(let t=0;t<=1;t+=.01){
+   const p=Vec3.lerp(prior,point,t);
+   assert(Math.hypot(p.x-COURT.centerX,p.z+COURT.baselineDepth)>1,'Visiting court-side equipment crowds the opponent');
+  }
+  prior=point;
+ }
+}
 for(const sign of [-1,1]){
  const baseline=new Vec3(COURT.centerX,0,sign*COURT.baselineDepth);
  assert(nav.onCourt(baseline),'A match baseline belongs to the reserved court');
@@ -35,7 +61,11 @@ assert(social.length);
 let prior=socialStart;
 for(const point of social){
  assert(nav.clearSegment(prior,point));
- for(let t=0;t<=1;t+=.01)assert(!nav.onCourt(Vec3.lerp(prior,point,t)),'Social circulation cuts across a reserved playing area');
+ for(let t=0;t<=1;t+=.01){
+  const p=Vec3.lerp(prior,point,t);
+  assert(!nav.onCourt(p),'Social circulation cuts across a reserved playing area');
+  for(const sign of [-1,1])assert(Math.hypot(p.x-COURT.centerX,p.z-sign*COURT.baselineDepth)>1,'Pedestrian crowds the server behind the baseline');
+ }
  prior=point;
 }
 }

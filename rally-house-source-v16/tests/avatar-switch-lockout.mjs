@@ -5,6 +5,7 @@ import {Vec3} from '../dist/rendering/Math3D.js';
 
 function conversation(phase){
  const g=simulation();g.championship=new ChampionshipController();g.playerAvatar='arjan';
+ g.performanceLab={active:false};
  g.spatial={dismiss(){}};g.pickWorld=()=>null;
  g.camera={focus(){},nudgeFocus(){},groundPoint:()=>new Vec3(-6,0,4)};
  g.visitMember(g.actor('nia'),false);

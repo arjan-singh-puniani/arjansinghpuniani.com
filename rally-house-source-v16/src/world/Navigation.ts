@@ -1,9 +1,9 @@
 import {Vec3} from '../rendering/Math3D.js';
 import {COURT} from '../tennis/CourtGeometry.js';
 const clearance=.22;
-// Include both service baselines and the net-post run-off in the same
-// boundary used for circulation and for clearing nonparticipants.
-const courtHalfWidth=COURT.doublesHalfWidth+1,courtHalfDepth=COURT.baselineDepth+.25;
+// Leave room for the serving stance and racket behind each baseline;
+// pedestrians must not skim the player while routing around a live court.
+const courtHalfWidth=COURT.doublesHalfWidth+1,courtHalfDepth=COURT.baselineDepth+1.15;
 export interface Rect {x:number;z:number;w:number;d:number;rotation?:number}
 export class Navigation {
   cell=.5; minX=-12.5; maxX=12.5; minZ=-9.5; maxZ=9.5; obstacles:Rect[]=[];
@@ -26,15 +26,22 @@ export class Navigation {
   }
   /** Occupied courts stay clear; idle courts are ordinary walkable floor. */
   onCourt(p:Vec3){return Math.abs(p.x-COURT.centerX)<courtHalfWidth&&Math.abs(p.z)<courtHalfDepth;}
-  clubPath(start:Vec3,end:Vec3){
-    if(!this.courtReserved()||this.onCourt(end))return this.path(start,end);
+  clubPath(start:Vec3,end:Vec3):Vec3[]{
+    if(!this.courtReserved())return this.path(start,end);
+    if(this.onCourt(end)){
+      if(this.onCourt(start))return this.path(start,end);
+      // Reverse a safe exit so a trolley/board visit cannot cut across the whole live court.
+      const exit=this.clubPath(end,start);
+      return exit.length?[...exit.slice(0,-1).reverse(),new Vec3(end.x,0,end.z)]:[];
+    }
     // isBlocked expands obstacles by clearance; use exactly onCourt's bounds.
     const outside=new Navigation([...this.obstacles,{x:COURT.centerX,z:0,w:2*(courtHalfWidth-clearance),d:2*(courtHalfDepth-clearance)}]);
     if(!this.onCourt(start))return outside.path(start,end);
     const exits=[new Vec3(COURT.centerX-courtHalfWidth-.25,0,start.z),new Vec3(COURT.centerX+courtHalfWidth+.25,0,start.z),new Vec3(start.x,0,-courtHalfDepth-.25),new Vec3(start.x,0,courtHalfDepth+.25)];
-    const routes=exits.map(exit=>{const first=this.path(start,exit),last=outside.path(exit,end);return first.length&&last.length?[...first,...last]:[]}).filter(r=>r.length);
     const length=(r:Vec3[])=>r.reduce((n,p,i)=>n+Vec3.sub(p,i?r[i-1]:start).len(),0);
-    return routes.sort((a,b)=>length(a)-length(b))[0]??[];
+    const routes=exits.flatMap(exit=>{const first=this.path(start,exit),last=outside.path(exit,end);return first.length&&last.length?[{path:[...first,...last],inside:length(first)}]:[];});
+    // Clear the nearest edge first, even when crossing the live court would be a shorter trip.
+    return routes.sort((a,b)=>a.inside-b.inside||length(a.path)-length(b.path))[0]?.path??[];
   }
   clearSegment(a:Vec3,b:Vec3){
     if(this.isBlocked(a.x,a.z)||this.isBlocked(b.x,b.z))return false;
