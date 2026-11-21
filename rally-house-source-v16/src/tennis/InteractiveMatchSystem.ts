@@ -755,6 +755,16 @@ export class InteractiveMatchSystem {
 
   meshes(reducedMotion=false): Mesh[] {
     const meshes: Mesh[] = [];
+    if(this.enabled&&!this.pointResolved&&this.server==='player'&&this.rallyLength===0&&!this.ball.active&&this.input.enabled){
+      // Preview the same target the serve consumes, then keep it locked through the toss.
+      const target=this.pending?.stroke==='serve'?this.pending.target:!this.pending
+        ?this.targetFor('player','clean',this.input.hasBufferedSwing()?this.input.bufferedSwingAim():this.input.movement().x):null;
+      if(target){
+        meshes.push({id:'serve-aim',kind:'torus',position:new Vec3(target.x,.116,target.z),
+          rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(.62,.62,.065),color:'#fff4bd',alpha:.85,unlit:true,noShadow:true});
+        meshes.push({kind:'sphere',position:new Vec3(target.x,.118,target.z),scale:new Vec3(.08,.012,.08),color:'#fff4bd',unlit:true,noShadow:true});
+      }
+    }
     // Only the incoming player's flight gets a cue. It predicts the actual
     // bounce; it never moves the player or creates a successful return.
     const landing=this.landingTarget;
