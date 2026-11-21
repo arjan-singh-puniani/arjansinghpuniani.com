@@ -10,10 +10,10 @@ export async function exportDigest(root) {
       const relative = `${directory}/${entry.name}`;
       if (relative === 'app/api') continue;
       if (entry.isDirectory()) await walk(relative);
-      else if (/\.(tsx?|css|json|mjs)$/.test(entry.name)) files.push(relative);
+      else if (/\.(tsx?|css|json|mjs)$/.test(entry.name) || (directory === 'public/company-marks' && entry.name.endsWith('.svg'))) files.push(relative);
     }
   }
-  for (const directory of ['app', 'components', 'lib', 'public/anatomy', 'scripts']) await walk(directory);
+  for (const directory of ['app', 'components', 'lib', 'public/anatomy', 'public/company-marks', 'scripts']) await walk(directory);
   for (const name of ['atlas', 'catalogue', 'body-regions', 'dossier-summary', 'source-hosts', 'fda-applications']) files.push(`data/${name}.json`);
   const digest = createHash('sha256');
   for (const file of files.sort()) {

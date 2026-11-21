@@ -2552,7 +2552,7 @@
 .constellation-region span { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
 .constellation-region strong { font:10px var(--mono); color:var(--gold); }
 .constellation-region:hover, .constellation-region:focus-visible { background:#243d4d; }
-.constellation-legend { position:absolute; left:12px; top:7px; display:flex; flex-wrap:wrap; column-gap:12px; row-gap:3px; max-width:calc(100% - 24px); color:#bacbd2; font:9px var(--mono); }
+.constellation-legend { display:flex; flex:none; flex-wrap:wrap; column-gap:12px; row-gap:3px; padding:4px 12px; color:#bacbd2; font:9px var(--mono); }
 .constellation-legend span { display:flex; align-items:center; gap:4px; }
 .constellation-legend i { width:4px; height:4px; background:#a8e0e6; border-radius:50%; }
 .constellation-legend span:nth-child(2) i { background:#e8b681; }
@@ -2592,8 +2592,6 @@
 
 @media (max-width:650px) { .anatomy-expanded .on-model-inspector { bottom:105px; } }
 
-.constellation-legend { top:27px; }
-@media (max-width:650px) { .constellation-legend { top:10px; } }
 
 .atlas-header .preview-status { display:block; font-size:10px; color:var(--quiet); }
 
@@ -2666,9 +2664,26 @@
 .fda-updates li span{display:block}
 .fda-original{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0;font-size:12px}
 .fda-original a{color:#a0dce3;text-decoration:underline;text-underline-offset:3px}
-.mechanism-caption{position:absolute;z-index:12;bottom:90px;left:14px;max-width:calc(100% - 28px);padding:7px 9px;background:#081d29;color:#b8e5e9;pointer-events:none;font:10px/1.5 ui-monospace,monospace}
-.mechanism-caption strong,.mechanism-caption span{display:block}
-@media(max-width:650px){.mechanism-caption{bottom:62px;padding:4px 6px;font-size:8px}.mechanism-caption span:first-of-type{display:none}}
+.device-mechanism{margin:16px 0;border:1px solid #375563;border-radius:12px;overflow:hidden;background:linear-gradient(145deg,#132d3c,#0c1d29)}
+.device-mechanism figcaption{padding:16px 16px 0}
+.device-mechanism figcaption>span{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#b2c8d2;font-size:10px;letter-spacing:.09em;text-transform:uppercase}
+.device-mechanism figcaption strong{display:block;margin-top:8px;color:#e6f2f5;font-size:16px;line-height:1.4;font-weight:500}
+.mechanism-drawing-type{padding:3px 7px;border:1px solid #4b6572;border-radius:20px;letter-spacing:.04em}
+.device-mechanism svg{display:block;width:100%;height:auto;max-height:330px}
+.device-mechanism .mechanism-signal{stroke:#bceee9;stroke-dasharray:8 6}
+.device-mechanism[data-playing="true"] .mechanism-signal{animation:mechanism-signal-travel 2s linear infinite}
+@keyframes mechanism-signal-travel{to{stroke-dashoffset:-28}}
+.mechanism-parts{display:flex;flex-wrap:wrap;gap:6px 12px;padding:0 16px;margin:0 0 16px;list-style:none;color:#b9d0d9;font-size:11px;line-height:1.5}
+.mechanism-parts li{display:flex;gap:6px;align-items:baseline}
+.mechanism-parts li:before{content:"";width:5px;height:5px;flex:none;border-radius:50%;background:#90b7c7}
+.mechanism-current-step{display:flex;align-items:baseline;gap:12px;border-top:1px solid #304b59;padding:13px 16px;background:#0b202c}
+.mechanism-current-step>span{flex:none;color:#e7c493;font:10px/1.5 ui-monospace,monospace}
+.mechanism-current-step p{margin:0;color:#dfedf1;font-size:12px;line-height:1.6}
+.device-mechanism .mechanism-figure-scope{margin:0;padding:10px 16px;color:#a8bfcb;font-size:10px;line-height:1.6;border-top:1px solid #304b59}
+.mechanism-figure-source{display:block;padding:0 16px 14px;color:#c8e5ee;font-size:11px;line-height:1.6;text-underline-offset:3px}
+.mechanism-figure-source span{display:block;color:#a8bfcb;font-size:10px;overflow-wrap:anywhere}
+.mechanism-figure-source:focus-visible{outline:2px solid #c6f2f4;outline-offset:-3px}
+@media(prefers-reduced-motion:reduce){.device-mechanism .mechanism-signal{animation:none!important}}
 .mechanism-stages{list-style:decimal}
 .mechanism-stages button{text-align:left;width:100%;padding:8px 10px;border:1px solid #294552;background:transparent;color:#b8cbd3;font:inherit;line-height:1.5;cursor:pointer}
 .mechanism-stages button[aria-pressed="true"]{color:#f2ca9a;border-color:#ad8154;background:#1b303c}
@@ -2725,6 +2740,9 @@
 @media (max-width: 650px) {
   .solid-overview:not(.anatomy-expanded) .body-map {
     flex-basis: min(63%, 490px);
+  }
+  .solid-overview:not(.anatomy-expanded) .body-map:has(> .constellation-legend) {
+    flex-basis: min(calc(63% + 35px), 525px);
   }
   .solid-overview .figure-canvas {
     inset: 35px 0 57px;

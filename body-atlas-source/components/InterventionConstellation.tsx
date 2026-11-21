@@ -19,7 +19,7 @@ export default function InterventionConstellation({entries,projection,selected,o
  },[entries,projection.regions.join(',')]);
  const compact=projection.width<650,width=named?(compact?132:210):(compact?112:148);
  const glyphScale=Math.max(.3,Math.min(1,projection.height/650));
- const rowHeight=named?(compact?36:42):24,top=named?(compact?45:68):52,bottom=named?(compact?compactBottom:150):90;
+ const rowHeight=named?(compact?36:42):24,top=named?(compact?36:38):52,bottom=named?(compact?compactBottom:150):90;
  const limit=Math.max(2,Math.floor((projection.height-top-bottom)/rowHeight)*2);
  const priorities=['BODY:heart','BODY:eye','UBERON:0000955','BODY:lung','BODY:knee','BODY:hip','BODY:kidney','BODY:foot'];
  const positioned=groups.filter(g=>projection.points[g.id]).map(g=>({...g,point:projection.points[g.id]})).sort((a,b)=>Number(a.items.some(e=>e.mapping.type!=='indication_context'))-Number(b.items.some(e=>e.mapping.type!=='indication_context')));
@@ -70,6 +70,5 @@ export default function InterventionConstellation({entries,projection,selected,o
  })}</div>
  {named&&pages>1&&<div className="constellation-pages"><button aria-label="Previous mapped interventions" disabled={pageIndex===0} onClick={()=>setPage(p=>Math.max(0,p-1))}><ChevronLeft size={13}/></button><span>{pageIndex+1} / {pages}</span><button aria-label="Next mapped interventions" disabled={pageIndex===pages-1} onClick={()=>setPage(p=>Math.min(pages-1,p+1))}><ChevronRight size={13}/></button></div>}
  {hover&&<div className="constellation-hover"><strong>{hover.name}</strong><span>{hover.mapping.type==='indication_context'?'Unreviewed FDA text context':`${hover.role} · ${hover.regionName}`}</span></div>}
- <div className="constellation-legend"><span><i/>{implantsOnly ? "Documented implant regions" : "Reviewed relationships"}</span>{!implantsOnly && <span><i/>FDA text context · unreviewed</span>}<small>{named?(compact?'Select a name · ≈ approximate region':'Lines meet reference anatomy · ≈ approximate region · marks group entries.'):'Dots are indexed records, not implant sites.'}</small></div>
  </div>;
 }

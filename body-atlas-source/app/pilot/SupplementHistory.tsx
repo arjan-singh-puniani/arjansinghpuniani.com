@@ -3,16 +3,18 @@
 import { useState } from "react";
 import type { DossierData } from "@/components/Dossier";
 import { atlasPath } from "@/lib/deployment";
-import CachedFdaRecord from "./CachedFdaRecord";
+import CachedFdaRecord, { archiveKey, type ArchiveVerification } from "./CachedFdaRecord";
 
-export type SelectedSupplement = DossierData["regulatory"]["rows"][number] & { archiveDate: string };
+export type SelectedSupplement = DossierData["regulatory"]["rows"][number] & { archiveDate: string; retrievedAt?: string };
 const displayLimit = 12;
 
-export default function SupplementHistory({ application, dossierPath, selected, onSelect }: {
+export default function SupplementHistory({ application, dossierPath, selected, onSelect, verifications, onVerify }: {
   application: string;
   dossierPath: string;
   selected?: SelectedSupplement;
   onSelect: (decision?: SelectedSupplement) => void;
+  verifications: Record<string, ArchiveVerification>;
+  onVerify: (key: string, outcome: ArchiveVerification) => void;
 }) {
   const [archive, setArchive] = useState<DossierData | null>(null);
   const [state, setState] = useState<"idle" | "loading" | "error">("idle");
@@ -48,16 +50,21 @@ export default function SupplementHistory({ application, dossierPath, selected, 
     .map(source => [source.sha, source]));
   const rows = archive.regulatory.rows.filter(row => row.application === application && /^S\d{3,4}$/.test(row.supplement));
   const changeIds = new Set(archive.labeling.changeIds);
-  const term = query.trim().toLowerCase().replace("/", "");
-  const results = term ? rows.filter(row =>
-    [row.application + row.supplement, row.reason, row.tradeName, row.date, row.statement]
-      .some(value => value?.toLowerCase().includes(term)),
-  ) : rows.filter(row => changeIds.has(row.application + row.supplement));
+  const term = query.trim().toLowerCase();
+  const citation = /^(p\d{6})\s*(?:\/\s*)?(s\d{3,4})$/.exec(term);
+  const results = term ? rows.filter(row => {
+    const rowApplication = row.application.toLowerCase();
+    const rowSupplement = row.supplement.toLowerCase();
+    if (citation) return rowApplication === citation[1] && rowSupplement === citation[2];
+    if (/^p\d{6}$/.test(term)) return rowApplication === term;
+    if (/^s\d{1,4}$/.test(term)) return term.length < 4 ? rowSupplement.startsWith(term) : rowSupplement === term;
+    return [row.reason, row.tradeName, row.date, row.statement].some(value => value?.toLowerCase().includes(term));
+  }) : rows.filter(row => changeIds.has(row.application + row.supplement));
   const visible = term || results.length ? results : rows;
 
   return (
     <div className="pilot-history pilot-fields">
-      <p>Cached FDA history · {rows.length} supplements for {application} · archive checked {archive.reviewedAt.slice(0, 10)} UTC. Records shown here still require source review.</p>
+      <p>Cached FDA history · {rows.length} supplements for {application} · dossier dated {archive.reviewedAt.slice(0, 10)} UTC. Verify the exact source before citing an indexed row.</p>
       {!!rows.length && (
         <>
           <label>Filter supplements for {application}
@@ -74,9 +81,10 @@ export default function SupplementHistory({ application, dossierPath, selected, 
                   {row.statement && <details><summary>Indexed FDA statement</summary><p>{row.statement}</p></details>}
                   {source && <CachedFdaRecord application={row.application} supplement={row.supplement}
                     date={row.date} sourceSha={row.sourceSha} retrievedAt={source.retrievedAt}
+                    verification={verifications[archiveKey(row.application, row.date, row.sourceSha, row.supplement)]} onVerify={onVerify}
                     sourcePath={source.originalSnapshot ? undefined : atlasPath(`/dossier-sources/${source.file}`)} />}
                   <button className="pilot-button" type="button" disabled={selected?.supplement === row.supplement}
-                    onClick={() => onSelect({ ...row, archiveDate: archive.reviewedAt.slice(0, 10) })}>
+                    onClick={() => onSelect({ ...row, archiveDate: archive.reviewedAt.slice(0, 10), retrievedAt: source?.retrievedAt })}>
                     {selected?.supplement === row.supplement ? "Included in worksheet" : `Include ${row.supplement} in worksheet`}
                   </button>
                 </li>

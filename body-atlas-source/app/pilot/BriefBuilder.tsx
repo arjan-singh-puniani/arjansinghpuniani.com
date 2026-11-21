@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { atlasPath } from "@/lib/deployment";
-import CachedFdaRecord from "./CachedFdaRecord";
+import CompanyMark from "@/components/CompanyMark";
+import CachedFdaRecord, { archiveKey, type ArchiveVerification } from "./CachedFdaRecord";
 import SupplementHistory, { type SelectedSupplement } from "./SupplementHistory";
 
 export type BriefCase = {
   application: string;
   name: string;
+  applicant?: string;
   decisionDate: string;
   retrievedAt: string;
   sourceSha: string;
@@ -43,11 +45,18 @@ function markdownText(text: string) {
     .replace(/[\\`*_\[\]!|]/g, "\\$&");
 }
 
+function archiveStatus(verification?: ArchiveVerification) {
+  if (verification === "failed") return "Verification failed in this session. Source unresolved.";
+  if (verification) return "Exact cached decision verified in this session by identifier, date and SHA-256.";
+  return "Indexed match. Exact cached decision has not been verified in this session.";
+}
+
 export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; snapshot: string }) {
   const [first, setFirst] = useState("");
   const [second, setSecond] = useState("");
   const [question, setQuestion] = useState("");
   const [selectedSupplements, setSelectedSupplements] = useState<Record<string, SelectedSupplement | undefined>>({});
+  const [verifications, setVerifications] = useState<Record<string, ArchiveVerification>>({});
   const [notes, setNotes] = useState<Record<string, { finding: string; gap: string }>>({});
   const [index, setIndex] = useState<Record<string, BriefCase> | null>(null);
   const [added, setAdded] = useState<BriefCase[]>([]);
@@ -66,6 +75,13 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
   const pair = left && right && left !== right ? [left, right] : [];
   const pairKey = pair.map(item => item.application).sort().join("/");
   const { finding, gap } = notes[pairKey] ?? { finding: "", gap: "" };
+
+  function verifyArchive(key: string, outcome: ArchiveVerification) {
+    setVerifications(current => {
+      if (outcome === "failed" && current[key] && current[key] !== "failed") return current;
+      return { ...current, [key]: outcome };
+    });
+  }
 
   function loadExample() {
     setFirst("P960009");
@@ -89,7 +105,7 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
 
     const known = choices.find(item => item.application === id);
     if (known) {
-      setLookup({ message: "Application found.", match: known });
+      setLookup({ message: "Exact application match in the original decision snapshot.", match: known });
       return;
     }
 
@@ -104,7 +120,7 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
       }
       if (exact) {
         const match = available[id];
-        setLookup(match ? { message: "Application found in the original decision snapshot.", match } : {
+        setLookup(match ? { message: "Exact application match in the original decision snapshot.", match } : {
           message: "This original application is outside the snapshot. Check the FDA device databases for its record.",
         });
         return;
@@ -147,12 +163,15 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
     `- What still needs checking: ${markdownText(gap.trim()) || "Add the gap and the next source to verify."}`,
     ...pair.flatMap(item => {
       const selected = selectedSupplements[item.application];
+      const originalVerification = verifications[archiveKey(item.application, item.decisionDate, item.sourceSha)];
+      const supplementVerification = selected && verifications[archiveKey(selected.application, selected.date, selected.sourceSha, selected.supplement)];
       return [
         "",
         `## ${markdownText(item.name)} · ${item.application}`,
         `${item.status} · ${item.decisionDate}. [Original FDA record](${item.url}). Retrieved ${item.retrievedAt} UTC.`,
         ...(item.sourceSha ? [`Original FDA archive SHA-256: ${item.sourceSha}.`] : []),
-        `FDA decision statement: ${markdownText(item.statement || missingStatement)}`,
+        `Original source status: ${archiveStatus(originalVerification)}`,
+        `Indexed FDA decision statement: ${markdownText(item.statement || missingStatement)}`,
         ...(item.relationships.length ? item.relationships.map(relationship =>
           `- ${relationship.label} (${relationship.state}): ${markdownText(relationship.assertion)} [Source](${relationship.url}) · ${markdownText(relationship.locator)}. Limits: ${markdownText(relationship.limits)}`,
         ) : [missingRelationships]),
@@ -164,8 +183,10 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
         ...(selected ? [
           `Selected cached supplement: [${selected.application}/${selected.supplement}](${selected.url}) · ${selected.date} · ${markdownText(selected.decision)}.`,
           `Indexed change reason: ${markdownText(selected.reason || "Not available")}.`,
-          `FDA statement in the archive: ${markdownText(selected.statement || "Not available")}.`,
-          `Archive checked ${selected.archiveDate} UTC. Verify the original source for applicability.`,
+          `Indexed FDA statement: ${markdownText(selected.statement || "Not available")}.`,
+          `Dossier dated ${selected.archiveDate} UTC. Inclusion records an indexed match. Verify applicability before citing this row.`,
+          `Supplement source status: ${archiveStatus(supplementVerification)}`,
+          ...(selected.retrievedAt ? [`Archived FDA response retrieved ${selected.retrievedAt}.`] : []),
           ...(selected.sourceSha ? [`Archive source SHA-256: ${selected.sourceSha}.`] : []),
         ] : []),
         `Evidence limits: ${markdownText(item.limits)}`,
@@ -244,15 +265,17 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
             {pair.map(item => (
               <article key={item.application} className="pilot-card">
                 <h3>{item.name}</h3>
+                {item.applicant && <CompanyMark organization={item.applicant} role="FDA applicant" />}
                 <p>{item.status} · <time dateTime={item.decisionDate}>{item.decisionDate}</time></p>
                 <a href={item.url} target="_blank" rel="noopener noreferrer">Original FDA record {item.application}</a>
-                <p>Retrieved <time dateTime={item.retrievedAt}>{item.retrievedAt}</time> UTC</p>
+                <p>Decision index · Retrieved <time dateTime={item.retrievedAt}>{item.retrievedAt}</time> UTC</p>
                 <details className="pilot-decision">
                   <summary>FDA decision statement</summary>
                   <p>{item.statement || missingStatement}</p>
                 </details>
                 {item.sourceSha && <CachedFdaRecord application={item.application} date={item.decisionDate}
-                  sourceSha={item.sourceSha} retrievedAt={item.retrievedAt} />}
+                  sourceSha={item.sourceSha} retrievedAt={item.retrievedAt}
+                  verification={verifications[archiveKey(item.application, item.decisionDate, item.sourceSha)]} onVerify={verifyArchive} />}
                 <h4>Anatomy evidence</h4>
                 {item.relationships.length ? <ul>
                   {item.relationships.map(relationship => (
@@ -274,6 +297,8 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
                   application={item.application}
                   dossierPath={item.dossierPath}
                   selected={selectedSupplements[item.application]}
+                  verifications={verifications}
+                  onVerify={verifyArchive}
                   onSelect={decision => setSelectedSupplements(current => ({ ...current, [item.application]: decision }))}
                 />}
                 {selectedSupplements[item.application] && <div className="pilot-history">

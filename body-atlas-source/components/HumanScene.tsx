@@ -29,7 +29,6 @@ import {
 import WholeBodyOrgans from "./WholeBodyOrgans";
 import AnnotationProjection from "./AnnotationProjection";
 import { humanRegionLocators, referenceSurfaceAnchors, referenceRegionsForNode, anchorDescription, type LabelProjection } from "@/lib/annotations";
-import DeviceActionOverlay from './DeviceActionOverlay';
 import type { DeviceAction } from '@/lib/device-action';
 
 const vertex = `attribute vec3 _surface_detail; varying vec3 surfaceDetail; varying vec3 p; varying vec3 n; varying vec3 eye;
@@ -368,7 +367,6 @@ export default function HumanScene({
   focusRegion,
   focusKey,
   action,
-  actionPlaying = false,
   actionStep = 0,
   portrait = false,
   portraitFrame = "upper",
@@ -391,7 +389,6 @@ export default function HumanScene({
   focusRegion?: string;
   focusKey?: string;
   action?: DeviceAction;
-  actionPlaying?: boolean;
   actionStep?: number;
   portrait?: boolean;
   portraitFrame?: "upper"|"face";
@@ -464,7 +461,6 @@ export default function HumanScene({
           Brain / spinal geometry unavailable
         </span>
       )}
-      {!portrait && action && <div className="mechanism-caption"><strong>Mechanism · schematic inset</strong><span>{action.steps[actionStep]}</span><span>Enlarged drawing, not implant placement</span></div>}
       <Boundary fail={() => setFailed(true)}>
         <Canvas
           camera={{ position: [0, 0.1, 10.8], fov: 34 }}
@@ -483,7 +479,6 @@ export default function HumanScene({
         >
           {showOrgans&&<Boundary fail={()=>setOrgansFailed(true)}><Suspense fallback={null}><WholeBodyOrgans region={focusRegion || region} activeRegions={activeRegions} onSelect={onSelect} onHover={onHover} onReady={organsLoaded}/></Suspense></Boundary>}
           <FocusRegion region={focusRegion || region} portrait={portrait} portraitFrame={portraitFrame} focusKey={focusKey} contourView={contourView}/>
-          {!portrait && action && focusRegion && <DeviceActionOverlay action={action} focusRegion={focusRegion} playing={actionPlaying} step={actionStep}/>}
           <ambientLight intensity={1.7} />
           <directionalLight position={[3, 5, 6]} intensity={2.5} />
           {!contourView && <group visible={showOrgans}><Boundary fail={() => setInternalFailed(true)}>

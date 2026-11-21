@@ -2,16 +2,45 @@ import { readFile } from "node:fs/promises";
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("research pilot gives a cited result and prepares an unsent inquiry", async ({ page }) => {
+test("catalog logo lookup preserves the exact applicant and distinguishes a product brand", async ({ page }) => {
+  await page.goto((process.env.ATLAS_BROWSER_BASE_PATH || "") + "/pilot#build");
+  const builder = page.getByRole("region", { name: "Build a cited brief" });
+  const pairs = [
+    [["K252420", "Shenzhen TPH Technology Co., Ltd.", "tph"], ["K252814", "CMT Health PTE., Ltd.", "cmt-health"]],
+    [["K253283", "Shenzhen Root Innovation Technology Co., Ltd.", "momcozy"], ["P070014", "Bard Peripheral Vascular, Inc.", "bard-peripheral"]],
+  ];
+  for (const pair of pairs) {
+    for (const [slot, [application]] of pair.entries()) {
+      await builder.getByRole("textbox", { name: "Find an FDA application by device name or ID" }).fill(application);
+      await builder.getByRole("button", { name: "Find application", exact: true }).click();
+      await builder.getByRole("button", { name: slot ? "Use as second" : "Use as first", exact: true }).click();
+    }
+    for (const [application, applicant, mark] of pair) {
+      const card = builder.getByRole("article").filter({ has: page.getByRole("link", { name: `Original FDA record ${application}`, exact: true }) });
+      await expect(card.locator(".company-mark")).toContainText(applicant);
+      const image = card.locator(".company-mark img");
+      await expect(image).toHaveAttribute("src", new RegExp(`/company-marks/${mark}\\.svg$`));
+      await image.scrollIntoViewIfNeeded();
+      await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.naturalWidth)).toBeGreaterThan(0);
+      if (mark === "momcozy") await expect(image).toHaveAttribute("alt", "Momcozy brand logo");
+    }
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize()!.width);
+});
+
+test("research pilot gives a cited result and prepares an unsent inquiry", async ({ page, browserName }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   const basePath = process.env.ATLAS_BROWSER_BASE_PATH || "";
   await page.goto(basePath + "/pilot");
   await expect(page.getByRole("heading", { name: "Compare devices. Trace the evidence." })).toBeVisible();
   await expect(page.getByText("Historical labeling", { exact: false })).toBeVisible();
   await expect(page.locator("main")).not.toContainText(/\$1,500|10 business days/);
+  const offer = page.getByRole("region", { name: "A sourced brief for your review" });
+  await expect(offer).toContainText("two agreed FDA applications");
+  await expect(offer).toContainText("qualified reviewer spot check");
   await expect(page.getByRole("link", { name: /P960009.*1997-07-31/ })).toHaveAttribute("href", /^https:\/\/www\.accessdata\.fda\.gov\//);
   await expect(page.getByRole("link", { name: /P150038.*2016-07-11/ })).toBeVisible();
-  await page.keyboard.press("Tab");
+  await page.keyboard.press(browserName === "webkit" ? "Alt+Tab" : "Tab");
   await expect(page.getByRole("link", { name: "Skip to content" })).toBeFocused();
   const accessibility = await new AxeBuilder({ page }).analyze();
   expect(accessibility.violations).toEqual([]);
@@ -64,6 +93,12 @@ test("the example gives a first-time visitor a working comparison without WebGL"
   const builder = page.getByRole("region", { name: "Build a cited brief" });
   await expect(builder.getByRole("link", { name: "Original FDA record P960009" })).toBeVisible();
   await expect(builder.getByRole("link", { name: "Original FDA record P150038" })).toBeVisible();
+  for (const [name, mark] of [["Medtronic, Inc.", "medtronic"], ["Insightec", "insightec"]]) {
+    const company = builder.locator(".company-mark").filter({ hasText: name });
+    await expect(company).toContainText("FDA applicant");
+    await expect(company.locator("img")).toHaveAttribute("src", new RegExp(`/company-marks/${mark}\\.svg$`));
+    await expect.poll(() => company.locator("img").evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  }
   await builder.getByRole("link", { name: "Jump to notes and export" }).click();
   await expect(page).toHaveURL(/#worksheet-notes$/);
   const file = page.waitForEvent("download");
@@ -117,6 +152,11 @@ test("a buyer can export a worksheet about their own FDA applications", async ({
   await expect(page.getByLabel("Second FDA application").locator('option[value="P100026"]')).toHaveJSProperty("disabled", true);
   await expect(download).toHaveCount(0);
   await page.getByLabel("Second FDA application").selectOption("P970003");
+  for (const id of ["neuropace", "livanova"]) {
+    const mark = builder.locator(`.company-mark img[src$="/${id}.svg"]`);
+    await mark.scrollIntoViewIfNeeded();
+    await expect.poll(() => mark.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  }
   const requests: string[] = [];
   page.on("request", request => requests.push(request.url()));
   await builder.getByLabel("Decision or question (optional)").fill("Compare recording & stimulation for our review.");
@@ -165,6 +205,11 @@ test("exact application lookup preserves original and later decision boundaries"
   await find.click();
   await builder.getByRole("button", { name: "Use as second" }).click();
   const deNovo = builder.getByRole("article").filter({ has: page.getByRole("link", { name: "Original FDA record DEN160019" }) });
+  const applicant = deNovo.locator(".company-mark");
+  await expect(applicant).toContainText("Ventana Medical Systems, Inc.");
+  const logo = applicant.locator('img[src$="/ventana.svg"]');
+  await logo.scrollIntoViewIfNeeded();
+  await expect.poll(() => logo.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
   await deNovo.getByRole("button", { name: "Verify original in cached FDA record" }).click();
   await expect(deNovo.getByText("Archived FDA record DEN160019", { exact: true })).toBeVisible();
   await expect(deNovo.getByText("FDA decision code DENG.")).toBeVisible();
@@ -197,25 +242,46 @@ test("a buyer can add an exact cached supplement and a decision note to the work
   await rns.getByRole("button", { name: "Retry supplement history" }).click();
   expect(new URL((await loaded).url()).search).toBe("");
   const filter = rns.getByRole("textbox", { name: "Filter supplements for P100026" });
-  await filter.fill("P960009/S007");
-  await expect(rns.getByText("No matching supplements in this archive.")).toBeVisible();
-  await filter.fill("P100026/S104");
-  await expect(rns.getByRole("link", { name: "P100026/S104" })).toHaveAttribute("href", /P100026S104$/i);
+  const citation = rns.getByRole("link", { name: "P100026/S104", exact: true });
+  for (const value of ["P100026/S104", "P100026 / S104", " P100026 / S104 ", "p100026/s104"]) {
+    await filter.fill(value);
+    await expect(citation).toHaveAttribute("href", /P100026S104$/i);
+    await expect(rns.getByRole("link", { name: /^P100026\/S\d+$/ })).toHaveCount(1);
+  }
+  await filter.fill("P100026");
+  await expect.poll(() => rns.getByRole("link", { name: /^P100026\/S\d+$/ }).count()).toBeGreaterThan(1);
+  for (const value of ["P100026/S9999", "P960009/S104", "P10002/S104", "P10 0026 // S104"]) {
+    await filter.fill(value);
+    await expect(rns.getByText("No matching supplements in this archive.")).toBeVisible();
+  }
+  await filter.fill(" P100026 / S104 ");
+  await rns.getByRole("button", { name: "Include S104 in worksheet" }).click();
+  await expect(rns.getByText("Included in export: P100026/S104.")).toBeVisible();
+  const download = builder.getByRole("link", { name: "Download editable worksheet" });
+  const worksheet = async () => decodeURIComponent((await download.getAttribute("href"))!);
+  expect(await worksheet()).toContain("Supplement source status: Indexed match.");
+  await rns.getByRole("button", { name: "Verify original in cached FDA record" }).click();
+  await expect(rns.getByText("Archived FDA record P100026", { exact: true })).toBeVisible();
+  expect(await worksheet()).toContain("Original source status: Exact cached decision verified");
   await page.route("**/dossier-sources/*.json", route => route.fulfill({ json: { results: [] } }), { times: 1 });
   await rns.getByRole("button", { name: "Verify in cached FDA record" }).click();
   await expect(rns.getByRole("alert")).toContainText("Could not verify the archived FDA response");
+  expect(await worksheet()).toContain("Supplement source status: Verification failed in this session. Source unresolved.");
   await rns.getByRole("button", { name: "Retry cached FDA record" }).click();
+  const verifiedSupplement = rns.locator(".pilot-cached-source").filter({
+    has: page.getByText("Archived FDA record P100026/S104", { exact: true }),
+  });
+  await expect(verifiedSupplement.getByText(/Archive checksum verified/)).toBeVisible();
+  await expect(verifiedSupplement.getByRole("link", { name: "Open the cached FDA response" })).toHaveAttribute("href", /dossier-sources\/[a-f0-9]{64}\.json$/);
+  await filter.fill("S9999");
+  await filter.fill("P100026/S104");
   await expect(rns.getByText("Archived FDA record P100026/S104", { exact: true })).toBeVisible();
-  await expect(rns.getByText(/Archive checksum verified/)).toBeVisible();
-  await expect(rns.getByRole("link", { name: "Open the cached FDA response" })).toHaveAttribute("href", /dossier-sources\/[a-f0-9]{64}\.json$/);
-  await rns.getByRole("button", { name: "Include S104 in worksheet" }).click();
-  await expect(rns.getByText("Included in export: P100026/S104.")).toBeVisible();
   const requests: string[] = [];
   page.on("request", request => requests.push(request.url()));
   await builder.getByLabel("What do the sources support?").fill("S104 concerns a manufacturing process change.");
   await builder.getByLabel("What still needs checking?").fill("Confirm the scope of the current label & model.");
   const file = page.waitForEvent("download");
-  await builder.getByRole("link", { name: "Download editable worksheet" }).click();
+  await download.click();
   const exported = await readFile((await (await file).path())!, "utf8");
   for (const expected of [
     "S104 concerns a manufacturing process change.",
@@ -223,6 +289,9 @@ test("a buyer can add an exact cached supplement and a decision note to the work
     "Selected cached supplement: [P100026/S104]",
     "FDA decision code OK30",
     "Archive source SHA-256:",
+    "Inclusion records an indexed match.",
+    "Supplement source status: Exact cached decision verified",
+    "Archived FDA response retrieved",
     "P960009/S007",
   ]) expect(exported).toContain(expected);
   expect(requests).toEqual([]);

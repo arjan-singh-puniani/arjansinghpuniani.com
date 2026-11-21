@@ -63,6 +63,7 @@ const briefCases = families.flatMap((family): BriefCase[] => {
   return [{
     application: record.application,
     name: family.name,
+    applicant: record.applicant,
     decisionDate: record.decisionDate,
     retrievedAt: record.retrievedAt.slice(0, 10),
     sourceSha: record.sourceSha,
@@ -144,13 +145,13 @@ export default function PilotPage() {
           <div>
             <p className="pilot-kicker">Custom research</p>
             <h2 id="offer-title">A sourced brief for your review</h2>
-            <p>Bring one U.S. neurodevice landscape question. Arjan Singh Puniani scopes the question with your team and researches up to three agreed devices or applications using public sources.</p>
+            <p>Bring one U.S. neurodevice question. Arjan Singh Puniani scopes it with your team and compares two agreed FDA applications using public sources.</p>
             <ul>
               <li>A one-page decision memo, an editable device comparison and a source log with dates and exact locations for material findings.</li>
-              <li>An open-check list for your review and a walkthrough for your team.</li>
+              <li>An open-check list, a qualified reviewer spot check, a team walkthrough and one round of factual corrections.</li>
             </ul>
             <p>Tell us which review the brief needs to support. We’ll agree on the scope, fixed fee and delivery date before work starts. The pilot excludes regulatory strategy, current-label certification, exhaustive recall checks, and clinical recommendations. Future questions can be scoped as separate briefs.</p>
-            <p>Start with a public-source question. Arjan reviews it by email and confirms fit, scope, and timing before sending a quote.</p>
+            <p>Start with a public-source question. Arjan reviews it by email and confirms fit, reviewer availability and timing before sending a quote.</p>
             <p><a href="#decision-memo">See the sample decision memo</a></p>
           </div>
           <Inquiry />

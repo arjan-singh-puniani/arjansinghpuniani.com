@@ -1,6 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import DeviceMechanism from "./DeviceMechanism";
 import { atlasBasePath, atlasPath } from "@/lib/deployment";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -62,6 +63,7 @@ import {
 import { frontier } from "@/lib/curation";
 import {comparisonRelationships,reviewCsv} from "@/lib/research-workflow";
 import { External, SourceRecord, State } from "./Evidence";
+import CompanyMark from "./CompanyMark";
 import BriefPreview from "./BriefPreview";
 import { dossiers, dossierCoverage, reviewLabels } from "@/lib/dossiers";
 import { anatomyFocus, deviceActions } from '@/lib/device-action';
@@ -73,6 +75,18 @@ import "./atlas.css";
 
 const Human = dynamic(() => import("./HumanScene"), { ssr: false });
 const Brain = dynamic(() => import("./AnatomyScene"), { ssr: false });
+
+function InterventionCompanies({ family }: { family: Family }) {
+  const organizations = new Set(primaryRecords(family).flatMap(record => {
+    const organization = family.regulatoryIds.length ? record.applicant : record.sponsor;
+    return organization ? [organization] : [];
+  }));
+  return [...organizations].map(organization => (
+    <CompanyMark key={organization} organization={organization}
+      role={family.regulatoryIds.length ? "FDA applicant" : "Study sponsor"} />
+  ));
+}
+
 type Dialog = "records" | "compare" | "brief" | "questions" | "about" | "history" | null;
 const brainIds = [
   "UBERON:0000955",
@@ -652,7 +666,6 @@ export default function AtlasExperience() {
                   focusRegion={focusedRegion || undefined}
                   focusKey={(implantsOnly && selectedAnnotation?.mapping.id) || selected || undefined}
                   action={showMechanism && !implantsOnly ? action : undefined}
-                  actionPlaying={actionPlaying && !reducedMotion}
                   actionStep={actionStep}
                   onProjection={projectHuman}
                   rotateOverview={canRotateOverview && rotateOverview && !dialog}
@@ -683,7 +696,7 @@ export default function AtlasExperience() {
                   onHover={setHovered}
                 />
               )}
-              {showInterventions && projection?.mode===mode && densityMap && <InterventionConstellation compactBottom={solidOverview ? 48 : undefined} named={implantsOnly || collection==='explained'} implantsOnly={implantsOnly} entries={!implantsOnly && f && showMechanism && action && mode==='human' ? annotations.filter(a=>a.familyId===f.id) : annotations} projection={projection} selected={selected} onSelect={onInnovation} onRegion={id=>chooseRegion(id)}/>}
+              {showInterventions && projection?.mode===mode && densityMap && <InterventionConstellation compactBottom={solidOverview ? 48 : undefined} named={implantsOnly || collection==='explained'} implantsOnly={implantsOnly} entries={annotations} projection={projection} selected={selected} onSelect={onInnovation} onRegion={id=>chooseRegion(id)}/>}
               {showInterventions && !densityMap && projection?.mode === mode && (
                 <InterventionLabels
                   entries={annotations}
@@ -843,6 +856,11 @@ export default function AtlasExperience() {
               </button>
             </div>
           </div>
+          {showInterventions && densityMap && !implantsOnly && <div className="constellation-legend" role="group" aria-label="Intervention map legend">
+            <span><i />Reviewed relationships</span>
+            <span><i />FDA text context · unreviewed</span>
+            <small>{collection === "explained" ? "≈ approximate region · marks can group entries" : "Dots show indexed records by region. Use Implants for documented implant regions."}</small>
+          </div>}
           {portrait === false && mode === "human" && (
             <div className="anatomical-axes" role="group" aria-label="Anatomical axes">
               <strong>Axes</strong>
@@ -1110,6 +1128,7 @@ export default function AtlasExperience() {
                 </label>
                 <h2>{interventionNames[f.id] || f.name}</h2>
                 <p className="device-product">{productName(f)}</p>
+                <InterventionCompanies family={f} />
 
                 <p className="device-action" aria-label="What this intervention does">
                   {interventionActions[f.id] || f.description}
@@ -1154,17 +1173,18 @@ export default function AtlasExperience() {
                   <div className="mechanism-controls">
                     {focus && <button onClick={()=>{setMode('human');setShowOrgans(true);setSurface(false);setSceneKey(k=>k+1);}}>Locate on anatomy</button>}
                     {!implantsOnly && focus && brainIds.includes(focus.intendedRegion) && <button onClick={()=>chooseRegion(focus.intendedRegion,true)}>{f.id==='neuralink'?'Inspect cortical recording region':'Inspect brain target'}</button>}
-                    {!implantsOnly && action && <button aria-pressed={showMechanism && mode==='human'} onClick={()=>{setShowMechanism(mode==='human'?!showMechanism:true);setMode('human');setShowOrgans(true);setSurface(false);setActionPlaying(false);}}>Mechanism overlay</button>}
-                    {!implantsOnly && action && showMechanism && mode==='human' && <button disabled={reducedMotion} aria-pressed={actionPlaying} onClick={()=>setActionPlaying(p=>!p)}>{actionPlaying?'Pause mechanism':'Play mechanism'}</button>}
+                    {!implantsOnly && action && <button aria-pressed={showMechanism} onClick={()=>{setShowMechanism(!showMechanism);setActionPlaying(false);}}>Mechanism diagram</button>}
+                    {!implantsOnly && action && showMechanism && <button disabled={reducedMotion} aria-pressed={actionPlaying} onClick={()=>setActionPlaying(p=>!p)}>{actionPlaying?'Pause mechanism':'Play mechanism'}</button>}
                   </div>
                   <p className="focus-precision">{implantsOnly
                     ? selectedAnnotation ? `${selectedAnnotation.mapping.component} · ${selectedAnnotation.regionName} · ${anchorDescription(selectedAnnotation.mapping.structureId!)}` : "No documented implant region in this selection."
                     : focus ? `${titleFor(selectedAnnotation?.mapping.structureId || focus.intendedRegion)} · ${focusedRegion===focus.region&&focus.broaderReference ? 'broader reference anatomy' : anchorDescription(focusedRegion || focus.region).toLowerCase()}` : 'Location not established; no placement drawn.'}</p>
                   {!implantsOnly && action ? <>
+                    {showMechanism && <DeviceMechanism id={f.id} action={action} step={actionStep} playing={actionPlaying && !reducedMotion}/>}
                     <ol className="mechanism-stages" aria-label="Mechanism stages">{action.steps.map((step,i)=><li key={step}><button aria-pressed={actionStep===i} onClick={()=>{setActionPlaying(false);setActionStep(i);}}>{step}</button></li>)}</ol>
                     <External href={action.sourceUrl}>Mechanism source</External><small>{action.locator}</small>
-                    <p className="mechanism-limit">Enlarged schematic inset, not device shape or implant placement. {action.limit}{reducedMotion?' Animation disabled by reduced-motion preference.':''}</p>
-                  </> : !implantsOnly && <p className="mechanism-limit">A device action overlay has not been reviewed for this entry. The explanation and original evidence remain available.</p>}
+                    <p className="mechanism-limit">Qualitative illustration, not device shape or implant placement. {action.limit}{reducedMotion?' Animation disabled by reduced-motion preference.':''}</p>
+                  </> : !implantsOnly && <p className="mechanism-limit">No reviewed device illustration is available for this entry. The explanation and original evidence remain available.</p>}
                 </section>
                 {f.id==='neuralink'&&<NeuralinkEvidence onStudies={()=>{setTab('studies');requestAnimationFrame(()=>document.getElementById('device-studies')?.focus());}} onCompare={()=>{setComparison(['neuralink','braingate']);setDialog('compare');}}/>}
                 {explanation && <section className="intervention-relevance" aria-label="Why this region">
@@ -1442,9 +1462,10 @@ export default function AtlasExperience() {
                       <thead>
                         <tr>
                           <th>Interaction</th>
-                          {comparison.map((id) => (
-                            <th key={id}>{productName(familyById(id)!)}</th>
-                          ))}
+                          {comparison.map((id) => {
+                            const family = familyById(id)!;
+                            return <th key={id}>{productName(family)}<InterventionCompanies family={family} /></th>;
+                          })}
                         </tr>
                       </thead>
                       <tbody>
@@ -1613,7 +1634,7 @@ export default function AtlasExperience() {
               </p>
               <h3>Live FDA checks and mechanism diagrams</h3>
               <p>Check FDA updates retrieves up to ten public decisions for the selected application, with retrieval time, FDA dataset date and original response hashes. These results are separate from the reviewed snapshot and may be cached for one hour. Public decisions do not include every pending filing or certify current labeling and safety.</p>
-              <p>{Object.keys(deviceActions).length} entries have source-linked mechanism schematics with selectable stages. Their enlarged device drawings explain qualitative operation; they are not manufacturer CAD, implant coordinates, dose fields or clinical simulations. Available reference organs are highlighted; missing substructures use explicitly broader anatomy or abstain.</p>
+              <p>{Object.keys(deviceActions).length} entries have source-linked vector mechanism diagrams with selectable stages. Component illustrations appear in the detail panel and explain qualitative operation; they are not manufacturer CAD, implant coordinates, dose fields or clinical simulations. Available reference organs are highlighted; missing substructures use explicitly broader anatomy or abstain.</p>
               <p>
                 Historical FDA decisions do not establish current labeling.
                 Trial registration is not a successful clinical outcome. PubMed

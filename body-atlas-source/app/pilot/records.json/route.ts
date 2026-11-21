@@ -23,6 +23,7 @@ export function GET() {
     const briefCase: BriefCase = {
       application: record.application,
       name: record.title,
+      applicant: record.applicant,
       decisionDate: record.decisionDate,
       retrievedAt: record.retrievedAt.slice(0, 10),
       sourceSha: record.sourceSha,
