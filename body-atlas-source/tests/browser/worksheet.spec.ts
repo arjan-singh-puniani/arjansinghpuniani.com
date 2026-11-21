@@ -10,6 +10,9 @@ const gap = "Confirm current labeling before the review.";
 test("manufacturer search, reload recovery and a printable cited handoff preserve the research", async ({ page }, info) => {
   await page.goto(pilot);
   const builder = page.getByRole("region", { name: "Build a cited brief" });
+  const reset = builder.getByText("Start a new worksheet", { exact: true });
+  expect(await reset.evaluate(element => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(14);
+  expect((await reset.boundingBox())!.height).toBeGreaterThanOrEqual(44);
   const search = builder.getByRole("textbox", { name: "Find an FDA application by device name or ID" });
   await search.fill("NeuroPace");
   await builder.getByRole("button", { name: "Find application", exact: true }).click();
@@ -24,6 +27,9 @@ test("manufacturer search, reload recovery and a printable cited handoff preserv
   await builder.getByLabel("What do the sources support?").fill(finding);
   await builder.getByLabel("What still needs checking?").fill(gap);
   const rns = builder.getByRole("article").filter({ has: page.getByRole("link", { name: "Original FDA record P100026", exact: true }) });
+  const statement = rns.getByText("FDA decision statement", { exact: true });
+  expect(await statement.evaluate(element => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(14);
+  expect((await statement.boundingBox())!.height).toBeGreaterThanOrEqual(44);
   await rns.getByRole("button", { name: "Verify original in cached FDA record" }).click();
   await expect(rns.getByText("Archived FDA record P100026", { exact: true })).toBeVisible();
   await rns.getByRole("button", { name: "Browse cached supplement history" }).click();

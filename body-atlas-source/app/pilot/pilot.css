@@ -157,6 +157,8 @@
 .pilot-decision summary { color: var(--text); font: inherit; }
 .pilot-decision p { margin-top: .55rem; }
 .pilot-card h4 { margin-top: .8rem; }
+.pilot details,.pilot summary{font-size:1rem}
+.pilot summary{min-height:44px}
 
 @media (max-width: 700px) {
   .pilot-hero, .pilot-grid { grid-template-columns: minmax(0, 1fr); }
