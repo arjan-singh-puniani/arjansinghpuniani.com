@@ -8,6 +8,15 @@ import CachedFdaRecord, { archiveKey, type ArchiveVerification } from "./CachedF
 export type SelectedSupplement = DossierData["regulatory"]["rows"][number] & { archiveDate: string; retrievedAt?: string };
 const displayLimit = 12;
 
+export async function loadSupplementArchive(application: string, dossierPath: string): Promise<DossierData> {
+  const response = await fetch(atlasPath(dossierPath));
+  if (!response.ok) throw new Error("Archive unavailable");
+  const data = await response.json() as DossierData;
+  if (!data.applications?.includes(application) || !Array.isArray(data.regulatory?.rows) ||
+      !Array.isArray(data.labeling?.changeIds) || !Array.isArray(data.regulatory.sources) || !data.reviewedAt) throw new Error("Invalid archive");
+  return data;
+}
+
 export default function SupplementHistory({ application, dossierPath, selected, onSelect, verifications, onVerify }: {
   application: string;
   dossierPath: string;
@@ -23,12 +32,7 @@ export default function SupplementHistory({ application, dossierPath, selected, 
   async function load() {
     setState("loading");
     try {
-      const response = await fetch(atlasPath(dossierPath));
-      if (!response.ok) throw new Error("Archive unavailable");
-      const data = await response.json() as DossierData;
-      if (!data.applications?.includes(application) || !Array.isArray(data.regulatory?.rows) ||
-          !Array.isArray(data.labeling?.changeIds) || !Array.isArray(data.regulatory.sources) || !data.reviewedAt) throw new Error("Invalid archive");
-      setArchive(data);
+      setArchive(await loadSupplementArchive(application, dossierPath));
       setState("idle");
     } catch {
       setState("error");

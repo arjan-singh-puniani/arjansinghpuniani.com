@@ -134,6 +134,14 @@
   border: 1px solid var(--line);
   background: var(--panel);
 }
+.pilot-result-applicant{display:block;margin-top:.3rem;font-size:.85rem;color:var(--muted)}
+.pilot-draft-fields{border:0;padding:0;margin:0;min-inline-size:0}
+.pilot-draft-status{padding:.75rem 1rem;margin-block:1rem;border:1px solid var(--line);border-radius:.25rem;background:var(--panel)}
+.pilot-draft-status>p{margin:0;font-size:.9rem}
+.pilot-draft-status details{margin-top:.5rem;font-size:.85rem}
+.pilot-draft-status summary{cursor:pointer}
+.pilot-draft-status details p{margin-block:.6rem}
+.pilot-print-only{display:none}
 .pilot-fields label { min-width: 0; }
 .pilot-fields textarea { resize: vertical; }
 .pilot-fields textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
@@ -152,4 +160,36 @@
 
 @media (max-width: 700px) {
   .pilot-hero, .pilot-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media print {
+  @page{size:A4;margin:14mm;background:white}
+  html:has(.pilot),body:has(.pilot){background:white!important;color:#111;color-scheme:light}
+  .pilot{width:100%;font-size:10pt;--bg:white;--panel:white;--text:#111;--muted:#333;--line:#aaa;--accent:#333}
+  .pilot .skip-link,.pilot-nav,.pilot main>:not(#build),#build>:not(.pilot-draft-fields),
+  .pilot-draft-fields>:not(.pilot-worksheet){display:none!important}
+  .pilot #build{padding:0;border:0}
+  .pilot-worksheet{color:#111;background:white;line-height:1.35}
+  .pilot .pilot-worksheet p{font-size:10pt;margin-block:.25rem;line-height:1.3}
+  .pilot .pilot-worksheet li{line-height:1.35}
+  .pilot .pilot-worksheet h4{margin-block:.6rem .25rem}
+  .pilot-worksheet .pilot-fields,.pilot-worksheet .pilot-actions,.pilot-worksheet button,
+  .pilot-worksheet .pilot-history,.pilot-worksheet details,.pilot-worksheet .company-mark-art,
+  .pilot-comparison-heading{display:none!important}
+  .pilot .pilot-print-only{display:block}
+  .pilot-worksheet .pilot-grid{display:block;margin:0}
+  .pilot-worksheet .pilot-card{padding:4mm;margin-block:4mm;border:1px solid #bbb;background:white;box-shadow:none}
+  .pilot .pilot-card p+a{margin-block-start:.25rem}
+  .pilot-worksheet .pilot-card+.pilot-card{break-before:page}
+  .pilot-worksheet h2{font-size:18pt}
+  .pilot-worksheet h3{font-size:13pt}
+  .pilot-worksheet h4{font-size:11pt}
+  .pilot-worksheet :is(h2,h3,h4){break-after:avoid;color:#111}
+  .pilot-worksheet :is(p,li){color:#222;orphans:3;widows:3}
+  .pilot-worksheet a{color:#154e65;text-decoration:underline}
+  .pilot-worksheet a[href^="https://"]:after{content:" [" attr(href) "]";font-size:8pt;overflow-wrap:anywhere}
+  .pilot-worksheet code{font-size:8pt;overflow-wrap:anywhere}
+  .pilot-print-notes{break-inside:avoid}
+  .pilot-print-notes p{white-space:pre-wrap}
+  .pilot .pilot-print-provenance p{font-size:9pt}
 }
