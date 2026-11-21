@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { atlasPath } from "@/lib/deployment";
 import CompanyMark from "@/components/CompanyMark";
+import { pilotDraftKey, readPilotDraft, type PilotDraft } from "@/lib/pilot-draft";
 import CachedFdaRecord, { archiveKey, type ArchiveVerification } from "./CachedFdaRecord";
-import SupplementHistory, { type SelectedSupplement } from "./SupplementHistory";
+import SupplementHistory, { loadSupplementArchive, type SelectedSupplement } from "./SupplementHistory";
 
 export type BriefCase = {
   application: string;
@@ -62,6 +63,11 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
   const [added, setAdded] = useState<BriefCase[]>([]);
   const [search, setSearch] = useState("");
   const [lookup, setLookup] = useState<{ message: string; pending?: boolean; match?: BriefCase; results?: BriefCase[] }>({ message: "" });
+  const [draftPhase, setDraftPhase] = useState<"loading" | "ready" | "blocked">("loading");
+  const [draftMessage, setDraftMessage] = useState("Restoring this tab’s worksheet…");
+  const savedDraft = useRef("");
+  const restoreRun = useRef(0);
+  const wasRestored = useRef(false);
   const match = lookup.match;
   const searchInput = useRef<HTMLInputElement>(null);
   const matchActions = useRef<HTMLDivElement>(null);
@@ -75,6 +81,79 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
   const pair = left && right && left !== right ? [left, right] : [];
   const pairKey = pair.map(item => item.application).sort().join("/");
   const { finding, gap } = notes[pairKey] ?? { finding: "", gap: "" };
+
+  async function restoreDraft() {
+    const run = ++restoreRun.current;
+    setDraftPhase("loading");
+    try {
+      const raw = sessionStorage.getItem(pilotDraftKey) || "";
+      savedDraft.current = raw;
+      if (!raw) { setDraftPhase("ready"); return; }
+      const draft = readPilotDraft(raw);
+      if (!draft) throw new Error("Unreadable draft");
+      let available = Object.fromEntries(cases.map(item => [item.application, item]));
+      const ids = [...new Set([...draft.applications, draft.first, draft.second, ...Object.keys(draft.supplements)])].filter(Boolean);
+      if (ids.some(id => !available[id])) {
+        const response = await fetch(atlasPath("/pilot/records.json"));
+        if (!response.ok) throw new Error("Index unavailable");
+        const current = await response.json() as Record<string, BriefCase>;
+        available = { ...current, ...available };
+        if (run !== restoreRun.current) return;
+        setIndex(current);
+      }
+      if (ids.some(id => !available[id] || available[id].application !== id)) throw new Error("Saved application unavailable");
+      const restoredSupplements = await Promise.all(Object.entries(draft.supplements).map(async ([application, supplement]) => {
+        const path = available[application].dossierPath;
+        if (!path) throw new Error("Saved supplement unavailable");
+        const archive = await loadSupplementArchive(application, path);
+        const row = archive.regulatory.rows.find(item => item.application === application && item.supplement === supplement);
+        if (!row) throw new Error("Saved supplement unavailable");
+        const source = archive.regulatory.sources.find(item => item.sha === row.sourceSha && item.file === `${row.sourceSha}.json`);
+        return [application, { ...row, archiveDate: archive.reviewedAt.slice(0, 10), retrievedAt: source?.retrievedAt }] as const;
+      }));
+      if (run !== restoreRun.current) return;
+      setAdded(ids.filter(id => !cases.some(item => item.application === id)).map(id => available[id]));
+      setFirst(draft.first); setSecond(draft.second); setQuestion(draft.question); setNotes(draft.notes);
+      setSelectedSupplements(Object.fromEntries(restoredSupplements));
+      setVerifications({});
+      wasRestored.current = true;
+      setDraftPhase("ready");
+    } catch {
+      if (run !== restoreRun.current) return;
+      setDraftPhase("blocked");
+      setDraftMessage(savedDraft.current
+        ? "The saved worksheet could not be restored. Its saved copy has not been replaced. Retry or download a backup before starting over."
+        : "Draft saving is unavailable. Existing saved work has not been replaced. Retry or download your worksheet before leaving this page.");
+    }
+  }
+
+  useEffect(() => {
+    void restoreDraft();
+    return () => { restoreRun.current++; };
+  }, []);
+
+  useEffect(() => {
+    if (draftPhase !== "ready") return;
+    const draft: PilotDraft = {
+      version: 1, first, second, question, notes, applications: added.map(item => item.application),
+      supplements: Object.fromEntries(Object.entries(selectedSupplements).flatMap(([id, value]) => value ? [[id, value.supplement]] : [])),
+    };
+    const raw = JSON.stringify(draft);
+    try {
+      if (!readPilotDraft(raw)) throw new Error("Draft exceeds save bounds");
+      sessionStorage.setItem(pilotDraftKey, raw);
+      savedDraft.current = raw;
+      setDraftMessage(wasRestored.current ? "Worksheet restored and saved in this tab." : "Worksheet saved in this tab.");
+    } catch { setDraftMessage("Draft saving is unavailable. Download your worksheet before leaving this page."); }
+  }, [first, second, question, notes, added, selectedSupplements, draftPhase]);
+
+  function clearDraft() {
+    restoreRun.current++;
+    setFirst(""); setSecond(""); setQuestion(""); setNotes({}); setAdded([]);
+    setSelectedSupplements({}); setVerifications({}); setSearch(""); setLookup({ message: "" });
+    savedDraft.current = ""; wasRestored.current = false; setDraftPhase("ready");
+    requestAnimationFrame(() => searchInput.current?.focus());
+  }
 
   function verifyArchive(key: string, outcome: ArchiveVerification) {
     setVerifications(current => {
@@ -128,8 +207,8 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
 
       const terms = name.split(" ");
       const matches = Object.values(available)
-        .map(item => ({ item, title: searchKey(item.name) }))
-        .filter(({ title }) => terms.every(term => title.includes(term)))
+        .map(item => ({ item, title: searchKey(item.name), searchable: searchKey(`${item.name} ${item.applicant || ""} ${item.application}`) }))
+        .filter(({ searchable }) => terms.every(term => searchable.includes(term)))
         .sort((a, b) => Number(b.title === name) - Number(a.title === name) ||
           Number(b.title.includes(name)) - Number(a.title.includes(name)) ||
           a.title.length - b.title.length || a.item.application.localeCompare(b.item.application));
@@ -169,6 +248,7 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
         "",
         `## ${markdownText(item.name)} · ${item.application}`,
         `${item.status} · ${item.decisionDate}. [Original FDA record](${item.url}). Retrieved ${item.retrievedAt} UTC.`,
+        `FDA applicant: ${markdownText(item.applicant || "Not recorded in this snapshot")}.`,
         ...(item.sourceSha ? [`Original FDA archive SHA-256: ${item.sourceSha}.`] : []),
         `Original source status: ${archiveStatus(originalVerification)}`,
         `Indexed FDA decision statement: ${markdownText(item.statement || missingStatement)}`,
@@ -199,17 +279,31 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
     <section id="build" className="pilot-section" aria-labelledby="build-title">
       <p className="pilot-kicker">Free evidence worksheet</p>
       <h2 id="build-title">Build a cited brief</h2>
-      <p>Try the example pair or find two original FDA applications by device name or ID. Source links in the worksheet open in a new tab.</p>
+      <p>Try the example pair or find two original FDA applications by device, FDA applicant or ID. Source links in the worksheet open in a new tab.</p>
+      <div className="pilot-draft-status">
+        <p role="status">{draftMessage}</p>
+        {draftPhase === "blocked" && <div className="pilot-actions">
+          <button type="button" className="pilot-outline" onClick={() => void restoreDraft()}>Retry restoring worksheet</button>
+          {savedDraft.current && <a download="body-atlas-draft-backup.json" href={`data:application/json;charset=utf-8,${encodeURIComponent(savedDraft.current.toWellFormed())}`}>Download saved draft backup</a>}
+        </div>}
+        <details>
+          <summary>Start a new worksheet</summary>
+          <p>This clears the question, notes, application choices and supplements saved in this tab.</p>
+          <button type="button" className="pilot-outline" onClick={clearDraft}>Clear saved worksheet and notes</button>
+        </details>
+      </div>
+      <fieldset className="pilot-draft-fields" disabled={draftPhase === "loading"} aria-label="Worksheet builder">
       {cases.some(item => item.application === "P960009") && cases.some(item => item.application === "P150038") &&
         <button type="button" className="pilot-outline" onClick={loadExample}>Load Activa and ExAblate example</button>}
       <noscript><p>Open the FDA links in the example below or download the cited example.</p></noscript>
       <form className="pilot-fields pilot-lookup" onSubmit={findApplication}>
         <label>Find an FDA application by device name or ID
           <input ref={searchInput} value={search} maxLength={80} autoComplete="off" placeholder="InterStim or P080025" disabled={lookup.pending}
-            onChange={event => { setSearch(event.target.value); setLookup({ message: "" }); }} />
+            aria-describedby="pilot-search-hint" onChange={event => { setSearch(event.target.value); setLookup({ message: "" }); }} />
         </label>
         <button className="pilot-button" disabled={lookup.pending} type="submit">Find application</button>
       </form>
+      <p id="pilot-search-hint">Search a device, FDA applicant or original application ID.</p>
       <p role="status">{lookup.message}</p>
       {lookup.results && (
         <ul className="pilot-lookup-matches" aria-label="Matching FDA applications">
@@ -218,6 +312,7 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
               <button className="pilot-result-button" type="button"
                 onClick={() => setLookup({ message: "Application selected. Choose where to compare it.", match: item })}>
                 <strong>{item.application}</strong> · {item.name} · {item.decisionDate}
+                {item.applicant && <span className="pilot-result-applicant">FDA applicant · {item.applicant}</span>}
               </button>
             </li>
           ))}
@@ -251,12 +346,17 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
         <label className="pilot-question">Decision or question (optional)
           <input value={question} onChange={event => setQuestion(event.target.value)} maxLength={240} aria-describedby="pilot-question-hint" />
         </label>
-        <p id="pilot-question-hint" className="pilot-question">Your question and notes stay in this tab until you reload or close it. Download a worksheet to keep a copy.</p>
+        <p id="pilot-question-hint" className="pilot-question">Your draft stays in this tab, including refreshes; nothing is sent to a server. Use public information only. Download a copy for long-term storage. Reverify archived sources after reloading.</p>
       </div>
 
       <p className="pilot-builder-status" role="status">{pair.length ? "Two applications ready to review." : left || right ? "Choose one more application to compare." : "Choose two different applications to prepare the worksheet."}</p>
       {pair.length > 0 && (
-        <>
+        <section className="pilot-worksheet" aria-label="Evidence worksheet">
+          <header className="pilot-print-only">
+            <p>BODY//ATLAS · Evidence worksheet</p>
+            <h2>{question || "Device evidence comparison"}</h2>
+            <p>Source snapshot: {snapshot} UTC. For research and internal discussion.</p>
+          </header>
           <div className="pilot-comparison-heading">
             <h3 ref={comparisonHeading} tabIndex={-1}>Review the two FDA decisions</h3>
             <a href="#worksheet-notes">Jump to notes and export</a>
@@ -309,6 +409,22 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
                 </div>}
                 <h4>Evidence limits</h4>
                 <p>{item.limits}</p>
+                <div className="pilot-print-only pilot-print-provenance">
+                  <h4>Original decision and source provenance</h4>
+                  <p>{item.statement || missingStatement}</p>
+                  <p>{archiveStatus(verifications[archiveKey(item.application, item.decisionDate, item.sourceSha)])}</p>
+                  {item.sourceSha && <p>Original archive SHA-256: <code>{item.sourceSha}</code></p>}
+                  {selectedSupplements[item.application] && (() => {
+                    const selected = selectedSupplements[item.application]!;
+                    return <>
+                      <h4>Selected later decision</h4>
+                      <p><a href={selected.url}>{selected.application}/{selected.supplement}</a> · {selected.date} · {selected.decision}</p>
+                      <p>{selected.reason || "Change reason unavailable."} {selected.statement || "Statement unavailable."}</p>
+                      <p>Dossier dated {selected.archiveDate}. {archiveStatus(verifications[archiveKey(selected.application, selected.date, selected.sourceSha, selected.supplement)])}</p>
+                      {selected.sourceSha && <p>Supplement archive SHA-256: <code>{selected.sourceSha}</code></p>}
+                    </>;
+                  })()}
+                </div>
               </article>
             ))}
           </div>
@@ -324,12 +440,18 @@ export default function BriefBuilder({ cases, snapshot }: { cases: BriefCase[]; 
                 onChange={event => setNotes({ ...notes, [pairKey]: { finding, gap: event.target.value } })} />
             </label>
           </div>
+          <div className="pilot-print-only pilot-print-notes">
+            <h4>What the sources support</h4><p>{finding || "No finding recorded."}</p>
+            <h4>What still needs checking</h4><p>{gap || "No open question recorded. This does not establish completeness."}</p>
+          </div>
           <div className="pilot-actions">
             <a className="pilot-button" download="body-atlas-evidence-worksheet.md" href={`data:text/markdown;charset=utf-8,${encodeURIComponent(brief.toWellFormed())}`}>Download editable worksheet</a>
+            <button type="button" className="pilot-outline" onClick={() => window.print()}>Print or save PDF</button>
             <a href="#offer">Get help checking a gap</a>
           </div>
-        </>
+        </section>
       )}
+      </fieldset>
     </section>
   );
 }
