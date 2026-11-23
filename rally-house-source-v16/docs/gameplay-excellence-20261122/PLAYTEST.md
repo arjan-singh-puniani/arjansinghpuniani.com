@@ -2,7 +2,11 @@
 
 ## Status
 
-Arjan can arrange 3–5 people who have never played Rally House. No participant results have been collected. Run each person separately on a fresh preview save. Do not give them the mechanic matrix or the intended findings before play.
+Arjan can arrange 3–5 people who have never played Rally House. On 23 November, Arjan reported that testers kept playing, shared the game with friends and asked for more Sims-like activities, including flirting and choosing conversation topics. This is encouraging secondhand feedback. Participant counts, timing, build identifiers and session observations have not been supplied; no target below is marked achieved from this report alone.
+
+Arjan's stated direction remains tennis first. Treat requests for broader social features as optional research, not an approved expansion into a dating or conversation simulator. Prioritize clear tennis controls, readable points and satisfying rematches; any future social experiment should support those activities.
+
+For structured follow-up, run each person separately on a fresh preview save. Do not give them the mechanic matrix or the intended findings before play.
 
 ## Participant instruction — read only this
 

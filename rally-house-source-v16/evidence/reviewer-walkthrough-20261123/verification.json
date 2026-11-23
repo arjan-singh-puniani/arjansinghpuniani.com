@@ -1,0 +1,59 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "height": 900,
+    "touch": false,
+    "layout": {
+      "width": 1440,
+      "scroll": 1440,
+      "images": 6,
+      "callouts": [
+        true,
+        true,
+        true
+      ]
+    },
+    "entry": "iframe",
+    "errors": [],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 402,
+    "height": 874,
+    "touch": true,
+    "layout": {
+      "width": 402,
+      "scroll": 402,
+      "images": 6,
+      "callouts": [
+        true,
+        true,
+        true
+      ]
+    },
+    "entry": "full-page",
+    "errors": [],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 320,
+    "height": 740,
+    "touch": true,
+    "layout": {
+      "width": 320,
+      "scroll": 320,
+      "images": 6,
+      "callouts": [
+        true,
+        true,
+        true
+      ]
+    },
+    "entry": "full-page",
+    "errors": [],
+    "passed": true
+  }
+]
