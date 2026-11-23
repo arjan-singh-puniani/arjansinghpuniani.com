@@ -141,7 +141,9 @@ export function interpolateFrame(a, b, time) {
                             local[`foreArmForward${side}`] = local[`handForward${side}`];
                         }
                     }
-                    source = { bind: part.rig.bind, pose: local, matrices: skinMatrices(local, part.rig.bind, smoothstep(0, .15, pose.sp)), position, rotation };
+                    // Preserve the recorded twist policy; Arjan uses linear progress, unlike the other authored rig.
+                    const stroke = part.rig.stroke !== undefined && other.rig.stroke !== undefined ? part.rig.stroke + (other.rig.stroke - part.rig.stroke) * t : smoothstep(0, .15, pose.sp);
+                    source = { bind: part.rig.bind, pose: local, matrices: skinMatrices(local, part.rig.bind, stroke), position, rotation };
                     authored.set(part.rig.bind, source);
                     for (const side of ['L', 'R']) {
                         const bind = source.bind[`wrist${side}`];

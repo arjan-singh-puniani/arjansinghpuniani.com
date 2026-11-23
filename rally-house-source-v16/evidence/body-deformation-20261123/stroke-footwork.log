@@ -1,0 +1,4 @@
+{"samples":1477,"maxLift":0.10135180029131892,"maxTurn":0.5,"maxToeDrift":6.206335383118183e-17,"minShoeY":0.004006480700838569}
+Stroke footwork PASS: flat loading, toe pivots, heel release, grounded recovery audio, rendered shoes, exact racket contact and ready return across the cast at 30/60/120 Hz.
+{"readyTransitions":36,"maxReadyJump":4.0785377256513355e-8,"maxReadySkinJump":3.129243850708008e-7}
+{"movingStops":54,"maxStopJump":6.813726027331082e-8,"maxRestartJump":5.563384004694087e-8}

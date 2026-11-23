@@ -113,7 +113,9 @@ export function interpolateFrame(a:MotionFrame,b:MotionFrame,time:number):Motion
     let source=authored.get(part.rig.bind);
     if(!source){const local=rigFromPose(pose,root,rotation.y);for(const key of ['spine','neck','headUp','headForward','handDirectionL','handDirectionR','handForwardL','handForwardR','foreArmForwardL','foreArmForwardR','footForwardL','footForwardR','footUpL','footUpR'] as const){const x=part.rig.pose[key],y=other.rig.pose[key];if(x&&y)local[key]=Vec3.lerp(x,y,t);}
      for(const side of ['L','R'] as const){const x=part.rig.pose,y=other.rig.pose,dx=x[`handDirection${side}`],dy=y[`handDirection${side}`],fx=x[`handForward${side}`],fy=y[`handForward${side}`];if(dx&&dy&&fx&&fy){const origin=new Vec3(),frame=interpolateRigidFrame(rigidFrame(origin,dx,fx),rigidFrame(origin,dy,fy),t);local[`handDirection${side}`]=new Vec3(frame[4],frame[5],frame[6]);local[`handForward${side}`]=new Vec3(frame[8],frame[9],frame[10]);local[`foreArmForward${side}`]=local[`handForward${side}`];}}
-     source={bind:part.rig.bind,pose:local,matrices:skinMatrices(local,part.rig.bind,smoothstep(0,.15,pose.sp)),position,rotation};authored.set(part.rig.bind,source);
+     // Preserve the recorded twist policy; Arjan uses linear progress, unlike the other authored rig.
+     const stroke=part.rig.stroke!==undefined&&other.rig.stroke!==undefined?part.rig.stroke+(other.rig.stroke-part.rig.stroke)*t:smoothstep(0,.15,pose.sp);
+     source={bind:part.rig.bind,pose:local,matrices:skinMatrices(local,part.rig.bind,stroke),position,rotation};authored.set(part.rig.bind,source);
      for(const side of ['L','R'] as const){const bind=source.bind[`wrist${side}`];if(bind){const wrist=transformPoint(source.matrices.subarray(BONE[`hand${side}`]*16,BONE[`hand${side}`]*16+16),bind),scale=part.scale&&other.scale?Vec3.lerp(part.scale,other.scale,t):part.scale,world=transformPoint(compose(position,rotation,scale),new Vec3(wrist.x,wrist.y,wrist.z));pose[`wrist${side}`]=new Vec3(world.x,world.y,world.z);}}
     }
     rig={bind:source.bind,pose:source.pose};palette=source.matrices;

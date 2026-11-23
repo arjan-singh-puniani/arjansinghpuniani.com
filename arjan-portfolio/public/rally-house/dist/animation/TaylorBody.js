@@ -1,4 +1,4 @@
-import { Vec3, clamp, rigidFrame, transformPoint } from '../rendering/Math3D.js';
+import { Vec3, clamp, rigidFrame, transformPoint, multiply, invertRigid } from '../rendering/Math3D.js';
 import { secondRacketHand, supportRacketHand } from './RacketGeometry.js';
 export const TAYLOR_BODY = { pelvisHeight: 1.245, strokePelvisFloor: .86, torsoScale: 1.20, headScale: .62, upperArm: .425, forearm: .415, thigh: .56, shin: .55 };
 const smooth = (t) => { const u = clamp(t, 0, 1); return u * u * (3 - 2 * u); };
@@ -106,6 +106,19 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             p[`hand${side}`] = Vec3.lerp(hinge(p[`hand${side}`]), p[`hand${side}`], side === 'L' ? constraints.leftWorld : constraints.rightWorld);
     }
     const bodyKeys = ['pelvisCenter', 'torsoCenter', 'shoulderL', 'shoulderR', 'head', 'hipL', 'hipR'];
+    // Reach by hinging the upper body as one shape, not shearing shoulders away from the waist.
+    const hingeTorso = (shift) => {
+        const center = Vec3.lerp(p.shoulderL, p.shoulderR, .5), forward = new Vec3(Math.sin(p.torsoYaw), 0, Math.cos(p.torsoYaw));
+        const from = rigidFrame(p.pelvisCenter, center, forward), to = rigidFrame(p.pelvisCenter, center.clone().add(shift), forward), rotation = multiply(to, invertRigid(from));
+        for (const key of ['torsoCenter', 'shoulderL', 'shoulderR', 'head']) {
+            const v = transformPoint(rotation, p[key]);
+            p[key] = new Vec3(v.x, v.y, v.z);
+        }
+        if (p.chest) {
+            const v = transformPoint(rotation, p.chest);
+            p.chest = new Vec3(v.x, v.y, v.z);
+        }
+    };
     if (groundstroke) {
         // Balance the longer frame over the support feet instead of folding the wrist into the torso.
         const balance = .18 * groundstroke * Math.sin(Math.PI * source.sp) ** 2 * (2 * (constraints.backhandWeight ?? 0) - 1), shift = new Vec3(Math.cos(yaw) * balance, 0, -Math.sin(yaw) * balance);
@@ -156,9 +169,13 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             drop = Math.max(drop, shifted.y - end.y - vertical);
         }
         lower(clamp(drop, 0, .65) * weight);
-        for (const key of ['shoulderL', 'shoulderR', 'head'])
-            p[key].add(lean.clone().scale(weight));
-        p.torsoCenter.add(lean.clone().scale(weight * .6));
+        if (groundstroke && constraints.rigidReach)
+            hingeTorso(lean.clone().scale(weight));
+        else {
+            for (const key of ['shoulderL', 'shoulderR', 'head'])
+                p[key].add(lean.clone().scale(weight));
+            p.torsoCenter.add(lean.clone().scale(weight * .6));
+        }
         p.handL = Vec3.lerp(Vec3.lerp(p.shoulderL.clone().add(offsetL), source.handL, constraints.leftWorld), p.handL, groundstroke * (constraints.backhandWeight ?? 0));
         p.handR = Vec3.lerp(Vec3.lerp(p.shoulderR.clone().add(offsetR), source.handR, constraints.rightWorld), p.handR, groundstroke);
     }
@@ -245,11 +262,22 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         const remaining = Vec3.sub(hand, p[`shoulder${side}`]), distance = remaining.len();
         if (distance > reach) {
             const hinge = remaining.scale(Math.min(.65, (distance - reach + .008)) / distance);
-            p.shoulderL.add(hinge);
-            p.shoulderR.add(hinge);
-            p.head.add(hinge);
-            p.chest?.add(hinge);
-            p.torsoCenter.add(hinge.clone().scale(.6));
+            if (groundstroke && constraints.rigidReach) {
+                hingeTorso(hinge);
+                // Move the body with any remaining reach; stretching just the shoulders changes torso length.
+                const gap = Vec3.sub(hand, p[`shoulder${side}`]), excess = Math.max(0, gap.len() - reach);
+                const shift = gap.normalize().scale(excess);
+                for (const key of bodyKeys)
+                    p[key].add(shift);
+                p.chest?.add(shift);
+            }
+            else {
+                p.shoulderL.add(hinge);
+                p.shoulderR.add(hinge);
+                p.head.add(hinge);
+                p.chest?.add(hinge);
+                p.torsoCenter.add(hinge.clone().scale(.6));
+            }
         }
     }
     for (const side of ['R', 'L']) {

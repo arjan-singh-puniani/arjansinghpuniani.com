@@ -1,9 +1,9 @@
-import {Vec3,clamp,rigidFrame,transformPoint} from '../rendering/Math3D.js';
+import {Vec3,clamp,rigidFrame,transformPoint,multiply,invertRigid} from '../rendering/Math3D.js';
 import {secondRacketHand,supportRacketHand} from './RacketGeometry.js';
 import type {CharacterPose} from '../entities/Character.js';
 
 export const TAYLOR_BODY={pelvisHeight:1.245,strokePelvisFloor:.86,torsoScale:1.20,headScale:.62,upperArm:.425,forearm:.415,thigh:.56,shin:.55} as const;
-interface Constraints {armLengths?:{upperArm:number;forearm:number;wristForearm?:number;wristOffsets?:{L:Vec3;R:Vec3};palmOffsets?:{L:Vec3;R:Vec3};restPalm?:Vec3};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;serve?:{roll:number;load:number;lean:number};affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean;back?:{L:Vec3;R:Vec3}};shoulderScale?:number;restWeight?:number;squareRest?:boolean;readyWeight?:number;backhandWeight?:number;strokeWeight?:number;groundstrokeWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
+interface Constraints {armLengths?:{upperArm:number;forearm:number;wristForearm?:number;wristOffsets?:{L:Vec3;R:Vec3};palmOffsets?:{L:Vec3;R:Vec3};restPalm?:Vec3};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;serve?:{roll:number;load:number;lean:number};affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean;back?:{L:Vec3;R:Vec3}};shoulderScale?:number;restWeight?:number;squareRest?:boolean;rigidReach?:boolean;readyWeight?:number;backhandWeight?:number;strokeWeight?:number;groundstrokeWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
 const smooth=(t:number)=>{const u=clamp(t,0,1);return u*u*(3-2*u);};
 // Two-bone IK uses the law of cosines to place the elbow/knee; the pole picks its bend plane.
 function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3){
@@ -66,6 +66,13 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  }
 
  const bodyKeys=['pelvisCenter','torsoCenter','shoulderL','shoulderR','head','hipL','hipR'] as const;
+ // Reach by hinging the upper body as one shape, not shearing shoulders away from the waist.
+ const hingeTorso=(shift:Vec3)=>{
+  const center=Vec3.lerp(p.shoulderL,p.shoulderR,.5),forward=new Vec3(Math.sin(p.torsoYaw),0,Math.cos(p.torsoYaw));
+  const from=rigidFrame(p.pelvisCenter,center,forward),to=rigidFrame(p.pelvisCenter,center.clone().add(shift),forward),rotation=multiply(to,invertRigid(from));
+  for(const key of ['torsoCenter','shoulderL','shoulderR','head'] as const){const v=transformPoint(rotation,p[key]);p[key]=new Vec3(v.x,v.y,v.z);}
+  if(p.chest){const v=transformPoint(rotation,p.chest);p.chest=new Vec3(v.x,v.y,v.z);}
+ };
  if(groundstroke){
   // Balance the longer frame over the support feet instead of folding the wrist into the torso.
   const balance=.18*groundstroke*Math.sin(Math.PI*source.sp)**2*(2*(constraints.backhandWeight??0)-1),shift=new Vec3(Math.cos(yaw)*balance,0,-Math.sin(yaw)*balance);
@@ -96,7 +103,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   const target=load.left?Vec3.lerp(armEnd('R',load.right),armEnd('L',load.left),.5):armEnd('R',load.right),centre=Vec3.lerp(originalL,originalR,.5),toward=Vec3.sub(target,centre);toward.y=0;const distance=toward.len(),lean=distance>.34?toward.scale(Math.min(.24,distance-.34)/distance):new Vec3();
   let drop=0;for(const [start,end] of [[originalR,armEnd('R',load.right)],...(load.left?[[originalL,armEnd('L',load.left)]]:[])] as [Vec3,Vec3][]){const shifted=start.clone().add(lean),horizontal=Math.hypot(end.x-shifted.x,end.z-shifted.z),vertical=Math.sqrt(Math.max(.04,(arms.upperArm+forearm-.003)**2-horizontal*horizontal));drop=Math.max(drop,shifted.y-end.y-vertical);}
   lower(clamp(drop,0,.65)*weight);
-  for(const key of ['shoulderL','shoulderR','head'] as const)p[key].add(lean.clone().scale(weight));p.torsoCenter.add(lean.clone().scale(weight*.6));
+  if(groundstroke&&constraints.rigidReach)hingeTorso(lean.clone().scale(weight));else{for(const key of ['shoulderL','shoulderR','head'] as const)p[key].add(lean.clone().scale(weight));p.torsoCenter.add(lean.clone().scale(weight*.6));}
   p.handL=Vec3.lerp(Vec3.lerp(p.shoulderL.clone().add(offsetL),source.handL,constraints.leftWorld),p.handL,groundstroke*(constraints.backhandWeight??0));p.handR=Vec3.lerp(Vec3.lerp(p.shoulderR.clone().add(offsetR),source.handR,constraints.rightWorld),p.handR,groundstroke);
  }
  // Carry the loading hand with the torso so the head cannot move into the fixed racket path.
@@ -152,7 +159,12 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   const horizontalLength=Math.hypot(delta.x,delta.z),vertical=Math.sqrt(Math.max(.04,reach*reach-horizontalLength*horizontalLength));
   const drop=clamp(start.y-hand.y-vertical,0,.76);lower(drop);
   const remaining=Vec3.sub(hand,p[`shoulder${side}`]),distance=remaining.len();
-  if(distance>reach){const hinge=remaining.scale(Math.min(.65,(distance-reach+.008))/distance);p.shoulderL.add(hinge);p.shoulderR.add(hinge);p.head.add(hinge);p.chest?.add(hinge);p.torsoCenter.add(hinge.clone().scale(.6));}
+  if(distance>reach){const hinge=remaining.scale(Math.min(.65,(distance-reach+.008))/distance);if(groundstroke&&constraints.rigidReach){
+    hingeTorso(hinge);
+    // Move the body with any remaining reach; stretching just the shoulders changes torso length.
+    const gap=Vec3.sub(hand,p[`shoulder${side}`]),excess=Math.max(0,gap.len()-reach);
+    const shift=gap.normalize().scale(excess);for(const key of bodyKeys)p[key].add(shift);p.chest?.add(shift);
+   }else{p.shoulderL.add(hinge);p.shoulderR.add(hinge);p.head.add(hinge);p.chest?.add(hinge);p.torsoCenter.add(hinge.clone().scale(.6));}}
  }
  for(const side of ['R','L'] as const){
   const walk=constraints.human?constraints.walk:undefined,walkingSoft=walk?.012+.018*smooth(((side==='L'?-1:1)*Math.cos(walk.phase)+1)/2):0;

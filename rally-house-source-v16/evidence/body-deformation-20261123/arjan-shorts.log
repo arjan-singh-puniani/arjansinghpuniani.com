@@ -1,0 +1,2 @@
+{"triangles":768,"openings":3,"frames":4389,"maxSeamGap":7.850462293418876e-17,"clearancePoses":63,"waistbandPoses":91}
+Connected shorts PASS: one manifold garment, three openings, above-knee hems, thigh/calf clearance and closed moving seams at 30/60/120 Hz and in interpolated replay.
