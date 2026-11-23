@@ -354,14 +354,14 @@ export class Game {
             if (document.hidden) {
                 this.phoneCapture?.cancel();
                 this.setChampionshipPaused(true);
-                this.audio.stopVoice();
+                this.audio.stopReaction();
                 this.audio.stopAmbience();
             }
         });
         window.addEventListener('blur', () => {
             this.matchInput.reset();
             this.championshipHud.resetTouch();
-            this.audio.stopVoice();
+            this.audio.stopReaction();
             this.setChampionshipPaused(true);
         });
         document.addEventListener('focusin', e => {
@@ -371,7 +371,7 @@ export class Game {
         });
         // Cached pages retain this Game instance; only a permanent departure should dispose its audio.
         window.addEventListener('pagehide', e => { if (e.persisted) {
-            this.audio.stopVoice();
+            this.audio.stopReaction();
             this.audio.stopAmbience();
         }
         else
@@ -733,7 +733,7 @@ export class Game {
     availableChampionshipOpponent() { return ['leo', 'mika', 'coach', 'nia'].map(id => this.byId(id)).find(c => c && championshipOpponentFor(c.id) && !this.activities.busy(c.id)); }
     createInteractiveMatch(opponent, profile) {
         return new InteractiveMatchSystem(this.player, opponent, profile, this.matchInput, {
-            onHit: (quality, side, direction, speed) => this.playChampionshipHit(quality, side, direction, speed),
+            onHit: (quality, side, direction, speed, shot) => this.playChampionshipHit(quality, side, direction, speed, shot),
             onBounce: () => { this.audio.bounce(); this.motionRecorder?.markBounce(); },
             onNet: () => this.audio.net(),
             onRallyContact: (_side, quality) => {
@@ -753,17 +753,17 @@ export class Game {
                     opponent.setEmotion('frustrated', 1.3);
                     this.activeSpeechId = opponent.id;
                     this.speechUntil = performance.now() + 1300;
-                    this.ui.showSpeech(opponent.spec.name, "D'oh!", 1300, true);
+                    this.ui.showSpeech(opponent.spec.name, "Close. Next one.", 1300, true);
                 }
                 if (this.championship.phase === 'matchResult')
                     this.audio.success();
             },
         });
     }
-    playChampionshipHit(quality, side, direction, speed) {
-        this.audio.tennisImpact(quality, speed);
+    playChampionshipHit(quality, side, direction, speed, shot = 'drive') {
+        this.audio.tennisImpact(quality, speed, shot);
         if (!this.settings.reducedMotion)
-            this.championshipCamera.pulseImpact(CHAMPIONSHIP_CONTACT_FEEL[quality].camera * (side === 'player' ? 1 : .45), direction);
+            this.championshipCamera.pulseImpact(CHAMPIONSHIP_CONTACT_FEEL[quality].camera * (side === 'player' ? 1 : .45) * (shot === 'lob' ? .65 : 1), direction);
         for (const c of this.characters)
             if (!this.activities.busy(c.id) && c.state === 'watch')
                 c.setEmotion(quality === 'perfect' ? 'surprised' : 'attentive', .45);
@@ -779,7 +779,7 @@ export class Game {
     requestChampionshipExit() {
         if (!this.championship.active)
             return;
-        this.audio.stopVoice();
+        this.audio.stopReaction();
         this.ui.hideSpeech();
         this.activeSpeechId = null;
         this.rememberChampionshipResult();
@@ -804,7 +804,7 @@ export class Game {
             return;
         this.clock.paused = paused;
         if (paused)
-            this.audio.stopVoice();
+            this.audio.stopReaction();
         this.matchInput.setEnabled(!paused && this.championship.acceptsGameplayInput);
         this.matchInput.reset();
         this.championshipHud.resetTouch();
@@ -819,7 +819,7 @@ export class Game {
         this.championshipApproachSpeeds?.clear();
     }
     cleanupChampionship() {
-        this.audio.stopVoice();
+        this.audio.stopReaction();
         this.ui.hideSpeech();
         this.activeSpeechId = null;
         this.restoreChampionshipApproach();
@@ -893,7 +893,7 @@ export class Game {
             this.championship.update(dt, this.settings.reducedMotion);
             const after = this.championship.phase;
             if (after === 'serving' && before !== 'serving') {
-                this.audio.stopVoice();
+                this.audio.stopReaction();
                 this.interactiveMatch?.startPoint(this.championship.snapshot().server);
             }
             const acceptsInput = after === 'serving' || after === 'rally';
@@ -944,6 +944,10 @@ export class Game {
             place: 'court',
         });
         this.life.addMemory(this.clock.day, detail);
+        if (this.mind.recordChampionship(`${this.championshipActivityId}:round-${this.championshipRound}`, opponent.id, score.opponent > score.player, this.clock.day, detail)) {
+            const relation = this.relations.get(opponent.id);
+            relation.rivalry = Math.min(100, relation.rivalry + (Math.abs(score.player - score.opponent) <= 2 ? 4 : 2));
+        }
         this.mind.reinforceCulture('competition', .035);
         opponent.setEmotion(score.opponent > score.player ? 'pleased' : 'attentive', 2);
         void this.save();
@@ -1243,7 +1247,7 @@ export class Game {
             // Analysis borrows presentation; the match keeps its score, ball and court reservation.
             this.reviewingChampionship = true;
             this.clock.paused = true;
-            this.audio.stopVoice();
+            this.audio.stopReaction();
             this.matchInput.setEnabled(false);
             this.championshipHud.hide();
             this.simAcc = 0;
@@ -2437,10 +2441,10 @@ export class Game {
         }
         const open = this.clock.minutes >= 510 && this.clock.minutes < 1250;
         if (!open) {
-            // Closing the court should not switch off the people who remain in the club.
+            // Closing the court keeps quiet life and off-court follow-ups to the player’s completed match alive.
             if (!this.lifeRuns.size) {
                 const context = this.sceneContext();
-                const quiet = (scene) => !!scene.family && ['rest', 'reflect', 'care', 'company'].includes(motiveFor(scene));
+                const quiet = (scene) => !!scene.family && (['rest', 'reflect', 'care', 'company'].includes(motiveFor(scene)) || scene.family === 'championship-followup');
                 const scene = this.everyday.choose(this.lifeContext(), this.grammar.compose(this.mind, context).filter(quiet), scenes => this.mind.rank(scenes.filter(quiet), context).map(v => v.s), true);
                 if (scene && this.startEveryday(scene))
                     this.everyday.next = Math.max(this.everyday.next, this.everyday.time + 75);
@@ -2483,7 +2487,7 @@ export class Game {
         if (this.championship.active && this.championshipOpponentId && !this.performanceLab.active) {
             const opponent = this.byId(this.championshipOpponentId);
             if (opponent)
-                this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue(), this.settings.reducedMotion, this.clock.paused, !this.audio.enabled || this.audio.volume === 0, this.motionRecorder.clip.frames.some(f => f.contact));
+                this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue(), this.settings.reducedMotion, this.clock.paused, !this.audio.enabled || this.audio.volume === 0, this.motionRecorder.clip.frames.some(f => f.contact), this.interactiveMatch?.shotLesson());
         }
         else {
             this.championshipHud.hide();

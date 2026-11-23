@@ -13,7 +13,7 @@ const beat=(seconds:number,speaker:MemberId,line:string,gesture:Gesture='none',p
 export class EverydayLife {
   time=0;next=7;sequence=0;cooldowns:Record<string,number>={};counts:Record<string,number>={};history:LifeReceipt[]=[];pending:string[]=[];lastMatch='';
   private retentionAt=0;
-  tick(dt:number){if(Number.isFinite(dt)&&dt>0)this.time+=dt;if(this.time>=this.retentionAt){this.retentionAt=this.time+60;for(const [key,until] of Object.entries(this.cooldowns))if(until<this.time&&/^(after-|witness-|try-cue-|find-|three-)/.test(key)){delete this.cooldowns[key];delete this.counts[key];}}}
+  tick(dt:number){if(Number.isFinite(dt)&&dt>0)this.time+=dt;if(this.time>=this.retentionAt){this.retentionAt=this.time+60;for(const [key,until] of Object.entries(this.cooldowns))if(until<this.time&&/^(after-|witness-|try-cue-|find-|three-|championship-)/.test(key)){delete this.cooldowns[key];delete this.counts[key];}}}
   scenes(c:LifeContext):LifeScene[]{
     const knownTea=(this.counts['usual']??0)>0,close=c.warmth('nia','mika')>=24;
     const match=c.match,score=match?`Lucresia ${match.score.mika??0}, Leo ${match.score.leo??0}`:'';

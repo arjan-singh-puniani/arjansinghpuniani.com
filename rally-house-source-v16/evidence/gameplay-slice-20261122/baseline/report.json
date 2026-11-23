@@ -1,0 +1,82 @@
+{
+  "engine": "chromium",
+  "environment": "Desktop browser emulation, not a physical iPhone.",
+  "views": [
+    {
+      "name": "landscape",
+      "width": 756,
+      "height": 352,
+      "foot": {
+        "x": 381.03285543843975,
+        "y": 291.59688753817795,
+        "visible": true
+      },
+      "head": {
+        "x": 381.2675952529728,
+        "y": 214.6505641884508,
+        "visible": true
+      },
+      "playerPixels": 76.94632334972715
+    },
+    {
+      "name": "wide-landscape",
+      "width": 838,
+      "height": 390,
+      "foot": {
+        "x": 422.360548767607,
+        "y": 323.0760925876115,
+        "visible": true
+      },
+      "head": {
+        "x": 422.62065170319784,
+        "y": 237.82305624760215,
+        "visible": true
+      },
+      "playerPixels": 85.25303634000937
+    },
+    {
+      "name": "portrait",
+      "width": 402,
+      "height": 681,
+      "foot": {
+        "x": 204.68532122740675,
+        "y": 525.0195195052117,
+        "visible": true
+      },
+      "head": {
+        "x": 205.0300482582137,
+        "y": 448.1673225118426,
+        "visible": true
+      },
+      "playerPixels": 76.85219699336915
+    },
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "foot": {
+        "x": 727.7549159061803,
+        "y": 745.5845482385852,
+        "visible": true
+      },
+      "head": {
+        "x": 728.3551918635901,
+        "y": 548.860706261585,
+        "visible": true
+      },
+      "playerPixels": 196.72384197700012
+    }
+  ],
+  "errors": [],
+  "firstServeMs": 6568,
+  "play": {
+    "samples": 4144,
+    "minPedestrianDistance": 2.8500042888799273,
+    "contactVisible": true,
+    "score": {
+      "player": 0,
+      "opponent": 4
+    }
+  },
+  "passed": true
+}

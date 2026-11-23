@@ -11,6 +11,8 @@ export function characterContext(c, s) {
     const match = s.history.matches.find(m => Object.hasOwn(m.score, c.id)), memory = s.mind.recall(c.id)[0];
     const favorite = Object.entries(s.affordances.objects).find(([, h]) => h.favoriteOf.includes(c.id));
     const championship = s.relations.recall(c.id, 'championship');
+    const followup = s.mind.events.find(e => e.kind === 'championship' && e.subject === c.id);
+    const rematchReady = !!followup && !followup.pending.length;
     if (championship) {
         facts.push({ label: 'Last Championship with you', text: championship.detail });
     }
@@ -38,7 +40,7 @@ export function characterContext(c, s) {
     if (c.id === 'mika' && !s.activities.busy('coach') && !s.activities.busy(c.id) && !s.activities.reserved('court'))
         actions.push({ id: 'coach', title: 'Coach a lesson', detail: 'Choose a cue for Lucresia' });
     if (canChallenge(s.activities, c.id))
-        actions.push({ id: 'challenge', title: 'Challenge to Match', detail: 'First to 7 · win by 2', primary: true });
+        actions.push({ id: 'challenge', title: rematchReady ? 'Accept rematch' : 'Challenge to Match', detail: rematchReady ? 'They finished reflecting on your last match · First to 7' : 'First to 7 · win by 2', primary: true });
     else
         facts.push({ label: 'Court availability', text: 'A committed activity is in progress.' });
     if (free)

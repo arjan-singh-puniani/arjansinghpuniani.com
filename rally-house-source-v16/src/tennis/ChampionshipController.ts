@@ -25,6 +25,8 @@ export type ChampionshipCameraMode =
 export interface ChampionshipOpponentProfile {
   id: string;
   name: string;
+  /** Positioning preference, independent of locomotion speed and contact forgiveness. */
+  style?: 'pressure' | 'retriever';
 
   /** Delay before AI commits to an intercept, in seconds. Lower is stronger. */
   reaction: number;

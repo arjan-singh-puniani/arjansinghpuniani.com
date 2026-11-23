@@ -1,0 +1,28 @@
+{
+  "status": "completed-with-browser-diagnostics",
+  "rawRunPassed": false,
+  "durationSeconds": 600.075,
+  "inputs": 175,
+  "lobInputs": 73,
+  "automatedRematches": 5,
+  "analysisReviews": 6,
+  "sampledFrames": 36696,
+  "framesOver50ms": 13,
+  "windowP95FrameMs": [
+    21,
+    23
+  ],
+  "geometryCounts": [
+    86
+  ],
+  "domCounts": [
+    309
+  ],
+  "nativeMediaErrors": 4,
+  "nativeMediaErrorsReproducedWithoutGame": true,
+  "unexpectedErrors": [],
+  "heapMeasured": false,
+  "physicalDevice": false,
+  "rawReport": "soak-webkit/report.json",
+  "isolationReport": "webkit-native-media.json"
+}

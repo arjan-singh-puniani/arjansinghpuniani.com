@@ -1,0 +1,42 @@
+[
+  {
+    "test": "everyday",
+    "exitCode": 0,
+    "seconds": 0.258
+  },
+  {
+    "test": "championship-memory",
+    "exitCode": 0,
+    "seconds": 4.117
+  },
+  {
+    "test": "world-interface",
+    "exitCode": 0,
+    "seconds": 0.12
+  },
+  {
+    "test": "serve-ballistics",
+    "exitCode": 0,
+    "seconds": 4.26
+  },
+  {
+    "test": "serve-sequence",
+    "exitCode": 0,
+    "seconds": 3.97
+  },
+  {
+    "test": "serve-head-clearance",
+    "exitCode": 0,
+    "seconds": 18.89
+  },
+  {
+    "test": "character-life",
+    "exitCode": 0,
+    "seconds": 0.34
+  },
+  {
+    "test": "causality",
+    "exitCode": 0,
+    "seconds": 0.172
+  }
+]

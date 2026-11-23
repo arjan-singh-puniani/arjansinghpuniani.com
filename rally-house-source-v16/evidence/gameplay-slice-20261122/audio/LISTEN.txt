@@ -1,0 +1,7 @@
+Five actual rendered contacts, one second apart. Same volume throughout.
+1. Clean drive at speed 4
+2. Clean drive at speed 11
+3. Clean drive at speed 18
+4. Perfect drive at speed 18
+5. Clean lob at speed 11
+No normalization or extra mastering was applied. These are browser-rendered samples; phone speakers and player preference remain unverified.

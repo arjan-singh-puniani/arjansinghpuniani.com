@@ -298,3 +298,12 @@ button:focus-visible{outline:3px solid #d6a745;outline-offset:3px}
 
 /* Keep the win condition readable without competing with the ball or touch controls. */
 .championshipScore small{display:block;margin-top:4px;padding-top:4px;border-top:1px solid #294f431a;font-size:10px;line-height:1.5;font-weight:650;letter-spacing:0;color:#46675a;white-space:nowrap}
+
+/* A second right-thumb action stays outside the court and never moves the primary swing target. */
+.championshipLob{position:absolute;right:max(20px,env(safe-area-inset-right));bottom:max(130px,calc(env(safe-area-inset-bottom) + 120px));min-width:76px;min-height:48px;padding:10px 14px;pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;border:1px solid #d9decd;border-radius:14px;background:#f2ebdc;color:#294f43;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.championshipLob[hidden]{display:none}
+.championshipLob:hover{background:#e2ebda}
+.championshipLob:active{background:#d8e8bb}
+.championshipLob:disabled,.championshipSwing:disabled{opacity:.5;pointer-events:none}
+.championshipNext{margin:4px 0 0;color:#405e51;font-size:12px;line-height:1.5;text-align:center}
+@media(max-height:480px){.championshipLob{bottom:max(104px,calc(env(safe-area-inset-bottom) + 98px))}.championshipNext{font-size:11px;margin:2px 0 0}}

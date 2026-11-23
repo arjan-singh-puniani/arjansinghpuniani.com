@@ -1,6 +1,8 @@
 import { clamp } from '../rendering/Math3D.js';
 import { CHAMPIONSHIP_TUNING } from './ChampionshipTuning.js';
 
+export type MatchShot = 'drive' | 'lob';
+
 export interface MatchMovementIntent {
   x: number;
   z: number;
@@ -18,6 +20,7 @@ export class MatchInput {
   private swingAge = Number.POSITIVE_INFINITY;
   private swingQueued = false;
   private swingAim = 0;
+  private swingShot: MatchShot = 'drive';
 
   enabled = false;
 
@@ -53,14 +56,14 @@ export class MatchInput {
       key === 's' ||
       key === 'd' ||
       key.startsWith('arrow') ||
-      key === ' ';
+      key === ' ' || key === 'q';
 
     if (!handled) return false;
 
     event.preventDefault();
 
-    if (key === ' ') {
-      if (!event.repeat) this.queueSwing();
+    if (key === ' ' || key === 'q') {
+      if (!event.repeat) this.queueSwing(key === 'q' ? 'lob' : 'drive');
       return true;
     }
 
@@ -86,12 +89,14 @@ export class MatchInput {
     return true;
   }
 
-  queueSwing() {
+  queueSwing(shot: MatchShot = 'drive') {
     if (!this.enabled) return;
 
     this.swingQueued = true;
     this.swingAge = 0;
     this.swingAim = this.movement().x;
+    // Shot choice and aim form one command; recovery movement cannot rewrite it.
+    this.swingShot = shot;
   }
 
   hasBufferedSwing() {
@@ -109,6 +114,10 @@ export class MatchInput {
 
   bufferedSwingAim() {
     return this.hasBufferedSwing() ? this.swingAim : 0;
+  }
+
+  bufferedSwingShot(): MatchShot {
+    return this.hasBufferedSwing() ? this.swingShot : 'drive';
   }
 
   consumeSwing() {
@@ -156,5 +165,6 @@ export class MatchInput {
     this.swingQueued = false;
     this.swingAge = Number.POSITIVE_INFINITY;
     this.swingAim = 0;
+    this.swingShot = 'drive';
   }
 }

@@ -27,6 +27,8 @@ export const CHAMPIONSHIP_TUNING = {
   // ball actually enters a hittable window. The racket/ball geometry below is
   // still authoritative, so this improves feel without creating phantom hits.
   swingBufferSeconds: 1.1,
+  // Player accuracy belongs to the player, never to the opposing character's tactics.
+  playerPlacementSpread: .85,
   perfectWindowSeconds: 0.15,
   cleanWindowSeconds: 0.42,
   defensiveWindowSeconds: 0.85,

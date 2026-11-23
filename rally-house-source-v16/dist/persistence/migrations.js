@@ -1,5 +1,6 @@
 import { DECOR_BY_ID } from '../content/DecorCatalog.js';
-export const CURRENT_SAVE_VERSION = 11;
+// Older builds cannot interpret championship followups; refuse downgrade instead of losing them.
+export const CURRENT_SAVE_VERSION = 12;
 const invalid = () => { throw new Error('Saved club data is invalid. Storage has been left untouched.'); };
 function scan(v, depth = 0) {
     if (depth > 20)

@@ -67,7 +67,7 @@ assert.equal(ChampionshipHUD.prototype.messageFor({phase:'serving',server:'playe
 // Match outcomes use real ball/contact simulation; tracking only supplies normal stick/swing inputs.
 let stationaryContacts=0,trackingContacts=0;
 for(const hz of [30,60,120])for(const id of Object.keys(CHAMPIONSHIP_OPPONENTS)){
- const contacts=[];
+ const contacts=[],results=[];
  for(const tracking of [false,true]){
   const {p,input,match,tick}=setup(id,COURT.baselineDepth);let result=null,cueAt=null;
   match.callbacks.onPoint=(winner,reason)=>result={winner,reason};input.queueSwing();
@@ -80,9 +80,10 @@ for(const hz of [30,60,120])for(const id of Object.keys(CHAMPIONSHIP_OPPONENTS))
   }
   assert(match.rallyLength>=5,`${hz}Hz ${id}: opening exchange stays approachable`);
   if(!tracking)assert(result,`${hz}Hz ${id}: stationary tapping cannot sustain an endless point`);
-  contacts.push(match.rallyLength);match.stop();
+  results.push(result);contacts.push(match.rallyLength);match.stop();
  }
- assert(contacts[1]>=contacts[0],`${hz}Hz ${id}: tracking must remain viable`);
+ // A tracked winner can correctly end sooner than a stationary losing rally.
+ assert(contacts[1]>=contacts[0]||results[1]?.winner==='player',`${hz}Hz ${id}: tracking must extend the rally or win the point`);
  stationaryContacts+=contacts[0];trackingContacts+=contacts[1];
 }
 assert(trackingContacts>stationaryContacts*1.5,'Court movement must materially extend playable rallies');

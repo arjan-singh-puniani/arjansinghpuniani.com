@@ -12,6 +12,7 @@ export class MatchInput {
     swingAge = Number.POSITIVE_INFINITY;
     swingQueued = false;
     swingAim = 0;
+    swingShot = 'drive';
     enabled = false;
     setEnabled(enabled) {
         if (this.enabled === enabled)
@@ -40,13 +41,13 @@ export class MatchInput {
             key === 's' ||
             key === 'd' ||
             key.startsWith('arrow') ||
-            key === ' ';
+            key === ' ' || key === 'q';
         if (!handled)
             return false;
         event.preventDefault();
-        if (key === ' ') {
+        if (key === ' ' || key === 'q') {
             if (!event.repeat)
-                this.queueSwing();
+                this.queueSwing(key === 'q' ? 'lob' : 'drive');
             return true;
         }
         this.heldKeys.add(key);
@@ -67,12 +68,14 @@ export class MatchInput {
         this.heldKeys.delete(key);
         return true;
     }
-    queueSwing() {
+    queueSwing(shot = 'drive') {
         if (!this.enabled)
             return;
         this.swingQueued = true;
         this.swingAge = 0;
         this.swingAim = this.movement().x;
+        // Shot choice and aim form one command; recovery movement cannot rewrite it.
+        this.swingShot = shot;
     }
     hasBufferedSwing() {
         return this.enabled && this.swingQueued;
@@ -87,6 +90,9 @@ export class MatchInput {
     }
     bufferedSwingAim() {
         return this.hasBufferedSwing() ? this.swingAim : 0;
+    }
+    bufferedSwingShot() {
+        return this.hasBufferedSwing() ? this.swingShot : 'drive';
     }
     consumeSwing() {
         if (!this.hasBufferedSwing())
@@ -131,5 +137,6 @@ export class MatchInput {
         this.swingQueued = false;
         this.swingAge = Number.POSITIVE_INFINITY;
         this.swingAim = 0;
+        this.swingShot = 'drive';
     }
 }

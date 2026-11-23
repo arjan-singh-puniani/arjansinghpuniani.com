@@ -1,0 +1,7 @@
+*.log
+generated-*.json
+**/video/
+**/cpu-profile.json
+**/*.webm
+**/*.wav
+*.zip

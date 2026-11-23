@@ -1,0 +1,147 @@
+{
+  "environment": "Chromium touch emulation; natural point resolution, no score injection.",
+  "errors": [],
+  "result": {
+    "score": {
+      "player": 0,
+      "opponent": 7
+    },
+    "event": {
+      "id": "activity-1:round-1",
+      "kind": "championship",
+      "subject": "leo",
+      "winner": "leo",
+      "day": 1,
+      "at": 54.00000000000003,
+      "place": "court",
+      "detail": "Arjan 0–7 Leo · completed Championship.",
+      "importance": 0.95,
+      "witnesses": [],
+      "pending": [
+        "leo"
+      ]
+    },
+    "rivalry": 2
+  },
+  "followupSamples": [
+    {
+      "seconds": 0.006,
+      "clock": 1095.75,
+      "paused": false,
+      "active": [
+        {
+          "kind": "everyday",
+          "people": [
+            "nia",
+            "mika"
+          ],
+          "phase": "traveling"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 10.156,
+      "clock": 1106,
+      "paused": false,
+      "active": [
+        {
+          "kind": "everyday",
+          "people": [
+            "nia",
+            "mika"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 20.328,
+      "clock": 1116.25,
+      "paused": false,
+      "active": [],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 30.51,
+      "clock": 1126.5,
+      "paused": false,
+      "active": [
+        {
+          "kind": "observe",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "phase": "starting"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 40.651,
+      "clock": 1136.5,
+      "paused": false,
+      "active": [
+        {
+          "kind": "observe",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "phase": "active"
+        },
+        {
+          "kind": "everyday",
+          "people": [
+            "leo"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ],
+      "scene": "Leo takes in the win"
+    },
+    {
+      "seconds": 50.736,
+      "clock": 1146.5,
+      "paused": false,
+      "active": [
+        {
+          "kind": "observe",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "phase": "active"
+        },
+        {
+          "kind": "everyday",
+          "people": [
+            "leo"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ],
+      "scene": "Leo takes in the win"
+    }
+  ],
+  "scene": "Leo takes in the win",
+  "followupSeconds": 59.293,
+  "restored": true,
+  "passed": true
+}

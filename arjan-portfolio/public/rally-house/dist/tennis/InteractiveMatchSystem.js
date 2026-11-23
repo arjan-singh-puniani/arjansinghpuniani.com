@@ -5,7 +5,6 @@ import { BallTrail } from './BallTrail.js';
 import { CHAMPIONSHIP_TUNING, CHAMPIONSHIP_CONTACT_FEEL } from './ChampionshipTuning.js';
 const COURT_CENTER_X = COURT.centerX;
 const PLAYER_BASELINE_Z = COURT.baselineDepth;
-const OPPONENT_BASELINE_Z = -COURT.baselineDepth;
 const SINGLES_MIN_X = COURT_MIN_X;
 const SINGLES_MAX_X = COURT_MAX_X;
 const PLAYABLE_MIN_Z = -COURT.halfLength;
@@ -36,6 +35,9 @@ export class InteractiveMatchSystem {
     bestRally = 0;
     playerHitPraise = 0;
     lastPlayerQuality = 'clean';
+    lastPlayerShot = 'drive';
+    playerReturns = 0;
+    playerLobs = 0;
     movementX = 0;
     movementZ = 0;
     priorPlayerSpeed = 1;
@@ -53,6 +55,8 @@ export class InteractiveMatchSystem {
     firstBounceSeen = false;
     shotSequence = 0;
     opponentServeDelay = 0;
+    opponentReadDelay = 0;
+    playerLaneMemory = 0;
     trail = new BallTrail();
     trailSpeed = 0;
     impactBurst = 0;
@@ -98,6 +102,7 @@ export class InteractiveMatchSystem {
         this.lastContact = null;
         this.lastContactFrame = null;
         this.opponentServeDelay = server === 'opponent' ? CHAMPIONSHIP_TUNING.opponentServeReadSeconds + this.opponentProfile.serveCadence : 0;
+        this.opponentReadDelay = 0;
         this.enabled = true;
         // Match movement uses the existing court locomotion path. Resetting both
         // players to ready gives point-to-point transitions a consistent baseline.
@@ -238,6 +243,10 @@ export class InteractiveMatchSystem {
         const t = this.timeToStrikePlane(this.player);
         return t > -CHAMPIONSHIP_TUNING.returnLateGraceSeconds && t < CHAMPIONSHIP_TUNING.returnCueLeadSeconds && Math.abs(this.ball.position.x - this.player.position.x) < this.playerReturnReach ? 'swing' : 'none';
     }
+    /** HUD reads completed contacts; pressing a button alone never earns progress. */
+    shotLesson() {
+        return { returns: this.playerReturns, lobs: this.playerLobs, lastShot: this.lastPlayerShot };
+    }
     updateBall(dt) {
         this.player.setLook(this.ball.position);
         this.opponent.setLook(this.ball.position);
@@ -286,6 +295,7 @@ export class InteractiveMatchSystem {
             this.tryPlayerReturn();
         }
         else {
+            this.positionOpponent(dt);
             this.tryOpponentReturn(dt);
         }
         // BallPhysics also deactivates balls that leave its broad simulation bounds.
@@ -323,8 +333,9 @@ export class InteractiveMatchSystem {
         const timingError = timingAtPress - contactAt;
         const quality = this.playerQuality(timingError, lateralGap);
         const aim = this.input.bufferedSwingAim();
+        const shot = this.input.bufferedSwingShot();
         this.input.consumeSwing();
-        this.prepareShot('player', stroke, quality, aim);
+        this.prepareShot('player', stroke, quality, aim, shot);
     }
     tryOpponentReturn(dt) {
         if (!this.firstBounceSeen)
@@ -334,9 +345,6 @@ export class InteractiveMatchSystem {
             return;
         const contactAt = this.opponent.shotContactTime(this.strokeFor(this.opponent));
         const timeToOpponent = this.timeToStrikePlane(this.opponent);
-        const anticipation = this.opponentProfile.anticipation;
-        const desiredX = clamp(this.ball.position.x + this.ball.velocity.x * Math.max(0, timeToOpponent) * anticipation, SINGLES_MIN_X, SINGLES_MAX_X);
-        this.opponent.steerOnCourt(new Vec3(desiredX, 0, -this.opponentProfile.courtDepth), this.player.position);
         // Reaction time is represented by waiting longer before committing to the
         // stroke. Better opponents therefore prepare closer to the ideal animation
         // lead without receiving impossible movement or teleportation.
@@ -351,7 +359,27 @@ export class InteractiveMatchSystem {
         const quality = this.aiQuality(false);
         this.prepareShot('opponent', this.strokeFor(this.opponent), quality);
     }
-    prepareShot(side, stroke, quality, aim) {
+    positionOpponent(dt) {
+        if (this.pending?.side === 'opponent')
+            return;
+        this.opponentReadDelay -= dt;
+        if (this.opponentReadDelay > 0)
+            return;
+        // Read periodically, then commit to walking there. No continuous perfect tracking.
+        this.opponentReadDelay = .16 + this.opponentProfile.reaction;
+        const landing = this.landingTarget ?? this.ball.firstLanding();
+        const depth = Math.min(COURT.baselineDepth, Math.max(this.recoveryDepth(), Math.abs(landing?.z ?? 3) + 2.1));
+        const time = (-depth + .65 - this.ball.position.z) / this.ball.velocity.z;
+        const error = (hash(this.shotSequence * 13.7 + this.rallyLength) * 2 - 1) * (1 - this.opponentProfile.anticipation) * .6;
+        const x = clamp(this.ball.position.x + this.ball.velocity.x * Math.max(0, time) * this.opponentProfile.anticipation + error, SINGLES_MIN_X, SINGLES_MAX_X);
+        this.opponent.steerOnCourt(new Vec3(x, 0, -depth), this.player.position);
+    }
+    recoveryDepth() {
+        // Pressure players take time away; a deep lob makes them visibly retreat.
+        return this.rallyLength >= CHAMPIONSHIP_TUNING.assistContacts && this.opponentProfile.style === 'pressure'
+            ? 5.4 : this.opponentProfile.courtDepth;
+    }
+    prepareShot(side, stroke, quality, aim, shot = 'drive') {
         if (this.pending || this.pointResolved)
             return;
         const hitter = side === 'player' ? this.player : this.opponent;
@@ -359,8 +387,8 @@ export class InteractiveMatchSystem {
         const contactAt = hitter.shotContactTime(stroke);
         const duration = hitter.shotDuration(stroke);
         const predictedContact = this.predictedIncomingContact(contactAt, hitter);
-        const target = this.targetFor(side, quality, aim);
-        const flightTime = this.flightTimeFor(side, quality);
+        const target = this.targetFor(side, quality, aim, shot);
+        const flightTime = this.flightTimeFor(side, quality, shot);
         if (stroke !== 'serve') {
             hitter.setIncomingContact(predictedContact);
         }
@@ -378,6 +406,7 @@ export class InteractiveMatchSystem {
             side,
             stroke,
             quality,
+            shot,
             target,
             flightTime,
             contactAt,
@@ -440,8 +469,14 @@ export class InteractiveMatchSystem {
                     if (pending.side === 'player') {
                         this.playerHitPraise = .42;
                         this.lastPlayerQuality = pending.quality;
+                        this.lastPlayerShot = pending.shot;
+                        if (pending.stroke !== 'serve') {
+                            this.playerReturns++;
+                            if (pending.shot === 'lob')
+                                this.playerLobs++;
+                        }
                     }
-                    this.callbacks.onHit?.(pending.quality, pending.side, clamp((pending.target.x - frame.center.x) / 4, -1, 1), solveLaunch(frame.center, pending.target, pending.flightTime, this.ball.gravity).len());
+                    this.callbacks.onHit?.(pending.quality, pending.side, clamp((pending.target.x - frame.center.x) / 4, -1, 1), solveLaunch(frame.center, pending.target, pending.flightTime, this.ball.gravity).len(), pending.shot);
                     this.callbacks.onRallyContact?.(pending.side, pending.quality);
                     if (pending.stroke === 'serve')
                         this.releaseBall(pending, frame.center);
@@ -466,9 +501,8 @@ export class InteractiveMatchSystem {
             if (pending.hitter.state === pending.stroke) {
                 pending.hitter.setAnimation('ready');
                 pending.hitter.clearShotIntent();
-                const baselineZ = pending.side === 'player' ? PLAYER_BASELINE_Z : OPPONENT_BASELINE_Z;
                 if (pending.side === 'opponent')
-                    pending.hitter.moveOnCourt(new Vec3(pending.hitter.position.x + (COURT_CENTER_X - pending.hitter.position.x) * this.opponentProfile.recovery, 0, baselineZ), pending.receiver.position, false);
+                    pending.hitter.moveOnCourt(new Vec3(pending.hitter.position.x + (COURT_CENTER_X + this.playerLaneMemory * .35 - pending.hitter.position.x) * this.opponentProfile.recovery, 0, -this.recoveryDepth()), pending.receiver.position, false);
                 // Player steering survives the stroke; no automatic walk to center.
             }
             this.pending = null;
@@ -480,6 +514,11 @@ export class InteractiveMatchSystem {
         this.landingTarget = this.ball.firstLanding();
         this.trail.reset();
         this.trailSpeed = this.ball.velocity.len();
+        if (pending.side === 'player') {
+            this.opponentReadDelay = this.opponentProfile.reaction;
+            // Bounded learning can be wrong-footed: it cannot know the next queued input.
+            this.playerLaneMemory = this.playerLaneMemory * .7 + clamp((pending.target.x - COURT_CENTER_X) / COURT.singlesHalfWidth, -1, 1) * .3;
+        }
     }
     stagedBall(pending) {
         const frame = pending.hitter.racketContactFrame();
@@ -546,12 +585,13 @@ export class InteractiveMatchSystem {
             return 'defensive';
         return 'frame';
     }
-    targetFor(side, quality, aim = this.input.movement().x) {
+    targetFor(side, quality, aim = this.input.movement().x, shot = 'drive') {
         const direction = side === 'player' ? -1 : 1;
         const receiver = side === 'player' ? this.opponent : this.player;
         const assisted = side === 'opponent' && this.rallyLength < CHAMPIONSHIP_TUNING.assistContacts;
         const seed = this.shotSequence * 4.37 + (side === 'player' ? 2.1 : 9.3) + this.rallyLength * 1.7;
-        const variation = (hash(seed) * 2 - 1) * (assisted ? CHAMPIONSHIP_TUNING.assistOpponentSpread : .55 + this.opponentProfile.angleBias * .9);
+        const spread = side === 'player' ? CHAMPIONSHIP_TUNING.playerPlacementSpread : assisted ? CHAMPIONSHIP_TUNING.assistOpponentSpread : .55 + this.opponentProfile.angleBias * .9;
+        const variation = (hash(seed) * 2 - 1) * spread;
         // Bounce BEFORE the receiver's strike zone. Baseline-targeting made the
         // old first return effectively impossible, because the ball bounced at the feet.
         let x = clamp(receiver.position.x + variation, SINGLES_MIN_X + .75, SINGLES_MAX_X - .75);
@@ -565,12 +605,17 @@ export class InteractiveMatchSystem {
             const openSide = receiver.position.x > COURT_CENTER_X + .25 ? -1 : receiver.position.x < COURT_CENTER_X - .25 ? 1 : hash(seed + 31) < .5 ? -1 : 1;
             const width = COURT.singlesHalfWidth * (.55 + this.opponentProfile.angleBias * .4);
             x = clamp(COURT_CENTER_X + openSide * width + variation * .15, SINGLES_MIN_X + .35, SINGLES_MAX_X - .35);
+            if (this.opponentProfile.style === 'retriever')
+                depth = 3.5;
         }
         if (side === 'player') {
             // Keep the opening serve forgiving; placed returns can use the open sideline.
-            const margin = this.rallyLength === 0 ? .6 : .3;
+            // A lob trades sharp angles and pace for height, depth and recovery time.
+            const margin = this.rallyLength === 0 || shot === 'lob' ? .6 : .3;
             if (Math.abs(aim) > .18)
                 x = clamp(COURT_CENTER_X + aim * (COURT.singlesHalfWidth - margin) + variation * .2, SINGLES_MIN_X + margin, SINGLES_MAX_X - margin);
+            if (shot === 'lob')
+                depth = quality === 'defensive' ? 3.6 : 4.4;
         }
         if (quality === 'frame') {
             x += (hash(seed + 18.4) - .5) * 2.1;
@@ -578,11 +623,14 @@ export class InteractiveMatchSystem {
         }
         return new Vec3(x, this.ball.radius, direction * depth);
     }
-    flightTimeFor(side, quality) {
+    flightTimeFor(side, quality, shot = 'drive') {
+        if (side === 'player' && shot === 'lob')
+            return 1.48;
         if (side === 'opponent' && this.rallyLength < CHAMPIONSHIP_TUNING.assistContacts)
             return this.rallyLength === 0 ? CHAMPIONSHIP_TUNING.assistOpponentServeFlightSeconds : CHAMPIONSHIP_TUNING.assistOpponentFlightSeconds;
         const power = side === 'opponent' ? this.opponentProfile.power : .78;
-        return (quality === 'perfect' ? .96 : quality === 'clean' ? 1.02 : 1.14) - (power - .75) * .12;
+        const patience = side === 'opponent' && this.opponentProfile.style === 'retriever' ? .12 : 0;
+        return (quality === 'perfect' ? .96 : quality === 'clean' ? 1.02 : 1.14) - (power - .75) * .12 + patience;
     }
     inSinglesCourt(position) {
         return (position.x >= SINGLES_MIN_X &&
