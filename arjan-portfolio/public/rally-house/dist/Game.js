@@ -1688,6 +1688,9 @@ export class Game {
     routes = new Map();
     waitingForPlace = new Map();
     startActivity(kind, ids, resource, targets, detail = '') {
+        // Reject unavailable invitations before routing; the director retries during live rallies.
+        if (this.activities.reserved(resource) || ids.some(id => this.activities.busy(id)))
+            return null;
         // A fresh social routine must not reverse a nonparticipant's court-exit route.
         if (this.activities.reserved('court') && ids.some(id => this.waitingForPlace.has(id) && this.world.nav.onCourt(this.actor(id).position)))
             return null;

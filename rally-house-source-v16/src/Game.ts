@@ -1074,6 +1074,8 @@ export class Game {
   }
   private routes=new Map<string,Vec3[]>();private waitingForPlace=new Map<string,string>();
   private startActivity(kind:string,ids:string[],resource:string,targets:Vec3[],detail=''){
+    // Reject unavailable invitations before routing; the director retries during live rallies.
+    if(this.activities.reserved(resource)||ids.some(id=>this.activities.busy(id)))return null;
     // A fresh social routine must not reverse a nonparticipant's court-exit route.
     if(this.activities.reserved('court')&&ids.some(id=>this.waitingForPlace.has(id)&&this.world.nav.onCourt(this.actor(id).position)))return null;
     if(ids.includes('player'))this.stopPlayerWatching(false);

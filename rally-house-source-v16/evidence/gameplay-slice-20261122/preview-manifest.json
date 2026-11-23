@@ -244,8 +244,8 @@
     },
     {
       "path": "Rally-House-v16-Playtest/dist/Game.js",
-      "sha256": "6fcc04723e95f709544688a9903e00b9a69b91fd53672c88293e818a1edfa9a1",
-      "bytes": 164226
+      "sha256": "c89dd00730308f1c44f160048d563c9a0b938d87b8561c56c89eb90c2c7bdf81",
+      "bytes": 164443
     },
     {
       "path": "Rally-House-v16-Playtest/dist/analysis/LabDemonstrations.js",
@@ -678,6 +678,6 @@
       "bytes": 21114
     }
   ],
-  "archiveSha256": "4ec1a6778e8063e7e21d011a477259cdb652bf9c59899d2fe7d75f505abb4242",
-  "revision": "Browser tester polish, 22 November 2026"
+  "archiveSha256": "8e36e2af0de59dbf66bd60481464050dcee22201068f71adcdb5966ec28026da",
+  "revision": "WebKit reservation-stall fix, 22 November 2026"
 }

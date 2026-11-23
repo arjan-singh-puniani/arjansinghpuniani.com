@@ -1,0 +1,8 @@
+{
+  "revision": "a8799ac6",
+  "test": "activity-reservation-cost",
+  "exitCode": 1,
+  "failure": "Unavailable activities must not route actors every decision tick",
+  "expectedRouteCalls": 0,
+  "actualRouteCalls": 210
+}

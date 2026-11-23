@@ -1,6 +1,6 @@
 # Rally House playable gameplay slice
 
-Start with [audit and architecture](AUDIT.md), [reference decisions and priorities](REFERENCE-MATRIX.md), [implemented features and results](RESULTS.md), [latest browser polish](TESTER-POLISH.md), and [neutral playtest protocol](PLAYTEST.md).
+Start with [audit and architecture](AUDIT.md), [reference decisions and priorities](REFERENCE-MATRIX.md), [implemented features and results](RESULTS.md), [latest browser polish](TESTER-POLISH.md), [WebKit stall investigation](WEBKIT-SMOOTHNESS.md), and [neutral playtest protocol](PLAYTEST.md).
 
 This branch is an experiment ready for evaluation, not a production release or a claim that fun has been proven. The canonical dirty checkout and production site were preserved.
 
