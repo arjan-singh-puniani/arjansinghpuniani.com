@@ -158,7 +158,6 @@ export class PerformanceLab {
         videoTitle.textContent = 'Your anchored-phone video';
         this.videoBox.className = 'lab-video';
         this.videoBox.hidden = true;
-        this.video.controls = true;
         this.video.muted = true;
         this.video.setAttribute('muted', '');
         this.video.playsInline = true;
@@ -276,6 +275,7 @@ export class PerformanceLab {
             this.camera.update(0);
         }
         this.video.pause();
+        this.video.controls = false;
         this.video.removeAttribute('src');
         this.video.load();
         this.videoBox.hidden = true;
@@ -312,6 +312,8 @@ export class PerformanceLab {
         this.buildSnapshots(clip);
         this.video.pause();
         this.videoBox.hidden = clip.kind !== 'phone' || !this.phone?.url;
+        // Native media controls belong to a real recording, not every visit to the club.
+        this.video.controls = !this.videoBox.hidden;
         if (clip.kind === 'phone' && this.phone?.url) {
             if (this.video.getAttribute('src') !== this.phone.url)
                 this.video.src = this.phone.url;
@@ -323,6 +325,10 @@ export class PerformanceLab {
             const a = this.videoBox.querySelector('a');
             a.href = this.phone.url;
             a.download = `Rally-House-phone-capture.${this.phone.mime.includes('mp4') ? 'mp4' : 'webm'}`;
+        }
+        else if (this.video.hasAttribute('src')) {
+            this.video.removeAttribute('src');
+            this.video.load();
         }
         this.provenance.textContent = clip.source === 'phone-recording' ? `IN-GAME PHONE CAPTURE · ${this.phone?.url ? 'video + shared motion' : 'motion replay; video encoder unavailable'}` : clip.source === 'game-recording' ? 'YOUR RECENT PLAY · recorded in this club' : 'AUTHORED DEMO · simulated movement';
         const s = summary(clip);

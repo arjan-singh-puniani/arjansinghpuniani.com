@@ -8,6 +8,7 @@ page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m
 try{
  if(process.env.QA_BASELINE_RUNTIME)await page.route('**/dist/**',route=>route.fulfill({path:path.join(process.env.QA_BASELINE_RUNTIME,new URL(route.request().url()).pathname.split('/dist/')[1]),contentType:'text/javascript'}));
  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`,{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,avatar);
+ assert.equal(await page.locator('.lab-video video').evaluate(video=>video.controls),false,'No native media controls before a recording exists');
  await page.locator('#labBtn').click();await page.waitForTimeout(250);const find=page.getByRole('button',{name:'Find Performance Lab ↗',exact:true});if(await find.isVisible())await find.click();
  await page.locator('[data-action=capture]').click();
  // Accelerate only navigation. Recording and its video use the real RAF loop.
@@ -19,9 +20,10 @@ try{
  await page.waitForFunction(()=>window.__rh.lab().active&&window.__rh.lab().kind==='phone',{timeout:20000});
  if(width<850)await page.locator('.lab-video summary').click();
  const media=page.locator('.lab-video video');await media.waitFor({state:'visible'});await page.waitForFunction(()=>document.querySelector('.lab-video video').readyState>=1);
- report.result=await page.evaluate(async()=>{const g=window.__rh.game,p=g.phoneCapture.last,l=g.performanceLab,video=document.querySelector('.lab-video video'),blob=await fetch(p.url).then(r=>r.blob());return {worldPreserved:g.world===window.qaPhoneWorld.world&&g.characters.every((c,i)=>c===window.qaPhoneWorld.cast[i]),worldAdvanced:g.clock.minutes>window.qaPhoneWorld.minute&&g.mind.time>window.qaPhoneWorld.mind,phone:g.phoneCapture.report(),source:l.timeline.clip.source,kind:l.timeline.clip.kind,samples:p.clip.frames.length,bytes:blob.size,mime:blob.type,duration:video.duration,width:video.videoWidth,height:video.videoHeight,owner:document.querySelector('.performance-lab header small').textContent,uses:g.world.identity.state('performanceLab').uses};});
+ assert.equal(await media.evaluate(video=>video.controls),true,'A recorded video retains native accessible controls');
+ report.result=await page.evaluate(async()=>{const g=window.__rh.game,p=g.phoneCapture.last,l=g.performanceLab,video=document.querySelector('.lab-video video'),blob=await fetch(p.url).then(r=>r.blob());return {worldPreserved:g.world===window.qaPhoneWorld.world&&g.characters.every((c,i)=>c===window.qaPhoneWorld.cast[i]),worldAdvanced:g.clock.minutes>window.qaPhoneWorld.minute&&g.mind.time>window.qaPhoneWorld.mind,phone:g.phoneCapture.report(),source:l.timeline.clip.source,kind:l.timeline.clip.kind,samples:p.clip.frames.length,bytes:blob.size,mime:blob.type,duration:video.duration,width:video.videoWidth,height:video.videoHeight,heading:document.querySelector('.performance-lab header small').textContent,uses:g.world.identity.state('performanceLab').uses};});
  const [download]=await Promise.all([page.waitForEvent('download'),page.locator('.lab-video-download').click()]);await download.saveAs(`${out}/phone-recording.${report.result.mime.includes('mp4')?'mp4':'webm'}`);assert.equal(report.result.phone.liveTracks,0);
- assert(report.result.worldPreserved&&report.result.worldAdvanced);assert(report.result.bytes>1000);assert.equal(report.result.source,'phone-recording');assert.equal(report.result.kind,'phone');assert(report.result.samples>50&&report.result.samples<=360);assert.equal(report.result.uses,1);assert.match(report.result.owner,/Arjan Singh Puniani/);
+ assert(report.result.worldPreserved&&report.result.worldAdvanced);assert(report.result.bytes>1000);assert.equal(report.result.source,'phone-recording');assert.equal(report.result.kind,'phone');assert(report.result.samples>50&&report.result.samples<=360);assert.equal(report.result.uses,1);assert.equal(report.result.phone.avatar,avatar.toLowerCase(),'The recording belongs to the selected avatar, not a marketing heading');
  await page.locator('[data-mode=body]').click();await page.locator('.lab-transport [data-lab-action=play]').click();await page.waitForTimeout(650);
  report.sync=await page.evaluate(()=>{const g=window.__rh.game,l=g.performanceLab,v=document.querySelector('.lab-video video'),f=l.timeline.frame;return {video:v.currentTime,time:l.timeline.time,frame:f?.time,error:Math.abs(v.currentTime-l.timeline.time),overflow:document.documentElement.scrollWidth>innerWidth};});assert(report.sync.error<.08);assert(report.sync.time>.2);assert(!report.sync.overflow);
  await page.locator('.lab-transport [data-lab-action=play]').click();await page.locator('.lab-transport input').fill('500');await page.waitForTimeout(150);await page.screenshot({path:`${out}/review.png`});
@@ -42,8 +44,13 @@ try{
   await page.waitForFunction(()=>window.__rh.lab().active&&window.__rh.lab().kind==='phone',{timeout:30000});
   report.rerecord=await page.evaluate(()=>{const g=window.__rh.game;return {phone:g.phoneCapture.report(),url:g.phoneCapture.last.url,uses:g.world.identity.state('performanceLab').uses};});assert(report.rerecord.url&&report.rerecord.url!==oldURL);assert.equal(report.rerecord.phone.liveTracks,0);assert.equal(report.rerecord.uses,2);
  }
+ await page.locator('#labSource').selectOption('serve');
+ assert(await media.evaluate(video=>!video.controls&&!video.hasAttribute('src')),'Leaving recorded video releases its source and native controls');
+ await page.locator('#labSource').selectOption('phone');await page.waitForFunction(()=>document.querySelector('.lab-video video').readyState>=1);
+ assert.equal(await media.evaluate(video=>video.controls),true);
  await page.locator('header [data-lab-action=close]').click();assert(await page.evaluate(()=>!window.__rh.game.phoneCapture.active&&!window.__rh.game.performanceLab.active&&window.__rh.game.phoneCapture.mounted));
+ assert(await media.evaluate(video=>!video.controls&&!video.hasAttribute('src')));
  if(process.env.QA_LIFECYCLE==='1'){await page.evaluate(()=>window.__rh.game.phoneCapture.dispose());assert(await page.evaluate(()=>window.__rh.game.phoneCapture.last===null&&window.__rh.phone().liveTracks===0));report.disposed=true;}
- assert.deepEqual(report.errors,[]);assert.deepEqual(report.requests,[]);
+ assert.deepEqual(report.errors,[]);assert.deepEqual(report.requests,[]);report.passed=true;
 }finally{fs.writeFileSync(`${out}/report.json`,JSON.stringify(report,null,2));await browser.close();}
 console.log(JSON.stringify(report));

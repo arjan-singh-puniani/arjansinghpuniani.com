@@ -239,8 +239,8 @@
     },
     {
       "path": "Rally-House-v16-Playtest/championship.css",
-      "sha256": "6a797366f56a72f34c620128e2a81c74be9e51878ac27d302c175a1b393ebd2e",
-      "bytes": 12960
+      "sha256": "c4fed82002331442296441c4d87f8a07a87c5aa31ef5e5d07dfe24b30a946e4e",
+      "bytes": 14139
     },
     {
       "path": "Rally-House-v16-Playtest/dist/Game.js",
@@ -259,8 +259,8 @@
     },
     {
       "path": "Rally-House-v16-Playtest/dist/analysis/PerformanceLab.js",
-      "sha256": "2c54025105fa97f94d9cbe7231cb03117ef4d5ada9a0a185bf56285755701e2c",
-      "bytes": 37330
+      "sha256": "aeea4b924888dcce08eccee040c8c3d8f72382f0abd79ce0d1b3409e5878f038",
+      "bytes": 37613
     },
     {
       "path": "Rally-House-v16-Playtest/dist/analysis/PhoneCapture.js",
@@ -599,8 +599,8 @@
     },
     {
       "path": "Rally-House-v16-Playtest/dist/ui/ChampionshipHUD.js",
-      "sha256": "8d83fda85895a091c21b98b16d05577e7efd227b9388abd79bc4cdb0478399e4",
-      "bytes": 17322
+      "sha256": "904ba0acc4a8094add705355effca91ac7a39c1a31b47638323c4f53fc06985c",
+      "bytes": 17413
     },
     {
       "path": "Rally-House-v16-Playtest/dist/ui/ClubContextPresenter.js",
@@ -678,5 +678,6 @@
       "bytes": 21114
     }
   ],
-  "archiveSha256": "97ad5230b0a1296940773f9b966c4dcd429d020fd74f5cceadbc1a8134f1fc5d"
+  "archiveSha256": "4ec1a6778e8063e7e21d011a477259cdb652bf9c59899d2fe7d75f505abb4242",
+  "revision": "Browser tester polish, 22 November 2026"
 }

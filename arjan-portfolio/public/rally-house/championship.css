@@ -64,6 +64,9 @@
   gap: 9px;
   width: min(320px, calc(100vw - 32px));
   padding: 16px;
+  max-height: calc(100dvh - max(32px, env(safe-area-inset-bottom)) - 16px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border: 1px solid #ffffffa6;
   border-radius: 20px;
   box-shadow: 0 12px 40px #17291a26;
@@ -117,10 +120,13 @@
   pointer-events: none;
 }
 
-.championshipTouchPad,
-.championshipSwing {
+.championshipTouchPad {
   display: none;
 }
+
+/* Pointer players get both shots; keyboard shortcuts remain available. */
+.championshipSwing{display:block;position:absolute;right:max(20px,env(safe-area-inset-right));bottom:max(22px,calc(env(safe-area-inset-bottom) + 12px));min-width:94px;min-height:48px;padding:10px 14px;pointer-events:auto;touch-action:none;user-select:none;border:1px solid #416d59;border-radius:14px;background:#416d59;color:#fffdf7;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.championshipSwing:hover{background:#315845}
 
 @media (hover: none), (pointer: coarse) {
   .championshipControlsHint { display: none; }
@@ -272,7 +278,7 @@ body.championship-transitioning .championshipSwing {
 .championshipHud[data-phase="matchResult"] .championshipControlsHint{display:none}
 body.championship-active .toast{display:none}
 @media(pointer:coarse){.championshipMessage{bottom:max(155px,calc(env(safe-area-inset-bottom) + 142px))}}
-@media(max-height:480px){.championshipTouchPad{width:88px;height:88px;bottom:14px}.championshipSwing{width:76px;height:76px;bottom:14px}.championshipMessage{bottom:20px;max-width:50vw}.championshipScore{font-size:21px}.championshipResults{bottom:12px;padding:12px;gap:5px}.championshipResults button{min-height:40px}}
+@media(max-height:480px){.championshipTouchPad{width:88px;height:88px;bottom:14px}.championshipSwing{width:76px;height:76px;min-width:76px;bottom:14px}.championshipMessage{bottom:20px;max-width:50vw}.championshipScore{font-size:21px}.championshipResults{bottom:max(12px,env(safe-area-inset-bottom));max-height:calc(100dvh - max(12px,env(safe-area-inset-bottom)) - 12px);padding:12px;gap:5px}.championshipResults button{min-height:44px}}
 button:focus-visible{outline:3px solid #d6a745;outline-offset:3px}
 
 /* Contact praise stays at the edge of the court and matches its material flash. */
@@ -307,3 +313,6 @@ button:focus-visible{outline:3px solid #d6a745;outline-offset:3px}
 .championshipLob:disabled,.championshipSwing:disabled{opacity:.5;pointer-events:none}
 .championshipNext{margin:4px 0 0;color:#405e51;font-size:12px;line-height:1.5;text-align:center}
 @media(max-height:480px){.championshipLob{bottom:max(104px,calc(env(safe-area-inset-bottom) + 98px))}.championshipNext{font-size:11px;margin:2px 0 0}}
+@media(hover:hover) and (pointer:fine){.championshipLob{min-width:94px;bottom:max(80px,calc(env(safe-area-inset-bottom) + 70px))}.championshipSwing{width:auto;height:48px;min-width:94px;bottom:max(22px,calc(env(safe-area-inset-bottom) + 12px))}}
+/* The result already contains the final score; avoid overlapping it in short windows. */
+@media(max-height:480px){.championshipHud[data-phase="matchResult"] .championshipScore{display:none}}

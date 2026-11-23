@@ -85,7 +85,7 @@ export class PerformanceLab {
     for(const [sign,text] of [[-1,'↶ Orbit'],[1,'Orbit ↷']] as [number,string][]){const b=document.createElement('button');b.textContent=text;b.onclick=()=>this.camera.desiredAzimuth+=sign*.35;orbit.append(b);}
     const record=document.createElement('button');record.textContent='Mount phone & record';record.className='lab-record';record.onclick=()=>this.onRecord();
     const products=document.createElement('p');products.className='lab-products';products.textContent='VectorCourt · court movement / AnatomyMotion · body movement';
-    const videoTitle=document.createElement('summary');videoTitle.textContent='Your anchored-phone video';this.videoBox.className='lab-video';this.videoBox.hidden=true;this.video.controls=true;this.video.muted=true;this.video.setAttribute('muted','');this.video.playsInline=true;this.video.preload='metadata';this.video.setAttribute('aria-label','Recorded in-game phone video');
+    const videoTitle=document.createElement('summary');videoTitle.textContent='Your anchored-phone video';this.videoBox.className='lab-video';this.videoBox.hidden=true;this.video.muted=true;this.video.setAttribute('muted','');this.video.playsInline=true;this.video.preload='metadata';this.video.setAttribute('aria-label','Recorded in-game phone video');
     this.video.onplay=()=>{if(this.timeline?.clip.kind==='phone')this.timeline.playing=true;};this.video.onpause=()=>{if(this.timeline?.clip.kind==='phone')this.timeline.playing=false;};this.video.onseeked=()=>{if(this.timeline?.clip.kind==='phone'){this.timeline.seek(this.video.currentTime);this.refresh();}};
     const download=document.createElement('a');download.textContent='Save this video';download.className='lab-video-download';this.videoBox.append(videoTitle,this.video,download);
     const note=document.createElement('p');note.className='lab-note';note.textContent='Simulated rig geometry · distances in club units. Camera pose estimates, forces and muscle activation are not measured here.';
@@ -131,7 +131,7 @@ export class PerformanceLab {
     this.active=false;this.layer.hidden=true;document.body.classList.remove('lab-active');
     if(this.prior)this.camera.restoreState(this.prior);
     if(this.camera.aspect!==this.priorAspect){const aspect=this.camera.aspect;this.camera.aspect=0;this.camera.setAspect(aspect);this.camera.update(0);}
-    this.video.pause();this.video.removeAttribute('src');this.video.load();this.videoBox.hidden=true;this.phone=null;
+    this.video.pause();this.video.controls=false;this.video.removeAttribute('src');this.video.load();this.videoBox.hidden=true;this.phone=null;
     this.prior=null;this.timeline=null;this.cached=[];this.clips.clear();this.source.replaceChildren();this.plotClip=null;this.courtClip=null;this.courtHistory=[];this.snapshotCards=[];this.snapshots.replaceChildren();this.snapshots.hidden=true;
     for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=false;
     const target=this.restoreFocus?.isConnected&&!this.restoreFocus.closest('[hidden]')?this.restoreFocus:this.canvas;
@@ -146,7 +146,10 @@ export class PerformanceLab {
     this.source.value=kind;
     this.buildSnapshots(clip);
     this.video.pause();this.videoBox.hidden=clip.kind!=='phone'||!this.phone?.url;
+    // Native media controls belong to a real recording, not every visit to the club.
+    this.video.controls=!this.videoBox.hidden;
     if(clip.kind==='phone'&&this.phone?.url){if(this.video.getAttribute('src')!==this.phone.url)this.video.src=this.phone.url;this.video.defaultPlaybackRate=this.timeline.speed;this.video.playbackRate=this.timeline.speed;this.video.currentTime=this.timeline.start;this.timeline.playing=false;this.videoBox.open=this.canvas.clientWidth>850;const a=this.videoBox.querySelector('a')!;a.href=this.phone.url;a.download=`Rally-House-phone-capture.${this.phone.mime.includes('mp4')?'mp4':'webm'}`;}
+    else if(this.video.hasAttribute('src')){this.video.removeAttribute('src');this.video.load();}
     this.provenance.textContent=clip.source==='phone-recording'?`IN-GAME PHONE CAPTURE · ${this.phone?.url?'video + shared motion':'motion replay; video encoder unavailable'}`:clip.source==='game-recording'?'YOUR RECENT PLAY · recorded in this club':'AUTHORED DEMO · simulated movement';
     const s=summary(clip);
     this.stats.textContent=`${format(s.distance,1)} club units travelled · ${s.contacts} player racket contacts${s.cadence===null?'':` · ${format(s.cadence)} steps/min · ${format(s.stride,2)} u stride · stance L ${format(s.stance[0])}% / R ${format(s.stance[1])}% · footsteps: L mint / R gold`}`;

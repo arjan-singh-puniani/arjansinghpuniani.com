@@ -141,6 +141,7 @@ export class ChampionshipHUD {
         this.swingButton.className = 'championshipSwing';
         this.swingButton.textContent = 'SWING';
         this.swingButton.setAttribute('aria-label', 'Swing racket');
+        this.swingButton.title = 'Space · Serve or drive the ball';
         this.swingButton.addEventListener('pointerdown', (event) => {
             event.preventDefault();
             this.input.queueSwing();
@@ -195,7 +196,7 @@ export class ChampionshipHUD {
         this.controlsHint.hidden = snapshot.phase === 'matchResult';
         this.exitButton.hidden = snapshot.phase === 'matchResult' || paused;
         this.root.dataset.phase = snapshot.phase;
-        this.root.dataset.cue = this.gameplayPhase(snapshot.phase) ? cue : 'none';
+        this.root.dataset.cue = !paused && this.gameplayPhase(snapshot.phase) ? cue : 'none';
         const serving = snapshot.phase === 'serving' && snapshot.server === 'player';
         this.touchPad.dataset.label = serving ? 'AIM' : 'MOVE';
         text(this.swingButton, cue === 'queued' ? 'READY' : serving && cue !== 'serving' ? 'SERVE' : 'SWING');
@@ -225,7 +226,7 @@ export class ChampionshipHUD {
         const opponentMatchPoint = opponent + 1 >= pointsToWin && opponent + 1 - player >= winBy;
         text(this.scoreContext, snapshot.phase === 'matchResult' ? 'Match complete' : playerMatchPoint ? 'Your match point' : opponentMatchPoint ? `${opponentName}’s match point` : `First to ${pointsToWin} · Win by ${winBy}`);
         const message = paused ? '' : this.messageFor(snapshot, cue, opponentName);
-        text(this.message, (cue === 'sweet' || cue === 'nice') && lesson.lastShot === 'lob' ? 'LOB · RECOVER' : message);
+        text(this.message, !paused && (cue === 'sweet' || cue === 'nice') && lesson.lastShot === 'lob' ? 'LOB · RECOVER' : message);
         if (snapshot.phase === 'pointResult' && lesson.returns > 0 && !lesson.lobs)
             text(this.scoreContext, 'Try Lob to recover');
         const showResults = snapshot.phase === 'matchResult';

@@ -1,0 +1,52 @@
+{
+  "engine": "chromium",
+  "avatar": "Arjan",
+  "width": 1440,
+  "errors": [],
+  "requests": [],
+  "hand": {
+    "phone": {
+      "active": true,
+      "phase": "mounting",
+      "mounted": false,
+      "avatar": "arjan",
+      "samples": 0,
+      "video": false,
+      "liveTracks": 0,
+      "anchor": {
+        "x": -3.8,
+        "y": 1.42,
+        "z": -8
+      }
+    },
+    "handError": 0
+  },
+  "result": {
+    "worldPreserved": true,
+    "worldAdvanced": true,
+    "phone": {
+      "active": false,
+      "phase": "finishing",
+      "mounted": true,
+      "avatar": "arjan",
+      "samples": 155,
+      "video": true,
+      "liveTracks": 0,
+      "anchor": {
+        "x": -3.8,
+        "y": 1.42,
+        "z": -8
+      }
+    },
+    "source": "phone-recording",
+    "kind": "phone",
+    "samples": 155,
+    "bytes": 1107285,
+    "mime": "video/webm",
+    "duration": 5.099201,
+    "width": 1440,
+    "height": 900,
+    "owner": "Analyze your swing",
+    "uses": 1
+  }
+}

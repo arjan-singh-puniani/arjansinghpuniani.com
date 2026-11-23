@@ -1,0 +1,175 @@
+{
+  "engine": "chromium",
+  "environment": "Desktop browser and touch emulation; not physical iPhone validation.",
+  "views": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "lobBounds": {
+        "x": 1326,
+        "y": 772,
+        "width": 94,
+        "height": 48
+      },
+      "contacts": [
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034700000000000356,
+          "time": 13051.5
+        },
+        {
+          "side": "opponent",
+          "quality": "defensive",
+          "shot": "drive",
+          "gap": 0.007500000000000015,
+          "time": 14383.5
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "lob",
+          "gap": 0.0347,
+          "time": 15776.699999988079
+        },
+        {
+          "side": "opponent",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.03469999999999994,
+          "time": 17523.69999998808
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034699999999999814,
+          "time": 18945.5
+        }
+      ],
+      "lobVisible": true,
+      "lesson": {
+        "returns": 2,
+        "lobs": 1,
+        "lastShot": "drive"
+      },
+      "overflow": false
+    },
+    {
+      "name": "portrait",
+      "width": 402,
+      "height": 681,
+      "lobBounds": {
+        "x": 306,
+        "y": 503,
+        "width": 76,
+        "height": 48
+      },
+      "twoTouchCancel": true,
+      "contacts": [
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034700000000000356,
+          "time": 12606.700000017881
+        },
+        {
+          "side": "opponent",
+          "quality": "defensive",
+          "shot": "drive",
+          "gap": 0.007499999999999791,
+          "time": 13936.5
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "lob",
+          "gap": 0.03469999999999998,
+          "time": 15317.800000011921
+        },
+        {
+          "side": "opponent",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.03470000000000004,
+          "time": 17065.20000001788
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034700000000000106,
+          "time": 18483.30000001192
+        }
+      ],
+      "lobVisible": true,
+      "lesson": {
+        "returns": 2,
+        "lobs": 1,
+        "lastShot": "drive"
+      },
+      "overflow": false
+    },
+    {
+      "name": "landscape",
+      "width": 756,
+      "height": 352,
+      "lobBounds": {
+        "x": 660,
+        "y": 200,
+        "width": 76,
+        "height": 48
+      },
+      "twoTouchCancel": true,
+      "contacts": [
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034700000000000356,
+          "time": 11690.59999999404
+        },
+        {
+          "side": "opponent",
+          "quality": "defensive",
+          "shot": "drive",
+          "gap": 0.007500000000000174,
+          "time": 13021
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "lob",
+          "gap": 0.03469999999999998,
+          "time": 14412
+        },
+        {
+          "side": "opponent",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.03470000000000004,
+          "time": 16149.59999999404
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034700000000000106,
+          "time": 17568.59999999404
+        }
+      ],
+      "lobVisible": true,
+      "lesson": {
+        "returns": 2,
+        "lobs": 1,
+        "lastShot": "drive"
+      },
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
