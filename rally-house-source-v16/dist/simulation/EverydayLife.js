@@ -14,7 +14,7 @@ export class EverydayLife {
         this.time += dt; if (this.time >= this.retentionAt) {
         this.retentionAt = this.time + 60;
         for (const [key, until] of Object.entries(this.cooldowns))
-            if (until < this.time && /^(after-|witness-|try-cue-|find-|three-)/.test(key)) {
+            if (until < this.time && /^(after-|witness-|try-cue-|find-|three-|championship-)/.test(key)) {
                 delete this.cooldowns[key];
                 delete this.counts[key];
             }

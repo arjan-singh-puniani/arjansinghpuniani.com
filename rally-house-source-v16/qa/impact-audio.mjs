@@ -14,22 +14,22 @@ try{
  const page=await browser.newPage();page.on('pageerror',e=>report.errors.push(e.message));await page.goto(base);
  report.rows=await page.evaluate(async()=>{
   const {AudioManager}=await import(new URL('./dist/core/AudioManager.js',location.href).href),rows=[];
-  for(const quality of ['defensive','clean','perfect','frame'])for(const speed of [4,11,18]){
+  for(const shot of ['drive','lob'])for(const quality of ['defensive','clean','perfect','frame'])for(const speed of [4,11,18]){
    const rate=48000,context=new OfflineAudioContext(1,rate/4,rate),a=new AudioManager();
    // Offline rendering deliberately schedules before its clock starts; bypass only the live-playback gate.
-   Object.defineProperty(context,'state',{get:()=> 'running'});context.resume=()=>Promise.resolve();a.ctx=context;a.tennisImpact(quality,speed);
+   Object.defineProperty(context,'state',{get:()=> 'running'});context.resume=()=>Promise.resolve();a.ctx=context;a.tennisImpact(quality,speed,shot);
    const data=(await context.startRendering()).getChannelData(0);a.ctx=undefined;a.dispose();
    let peak=0,energy=0,attack=0,tail=0;
    for(let i=0;i<data.length;i++){peak=Math.max(peak,Math.abs(data[i]));energy+=data[i]**2;if(i<rate*.01)attack+=data[i]**2;if(i>rate*.09)tail+=data[i]**2;}
-   rows.push({quality,speed,rate,peak,rms:Math.sqrt(energy/data.length),attack:attack/energy,tail:tail/energy,samples:[...data]});
+   rows.push({shot,quality,speed,rate,peak,rms:Math.sqrt(energy/data.length),attack:attack/energy,tail:tail/energy,samples:[...data]});
   }return rows;
  });
  for(const row of report.rows){
   assert(row.peak>0&&row.peak<.2,'Impact has headroom');assert(row.attack>.4&&row.tail<.025,'Prompt attack and short tail');
-  fs.writeFileSync(`${out}/${row.quality}-${row.speed}.wav`,wav(row.samples,row.rate));delete row.samples;
+  fs.writeFileSync(`${out}/${row.shot}-${row.quality}-${row.speed}.wav`,wav(row.samples,row.rate));delete row.samples;
  }
- if(mode!=='baseline')for(const quality of ['defensive','clean','perfect','frame']){
-  const rows=report.rows.filter(r=>r.quality===quality);
+ if(mode!=='baseline')for(const shot of ['drive','lob'])for(const quality of ['defensive','clean','perfect','frame']){
+  const rows=report.rows.filter(r=>r.quality===quality&&r.shot===shot);
   assert(rows[0].rms<rows[1].rms&&rows[1].rms<rows[2].rms,'Increasing real shot speed increases audible energy');
   assert(rows[2].rms/rows[0].rms>2,'Soft and hard strikes must be clearly distinct');
  }

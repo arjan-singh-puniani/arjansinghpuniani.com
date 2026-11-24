@@ -7,10 +7,10 @@ import guide from "./guide-screens.json";
 import styles from "./rally-house.module.css";
 
 const steps = [
-  { title: "Play tennis immediately.", text: "Tap a club member, then choose Challenge to Match.", screen: guide.challenge, alt: "Isometric club view with Challenge to Match highlighted in a member’s menu" },
-  { title: "Championship mode.", text: "Use the touch stick and Swing. On a keyboard: arrows and Space.", screen: guide.championship, alt: "Championship court view with the movement and swing controls highlighted" },
+  { title: "Play tennis immediately.", text: "Choose Play tennis on arrival, or tap a member and choose Challenge to Match.", screen: guide.challenge, alt: "Isometric club view with Challenge to Match highlighted in a member’s menu" },
+  { title: "Championship mode.", text: "Move with the stick or arrow keys. Swing drives; Lob buys recovery time.", screen: guide.championship, alt: "Championship court view with the shot controls highlighted" },
   { title: "Replay your last shot.", text: "After a point, choose Analyze last swing.", screen: guide.analyze, alt: "A completed point with the Analyze last swing button highlighted" },
-  { title: "Analyze your swing like a pro.", text: "Pause, scrub and inspect your joints on the replay.", screen: guide.lab, alt: "The recorded shot in AnatomyMotion with a registered body rig and elbow analysis" },
+  { title: "Analyze your swing like a pro.", text: "Pause and scrub your character’s replay to inspect joint angles.", screen: guide.lab, alt: "Recorded game motion with a registered body rig and simulated elbow angle" },
 ] as const;
 
 export default function RallyHouseExperience() {
@@ -65,7 +65,7 @@ export default function RallyHouseExperience() {
               <Image src={`/rally-house/media/${step.screen.image}`} width={step.screen.width} height={step.screen.height} sizes="(max-width: 800px) 100vw, 70vw" alt={step.alt} />
               {step.screen.callout && <span className={styles.callout} aria-hidden="true" data-testid="screen-callout" style={{ left: `${step.screen.callout.left}%`, top: `${step.screen.callout.top}%`, width: `${step.screen.callout.width}%`, height: `${step.screen.callout.height}%` }} />}
             </div>
-            {i === 3 && <figcaption>VectorCourt × AnatomyMotion · Analysis uses your recorded game motion.</figcaption>}
+            {i === 3 && <figcaption>VectorCourt × AnatomyMotion · Joint angles come from the game’s character rig.</figcaption>}
           </figure>
         </li>)}
       </ol>
@@ -79,7 +79,7 @@ export default function RallyHouseExperience() {
         </div>
         <div className={styles.playerFooter}><span>{playing ? "Live game" : "Starts when you enter"}</span>{playing && <button onClick={fullscreen}>Enter fullscreen ↗</button>}</div>
         {fullscreenMessage && <p role="status">{fullscreenMessage}</p>}
-        <p className={styles.controls} id="rally-house-controls"><span><strong>Club</strong> Tap to walk and interact.</span><span><strong>Court</strong> WASD / arrows · Space to swing.</span><span><strong>Touch</strong> Stick + Swing.</span></p>
+        <p className={styles.controls} id="rally-house-controls"><span><strong>Club</strong> Tap to walk and interact.</span><span><strong>Court</strong> WASD / arrows · Space: drive · Q: lob.</span><span><strong>Touch</strong> Left stick to move · Swing or Lob on the right.</span></p>
       </div>
     </section>
     <footer className={`shell ${styles.colophon}`}>Built by Arjan Singh Puniani · All screens captured from the game.</footer>

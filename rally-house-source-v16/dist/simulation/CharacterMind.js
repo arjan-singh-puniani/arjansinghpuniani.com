@@ -58,7 +58,9 @@ export class CharacterMind {
         f['authored performance'] = scene.family ? 0 : .15;
         f.schedule = c.schedule[actor] === scene.place ? .24 : 0;
         f.intention = c.intentions.some(i => i.person === actor && i.notBefore <= c.day * 1440 + c.minute && ((i.kind === 'practice' && training) || (i.kind === 'cafe' && rest))) ? .3 : 0;
-        f.memory = scene.eventId && this.events.some(e => e.id === scene.eventId && e.pending.includes(actor)) ? .72 : 0;
+        // Give the player's completed match one timely consequence before unrelated idle chatter.
+        const pendingEvent = this.events.find(e => e.id === scene.eventId && e.pending.includes(actor));
+        f.memory = pendingEvent ? (pendingEvent.kind === 'championship' ? 1.4 : .72) : 0;
         f['favorite place'] = scene.objectId && c.favorite(actor, scene.objectId) ? .30 : 0;
         f.weather = c.weather === 'rain' ? (rest || m === 'company' ? .18 : training ? -.08 : 0) : 0;
         f['time of day'] = c.minute < 660 && (training || m === 'care' || m === 'reflect') ? .12 : c.minute > 1080 && (rest || social) ? .12 : 0;
@@ -169,6 +171,22 @@ export class CharacterMind {
     }
     coaching(cue, gain) { this.philosophy[cue] = (this.philosophy[cue] ?? 0) + 1; if (gain > 0)
         this.states.mika.confidence = clamp(this.states.mika.confidence + .02, 0, 1); }
+    /** Player matches affect only the actual opponent; legacy club matches still belong to Leo and Lucresia. */
+    recordChampionship(id, subject, won, day, detail) {
+        if (this.events.some(e => e.id === id))
+            return false;
+        for (const e of this.events)
+            if (e.kind === 'championship' && e.subject === subject)
+                e.pending = [];
+        this.events.unshift({ id, kind: 'championship', subject, winner: won ? subject : 'player', day, at: this.time, place: 'court', detail, importance: .95, witnesses: [], pending: [subject] });
+        this.remember({ id, person: subject, topic: 'championship', place: 'court', people: [subject], day, importance: .95, detail });
+        const s = this.states[subject];
+        s.energy = clamp(s.energy - .1, 0, 1);
+        s.practice = clamp(s.practice + (won ? .02 : .18), 0, 1);
+        s.confidence = clamp(s.confidence + (won ? .06 : -.04), 0, 1);
+        this.retain();
+        return true;
+    }
     cultureDescription() { const [key, value] = Object.entries(this.culture).sort((a, b) => b[1] - a[1])[0]; if (value < .28)
         return 'Still finding its rhythm.'; return { training: 'A place to work patiently at the small things.', social: 'A club where a short break tends to become a conversation.', calm: 'People are making room for quiet moments.', competition: 'Friendly competition is becoming part of the club.', care: 'The little details are becoming shared rituals.' }[key]; }
     serialize() { return structuredClone({ time: this.time, states: this.states, events: this.events, memories: this.memories, receipts: this.receipts, recent: this.recent, rituals: this.rituals, culture: this.culture, philosophy: this.philosophy, possessions: this.possessions }); }
@@ -187,7 +205,7 @@ export class CharacterMind {
         if (!Object.values({ ...s.philosophy, ...s.rituals }).every(v => Number.isFinite(v) && v >= 0))
             fail();
         for (const e of s.events)
-            if (!e || typeof e.id !== 'string' || !['match', 'lesson', 'move'].includes(e.kind) || !MEMBERS.includes(e.subject) || !Array.isArray(e.pending) || !Array.isArray(e.witnesses) || ![...e.pending, ...e.witnesses].every(p => MEMBERS.includes(p)) || ![e.at, e.day, e.importance].every(Number.isFinite) || typeof e.detail !== 'string' || typeof e.place !== 'string' || (e.kind === 'match' && !['mika', 'leo', 'draw'].includes(e.winner ?? '')))
+            if (!e || typeof e.id !== 'string' || !['match', 'lesson', 'move', 'championship'].includes(e.kind) || !MEMBERS.includes(e.subject) || !Array.isArray(e.pending) || !Array.isArray(e.witnesses) || ![...e.pending, ...e.witnesses].every(p => MEMBERS.includes(p)) || ![e.at, e.day, e.importance].every(Number.isFinite) || typeof e.detail !== 'string' || typeof e.place !== 'string' || (e.kind === 'match' && !['mika', 'leo', 'draw'].includes(e.winner ?? '')) || (e.kind === 'championship' && (!['player', e.subject].includes(e.winner ?? '') || e.pending.some(p => p !== e.subject) || e.witnesses.length > 0)))
                 fail();
         for (const m of s.memories)
             if (!m || typeof m.id !== 'string' || !MEMBERS.includes(m.person) || !Array.isArray(m.people) || !m.people.every(p => MEMBERS.includes(p)) || ![m.day, m.importance].every(Number.isFinite) || ![m.topic, m.place, m.detail].every(x => typeof x === 'string'))

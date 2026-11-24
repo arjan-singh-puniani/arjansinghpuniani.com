@@ -37,6 +37,8 @@ export class ChampionshipHUD {
   private readonly returnButton: HTMLButtonElement;
   private readonly touchPad: HTMLDivElement;
   private readonly swingButton: HTMLButtonElement;
+  private readonly lobButton: HTMLButtonElement;
+  private readonly nextObjective: HTMLParagraphElement;
   private readonly controlsHint: HTMLDivElement;
   private readonly pauseButton: HTMLButtonElement;
   private readonly pausePanel: HTMLDivElement;
@@ -84,6 +86,8 @@ export class ChampionshipHUD {
 
     this.resultSummary = document.createElement('p');
     this.resultSummary.className = 'championshipResultSummary';
+    this.nextObjective=document.createElement('p');
+    this.nextObjective.className='championshipNext';
 
     this.rematchButton = document.createElement('button');
     this.rematchButton.className = 'championshipPrimary';
@@ -127,6 +131,7 @@ export class ChampionshipHUD {
     this.motionButton.onclick = () => this.actions.onToggleMotion();
     this.pausePanel.append(pauseTitle, pauseCopy, pauseActions, this.soundButton, this.motionButton);
     this.results.append(this.resultTitle, this.resultSummary, this.rematchButton, this.returnButton);
+    this.results.append(this.nextObjective);
     for(const parent of [this.root,this.pausePanel,this.results]){
       const review=document.createElement('button');review.className='championshipReview';
       if(parent===this.root)review.classList.add('championshipQuickReview');
@@ -144,14 +149,23 @@ export class ChampionshipHUD {
     this.swingButton.className = 'championshipSwing';
     this.swingButton.textContent = 'SWING';
     this.swingButton.setAttribute('aria-label', 'Swing racket');
+    this.swingButton.title = 'Space · Serve or drive the ball';
     this.swingButton.addEventListener('pointerdown', (event) => {
       event.preventDefault();
       this.input.queueSwing();
     });
 
+    this.lobButton=document.createElement('button');
+    this.lobButton.className='championshipLob';
+    this.lobButton.textContent='LOB';
+    this.lobButton.setAttribute('aria-label','Lob — high shot for recovery');
+    this.lobButton.title='Q · A high, slower return gives you time to recover';
+    this.lobButton.addEventListener('pointerdown',event=>{event.preventDefault();this.input.queueSwing('lob');});
+    this.lobButton.addEventListener('click',event=>{if(event.detail===0)this.input.queueSwing('lob');});
+
     this.controlsHint = document.createElement('div');
     this.controlsHint.className = 'championshipControlsHint';
-    this.controlsHint.textContent = 'WASD / ARROWS move & aim  ·  SPACE swing  ·  ESC pause';
+    this.controlsHint.textContent = 'WASD / ARROWS move & aim  ·  SPACE drive  ·  Q lob  ·  ESC pause';
 
     this.swingButton.addEventListener('click',event=>{if(event.detail===0)this.input.queueSwing();});
     this.bindTouchPad();
@@ -162,6 +176,7 @@ export class ChampionshipHUD {
       this.results,
       this.touchPad,
       this.swingButton,
+      this.lobButton,
       this.controlsHint,
       this.pauseButton,
       this.pausePanel,
@@ -204,6 +219,7 @@ export class ChampionshipHUD {
     paused=false,
     muted=false,
     canReview=false,
+    lesson={returns:0,lobs:0,lastShot:'drive'},
   ) {
     if (snapshot.phase === 'inactive') {
       // The challenge walk belongs to the dollhouse. Keep the sports HUD out
@@ -216,7 +232,7 @@ export class ChampionshipHUD {
     this.controlsHint.hidden=snapshot.phase==='matchResult';
     this.exitButton.hidden=snapshot.phase==='matchResult'||paused;
     this.root.dataset.phase = snapshot.phase;
-    this.root.dataset.cue=this.gameplayPhase(snapshot.phase)?cue:'none';
+    this.root.dataset.cue=!paused&&this.gameplayPhase(snapshot.phase)?cue:'none';
     const serving=snapshot.phase==='serving'&&snapshot.server==='player';
     this.touchPad.dataset.label=serving?'AIM':'MOVE';
     text(this.swingButton,cue==='queued'?'READY':serving&&cue!=='serving'?'SERVE':'SWING');
@@ -242,7 +258,8 @@ export class ChampionshipHUD {
     const opponentMatchPoint=opponent+1>=pointsToWin&&opponent+1-player>=winBy;
     text(this.scoreContext,snapshot.phase==='matchResult'?'Match complete':playerMatchPoint?'Your match point':opponentMatchPoint?`${opponentName}’s match point`:`First to ${pointsToWin} · Win by ${winBy}`);
     const message=paused?'':this.messageFor(snapshot,cue,opponentName);
-    if(this.message.textContent!==message)this.message.textContent=message;
+    text(this.message,!paused&&(cue==='sweet'||cue==='nice')&&lesson.lastShot==='lob'?'LOB · RECOVER':message);
+    if(snapshot.phase==='pointResult'&&lesson.returns>0&&!lesson.lobs)text(this.scoreContext,'Try Lob to recover');
 
     const showResults = snapshot.phase === 'matchResult';
     this.results.hidden = !showResults;
@@ -250,9 +267,13 @@ export class ChampionshipHUD {
       const playerWon=snapshot.score.player>snapshot.score.opponent;
       text(this.resultTitle,playerWon?'YOU WIN':`${opponentName.toUpperCase()} WINS`);
       text(this.resultSummary,`${snapshot.score.player} – ${snapshot.score.opponent}  ·  Best rally ${snapshot.bestRally}  ·  +${CHAMPIONSHIP_TUNING.completionFunds} club funds`);
+      text(this.nextObjective,`Back at the club, see what ${opponentName} does next. Or play another match${lesson.lobs?'': ' and try a lob'}.`);
     }
     this.touchPad.hidden = paused || !this.gameplayPhase(snapshot.phase);
     this.swingButton.hidden = paused || !this.gameplayPhase(snapshot.phase);
+    this.swingButton.disabled = !this.input.enabled;
+    this.lobButton.hidden = paused || snapshot.phase!=='rally';
+    this.lobButton.disabled = !this.input.enabled;
     this.controlsHint.hidden ||= paused;
   }
 

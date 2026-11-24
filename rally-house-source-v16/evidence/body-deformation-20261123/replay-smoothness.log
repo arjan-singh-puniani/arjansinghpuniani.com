@@ -1,0 +1,2 @@
+{"interpolatedSamples":3780,"maxGPUJointRegistrationError":5.462329374142624e-7}
+Smooth replay PASS: continuous shared pose, exact observed events, GPU registration for both avatars, source isolation, fractional mesh-cache refresh, shortest rotations, truthful gaps and event history.

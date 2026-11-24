@@ -1,0 +1,683 @@
+{
+  "base": "d0218b52",
+  "branch": "feature/rally-house-gameplay-slice-20261122",
+  "files": [
+    {
+      "path": "Rally-House-v16-Playtest/TESTER-HANDOFF.md",
+      "sha256": "6f8a8b8db9a19f0e70318dd84300e39dc7a77fd7885f0134245fd79c7f796b8a",
+      "bytes": 943
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/audio/CREDITS.md",
+      "sha256": "a5a91655580db6a1f4b016dd8c8298ca9b1f315ce12523493776e59e4746198a",
+      "bytes": 722
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/audio/provenance.json",
+      "sha256": "bf4b145677c9ef8217f6aa729b1c1eabe9ae12dfaa2ef74fc6542e77248208d4",
+      "bytes": 823
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/CREDITS.html",
+      "sha256": "a3903e06a653f254d45f2cb4855f0258c6347686e79e91e15804d40e4e745885",
+      "bytes": 2204
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/LICENSE.md",
+      "sha256": "da46e252cc737da9080398cc4ec31d6c6f688166079bb39d9f04aee0dd145b9d",
+      "bytes": 7768
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/MEDIAPIPE-LICENSE.txt",
+      "sha256": "8707eef0533987efc5b155d64761eeb6e20793f50b9bd1a68dad1cf4719d0ed8",
+      "bytes": 12331
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/README.md",
+      "sha256": "cf16a0e81ebbf87c879451277921e72a22c0c27649d5d17b6f079362df9b62e0",
+      "bytes": 12874
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/ROCKETBOX-LICENSE.txt",
+      "sha256": "17474e386e0b9e1a700cc3d06b2b0882a2c376d9c6b49c7f8274409b8f8d2352",
+      "bytes": 1066
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/arjan/head-hair.webp",
+      "sha256": "26cea28f1cac8761f31ec7363e06aa9b2bf1f7fc8e094398c5131a0b32e586eb",
+      "bytes": 732114
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/arjan/head-provenance.json",
+      "sha256": "117a788265152a7ad93779ed1a7ec228c301aac59c34d216c45576fb52711a58",
+      "bytes": 2430
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/arjan/head-skin.webp",
+      "sha256": "771bdf5f350f52da1b6e43fe17ef7d860c8fbed9c23363ccb30aee5a0f008151",
+      "bytes": 521592
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/arjan/head.glb",
+      "sha256": "28b7468e3f8321d8c283d82b1965fbc1015c93b387ec86e4723702204c463615",
+      "bytes": 1505296
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/arjan/provenance.json",
+      "sha256": "f93a0a3ec146c49f1dda8948dc387d24dbc02c8e927f2a76edb7a28867296e11",
+      "bytes": 36330
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/arjan/upper-body.glb",
+      "sha256": "5d7722b90cfcd1e5f9ec5eed21ab4fff35ef9a67c5d2aa7e71e1234279f35ae8",
+      "bytes": 536724
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/cast-skin.webp",
+      "sha256": "0c11a14f25710b8d215d01bd967386a34c853ba0586f5b1ad03f0aef22314f9f",
+      "bytes": 362794
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/coach-kit.webp",
+      "sha256": "b5f84e4d5781dcd15b19a69c135e0734e91d9111a5a5c4bf0c11eef8b8de331b",
+      "bytes": 57298
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/coach-skin.webp",
+      "sha256": "bb0f63406bb5b552504e80dd54dc5dcc0677448bc298ed8f07b45e039fd5f81d",
+      "bytes": 141130
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/coach-skirt.webp",
+      "sha256": "45ecbb67c6471328682a351e587439c709310b8fcba72e875120424e4cdf6246",
+      "bytes": 38
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/hair.webp",
+      "sha256": "a549fa4b5f121e176e18a2d8fde0f6750b46ca778f93daec700540609ef16df7",
+      "bytes": 314936
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/kit.webp",
+      "sha256": "7b22adba72984860acb331292cd99941c547f73d72e9d3e08c69f800efd191d0",
+      "bytes": 224342
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/mika-kit.webp",
+      "sha256": "07aa657a7f25762829c0492da4015b46b6568869ed95ee0c41a4a408813d18cf",
+      "bytes": 57312
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/mika-skin.webp",
+      "sha256": "92cd7b6fbee69fc27af14e2f6bd26af6fc4b9c89b975355eccb9b94348761730",
+      "bytes": 154018
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/mika-skirt.webp",
+      "sha256": "539883a145a020c33712a8a74738326b021eda7284e1567ae24d8ec104979fe5",
+      "bytes": 38
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/nia-kit.webp",
+      "sha256": "2c8b9be97ee763a147a63c2aab3df72b0c394f5576fa3ad16238ecd4c79caabc",
+      "bytes": 57522
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/nia-skin.webp",
+      "sha256": "75d9ccf9e303a333c62e186c334a01fcdcd1bb9f06ff1da5c3bab34c5544f115",
+      "bytes": 99910
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/nia-skirt.webp",
+      "sha256": "1398a5dfbf6191a4f27aae9d21ff2e86c5a7a7cfc1f437270e7a9e633b9cc61e",
+      "bytes": 38
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/provenance.json",
+      "sha256": "18d270f2d7b7e99b9432bf8b71cacfb15916ffb7896317aa55803d322c19f5fd",
+      "bytes": 11598
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/shoes.webp",
+      "sha256": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
+      "bytes": 159062
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/skin.webp",
+      "sha256": "ec769c1543ecb476613019d221950cd0ffb439d5d85679167b6b2b150a9418a4",
+      "bytes": 365314
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/skirt.webp",
+      "sha256": "3ac69eb7fd0f27c3c78318e71cab59928b76632a4d236f80a6a8af47199fe822",
+      "bytes": 38
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/characters/taylor/taylor.glb",
+      "sha256": "2fbe4a9887e367978ae2fcf054c7ae0ba8a6325c7b3cc7cb64598b3c0ffde604",
+      "bytes": 4502972
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/ballHopper.webp",
+      "sha256": "5d9cf51b113d1d2be8081faec77ccc1e504edfc2acf9c73548f64129063202f7",
+      "bytes": 1920
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/basket.webp",
+      "sha256": "1d9f5637d2eb8264fa564d38cd965f9760b2b735945168856c85f4e981235c93",
+      "bytes": 1776
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/bench.webp",
+      "sha256": "8e1f562180dcb5a177c651c27aea1b8f8408fb569ff01aaf270ed596b67ee072",
+      "bytes": 3630
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/cafeTable.webp",
+      "sha256": "22ab405dd7c1205e8215f206a297c1e51fb5fc7e66bf3e57d0f392e10d32b870",
+      "bytes": 2182
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/coneSet.webp",
+      "sha256": "653e9e90be4f3e89aa550c26621c178ef80c5d9149d321dd7e9a8e685ccc23be",
+      "bytes": 1644
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/lamp.webp",
+      "sha256": "2736b083083aeff1d5684a71643a5ad98f0abb1b685a7dde2e0f74c62a272521",
+      "bytes": 1504
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/lantern.webp",
+      "sha256": "142e63a58df7c126ea35b74a5d65a5c2c54ea22949c31e2810f3f784bf5194e1",
+      "bytes": 1678
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/plant.webp",
+      "sha256": "88068f2be04063bd4ab7b55741df85aabc896d6dcca4ab73106dbcceb78251a2",
+      "bytes": 2352
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/planter.webp",
+      "sha256": "7e8a24742b619483e128b631f9c21ebae149959fb854cd02bca4b29353cfa056",
+      "bytes": 3198
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/racketRack.webp",
+      "sha256": "d2f7c6e16de4732ad0986c0f3c88107b7ffea8b074b39a7a666bf7eff4b76d66",
+      "bytes": 3262
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/scoreboard.webp",
+      "sha256": "9ace4c730b5953b47a075ce5083d6b39cc36ca68c9346d1f6723d1a0399079e6",
+      "bytes": 1978
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/sideTable.webp",
+      "sha256": "a7504ec1b709b6cc65c3cbce809561be6605a07a228ad531f90d782a49ec2b0c",
+      "bytes": 2086
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/stool.webp",
+      "sha256": "cdf56f6a352c4c5e302b410c403fe749f314413de37adb4804f6fd67a223d758",
+      "bytes": 1712
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/tennisBag.webp",
+      "sha256": "b64377422795b1bf92fae900e6e53ac57cce11fc6e16dd74a262a5ca87d0f0b3",
+      "bytes": 1956
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/towelRack.webp",
+      "sha256": "882c7c42108698308cb64e741f454905bfcf40f1b524372e9363c08f9eb96115",
+      "bytes": 2070
+    },
+    {
+      "path": "Rally-House-v16-Playtest/assets/decor/trophy.webp",
+      "sha256": "b81b96275eae29aa32a0935fc92e27a84f860c91143d95b6dc3cb807b68767d6",
+      "bytes": 1916
+    },
+    {
+      "path": "Rally-House-v16-Playtest/championship.css",
+      "sha256": "c4fed82002331442296441c4d87f8a07a87c5aa31ef5e5d07dfe24b30a946e4e",
+      "bytes": 14139
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/Game.js",
+      "sha256": "c89dd00730308f1c44f160048d563c9a0b938d87b8561c56c89eb90c2c7bdf81",
+      "bytes": 164443
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/analysis/LabDemonstrations.js",
+      "sha256": "8586936a39398305266a66e337193c130bb5a357297886e77543f92b01d67835",
+      "bytes": 2714
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/analysis/MotionCapture.js",
+      "sha256": "feafb922ffc1782c502f094d9184ac0f99302bbab4e3a928a709cc92c2955f88",
+      "bytes": 16590
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/analysis/PerformanceLab.js",
+      "sha256": "aeea4b924888dcce08eccee040c8c3d8f72382f0abd79ce0d1b3409e5878f038",
+      "bytes": 37613
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/analysis/PhoneCapture.js",
+      "sha256": "260c6dba4cce76be4444ff4fc7021d214e473d4e3a15c4698e9367b3dae2c751",
+      "bytes": 14109
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/analysis/ServeSnapshots.js",
+      "sha256": "1d81da139109969d30fe1239601e7b6b18f7f13719ac7dc5eafd8e4db916eb78",
+      "bytes": 1737
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/ActingState.js",
+      "sha256": "dbd1f380d6dad242a52197c328f7991be3d5820173ac06c5d7a002b41864fe74",
+      "bytes": 4288
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/ArjanAuthoredHead.js",
+      "sha256": "33bd44f9a045bedddc453a6224583a3029a9d1ab46111a5f2f9668ff5cdf7900",
+      "bytes": 6323
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/ArjanFaceData.js",
+      "sha256": "136b987309550ded0793a11c9289a25ef322c30e32146f5b037595075f796dcb",
+      "bytes": 32697
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/ArjanHead.js",
+      "sha256": "e458046e15d1c3137a5e1c345ae13d457a1706bbf45bb2e7b042ca937a240827",
+      "bytes": 19589
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/ArjanUpperBody.js",
+      "sha256": "2e5d417032a3339c983f5c46301d5224c397ce6381f8d95316e210ad3c61bd5c",
+      "bytes": 6496
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/AuthoredAthlete.js",
+      "sha256": "d87430ca6eb462e21bf6c6d40e3abcece969e5c0c6039f779a1cfc1e32f8d9a2",
+      "bytes": 20213
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/CharacterAssetIntake.js",
+      "sha256": "d743311f7608347d4b2dffc25aedbbd7965a228ad2f46f29a44fc100d1d41c49",
+      "bytes": 10802
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/CharacterSkin.js",
+      "sha256": "95c04b8bc473c7bece5f35d074a0899639802a10d8bcf96b4354d5920f7bf605",
+      "bytes": 45691
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/ClipLibrary.js",
+      "sha256": "31ed7919bec8a4c5f4e6284f4f26413151bfc92b1607fe602ea2c3dcdd8c76e6",
+      "bytes": 11520
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/HugContact.js",
+      "sha256": "3263b9bd2accbe59eb5e5a0e15071a645517773e018e54ec51048fc92d7e56f5",
+      "bytes": 2031
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/HumanSurface.js",
+      "sha256": "84d49b20ad058c179ab81f108fca75b52b15482886e116dbf656d0a71c339b2a",
+      "bytes": 1322
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/RacketGeometry.js",
+      "sha256": "f70ff45880b7c502f74b17376f9c6501e4abd0d90f6977086e518f57b86d5c81",
+      "bytes": 13549
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/RacketWordmark.js",
+      "sha256": "f745aa1533f37bc7ec615657afac34f86468b603181e0c5484e9d48cf48b2fc1",
+      "bytes": 22005
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/ReversibleAssembly.js",
+      "sha256": "52f3c5e669f2924d62c64f4d7e72150967478febe5ae8530b9d936cf82bc510c",
+      "bytes": 1796
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/TaylorAppearance.js",
+      "sha256": "fc44ee818bfa858630b27209540b7c6f919de5702b9a61de5728d6fc47919a9a",
+      "bytes": 30022
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/TaylorBody.js",
+      "sha256": "685b1a960072d21691a75176beb3045c2b48dee72459d6c4389e9e678daed9ab",
+      "bytes": 30770
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/TaylorHuman.js",
+      "sha256": "36dd838ca2d08e8e0247541053012dc0d01e0d9d5e8f9141b5b848a4e9b4e94f",
+      "bytes": 20675
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/animation/WalkCycle.js",
+      "sha256": "9094e10bb9f1435b9680d5a3be01dc4373a665bdd2dafef15725c42ccc2b8831",
+      "bytes": 2847
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/content/CastDesign.js",
+      "sha256": "0991e76071f12b8f60c78e2683e53d7dd41bf18f273031043f117af960d0ade9",
+      "bytes": 1063
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/content/DecorCatalog.js",
+      "sha256": "033888bc54ae6a646e3b600dab99ed96993e4fba87de2446b63a2325cd26fdbc",
+      "bytes": 3474
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/content/PlayerAvatars.js",
+      "sha256": "ec71944701bb94c44d5f033ef636f31df1232ea2706a20fc163908a1f839ed99",
+      "bytes": 895
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/content/content.js",
+      "sha256": "5e959ea65e98613dd21505af7c43d23992cdc7b6e4c2aed27611d22b35ccd1a1",
+      "bytes": 10712
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/core/AudioManager.js",
+      "sha256": "133c9d4d1de9de763706d1e277071eb883412a8c2897f504fcab8a1bf7e79e89",
+      "bytes": 14307
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/core/FootstepSound.js",
+      "sha256": "a8e37c3fcef5562e3281a81d7430c10d8be01cd88d2b21d6dd6ece515610c83b",
+      "bytes": 1236
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/core/GameClock.js",
+      "sha256": "69cd20915f9ddfcaef9374712cabe1f1b8d8b5b72f8857b98827159aebeae77a",
+      "bytes": 1003
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/core/PerformanceMonitor.js",
+      "sha256": "d1a059f671ceb4733d85b487f55ba294139df164156e04786bb01bf380b740dd",
+      "bytes": 941
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/core/TennisImpactSound.js",
+      "sha256": "b23732dcf94847039a8453c85c126c3578ee09be0af928e9aa1e2d5a09dc65d1",
+      "bytes": 3086
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/core/types.js",
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "bytes": 11
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/entities/Character.js",
+      "sha256": "9a83dac4b44f7b6e2612156fa095f105ec38a5b9a291673bf5506f8d1cf42143",
+      "bytes": 118853
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/main.js",
+      "sha256": "4aa51efcdae87cb87c104bddbb64a5f7086bfd4550f9b87cb9f1f073f2d6d833",
+      "bytes": 2553
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/persistence/SaveSystem.js",
+      "sha256": "e81456e4cf4ddf9e77434a0f4def912058d53c849caef52a1f4f1c7ba801dbaf",
+      "bytes": 7513
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/persistence/migrations.js",
+      "sha256": "12febf9ed841e1f3416e017ad18e5bdf078df7255bf160c8825cf4df6598d586",
+      "bytes": 6050
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/rendering/CameraController.js",
+      "sha256": "84f5dd511e2295816933c70f783fe04bde6230a3ef398b7fe19e1a44000c5dd7",
+      "bytes": 8697
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/rendering/ClubAtmosphere.js",
+      "sha256": "88b0e722ae8d0783facd91bdb1bcb82415ff3d8df555f6c2e6243b076fd48beb",
+      "bytes": 1833
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/rendering/DetailGeometry.js",
+      "sha256": "e6424360baf9ef48894680d46ffd44389540b303c421a551798c49e36d3ab3d3",
+      "bytes": 3378
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/rendering/FoliageGeometry.js",
+      "sha256": "359ae3b4ba8356b8e06c76eec1ec06a4f71251820d0fb2f9964ed17a26c46141",
+      "bytes": 2018
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/rendering/Math3D.js",
+      "sha256": "0d2d8ab619c472b7273cce7d075b44a74b8fe39346f794a5e7edc194675e8ee3",
+      "bytes": 8303
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/rendering/Renderer.js",
+      "sha256": "5f4b7c98e8c89bc55e1422d9572a1b72dcc4ec0bc15b9c68dcc2508c99fc4b29",
+      "bytes": 48182
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/ActivitySystem.js",
+      "sha256": "6eb53519a3d661bbde08eec252812def68905ff74091bdaf8c9f0cbaeac3fce1",
+      "bytes": 2357
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/AmbientSocialPlanner.js",
+      "sha256": "aa08271e94d62711321679b24c11b62930fe8a4df1f6e8e7690bef103242ea6b",
+      "bytes": 2139
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/CharacterMind.js",
+      "sha256": "bcf7ad071083971e7305d42a69a97136c7eacd09ecc52cf5b5231c2c68c333b9",
+      "bytes": 19641
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/ClubHistory.js",
+      "sha256": "cee2ea095e1c08e8384fefffb68e63739fbff87ff8b21291a8fe5e1eb995ff5c",
+      "bytes": 1486
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/ClubInteractions.js",
+      "sha256": "ad338faade025452a691e702afe4566cc81923b7edd960216f1275c6e8a1478f",
+      "bytes": 3933
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/ClubLifeSystem.js",
+      "sha256": "a0a6799077e7b2ae2ffaaafe1eda58c7fe4b273e52f8f05d2912c954653f171d",
+      "bytes": 1981
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/CoachingEvidence.js",
+      "sha256": "84a8520c3c9a8b918e3780557a1c8511585e71696ca8aac38f83a9e6f4a0c35a",
+      "bytes": 1676
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/DailyGoalsSystem.js",
+      "sha256": "d477d44c749396da5c1a0229eb918b6c6bd3cd6f2f265c107e73411451b199f9",
+      "bytes": 1582
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/DialogueComposer.js",
+      "sha256": "19ea893e98e8badaa65bbc23b6a9e610db6b1f485a237d4b81ac063f1ba358a6",
+      "bytes": 1652
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/EmergentSocialSystem.js",
+      "sha256": "dd9bd47c05e06fb91b9adc63569e25daadff2a7b8bb121ab84d058e64999f18d",
+      "bytes": 3625
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/EverydayLife.js",
+      "sha256": "a468471ef88be8e0d97993a743d8788ef23ed4f9db7d1c5c38f9819e08f57092",
+      "bytes": 14225
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/LifeTelemetry.js",
+      "sha256": "7476ea68a68f8a9b2cd8c8ddfe90276f8f489cb181daca964c6f6bae21e2fe4f",
+      "bytes": 2250
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/ObjectAffordances.js",
+      "sha256": "c252fe325074ce0221fb71ded98f282b787e33b91c6fa14b80995d8c41733fd7",
+      "bytes": 5154
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/RelationshipSystem.js",
+      "sha256": "5b962e2c593246aa3e1b57278f09d4d15f2fa2b8cae59b14ca7251ddd2c4e87f",
+      "bytes": 4685
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/SceneGrammar.js",
+      "sha256": "53e114bea4bc21e5f4e7c0613919afa65f606006692bd9081cc9b1491545f640",
+      "bytes": 13714
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/simulation/ScheduleSystem.js",
+      "sha256": "f39fdaefa9898436984bf829f2ad753d1b2f6132221721f370a617ad0d268e57",
+      "bytes": 700
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/BallPhysics.js",
+      "sha256": "ea292e7c1de86edd15cb3df11efac800f7b937f54ff8d7a139e30269a8f61f42",
+      "bytes": 3068
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/BallTrail.js",
+      "sha256": "ddc697827fa1f667f3b59eb8af81ddc79554d34fd75e1b75165c5dd112120208",
+      "bytes": 2389
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/ChampionshipCameraRig.js",
+      "sha256": "d8ced16178755beb96f7747ca06a00fd001a760c9b06f57dfe947f511c2651f5",
+      "bytes": 9776
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/ChampionshipController.js",
+      "sha256": "be96b48e7005c385d1dd15814b02e0574afe93d41cd3eee4cb18f8443bfbde4a",
+      "bytes": 7035
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/ChampionshipOpponents.js",
+      "sha256": "813f514e15c6105b34555b4da7060bb22484ed869e4c55b88446a1cd1b70fbdf",
+      "bytes": 1927
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/ChampionshipTuning.js",
+      "sha256": "215e7c438dd036b39dd5acedcd0577f7b0b676588c726c5c4e41d35eb495503b",
+      "bytes": 3410
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/CourtGeometry.js",
+      "sha256": "c0fbd77ac57daf2163411d05a3532bdbfcb02dffa8d4ca16f7f773453b7812f1",
+      "bytes": 706
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/InteractiveMatchSystem.js",
+      "sha256": "079ec362af6f5a7a376def52311b6e408ccdebc657ef49eb5a86953edb7ef9cf",
+      "bytes": 40491
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/MatchInput.js",
+      "sha256": "0a99929b892f5035e32122802a2333729a336d31c0ae0e21d8c0737538799122",
+      "bytes": 4358
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/RallySystem.js",
+      "sha256": "1ecb036fc132e886698d26b0be2ec3821bab0de1628b71103fe45d7f45c8bf80",
+      "bytes": 16642
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/tennis/ServeToss.js",
+      "sha256": "8e410d1af28545f1aa53ea509dd7f3b58de1d32a655e50472b376dd118e4f69b",
+      "bytes": 804
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/ui/ChampionshipHUD.js",
+      "sha256": "904ba0acc4a8094add705355effca91ac7a39c1a31b47638323c4f53fc06985c",
+      "bytes": 17413
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/ui/ClubContextPresenter.js",
+      "sha256": "a862392a06d6d36ebe96efa1c3bd297e64607d8a9e7fa5ac5ef9d3226742f639",
+      "bytes": 8497
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/ui/HUD.js",
+      "sha256": "60a07419f781a38e06d93187db5ef4702c3a40de16e5773d5dedb5b6b269bdd2",
+      "bytes": 15511
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/ui/SpatialInteractionSystem.js",
+      "sha256": "1e41796e27a64ea0b34e6c452353f9d6c523a16014bb4c9ff676ab7e8175193e",
+      "bytes": 12967
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/ui/WorldAnchor.js",
+      "sha256": "a4233a7d9367ab58209b3ffe21154ee359527f89dc02ccd1eae070c520a41781",
+      "bytes": 826
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/world/AuthoredObjects.js",
+      "sha256": "1d05e4c140b058947fade18eb423e17d5b70a90bb9ca02ddb00e2901ebd43f19",
+      "bytes": 14377
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/world/CourtDetail.js",
+      "sha256": "1481d287bc97a776708f127ee8d97fd3ca598f7dbbe31f7c6b56eab852682245",
+      "bytes": 2142
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/world/Navigation.js",
+      "sha256": "8785a1824316411201c9dd84cb117a42225b86cf55ac6a56cb3fd4ab0b6e35a8",
+      "bytes": 7392
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/world/ObjectIdentity.js",
+      "sha256": "c5941cc5dfebdfdb1909a4ca56e65d8a98e7419034c130a79c32801d409098b7",
+      "bytes": 6326
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/world/PerformanceStation.js",
+      "sha256": "42355e42a3a2a697d29316215775073eb56395356f7a4b8aabc0acf031bf3a1e",
+      "bytes": 1849
+    },
+    {
+      "path": "Rally-House-v16-Playtest/dist/world/World.js",
+      "sha256": "83a4e8df7d71a9fa152985f78ac577031435d5bd5b90f66919527bdf660cf515",
+      "bytes": 63915
+    },
+    {
+      "path": "Rally-House-v16-Playtest/index.html",
+      "sha256": "110b7d62ecdfe4e0b19e0c083e00af844b63b86bcad896a2b38c133dd9ff940e",
+      "bytes": 5929
+    },
+    {
+      "path": "Rally-House-v16-Playtest/lab.css",
+      "sha256": "ac44ff137f4ff6e36b4978bf42aa7d59725461ec548d8f2974364449f89c5095",
+      "bytes": 10195
+    },
+    {
+      "path": "Rally-House-v16-Playtest/run.command",
+      "sha256": "b912cac2e4d4f0efd5a05e18d2a5a47a493a80dba1db760008d47bc7510760e8",
+      "bytes": 901
+    },
+    {
+      "path": "Rally-House-v16-Playtest/spatial.css",
+      "sha256": "4e2e4f8630a89453a978018f1919e9d31d6d34b07c343cd2dc979f56603f7f47",
+      "bytes": 4782
+    },
+    {
+      "path": "Rally-House-v16-Playtest/style.css",
+      "sha256": "9a287c1aea5a8ba923ad7ab3777b63c2637e281e7e47193ba860ecbc799acf84",
+      "bytes": 21114
+    }
+  ],
+  "archiveSha256": "8e36e2af0de59dbf66bd60481464050dcee22201068f71adcdb5966ec28026da",
+  "revision": "WebKit reservation-stall fix, 22 November 2026"
+}

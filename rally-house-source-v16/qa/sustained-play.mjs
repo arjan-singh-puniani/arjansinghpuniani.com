@@ -5,15 +5,16 @@ import {chromium,webkit,browserOptions} from './runtime.mjs';
 const [base,out,seconds='600',engine='chromium']=process.argv.slice(2),duration=Number(seconds);
 assert(base&&out&&duration>=60&&['chromium','webkit'].includes(engine),'BASE_URL OUTPUT_DIR [SECONDS>=60] [chromium|webkit]');
 fs.mkdirSync(out,{recursive:true});
-const report={base,engine,duration,environment:'Desktop phone emulation; not physical iPhone thermal or battery testing.',errors:[],samples:[],rematches:0,reviews:0,swings:0};
+const report={base,engine,duration,environment:'Desktop phone emulation; not physical iPhone thermal or battery testing.',errors:[],samples:[],rematches:0,reviews:0,swings:0,lobInputs:0};
 const browser=await (engine==='chromium'?chromium:webkit).launch(engine==='chromium'?{...browserOptions,args:['--use-angle=metal']}:{headless:true});
 try{
  const context=await browser.newContext({viewport:{width:440,height:763},deviceScaleFactor:3,isMobile:true,hasTouch:true}),page=await context.newPage();
  page.on('pageerror',error=>report.errors.push(error.message));
+ page.on('console',message=>{if(message.type()==='error')report.errors.push(message.text());});
  await page.goto(base+'?debug');await page.waitForFunction(()=>window.__rh?.ready,null,{timeout:60000});await page.locator('#loading').waitFor({state:'hidden'});
  await page.getByText('Arjan',{exact:true}).tap();await page.locator('.arrival-play').tap();await page.locator('.championshipHud[data-phase=serving]').waitFor({timeout:20000});
  const cdp=engine==='chromium'?await context.newCDPSession(page):null;
- if(cdp){await cdp.send('HeapProfiler.enable');await cdp.send('HeapProfiler.collectGarbage');await cdp.send('Profiler.enable');await cdp.send('Profiler.start');}
+ if(cdp){await cdp.send('HeapProfiler.enable');await cdp.send('HeapProfiler.collectGarbage');report.initialHeap=await cdp.send('Runtime.getHeapUsage');await cdp.send('Profiler.enable');await cdp.send('Profiler.start');}
  await page.evaluate(()=>{
   const g=window.__rh.game;window.soak={frames:[],sim:[],render:[],textMutations:0,last:performance.now(),contextsLost:0};
   const original=g.perf.sample.bind(g.perf);
@@ -25,12 +26,12 @@ try{
  const sample=async()=>{
   const row=await page.evaluate(()=>{
    const g=window.__rh.game,s=window.soak,stats=values=>{const a=values.sort((x,y)=>x-y);return {count:a.length,p50:a[Math.floor(a.length*.5)]??0,p95:a[Math.floor(a.length*.95)]??0,over50:a.filter(x=>x>50).length};};
-   const row={frame:stats(s.frames),simulation:stats(s.sim),render:stats(s.render),textMutations:s.textMutations,phase:g.championship.phase,score:g.championship.score,rallyContacts:g.interactiveMatch?.rallyLength??0,lab:g.performanceLab.active,scale:g.renderer.renderScale,geometries:g.renderer.skinGeos.size,recordedFrames:g.motionRecorder.clip.frames.length,dom:document.querySelectorAll('*').length,contextsLost:s.contextsLost,glError:g.renderer.gl.getError(),perf:g.perf.snapshot()};
+   const row={frame:stats(s.frames),simulation:stats(s.sim),render:stats(s.render),textMutations:s.textMutations,phase:g.championship.phase,score:g.championship.score,rallyContacts:g.interactiveMatch?.rallyLength??0,lab:g.performanceLab.active,scale:g.renderer.renderScale,geometries:g.renderer.skinGeos.size,recordedFrames:g.motionRecorder.clip.frames.length,dom:document.querySelectorAll('*').length,audioMaterials:g.audio.tennisMaterialBuffers.size,audioState:g.audio.ctx?.state,lesson:g.interactiveMatch?.shotLesson(),contextsLost:s.contextsLost,glError:g.renderer.gl.getError(),perf:g.perf.snapshot()};
    s.frames=[];s.sim=[];s.render=[];s.textMutations=0;return row;
   });
   row.seconds=(Date.now()-start)/1000;
   if(cdp){row.heap=await cdp.send('Runtime.getHeapUsage');row.domCounters=await cdp.send('Memory.getDOMCounters');}
-  assert(row.recordedFrames<=360);assert.equal(row.contextsLost,0);assert.equal(row.glError,0);
+  assert(row.recordedFrames<=360);assert(row.audioMaterials<=12);assert.equal(row.contextsLost,0);assert.equal(row.glError,0);
   report.samples.push(row);fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2));
   console.log(JSON.stringify({seconds:Math.round(row.seconds),phase:row.phase,p95:row.frame.p95,render:row.render.p50,heapMB:row.heap?Math.round(row.heap.usedSize/1048576):null,geometries:row.geometries,rematches:report.rematches,reviews:report.reviews}));
  };
@@ -47,9 +48,11 @@ try{
    await page.locator('[data-lab-action=close]').tap();report.reviews++;lastReview=elapsed;
    await page.getByRole('button',{name:'Resume match',exact:true}).tap();
   }else if(state.phase==='matchResult'){
+   if(!report.rematches)await page.screenshot({path:out+'/match-result.png'});
    await page.getByRole('button',{name:'Rematch',exact:true}).tap();report.rematches++;
   }else if(elapsed-lastSwing>800&&((state.phase==='serving'&&state.server==='player'&&state.cue!=='serving')||state.cue==='swing')){
-   await page.getByRole('button',{name:'Swing racket'}).tap();report.swings++;lastSwing=elapsed;
+   const lob=state.phase==='rally'&&report.swings%2===1;
+   await page.getByRole('button',{name:lob?'Lob — high shot for recovery':'Swing racket',exact:true}).tap();if(lob)report.lobInputs++;report.swings++;lastSwing=elapsed;
   }
   await page.waitForTimeout(150);
  }

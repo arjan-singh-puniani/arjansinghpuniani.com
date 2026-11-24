@@ -1,0 +1,32 @@
+[
+  {
+    "test": "activity-reservation-cost",
+    "exitCode": 0,
+    "seconds": 1.399
+  },
+  {
+    "test": "life-integration",
+    "exitCode": 0,
+    "seconds": 14.074
+  },
+  {
+    "test": "avatar-switch-lockout",
+    "exitCode": 0,
+    "seconds": 1.752
+  },
+  {
+    "test": "court-entry",
+    "exitCode": 0,
+    "seconds": 3.774
+  },
+  {
+    "test": "championship-memory",
+    "exitCode": 0,
+    "seconds": 2.093
+  },
+  {
+    "test": "everyday",
+    "exitCode": 0,
+    "seconds": 0.154
+  }
+]

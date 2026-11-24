@@ -7,6 +7,8 @@ function files(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e
 const sync=process.argv.includes('--sync');let count=0;
 const artifacts=[...files(path.join(source,'dist')).filter(f=>f.endsWith('.js')),...files(path.join(source,'assets/decor')),...files(path.join(source,'assets/audio')),...files(path.join(source,'assets/characters')),...['index.html','style.css','championship.css','spatial.css','lab.css'].map(f=>path.join(source,f))];
 for(const f of artifacts){const target=path.join(served,path.relative(source,f));if(sync){fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(f,target);}assert.ok(fs.existsSync(target),`Missing served artifact: ${target}`);assert.ok(fs.readFileSync(f).equals(fs.readFileSync(target)),`Stale served artifact: ${target}`);count++;}
+// Removed audio must not survive in the public mirror after a release sync.
+assert.deepEqual(files(path.join(served,'assets/audio')).map(f=>path.relative(path.join(served,'assets/audio'),f)).sort(),files(path.join(source,'assets/audio')).map(f=>path.relative(path.join(source,'assets/audio'),f)).sort(),'Source/served audio sets must match, including removals');
 const compiled=files(path.join(source,'dist')).filter(f=>f.endsWith('.js'));
 for(const f of compiled)assert(fs.existsSync(path.join(source,'src',path.relative(path.join(source,'dist'),f).replace(/\.js$/,'.ts'))),`Orphan compiled module: ${f}`);
 assert.deepEqual(files(path.join(served,'dist')).filter(f=>f.endsWith('.js')).map(f=>path.relative(path.join(served,'dist'),f)).sort(),compiled.map(f=>path.relative(path.join(source,'dist'),f)).sort(),'Source/served module sets must match, including removals');

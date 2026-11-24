@@ -32,7 +32,7 @@ export interface Mesh {
 export interface SkinGeometry {id:string;positions:Float32Array;normals:Float32Array;boneIndices:Float32Array;boneWeights:Float32Array;uvs?:Float32Array;morphs?:Float32Array[];morphNormals?:Float32Array[]}
 export interface SkinnedMesh {
   /** Character body skin driven by the authoritative anatomical landmarks. */
-  poseRig?:boolean;neckBlend?:boolean;brownIris?:boolean;eyeCenters?:Float32Array;eyeYaw?:number;skirt?:boolean;rig?:{bind:RigPoseLocal;pose:RigPoseLocal};diffuse?:HTMLImageElement;alphaCutoff?:number;doubleSided?:boolean;expression?:[number,number,number,number];handGrip?:[number,number];
+  poseRig?:boolean;neckBlend?:boolean;brownIris?:boolean;eyeCenters?:Float32Array;eyeYaw?:number;skirt?:boolean;rig?:{bind:RigPoseLocal;pose:RigPoseLocal;stroke?:number};diffuse?:HTMLImageElement;alphaCutoff?:number;doubleSided?:boolean;expression?:[number,number,number,number];handGrip?:[number,number];
   skin:SkinGeometry; boneMatrices:Float32Array; position:Vec3; rotation?:Vec3; scale?:Vec3; color:string; material?:MaterialKind; alpha?:number; unlit?:boolean; noShadow?:boolean; id?:string;
 }
 export type RenderItem=Mesh|SkinnedMesh;

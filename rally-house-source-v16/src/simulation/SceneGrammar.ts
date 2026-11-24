@@ -51,6 +51,16 @@ export class SceneGrammar {
     ],`${N[host]}, Lucresia and Leo made room for both perspectives after the game.`,{eventId:e.id,family:'three-person-reflection',motif:'both-sides',minInterval:420}));
    }
    for(const actor of e.pending){
+    if(e.kind==='championship'){
+     const won=e.winner===actor;
+     out.push(make(`championship-${e.id}`,won?`${N[actor]} takes in the win`:`${N[actor]} works on the next match`,[actor],won?'courtBench':'warmup',won?'celebrate':'practice',[
+      quiet(actor,won?'watch':'stretch',5),
+      line(actor,won?'A good match. Keep the useful parts.':actor==='leo'?'You found the space. I need to recover before I admire the shot.':'Back into position. Give the next ball a little more time.','think'),
+      quiet(actor,won?'watch':'shuffle',8),
+      line(actor,won?'There’s another game here when you want it.':'That feels better. Find me when you want a rematch.','nod')
+     ],`${N[actor]} ${won?'reflected on the win':'rehearsed recovery after losing to you'} and offered another match.`,{eventId:e.id,family:'championship-followup',motif:won?'keep-the-win':'recover-and-rematch'}));
+     continue;
+    }
     if(e.kind==='move'){
      const object=c.objects.find(p=>p.id===e.place);if(!object)continue;
      out.push(make(`find-${e.id}`,`${N[actor]} finds the moved ${object.type}`,[actor],object.type==='bench'?'built-bench':'built-object','rest',[line(actor,actor==='leo'?'I had a system for where this was.':'Oh, it’s over here now.','point'),quiet(actor,'watch',6),line(actor,actor==='nia'?'Still our little corner.':'All right. This works.','nod')],`${N[actor]} found the familiar ${object.type} in its new position.`,{eventId:e.id,objectId:object.id,family:'moved-favorite',motif:'finding-again'}));continue;

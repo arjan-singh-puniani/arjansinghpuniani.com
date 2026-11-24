@@ -1,0 +1,19 @@
+{
+  "desktop": {
+    "driveVisible": false,
+    "lobVisible": true
+  },
+  "resultLayout": {
+    "viewport": [
+      640,
+      280
+    ],
+    "rect": {
+      "x": 160,
+      "y": 5,
+      "width": 320,
+      "height": 263
+    }
+  },
+  "kind": "UI layout inspection; final score is a fixture, not a played match."
+}

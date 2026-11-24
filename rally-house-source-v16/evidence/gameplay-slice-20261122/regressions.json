@@ -1,0 +1,87 @@
+[
+  {
+    "test": "player-placement",
+    "exitCode": 0,
+    "seconds": 1.96
+  },
+  {
+    "test": "tactical-slice",
+    "exitCode": 0,
+    "seconds": 2.14
+  },
+  {
+    "test": "championship-memory",
+    "exitCode": 0,
+    "seconds": 2.69
+  },
+  {
+    "test": "arcade-feel",
+    "exitCode": 0,
+    "seconds": 2.79
+  },
+  {
+    "test": "court-sound",
+    "exitCode": 0,
+    "seconds": 2.17
+  },
+  {
+    "test": "impact-feel",
+    "exitCode": 0,
+    "seconds": 2.44
+  },
+  {
+    "test": "championship-controller",
+    "exitCode": 0,
+    "seconds": 0.1
+  },
+  {
+    "test": "studio-polish",
+    "exitCode": 0,
+    "seconds": 2.27
+  },
+  {
+    "test": "contact-interception",
+    "exitCode": 0,
+    "seconds": 2.4
+  },
+  {
+    "test": "experience",
+    "exitCode": 0,
+    "seconds": 2.76
+  },
+  {
+    "test": "point-reaction",
+    "exitCode": 0,
+    "seconds": 4.39
+  },
+  {
+    "test": "court-entry",
+    "exitCode": 0,
+    "seconds": 8.16
+  },
+  {
+    "test": "avatar-switch-lockout",
+    "exitCode": 0,
+    "seconds": 2.63
+  },
+  {
+    "test": "everyday",
+    "exitCode": 0,
+    "seconds": 0.25
+  },
+  {
+    "test": "character-life",
+    "exitCode": 0,
+    "seconds": 0.32
+  },
+  {
+    "test": "world-interface",
+    "exitCode": 0,
+    "seconds": 0.11
+  },
+  {
+    "test": "causality",
+    "exitCode": 0,
+    "seconds": 0.17
+  }
+]

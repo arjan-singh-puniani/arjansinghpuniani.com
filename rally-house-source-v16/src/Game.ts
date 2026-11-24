@@ -226,11 +226,11 @@ export class Game {
     document.addEventListener('visibilitychange',()=>{
       this.last=performance.now();this.simAcc=0;this.frameSamples=[];this.fastFrameWindows=0;
       this.matchInput.reset();this.championshipHud.resetTouch();
-      if(document.hidden){this.phoneCapture?.cancel();this.setChampionshipPaused(true);this.audio.stopVoice();this.audio.stopAmbience();}
+      if(document.hidden){this.phoneCapture?.cancel();this.setChampionshipPaused(true);this.audio.stopReaction();this.audio.stopAmbience();}
     });
     window.addEventListener('blur',()=>{
       this.matchInput.reset();this.championshipHud.resetTouch();
-      this.audio.stopVoice();
+      this.audio.stopReaction();
       this.setChampionshipPaused(true);
     });
     document.addEventListener('focusin',e=>{
@@ -238,7 +238,7 @@ export class Game {
         e.target.closest('button,a,input,textarea,select,[contenteditable]'))this.matchInput.reset();
     });
     // Cached pages retain this Game instance; only a permanent departure should dispose its audio.
-    window.addEventListener('pagehide',e=>{if(e.persisted){this.audio.stopVoice();this.audio.stopAmbience();}else this.audio.dispose();});
+    window.addEventListener('pagehide',e=>{if(e.persisted){this.audio.stopReaction();this.audio.stopAmbience();}else this.audio.dispose();});
     this.canvas.tabIndex=0;
     this.canvas.addEventListener('webglcontextlost',e=>{
       e.preventDefault();this.graphicsLost=true;this.clock.paused=true;
@@ -440,7 +440,7 @@ export class Game {
       profile,
       this.matchInput,
       {
-        onHit:(quality,side,direction,speed)=>this.playChampionshipHit(quality,side,direction,speed),
+        onHit:(quality,side,direction,speed,shot)=>this.playChampionshipHit(quality,side,direction,speed,shot),
         onBounce:()=>{this.audio.bounce();this.motionRecorder?.markBounce();},
         onNet:()=>this.audio.net(),
         onRallyContact:(_side,quality)=>{
@@ -456,7 +456,7 @@ export class Game {
           this.championship.resolvePoint({winner,reason,rallyLength});
           const opponent=this.actor(this.championshipOpponentId!);
           if(winner==='player'&&this.audio.opponentMiss()){
-            opponent.setEmotion('frustrated',1.3);this.activeSpeechId=opponent.id;this.speechUntil=performance.now()+1300;this.ui.showSpeech(opponent.spec.name,"D'oh!",1300,true);
+            opponent.setEmotion('frustrated',1.3);this.activeSpeechId=opponent.id;this.speechUntil=performance.now()+1300;this.ui.showSpeech(opponent.spec.name,"Close. Next one.",1300,true);
           }
           if(this.championship.phase==='matchResult')this.audio.success();
         },
@@ -464,9 +464,9 @@ export class Game {
     );
   }
 
-  private playChampionshipHit(quality:InteractiveShotQuality,side:'player'|'opponent',direction:number,speed:number){
-    this.audio.tennisImpact(quality,speed);
-    if(!this.settings.reducedMotion)this.championshipCamera.pulseImpact(CHAMPIONSHIP_CONTACT_FEEL[quality].camera*(side==='player'?1:.45),direction);
+  private playChampionshipHit(quality:InteractiveShotQuality,side:'player'|'opponent',direction:number,speed:number,shot:'drive'|'lob'='drive'){
+    this.audio.tennisImpact(quality,speed,shot);
+    if(!this.settings.reducedMotion)this.championshipCamera.pulseImpact(CHAMPIONSHIP_CONTACT_FEEL[quality].camera*(side==='player'?1:.45)*(shot==='lob'?.65:1),direction);
     for(const c of this.characters)if(!this.activities.busy(c.id)&&c.state==='watch')c.setEmotion(quality==='perfect'?'surprised':'attentive',.45);
   }
 
@@ -480,7 +480,7 @@ export class Game {
 
   private requestChampionshipExit(){
     if(!this.championship.active)return;
-    this.audio.stopVoice();this.ui.hideSpeech();this.activeSpeechId=null;
+    this.audio.stopReaction();this.ui.hideSpeech();this.activeSpeechId=null;
     this.rememberChampionshipResult();
     this.matchInput.setEnabled(false);
     this.championshipHud.resetTouch();
@@ -496,7 +496,7 @@ export class Game {
   private setChampionshipPaused(paused:boolean){
     if(!this.championship.active || this.championship.phase==='exiting' ||
       this.championship.phase==='matchResult')return;
-    this.clock.paused=paused;if(paused)this.audio.stopVoice();
+    this.clock.paused=paused;if(paused)this.audio.stopReaction();
     this.matchInput.setEnabled(!paused && this.championship.acceptsGameplayInput);
     this.matchInput.reset();
     this.championshipHud.resetTouch();
@@ -511,7 +511,7 @@ export class Game {
   }
 
   private cleanupChampionship(){
-    this.audio.stopVoice();this.ui.hideSpeech();this.activeSpeechId=null;
+    this.audio.stopReaction();this.ui.hideSpeech();this.activeSpeechId=null;
     this.restoreChampionshipApproach();
     this.matchInput.setEnabled(false);
     this.interactiveMatch?.stop();
@@ -584,7 +584,7 @@ export class Game {
       const after=this.championship.phase;
 
       if(after==='serving'&&before!=='serving'){
-        this.audio.stopVoice();this.interactiveMatch?.startPoint(this.championship.snapshot().server);
+        this.audio.stopReaction();this.interactiveMatch?.startPoint(this.championship.snapshot().server);
       }
 
       const acceptsInput=after==='serving'||after==='rally';
@@ -639,6 +639,10 @@ export class Game {
       place: 'court',
     });
     this.life.addMemory(this.clock.day,detail);
+    if(this.mind.recordChampionship(`${this.championshipActivityId}:round-${this.championshipRound}`,opponent.id as MemberId,score.opponent>score.player,this.clock.day,detail)){
+      const relation=this.relations.get(opponent.id);
+      relation.rivalry=Math.min(100,relation.rivalry+(Math.abs(score.player-score.opponent)<=2?4:2));
+    }
     this.mind.reinforceCulture('competition',.035);
     opponent.setEmotion(score.opponent > score.player ? 'pleased' : 'attentive',2);
     void this.save();
@@ -830,7 +834,7 @@ export class Game {
       if(!this.motionRecorder.clip.frames.some(f=>f.contact))return;
       // Analysis borrows presentation; the match keeps its score, ball and court reservation.
       this.reviewingChampionship=true;this.clock.paused=true;
-      this.audio.stopVoice();this.matchInput.setEnabled(false);this.championshipHud.hide();
+      this.audio.stopReaction();this.matchInput.setEnabled(false);this.championshipHud.hide();
       this.simAcc=0;
     }
     this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.movingPlacement=null;
@@ -1070,6 +1074,8 @@ export class Game {
   }
   private routes=new Map<string,Vec3[]>();private waitingForPlace=new Map<string,string>();
   private startActivity(kind:string,ids:string[],resource:string,targets:Vec3[],detail=''){
+    // Reject unavailable invitations before routing; the director retries during live rallies.
+    if(this.activities.reserved(resource)||ids.some(id=>this.activities.busy(id)))return null;
     // A fresh social routine must not reverse a nonparticipant's court-exit route.
     if(this.activities.reserved('court')&&ids.some(id=>this.waitingForPlace.has(id)&&this.world.nav.onCourt(this.actor(id).position)))return null;
     if(ids.includes('player'))this.stopPlayerWatching(false);
@@ -1361,8 +1367,8 @@ export class Game {
     if(this.queuedLesson&&!this.activities.reserved('court')&&!this.activities.busy('mika')&&!this.activities.busy('coach')){this.beginLesson(this.queuedLesson);return;}
     const open=this.clock.minutes>=510&&this.clock.minutes<1250;
     if(!open){
-      // Closing the court should not switch off the people who remain in the club.
-      if(!this.lifeRuns.size){const context=this.sceneContext();const quiet=(scene:LifeScene)=>!!scene.family&&['rest','reflect','care','company'].includes(motiveFor(scene));const scene=this.everyday.choose(this.lifeContext(),this.grammar.compose(this.mind,context).filter(quiet),scenes=>this.mind.rank(scenes.filter(quiet),context).map(v=>v.s),true);if(scene&&this.startEveryday(scene))this.everyday.next=Math.max(this.everyday.next,this.everyday.time+75);}
+      // Closing the court keeps quiet life and off-court follow-ups to the player’s completed match alive.
+      if(!this.lifeRuns.size){const context=this.sceneContext();const quiet=(scene:LifeScene)=>!!scene.family&&(['rest','reflect','care','company'].includes(motiveFor(scene))||scene.family==='championship-followup');const scene=this.everyday.choose(this.lifeContext(),this.grammar.compose(this.mind,context).filter(quiet),scenes=>this.mind.rank(scenes.filter(quiet),context).map(v=>v.s),true);if(scene&&this.startEveryday(scene))this.everyday.next=Math.max(this.everyday.next,this.everyday.time+75);}
       return;
     }
     if(!this.observationStarted&&this.clock.day===1){const a=this.startActivity('observe',['coach','mika'],'court',[destinations.courtNorth,destinations.courtSouth],'Open court practice');if(a){this.observationStarted=true;this.history.nextSocial=this.absoluteMinute+65;}}
@@ -1388,7 +1394,7 @@ export class Game {
     document.body.classList.toggle('championship-transitioning',this.championship.phase==='intro');
     if(this.championship.active&&this.championshipOpponentId&&!this.performanceLab.active){
       const opponent=this.byId(this.championshipOpponentId);
-      if(opponent)this.championshipHud.render(this.championship.snapshot(),this.player.spec.name,opponent.spec.name,this.interactiveMatch?.playerCue(),this.settings.reducedMotion,this.clock.paused,!this.audio.enabled||this.audio.volume===0,this.motionRecorder.clip.frames.some(f=>f.contact));
+      if(opponent)this.championshipHud.render(this.championship.snapshot(),this.player.spec.name,opponent.spec.name,this.interactiveMatch?.playerCue(),this.settings.reducedMotion,this.clock.paused,!this.audio.enabled||this.audio.volume===0,this.motionRecorder.clip.frames.some(f=>f.contact),this.interactiveMatch?.shotLesson());
     }else{
       this.championshipHud.hide();
     }

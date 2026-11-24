@@ -8,13 +8,11 @@ export class AudioManager {
     shoeBuffers = new Map();
     shoeVariant = 0;
     missCount = 0;
-    lastMissVoice = -Infinity;
-    voiceGeneration = 0;
-    voiceLoads = new Map();
-    missVoice;
+    lastMissReaction = -Infinity;
+    missReaction;
     get volume() { return this.level; }
     set volume(value) { this.level = Math.max(0, Math.min(1, value)); if (!this.level)
-        this.stopVoice(); }
+        this.stopReaction(); }
     tennisMaterialBuffers = new Map();
     tennisVariant = 0;
     ambienceSource;
@@ -22,10 +20,8 @@ export class AudioManager {
     ambienceFilter;
     ambienceTick = 0;
     ambienceTarget = -1;
-    ensure() { if (!this.ctx) {
-        this.ctx = new AudioContext();
-        void this.prepareVoice(this.ctx, 'doh');
-    } if (this.ctx.state === 'suspended')
+    ensure() { if (!this.ctx)
+        this.ctx = new AudioContext(); if (this.ctx.state === 'suspended')
         void this.ctx.resume().catch(() => { }); return this.ctx; }
     // A suspended audio clock cannot finish queued sources; discard stale effects until playback resumes.
     playbackContext() { const c = this.ensure(); return c.state === 'running' ? c : undefined; }
@@ -133,10 +129,10 @@ export class AudioManager {
         this.ambienceFilter = undefined;
         this.ambienceTarget = -1;
     }
-    dispose() { this.enabled = false; this.stopVoice(); this.stopAmbience(); if (this.ctx) {
+    dispose() { this.enabled = false; this.stopReaction(); this.stopAmbience(); if (this.ctx) {
         void this.ctx.close().catch(() => { });
         this.ctx = undefined;
-    } this.tennisMaterialBuffers.clear(); this.shoeBuffers.clear(); this.voiceLoads.clear(); this.noise = undefined; }
+    } this.tennisMaterialBuffers.clear(); this.shoeBuffers.clear(); this.noise = undefined; }
     machine() { this.tone(85, .24, .009, 'triangle'); this.noiseBurst(420, .10, .004, .6); }
     click() { this.tone(520, .055, .010); }
     paper() { this.noiseBurst(1250, .055, .005, 1.6); this.tone(610, .035, .004, 'sine'); }
@@ -162,7 +158,7 @@ export class AudioManager {
         return buffer;
     }
     /** Play the cached material strike at the authoritative racket-contact frame. */
-    tennisImpact(quality = 'clean', speed = 10) {
+    tennisImpact(quality = 'clean', speed = 10, shot = 'drive') {
         if (!this.enabled || this.volume <= 0)
             return;
         try {
@@ -184,6 +180,9 @@ export class AudioManager {
             presence.type = 'highshelf';
             presence.frequency.value = 1800;
             presence.gain.value = -2 + strength * 5;
+            // A lifted return keeps the ball's weight but softens the string-bed crack.
+            if (shot === 'lob')
+                presence.gain.value -= 3;
             const level = quality === 'perfect' ? .105 : quality === 'clean' ? .094 : quality === 'defensive' ? .074 : .057;
             gain.gain.setValueAtTime(level * (.55 + strength * .70) * this.volume, c.currentTime);
             source.connect(body).connect(presence).connect(gain).connect(c.destination);
@@ -218,44 +217,33 @@ export class AudioManager {
         }
         catch { }
     }
-    prepareVoice(c, voice) {
-        let pending = this.voiceLoads.get(voice);
-        if (!pending) {
-            pending = fetch(new URL(`../../assets/audio/opponent-${voice}.wav`, import.meta.url)).then(r => { if (!r.ok)
-                throw Error('Voice unavailable'); return r.arrayBuffer(); }).then(data => c.decodeAudioData(data)).catch(() => null);
-            this.voiceLoads.set(voice, pending);
-        }
-        return pending;
-    }
-    /** Occasional recorded reaction; mute, pause and scene changes invalidate late loads. */
+    /** A quiet original racket tap acknowledges a miss without competing with live contact. */
     opponentMiss() {
         const now = performance.now();
-        if (++this.missCount % 3 !== 1 || now - this.lastMissVoice < 8000)
+        if (++this.missCount % 3 !== 1 || now - this.lastMissReaction < 8000)
             return false;
-        this.lastMissVoice = now;
-        this.stopVoice();
-        const generation = this.voiceGeneration, c = this.ctx;
-        if (this.enabled && this.volume > 0 && c?.state === 'running')
-            void this.prepareVoice(c, 'doh').then(buffer => {
-                if (!buffer || generation !== this.voiceGeneration || this.ctx !== c || !this.enabled || this.volume <= 0 || c.state !== 'running' || performance.now() - now > 650)
-                    return;
-                try {
-                    const source = c.createBufferSource(), gain = c.createGain();
-                    source.buffer = buffer;
-                    gain.gain.value = this.volume * .22;
-                    source.connect(gain).connect(c.destination);
-                    this.missVoice = { source, gain };
-                    source.onended = () => { source.disconnect(); gain.disconnect(); if (this.missVoice?.source === source)
-                        this.missVoice = undefined; };
-                    source.start();
-                }
-                catch { }
-            });
+        this.lastMissReaction = now;
+        this.stopReaction();
+        const c = this.ctx;
+        // Never queue a reaction while audio is suspended; the caption can still appear immediately.
+        if (this.enabled && this.volume > 0 && c?.state === 'running') {
+            try {
+                const source = c.createBufferSource(), gain = c.createGain();
+                source.buffer = this.tennisMaterialBuffer('frame', 0);
+                gain.gain.value = this.volume * .035;
+                source.connect(gain).connect(c.destination);
+                this.missReaction = { source, gain };
+                source.onended = () => { source.disconnect(); gain.disconnect(); if (this.missReaction?.source === source)
+                    this.missReaction = undefined; };
+                source.start();
+            }
+            catch { }
+        }
         return true;
     }
-    stopVoice() { this.voiceGeneration++; if (this.missVoice) {
-        const { source, gain } = this.missVoice;
-        this.missVoice = undefined;
+    stopReaction() { if (this.missReaction) {
+        const { source, gain } = this.missReaction;
+        this.missReaction = undefined;
         source.onended = null;
         try {
             source.stop();

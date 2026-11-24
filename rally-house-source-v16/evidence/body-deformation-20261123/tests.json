@@ -1,0 +1,66 @@
+[
+  {
+    "suite": "replay-deformation",
+    "exit": 0
+  },
+  {
+    "suite": "arjan-upper-body",
+    "exit": 0
+  },
+  {
+    "suite": "arjan-neck-attachment",
+    "exit": 0
+  },
+  {
+    "suite": "rig-registration",
+    "exit": 0
+  },
+  {
+    "suite": "stroke-sequence",
+    "exit": 0
+  },
+  {
+    "suite": "replay-smoothness",
+    "exit": 0
+  },
+  {
+    "suite": "stroke-footwork",
+    "exit": 0
+  },
+  {
+    "suite": "court-footwork",
+    "exit": 0
+  },
+  {
+    "suite": "serve-sequence",
+    "exit": 0
+  },
+  {
+    "suite": "serve-head-clearance",
+    "exit": 0
+  },
+  {
+    "suite": "arm-anatomy",
+    "exit": 0
+  },
+  {
+    "suite": "arjan-shorts",
+    "exit": 0
+  },
+  {
+    "suite": "arjan-grounded-stance",
+    "exit": 0
+  },
+  {
+    "suite": "garment-deformation",
+    "exit": 0
+  },
+  {
+    "suite": "jersey-contact",
+    "exit": 0
+  },
+  {
+    "suite": "contact-interception",
+    "exit": 0
+  }
+]

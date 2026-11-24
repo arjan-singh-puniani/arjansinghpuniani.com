@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "seconds": 600.017,
+  "frames": 36742,
+  "over50": 10,
+  "p95RangeMs": [
+    21,
+    22
+  ],
+  "medianFrameRangeMs": [
+    17,
+    17
+  ],
+  "rematches": 5,
+  "reviews": 6,
+  "shotInputs": 174,
+  "lobInputs": 73,
+  "errors": [],
+  "geometryCounts": [
+    86
+  ],
+  "domCounts": [
+    309
+  ],
+  "recordedFrameLimitObserved": 360,
+  "audioMaterialLimitObserved": 12,
+  "renderScales": [
+    1
+  ],
+  "physicalDevice": false
+}

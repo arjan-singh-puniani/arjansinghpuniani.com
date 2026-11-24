@@ -1,0 +1,36 @@
+{
+  "baselineRevision": "a8799ac6",
+  "method": "Sequential 40-second WebKit touch-driver sessions, 440x763 viewport, DPR 3, same method-level instrumentation. Match histories can differ with timing; no identical-rally claim.",
+  "runs": {
+    "before": {
+      "frames": 2389,
+      "p50": 17,
+      "p95": 22,
+      "over50": 7,
+      "workP95": 3,
+      "maxFrameMs": 118,
+      "maxSimulationMs": 42,
+      "simulationFramesAbove8ms": 21,
+      "navigationCallsAbove8ms": 76,
+      "renderScale": 1,
+      "inputs": 12,
+      "returns": 9,
+      "errors": []
+    },
+    "after": {
+      "frames": 2449,
+      "p50": 17,
+      "p95": 21,
+      "over50": 0,
+      "workP95": 5,
+      "maxFrameMs": 27,
+      "maxSimulationMs": 5,
+      "simulationFramesAbove8ms": 0,
+      "navigationCallsAbove8ms": 0,
+      "renderScale": 1,
+      "inputs": 13,
+      "returns": 9,
+      "errors": []
+    }
+  }
+}

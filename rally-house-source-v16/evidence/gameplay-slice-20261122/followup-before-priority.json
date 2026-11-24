@@ -1,0 +1,371 @@
+{
+  "environment": "Chromium touch emulation; natural point resolution, no score injection.",
+  "errors": [],
+  "result": {
+    "score": {
+      "player": 0,
+      "opponent": 7
+    },
+    "event": {
+      "id": "activity-1:round-1",
+      "kind": "championship",
+      "subject": "leo",
+      "winner": "leo",
+      "day": 1,
+      "at": 54.00000000000003,
+      "place": "court",
+      "detail": "Arjan 0–7 Leo · completed Championship.",
+      "importance": 0.95,
+      "witnesses": [],
+      "pending": [
+        "leo"
+      ]
+    },
+    "rivalry": 2
+  },
+  "followupSamples": [
+    {
+      "seconds": 0.001,
+      "clock": 1095.75,
+      "paused": false,
+      "active": [
+        {
+          "kind": "everyday",
+          "people": [
+            "nia",
+            "mika"
+          ],
+          "phase": "traveling"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 10.193,
+      "clock": 1106,
+      "paused": false,
+      "active": [
+        {
+          "kind": "everyday",
+          "people": [
+            "nia",
+            "mika"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 20.199,
+      "clock": 1116,
+      "paused": false,
+      "active": [],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 30.297,
+      "clock": 1126.25,
+      "paused": false,
+      "active": [
+        {
+          "kind": "observe",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "phase": "starting"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 40.493,
+      "clock": 1136.25,
+      "paused": false,
+      "active": [
+        {
+          "kind": "observe",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "phase": "active"
+        },
+        {
+          "kind": "everyday",
+          "people": [
+            "nia",
+            "leo"
+          ],
+          "phase": "traveling"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 50.517,
+      "clock": 1146.25,
+      "paused": false,
+      "active": [
+        {
+          "kind": "observe",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "phase": "active"
+        },
+        {
+          "kind": "everyday",
+          "people": [
+            "nia",
+            "leo"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 60.535,
+      "clock": 1156.5,
+      "paused": false,
+      "active": [
+        {
+          "kind": "everyday",
+          "people": [
+            "nia",
+            "leo"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 70.698,
+      "clock": 1166.5,
+      "paused": false,
+      "active": [],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 80.874,
+      "clock": 1176.75,
+      "paused": false,
+      "active": [
+        {
+          "kind": "everyday",
+          "people": [
+            "mika"
+          ],
+          "phase": "traveling"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 90.948,
+      "clock": 1186.75,
+      "paused": false,
+      "active": [
+        {
+          "kind": "everyday",
+          "people": [
+            "mika"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 101.028,
+      "clock": 1197,
+      "paused": false,
+      "active": [],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 111.2,
+      "clock": 1207,
+      "paused": false,
+      "active": [
+        {
+          "kind": "match",
+          "people": [
+            "leo",
+            "mika"
+          ],
+          "phase": "traveling"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 121.387,
+      "clock": 1217.25,
+      "paused": false,
+      "active": [
+        {
+          "kind": "match",
+          "people": [
+            "leo",
+            "mika"
+          ],
+          "phase": "active"
+        },
+        {
+          "kind": "everyday",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "phase": "traveling"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 131.545,
+      "clock": 1227.5,
+      "paused": false,
+      "active": [
+        {
+          "kind": "match",
+          "people": [
+            "leo",
+            "mika"
+          ],
+          "phase": "active"
+        },
+        {
+          "kind": "everyday",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 141.721,
+      "clock": 1237.5,
+      "paused": false,
+      "active": [
+        {
+          "kind": "match",
+          "people": [
+            "leo",
+            "mika"
+          ],
+          "phase": "active"
+        },
+        {
+          "kind": "everyday",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 151.881,
+      "clock": 1247.75,
+      "paused": false,
+      "active": [
+        {
+          "kind": "match",
+          "people": [
+            "leo",
+            "mika"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 161.976,
+      "clock": 1257.75,
+      "paused": false,
+      "active": [
+        {
+          "kind": "match",
+          "people": [
+            "leo",
+            "mika"
+          ],
+          "phase": "active"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "seconds": 172.073,
+      "clock": 1268,
+      "paused": false,
+      "active": [
+        {
+          "kind": "match",
+          "people": [
+            "leo",
+            "mika"
+          ],
+          "phase": "active"
+        },
+        {
+          "kind": "everyday",
+          "people": [
+            "coach"
+          ],
+          "phase": "traveling"
+        }
+      ],
+      "pending": [
+        "leo"
+      ]
+    }
+  ],
+  "failure": "The real club must visibly execute the new follow-up"
+}

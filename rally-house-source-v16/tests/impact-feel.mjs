@@ -54,7 +54,7 @@ for(const outcome of ['clean','frame','net']){
 }
 {
  const g=Object.create(Game.prototype),heard=[];Object.assign(g,{settings:{reducedMotion:true},characters:[],audio:{tennisImpact:(...args)=>heard.push(args)}});
- g.playChampionshipHit('clean','player',0,14.5);assert.deepEqual(heard,[['clean',14.5]],'Game preserves measured strength at the audio boundary');
+ g.playChampionshipHit('clean','player',0,14.5);assert.deepEqual(heard,[['clean',14.5,'drive']],'Game preserves measured strength at the audio boundary');
 }
 
 for(const [width,height] of [[1920,1080],[1728,1117],[1440,900],[1280,800],[1024,768],[844,390],[430,932],[390,844],[720,900]]){
@@ -86,12 +86,12 @@ console.log('Impact feel PASS: 12 physical contacts, live steering during pose h
 // autoplay-denied resumes must not become unhandled promise rejections.
 const {AudioManager}=await import('../dist/core/AudioManager.js');
 {
- const connected=new Set(),sources=[],gains=[];
+ const connected=new Set(),sources=[],gains=[],filters=[];
  const node=()=>({connect(target){connected.add(this);return target;},disconnect(){connected.delete(this);},frequency:{value:0},Q:{value:0},gain:{value:0,setValueAtTime(v){this.value=v;},cancelScheduledValues(){},setTargetAtTime(){}}});
  const context={state:'running',sampleRate:48000,currentTime:0,destination:{},close:async()=>{},
   createBuffer:(_channels,length)=>{const data=new Float32Array(length);return {getChannelData:()=>data};},
   createBufferSource:()=>{const n={...node(),start(){}};sources.push(n);return n;},
-  createBiquadFilter:node,createGain:()=>{const n=node();gains.push(n);return n;}};
+  createBiquadFilter:()=>{const n=node();filters.push(n);return n;},createGain:()=>{const n=node();gains.push(n);return n;}};
  const a=new AudioManager();a.ctx=context;
  for(let i=0;i<120;i++){
   a.tennisImpact(['clean','perfect','defensive','frame'][i%4],i%20);
@@ -100,6 +100,8 @@ const {AudioManager}=await import('../dist/core/AudioManager.js');
  assert.equal(a.tennisMaterialBuffers.size,12,'Continuous shot strength cannot create unbounded sample variants');
  a.tennisImpact('clean',NaN);assert(Number.isFinite(gains.at(-1).gain.value));sources.at(-1).onended();
  // A blocked audio clock cannot retire queued nodes; old hits must never burst out on resume.
+ a.tennisImpact('clean',12,'drive');const drivePresence=filters.at(-1).gain.value,driveGain=gains.at(-1).gain.value;sources.at(-1).onended();
+ a.tennisImpact('clean',12,'lob');assert.equal(filters.at(-1).gain.value,drivePresence-3);assert.equal(gains.at(-1).gain.value,driveGain,'Shot choice changes timbre, not strength-derived gain');sources.at(-1).onended();
  const beforeBlocked=sources.length;context.state='suspended';context.resume=()=>Promise.resolve();
  for(let i=0;i<120;i++){a.tennisImpact('clean',18);a.shoe('court');a.noiseBurst();a.updateClubAmbience(1/60,720,'clear',true);}
  assert.equal(sources.length,beforeBlocked,'Suspended audio must not accumulate stale hits or footsteps');

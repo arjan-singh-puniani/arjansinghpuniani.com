@@ -68,5 +68,5 @@ export function arjanUpperBodyMeshes(p:CharacterPose,position:Vec3,yaw:number,lo
   // The tossing palm stays open while the dominant fingers close around the racket.
  const relaxed=.20+.14*p.handRestWeight;
  const handGrip:[number,number]=[serving?.22:Math.max(relaxed,p.handGripL),Math.max(relaxed,p.handGripR)];
- return body.parts.map(part=>({handGrip:part.geometry.morphs?handGrip:undefined,skin:part.geometry,boneMatrices:bones,rig:{bind:body!.bind,pose:rig},poseRig:true,position:new Vec3(position.x,0,position.z),rotation:new Vec3(0,yaw,0),material:part.materialSlot==='kit'?'performanceKnit':'humanSkin',color:part.materialSlot==='kit'?look.shirt:look.skin,doubleSided:part.doubleSided}));
+ return body.parts.map(part=>({handGrip:part.geometry.morphs?handGrip:undefined,skin:part.geometry,boneMatrices:bones,rig:{bind:body!.bind,pose:rig,stroke:p.sp},poseRig:true,position:new Vec3(position.x,0,position.z),rotation:new Vec3(0,yaw,0),material:part.materialSlot==='kit'?'performanceKnit':'humanSkin',color:part.materialSlot==='kit'?look.shirt:look.skin,doubleSided:part.doubleSided}));
 }

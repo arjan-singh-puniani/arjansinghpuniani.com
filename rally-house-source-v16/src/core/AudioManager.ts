@@ -4,13 +4,13 @@ import {footstepSignal} from './FootstepSound.js';
 export class AudioManager {
   private ctx?:AudioContext;enabled=true;private level=.65;private noise?:AudioBuffer;
   private shoeBuffers=new Map<string,AudioBuffer>();private shoeVariant=0;
-  private missCount=0;private lastMissVoice=-Infinity;private voiceGeneration=0;
-  private voiceLoads=new Map<string,Promise<AudioBuffer|null>>();private missVoice?:{source:AudioBufferSourceNode;gain:GainNode};
+  private missCount=0;private lastMissReaction=-Infinity;
+  private missReaction?:{source:AudioBufferSourceNode;gain:GainNode};
   get volume(){return this.level;}
-  set volume(value:number){this.level=Math.max(0,Math.min(1,value));if(!this.level)this.stopVoice();}
+  set volume(value:number){this.level=Math.max(0,Math.min(1,value));if(!this.level)this.stopReaction();}
   private tennisMaterialBuffers=new Map<string,AudioBuffer[]>();private tennisVariant=0;
   private ambienceSource?:AudioBufferSourceNode;private ambienceGain?:GainNode;private ambienceFilter?:BiquadFilterNode;private ambienceTick=0;private ambienceTarget=-1;
-  private ensure(){if(!this.ctx){this.ctx=new AudioContext();void this.prepareVoice(this.ctx,'doh');}if(this.ctx.state==='suspended')void this.ctx.resume().catch(()=>{});return this.ctx;}
+  private ensure(){if(!this.ctx)this.ctx=new AudioContext();if(this.ctx.state==='suspended')void this.ctx.resume().catch(()=>{});return this.ctx;}
   // A suspended audio clock cannot finish queued sources; discard stale effects until playback resumes.
   private playbackContext(){const c=this.ensure();return c.state==='running'?c:undefined;}
   private getNoise(){const c=this.ensure();if(this.noise)return this.noise;const b=c.createBuffer(1,Math.floor(c.sampleRate*.11),c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);this.noise=b;return b;}
@@ -57,7 +57,7 @@ export class AudioManager {
     this.ambienceFilter?.disconnect();this.ambienceGain?.disconnect();
     this.ambienceSource=undefined;this.ambienceGain=undefined;this.ambienceFilter=undefined;this.ambienceTarget=-1;
   }
-  dispose(){this.enabled=false;this.stopVoice();this.stopAmbience();if(this.ctx){void this.ctx.close().catch(()=>{});this.ctx=undefined;}this.tennisMaterialBuffers.clear();this.shoeBuffers.clear();this.voiceLoads.clear();this.noise=undefined;}
+  dispose(){this.enabled=false;this.stopReaction();this.stopAmbience();if(this.ctx){void this.ctx.close().catch(()=>{});this.ctx=undefined;}this.tennisMaterialBuffers.clear();this.shoeBuffers.clear();this.noise=undefined;}
   machine(){this.tone(85,.24,.009,'triangle');this.noiseBurst(420,.10,.004,.6);}
   click(){this.tone(520,.055,.010)}
   paper(){this.noiseBurst(1250,.055,.005,1.6);this.tone(610,.035,.004,'sine')}
@@ -86,7 +86,7 @@ export class AudioManager {
   }
 
   /** Play the cached material strike at the authoritative racket-contact frame. */
-  tennisImpact(quality:'perfect'|'clean'|'defensive'|'frame'='clean',speed=10){
+  tennisImpact(quality:'perfect'|'clean'|'defensive'|'frame'='clean',speed=10,shot:'drive'|'lob'='drive'){
     if(!this.enabled||this.volume<=0)return;
     try{
       const c=this.playbackContext();if(!c)return;
@@ -101,6 +101,8 @@ export class AudioManager {
       source.buffer=this.tennisMaterialBuffer(quality,variant);
       body.type='peaking';body.frequency.value=quality==='frame'?260:185;body.Q.value=.7;body.gain.value=quality==='frame'?0:1+strength*2.5;
       presence.type='highshelf';presence.frequency.value=1800;presence.gain.value=-2+strength*5;
+      // A lifted return keeps the ball's weight but softens the string-bed crack.
+      if(shot==='lob')presence.gain.value-=3;
       const level=quality==='perfect'?.105:quality==='clean'?.094:quality==='defensive'?.074:.057;
       gain.gain.setValueAtTime(level*(.55+strength*.70)*this.volume,c.currentTime);
       source.connect(body).connect(presence).connect(gain).connect(c.destination);
@@ -120,24 +122,19 @@ export class AudioManager {
       source.connect(gain).connect(position).connect(c.destination);source.onended=()=>{source.disconnect();gain.disconnect();position.disconnect();};source.start();
     }catch{}
   }
-  private prepareVoice(c:AudioContext,voice:string){
-    let pending=this.voiceLoads.get(voice);
-    if(!pending){pending=fetch(new URL(`../../assets/audio/opponent-${voice}.wav`,import.meta.url)).then(r=>{if(!r.ok)throw Error('Voice unavailable');return r.arrayBuffer();}).then(data=>c.decodeAudioData(data)).catch(()=>null);this.voiceLoads.set(voice,pending);}
-    return pending;
-  }
-  /** Occasional recorded reaction; mute, pause and scene changes invalidate late loads. */
+  /** A quiet original racket tap acknowledges a miss without competing with live contact. */
   opponentMiss(){
-    const now=performance.now();if(++this.missCount%3!==1||now-this.lastMissVoice<8000)return false;this.lastMissVoice=now;
-    this.stopVoice();const generation=this.voiceGeneration,c=this.ctx;
-    if(this.enabled&&this.volume>0&&c?.state==='running')void this.prepareVoice(c,'doh').then(buffer=>{
-      if(!buffer||generation!==this.voiceGeneration||this.ctx!==c||!this.enabled||this.volume<=0||c.state!=='running'||performance.now()-now>650)return;
-      try{const source=c.createBufferSource(),gain=c.createGain();source.buffer=buffer;gain.gain.value=this.volume*.22;source.connect(gain).connect(c.destination);this.missVoice={source,gain};
-        source.onended=()=>{source.disconnect();gain.disconnect();if(this.missVoice?.source===source)this.missVoice=undefined;};source.start();
+    const now=performance.now();if(++this.missCount%3!==1||now-this.lastMissReaction<8000)return false;this.lastMissReaction=now;
+    this.stopReaction();const c=this.ctx;
+    // Never queue a reaction while audio is suspended; the caption can still appear immediately.
+    if(this.enabled&&this.volume>0&&c?.state==='running'){
+      try{const source=c.createBufferSource(),gain=c.createGain();source.buffer=this.tennisMaterialBuffer('frame',0);gain.gain.value=this.volume*.035;source.connect(gain).connect(c.destination);this.missReaction={source,gain};
+        source.onended=()=>{source.disconnect();gain.disconnect();if(this.missReaction?.source===source)this.missReaction=undefined;};source.start();
       }catch{}
-    });
+    }
     return true;
   }
-  stopVoice(){this.voiceGeneration++;if(this.missVoice){const {source,gain}=this.missVoice;this.missVoice=undefined;source.onended=null;try{source.stop();}catch{}source.disconnect();gain.disconnect();}}
+  stopReaction(){if(this.missReaction){const {source,gain}=this.missReaction;this.missReaction=undefined;source.onended=null;try{source.stop();}catch{}source.disconnect();gain.disconnect();}}
   cup(){this.tone(1060,.035,.0045,'sine');this.tone(790,.028,.0028,'sine')}
   deskBell(){this.tone(1240,.055,.0065,'sine');this.tone(1860,.075,.0038,'sine');setTimeout(()=>this.tone(930,.10,.0022,'sine'),18)}
   fabric(){this.noiseBurst(340,.075,.0038,.55);this.noiseBurst(980,.032,.0019,.85)}

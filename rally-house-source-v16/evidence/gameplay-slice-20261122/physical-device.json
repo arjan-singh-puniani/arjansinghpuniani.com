@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-11-23T01:39:33.984401+00:00",
+  "source": "xcrun devicectl list devices",
+  "physicalDeviceModel": "iPhone 17 Pro Max (iPhone18,2)",
+  "state": "unavailable",
+  "physicalSessionExecuted": false,
+  "notMeasured": [
+    "device frame pacing",
+    "touch latency",
+    "temperature",
+    "battery drain",
+    "phone-speaker satisfaction"
+  ]
+}

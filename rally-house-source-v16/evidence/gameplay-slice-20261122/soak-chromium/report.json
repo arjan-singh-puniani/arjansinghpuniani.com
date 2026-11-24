@@ -1,0 +1,1251 @@
+{
+  "base": "http://127.0.0.1:18132",
+  "engine": "chromium",
+  "duration": 600,
+  "environment": "Desktop phone emulation; not physical iPhone thermal or battery testing.",
+  "errors": [],
+  "samples": [
+    {
+      "frame": {
+        "count": 1807,
+        "p50": 16.69999999999709,
+        "p95": 16.799999999995634,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1807,
+        "p50": 0.7999999821186066,
+        "p95": 1.5999999940395355,
+        "over50": 0
+      },
+      "render": {
+        "count": 1807,
+        "p50": 3.0999999940395355,
+        "p95": 6.299999982118607,
+        "over50": 0
+      },
+      "textMutations": 91,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 1
+      },
+      "rallyContacts": 5,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 8,
+      "audioState": "running",
+      "lesson": {
+        "returns": 7,
+        "lobs": 4,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 2.6652874777114812,
+        "renderMs": 5.097207686646996,
+        "drawCalls": 817,
+        "triangles": 499193,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 30.176,
+      "heap": {
+        "usedSize": 72935900,
+        "totalSize": 126255104,
+        "embedderHeapUsedSize": 5173024,
+        "backingStorageSize": 85877034
+      },
+      "domCounters": {
+        "documents": 2,
+        "nodes": 822,
+        "jsEventListeners": 173
+      }
+    },
+    {
+      "frame": {
+        "count": 1777,
+        "p50": 16.69999999999709,
+        "p95": 16.799999999995634,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1777,
+        "p50": 0.7999999821186066,
+        "p95": 1.4000000059604645,
+        "over50": 1
+      },
+      "render": {
+        "count": 1777,
+        "p50": 4.0999999940395355,
+        "p95": 16.5,
+        "over50": 0
+      },
+      "textMutations": 98,
+      "phase": "serving",
+      "score": {
+        "player": 0,
+        "opponent": 4
+      },
+      "rallyContacts": 0,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 9,
+      "audioState": "running",
+      "lesson": {
+        "returns": 13,
+        "lobs": 7,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.8362077005346549,
+        "renderMs": 3.6364502229931555,
+        "drawCalls": 797,
+        "triangles": 496633,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 60.15,
+      "heap": {
+        "usedSize": 59900896,
+        "totalSize": 117047296,
+        "embedderHeapUsedSize": 5180080,
+        "backingStorageSize": 83932952
+      },
+      "domCounters": {
+        "documents": 2,
+        "nodes": 820,
+        "jsEventListeners": 161
+      }
+    },
+    {
+      "frame": {
+        "count": 1919,
+        "p50": 16.69999999999709,
+        "p95": 16.70000000001164,
+        "over50": 1
+      },
+      "simulation": {
+        "count": 1919,
+        "p50": 0.6000000238418579,
+        "p95": 1.2999999821186066,
+        "over50": 0
+      },
+      "render": {
+        "count": 1919,
+        "p50": 3.0999999940395355,
+        "p95": 4.699999988079071,
+        "over50": 0
+      },
+      "textMutations": 122,
+      "phase": "serving",
+      "score": {
+        "player": 0,
+        "opponent": 6
+      },
+      "rallyContacts": 0,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 10,
+      "audioState": "running",
+      "lesson": {
+        "returns": 20,
+        "lobs": 10,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.4435510402254276,
+        "renderMs": 3.3565879974503696,
+        "drawCalls": 797,
+        "triangles": 496633,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 92.252,
+      "heap": {
+        "usedSize": 60939712,
+        "totalSize": 131186688,
+        "embedderHeapUsedSize": 9056384,
+        "backingStorageSize": 85873370
+      },
+      "domCounters": {
+        "documents": 4,
+        "nodes": 884,
+        "jsEventListeners": 161
+      }
+    },
+    {
+      "frame": {
+        "count": 1743,
+        "p50": 16.69999999999709,
+        "p95": 16.79999999998836,
+        "over50": 2
+      },
+      "simulation": {
+        "count": 1743,
+        "p50": 0.6000000238418579,
+        "p95": 1.2999999821186066,
+        "over50": 0
+      },
+      "render": {
+        "count": 1743,
+        "p50": 3.100000023841858,
+        "p95": 8.099999994039536,
+        "over50": 0
+      },
+      "textMutations": 110,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 1
+      },
+      "rallyContacts": 2,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 11,
+      "audioState": "running",
+      "lesson": {
+        "returns": 26,
+        "lobs": 13,
+        "lastShot": "lob"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.6956274237219882,
+        "renderMs": 2.653604792118497,
+        "drawCalls": 796,
+        "triangles": 496073,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 122.283,
+      "heap": {
+        "usedSize": 71956960,
+        "totalSize": 130564096,
+        "embedderHeapUsedSize": 4153560,
+        "backingStorageSize": 85405262
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 834,
+        "jsEventListeners": 179
+      }
+    },
+    {
+      "frame": {
+        "count": 1791,
+        "p50": 16.699999999982538,
+        "p95": 16.79999999998836,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1791,
+        "p50": 0.5999999940395355,
+        "p95": 1.199999988079071,
+        "over50": 0
+      },
+      "render": {
+        "count": 1791,
+        "p50": 3.199999988079071,
+        "p95": 14.699999988079071,
+        "over50": 0
+      },
+      "textMutations": 101,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 3
+      },
+      "rallyContacts": 6,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 11,
+      "audioState": "running",
+      "lesson": {
+        "returns": 33,
+        "lobs": 16,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.7505692490590203,
+        "renderMs": 4.0782457567226365,
+        "drawCalls": 812,
+        "triangles": 496873,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 152.31,
+      "heap": {
+        "usedSize": 71474232,
+        "totalSize": 132923392,
+        "embedderHeapUsedSize": 4293248,
+        "backingStorageSize": 85868644
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 836,
+        "jsEventListeners": 175
+      }
+    },
+    {
+      "frame": {
+        "count": 1799,
+        "p50": 16.699999999982538,
+        "p95": 16.70000000001164,
+        "over50": 1
+      },
+      "simulation": {
+        "count": 1799,
+        "p50": 0.5999999940395355,
+        "p95": 1.100000023841858,
+        "over50": 0
+      },
+      "render": {
+        "count": 1799,
+        "p50": 2.9000000059604645,
+        "p95": 4.199999988079071,
+        "over50": 0
+      },
+      "textMutations": 108,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 5
+      },
+      "rallyContacts": 7,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 11,
+      "audioState": "running",
+      "lesson": {
+        "returns": 39,
+        "lobs": 19,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.5522836232244929,
+        "renderMs": 3.0070405118759664,
+        "drawCalls": 802,
+        "triangles": 498953,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 182.385,
+      "heap": {
+        "usedSize": 50415300,
+        "totalSize": 131973120,
+        "embedderHeapUsedSize": 6251840,
+        "backingStorageSize": 83979500
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 855,
+        "jsEventListeners": 160
+      }
+    },
+    {
+      "frame": {
+        "count": 1793,
+        "p50": 16.699999999982538,
+        "p95": 16.70000000001164,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1793,
+        "p50": 0.6000000238418579,
+        "p95": 1.2999999821186066,
+        "over50": 0
+      },
+      "render": {
+        "count": 1793,
+        "p50": 3.5,
+        "p95": 13.5,
+        "over50": 0
+      },
+      "textMutations": 117,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 0
+      },
+      "rallyContacts": 1,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 11,
+      "audioState": "running",
+      "lesson": {
+        "returns": 46,
+        "lobs": 22,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.7046455352231155,
+        "renderMs": 2.926656489460418,
+        "drawCalls": 812,
+        "triangles": 496873,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 212.397,
+      "heap": {
+        "usedSize": 83230700,
+        "totalSize": 136642560,
+        "embedderHeapUsedSize": 5171016,
+        "backingStorageSize": 86737981
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 862,
+        "jsEventListeners": 206
+      }
+    },
+    {
+      "frame": {
+        "count": 1805,
+        "p50": 16.699999999982538,
+        "p95": 16.70000000001164,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1805,
+        "p50": 0.5999999940395355,
+        "p95": 1.0999999940395355,
+        "over50": 0
+      },
+      "render": {
+        "count": 1805,
+        "p50": 2.9000000059604645,
+        "p95": 4.199999988079071,
+        "over50": 0
+      },
+      "textMutations": 94,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 2
+      },
+      "rallyContacts": 3,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 53,
+        "lobs": 25,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.8298931513861305,
+        "renderMs": 4.047990855327157,
+        "drawCalls": 813,
+        "triangles": 497065,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 242.479,
+      "heap": {
+        "usedSize": 21711284,
+        "totalSize": 132448256,
+        "embedderHeapUsedSize": 3167984,
+        "backingStorageSize": 81981278
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 823,
+        "jsEventListeners": 159
+      }
+    },
+    {
+      "frame": {
+        "count": 1802,
+        "p50": 16.699999999982538,
+        "p95": 16.70000000001164,
+        "over50": 1
+      },
+      "simulation": {
+        "count": 1802,
+        "p50": 0.5999999940395355,
+        "p95": 1.199999988079071,
+        "over50": 0
+      },
+      "render": {
+        "count": 1802,
+        "p50": 2.899999976158142,
+        "p95": 4.300000011920929,
+        "over50": 0
+      },
+      "textMutations": 124,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 4
+      },
+      "rallyContacts": 3,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 59,
+        "lobs": 28,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.6027445727967711,
+        "renderMs": 3.1001356970518725,
+        "drawCalls": 812,
+        "triangles": 496873,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 272.598,
+      "heap": {
+        "usedSize": 30020668,
+        "totalSize": 136888320,
+        "embedderHeapUsedSize": 6699600,
+        "backingStorageSize": 83993917
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 895,
+        "jsEventListeners": 162
+      }
+    },
+    {
+      "frame": {
+        "count": 1793,
+        "p50": 16.70000000001164,
+        "p95": 16.79999999998836,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1793,
+        "p50": 0.699999988079071,
+        "p95": 1.199999988079071,
+        "over50": 0
+      },
+      "render": {
+        "count": 1793,
+        "p50": 3.4000000059604645,
+        "p95": 13,
+        "over50": 0
+      },
+      "textMutations": 86,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 6
+      },
+      "rallyContacts": 5,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 66,
+        "lobs": 32,
+        "lastShot": "lob"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.6702162632218847,
+        "renderMs": 3.1860231861814845,
+        "drawCalls": 803,
+        "triangles": 499993,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 302.645,
+      "heap": {
+        "usedSize": 44768292,
+        "totalSize": 125616128,
+        "embedderHeapUsedSize": 6592216,
+        "backingStorageSize": 84741551
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 834,
+        "jsEventListeners": 170
+      }
+    },
+    {
+      "frame": {
+        "count": 1802,
+        "p50": 16.70000000001164,
+        "p95": 16.70000000001164,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1802,
+        "p50": 0.5999999940395355,
+        "p95": 1.0999999940395355,
+        "over50": 0
+      },
+      "render": {
+        "count": 1802,
+        "p50": 3,
+        "p95": 3.5999999940395355,
+        "over50": 0
+      },
+      "textMutations": 126,
+      "phase": "rally",
+      "score": {
+        "player": 1,
+        "opponent": 1
+      },
+      "rallyContacts": 4,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 71,
+        "lobs": 33,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.6573179182522869,
+        "renderMs": 2.9059372832122694,
+        "drawCalls": 803,
+        "triangles": 499513,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 332.679,
+      "heap": {
+        "usedSize": 56933640,
+        "totalSize": 130990080,
+        "embedderHeapUsedSize": 3870368,
+        "backingStorageSize": 85029649
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 832,
+        "jsEventListeners": 172
+      }
+    },
+    {
+      "frame": {
+        "count": 1795,
+        "p50": 16.70000000001164,
+        "p95": 16.79999999998836,
+        "over50": 1
+      },
+      "simulation": {
+        "count": 1795,
+        "p50": 0.5999999940395355,
+        "p95": 1.100000023841858,
+        "over50": 0
+      },
+      "render": {
+        "count": 1795,
+        "p50": 3.300000011920929,
+        "p95": 4.300000011920929,
+        "over50": 0
+      },
+      "textMutations": 127,
+      "phase": "rally",
+      "score": {
+        "player": 1,
+        "opponent": 3
+      },
+      "rallyContacts": 6,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 77,
+        "lobs": 37,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.4313707469842831,
+        "renderMs": 3.0168342495871,
+        "drawCalls": 812,
+        "triangles": 496873,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 362.693,
+      "heap": {
+        "usedSize": 44809988,
+        "totalSize": 98091008,
+        "embedderHeapUsedSize": 7677912,
+        "backingStorageSize": 85040142
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 921,
+        "jsEventListeners": 162
+      }
+    },
+    {
+      "frame": {
+        "count": 1810,
+        "p50": 16.70000000001164,
+        "p95": 16.70000000001164,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1810,
+        "p50": 0.6000000238418579,
+        "p95": 1.199999988079071,
+        "over50": 0
+      },
+      "render": {
+        "count": 1810,
+        "p50": 3,
+        "p95": 4.299999982118607,
+        "over50": 0
+      },
+      "textMutations": 96,
+      "phase": "rally",
+      "score": {
+        "player": 3,
+        "opponent": 4
+      },
+      "rallyContacts": 2,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 83,
+        "lobs": 39,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.8638498389572579,
+        "renderMs": 3.9716002937391077,
+        "drawCalls": 813,
+        "triangles": 497433,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 392.869,
+      "heap": {
+        "usedSize": 61087216,
+        "totalSize": 108576768,
+        "embedderHeapUsedSize": 4062560,
+        "backingStorageSize": 84565200
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 828,
+        "jsEventListeners": 175
+      }
+    },
+    {
+      "frame": {
+        "count": 1788,
+        "p50": 16.70000000001164,
+        "p95": 16.79999999998836,
+        "over50": 1
+      },
+      "simulation": {
+        "count": 1788,
+        "p50": 0.5999999940395355,
+        "p95": 1.199999988079071,
+        "over50": 1
+      },
+      "render": {
+        "count": 1788,
+        "p50": 2.9000000059604645,
+        "p95": 5.200000017881393,
+        "over50": 0
+      },
+      "textMutations": 90,
+      "phase": "rally",
+      "score": {
+        "player": 3,
+        "opponent": 6
+      },
+      "rallyContacts": 4,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 90,
+        "lobs": 42,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.4267850472959948,
+        "renderMs": 2.4804937863178464,
+        "drawCalls": 815,
+        "triangles": 498073,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 422.947,
+      "heap": {
+        "usedSize": 64914100,
+        "totalSize": 134004736,
+        "embedderHeapUsedSize": 4972432,
+        "backingStorageSize": 87018894
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 839,
+        "jsEventListeners": 191
+      }
+    },
+    {
+      "frame": {
+        "count": 1803,
+        "p50": 16.699999999953434,
+        "p95": 16.79999999998836,
+        "over50": 1
+      },
+      "simulation": {
+        "count": 1803,
+        "p50": 0.4000000059604645,
+        "p95": 0.800000011920929,
+        "over50": 0
+      },
+      "render": {
+        "count": 1803,
+        "p50": 2.4000000059604645,
+        "p95": 3.300000011920929,
+        "over50": 0
+      },
+      "textMutations": 125,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 1
+      },
+      "rallyContacts": 3,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 96,
+        "lobs": 46,
+        "lastShot": "lob"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.43642163694818775,
+        "renderMs": 2.010712178431399,
+        "drawCalls": 814,
+        "triangles": 497625,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 453.032,
+      "heap": {
+        "usedSize": 35369672,
+        "totalSize": 110411776,
+        "embedderHeapUsedSize": 3278432,
+        "backingStorageSize": 82269670
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 845,
+        "jsEventListeners": 163
+      }
+    },
+    {
+      "frame": {
+        "count": 1805,
+        "p50": 16.70000000001164,
+        "p95": 16.70000000001164,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1805,
+        "p50": 0.4000000059604645,
+        "p95": 0.800000011920929,
+        "over50": 0
+      },
+      "render": {
+        "count": 1805,
+        "p50": 2.199999988079071,
+        "p95": 3,
+        "over50": 0
+      },
+      "textMutations": 93,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 3
+      },
+      "rallyContacts": 6,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 103,
+        "lobs": 50,
+        "lastShot": "lob"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.5437704042390642,
+        "renderMs": 2.555489673032497,
+        "drawCalls": 815,
+        "triangles": 498073,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 483.123,
+      "heap": {
+        "usedSize": 43797704,
+        "totalSize": 135315456,
+        "embedderHeapUsedSize": 3270296,
+        "backingStorageSize": 82355619
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 821,
+        "jsEventListeners": 158
+      }
+    },
+    {
+      "frame": {
+        "count": 1808,
+        "p50": 16.70000000001164,
+        "p95": 16.70000000001164,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1808,
+        "p50": 0.4000000059604645,
+        "p95": 0.800000011920929,
+        "over50": 0
+      },
+      "render": {
+        "count": 1808,
+        "p50": 2.100000023841858,
+        "p95": 3,
+        "over50": 0
+      },
+      "textMutations": 97,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 6
+      },
+      "rallyContacts": 1,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 108,
+        "lobs": 53,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.4478156666967339,
+        "renderMs": 2.023668936612967,
+        "drawCalls": 813,
+        "triangles": 497913,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 513.255,
+      "heap": {
+        "usedSize": 69022932,
+        "totalSize": 135053312,
+        "embedderHeapUsedSize": 5305064,
+        "backingStorageSize": 87089516
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 847,
+        "jsEventListeners": 174
+      }
+    },
+    {
+      "frame": {
+        "count": 1805,
+        "p50": 16.699999999953434,
+        "p95": 16.70000000006985,
+        "over50": 1
+      },
+      "simulation": {
+        "count": 1805,
+        "p50": 0.4000000059604645,
+        "p95": 0.7000000178813934,
+        "over50": 0
+      },
+      "render": {
+        "count": 1805,
+        "p50": 2.0999999940395355,
+        "p95": 3,
+        "over50": 0
+      },
+      "textMutations": 132,
+      "phase": "rally",
+      "score": {
+        "player": 0,
+        "opponent": 1
+      },
+      "rallyContacts": 5,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 114,
+        "lobs": 56,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.3475331338950436,
+        "renderMs": 1.9336442710410071,
+        "drawCalls": 813,
+        "triangles": 497433,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 543.397,
+      "heap": {
+        "usedSize": 62427428,
+        "totalSize": 122732544,
+        "embedderHeapUsedSize": 8261304,
+        "backingStorageSize": 86543112
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 882,
+        "jsEventListeners": 164
+      }
+    },
+    {
+      "frame": {
+        "count": 1809,
+        "p50": 16.699999999953434,
+        "p95": 16.70000000006985,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1809,
+        "p50": 0.4000000059604645,
+        "p95": 0.800000011920929,
+        "over50": 0
+      },
+      "render": {
+        "count": 1809,
+        "p50": 2.2999999821186066,
+        "p95": 2.9000000059604645,
+        "over50": 0
+      },
+      "textMutations": 92,
+      "phase": "rally",
+      "score": {
+        "player": 1,
+        "opponent": 2
+      },
+      "rallyContacts": 5,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 121,
+        "lobs": 59,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.5264158959710312,
+        "renderMs": 2.663356048944036,
+        "drawCalls": 799,
+        "triangles": 497273,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 573.552,
+      "heap": {
+        "usedSize": 33902100,
+        "totalSize": 99926016,
+        "embedderHeapUsedSize": 3162952,
+        "backingStorageSize": 81868555
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 821,
+        "jsEventListeners": 159
+      }
+    },
+    {
+      "frame": {
+        "count": 1591,
+        "p50": 16.699999999953434,
+        "p95": 16.79999999993015,
+        "over50": 0
+      },
+      "simulation": {
+        "count": 1591,
+        "p50": 0.4000000059604645,
+        "p95": 0.7999999821186066,
+        "over50": 0
+      },
+      "render": {
+        "count": 1591,
+        "p50": 2.199999988079071,
+        "p95": 2.9000000059604645,
+        "over50": 0
+      },
+      "textMutations": 77,
+      "phase": "rally",
+      "score": {
+        "player": 1,
+        "opponent": 4
+      },
+      "rallyContacts": 7,
+      "lab": false,
+      "scale": 1,
+      "geometries": 86,
+      "recordedFrames": 360,
+      "dom": 309,
+      "audioMaterials": 12,
+      "audioState": "running",
+      "lesson": {
+        "returns": 127,
+        "lobs": 62,
+        "lastShot": "drive"
+      },
+      "contextsLost": 0,
+      "glError": 0,
+      "perf": {
+        "simMs": 0.4419814135889956,
+        "renderMs": 2.180226446342992,
+        "drawCalls": 815,
+        "triangles": 498073,
+        "entities": 5,
+        "memoryMB": 117.30194091796875
+      },
+      "seconds": 600.062,
+      "heap": {
+        "usedSize": 56707716,
+        "totalSize": 127713280,
+        "embedderHeapUsedSize": 4235760,
+        "backingStorageSize": 85013263
+      },
+      "domCounters": {
+        "documents": 3,
+        "nodes": 831,
+        "jsEventListeners": 170
+      }
+    }
+  ],
+  "rematches": 5,
+  "reviews": 6,
+  "swings": 171,
+  "lobInputs": 73,
+  "initialHeap": {
+    "usedSize": 10303340,
+    "totalSize": 14745600,
+    "embedderHeapUsedSize": 3256080,
+    "backingStorageSize": 79501900
+  },
+  "retainedHeap": {
+    "usedSize": 15240996,
+    "totalSize": 17891328,
+    "embedderHeapUsedSize": 3158416,
+    "backingStorageSize": 81763442
+  },
+  "retainedDOM": {
+    "documents": 3,
+    "nodes": 822,
+    "jsEventListeners": 157
+  },
+  "passed": true
+}

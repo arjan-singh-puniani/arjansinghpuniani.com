@@ -2,8 +2,8 @@ import { COURT } from './CourtGeometry.js';
 /**
  * Small parameterized personality model for Rally House's existing members.
  *
- * These values are intentionally data, not branches in the AI. The eventual
- * InteractiveMatchSystem can use the same decision code for every opponent.
+ * Profiles share the same movement/contact code. Style selects recovery depth
+ * and shot patience, so opponents differ in decisions as well as execution.
  */
 export const CHAMPIONSHIP_OPPONENTS = {
     coach: {
@@ -21,6 +21,7 @@ export const CHAMPIONSHIP_OPPONENTS = {
     },
     mika: {
         id: 'mika',
+        style: 'retriever',
         courtDepth: COURT.baselineDepth, angleBias: 0.55, serveCadence: 0.5,
         name: 'Lucresia',
         reaction: 0.2,
@@ -34,6 +35,7 @@ export const CHAMPIONSHIP_OPPONENTS = {
     },
     leo: {
         id: 'leo',
+        style: 'pressure',
         courtDepth: COURT.baselineDepth, angleBias: 0.65, serveCadence: 0.4,
         name: 'Leo',
         reaction: 0.17,
@@ -47,6 +49,7 @@ export const CHAMPIONSHIP_OPPONENTS = {
     },
     nia: {
         id: 'nia',
+        style: 'retriever',
         courtDepth: COURT.baselineDepth, angleBias: 0.25, serveCadence: 0.65,
         name: 'Barbara',
         reaction: 0.28,

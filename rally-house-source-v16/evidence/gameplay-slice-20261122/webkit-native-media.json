@@ -1,0 +1,46 @@
+{
+  "environment": "Mac Playwright WebKit; empty document with one native video control, no game code.",
+  "errors": [
+    {
+      "text": "Button failed to load, iconName = invalid-placard, layoutTraits = [MacOSLayoutTraits Inline], src = blob:null/42ec75c3-1597-4899-8579-55ed9aa072d3",
+      "location": {
+        "url": "",
+        "line": 546,
+        "column": 13,
+        "lineNumber": 546,
+        "columnNumber": 13
+      }
+    },
+    {
+      "text": "Button failed to load, iconName = pip-placard, layoutTraits = [MacOSLayoutTraits Inline], src = blob:null/8917eef5-6e6b-4b7a-9630-5a1707410218",
+      "location": {
+        "url": "",
+        "line": 546,
+        "column": 13,
+        "lineNumber": 546,
+        "columnNumber": 13
+      }
+    },
+    {
+      "text": "Button failed to load, iconName = pip-placard, layoutTraits = [MacOSLayoutTraits Inline], src = blob:null/8917eef5-6e6b-4b7a-9630-5a1707410218",
+      "location": {
+        "url": "",
+        "line": 546,
+        "column": 13,
+        "lineNumber": 546,
+        "columnNumber": 13
+      }
+    },
+    {
+      "text": "Button failed to load, iconName = airplay-placard, layoutTraits = [MacOSLayoutTraits Inline], src = blob:null/3c1909ed-9522-4891-aa0f-9a860b2393a8",
+      "location": {
+        "url": "",
+        "line": 546,
+        "column": 13,
+        "lineNumber": 546,
+        "columnNumber": 13
+      }
+    }
+  ],
+  "reproduced": true
+}

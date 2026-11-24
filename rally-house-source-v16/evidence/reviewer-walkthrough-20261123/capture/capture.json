@@ -1,0 +1,138 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 960
+  },
+  "seed": 451071,
+  "screens": {
+    "club": {
+      "image": "guide-club.webp",
+      "width": 1440,
+      "height": 960,
+      "callout": null
+    },
+    "challenge": {
+      "image": "guide-challenge.webp",
+      "width": 1440,
+      "height": 960,
+      "callout": {
+        "left": 77.27082994249132,
+        "top": 55.611654917399086,
+        "width": 19.02777777777778,
+        "height": 6.207682291666667
+      }
+    },
+    "championship": {
+      "image": "guide-championship.webp",
+      "width": 1440,
+      "height": 960,
+      "callout": {
+        "left": 91.73611111111111,
+        "top": 86.14583333333333,
+        "width": 7.222222222222221,
+        "height": 12.083333333333334
+      }
+    },
+    "analyze": {
+      "image": "guide-analyze.webp",
+      "width": 1440,
+      "height": 960,
+      "callout": {
+        "left": 0.7638888888888888,
+        "top": 10.729166666666666,
+        "width": 10.768229166666666,
+        "height": 5
+      }
+    },
+    "lab": {
+      "image": "guide-lab.webp",
+      "width": 1440,
+      "height": 960,
+      "callout": null
+    }
+  },
+  "errors": [],
+  "replay": {
+    "source": "game-recording",
+    "kind": "championship",
+    "contacts": [
+      [
+        "clean",
+        "player",
+        -0.1080945655262043,
+        9.25466910151546,
+        "drive"
+      ],
+      [
+        "defensive",
+        "opponent",
+        0.02940534873331868,
+        9.142019317084948,
+        "drive"
+      ]
+    ],
+    "samples": 146,
+    "overlayOffset": 0,
+    "time": 1.6999999999999988
+  },
+  "reviewIsolation": {
+    "during": 0,
+    "after": 4,
+    "actors": 4,
+    "positions": [
+      {
+        "x": 6.9,
+        "y": 0,
+        "z": 1.3
+      },
+      {
+        "x": -4.241297675338603,
+        "y": 0,
+        "z": 9.5
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "z": -6.65
+      },
+      {
+        "x": -9,
+        "y": 0,
+        "z": -4.5
+      }
+    ],
+    "afterPositions": [
+      {
+        "x": 6.9,
+        "y": 0,
+        "z": 1.3
+      },
+      {
+        "x": -4.241297675338603,
+        "y": 0,
+        "z": 9.5
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "z": -6.65
+      },
+      {
+        "x": -9,
+        "y": 0,
+        "z": -4.5
+      }
+    ],
+    "player": {
+      "x": 1,
+      "y": 0,
+      "z": 6.65
+    },
+    "afterPlayer": {
+      "x": 1,
+      "y": 0,
+      "z": 6.65
+    }
+  },
+  "passed": true
+}

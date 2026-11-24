@@ -5,7 +5,7 @@ import type {Relationship} from './RelationshipSystem.js';
 export const MEMBERS:MemberId[]=['coach','mika','leo','nia'];
 export type Motive='rest'|'practice'|'advice'|'company'|'care'|'reflect'|'gear'|'witness'|'celebrate'|'challenge';
 export interface InnerState {energy:number;confidence:number;social:number;practice:number;comfort:number;tone:number;}
-export interface MindEvent {id:string;kind:'match'|'lesson'|'move';subject:MemberId;winner?:string;day:number;at:number;place:string;detail:string;importance:number;witnesses:MemberId[];pending:MemberId[];}
+export interface MindEvent {id:string;kind:'match'|'lesson'|'move'|'championship';subject:MemberId;winner?:string;day:number;at:number;place:string;detail:string;importance:number;witnesses:MemberId[];pending:MemberId[];}
 export interface PersonalMemory {id:string;person:MemberId;topic:string;place:string;people:MemberId[];day:number;importance:number;detail:string;memoryClass?:'foundational'|'major'|'ordinary';count?:number;}
 export interface Possession {id:string;owner:MemberId;kind:'cup'|'notebook'|'racket'|'wateringCan';uses:number;lastPlace:string;}
 export interface MindSave {time:number;states:Record<MemberId,InnerState>;events:MindEvent[];memories:PersonalMemory[];receipts:string[];recent:{scene:string;pair:string;place:string;motif:string;at:number}[];rituals:Record<string,number>;culture:Record<'training'|'social'|'calm'|'competition'|'care',number>;philosophy:Record<string,number>;possessions:Possession[];}
@@ -55,7 +55,9 @@ export class CharacterMind {
   f['authored performance']=scene.family?0:.15;
   f.schedule=c.schedule[actor]===scene.place?.24:0;
   f.intention=c.intentions.some(i=>i.person===actor&&i.notBefore<=c.day*1440+c.minute&&((i.kind==='practice'&&training)||(i.kind==='cafe'&&rest)))?.3:0;
-  f.memory=scene.eventId&&this.events.some(e=>e.id===scene.eventId&&e.pending.includes(actor))?.72:0;
+  // Give the player's completed match one timely consequence before unrelated idle chatter.
+  const pendingEvent=this.events.find(e=>e.id===scene.eventId&&e.pending.includes(actor));
+  f.memory=pendingEvent?(pendingEvent.kind==='championship'?1.4:.72):0;
   f['favorite place']=scene.objectId&&c.favorite(actor,scene.objectId)?.30:0;
   f.weather=c.weather==='rain'?(rest||m==='company'?.18:training?-.08:0):0;
   f['time of day']=c.minute<660&&(training||m==='care'||m==='reflect')?.12:c.minute>1080&&(rest||social)?.12:0;
@@ -115,6 +117,16 @@ export class CharacterMind {
   return witnesses;
  }
  coaching(cue:string,gain:number){this.philosophy[cue]=(this.philosophy[cue]??0)+1;if(gain>0)this.states.mika.confidence=clamp(this.states.mika.confidence+.02,0,1);}
+ /** Player matches affect only the actual opponent; legacy club matches still belong to Leo and Lucresia. */
+ recordChampionship(id:string,subject:MemberId,won:boolean,day:number,detail:string){
+  if(this.events.some(e=>e.id===id))return false;
+  for(const e of this.events)if(e.kind==='championship'&&e.subject===subject)e.pending=[];
+  this.events.unshift({id,kind:'championship',subject,winner:won?subject:'player',day,at:this.time,place:'court',detail,importance:.95,witnesses:[],pending:[subject]});
+  this.remember({id,person:subject,topic:'championship',place:'court',people:[subject],day,importance:.95,detail});
+  const s=this.states[subject];s.energy=clamp(s.energy-.1,0,1);s.practice=clamp(s.practice+(won?.02:.18),0,1);
+  s.confidence=clamp(s.confidence+(won?.06:-.04),0,1);
+  this.retain();return true;
+ }
  cultureDescription(){const [key,value]=Object.entries(this.culture).sort((a,b)=>b[1]-a[1])[0];if(value<.28)return 'Still finding its rhythm.';return ({training:'A place to work patiently at the small things.',social:'A club where a short break tends to become a conversation.',calm:'People are making room for quiet moments.',competition:'Friendly competition is becoming part of the club.',care:'The little details are becoming shared rituals.'} as Record<string,string>)[key];}
  serialize():MindSave{return structuredClone({time:this.time,states:this.states,events:this.events,memories:this.memories,receipts:this.receipts,recent:this.recent,rituals:this.rituals,culture:this.culture,philosophy:this.philosophy,possessions:this.possessions});}
  load(s?:MindSave){if(!s)return;const fail=()=>{throw Error('Character-life save is invalid. Storage has been left untouched.');};
@@ -123,7 +135,7 @@ export class CharacterMind {
   if(!Number.isFinite(s.time)||s.time<0||!MEMBERS.every(id=>finiteState(s.states?.[id]))||!Array.isArray(s.events)||!Array.isArray(s.memories)||!Array.isArray(s.receipts)||!s.receipts.every(v=>typeof v==='string')||!Array.isArray(s.recent)||!s.culture||!s.philosophy||!s.rituals||!Array.isArray(s.possessions))fail();
   for(const key of ['training','social','calm','competition','care'] as const)if(!Number.isFinite(s.culture[key])||s.culture[key]<0||s.culture[key]>1)fail();
   if(!Object.values({...s.philosophy,...s.rituals}).every(v=>Number.isFinite(v)&&v>=0))fail();
-  for(const e of s.events)if(!e||typeof e.id!=='string'||!['match','lesson','move'].includes(e.kind)||!MEMBERS.includes(e.subject)||!Array.isArray(e.pending)||!Array.isArray(e.witnesses)||![...e.pending,...e.witnesses].every(p=>MEMBERS.includes(p))||![e.at,e.day,e.importance].every(Number.isFinite)||typeof e.detail!=='string'||typeof e.place!=='string'||(e.kind==='match'&&!['mika','leo','draw'].includes(e.winner??'')))fail();
+  for(const e of s.events)if(!e||typeof e.id!=='string'||!['match','lesson','move','championship'].includes(e.kind)||!MEMBERS.includes(e.subject)||!Array.isArray(e.pending)||!Array.isArray(e.witnesses)||![...e.pending,...e.witnesses].every(p=>MEMBERS.includes(p))||![e.at,e.day,e.importance].every(Number.isFinite)||typeof e.detail!=='string'||typeof e.place!=='string'||(e.kind==='match'&&!['mika','leo','draw'].includes(e.winner??''))||(e.kind==='championship'&&(!['player',e.subject].includes(e.winner??'')||e.pending.some(p=>p!==e.subject)||e.witnesses.length>0)))fail();
   for(const m of s.memories)if(!m||typeof m.id!=='string'||!MEMBERS.includes(m.person)||!Array.isArray(m.people)||!m.people.every(p=>MEMBERS.includes(p))||![m.day,m.importance].every(Number.isFinite)||![m.topic,m.place,m.detail].every(x=>typeof x==='string'))fail();
   for(const m of s.memories)if((m.memoryClass!==undefined&&!['foundational','major','ordinary'].includes(m.memoryClass))||(m.count!==undefined&&(!Number.isSafeInteger(m.count)||m.count<1)))fail();
   for(const r of s.recent)if(!r||![r.scene,r.pair,r.place,r.motif].every(x=>typeof x==='string')||!Number.isFinite(r.at))fail();

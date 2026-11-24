@@ -1,0 +1,2 @@
+{"surfaceSamples":324,"overlaySamples":1002,"maxJointRegistrationError":3.989569650082806e-7,"maxLimbCentreError":0.022783940003601576}
+Rig registration PASS: actual GPU joint-ring centres between samples and at recorded frames, bounded limb deformation and every default replay annotation registered to an unchanged opaque avatar.

@@ -1,0 +1,22 @@
+[
+  {
+    "test": "performance-lab",
+    "exitCode": 0,
+    "seconds": 5.496
+  },
+  {
+    "test": "phone-capture",
+    "exitCode": 0,
+    "seconds": 3.988
+  },
+  {
+    "test": "serve-snapshots",
+    "exitCode": 0,
+    "seconds": 5.737
+  },
+  {
+    "test": "studio-polish",
+    "exitCode": 0,
+    "seconds": 6.707
+  }
+]

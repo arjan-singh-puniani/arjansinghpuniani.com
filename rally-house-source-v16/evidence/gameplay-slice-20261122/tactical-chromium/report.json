@@ -1,0 +1,175 @@
+{
+  "engine": "chromium",
+  "environment": "Desktop browser and touch emulation; not physical iPhone validation.",
+  "views": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "lobBounds": {
+        "x": 1344,
+        "y": 722,
+        "width": 76,
+        "height": 48
+      },
+      "contacts": [
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034700000000000356,
+          "time": 12386.59999999404
+        },
+        {
+          "side": "opponent",
+          "quality": "defensive",
+          "shot": "drive",
+          "gap": 0.007499999999999884,
+          "time": 13716.199999988079
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "lob",
+          "gap": 0.034700000000000245,
+          "time": 15095.90000000596
+        },
+        {
+          "side": "opponent",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034699999999999946,
+          "time": 16829.30000001192
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034700000000000085,
+          "time": 18251.40000000596
+        }
+      ],
+      "lobVisible": true,
+      "lesson": {
+        "returns": 2,
+        "lobs": 1,
+        "lastShot": "drive"
+      },
+      "overflow": false
+    },
+    {
+      "name": "portrait",
+      "width": 402,
+      "height": 681,
+      "lobBounds": {
+        "x": 306,
+        "y": 503,
+        "width": 76,
+        "height": 48
+      },
+      "twoTouchCancel": true,
+      "contacts": [
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034700000000000356,
+          "time": 13052.90000000596
+        },
+        {
+          "side": "opponent",
+          "quality": "defensive",
+          "shot": "drive",
+          "gap": 0.007499999999999791,
+          "time": 14385.300000011921
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "lob",
+          "gap": 0.03469999999999998,
+          "time": 15768.5
+        },
+        {
+          "side": "opponent",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.03470000000000004,
+          "time": 17514.30000001192
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.03470000000000002,
+          "time": 18933.40000000596
+        }
+      ],
+      "lobVisible": true,
+      "lesson": {
+        "returns": 2,
+        "lobs": 1,
+        "lastShot": "drive"
+      },
+      "overflow": false
+    },
+    {
+      "name": "landscape",
+      "width": 756,
+      "height": 352,
+      "lobBounds": {
+        "x": 660,
+        "y": 200,
+        "width": 76,
+        "height": 48
+      },
+      "twoTouchCancel": true,
+      "contacts": [
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034700000000000356,
+          "time": 11222.100000023842
+        },
+        {
+          "side": "opponent",
+          "quality": "defensive",
+          "shot": "drive",
+          "gap": 0.007500000000000174,
+          "time": 12552.300000011921
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "lob",
+          "gap": 0.03469999999999998,
+          "time": 13933.200000017881
+        },
+        {
+          "side": "opponent",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.03470000000000004,
+          "time": 15682.100000023842
+        },
+        {
+          "side": "player",
+          "quality": "clean",
+          "shot": "drive",
+          "gap": 0.034700000000000106,
+          "time": 17099.40000000596
+        }
+      ],
+      "lobVisible": true,
+      "lesson": {
+        "returns": 2,
+        "lobs": 1,
+        "lastShot": "drive"
+      },
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
