@@ -3,7 +3,7 @@ import {secondRacketHand,supportRacketHand} from './RacketGeometry.js';
 import type {CharacterPose} from '../entities/Character.js';
 
 export const TAYLOR_BODY={pelvisHeight:1.245,strokePelvisFloor:.86,torsoScale:1.20,headScale:.62,upperArm:.425,forearm:.415,thigh:.56,shin:.55} as const;
-interface Constraints {armLengths?:{upperArm:number;forearm:number;wristForearm?:number;wristOffsets?:{L:Vec3;R:Vec3};palmOffsets?:{L:Vec3;R:Vec3};restPalm?:Vec3};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;serve?:{roll:number;load:number;lean:number};affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean;back?:{L:Vec3;R:Vec3}};shoulderScale?:number;restWeight?:number;squareRest?:boolean;rigidReach?:boolean;readyWeight?:number;backhandWeight?:number;strokeWeight?:number;groundstrokeWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
+interface Constraints {courtFeet?:{feet:Vec3[];weight:number};armLengths?:{upperArm:number;forearm:number;wristForearm?:number;wristOffsets?:{L:Vec3;R:Vec3};palmOffsets?:{L:Vec3;R:Vec3};restPalm?:Vec3};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;serve?:{roll:number;load:number;lean:number};affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean;back?:{L:Vec3;R:Vec3}};shoulderScale?:number;restWeight?:number;squareRest?:boolean;rigidReach?:boolean;readyWeight?:number;backhandWeight?:number;strokeWeight?:number;groundstrokeWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
 const smooth=(t:number)=>{const u=clamp(t,0,1);return u*u*(3-2*u);};
 // Two-bone IK uses the law of cosines to place the elbow/knee; the pole picks its bend plane.
 function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3){
@@ -178,6 +178,8 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
    foot.set(toe.x-Math.sin(angle)*depth,toe.y+.11*Math.cos(pitch)+.28*Math.sin(pitch),toe.z-Math.cos(angle)*depth);
    foot.add(new Vec3(Math.cos(yaw)*(side==='R'?-.06:.06)*recover+Math.sin(yaw)*.16*recover,.055*Math.sin(Math.PI*recover)**2,-Math.sin(yaw)*(side==='R'?-.06:.06)*recover+Math.cos(yaw)*.16*recover));
   }
+  // Recovery steps change the legs after the calibrated body/contact solve, so the racket and ball retain their trajectory.
+  if(constraints.courtFeet){const w=constraints.courtFeet.weight;p[`foot${side}`]=Vec3.lerp(p[`foot${side}`],constraints.courtFeet.feet[side==='L'?0:1],w);p[`footPitch${side}`]=(p[`footPitch${side}`]??0)*(1-w);p[`footRecovery${side}`]=(p[`footRecovery${side}`]??0)*(1-w);p[`footYaw${side}`]=(p[`footYaw${side}`]??yaw)*(1-w)+yaw*w;}
   // An airborne leg recovers toward the body; it cannot drag the planted body down.
   if(walk?.planted&&!walk.planted[side==='L'?0:1]||constraints.human&&constraints.readyWeight&&p[`foot${side}`].y>root.y+.115){const foot=p[`foot${side}`],delta=Vec3.sub(foot,hip),reach=TAYLOR_BODY.thigh+TAYLOR_BODY.shin-.001,horizontal=Math.hypot(delta.x,delta.z),limit=Math.sqrt(Math.max(0,reach*reach-delta.y*delta.y));if(horizontal>limit){foot.x=hip.x+delta.x*limit/horizontal;foot.z=hip.z+delta.z*limit/horizontal;}}
   const foot=p[`foot${side}`],kneePole=Vec3.lerp(hip,foot,.5).add(forward.clone().scale(.5));p[`knee${side}`]=joint(hip,foot,TAYLOR_BODY.thigh,TAYLOR_BODY.shin,kneePole,forward);

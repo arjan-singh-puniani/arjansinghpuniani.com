@@ -1,0 +1,14 @@
+import fs from 'node:fs';import {chromium,webkit,browserOptions} from './runtime.mjs';
+const [base,out,baseline]=process.argv.slice(2),results=[];
+for(const engine of ['chromium','webkit']){
+ const browser=await(engine==='chromium'?chromium.launch({...browserOptions,args:['--use-angle=metal']}):webkit.launch({headless:true}));
+ try{for(const label of ['before','after','after','before']){
+  const errors=[],context=await browser.newContext({viewport:engine==='webkit'?{width:402,height:874}:{width:1200,height:900}}),page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  if(label==='before')await page.route('**/dist/**',r=>r.fulfill({body:fs.readFileSync(baseline+new URL(r.request().url()).pathname),contentType:'text/javascript'}));
+  await page.goto(base+'?debug');await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();await page.locator('.arrival-play').click();await page.locator('.championshipHud[data-phase=serving]').waitFor();
+  await page.evaluate(()=>{const g=window.__rh.game;window.perfContacts=0;const originalContact=g.interactiveMatch.callbacks.onRallyContact;g.interactiveMatch.callbacks.onRallyContact=(...args)=>{window.perfContacts++;originalContact?.(...args);};g.matchInput.queueSwing();window.perfPlay=setInterval(()=>{const m=g.interactiveMatch;if(m.playerCue()==='swing'||g.championship.phase==='serving'&&g.championship.snapshot().server==='player'&&m.playerCue()!=='serving')g.matchInput.queueSwing(m.rallyLength%3===0?'lob':'drive');const gap=m.receiver==='player'&&m.ball.active?m.ball.position.x-g.player.position.x:0;g.matchInput.setTouchMovement(Math.abs(gap)>.35?Math.sign(gap):0,0);},70);});await page.waitForTimeout(2500);
+  const metrics=await page.evaluate(async()=>{const frames=[],start=performance.now();let previous=start;await new Promise(resolve=>{function tick(t){frames.push(t-previous);previous=t;if(t-start<15000)requestAnimationFrame(tick);else resolve();}requestAnimationFrame(tick);});frames.shift();frames.sort((a,b)=>a-b);const g=window.__rh.game,gl=g.renderer.gl,e=gl.getExtension('WEBGL_debug_renderer_info');clearInterval(window.perfPlay);return {frames:frames.length,p50:frames[Math.floor(frames.length*.5)],p95:frames[Math.floor(frames.length*.95)],over50:frames.filter(t=>t>50).length,perf:g.perf.snapshot(),renderer:e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):'unavailable',renderScale:g.renderer.renderScale,contacts:window.perfContacts,phase:g.championship.phase};});
+  if(metrics.contacts<5)throw Error('Performance sample did not include enough active tennis contacts');
+  results.push({engine,label,viewport:page.viewportSize(),errors,...metrics});console.log(JSON.stringify(results.at(-1)));await context.close();fs.writeFileSync(out,JSON.stringify(results,null,2));
+ }}finally{await browser.close();}
+}

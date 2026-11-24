@@ -5,8 +5,9 @@ const [base,out,engine='chromium']=process.argv.slice(2);
 assert(base&&out&&['chromium','webkit'].includes(engine));fs.mkdirSync(out,{recursive:true});
 const report={engine,environment:'Desktop browser; mobile viewport/touch emulation only.',errors:[],layouts:[]};
 const browser=await(engine==='chromium'?chromium:webkit).launch(engine==='chromium'?{...browserOptions,args:['--use-angle=metal']}:{headless:true});
+let page;
 try{
- const page=await browser.newPage({viewport:{width:1440,height:900}});
+ page=await browser.newPage({viewport:{width:1440,height:900},...(process.env.QA_VIDEO?{recordVideo:{dir:out+'/video',size:{width:1440,height:900}}}:{})});
  page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
  await page.goto(base+'?debug');await page.waitForFunction(()=>window.__rh?.ready);await page.locator('#loading').waitFor({state:'hidden'});
  assert.equal(await page.locator('.lab-video video').evaluate(v=>v.controls),false);
@@ -31,6 +32,7 @@ try{
  assert.deepEqual(paused,{message:'',cue:'none'});
  await page.locator('.championshipPausePanel .championshipReview').click();await page.waitForFunction(()=>window.__rh.game.performanceLab.active);
  assert.equal(await page.locator('.lab-video video').evaluate(v=>v.controls),false);
+ if(process.env.QA_VIDEO)await page.waitForTimeout(2500);
  await page.locator('#labSource').selectOption('serve');
  for(const phase of ['load','contact','finish']){await page.locator('[data-serve-phase='+phase+']').click();assert((await page.locator('.lab-readout').textContent()).length>0);}
  await page.screenshot({path:out+'/analysis-desktop.png'});
@@ -51,5 +53,5 @@ try{
   await panel.evaluate(el=>el.scrollTop=0);await page.screenshot({path:out+`/results-${width}.png`});report.layouts.push({width,height,rect});await page.locator('#layout-fixture').evaluate(el=>{el.remove();document.body.classList.remove('championship-active');});
  }
  assert.deepEqual(report.errors,[]);report.passed=true;
-}catch(e){report.failure=e.message;throw e;}finally{fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2));await browser.close();}
+}catch(e){report.failure=e.message;throw e;}finally{fs.writeFileSync(out+'/report.json',JSON.stringify(report,null,2));try{if(page?.video()){const video=page.video();await page.close();await video.saveAs(out+'/play.webm');fs.unlinkSync(await video.path());}}finally{await browser.close();}}
 console.log(JSON.stringify(report));
