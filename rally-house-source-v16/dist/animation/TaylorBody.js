@@ -292,6 +292,14 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             foot.set(toe.x - Math.sin(angle) * depth, toe.y + .11 * Math.cos(pitch) + .28 * Math.sin(pitch), toe.z - Math.cos(angle) * depth);
             foot.add(new Vec3(Math.cos(yaw) * (side === 'R' ? -.06 : .06) * recover + Math.sin(yaw) * .16 * recover, .055 * Math.sin(Math.PI * recover) ** 2, -Math.sin(yaw) * (side === 'R' ? -.06 : .06) * recover + Math.cos(yaw) * .16 * recover));
         }
+        // Recovery steps change the legs after the calibrated body/contact solve, so the racket and ball retain their trajectory.
+        if (constraints.courtFeet) {
+            const w = constraints.courtFeet.weight;
+            p[`foot${side}`] = Vec3.lerp(p[`foot${side}`], constraints.courtFeet.feet[side === 'L' ? 0 : 1], w);
+            p[`footPitch${side}`] = (p[`footPitch${side}`] ?? 0) * (1 - w);
+            p[`footRecovery${side}`] = (p[`footRecovery${side}`] ?? 0) * (1 - w);
+            p[`footYaw${side}`] = (p[`footYaw${side}`] ?? yaw) * (1 - w) + yaw * w;
+        }
         // An airborne leg recovers toward the body; it cannot drag the planted body down.
         if (walk?.planted && !walk.planted[side === 'L' ? 0 : 1] || constraints.human && constraints.readyWeight && p[`foot${side}`].y > root.y + .115) {
             const foot = p[`foot${side}`], delta = Vec3.sub(foot, hip), reach = TAYLOR_BODY.thigh + TAYLOR_BODY.shin - .001, horizontal = Math.hypot(delta.x, delta.z), limit = Math.sqrt(Math.max(0, reach * reach - delta.y * delta.y));

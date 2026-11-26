@@ -90,7 +90,7 @@ export class Character {
   private pendingState:AnimState='idle';
   private courtTarget?:Vec3;private courtFacing?:Vec3;private courtSpeed=3.15;private courtSpeedScale=1;matchCompetitor=false;spectating=false;
   private previousState:AnimState='idle';private previousAnimTime=0;private transitionAge=1;private transitionDuration=.20;
-  private walkCycle=new WalkCycle();private shuffleCycle=new WalkCycle();private readonly shuffleShape={halfWidth:.29,lift:.06,stance:.32};private exitWalkPose:Pose|null=null;private exitWalkOrigin=new Vec3();
+  private strokeStepping=false;private exitCourtFeet?:[Vec3,Vec3];private walkCycle=new WalkCycle();private shuffleCycle=new WalkCycle();private readonly shuffleShape={halfWidth:.29,lift:.06,stance:.32};private exitWalkPose:Pose|null=null;private exitWalkOrigin=new Vec3();
   private walkingStride(){
     const style=locomotionStyleFor(this.spec.avatar??this.spec.id),jog=clamp((this.travelSpeed-2.2)/3.3,0,1);
     // Restore the established jog length before a fast court approach needs its full reach.
@@ -308,8 +308,13 @@ export class Character {
     const locomotionStyle=locomotionStyleFor(this.spec.avatar??this.spec.id);this.yaw=dampAngle(this.yaw,this.targetYaw,isShot(this.state)?12:this.acting.role==='speak'||this.acting.role==='listen'?2.8:locomotionStyle.turnSharpness,dt);
     const worldVel=Vec3.sub(this.position,before).scale(dt>0?1/dt:0);const s=Math.sin(this.yaw),c=Math.cos(this.yaw);this.localVelocity.set(c*worldVel.x-s*worldVel.z,0,s*worldVel.x+c*worldVel.z);
     const instantaneous=dt>0?moved/dt:0;this.horizontalSpeed=expDamp(this.horizontalSpeed,instantaneous,14,dt);const targetLoc=MOVING.has(this.state)?.98:0;this.locomotion=expDamp(this.locomotion,targetLoc,10,dt);
+    // A moving stroke keeps the existing court steps; only stationary shots use the planted pivot.
+    if(!this.strokeStepping&&moved>0&&this.spec.avatar==='arjan'&&(this.state==='swingForehand'||this.state==='swingBackhand')){
+      if(this.previousState!=='shuffle'||this.transitionAge>this.transitionDuration){const p=this.lastPose??this.poseFor(this.state,this.animTime);this.shuffleCycle.reset([p.footL,p.footR]);}
+      this.strokeStepping=true;
+    }
     if(this.state==='walk'||this.state==='jog'){const stride=this.walkingStride();this.stepEvent=this.walkCycle.update(this.position,this.yaw,moved,stride,this.walkingShape())||this.stepEvent;this.gaitPhase=this.walkCycle.phase*Math.PI*2;}
-    else if(this.state==='shuffle'){this.stepEvent=this.shuffleCycle.update(this.position,this.yaw,moved,1.4,this.shuffleShape,worldVel.clone().normalize())||this.stepEvent;this.gaitPhase=this.shuffleCycle.phase*Math.PI*2;}
+    else if(this.state==='shuffle'||this.strokeStepping){this.stepEvent=this.shuffleCycle.update(this.position,this.yaw,moved,1.4,this.shuffleShape,worldVel.clone().normalize())||this.stepEvent;this.gaitPhase=this.shuffleCycle.phase*Math.PI*2;}
     else if(this.locomotion>.02)this.gaitPhase=(this.gaitPhase+Math.max(.25,this.horizontalSpeed)*locomotionStyle.cadence*dt)%(Math.PI*2);
     this.updateFootPlanting();
 
@@ -332,7 +337,7 @@ export class Character {
 
   racketContactPoint(){const pose=this.pose();return pose.racketCenter.clone();}
   racketContactFrame(){const pose=this.pose();return {center:pose.racketCenter.clone(),rotation:pose.racketRot.clone(),horizontal:rotateEulerVector(new Vec3(1,0,0),pose.racketRot).normalize(),vertical:rotateEulerVector(new Vec3(0,1,0),pose.racketRot).normalize(),normal:rotateEulerVector(new Vec3(0,0,1),pose.racketRot).normalize()};}
-  debugKinematics():CharacterKinematics{const p=this.pose();const err=this.contactTarget?Vec3.sub(p.racketCenter,this.contactTarget).len():0;const lateral=Math.min(1,Math.abs(this.localVelocity.x)/Math.max(.01,this.courtSpeed)),forward=Math.min(1,Math.max(0,this.localVelocity.z)/Math.max(.01,this.courtSpeed)),backward=Math.min(1,Math.max(0,-this.localVelocity.z)/Math.max(.01,this.courtSpeed)),jog=Math.min(1,Math.max(0,(this.horizontalSpeed-1.45)/.8)),walk=Math.min(1,this.horizontalSpeed/1.55)*(1-jog);return {leftFoot:p.footL.clone(),rightFoot:p.footR.clone(),leftHand:p.handL.clone(),rightHand:p.handR.clone(),leftFootPlanted:this.leftFootLock!==null,rightFootPlanted:this.rightFootLock!==null,racketGrip:p.racketGrip.clone(),racketCenter:p.racketCenter.clone(),contactTarget:this.contactTarget?.clone()??null,contactError:err,state:this.state,transition:clamp(this.transitionAge/this.transitionDuration,0,1),locomotion:this.locomotion,courtPhase:this.courtPhase,development:this.development,racketVibration:this.racketVibration,strokePlant:this.strokeSupport(),motionBlend:{idle:1-this.locomotion,walk,jog,lateral,forward,backward}};}
+  debugKinematics():CharacterKinematics{const p=this.pose();const err=this.contactTarget?Vec3.sub(p.racketCenter,this.contactTarget).len():0;const lateral=Math.min(1,Math.abs(this.localVelocity.x)/Math.max(.01,this.courtSpeed)),forward=Math.min(1,Math.max(0,this.localVelocity.z)/Math.max(.01,this.courtSpeed)),backward=Math.min(1,Math.max(0,-this.localVelocity.z)/Math.max(.01,this.courtSpeed)),jog=Math.min(1,Math.max(0,(this.horizontalSpeed-1.45)/.8)),walk=Math.min(1,this.horizontalSpeed/1.55)*(1-jog);return {leftFoot:p.footL.clone(),rightFoot:p.footR.clone(),leftHand:p.handL.clone(),rightHand:p.handR.clone(),leftFootPlanted:this.strokeStepping?this.shuffleCycle.planted[0]:this.leftFootLock!==null,rightFootPlanted:this.strokeStepping?this.shuffleCycle.planted[1]:this.rightFootLock!==null,racketGrip:p.racketGrip.clone(),racketCenter:p.racketCenter.clone(),contactTarget:this.contactTarget?.clone()??null,contactError:err,state:this.state,transition:clamp(this.transitionAge/this.transitionDuration,0,1),locomotion:this.locomotion,courtPhase:this.courtPhase,development:this.development,racketVibration:this.racketVibration,strokePlant:this.strokeSupport(),motionBlend:{idle:1-this.locomotion,walk,jog,lateral,forward,backward}};}
 
   private changeState(next:AnimState,resetTime:boolean){
     if(next===this.state){if(resetTime){this.animTime=0;this.contactHoldRemaining=0;}return;}
@@ -345,7 +350,7 @@ export class Character {
     if((next==='walk'||next==='jog')&&this.state!=='walk'&&this.state!=='jog'){this.walkCycle.reset();this.walkCycle.update(this.position,this.yaw,0,this.walkingStride(),this.walkingShape());}
     if(MOVING.has(this.state)&&!MOVING.has(next)||this.state==='ready'&&next==='shuffle'||this.state==='sit'){this.pose();this.exitWalkPose=this.lastPose;this.exitWalkOrigin=this.position.clone();}else this.exitWalkPose=null;
     if(!MOVING.has(next))this.walkCycle.reset();
-    this.previousState=this.state;this.previousAnimTime=this.animTime;this.state=next;this.animTime=resetTime?0:0;this.transitionAge=0;
+    this.exitCourtFeet=this.strokeStepping?[this.shuffleCycle.feet[0].clone(),this.shuffleCycle.feet[1].clone()]:undefined;this.strokeStepping=false;this.previousState=this.state;this.previousAnimTime=this.animTime;this.state=next;this.animTime=resetTime?0:0;this.transitionAge=0;
     this.transitionDuration=isShot(next)||isShot(this.previousState)?.13:MOVING.has(next)||MOVING.has(this.previousState)?.18:next==='sit'||this.previousState==='sit'?.65:.26;
     if(!MOVING.has(next)){this.leftFootLock=null;this.rightFootLock=null;}
   }
@@ -411,7 +416,7 @@ export class Character {
     if(state==='volley'){coil+=(sp<contact?-.14:.20);hipCoil+=coil*.35;knee+=.055;weightShift=smoothstep(.18,.66,sp);}
     // The hitting shoulder loads back for a forehand and forward for a backhand.
     if(this.spec.appearance==='human'&&(state==='swingForehand'||state==='swingBackhand')){const pre=clamp(sp/contact,0,1),post=clamp((sp-contact)/(1-contact),0,1),turn=(state==='swingForehand'?1:-1)*(.90*Math.sin(pre*Math.PI)-.78*style.follow*smoothstep(0,1,post))*style.coil;coil=-clip.torsoTwist+turn;hipCoil=-clip.hipTwist+turn*.52;}
-    const moving=state==='walk'||state==='jog';const shuffle=state==='shuffle';const gait=moving?Math.cos(this.gaitPhase):0;const gaitStyle=locomotionStyleFor(this.spec.avatar??this.spec.id);const stepLift=moving?Math.pow(Math.abs(Math.sin(this.gaitPhase)),1.7)*gaitStyle.bounce*(this.spec.appearance==='human'?.25:1):0;const gaitCounter=moving?Math.sin(this.gaitPhase)*gaitStyle.torsoCounter:0;const splitHop=this.courtPhase==='split'?Math.sin(Math.min(1,this.courtPhaseAge/.10)*Math.PI)*.055:0;
+    const moving=state==='walk'||state==='jog';const shuffle=state==='shuffle';const gait=moving?Math.cos(this.gaitPhase):0;const gaitStyle=locomotionStyleFor(this.spec.avatar??this.spec.id);const stepLift=moving?Math.pow(Math.abs(Math.sin(this.gaitPhase)),1.7)*gaitStyle.bounce*(this.spec.appearance==='human'?.25:1):0;const gaitCounter=moving?Math.sin(this.gaitPhase)*gaitStyle.torsoCounter:0;
     // Keep the receiving hinge while the legs spring beneath a steady torso.
     if(shuffle&&this.spec.appearance==='human'){baseY=-.020;knee=.038;lean=.10;}
     if(!shot&&!moving&&this.socialGesture==='think'){lean+=.055;}
@@ -427,10 +432,10 @@ export class Character {
     const outside=clamp(contactLocal.x,-.85,.85);
     const readyPhase=time*2.1+this.seed()*.071,readyWeight=state==='ready'?Math.sin(readyPhase):0;
     const pelvisShiftX=shot?outside*.05*bell(sp-contact,.24):state==='ready'?readyWeight*.035:moving&&this.spec.appearance==='human'?-Math.sin(this.gaitPhase)*(this.spec.avatar==='arjan'?.008:.018):0;const pelvisShiftZ=(state==='serve'?.24*weightShift:shot?.08*weightShift:0)+clip.pelvisZ;
-    const pelvisCenter=this.worldLocal(pelvisShiftX,.79+baseY-knee+splitHop,pelvisShiftZ,hipYaw);const torsoCenter=this.worldLocal(pelvisShiftX*.45,1.14+baseY+breathe-knee+splitHop,.025+pelvisShiftZ*.6,torsoYaw);
+    const pelvisCenter=this.worldLocal(pelvisShiftX,.79+baseY-knee,pelvisShiftZ,hipYaw);const torsoCenter=this.worldLocal(pelvisShiftX*.45,1.14+baseY+breathe-knee,.025+pelvisShiftZ*.6,torsoYaw);
     const actingLift=shot?0:this.acting.values.postureLift+(this.acting.reaction?.lift??0)*this.acting.reactionWeight;torsoCenter.y+=actingLift;
     const feminine=this.spec.presentation==='feminine',shoulderHalf=feminine?.355:.38;
-    const shoulderL=this.worldLocal(-shoulderHalf+pelvisShiftX*.3,1.34+baseY+breathe-knee+splitHop,.015+pelvisShiftZ*.55,torsoYaw),shoulderR=this.worldLocal(shoulderHalf+pelvisShiftX*.3,1.34+baseY+breathe-knee+splitHop,.015+pelvisShiftZ*.55,torsoYaw);
+    const shoulderL=this.worldLocal(-shoulderHalf+pelvisShiftX*.3,1.34+baseY+breathe-knee,.015+pelvisShiftZ*.55,torsoYaw),shoulderR=this.worldLocal(shoulderHalf+pelvisShiftX*.3,1.34+baseY+breathe-knee,.015+pelvisShiftZ*.55,torsoYaw);
     shoulderL.y+=actingLift;shoulderR.y+=actingLift;
     if(state==='ready'||shuffle){shoulderL.y-=.014;shoulderR.y+=.010;}
     if(!shot){shoulderL.add(this.localVector(-this.acting.values.shoulderOpenness,0,0));shoulderR.add(this.localVector(this.acting.values.shoulderOpenness,0,0));}
@@ -597,7 +602,7 @@ export class Character {
     if((moving||state==='ready')&&this.spec.appearance==='human'){const roll=moving?Math.sin(this.gaitPhase)*(this.spec.avatar==='arjan'?.002:.006):readyWeight*.004;hipL.y+=roll;hipR.y-=roll;}
     const walkReach=(state==='jog'?.40:.34)*gaitStyle.stride,footY=.11+(this.affection&&!moving||this.spec.appearance==='human'&&this.canRelaxClubIdle()?0:baseY);let footL=this.worldLocal(-.17,footY,.05+gait*walkReach),footR=this.worldLocal(.17,footY,.05-gait*walkReach);
     if(moving){footL=this.walkCycle.feet[0].clone();footR=this.walkCycle.feet[1].clone();}
-    if(state==='ready'){const foreMotion=clamp(this.localVelocity.z/Math.max(.01,this.courtSpeed),-1,1),wide=this.courtPhase==='split'?.07:0;footL=this.worldLocal(-.29-wide,.11+splitHop,.16+foreMotion*.07);footR=this.worldLocal(.29+wide,.11+splitHop,-.05+foreMotion*.07);}
+    if(state==='ready'){const foreMotion=clamp(this.localVelocity.z/Math.max(.01,this.courtSpeed),-1,1),wide=this.courtPhase==='split'?.07:0;footL=this.worldLocal(-.29-wide,.11,.16+foreMotion*.07);footR=this.worldLocal(.29+wide,.11,-.05+foreMotion*.07);}
     if(shuffle){footL=this.shuffleCycle.feet[0].clone();footR=this.shuffleCycle.feet[1].clone();}
     if(shot){const stance=Math.min(.16,Math.abs(outside)*.13);if(state==='swingForehand'){footL=this.worldLocal(-.25,.11+baseY,.12+weightShift*.08);footR=this.worldLocal(.34+stance,.11+baseY,-.07+weightShift*.04);}else if(state==='swingBackhand'){footL=this.worldLocal(-.34-stance,.11+baseY,-.04+weightShift*.05);footR=this.worldLocal(.25,.11+baseY,.13+weightShift*.08);}else if(state==='serve'){const post=clamp((sp-contact)/(1-contact),0,1),land=smoothstep(0,.65,post);footL=this.worldLocal(-.20,.11,.14+weightShift*.08+land*.18);footR=this.worldLocal(.23,.11+.08*Math.sin(post*Math.PI)**2,-.14+weightShift*.12+land*.30);}else{footL=this.worldLocal(-.26,.11+baseY,.12);footR=this.worldLocal(.27,.11+baseY,-.04);}}
     if(sit){footL=this.worldLocal(-.22,.11,.48);footR=this.worldLocal(.22,.11,.48);}
@@ -614,7 +619,7 @@ export class Character {
     const kneePulse=moving?Math.max(0,-Math.cos(this.gaitPhase*2))*.018:0;const kneeL=Vec3.lerp(hipL,footL,.54).add(this.localVector(-.015,.04-kneePulse,.10)),kneeR=Vec3.lerp(hipR,footR,.54).add(this.localVector(.015,.04-kneePulse,.10));
     if(sit){const l=this.worldLocal(-.22,this.seatHeight+.08,.35),r=this.worldLocal(.22,this.seatHeight+.08,.35);kneeL.set(l.x,l.y,l.z);kneeR.set(r.x,r.y,r.z);}
     if(!shot&&!moving&&this.socialGesture==='think'){torsoCenter.add(this.localVector(0,0,.035));shoulderL.add(this.localVector(0,0,.045));shoulderR.add(this.localVector(0,0,.045));}
-    const headStabilize=moving?stepLift*gaitStyle.headStabilize:0;const head=this.worldLocal(pelvisShiftX*.25,1.80+baseY+actingLift+breathe-knee+splitHop+clip.headNod-headStabilize+(!shot&&!moving&&(this.socialGesture==='nod'||this.socialGesture==='laugh')?Math.sin(time*6)*.022:0),.01+pelvisShiftZ*.45,headYaw);
+    const headStabilize=moving?stepLift*gaitStyle.headStabilize:0;const head=this.worldLocal(pelvisShiftX*.25,1.80+baseY+actingLift+breathe-knee+clip.headNod-headStabilize+(!shot&&!moving&&(this.socialGesture==='nod'||this.socialGesture==='laugh')?Math.sin(time*6)*.022:0),.01+pelvisShiftZ*.45,headYaw);
     const elbowL=Vec3.lerp(shoulderL,handL,.50).add(forward.clone().scale(.055)).add(right.clone().scale(-.035));const elbowR=Vec3.lerp(shoulderR,handR,.50).add(forward.clone().scale(.055)).add(right.clone().scale(.035));
     const headPitch=state==='serve'&&this.spec.appearance==='human'?.60*smoothstep(.18,.65,sp/contact)*(1-smoothstep(0,.65,(sp-contact)/(1-contact))):undefined;
     return {...(headPitch===undefined?{}:{headPitch}),baseY,breathe,walking:moving,gait,torsoYaw,hipYaw,headYaw,eyeYaw:clamp(angleDelta(headYaw,this.eyeAim),-.30,.30),right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,hipL,hipR,kneeL,kneeR,footL,footR,footPitchL,footPitchR,footYawL,footYawR,footRecoveryL,footRecoveryR,footPivotL,footPivotR,torsoCenter,pelvisCenter,head,racketGrip,racketHandleTop,racketCenter,racketRot,lean,knee,shot,sp,face:{...this.facePose},weightShift,...this.handPose,...this.authoredHands};
@@ -675,7 +680,9 @@ export class Character {
       if(this.propKind&&this.propAnchor){const weight=this.propWanted?1-smoothstep(.4,1,this.propAge):smoothstep(0,.65,this.propAge);if(this.propKind==='notebook')left=Math.max(left,weight);else right=Math.max(right,weight);}
       let posture:Parameters<typeof adultTaylorPose>[3]['posture'];
       if(isShot(this.state)&&this.spec.appearance==='human'&&(this.contactTarget||t>0&&result.sp<1&&(this.state==='swingForehand'||this.state==='swingBackhand'))){
-        const offset=Vec3.sub(result.racketCenter,result.racketGrip),grip=this.contactTarget?Vec3.sub(this.contactTarget,offset):result.racketGrip.clone(),load=this.contactTarget?1:t*(1-smoothstep(.8,1,result.sp));
+        // Load toward the actual preparation hand, then restore the calibrated contact/release solve before the ball can meet the strings.
+        const offset=Vec3.sub(result.racketCenter,result.racketGrip);let grip=this.contactTarget?Vec3.sub(this.contactTarget,offset):result.racketGrip.clone();const load=this.contactTarget?1:t*(1-smoothstep(.8,1,result.sp));
+        if(this.spec.avatar==='arjan'&&(this.state==='swingForehand'||this.state==='swingBackhand')){const contactPhase=this.shotContactTime()/this.shotDuration();grip=Vec3.lerp(result.racketGrip,grip,smoothstep(contactPhase-.20,contactPhase-.06,result.sp));}
         posture={weight:load*bell(result.sp-this.shotContactTime(this.state)/this.shotDuration(this.state),.34),right:grip,left:this.state==='swingBackhand'?secondRacketHand(grip,offset):undefined};
       }
       const design=CAST_DESIGN[this.spec.avatar??this.spec.id]??CAST_DESIGN.taylor;
@@ -685,7 +692,12 @@ export class Character {
       const serveNow=this.state==='serve'?this.serveTorso(this.animTime):undefined,serveBefore=this.previousState==='serve'?this.serveTorso(this.previousAnimTime+this.transitionAge*.25):undefined;
       const serve=serveWeight?{roll:(serveNow?.roll??0)*t+(serveBefore?.roll??0)*(1-t),load:(serveNow?.load??0)*t+(serveBefore?.load??0)*(1-t),lean:(serveNow?.lean??0)*t+(serveBefore?.lean??0)*(1-t)}:undefined;
       // Arjan's mesh needs rigid torso reach; the fitted Taylor rig retains its calibrated solve.
-      return adultTaylorPose(result,this.position,this.yaw,{armLengths:this.spec.presentation==='feminine'&&this.spec.appearance==='human'?authoredArmLengths():undefined,sitting:this.state==='sit',seatWeight:this.state==='sit'?t:this.previousState==='sit'?1-t:0,folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',serve,shoulderScale:design.shoulderScale,restWeight:this.clubIdleRelax,squareRest:this.spec.avatar==='arjan',rigidReach:this.spec.avatar==='arjan',strokeWeight:(isShot(this.state)?t:0)+(isShot(this.previousState)?1-t:0),groundstrokeWeight:(this.state==='swingForehand'||this.state==='swingBackhand'?t:0)+(this.previousState==='swingForehand'||this.previousState==='swingBackhand'?1-t:0),backhandWeight:(this.state==='swingBackhand'?t:0)+(this.previousState==='swingBackhand'?1-t:0),readyWeight:(this.state==='ready'||this.state==='shuffle'?t:0)+(this.previousState==='ready'||this.previousState==='shuffle'?1-t:0),affection:this.affection??undefined,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:[!!this.leftFootLock,!!this.rightFootLock],swing:locomotionStyleFor(this.spec.avatar??this.spec.id).armSwing*.75}:undefined,posture});
+      result=adultTaylorPose(result,this.position,this.yaw,{armLengths:this.spec.presentation==='feminine'&&this.spec.appearance==='human'?authoredArmLengths():undefined,sitting:this.state==='sit',seatWeight:this.state==='sit'?t:this.previousState==='sit'?1-t:0,folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',serve,shoulderScale:design.shoulderScale,restWeight:this.clubIdleRelax,squareRest:this.spec.avatar==='arjan',rigidReach:this.spec.avatar==='arjan',courtFeet:this.strokeStepping?{feet:this.shuffleCycle.feet,weight:1}:this.exitCourtFeet&&t<1?{feet:this.exitCourtFeet,weight:1-t}:undefined,strokeWeight:(isShot(this.state)?t:0)+(isShot(this.previousState)?1-t:0),groundstrokeWeight:(this.state==='swingForehand'||this.state==='swingBackhand'?t:0)+(this.previousState==='swingForehand'||this.previousState==='swingBackhand'?1-t:0),backhandWeight:(this.state==='swingBackhand'?t:0)+(this.previousState==='swingBackhand'?1-t:0),readyWeight:(this.state==='ready'||this.state==='shuffle'?t:0)+(this.previousState==='ready'||this.previousState==='shuffle'?1-t:0),affection:this.affection??undefined,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:[!!this.leftFootLock,!!this.rightFootLock],swing:locomotionStyleFor(this.spec.avatar??this.spec.id).armSwing*.75}:undefined,posture});
+    }
+    // Lift the solved body and both shoes together; lifting only the source torso distorts the hip joints.
+    if(this.courtPhase==='split'&&!isShot(this.state)){
+      const hop=.035*Math.sin(Math.PI*Math.min(1,this.courtPhaseAge/.10))**2;
+      for(const key of ['pelvisCenter','torsoCenter','chest','head','shoulderL','shoulderR','elbowL','elbowR','handL','handR','wristL','wristR','hipL','hipR','kneeL','kneeR','footL','footR','racketGrip','racketCenter','racketHandleTop'] as const){const point=result[key];if(point)point.y+=hop;}
     }
     return result;
   }

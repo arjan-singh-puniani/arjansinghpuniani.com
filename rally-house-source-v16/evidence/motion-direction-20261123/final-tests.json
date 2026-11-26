@@ -1,0 +1,65 @@
+[
+  {
+    "name": "motion-direction",
+    "status": 0,
+    "seconds": 4.27061225,
+    "stdout": "{\"headSteps\":{\"swingForehand\":0.0673523617595706,\"swingBackhand\":0.06259690670694473},\"anchored\":156,\"airborne\":272,\"maxLegScale\":1.0339399023856466}\n",
+    "stderr": ""
+  },
+  {
+    "name": "court-footwork",
+    "status": 0,
+    "seconds": 6.752476375,
+    "stdout": "{\"cases\":72,\"maxVerticalSpeed\":2.29727681889905,\"maxHeadRange\":0.04738668753499109,\"anchoredChecks\":2616}\n",
+    "stderr": ""
+  },
+  {
+    "name": "stroke-footwork",
+    "status": 0,
+    "seconds": 5.6397639170000025,
+    "stdout": "{\"samples\":1477,\"maxLift\":0.10135180029131892,\"maxTurn\":0.5,\"maxToeDrift\":6.206335383118183e-17,\"minShoeY\":0.004018372723127917}\nStroke footwork PASS: flat loading, toe pivots, heel release, grounded recovery audio, rendered shoes, exact racket contact and ready return across the cast at 30/60/120 Hz.\n{\"readyTransitions\":36,\"maxReadyJump\":4.0785377256513355e-8,\"maxReadySkinJump\":3.129243850708008e-7}\n{\"movingStops\":54,\"maxStopJump\":6.813726027331082e-8,\"maxRestartJump\":5.563384004694087e-8}\n",
+    "stderr": ""
+  },
+  {
+    "name": "stroke-sequence",
+    "status": 0,
+    "seconds": 5.2301269170000015,
+    "stdout": "{\"cases\":108,\"minContinuity\":0.9935054873618114,\"maxContactError\":1.974409066875915e-8,\"replayPaletteError\":0}\n",
+    "stderr": ""
+  },
+  {
+    "name": "replay-deformation",
+    "status": 0,
+    "seconds": 3.1808603330000005,
+    "stdout": "{\"samples\":210600,\"maxJump\":3.644191463555129e-7}\n{\"rigidTorsoLoads\":54}\n",
+    "stderr": ""
+  },
+  {
+    "name": "arm-anatomy",
+    "status": 0,
+    "seconds": 3.1966889999999983,
+    "stdout": "{\"restChecks\":24,\"frames\":4200,\"maxElbowTravel\":0.3004213101484555,\"maxFlexDegrees\":153.88921130390725}\nHuman arm anatomy PASS: same-side relaxed wrists, descending arm chains, bounded flexion and continuous elbow motion at three rates.\nStroke release PASS: toss to lowered-arm recovery, opposite shoulder finishes, two-hand backhand and registered racket axes across the cast.\n",
+    "stderr": ""
+  },
+  {
+    "name": "arjan-shorts",
+    "status": 0,
+    "seconds": 23.967129832999998,
+    "stdout": "{\"triangles\":768,\"openings\":3,\"frames\":4389,\"maxSeamGap\":7.850462293418876e-17,\"clearancePoses\":63,\"waistbandPoses\":91}\nConnected shorts PASS: one manifold garment, three openings, above-knee hems, thigh/calf clearance and closed moving seams at 30/60/120 Hz and in interpolated replay.\n",
+    "stderr": ""
+  },
+  {
+    "name": "arjan-upper-body",
+    "status": 0,
+    "seconds": 2.207644124999999,
+    "stdout": "{\"poses\":21,\"sourceVertices\":2120,\"deformedSamples\":63420}\nArjan upper body PASS: connected jersey, stable hem weights, real loaded geometry and replay, unchanged approved poses/protected parts, atomic validation failures.\n",
+    "stderr": ""
+  },
+  {
+    "name": "arjan-neck-attachment",
+    "status": 0,
+    "seconds": 5.501300582999996,
+    "stdout": "{\"poses\":36,\"boundarySamples\":780,\"maxBoundaryToCollarDistance\":0.022069894158185544,\"replayChecks\":3,\"lapelChecks\":1521,\"maxLapelGap\":0.007520858268834512}\nArjan neck PASS: actual shirt contour, native moving attachment, preserved poses and continuous replay.\n",
+    "stderr": ""
+  }
+]

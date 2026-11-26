@@ -1,0 +1,158 @@
+[
+  {
+    "hz": 30,
+    "id": "leo",
+    "shot": "drive",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 30,
+    "id": "leo",
+    "shot": "lob",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 30,
+    "id": "mika",
+    "shot": "drive",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 30,
+    "id": "mika",
+    "shot": "lob",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 60,
+    "id": "leo",
+    "shot": "drive",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 60,
+    "id": "leo",
+    "shot": "lob",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 60,
+    "id": "mika",
+    "shot": "drive",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 60,
+    "id": "mika",
+    "shot": "lob",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 120,
+    "id": "leo",
+    "shot": "drive",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 120,
+    "id": "leo",
+    "shot": "lob",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 120,
+    "id": "mika",
+    "shot": "drive",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  },
+  {
+    "hz": 120,
+    "id": "mika",
+    "shot": "lob",
+    "maxDifference": {
+      "p": 0,
+      "o": 0,
+      "ball": 0,
+      "v": 0
+    },
+    "sameContactFrames": true,
+    "sameOutcome": true
+  }
+]

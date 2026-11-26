@@ -1,0 +1,202 @@
+[
+  {
+    "engine": "chromium",
+    "label": "before",
+    "viewport": {
+      "width": 1200,
+      "height": 900
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 16.69999999999891,
+    "p95": 16.700000000000728,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.7037736759686971,
+      "renderMs": 2.5377517700850607,
+      "drawCalls": 798,
+      "triangles": 496713,
+      "entities": 5,
+      "memoryMB": 92.88787841796875
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "renderScale": 1,
+    "contacts": 10,
+    "phase": "serving"
+  },
+  {
+    "engine": "chromium",
+    "label": "after",
+    "viewport": {
+      "width": 1200,
+      "height": 900
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 16.69999999999891,
+    "p95": 16.799999999999272,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.7688084635817032,
+      "renderMs": 2.704712039915688,
+      "drawCalls": 798,
+      "triangles": 496713,
+      "entities": 5,
+      "memoryMB": 92.88787841796875
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "renderScale": 1,
+    "contacts": 10,
+    "phase": "serving"
+  },
+  {
+    "engine": "chromium",
+    "label": "after",
+    "viewport": {
+      "width": 1200,
+      "height": 900
+    },
+    "errors": [],
+    "frames": 897,
+    "p50": 16.69999999999891,
+    "p95": 16.700000000000728,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.8003426021494027,
+      "renderMs": 2.5272812872928707,
+      "drawCalls": 798,
+      "triangles": 496713,
+      "entities": 5,
+      "memoryMB": 124.93133544921875
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "renderScale": 1,
+    "contacts": 10,
+    "phase": "serving"
+  },
+  {
+    "engine": "chromium",
+    "label": "before",
+    "viewport": {
+      "width": 1200,
+      "height": 900
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 16.69999999999891,
+    "p95": 16.700000000000728,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.7347830049974245,
+      "renderMs": 2.527815675012035,
+      "drawCalls": 798,
+      "triangles": 496713,
+      "entities": 5,
+      "memoryMB": 132.56072998046875
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "renderScale": 1,
+    "contacts": 10,
+    "phase": "serving"
+  },
+  {
+    "engine": "webkit",
+    "label": "before",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 17,
+    "p95": 18,
+    "over50": 0,
+    "perf": {
+      "simMs": 1.264424051794904,
+      "renderMs": 2.926721203578843,
+      "drawCalls": 798,
+      "triangles": 496713,
+      "entities": 5,
+      "memoryMB": null
+    },
+    "renderer": "Apple GPU",
+    "renderScale": 1,
+    "contacts": 10,
+    "phase": "serving"
+  },
+  {
+    "engine": "webkit",
+    "label": "after",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 17,
+    "p95": 18,
+    "over50": 0,
+    "perf": {
+      "simMs": 1.0282366394368032,
+      "renderMs": 2.6266696128220652,
+      "drawCalls": 798,
+      "triangles": 496713,
+      "entities": 5,
+      "memoryMB": null
+    },
+    "renderer": "Apple GPU",
+    "renderScale": 1,
+    "contacts": 10,
+    "phase": "serving"
+  },
+  {
+    "engine": "webkit",
+    "label": "after",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "errors": [],
+    "frames": 905,
+    "p50": 17,
+    "p95": 20,
+    "over50": 0,
+    "perf": {
+      "simMs": 1.1305562162557192,
+      "renderMs": 2.5641162012796697,
+      "drawCalls": 798,
+      "triangles": 496713,
+      "entities": 5,
+      "memoryMB": null
+    },
+    "renderer": "Apple GPU",
+    "renderScale": 1,
+    "contacts": 10,
+    "phase": "serving"
+  },
+  {
+    "engine": "webkit",
+    "label": "before",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "errors": [],
+    "frames": 906,
+    "p50": 17,
+    "p95": 20,
+    "over50": 0,
+    "perf": {
+      "simMs": 1.0620311808329683,
+      "renderMs": 2.4163473768501915,
+      "drawCalls": 798,
+      "triangles": 496713,
+      "entities": 5,
+      "memoryMB": null
+    },
+    "renderer": "Apple GPU",
+    "renderScale": 1,
+    "contacts": 10,
+    "phase": "serving"
+  }
+]

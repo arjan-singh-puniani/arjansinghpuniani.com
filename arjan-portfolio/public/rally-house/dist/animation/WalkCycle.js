@@ -12,6 +12,9 @@ export class WalkCycle {
     swingPhase = [.55, .55];
     reset(feet) { this.active = false; this.initialFeet = feet ? [feet[0].clone(), feet[1].clone()] : undefined; }
     update(position, yaw, distance, stride, shape = { halfWidth: .17, lift: .075, stance: .55 }, direction) {
+        // With no travel, keep the in-flight target; a zero direction would teleport the receiving shoe.
+        if (this.active && distance === 0)
+            return false;
         const local = (side, forward) => new Vec3(position.x + Math.cos(yaw) * side + (direction?.x ?? Math.sin(yaw)) * forward, .11, position.z - Math.sin(yaw) * side + (direction?.z ?? Math.cos(yaw)) * forward);
         if (!this.active) {
             const seeded = !!this.initialFeet;

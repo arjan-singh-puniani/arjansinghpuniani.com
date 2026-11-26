@@ -1,0 +1,32 @@
+[
+  {
+    "name": "motion-direction",
+    "status": 0,
+    "output": "{\"headSteps\":{\"swingForehand\":0.0673523617595706,\"swingBackhand\":0.06259690670694473},\"anchored\":156,\"airborne\":272,\"maxLegScale\":1.0339399023856466}\nRunning-shot movement release preserves both shoes at 30/60/120 Hz.\n",
+    "error": ""
+  },
+  {
+    "name": "court-footwork",
+    "status": 0,
+    "output": "{\"cases\":72,\"maxVerticalSpeed\":2.29727681889905,\"maxHeadRange\":0.04738668753499109,\"anchoredChecks\":2616}\n",
+    "error": ""
+  },
+  {
+    "name": "stroke-footwork",
+    "status": 0,
+    "output": "{\"samples\":1477,\"maxLift\":0.10135180029131892,\"maxTurn\":0.5,\"maxToeDrift\":6.206335383118183e-17,\"minShoeY\":0.004018372723127917}\nStroke footwork PASS: flat loading, toe pivots, heel release, grounded recovery audio, rendered shoes, exact racket contact and ready return across the cast at 30/60/120 Hz.\n{\"readyTransitions\":36,\"maxReadyJump\":4.0785377256513355e-8,\"maxReadySkinJump\":3.129243850708008e-7}\n{\"movingStops\":54,\"maxStopJump\":6.813726027331082e-8,\"maxRestartJump\":5.563384004694087e-8}\n",
+    "error": ""
+  },
+  {
+    "name": "walking",
+    "status": 0,
+    "output": "[\n  {\n    \"id\": \"coach\",\n    \"hz\": 30,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.18313752796395003,\n    \"maxSpeed\": 1.5189970252516733\n  },\n  {\n    \"id\": \"coach\",\n    \"hz\": 60,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.08999605754326434,\n    \"maxSpeed\": 1.5189972134593477\n  },\n  {\n    \"id\": \"coach\",\n    \"hz\": 120,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.044222898277884004,\n    \"maxSpeed\": 1.518997103667632\n  },\n  {\n    \"id\": \"mika\",\n    \"hz\": 30,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.20136726702401567,\n    \"maxSpeed\": 1.5189975284788098\n  },\n  {\n    \"id\": \"mika\",\n    \"hz\": 60,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.09455455321084483,\n    \"maxSpeed\": 1.5189975109591691\n  },\n  {\n    \"id\": \"mika\",\n    \"hz\": 120,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.04637549356666349,\n    \"maxSpeed\": 1.5189974909292814\n  },\n  {\n    \"id\": \"leo\",\n    \"hz\": 30,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.20685544278749468,\n    \"maxSpeed\": 1.5189973327078354\n  },\n  {\n    \"id\": \"leo\",\n    \"hz\": 60,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.10361386335200477,\n    \"maxSpeed\": 1.518997302227424\n  },\n  {\n    \"id\": \"leo\",\n    \"hz\": 120,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.050768049522050454,\n    \"maxSpeed\": 1.5189974274150608\n  },\n  {\n    \"id\": \"nia\",\n    \"hz\": 30,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.1884785051182662,\n    \"maxSpeed\": 1.5189966495768104\n  },\n  {\n    \"id\": \"nia\",\n    \"hz\": 60,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.08944857595730013,\n    \"maxSpeed\": 1.5189968362649986\n  },\n  {\n    \"id\": \"nia\",\n    \"hz\": 120,\n    \"slide\": 0,\n    \"maxFootFrameDistance\": 0.04481342815207683,\n    \"maxSpeed\": 1.5189967068639154\n  }\n]\n12 walking scenarios passed (four members, three update rates, starts, corners and stops).\nObstacle clearance, small destinations and animated ankle attachment passed.\n",
+    "error": ""
+  },
+  {
+    "name": "replay-deformation",
+    "status": 0,
+    "output": "{\"samples\":210600,\"maxJump\":3.644191463555129e-7}\n{\"rigidTorsoLoads\":54}\n",
+    "error": ""
+  }
+]
