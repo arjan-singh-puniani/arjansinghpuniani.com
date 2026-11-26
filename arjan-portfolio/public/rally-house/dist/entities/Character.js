@@ -526,7 +526,7 @@ export class Character {
             this.gaitPhase = this.walkCycle.phase * Math.PI * 2;
         }
         else if (this.state === 'shuffle' || this.strokeStepping) {
-            this.stepEvent = this.shuffleCycle.update(this.position, this.yaw, moved, 1.4, this.shuffleShape, worldVel.clone().normalize()) || this.stepEvent;
+            this.stepEvent = (moved === 0 ? this.shuffleCycle.settle(dt) : this.shuffleCycle.update(this.position, this.yaw, moved, 1.4, this.shuffleShape, worldVel.clone().normalize())) || this.stepEvent;
             this.gaitPhase = this.shuffleCycle.phase * Math.PI * 2;
         }
         else if (this.locomotion > .02)

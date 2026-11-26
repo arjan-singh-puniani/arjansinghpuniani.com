@@ -15,11 +15,13 @@ export function scenario(name,avatar='arjan',record=captureFrame){
    if(i===140)c.steerOnCourt(new Vec3(1,0,4.6),facing);
    if(i===153)c.steerOnCourt(new Vec3(-1,0,3.7),facing);
    if(i===175){c.clearCourtMove();c.setAnimation('ready');}
-  }else if(name==='stop'){
+  }else if(name==='stop'||name==='restart'){
    if(i===10)c.steerOnCourt(new Vec3(3,0,4),facing);
    if(i===25){c.setIncomingContact(c.position.clone().add(new Vec3(.8,1.02,.75)));c.triggerShot('swingForehand',facing);}
    if(i>=25&&i<33)c.steerOnCourt(new Vec3(3,0,4),facing);
    if(i===33)c.clearCourtMove();
+   if(name==='restart'&&i>=37&&i<47)c.steerOnCourt(new Vec3(-1,0,4),facing);
+   if(name==='restart'&&i===47)c.clearCourtMove();
    if(i===65)c.setAnimation('ready');
   }else if(name==='running'){
    if(i===10)c.steerOnCourt(new Vec3(2,0,4.0),facing);
@@ -31,7 +33,7 @@ export function scenario(name,avatar='arjan',record=captureFrame){
    if(i>=105&&i<150)c.steerOnCourt(new Vec3(-1,0,4.0),facing);
    if(i===150){c.clearCourtMove();c.setAnimation('ready');}
   }else if(i===20){const state=name==='serve'?'serve':name==='volley'?'volley':name==='forehand'?'swingForehand':'swingBackhand';if(state!=='serve')c.setIncomingContact(new Vec3(name==='volley'?.4:name==='forehand'?.7:-.7,1.02,4.75));c.triggerShot(state,facing);}
-  if(!['footwork','running','stop'].includes(name)&&i>20&&c.animTime>c.shotDuration()+.02)c.setAnimation('ready');
+  if(!['footwork','running','stop','restart'].includes(name)&&i>20&&c.animTime>c.shotDuration()+.02)c.setAnimation('ready');
   c.update(1/60);frames.push(record(c,i/60,null));
  }
  return {spec:c.spec,frames};

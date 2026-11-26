@@ -314,7 +314,7 @@ export class Character {
       this.strokeStepping=true;
     }
     if(this.state==='walk'||this.state==='jog'){const stride=this.walkingStride();this.stepEvent=this.walkCycle.update(this.position,this.yaw,moved,stride,this.walkingShape())||this.stepEvent;this.gaitPhase=this.walkCycle.phase*Math.PI*2;}
-    else if(this.state==='shuffle'||this.strokeStepping){this.stepEvent=this.shuffleCycle.update(this.position,this.yaw,moved,1.4,this.shuffleShape,worldVel.clone().normalize())||this.stepEvent;this.gaitPhase=this.shuffleCycle.phase*Math.PI*2;}
+    else if(this.state==='shuffle'||this.strokeStepping){this.stepEvent=(moved===0?this.shuffleCycle.settle(dt):this.shuffleCycle.update(this.position,this.yaw,moved,1.4,this.shuffleShape,worldVel.clone().normalize()))||this.stepEvent;this.gaitPhase=this.shuffleCycle.phase*Math.PI*2;}
     else if(this.locomotion>.02)this.gaitPhase=(this.gaitPhase+Math.max(.25,this.horizontalSpeed)*locomotionStyle.cadence*dt)%(Math.PI*2);
     this.updateFootPlanting();
 
