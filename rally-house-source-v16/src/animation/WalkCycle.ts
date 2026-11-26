@@ -12,6 +12,8 @@ export class WalkCycle {
   private swingPhase=[.55,.55];
   reset(feet?:[Vec3,Vec3]){this.active=false;this.initialFeet=feet?[feet[0].clone(),feet[1].clone()]:undefined;}
   update(position:Vec3,yaw:number,distance:number,stride:number,shape:{halfWidth:number;lift:number;stance:number}={halfWidth:.17,lift:.075,stance:.55},direction?:Vec3){
+    // With no travel, keep the in-flight target; a zero direction would teleport the receiving shoe.
+    if(this.active&&distance===0)return false;
     const local=(side:number,forward:number)=>new Vec3(position.x+Math.cos(yaw)*side+(direction?.x??Math.sin(yaw))*forward,.11,position.z-Math.sin(yaw)*side+(direction?.z??Math.cos(yaw))*forward);
     if(!this.active){const seeded=!!this.initialFeet;this.yaws=[yaw,yaw];this.phase=this.initialFeet?0:.25;this.feet=this.initialFeet??[local(-shape.halfWidth,.04),local(shape.halfWidth,.04)];this.initialFeet=undefined;this.planted=[true,true];this.active=true;if(seeded&&distance===0)return false;}
     this.phase=(this.phase+distance/stride)%1;

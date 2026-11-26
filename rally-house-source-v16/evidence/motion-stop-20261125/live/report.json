@@ -1,0 +1,34 @@
+{
+  "engine": "chromium",
+  "environment": "Desktop browser; mobile viewport/touch emulation only.",
+  "errors": [],
+  "layouts": [
+    {
+      "width": 640,
+      "height": 240,
+      "rect": {
+        "x": 160,
+        "y": 12,
+        "width": 320,
+        "height": 216
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "rect": {
+        "x": 16,
+        "y": 216,
+        "width": 288,
+        "height": 320
+      }
+    }
+  ],
+  "contacts": {
+    "returns": 2,
+    "lobs": 1,
+    "lastShot": "drive"
+  },
+  "returnedToClub": true,
+  "passed": true
+}

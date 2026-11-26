@@ -35,3 +35,12 @@ for(const hz of [30,60,120])for(const direction of [-1,1]){
 }
 assert(report.maxLegScale<1.08,'Recovery cannot create a rubbery leg');
 assert(report.anchored>50&&report.airborne>50,'Running shots must actually step, not slide');console.log(JSON.stringify(report));
+
+// Releasing movement mid-swing must not retarget an airborne shoe from a zero direction vector.
+for(const hz of [30,60,120])for(const side of [-1,1]){
+ const c=make(),dest=new Vec3(side*3,0,4);c.steerOnCourt(dest,facing);for(let i=0;i<Math.round(hz*.25);i++)c.update(1/hz);
+ c.triggerShot(side>0?'swingForehand':'swingBackhand',facing);for(let i=0;i<Math.round(hz*.13);i++){c.steerOnCourt(dest,facing);c.update(1/hz);}
+ const before=c.analysisPose();c.clearCourtMove();c.update(1/hz);const after=c.analysisPose();
+ for(const leg of ['L','R'])assert(Vec3.sub(before['foot'+leg],after['foot'+leg]).len()<1e-6,'Stopping travel must preserve the current recovery-step target');
+}
+console.log('Running-shot movement release preserves both shoes at 30/60/120 Hz.');
