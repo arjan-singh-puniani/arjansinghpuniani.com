@@ -730,7 +730,7 @@ export class Game {
         }
         this.startChampionship(opponent);
     }
-    availableChampionshipOpponent() { return ['leo', 'mika', 'coach', 'nia'].map(id => this.byId(id)).find(c => c && championshipOpponentFor(c.id) && !this.activities.busy(c.id)); }
+    availableChampionshipOpponent() { return ['leo', 'mika', 'coach', 'nia'].map(id => this.byId(id)).find(c => c && championshipOpponentFor(c.id) && !this.activities.busy(c.id, false)); }
     createInteractiveMatch(opponent, profile) {
         return new InteractiveMatchSystem(this.player, opponent, profile, this.matchInput, {
             onHit: (quality, side, direction, speed, shot) => this.playChampionshipHit(quality, side, direction, speed, shot),
@@ -1688,6 +1688,17 @@ export class Game {
     routes = new Map();
     waitingForPlace = new Map();
     startActivity(kind, ids, resource, targets, detail = '') {
+        // Optional solo routines yield immediately to tennis and direct player invitations.
+        if (ids.includes('player') || resource === 'court') {
+            const blockers = this.activities.active.filter(a => a.resource === resource || a.participants.some(id => ids.includes(id)));
+            if (blockers.some(a => !a.interruptible))
+                return null;
+            for (const a of blockers) {
+                this.activities.cancel(a, 'Quiet routine yielded to an invitation.');
+                this.releaseActivity(a);
+                this.telemetry.interruptions++;
+            }
+        }
         // Reject unavailable invitations before routing; the director retries during live rallies.
         if (this.activities.reserved(resource) || ids.some(id => this.activities.busy(id)))
             return null;
@@ -1747,7 +1758,7 @@ export class Game {
         }
         this.routes.delete(a.id);
         if (a.kind !== 'championship')
-            this.lessonActive = false;
+            this.lessonActive = this.activities.active.some(active => active.kind === 'lesson');
     }
     cancelActivity(a, retry = false) { if (a.kind === 'lesson') {
         this.traceCoaching('cancelled', { id: a.id, retry, phase: a.phase, seconds: a.phaseTime, positions: a.participants.map(id => ({ id, position: this.actor(id).position, path: this.actor(id).path, index: this.actor(id).pathIndex })) });
@@ -2022,8 +2033,9 @@ export class Game {
             this.everyday.failed(scene);
             return null;
         }
+        a.interruptible = scene.family === 'background';
         for (const id of scene.people)
-            this.actor(id).racketStowed = !['grip', 'gear-advice', 'small-win', 'counting'].includes(scene.id);
+            this.actor(id).racketStowed = !['grip', 'gear-advice', 'small-win', 'counting', 'background-strings'].includes(scene.id);
         this.lifeRuns.set(a.id, { scene, id: this.everyday.started(scene), beat: -1, age: 0, pause: 0, matchId: this.history.matches[0]?.id, objectId: object?.id, why: this.mind.chosen?.scene === scene.id ? Object.entries(this.mind.chosen.factors).filter(([, v]) => v > .08).sort((a, b) => b[1] - a[1]).slice(0, 4).map(([k]) => k).join(', ') : 'An authored opportunity' });
         return a;
     }
@@ -2105,7 +2117,7 @@ export class Game {
     }
     interruptEveryday(a, cause) {
         const run = this.lifeRuns.get(a.id);
-        if (!run || run.interrupted)
+        if (!run || run.interrupted || run.scene.family === 'background')
             return;
         run.pause = 4;
         run.interrupted = cause;
@@ -2466,8 +2478,13 @@ export class Game {
             if ((!rematch || rematch.notBefore <= this.absoluteMinute || this.history.intentions.some(i => i.id === 'test-cue')) && this.mind.challenge('mika', this.relations.getBetween('mika', 'leo').rivalry) > .68 && this.mind.challenge('leo', this.relations.getBetween('mika', 'leo').rivalry) > .68)
                 this.startMatch();
         }
-        if (!this.lifeRuns.size) {
+        if (![...this.lifeRuns.values()].some(run => run.scene.family !== 'background')) {
             const context = this.sceneContext(), scene = this.everyday.choose(this.lifeContext(), this.grammar.compose(this.mind, context), scenes => this.mind.rank(scenes, context).map(v => v.s));
+            if (scene)
+                this.startEveryday(scene);
+        }
+        if (this.lifeRuns.size < 2 && !this.queuedLesson && !this.queuedChampionship && ![...this.lifeRuns.values()].some(run => run.scene.family === 'background')) {
+            const scene = this.everyday.background(this.lifeContext(), this.sceneContext().available);
             if (scene)
                 this.startEveryday(scene);
         }

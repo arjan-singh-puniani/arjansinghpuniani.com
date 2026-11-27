@@ -53,11 +53,27 @@ export class EverydayLife {
     const recent=this.history.slice(0,3);
     return this.scenes(c).filter(s=>s.people.every(id=>c.free.has(id))&&(this.cooldowns[s.id]??0)<=this.time).map(s=>({s,score:20-(this.counts[s.id]??0)*7-recent.filter(h=>h.people.some(id=>s.people.includes(id))).length*3+(s.id==='cold-tea'||s.id==='score-talk'?22:0)+(s.id==='rain'?10:0)+(s.id==='closing'?15:0)+s.people.reduce((sum,id)=>sum+(this.history.slice(0,5).some(h=>h.people.includes(id))?0:5),0)})).sort((a,b)=>b.score-a.score||a.s.id.localeCompare(b.s.id))[0]?.s??null;
   }
-  started(scene:LifeScene){this.next=this.time+32;return `life-${++this.sequence}`;}
-  failed(scene:LifeScene){this.cooldowns[scene.id]=this.time+25;this.next=Math.max(this.next,this.time+6);}
+  background(c:LifeContext,available:(s:LifeScene)=>boolean):LifeScene|null{
+    if(this.time<(this.cooldowns['background-slot']??8)||c.minute<510||c.minute>=1250)return null;
+    const scenes:LifeScene[]=[
+      {id:'background-cups',title:'Barbara takes a quiet tea break',people:['nia'],place:'cafe',motive:'rest',beats:[{seconds:5,poses:{nia:'watch'},gestures:{nia:'offer'},prop:'cup'},{seconds:7,poses:{nia:'drink'},prop:'cup'},{seconds:4,poses:{nia:'watch'},gestures:{nia:'nod'}}],memory:'Barbara took a short tea break while the club carried on.'},
+      {id:'background-notes',title:'Contessa reviews her practice notes',people:['coach'],place:'cafeTable',motive:'reflect',beats:[{seconds:7,poses:{coach:'watch'},gestures:{coach:'inspect'},prop:'notebook'},{seconds:4,poses:{coach:'watch'},gestures:{coach:'think'}},{seconds:5,poses:{coach:'watch'},gestures:{coach:'inspect'},prop:'notebook'}],memory:'Contessa reviewed her notes between sessions.'},
+      {id:'background-stretch',title:'Lucresia loosens up between rallies',people:['mika'],place:'warmup',motive:'practice',beats:[{seconds:6,poses:{mika:'stretch'}},{seconds:4,poses:{mika:'watch'},gestures:{mika:'think'}},{seconds:6,poses:{mika:'stretch'}}],memory:'Lucresia made time to loosen up before her next rally.'},
+      {id:'background-strings',title:'Leo checks his racket',people:['leo'],place:'stringing',motive:'gear',beats:[{seconds:7,poses:{leo:'watch'},gestures:{leo:'inspect'}},{seconds:4,poses:{leo:'coachExplain'},gestures:{leo:'inspect'}},{seconds:5,poses:{leo:'watch'},gestures:{leo:'nod'}}],memory:'Leo checked his racket between games.'}
+    ];
+    const scene=scenes.filter(s=>c.free.has(s.people[0])&&(this.cooldowns[s.id]??0)<=this.time&&available(s)).sort((a,b)=>(this.counts[a.id]??0)-(this.counts[b.id]??0))[0];
+    return scene?{...scene,family:'background',minInterval:120}:null;
+  }
+  started(scene:LifeScene){
+    // Quiet routines have their own pacing and never postpone a conversation or match follow-up.
+    if(scene.family==='background'){this.cooldowns['background-slot']=this.time+40;this.cooldowns[scene.id]=this.time+120;}
+    else this.next=this.time+32;
+    return `life-${++this.sequence}`;
+  }
+  failed(scene:LifeScene){this.cooldowns[scene.id]=this.time+25;if(scene.family!=='background')this.next=Math.max(this.next,this.time+6);}
   completed(scene:LifeScene,id:string,day:number,matchId?:string,interruptedBy?:string){
     if(this.history.some(h=>h.id===id))return false;
-    this.counts[scene.id]=(this.counts[scene.id]??0)+1;this.cooldowns[scene.id]=this.time+(scene.minInterval??220);this.next=Math.max(this.next,this.time+12);
+    this.counts[scene.id]=(this.counts[scene.id]??0)+1;this.cooldowns[scene.id]=this.time+(scene.minInterval??220);if(scene.family!=='background')this.next=Math.max(this.next,this.time+12);
     this.pending=this.pending.filter(p=>p!==scene.id);if(scene.followup&&!this.pending.includes(scene.followup))this.pending.push(scene.followup);
     if(scene.id==='score-talk'&&matchId)this.lastMatch=matchId;
     this.history.unshift({id,scene:scene.id,title:scene.title,people:[...scene.people],day,at:this.time,memory:scene.memory,interruptedBy,place:scene.place,motif:scene.motif??scene.id});this.history=this.history.slice(0,32);return true;

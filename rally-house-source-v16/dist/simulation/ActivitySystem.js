@@ -3,8 +3,9 @@ export class ActivitySystem {
     active = [];
     history = [];
     sequence = 0;
-    busy(id) { return this.active.some(a => a.participants.includes(id)); }
-    reserved(resource) { return this.active.some(a => a.resource === resource); }
+    // Autonomy reserves all activity; player invitations can ignore optional routines.
+    busy(id, includeInterruptible = true) { return this.active.some(a => (includeInterruptible || !a.interruptible) && a.participants.includes(id)); }
+    reserved(resource, includeInterruptible = true) { return this.active.some(a => (includeInterruptible || !a.interruptible) && a.resource === resource); }
     begin(kind, participants, resource, detail = '') {
         if (!participants.length || new Set(participants).size !== participants.length || !resource)
             return null;

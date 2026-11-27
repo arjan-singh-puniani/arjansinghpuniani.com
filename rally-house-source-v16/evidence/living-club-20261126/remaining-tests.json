@@ -1,0 +1,344 @@
+[
+  {
+    "command": "node tests/story-presence.mjs",
+    "status": 0,
+    "output": "Actual match creates a witnessed three-person conversation once; completed bench friction earns its later reconciliation.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/championship-controller.mjs",
+    "status": 0,
+    "output": "ChampionshipController tests passed.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/studio-polish.mjs",
+    "status": 0,
+    "output": "Studio regressions pass: camera restoration, movement at 3 rates, 4 competitors, contact authority, 180 safe flights, lighting, gaze cleanup, decor.\nGame-level tactile transaction, spectator tracking, legal-bounce scoring and movement-through-stroke pass.\nBall feel passes: springier bounce, face-aligned compression, string recovery, bounded frame-rate-independent comet and reduced motion.\nPhone framing PASS: readable court width and visible baselines across nine viewports.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/contact-interception.mjs",
+    "status": 0,
+    "output": "club/30 Hz: 34 contacts; nearest approach 0.580 in front\nmatch/30 Hz: 32 contacts; nearest approach 0.346 in front\nclub/60 Hz: 34 contacts; nearest approach 0.580 in front\nmatch/60 Hz: 31 contacts; nearest approach 0.439 in front\nclub/120 Hz: 34 contacts; nearest approach 0.580 in front\nmatch/120 Hz: 31 contacts; nearest approach 0.421 in front\nMoving return stays in front and releases once.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/world-interface.mjs",
+    "status": 0,
+    "output": "World interface anchor, responsive bounds, authoritative card state, reservations and object history pass.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/arcade-feel.mjs",
+    "status": 0,
+    "output": "Arcade movement, reversal, release, early/late contact at 3 rates, shot aiming and club restoration PASS [ 2.065902397980648, 2.065902397980648, 2.065902397980648 ]\nRally pressure PASS: 24 simulated points, forgiving openings, open-court placement, tracking reward. { stationaryContacts: 122, trackingContacts: 321 }\nServe placement preview, buffered aim, toss lock, release and lifecycle cleanup PASS\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/player-placement.mjs",
+    "status": 0,
+    "output": "Player placement is independent of opponent profile: 300 matched scenarios PASS\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/tactical-slice.mjs",
+    "status": 0,
+    "output": "Tactical slice PASS: buffer lifecycle, 54 flights, three live lob contacts, four real point traces [\n  {\n    id: 'leo',\n    shot: 'drive',\n    contacts: 33,\n    result: null,\n    minDepth: 5.4\n  },\n  {\n    id: 'leo',\n    shot: 'lob',\n    contacts: 10,\n    result: { winner: 'player', reason: 'wide' },\n    minDepth: 5.4\n  },\n  {\n    id: 'mika',\n    shot: 'drive',\n    contacts: 28,\n    result: { winner: 'player', reason: 'wide' },\n    minDepth: 6.65\n  },\n  {\n    id: 'mika',\n    shot: 'lob',\n    contacts: 28,\n    result: null,\n    minDepth: 6.65\n  }\n]\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/championship-memory.mjs",
+    "status": 0,
+    "output": "Championship memory PASS: three opponents, idempotency, real practice, reservations, reload, migration and invalid-save rejection\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/point-reaction.mjs",
+    "status": 0,
+    "output": "Point sequence PASS: visible reaction, no input/ball activity during results, deliberate baseline recovery, unchanged next-point duration and exit cleanup. [{\"hz\":30,\"winner\":\"player\",\"reaction\":\"reactMiss\",\"reactionFrames\":7,\"travel\":3},{\"hz\":30,\"winner\":\"player\",\"reaction\":\"celebrate\",\"reactionFrames\":7,\"travel\":3},{\"hz\":30,\"winner\":\"opponent\",\"reaction\":\"reactMiss\",\"reactionFrames\":7,\"travel\":3},{\"hz\":30,\"winner\":\"opponent\",\"reaction\":\"celebrate\",\"reactionFrames\":7,\"travel\":3},{\"hz\":60,\"winner\":\"player\",\"reaction\":\"reactMiss\",\"reactionFrames\":15,\"travel\":3},{\"hz\":60,\"winner\":\"player\",\"reaction\":\"celebrate\",\"reactionFrames\":15,\"travel\":3},{\"hz\":60,\"winner\":\"opponent\",\"reaction\":\"reactMiss\",\"reactionFrames\":15,\"travel\":3},{\"hz\":60,\"winner\":\"opponent\",\"reaction\":\"celebrate\",\"reactionFrames\":15,\"travel\":3},{\"hz\":120,\"winner\":\"player\",\"reaction\":\"reactMiss\",\"reactionFrames\":30,\"travel\":3},{\"hz\":120,\"winner\":\"player\",\"reaction\":\"celebrate\",\"reactionFrames\":30,\"travel\":3},{\"hz\":120,\"winner\":\"opponent\",\"reaction\":\"reactMiss\",\"reactionFrames\":30,\"travel\":3},{\"hz\":120,\"winner\":\"opponent\",\"reaction\":\"celebrate\",\"reactionFrames\":30,\"travel\":3}]\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/experience.mjs",
+    "status": 0,
+    "output": "Experience regressions PASS: 144 routes, net locomotion at 3 rates, thin obstacles, bell reach 0.000, real receipts, final-point/rematch/save causality and 9 exact landing forecasts.\nAnticipatory swing cue and delayed input pass at three rates without pre-bounce contact.\nSurface reach releases smoothly and clears its transient target.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/impact-feel.mjs",
+    "status": 0,
+    "output": "Impact feel PASS: 12 physical contacts, live steering during pose hold, exact release and cleanup, 9 peak camera framings/restores, 36 audio envelopes\nAudio lifecycle PASS: rejected resume and page-exit shutdown are handled without retaining a context.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/court-sound.mjs",
+    "status": 0,
+    "output": "Court sound PASS: real player/opponent footfalls, floor-specific material, pause/mute, sparse original reactions, caption fallback and point ownership.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/object-identity.mjs",
+    "status": 0,
+    "output": "Object identity PASS: 43 real travel/action/completion flows; 240 full, cancelled and reduced clock cycles; water reach 0.000; stable reload and malformed-save rejection.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/art-geometry.mjs",
+    "status": 0,
+    "output": "Art geometry PASS: bounded non-degenerate foliage and sealed skinned joint rings\nHuman garment topology PASS: four closed shoulder caps, one cuff opening per sleeve.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/racket-equipment.mjs",
+    "status": 0,
+    "output": "{\"mains\":16,\"crosses\":19,\"draws\":9,\"triangles\":9836,\"staticRackets\":13,\"placedRackets\":3,\"gripSamples\":1050,\"maxGripError\":1.622391337391565e-7}\nRacket equipment PASS: shared frame/livery, anchored 16\u00d719 bed, impact flex, both render passes, Build previews and live contact ownership.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/taylor-appearance.mjs",
+    "status": 0,
+    "output": "Taylor appearance PASS: geometry, front-facing ear inlays, bounded tail, planted feet, animation timing and hand/racket ownership at 3 rates.\nTaylor sculpt PASS: bounded finger geometry and immediate contact/prop/reach pose restoration.\nTaylor likeness PASS: clipped pupil apertures and distinct resting/social expressions.\n{\"maximumStripeSurfaceGap\":0.004869082527082202}\nTaylor attachment PASS: stripes follow actual fabric geometry.\nTaylor reference stance PASS: shared GPU/analysis pose at three update rates and three rotations, rigid paw volumes, immediate match release.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/performance-lab.mjs",
+    "status": 0,
+    "output": "Performance Lab PASS: synchronized poses/metrics/events, three real-solver demos, gap abstention, contact authority, bounded capture, snapshot isolation, gait metrics and persistent live simulation.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/serve-snapshots.mjs",
+    "status": 0,
+    "output": "Serve snapshots PASS: real complete serves, exact contact, chronological phases, gap abstention and no invented phases.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/rig-registration.mjs",
+    "status": 0,
+    "output": "{\"surfaceSamples\":324,\"overlaySamples\":1002,\"maxJointRegistrationError\":3.989569650082806e-7,\"maxLimbCentreError\":0.022783940003601576}\nRig registration PASS: actual GPU joint-ring centres between samples and at recorded frames, bounded limb deformation and every default replay annotation registered to an unchanged opaque avatar.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/replay-smoothness.mjs",
+    "status": 0,
+    "output": "{\"interpolatedSamples\":3780,\"maxGPUJointRegistrationError\":5.462329374142624e-7}\nSmooth replay PASS: continuous shared pose, exact observed events, GPU registration for both avatars, source isolation, fractional mesh-cache refresh, shortest rotations, truthful gaps and event history.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/replay-deformation.mjs",
+    "status": 0,
+    "output": "{\"samples\":210600,\"maxJump\":3.644191463555129e-7}\n{\"rigidTorsoLoads\":54}\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/phone-capture.mjs",
+    "status": 0,
+    "output": "Phone capture PASS: both selected avatars at three rates, exact hand attachment and anchored lens, detached real pose samples, truthful encoder fallback, cancellation in four phases, late recorder isolation and complete camera restoration.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/taylor-body.mjs",
+    "status": 0,
+    "output": "{\"jointSurfaceChecks\":7560,\"maxJointSurfaceError\":2.46162847914503e-7,\"waistHalfWidth\":0.18816949427127838,\"hipHalfWidth\":0.261223703622818,\"ribcageHalfWidth\":0.24459393322467804}\nTaylor body PASS: bounded athletic silhouette, normalized surfaces and real GPU limb rings registered throughout locomotion, tennis and phone reach at three rates.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/taylor-adult.mjs",
+    "status": 0,
+    "output": "{\"adultHeadBodyRatio\":6.5284979990826475,\"limbLengthChecks\":43128,\"maxStretch\":1.0035944334153835,\"maxContactError\":1.9809057570879613e-8}\nAdult Taylor PASS: rendered adult proportions, stable anatomical chains, planted-foot-compatible transitions, exact world contact and closed contoured footwear.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/taylor-human.mjs",
+    "status": 0,
+    "output": "{\"headTriangles\":16552,\"featureChecks\":15912}\nHuman Taylor PASS: bounded facial surfaces, actual eye/lid/lip clearance through blinking and speech, human default, head attachment and registered clothing/skin across seven states and three rates.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/arm-anatomy.mjs",
+    "status": 0,
+    "output": "{\"restChecks\":24,\"frames\":4200,\"maxElbowTravel\":0.3004213101484555,\"maxFlexDegrees\":153.88921130390725}\nHuman arm anatomy PASS: same-side relaxed wrists, descending arm chains, bounded flexion and continuous elbow motion at three rates.\nStroke release PASS: toss to lowered-arm recovery, opposite shoulder finishes, two-hand backhand and registered racket axes across the cast.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/stroke-sequence.mjs",
+    "status": 0,
+    "output": "{\"cases\":108,\"minContinuity\":0.9935054873618114,\"maxContactError\":1.974409066875915e-8,\"replayPaletteError\":0}\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/serve-sequence.mjs",
+    "status": 0,
+    "output": "{\"cases\":72,\"minContinuity\":0.9991590913126208,\"maxContactError\":1.1269395900938164e-8,\"minTransfer\":0.23125639704400294,\"minRecovery\":0.41294320927598005,\"maxReplayError\":3.188872858294072e-16,\"minImpactBend\":18.566517404355977,\"maxImpactBend\":27.499207563330998,\"minTossRise\":0.045152485851498,\"minLoadBend\":80.57760433189617,\"maxLoadBend\":116.51083842508106,\"maxLoadedElbowHeight\":0.047122758835235645,\"minDropContinuity\":0.9989845643710592}\nServe PASS: palm release, independent descending toss, leg drive into exact contact, continuous wrist, recovery step and faithful replay.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/serve-ballistics.mjs",
+    "status": 0,
+    "output": "{\"cases\":36,\"maxContactGap\":0.04949276678975647,\"minSeparation\":0.2399841632743935,\"interruptedServeCases\":6}\nServe ballistics PASS: constant gravity, detached release, exact event order, immediate launch, recovery and interruption safety in both tennis owners at 30/60/120 Hz.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/serve-head-clearance.mjs",
+    "status": 0,
+    "output": "{\"samples\":144,\"headFaces\":439056,\"lineTests\":14488848,\"arjanFaceSamples\":172512}\nServe head clearance PASS: actual deformed face/hair surfaces clear the shaft and racket-rim centrelines through loading.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/championship-detail.mjs",
+    "status": 0,
+    "output": "{\"actors\":6,\"plantedSamples\":1046,\"maxPivotDrift\":0,\"netDraws\":4}\nWorld continuity PASS: permanent court/net, unchanged identities/transforms and lighting, reversible camera-only fixture fade, and registered stroke support feet.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/stroke-footwork.mjs",
+    "status": 0,
+    "output": "{\"samples\":1477,\"maxLift\":0.10135180029131892,\"maxTurn\":0.5,\"maxToeDrift\":6.206335383118183e-17,\"minShoeY\":0.004018372723127917}\nStroke footwork PASS: flat loading, toe pivots, heel release, grounded recovery audio, rendered shoes, exact racket contact and ready return across the cast at 30/60/120 Hz.\n{\"readyTransitions\":36,\"maxReadyJump\":4.0785377256513355e-8,\"maxReadySkinJump\":3.129243850708008e-7}\n{\"movingStops\":54,\"maxStopJump\":6.813726027331082e-8,\"maxRestartJump\":5.563384004694087e-8}\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/court-footwork.mjs",
+    "status": 0,
+    "output": "{\"cases\":72,\"maxVerticalSpeed\":2.29727681889905,\"maxHeadRange\":0.04738668753499109,\"anchoredChecks\":2616}\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/motion-direction.mjs",
+    "status": 0,
+    "output": "{\"headSteps\":{\"swingForehand\":0.0673523617595706,\"swingBackhand\":0.06259690670694473},\"anchored\":156,\"airborne\":272,\"maxLegScale\":1.0339399023856466}\n{\"cases\":48,\"maxReleaseStep\":0.016208635041573854,\"maxRestartStep\":0.06340247300849428}\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/taylor-tailoring.mjs",
+    "status": 0,
+    "output": "{\"garmentTriangles\":6752,\"necklineChecks\":34560,\"maxNecklineGap\":0.02079113347438824}\nHuman tailoring PASS: actual emitted surfaces, normals, weights and moving shoulder/neckline registration.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/athletic-cast.mjs",
+    "status": 0,
+    "output": "Ready stance PASS: grounded shoes, uncrossed grip, free-hand support, shoulder slope and restrained weight transfer across the cast.\n{\"actors\":6,\"poses\":6480,\"maxStretch\":1.0000000000000013,\"maxContactError\":1.0281015682426615e-8,\"minStrokePelvis\":0.8046215028724946,\"identities\":6}\nAthletic cast PASS: adult proportions, distinct identities, bounded geometry, shared skin rig, anatomical motion and exact tennis contact.\nRest stance PASS: hands at the waist, open elbows, character-specific weight distribution, grounded shoes, return after interactions and continuous walking departure.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/arjan-likeness.mjs",
+    "status": 0,
+    "output": "{\"surfaces\":19,\"featureChecks\":9369}\nArjan head regression PASS: bounded cached sculpt, expression clearance, registered kit and finite animation at 30/60/120 Hz; other cast retains its own surfaces. Perceptual likeness requires human review.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/arjan-shorts.mjs",
+    "status": 0,
+    "output": "{\"triangles\":768,\"openings\":3,\"frames\":4389,\"maxSeamGap\":7.850462293418876e-17,\"clearancePoses\":63,\"waistbandPoses\":91}\nConnected shorts PASS: one manifold garment, three openings, above-knee hems, thigh/calf clearance and closed moving seams at 30/60/120 Hz and in interpolated replay.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/arjan-upper-body.mjs",
+    "status": 0,
+    "output": "{\"poses\":21,\"sourceVertices\":2120,\"deformedSamples\":63420}\nArjan upper body PASS: connected jersey, stable hem weights, real loaded geometry and replay, unchanged approved poses/protected parts, atomic validation failures.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/arjan-authored-head.mjs",
+    "status": 0,
+    "output": "Arjan authored head PASS: 18 actual consumer poses, protected body/cast, facial channels, replay, atomic download/decode failures.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/arjan-neck-attachment.mjs",
+    "status": 0,
+    "output": "{\"poses\":36,\"boundarySamples\":780,\"maxBoundaryToCollarDistance\":0.022069894158185544,\"replayChecks\":3,\"lapelChecks\":1521,\"maxLapelGap\":0.007520858268834512}\nArjan neck PASS: actual shirt contour, native moving attachment, preserved poses and continuous replay.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/confident-gait.mjs",
+    "status": 0,
+    "output": "{\"actors\":6,\"rates\":[30,60,120],\"plantedPairs\":5128,\"maxSlide\":0,\"maxElbowOut\":0.028901315662508552,\"maxStopHandStep\":0.21550754699771466,\"cadence\":[150,180]}\nConfident gait PASS: grounded support, lower foot clearance, travel-driven cadence, relaxed arms and continuous adult starts/stops.\nMatch approach gait PASS: continuous body, planted supports, existing jog pose and bounded cadence.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/arjan-grounded-stance.mjs",
+    "status": 0,
+    "output": "{\"frames\":11970,\"maxHandStep\":0.0082406319037181,\"walks\":{\"taylor\":{\"lift\":0.0449971165068828,\"width\":0.2707855640862921,\"stepInterval\":0.3944444444444445,\"distance\":10.489617394040259},\"arjan\":{\"lift\":0.03199998135258607,\"width\":0.3379517709981907,\"stepInterval\":0.4185185185185185,\"distance\":10.489617394040259}}}\nArjan stance PASS: level hips and shoulders, balanced feet, continuous rest variations and immediate movement.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/club-rest-arms.mjs",
+    "status": 0,
+    "output": "{\"checks\":12,\"maxForearmError\":1.193633830665064e-8,\"minElbowDrop\":0.14098635797101,\"maxHandSkirtDepth\":0,\"handSkirtSamples\":72954}\nClub rest PASS: native wrist lengths, lowered elbows, hip contact, original weight shift and identical walking pose.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/surface-realism.mjs",
+    "status": 0,
+    "output": "{\"kneeChecks\":21600,\"maxKneeGap\":0,\"trainerChecks\":1076,\"masculineTriangles\":6016}\n{\"courtLength\":12.8,\"courtDoublesWidth\":5.907278081615482,\"racketHeadWidth\":0.3729499876499176,\"racketHeadHeight\":0.5051837861537933}\nSurface realism PASS: round pupils, closed facial variant, continuous knees, registered trainers, regulation court ratios and proportional racket head.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/arrival.mjs",
+    "status": 0,
+    "output": "Arrival: opponent availability, court preservation, mode ownership, first framing, saved pause and exact approach-speed restoration pass.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/avatar-switch-lockout.mjs",
+    "status": 0,
+    "output": "Avatar lockout: 16 phase/intent cases, partner cleanup, court ownership, protected modes and subsequent conversation pass.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/court-entry.mjs",
+    "status": 0,
+    "output": "Court access PASS: 36 consecutive-opponent entries at 30/60/120 Hz, both baseline routes, net/furniture clearance and outside social circulation.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/connections.mjs",
+    "status": 0,
+    "output": "Connections PASS: per-person unlocks, interrupted hugs, double-booking, two completed hugs, saved progress, validation, bounded arms and grounded feet.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/hug-contact.mjs",
+    "status": 0,
+    "output": "{\"checks\":24,\"maxPalmGap\":0.0009755734584916453,\"maxStep\":0.059564391899264935,\"minHeadGap\":0.3404161350644919}\nHug contact PASS: real shirt landmarks, native wrists, reciprocal arms, fixed feet, smooth release and completed social activity.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/decor-use.mjs",
+    "status": 0,
+    "output": "Decor use PASS: real placed lighting, full-shade picking, persistent watering/cooldown, safe cancellation, table invitations/favorites, bench spectating and invalid-state rejection.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/body-clearance.mjs",
+    "status": 0,
+    "output": "{\"checks\":854,\"rollChecks\":123,\"maxRollStep\":0.00045799548164721256,\"hairChecks\":596,\"minHairGap\":0.010219394026870138,\"failures\":[],\"failureCount\":0}\nBody clearance PASS: actual skinned torso intersections and scalp/face separation through ordinary social poses.\n{\"seatChecks\":420,\"maxSeatStep\":0.08207292035386084}\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/authored-athlete.mjs",
+    "status": 0,
+    "output": "Continuous jersey PASS: one surface, four closed boundary loops, manifold seams.\n{\"neckSamples\":2714}\n{\"surface\":\"sleeves\",\"arm\":\"upperArmL\",\"radius95\":0.06323056209294364,\"samples\":2448}\n{\"surface\":\"sleeves\",\"arm\":\"foreArmL\",\"radius95\":0.050937951317313296,\"samples\":1642}\n{\"surface\":\"sleeves\",\"arm\":\"upperArmR\",\"radius95\":0.06339529476200653,\"samples\":2485}\n{\"surface\":\"sleeves\",\"arm\":\"foreArmR\",\"radius95\":0.050956226687602815,\"samples\":1615}\n{\"shoulderRollSamples\":66,\"maxShoulderRollStep\":0.0001817332987498217}\n{\"maxRestTorsoError\":9.297784231421247e-8,\"registeredNeck\":{\"x\":1.0764837929000149e-17,\"y\":2.0239413500000003,\"z\":-0.0022391999999999967}}\n{\"shoulderRatio\":0.9760892904599162}\n{\"wristLengthChecks\":2880,\"maxWristScale\":1.0000006550569462}\n{\"soleFloorChecks\":661824,\"maxFloorPenetration\":0}\n{\"maxAuthoredContactError\":1.9809057570879613e-8}\n{\"assetTriangles\":35834,\"samples\":42,\"maxGripGap\":1.665430808173112e-7,\"minSole\":0.0008214089926851624,\"minForearmVolume\":0.34611206128925126}\n{\"fingerSamples\":2250,\"openRadius\":0.1013285654926816,\"closedRadius\":0.0392271468162634,\"wristDeflection\":0.4685876806497379}\n{\"readyArmChecks\":1080,\"strokeArmChecks\":2712}\n{\"palmChecks\":84,\"maxPalmGripShift\":0.0009691736363346435}\n{\"minFaceClearance\":1.2066793911730915}\n{\"skirtHem\":1.1139721870422363,\"shortsHem\":1.1854853630065918}\n{\"maxSeatedGazeTranslation\":0.006524167248953288}\n{\"maxDrapeStep\":0.12546464347596925,\"seatedReplay\":true,\"crouchReplay\":true}\nThree distinct authored adult cast looks retain their body, eye centers, seated pose, contact and capture.\n{\"maxBlink\":1,\"maxBlinkStep\":0.12439814814813799}\n{\"gazeLead\":0.27393872222439875,\"gazeReverse\":-0.3,\"replayedGaze\":-0.01303063888780065}\n{\"transitionChecks\":450,\"zeroTimeJump\":5.933936338141144e-9,\"maxHandRelativeStep\":0.0495338409693113}\nAuthored athlete loader, actual Character meshes, shared replay palette and facial interpolation PASS.\n{\"backhandGripChecks\":60,\"minFingerGap\":0.01971450070515461}\nLoaded backhand: front sleeve and shoulder panels remain separated at 30/60/120 Hz.\n{\"walkSamples\":5040,\"minWalkFlex\":0.3496655347011317,\"maxWalkFlex\":0.5539865301794122,\"maxHeadBob\":0.06305241416925256}\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/garment-deformation.mjs",
+    "status": 0,
+    "output": "{\"maxCrease95\":17.961806838066593}\nGarment deformation PASS: rounded shoulder and sleeve transitions through rest and strokes across the adult women.\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/jersey-contact.mjs",
+    "status": 0,
+    "output": "{\"jerseyPoses\":84,\"maxResidualDepth\":0.009319114463367055}\n",
+    "error": ""
+  },
+  {
+    "command": "node tests/rigid-interpolation.mjs",
+    "status": 0,
+    "output": "{\"rigidInterpolationSamples\":448,\"halfTurn\":true,\"shortestArc\":true,\"parallelHint\":true}\n",
+    "error": ""
+  }
+]

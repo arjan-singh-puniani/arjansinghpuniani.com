@@ -1,0 +1,38 @@
+[
+  {
+    "name": "living-club",
+    "status": 0,
+    "output": "{\"overlapSeconds\":76.15,\"maxConcurrentLifeScenes\":2,\"history\":[\"background-notes\",\"after-activity-6-leo\",\"background-cups\",\"watch-court-coach\",\"counting\",\"background-notes\",\"rehearse-leo\",\"background-cups\"]}\nAll four quiet routines travel, perform and complete.\n",
+    "error": ""
+  },
+  {
+    "name": "causality",
+    "status": 0,
+    "output": "\u2713 Travel reserves participants and court; overlapping bookings fail\n\u2713 Completion cannot award a traveling or active activity\n\u2713 Completed activity awards once and releases resources\n\u2713 Interruptions release ownership without invoking consequences\n\u2713 Active activities reset on reload; completed receipts and sequence persist\n\u2713 Selecting a drill neither invents reps nor produces gain\n\u2713 Only eight actual student contacts complete the lesson\n\u2713 Poor completed practice earns no development; good practice earns modest development\n\u2713 Breakthrough needs prior struggle and completed successful practice\n\u2713 First win creates a next-day intention once, persisted through reload\n\u2713 Bench adds affordances; completed visits make it a preferred place\n\u2713 Removal invalidates object history and preference; moving preserves identity\n\u2713 Important first-win memory survives ordinary greetings\n\u2713 v11 schema 4 migrates without altering progress, equipment, or money\n\u2713 Malformed and future saves fail before autosave can replace them\n\u2713 Storage chooses newer fallback over stale IndexedDB\n\u2713 Future IndexedDB save is refused just like future fallback\n\u2713 Navigation refuses unreachable furniture interiors\n\u2713 Concurrent saves keep immutable snapshots and commit in request order\n\u2713 Ambient social planner is not hard-wired to Barbara\n\u2713 Ambient social planner penalizes a repeatedly used pair\n\u2713 Object histories can develop favorites for characters other than Barbara\n22 causal checks passed.\n",
+    "error": ""
+  },
+  {
+    "name": "world-interface",
+    "status": 0,
+    "output": "World interface anchor, responsive bounds, authoritative card state, reservations and object history pass.\n",
+    "error": ""
+  },
+  {
+    "name": "activity-reservation-cost",
+    "status": 0,
+    "output": "Unavailable activities skip navigation; release and unreachable-route behavior preserved.\n",
+    "error": ""
+  },
+  {
+    "name": "avatar-switch-lockout",
+    "status": 0,
+    "output": "Avatar lockout: 16 phase/intent cases, partner cleanup, court ownership, protected modes and subsequent conversation pass.\n",
+    "error": ""
+  },
+  {
+    "name": "decor-use",
+    "status": 0,
+    "output": "Decor use PASS: real placed lighting, full-shade picking, persistent watering/cooldown, safe cancellation, table invitations/favorites, bench spectating and invalid-state rejection.\n",
+    "error": ""
+  }
+]
