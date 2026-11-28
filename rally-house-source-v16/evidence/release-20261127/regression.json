@@ -1,0 +1,32 @@
+[
+  {
+    "name": "living-club",
+    "status": 0,
+    "output": "{\"overlapSeconds\":76.15,\"maxConcurrentLifeScenes\":2,\"history\":[\"background-notes\",\"after-activity-6-leo\",\"background-cups\",\"watch-court-coach\",\"counting\",\"background-notes\",\"rehearse-leo\",\"background-cups\"]}\nAll four quiet routines travel, perform and complete.\n",
+    "error": ""
+  },
+  {
+    "name": "motion-direction",
+    "status": 0,
+    "output": "{\"headSteps\":{\"swingForehand\":0.0673523617595706,\"swingBackhand\":0.06259690670694473},\"anchored\":156,\"airborne\":272,\"maxLegScale\":1.0339399023856466}\n{\"cases\":48,\"maxReleaseStep\":0.016208635041573854,\"maxRestartStep\":0.06340247300849428}\n",
+    "error": ""
+  },
+  {
+    "name": "world-interface",
+    "status": 0,
+    "output": "World interface anchor, responsive bounds, authoritative card state, reservations and object history pass.\n",
+    "error": ""
+  },
+  {
+    "name": "activity-reservation-cost",
+    "status": 0,
+    "output": "Unavailable activities skip navigation; release and unreachable-route behavior preserved.\n",
+    "error": ""
+  },
+  {
+    "name": "avatar-switch-lockout",
+    "status": 0,
+    "output": "Avatar lockout: 16 phase/intent cases, partner cleanup, court ownership, protected modes and subsequent conversation pass.\n",
+    "error": ""
+  }
+]

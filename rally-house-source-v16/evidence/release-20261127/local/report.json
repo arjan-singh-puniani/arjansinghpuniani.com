@@ -1,0 +1,20 @@
+[
+  {
+    "engine": "chromium",
+    "mobile": false,
+    "entry": "deferred iframe",
+    "rallyStarted": true,
+    "overflow": false,
+    "errors": [],
+    "failed": []
+  },
+  {
+    "engine": "webkit",
+    "mobile": true,
+    "entry": "native full page",
+    "rallyStarted": true,
+    "overflow": false,
+    "errors": [],
+    "failed": []
+  }
+]

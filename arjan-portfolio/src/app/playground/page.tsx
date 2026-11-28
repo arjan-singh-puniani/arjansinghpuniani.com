@@ -31,7 +31,7 @@ const cards = [
     description: "A browser tennis game with a clubhouse and a swing analysis view.",
     href: "/playground/rally-house",
     button: "Play Rally House",
-    image: "/rally-house/media/guide-club.webp",
+    image: "/rally-house/media/guide-club-living.webp",
     alt: "Rally House clubhouse beside the tennis court",
     tone: "light",
   },

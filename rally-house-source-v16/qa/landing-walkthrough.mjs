@@ -16,7 +16,7 @@ try{
  async function capture(name,target){
   let callout=null;
   if(target){const boxes=[];for(const control of Array.isArray(target)?target:[target]){await control.waitFor({state:'visible'});const b=await control.boundingBox();assert(b&&b.x>=0&&b.y>=0&&b.x+b.width<=viewport.width&&b.y+b.height<=viewport.height);boxes.push(b);}const x=Math.min(...boxes.map(b=>b.x)),y=Math.min(...boxes.map(b=>b.y)),right=Math.max(...boxes.map(b=>b.x+b.width)),bottom=Math.max(...boxes.map(b=>b.y+b.height));callout={left:(x-5)/viewport.width*100,top:(y-5)/viewport.height*100,width:(right-x+10)/viewport.width*100,height:(bottom-y+10)/viewport.height*100};}
-  const raw=await page.screenshot({path:path.join(out,name+'.png')});const image='guide-'+name+'.webp';await sharp(raw).webp({quality:91}).toFile(path.join(media,image));report.screens[name]={image,...viewport,callout};
+  const raw=await page.screenshot({path:path.join(out,name+'.png')});const image=name==='club'?'guide-club-living.webp':'guide-'+name+'.webp';await sharp(raw).webp({quality:91}).toFile(path.join(media,image));report.screens[name]={image,...viewport,callout};
  }
  await page.waitForTimeout(500);await capture('club');
  await page.locator('#game').focus();await page.keyboard.press('3');
