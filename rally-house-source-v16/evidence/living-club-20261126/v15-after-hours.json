@@ -1,0 +1,93 @@
+{
+  "seconds": 300.00000000000006,
+  "uniqueScenes": 4,
+  "uniquePairs": 1,
+  "uniqueLocations": 3,
+  "idlePercent": 43.083333333333336,
+  "quietPercent": 45,
+  "mostRepeatedBehavior": [
+    "shared-break",
+    1
+  ],
+  "mostRepeatedPair": [
+    "leo|nia",
+    1
+  ],
+  "flags": [],
+  "initiators": {
+    "nia": 2,
+    "coach": 1,
+    "mika": 1
+  },
+  "scenes": {
+    "shared-break": 1,
+    "reflect": 1,
+    "rest": 1,
+    "care": 1
+  },
+  "pairs": {
+    "leo|nia": 1
+  },
+  "places": {
+    "cafeTable": 2,
+    "courtBench": 1,
+    "bonsai": 1
+  },
+  "interruptions": 0,
+  "cancellations": 0,
+  "meaningful": 4,
+  "memoryCount": 5,
+  "favoriteUses": 0,
+  "rituals": 3,
+  "log": [
+    {
+      "at": 36.00000000000003,
+      "day": 1,
+      "minute": 1296.25,
+      "who": [
+        "nia",
+        "leo"
+      ],
+      "what": "Barbara makes time for Leo",
+      "why": "personality, social appetite, opportunity, shared time",
+      "changed": "Barbara invited Leo to a shared break.",
+      "next": "At home here"
+    },
+    {
+      "at": 113.00000000000003,
+      "day": 1,
+      "minute": 1373.75,
+      "who": [
+        "coach"
+      ],
+      "what": "Contessa leaves a little space on the page",
+      "why": "personality, opportunity, energy, ritual",
+      "changed": "Contessa kept her notes short and left room to look up.",
+      "next": "Settling into the day"
+    },
+    {
+      "at": 191.00000000000003,
+      "day": 2,
+      "minute": 11,
+      "who": [
+        "mika"
+      ],
+      "what": "Lucresia takes a real minute",
+      "why": "ritual, opportunity, comfort, time of day",
+      "changed": "Lucresia took an unhurried break.",
+      "next": "Keen to try again"
+    },
+    {
+      "at": 267.00000000000006,
+      "day": 2,
+      "minute": 87,
+      "who": [
+        "nia"
+      ],
+      "what": "Barbara checks the quiet corner",
+      "why": "personality, ritual, opportunity, time of day",
+      "changed": "Barbara tended the bonsai and took a moment to look at it.",
+      "next": "At home here"
+    }
+  ]
+}

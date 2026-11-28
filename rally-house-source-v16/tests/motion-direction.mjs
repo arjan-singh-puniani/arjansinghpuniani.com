@@ -36,11 +36,30 @@ for(const hz of [30,60,120])for(const direction of [-1,1]){
 assert(report.maxLegScale<1.08,'Recovery cannot create a rubbery leg');
 assert(report.anchored>50&&report.airborne>50,'Running shots must actually step, not slide');console.log(JSON.stringify(report));
 
-// Releasing movement mid-swing must not retarget an airborne shoe from a zero direction vector.
-for(const hz of [30,60,120])for(const side of [-1,1]){
+// Stop at different points in the step: land without horizontal drift, then accept an immediate restart.
+const stops={cases:0,maxReleaseStep:0,maxRestartStep:0};
+for(const hz of [30,60,120])for(const side of [-1,1])for(const travel of [.05,.13,.24,.4])for(const pause of [.05,.2]){
  const c=make(),dest=new Vec3(side*3,0,4);c.steerOnCourt(dest,facing);for(let i=0;i<Math.round(hz*.25);i++)c.update(1/hz);
- c.triggerShot(side>0?'swingForehand':'swingBackhand',facing);for(let i=0;i<Math.round(hz*.13);i++){c.steerOnCourt(dest,facing);c.update(1/hz);}
- const before=c.analysisPose();c.clearCourtMove();c.update(1/hz);const after=c.analysisPose();
- for(const leg of ['L','R'])assert(Vec3.sub(before['foot'+leg],after['foot'+leg]).len()<1e-6,'Stopping travel must preserve the current recovery-step target');
+ c.triggerShot(side>0?'swingForehand':'swingBackhand',facing);for(let i=0;i<Math.round(hz*travel);i++){c.steerOnCourt(dest,facing);c.update(1/hz);}
+ const before=c.analysisPose(),root=c.position.clone();c.clearCourtMove();c.update(0);
+ for(const leg of ['L','R'])assert(Vec3.sub(before['foot'+leg],c.analysisPose()['foot'+leg]).len()<1e-6,'Zero-time stop cannot pop a shoe');
+ let previous=before;
+ for(let i=0;i<Math.ceil(hz*pause);i++){
+  c.update(1/hz);const p=c.analysisPose();assert(Vec3.sub(root,c.position).len()<1e-9,'Landing cannot move the player root');
+  for(const leg of ['L','R']){
+   const foot=p['foot'+leg],old=previous['foot'+leg],start=before['foot'+leg];
+   assert(Math.hypot(foot.x-start.x,foot.z-start.z)<1e-6,'Stopping must preserve the horizontal shoe position');
+   assert(foot.y<=old.y+1e-8&&foot.y>=.109999,'Receiving foot must descend without penetrating the court');
+   stops.maxReleaseStep=Math.max(stops.maxReleaseStep,Vec3.sub(foot,old).len());
+  }
+  previous=p;
+ }
+ if(pause>=.2)for(const leg of ['L','R'])assert(Math.abs(previous['foot'+leg].y-.11)<1e-6,'Both shoes must land within 0.2 seconds of stopping');
+ c.steerOnCourt(new Vec3(root.x-side*3,0,root.z),facing);c.update(1/hz);const resumed=c.analysisPose();
+ assert(Vec3.sub(root,c.position).len()>0,'Restart must move on the first frame');
+ for(const leg of ['L','R'])stops.maxRestartStep=Math.max(stops.maxRestartStep,Vec3.sub(resumed['foot'+leg],previous['foot'+leg]).len());
+ stops.cases++;
 }
-console.log('Running-shot movement release preserves both shoes at 30/60/120 Hz.');
+assert(stops.maxReleaseStep<.035,'Landing must not snap vertically');
+assert(stops.maxRestartStep<.08,'Restart must not snap back to the old airborne arc');
+console.log(JSON.stringify(stops));

@@ -428,7 +428,7 @@ export class Game {
     this.startChampionship(opponent);
   }
 
-  private availableChampionshipOpponent(){return ['leo','mika','coach','nia'].map(id=>this.byId(id)).find(c=>c&&championshipOpponentFor(c.id)&&!this.activities.busy(c.id));}
+  private availableChampionshipOpponent(){return ['leo','mika','coach','nia'].map(id=>this.byId(id)).find(c=>c&&championshipOpponentFor(c.id)&&!this.activities.busy(c.id,false));}
 
   private createInteractiveMatch(
     opponent:Character,
@@ -1074,6 +1074,12 @@ export class Game {
   }
   private routes=new Map<string,Vec3[]>();private waitingForPlace=new Map<string,string>();
   private startActivity(kind:string,ids:string[],resource:string,targets:Vec3[],detail=''){
+    // Optional solo routines yield immediately to tennis and direct player invitations.
+    if(ids.includes('player')||resource==='court'){
+      const blockers=this.activities.active.filter(a=>a.resource===resource||a.participants.some(id=>ids.includes(id)));
+      if(blockers.some(a=>!a.interruptible))return null;
+      for(const a of blockers){this.activities.cancel(a,'Quiet routine yielded to an invitation.');this.releaseActivity(a);this.telemetry.interruptions++;}
+    }
     // Reject unavailable invitations before routing; the director retries during live rallies.
     if(this.activities.reserved(resource)||ids.some(id=>this.activities.busy(id)))return null;
     // A fresh social routine must not reverse a nonparticipant's court-exit route.
@@ -1093,7 +1099,7 @@ export class Game {
     this.lifeRuns.delete(a.id);if(this.speechOwner===a.id){this.speechOwner=null;this.ui.hideSpeech();this.activeSpeechId=null;}
     if(a.resource==='court'&&a.kind!=='championship'){this.rally.stop();this.socialRally.stop();this.byId('mika')!.practiceCue='';this.evidence.practicing=false;}
     for(const id of a.participants){const c=this.actor(id);c.affection=null;c.currentScheduleIndex=-1;c.clearCourtMove();c.clearShotIntent();c.path=[];c.setLook(undefined);c.setConversationPartner(undefined);c.setAnimation('idle');c.seatDepth=0;c.seatHeight=.54;c.socialGesture='none';c.socialProp=null;c.setInteractionTarget(undefined);c.racketStowed=c.spec.avatar==='taylor';c.acting.setRole('exit');}
-    this.routes.delete(a.id);if(a.kind!=='championship')this.lessonActive=false;
+    this.routes.delete(a.id);if(a.kind!=='championship')this.lessonActive=this.activities.active.some(active=>active.kind==='lesson');
   }
   private cancelActivity(a:Activity,retry=false){if(a.kind==='lesson'){this.traceCoaching('cancelled',{id:a.id,retry,phase:a.phase,seconds:a.phaseTime,positions:a.participants.map(id=>({id,position:this.actor(id).position,path:this.actor(id).path, index:this.actor(id).pathIndex}))});if(retry)this.queuedLesson=this.lessonKeys?.get(a.id)??this.queuedLesson;this.lessonKeys?.delete(a.id);}this.telemetry.cancellations++;const run=this.lifeRuns.get(a.id);if(run)this.everyday.failed(run.scene);this.activities.cancel(a,'Interrupted safely; no completion rewards.');this.releaseActivity(a);}
   private startMatch(){
@@ -1229,7 +1235,8 @@ export class Game {
     const resource=object?.id??(scene.place==='cafe'||scene.place==='cafeTable'?'cafe-table':`place-${scene.place}`);
     const a=this.startActivity('everyday',scene.people,resource,targets,scene.title);
     if(!a){this.everyday.failed(scene);return null;}
-    for(const id of scene.people)this.actor(id).racketStowed=!['grip','gear-advice','small-win','counting'].includes(scene.id);
+    a.interruptible=scene.family==='background';
+    for(const id of scene.people)this.actor(id).racketStowed=!['grip','gear-advice','small-win','counting','background-strings'].includes(scene.id);
     this.lifeRuns.set(a.id,{scene,id:this.everyday.started(scene),beat:-1,age:0,pause:0,matchId:this.history.matches[0]?.id,objectId:object?.id,why:this.mind.chosen?.scene===scene.id?Object.entries(this.mind.chosen.factors).filter(([,v])=>v>.08).sort((a,b)=>b[1]-a[1]).slice(0,4).map(([k])=>k).join(', '):'An authored opportunity'});return a;
   }
   private playLifeBeat(a:Activity,beat:LifeBeat){
@@ -1246,7 +1253,7 @@ export class Game {
     if(run.scene.id==='bench-room'&&beat.gestures?.leo==='offer'){const c=this.actor('leo'),target=c.position.clone().add(new Vec3(.22,0,0));if(run.objectId){for(const id of a.participants){const person=this.actor(id);person.seatDepth=.8;person.face(new Vec3(person.position.x,0,person.position.z-2));person.setAnimation('sit');}}if(!this.world.nav.isBlocked(target.x,target.z))c.goTo(target,run.objectId?'sit':'watch');}
   }
   private interruptEveryday(a:Activity,cause:'rain'|'rally'){
-    const run=this.lifeRuns.get(a.id);if(!run||run.interrupted)return;run.pause=4;run.interrupted=cause;this.telemetry.interruptions++;
+    const run=this.lifeRuns.get(a.id);if(!run||run.interrupted||run.scene.family==='background')return;run.pause=4;run.interrupted=cause;this.telemetry.interruptions++;
     for(const id of a.participants){const c=this.actor(id);c.socialGesture='none';c.setAnimation('watch');c.setLook(cause==='rally'?new Vec3(1,1,0):new Vec3(-8,2,-9));c.setEmotion('surprised',2);}
     const c=this.actor(a.participants[0]);this.activeSpeechId=c.id;this.speechOwner=a.id;this.speechUntil=Infinity;this.ui.showSpeech(c.spec.name,cause==='rain'?'Oh. There’s the rain.':'Hang on—look at this rally.',0);
   }
@@ -1376,7 +1383,8 @@ export class Game {
       const rematch=this.history.intentions.find(i=>i.kind==='rematch');
       if((!rematch||rematch.notBefore<=this.absoluteMinute||this.history.intentions.some(i=>i.id==='test-cue'))&&this.mind.challenge('mika',this.relations.getBetween('mika','leo').rivalry)>.68&&this.mind.challenge('leo',this.relations.getBetween('mika','leo').rivalry)>.68)this.startMatch();
     }
-    if(!this.lifeRuns.size){const context=this.sceneContext(),scene=this.everyday.choose(this.lifeContext(),this.grammar.compose(this.mind,context),scenes=>this.mind.rank(scenes,context).map(v=>v.s));if(scene)this.startEveryday(scene);}
+    if(![...this.lifeRuns.values()].some(run=>run.scene.family!=='background')){const context=this.sceneContext(),scene=this.everyday.choose(this.lifeContext(),this.grammar.compose(this.mind,context),scenes=>this.mind.rank(scenes,context).map(v=>v.s));if(scene)this.startEveryday(scene);}
+    if(this.lifeRuns.size<2&&!this.queuedLesson&&!this.queuedChampionship&&![...this.lifeRuns.values()].some(run=>run.scene.family==='background')){const scene=this.everyday.background(this.lifeContext(),this.sceneContext().available);if(scene)this.startEveryday(scene);}
     if(!this.lifeRuns.size&&this.absoluteMinute>=this.history.nextObject&&(this.world.placements.length>0||this.history.intentions.some(i=>i.id==='after-court'))){
       this.affordances.sync(this.world.placements,this.clock.day);
       const ids=['nia','mika','leo','coach'],busy=new Set(ids.filter(id=>this.activities.busy(id)));

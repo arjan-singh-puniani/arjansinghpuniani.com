@@ -1,14 +1,15 @@
 export type ActivityPhase='traveling'|'starting'|'active'|'resolving'|'completed'|'interrupted'|'cancelled';
 export interface Activity {
   id:string;kind:string;participants:string[];resource:string;phase:ActivityPhase;
-  elapsed:number;phaseTime:number;detail:string;result?:string;
+  elapsed:number;phaseTime:number;detail:string;result?:string;interruptible?:boolean;
 }
 export interface ActivitySave {sequence:number;history:Activity[]}
 /** Reservations belong to the transaction, including travel and reaction time. */
 export class ActivitySystem {
   active:Activity[]=[];history:Activity[]=[];private sequence=0;
-  busy(id:string){return this.active.some(a=>a.participants.includes(id));}
-  reserved(resource:string){return this.active.some(a=>a.resource===resource);}
+  // Autonomy reserves all activity; player invitations can ignore optional routines.
+  busy(id:string,includeInterruptible=true){return this.active.some(a=>(includeInterruptible||!a.interruptible)&&a.participants.includes(id));}
+  reserved(resource:string,includeInterruptible=true){return this.active.some(a=>(includeInterruptible||!a.interruptible)&&a.resource===resource);}
   begin(kind:string,participants:string[],resource:string,detail=''){
     if(!participants.length||new Set(participants).size!==participants.length||!resource)return null;
     if(this.reserved(resource)||participants.some(id=>this.busy(id)))return null;

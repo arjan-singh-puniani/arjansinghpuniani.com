@@ -3,11 +3,11 @@ import { CLUB_TOUCHES, touchForDecor } from '../simulation/ClubInteractions.js';
 import { championshipOpponentFor } from '../tennis/ChampionshipOpponents.js';
 /** Reservations mirror the existing challenge path, including a yielding demonstration. */
 export function canChallenge(a, id) {
-    return !!championshipOpponentFor(id) && !a.active.some(a => a.kind !== 'observe' && (a.resource === 'court' || a.participants.includes(id) || a.participants.includes('player')));
+    return !!championshipOpponentFor(id) && !a.active.some(a => a.kind !== 'observe' && !a.interruptible && (a.resource === 'court' || a.participants.includes(id) || a.participants.includes('player')));
 }
 export function characterContext(c, s) {
     const state = s.mind.states[c.id], active = s.activities.active.find(a => a.participants.includes(c.id));
-    const free = !s.activities.busy(c.id) && !s.activities.busy('player'), facts = [];
+    const free = !s.activities.busy(c.id, false) && !s.activities.busy('player'), facts = [];
     const match = s.history.matches.find(m => Object.hasOwn(m.score, c.id)), memory = s.mind.recall(c.id)[0];
     const favorite = Object.entries(s.affordances.objects).find(([, h]) => h.favoriteOf.includes(c.id));
     const championship = s.relations.recall(c.id, 'championship');
@@ -32,12 +32,12 @@ export function characterContext(c, s) {
     const actions = [];
     if (free) {
         actions.push({ id: 'talk', title: 'Spend a moment', detail: 'Walk over and listen' });
-        if (!s.activities.reserved('cafe-table'))
+        if (!s.activities.reserved('cafe-table', false))
             actions.push({ id: 'tea', title: 'Share matcha', detail: 'Meet at the matcha nook' });
     }
     if (active?.resource === 'court' && !s.activities.busy('player'))
         actions.push({ id: 'watch', title: 'Watch practice', detail: 'Join from the sideline' });
-    if (c.id === 'mika' && !s.activities.busy('coach') && !s.activities.busy(c.id) && !s.activities.reserved('court'))
+    if (c.id === 'mika' && !s.activities.busy('coach', false) && !s.activities.busy(c.id, false) && !s.activities.reserved('court', false))
         actions.push({ id: 'coach', title: 'Coach a lesson', detail: 'Choose a cue for Lucresia' });
     if (canChallenge(s.activities, c.id))
         actions.push({ id: 'challenge', title: rematchReady ? 'Accept rematch' : 'Challenge to Match', detail: rematchReady ? 'They finished reflecting on your last match · First to 7' : 'First to 7 · win by 2', primary: true });
@@ -50,13 +50,13 @@ export function characterContext(c, s) {
     return { eyebrow: c.spec.role, title: c.spec.name, subtitle: c.spec.playStyle, status: `${s.mind.mood(c.id)} · Energy ${Math.round(state.energy * 100)}%`, facts: [{ label: s.relations.label(c.id), text: active ? `${active.detail} · ${active.phase === 'traveling' ? 'on the way' : active.phase}` : c.activity || c.spec.goal }, ...facts].slice(0, 3), actions };
 }
 export function objectContext(o, a, e, memories, identity, minute = 0) {
-    const touch = o.id === 'warmup' ? touchForDecor('towelRack') : o.id === 'spectatorRow' ? CLUB_TOUCHES.lounge : CLUB_TOUCHES[o.kind], free = !a.busy('player') && !a.reserved(o.id);
+    const touch = o.id === 'warmup' ? touchForDecor('towelRack') : o.id === 'spectatorRow' ? CLUB_TOUCHES.lounge : CLUB_TOUCHES[o.kind], free = !a.busy('player') && !a.reserved(o.id, false);
     const actions = identity ? (free ? identity.actions(o, minute).map((t, i) => ({ id: t.id, title: t.title, detail: t.detail, primary: i === 0 })) : []) : free && touch ? [{ id: 'touch', title: touch.title, detail: touch.detail, primary: true }] : [];
-    if (o.kind === 'cafe' && free && !a.busy('nia') && !a.reserved('cafe-table'))
+    if (o.kind === 'cafe' && free && !a.busy('nia', false) && !a.reserved('cafe-table', false))
         actions.push({ id: 'tea', title: 'Share matcha', detail: 'Make time with Barbara' });
     if (o.kind === 'equipment')
         actions.push({ id: 'equipment', title: 'Customize racket', detail: 'Frames, strings and tension' });
-    if (o.id === 'machine' && !a.busy('coach') && !a.busy('mika') && !a.reserved('court'))
+    if (o.id === 'machine' && !a.busy('coach', false) && !a.busy('mika', false) && !a.reserved('court', false))
         actions.push({ id: 'drill', title: 'Run ball-machine drill', detail: 'Contessa guides a rhythm block' });
     if (o.kind === 'court' && !a.busy('player'))
         actions.push({ id: 'watch', title: 'Watch a rally', detail: 'Head to the sideline' });

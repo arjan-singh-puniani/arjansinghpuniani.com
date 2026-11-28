@@ -202,10 +202,11 @@ export class World {
     this.rb(7.35,.34,3.02,.55,.16,.62,palette.paper,.08,1,false,undefined,'fabric');
 
     // Club board with sticky-note rhythm.
-    this.rb(3.55,2.58,-9.42,2.8,1.18,.10,'#a7aba0');this.rb(3.55,2.58,-9.34,2.63,1.02,.055,'#f4f3e8');for(let i=0;i<3;i++)this.rb(2.5+i*.72,2.76,-9.23,.48,.27,.025,[palette.paper,palette.gold,palette.peach][i],(i-1)*.025,1,true);
+    this.rb(3.55,2.58,-9.42,2.8,1.18,.10,'#a7aba0');this.rb(3.55,2.58,-9.34,2.63,1.02,.055,'#f4f3e8');for(let i=0;i<3;i++)this.rb(3.55+i*.45,2.83,-9.23,.34,.22,.025,[palette.paper,palette.gold,palette.peach][i],(i-1)*.025,1,true);
     this.rb(3.55,1.98,-9.23,2.68,.055,.17,'#989d92');this.rb(3.5,2.03,-9.17,.28,.025,.04,'#416775');
     this.objects.push({id:'clubBoard',label:'Club whiteboard',kind:'board',position:new Vec3(3.55,0,-7.8),radius:1.6,description:'Read the club scrapbook, or leave a small crosscourt sketch in the clean corner.'});
     this.buildFloorProgram();
+    this.buildClubDetails();
   }
   private buildFloorProgram(){
     const t=palette.terracotta,pe=palette.peach,bl=palette.blue,pk=palette.pink,mi=palette.mint,gd=palette.gold;
@@ -296,6 +297,32 @@ export class World {
     for(const wx of [-2.25,-.55])this.add('cylinder',wx,.09,-8.6,.20,.18,.20,'#4e5a52',Math.PI/2,1,false,undefined,'metal');
     for(let i=0;i<4;i++)this.add('cone',.35+i*.34,.16,-8.45,.30,.32,.30,[pe,gd,t,pe][i],0,1,false,undefined,'fabric');
     this.objects.push({id:'equipment',label:'Equipment trolley',kind:'training',position:new Vec3(-1.4,0,-7.5),radius:1.9,description:'Spare frames, a cone stack, and whatever the last session forgot to put back.'});
+  }
+
+  private buildClubDetails(){
+    // Small signs of use reuse cached static transforms and stay off navigation paths.
+    const ink='#416b58',paper='#f2e7d2',wood='#8a644d';
+    const mark=(x:number,y:number,w:number,h:number)=>this.rb(x,y,-9.19,w,h,.012,ink,0,1,false,undefined,'matte');
+    for(const x of [2.37,3.00])mark(x,2.58,.018,.70);
+    for(const y of [2.23,2.93])mark(2.685,y,.65,.018);
+    mark(2.685,2.58,.65,.022);mark(2.685,2.58,.016,.40);
+    for(const y of [2.38,2.78])mark(2.685,y,.65,.016);
+    // Two chalk rally paths and their contact dots make the whiteboard a real practice sketch.
+    for(let i=0;i<6;i++){this.add('sphere',2.46+i*.08,2.34+i*.075,-9.17,.025,.025,.012,'#ba8061',0,1,true);this.add('sphere',2.91-i*.07,2.36+i*.07,-9.17,.022,.022,.012,ink,0,1,true);}
+    for(let row=0;row<2;row++){mark(3.67,2.65-row*.12,.42,.012);mark(4.29,2.65-row*.12,.42,.012);this.add('sphere',3.37,2.65-row*.12,-9.17,.045,.045,.018,[palette.peach,palette.sage,palette.gold][row],0,1,true);}
+    // Grip tape, a tennis-ball tube and folded kit belong to the equipment worktop.
+    for(let i=0;i<2;i++){this.add('torus',8.43+i*.23,1.56,-3.31,.18,.18,.18,i?paper:'#49645b',0,1,false,undefined,'fabric');this.meshes.at(-1)!.rotation=new Vec3(Math.PI/2,0,0);}
+    this.add('cylinder',9.94,1.79,-3.46,.19,.46,.19,'#d7b55a',0,1,false,undefined,'metal');this.add('cylinder',9.94,2.03,-3.46,.21,.025,.21,paper,0,1,false,undefined,'metal');
+    this.rb(8.55,1.56,-3.75,.50,.045,.30,paper,.12,1,false,undefined,'fabric');
+    for(let i=0;i<3;i++)this.rb(8.55,1.586,-3.85+i*.10,.46,.006,.012,'#b3a58c',.12,1,false,undefined,'fabric');
+    // A prepared tea tray and used saucer give the café a worked-in surface.
+    this.rb(-10.64,1.22,-5.71,.70,.055,.49,wood,0,1,false,undefined,'wood');
+    for(const x of [-10.86,-10.47]){this.add('cylinder',x,1.27,-5.71,.23,.035,.23,paper,0,1,false,undefined,'ceramic');this.add('sphere',x,1.31,-5.71,.16,.065,.14,'#c69b64',0,1,false,undefined,'matte');}
+    this.rb(-9.94,1.22,-6.18,.35,.022,.23,paper,.08,1,false,undefined,'fabric');this.rb(-9.92,1.24,-6.18,.22,.015,.025,'#65796d',.08,1,false,undefined,'metal');
+    // Court-side personal kit stays on the bench and its existing footprint.
+    this.rb(5.84,.59,4.80,.52,.075,.42,paper,.08,1,false,undefined,'fabric');
+    for(let i=0;i<3;i++)this.rb(5.84,.63,4.67+i*.09,.50,.006,.018,'#89a29b',.08,1,false,undefined,'fabric');
+    this.add('cylinder',7.23,.73,4.80,.16,.37,.16,'#8eaaa9',0,1,false,undefined,'metal');this.add('cylinder',7.23,.93,4.80,.11,.06,.11,'#4b685b',0,1,false,undefined,'metal');
   }
 
   private addBonsai(x:number,z:number,s=1,style:'pine'|'windswept'|'maple'|'cascade'|'flower'='pine',baseY=0,potColor='#aa7863'){

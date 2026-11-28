@@ -1,0 +1,53 @@
+{
+  "meshes": 575,
+  "activities": [
+    {
+      "kind": "observe",
+      "detail": "Open court practice",
+      "people": [
+        "coach",
+        "mika"
+      ],
+      "phase": "active"
+    },
+    {
+      "kind": "everyday",
+      "detail": "Leo works on the unglamorous part",
+      "people": [
+        "leo"
+      ],
+      "phase": "starting"
+    },
+    {
+      "kind": "everyday",
+      "detail": "Barbara takes a quiet tea break",
+      "people": [
+        "nia"
+      ],
+      "phase": "active"
+    }
+  ],
+  "life": [
+    {
+      "family": "practice",
+      "title": "Leo works on the unglamorous part"
+    },
+    {
+      "family": "background",
+      "title": "Barbara takes a quiet tea break"
+    }
+  ],
+  "render": {
+    "simMs": 0.7675730271222626,
+    "renderMs": 18.89564582333388,
+    "drawCalls": 856,
+    "triangles": 518489,
+    "entities": 5,
+    "memoryMB": 110.626220703125
+  },
+  "viewport": {
+    "width": 1440,
+    "height": 960
+  },
+  "errors": []
+}

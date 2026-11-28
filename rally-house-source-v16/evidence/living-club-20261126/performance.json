@@ -1,0 +1,202 @@
+[
+  {
+    "engine": "chromium",
+    "label": "before",
+    "mode": "club",
+    "viewport": {
+      "width": 1200,
+      "height": 900
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 16.69999999999709,
+    "p95": 16.700000000004366,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.3126594034252838,
+      "renderMs": 2.3551953146798117,
+      "drawCalls": 778,
+      "triangles": 475921,
+      "entities": 5,
+      "memoryMB": 98.22845458984375
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "renderScale": 1,
+    "phase": "inactive"
+  },
+  {
+    "engine": "chromium",
+    "label": "after",
+    "mode": "club",
+    "viewport": {
+      "width": 1200,
+      "height": 900
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 16.69999999999709,
+    "p95": 16.700000000004366,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.26362938832607313,
+      "renderMs": 2.5230212869170816,
+      "drawCalls": 825,
+      "triangles": 490897,
+      "entities": 5,
+      "memoryMB": 98.22845458984375
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "renderScale": 1,
+    "phase": "inactive"
+  },
+  {
+    "engine": "chromium",
+    "label": "after",
+    "mode": "club",
+    "viewport": {
+      "width": 1200,
+      "height": 900
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 16.69999999999709,
+    "p95": 16.799999999995634,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.23181417580802216,
+      "renderMs": 2.6172659801061813,
+      "drawCalls": 825,
+      "triangles": 490897,
+      "entities": 5,
+      "memoryMB": 98.22845458984375
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "renderScale": 1,
+    "phase": "inactive"
+  },
+  {
+    "engine": "chromium",
+    "label": "before",
+    "mode": "club",
+    "viewport": {
+      "width": 1200,
+      "height": 900
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 16.69999999999709,
+    "p95": 16.799999999995634,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.30677524857662797,
+      "renderMs": 2.6818106658885164,
+      "drawCalls": 778,
+      "triangles": 475921,
+      "entities": 5,
+      "memoryMB": 92.88787841796875
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "renderScale": 1,
+    "phase": "inactive"
+  },
+  {
+    "engine": "webkit",
+    "label": "before",
+    "mode": "club",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 17,
+    "p95": 18,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.37295561780464537,
+      "renderMs": 2.225127296260633,
+      "drawCalls": 778,
+      "triangles": 475921,
+      "entities": 5,
+      "memoryMB": null
+    },
+    "renderer": "Apple GPU",
+    "renderScale": 1,
+    "phase": "inactive"
+  },
+  {
+    "engine": "webkit",
+    "label": "after",
+    "mode": "club",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 17,
+    "p95": 18,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.8026250204212465,
+      "renderMs": 2.121994960985872,
+      "drawCalls": 825,
+      "triangles": 490897,
+      "entities": 5,
+      "memoryMB": null
+    },
+    "renderer": "Apple GPU",
+    "renderScale": 1,
+    "phase": "inactive"
+  },
+  {
+    "engine": "webkit",
+    "label": "after",
+    "mode": "club",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 17,
+    "p95": 18,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.2303171669190714,
+      "renderMs": 2.168001087711911,
+      "drawCalls": 825,
+      "triangles": 490897,
+      "entities": 5,
+      "memoryMB": null
+    },
+    "renderer": "Apple GPU",
+    "renderScale": 1,
+    "phase": "inactive"
+  },
+  {
+    "engine": "webkit",
+    "label": "before",
+    "mode": "club",
+    "viewport": {
+      "width": 402,
+      "height": 874
+    },
+    "errors": [],
+    "frames": 900,
+    "p50": 17,
+    "p95": 18,
+    "over50": 0,
+    "perf": {
+      "simMs": 0.329807759475762,
+      "renderMs": 2.1009326123754803,
+      "drawCalls": 778,
+      "triangles": 475921,
+      "entities": 5,
+      "memoryMB": null
+    },
+    "renderer": "Apple GPU",
+    "renderScale": 1,
+    "phase": "inactive"
+  }
+]

@@ -67,7 +67,7 @@ for(let i=0;i<7000&&seat.activities.busy('player');i++){seat.updateFixed(1/60);i
 if(watched<120)console.log('Seat regression diagnostic',watched,seat.activities.history,seat.activities.active,seat.player.position);
 assert(watched>=120,'Seated player sees the actual moving ball for at least two seconds');assert.equal(seat.world.identity.state(bench.id).uses,1);assert.equal(seat.player.seatDepth,0);
 // Navigation changes may change autonomous timing. Prove the observed-result path with a real free observer.
-const seen=simulation();seen.observationStarted=true;seen.schedule.update=()=>{};seen.quietLife=()=>{};seen.everyday.next=seen.history.nextSocial=seen.history.nextObject=1e12;
+const seen=simulation();seen.everyday.background=()=>null;seen.observationStarted=true;seen.schedule.update=()=>{};seen.quietLife=()=>{};seen.everyday.next=seen.history.nextSocial=seen.history.nextObject=1e12;
 for(const c of seen.characters){c.path=[];c.yieldUntil=1e12;c.setAnimation('idle');}seen.actor('nia').position.set(6.9,0,3.7);
 const match=seen.startMatch();assert(match);for(let i=0;i<9000&&seen.activities.active.some(a=>a.id===match.id);i++)seen.updateFixed(1/60);
 const event=seen.mind.events.find(e=>e.id===match.id);assert(event?.witnesses.includes('nia'),'A free nearby observer witnesses the actual completed match');

@@ -1,0 +1,56 @@
+[
+  {
+    "name": "everyday",
+    "status": 0,
+    "output": "\u2713 An invitation does not write a memory or invent familiarity\n\u2713 Busy members never enter an everyday scene\n\u2713 A failed route leaves no completed story and backs off\n\u2713 Cold tea is a consequence of finished notes, not starting notes\n\u2713 Learned usual changes the next conversation\n\u2713 Post-match conversation quotes actual score and respects consumed result\n\u2713 Rain and closing scenes require their world conditions\n\u2713 A completed scene gets breathing room and a repetition cooldown\n\u2713 Followups, learned rituals and bounded history survive save\n\u2713 Invalid everyday state fails visibly instead of propagating NaN\n\u2713 v13 saves migrate unchanged and newly written envelopes use schema 12\n\u2713 An everyday caption has no wall-clock expiry while the simulation is paused\n\u2713 Unchanged HUD labels do not rewrite DOM text, while real changes still appear\n\u2713 Cafe-to-bonsai circulation does not cut through a reserved playing area\n14 everyday-life checks passed.\n",
+    "error": ""
+  },
+  {
+    "name": "life-integration",
+    "status": 0,
+    "output": "V15 SIMULATION {\"completed\":30,\"scenes\":{\"observe\":1,\"background\":13,\"practice\":2,\"counting\":2,\"watch-court\":1,\"match\":1,\"after-result\":2,\"tea\":2,\"bench-room\":1,\"gear-advice\":1,\"small-win\":1,\"rest\":1,\"witness-followup\":1,\"shared-break\":1},\"pairs\":{\"coach|mika\":3,\"leo|mika\":2,\"coach|nia\":1,\"coach|leo\":1,\"mika|nia\":1,\"leo|nia\":1},\"places\":{\"court\":2,\"cafe\":5,\"warmup\":7,\"cafeTable\":5,\"courtBench\":3,\"cafe-table\":2,\"stringing\":4,\"training\":1,\"lounge\":1},\"initiators\":{\"coach\":9,\"nia\":7,\"leo\":7,\"mika\":7},\"failures\":[]}\nReal Game director variety, tennis, lesson commitment, interrupted intention and built favorite passed.\nQueued player lesson can start after autonomous closing hours.\nAfter-hours quiet life continues without unsolicited court bookings.\nTen varied input timings preserve completed after-hours queued lessons.\n",
+    "error": ""
+  },
+  {
+    "name": "life-variety",
+    "status": 0,
+    "output": "LONG VARIETY {\"day\":3,\"scenes\":22,\"pairs\":{\"coach|mika\":7,\"leo|nia\":5,\"leo|mika\":6,\"coach|nia\":15,\"mika|nia\":10,\"coach|leo\":4},\"places\":13,\"initiators\":{\"coach\":30,\"nia\":46,\"mika\":28,\"leo\":29},\"flags\":[],\"cancellations\":0,\"favorites\":[[\"nia\",\"coach\",\"leo\",\"mika\"],[\"nia\"],[\"mika\",\"leo\"]]}\nOne simulated hour across days preserves variety, all initiators and built favorites.\n",
+    "error": ""
+  },
+  {
+    "name": "activity-reservation-cost",
+    "status": 0,
+    "output": "Unavailable activities skip navigation; release and unreachable-route behavior preserved.\n",
+    "error": ""
+  },
+  {
+    "name": "avatar-switch-lockout",
+    "status": 0,
+    "output": "Avatar lockout: 16 phase/intent cases, partner cleanup, court ownership, protected modes and subsequent conversation pass.\n",
+    "error": ""
+  },
+  {
+    "name": "court-entry",
+    "status": 0,
+    "output": "Court access PASS: 36 consecutive-opponent entries at 30/60/120 Hz, both baseline routes, net/furniture clearance and outside social circulation.\n",
+    "error": ""
+  },
+  {
+    "name": "object-identity",
+    "status": 1,
+    "output": "",
+    "error": "node:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: A free nearby observer witnesses the actual completed match\n    at file:///private/tmp/rally-house-gameplay-20261122/rally-house-source-v16/tests/object-identity.mjs:73:55\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n\nNode.js v22.23.2\n"
+  },
+  {
+    "name": "art-geometry",
+    "status": 0,
+    "output": "Art geometry PASS: bounded non-degenerate foliage and sealed skinned joint rings\nHuman garment topology PASS: four closed shoulder caps, one cuff opening per sleeve.\n",
+    "error": ""
+  },
+  {
+    "name": "decor-use",
+    "status": 0,
+    "output": "Decor use PASS: real placed lighting, full-shade picking, persistent watering/cooldown, safe cancellation, table invitations/favorites, bench spectating and invalid-state rejection.\n",
+    "error": ""
+  }
+]
